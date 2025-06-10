@@ -1,1 +1,73 @@
-comming soon
+# Getting Started with MetaTrader 5
+
+This guide provides a step-by-step tutorial on how to set up and access your MetaTrader 5 account.
+
+## Account Creation and Login
+
+1. **Open MetaTrader 5:** Launch the MetaTrader 5 application.
+
+2. **Access Account Management:** Click on the small person icon (usually located in the top right corner).  A pop-up window will appear.
+
+3. **Login or Register:** Choose to either log in to an existing account or register a new one.
+
+4. **Registration (if applicable):** Enter your desired username and your current email address. Click "Create." You will receive an email with account activation instructions and your automatically generated password.
+
+5. **Account Activation (if applicable):** You'll be redirected to a web page after clicking "Activate Account." While you can log in via the web, it's recommended to proceed directly to step 6.
+
+6. **Open Account in MT5:** In the MetaTrader 5 application, go to `File` > `Open an Account`.
+
+7. **Select Broker:** Choose "Metaquotes Ltd" (or your chosen broker) and click "Next."
+
+8. **Account Type:** Select the type of account you wish to open (e.g., Demo or Real).  The following steps will use a demo account as an example.
+
+9. **Personal Information:** Fill in the required personal information fields. Check the "I agree..." box and click "Next."
+
+10. **Account Details:** The system will generate your trading account number, password, and investor password.  **Crucially, save this information securely.**
+
+11. **Login to Trading Account:** Go to `File` > `Log in to Trading Account`.
+
+12. **Verify and Save:** Enter the login details provided in step 10. Check the "Save password" box (if desired) and click "OK."
+
+## Accessing the WebTrader
+
+13. **Access WebTrader:** Go to `File` > `Log in to WebTrader`.
+
+14. **Login to WebTrader:**  Log in using the trading account login and investor password obtained in step 10.
+
+15. **Connect to Account:** Click "Connect to Account" and enter your login details (trading account login and investor password).
+
+16. **Access Your Account:** You can now access and use your trading account through the MetaTrader 5 WebTrader!
+
+
+**Important Notes:**
+
+* Keep your account details secure.  Do not share your passwords with anyone.
+* If you encounter any problems, refer to the MetaTrader 5 help documentation or contact your broker's support team.
+
+## Running the MetaTrader 5 Connector
+
+This guide explains how to run the provided C# application to connect to your MetaTrader 5 account and retrieve account information.
+
+**Prerequisites:**
+
+* You must have already created a MetaTrader 5 account and obtained your account number and investor password (as described in the previous section).
+* A C# code editor (e.g., Visual Studio, Visual Studio Code) installed and configured.
+* The MetaTrader 5 connector repository cloned to your local machine.
+
+
+**Steps:**
+
+1. **Clone the Repository:** Download the MetaTrader 5 connector repository to your computer.
+
+2. **Open in Code Editor:** Open the repository in your chosen C# code editor.
+
+3. **Locate `Program.cs`:**  Navigate to the `Program.cs` file within the project's solution explorer.
+
+4. **Find Account Credentials:** Go to approximately line 90 in `Program.cs`. You will find a line similar to this:
+
+   ```csharp
+   MT5 account = new MT5 account(91817113, "@g3qCpMt"); 
+
+5. Enter the login of the trading account in the opening brackets, and then the investor's login in double quotes, as shown in the example.
+
+6. After that, launch the project, and your balance and current quotes will be displayed in the terminal.
