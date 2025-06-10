@@ -6,7 +6,7 @@ This guide provides a step-by-step tutorial on how to set up and access your Met
 
 1. **Open MetaTrader 5:** Launch the MetaTrader 5 application.
 
-2. **Access Account Management:** Click on the small person icon (usually located in the top right corner).  A pop-up window will appear.
+2. [**Access Account Management:**](images/1.png) Click on the small person icon (usually located in the top right corner).  A pop-up window will appear.
 
 3. **Login or Register:** Choose to either log in to an existing account or register a new one.
 
