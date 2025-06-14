@@ -1,0 +1,38 @@
+Первый метод с которым работаю для program.cs
+
+1. AccountSummaryData
+
+будут ли входные данные в будущем присутствова в этом методе, такие как 
+            Console.WriteLine($"Margin: {summaryDataAsync.AccountMargin}");
+            Console.WriteLine($"Free Margin: {summaryDataAsync.AccountMarginFree}");
+            Console.WriteLine($"Margin Level: {summaryDataAsync.AccountMarginLevel}%");
+            Console.WriteLine($"Profit: {summaryDataAsync.AccountProfit}")
+
+Нужно ли добавлять этот метод в Run() ?
+
+2. OpenOrderAsync
+
+foreach (var order in orders.Orders) 
+{
+    Console.WriteLine($"Order ID: {order.Order}");
+
+OpenOrderData не содержит определения для orders
+
+3. OrderHistoryAsync 
+
+ // Получаем историю ордеров за последние 7 дней
+ //Нужен ли нам такие данные вообще по типу вывода за последние и т.д?
+ var endDate = DateTime.UtcNow;
+ var startDate = endDate.AddDays(-7);
+
+ var history = await account.OrderHistoryAsync(
+     from: startDate,
+     to: endDate,
+     sortMode: BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
+     pageNumber: 0,
+     itemsPerPage: 100
+
+4. public async Task<OrdersHistoryData> OrderHistoryAsync(
+Это полный метод с синхронной и ассинхронной работой, может ли он полностью заменить пример выше под цифрой "3"
+
+5.
