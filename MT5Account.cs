@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 
 
 namespace MetaRPC.CSharpMT5;
+internal class ErrorCodeMT5;
 
 /// <summary>
 /// Represents an MT5 trading account connected via gRPC.
@@ -125,8 +126,10 @@ internal class MT5Account
         else
             await ConnectByServerNameAsync(ServerName, BaseChartSymbol, true, ConnectTimeoutSeconds, deadline, cancellationToken);
     }
+    
+   
+       
 
-    // Connect methods
 
     /// <summary>
     /// Connects to the MT5 terminal using credentials provided in the constructor.
