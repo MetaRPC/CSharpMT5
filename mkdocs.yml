@@ -1,7 +1,9 @@
-site_name: MetaRPC MT5 C# Documenation
+site_name: MetaRPC MT5 C# Documentation
+
 nav:
   - Home: index.md
   - Account Information: account.md
+
 theme:
   name: material
   palette:
@@ -18,3 +20,8 @@ theme:
   features:
     - palette.toggle
     - palette.auto
+
+markdown_extensions:
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences
