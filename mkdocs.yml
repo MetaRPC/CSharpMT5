@@ -1,5 +1,20 @@
 site_name: My Project Docs
 nav:
   - Home: index.md
+  - Account Information: : account.md
 theme:
   name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - palette.toggle
+    - palette.auto
