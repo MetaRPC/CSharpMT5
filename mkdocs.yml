@@ -1,4 +1,4 @@
-site_name: My Project Docs
+site_name: MetaRPC MT5 C# Documenation
 nav:
   - Home: index.md
   - Account Information: : account.md
