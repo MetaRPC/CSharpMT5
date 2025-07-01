@@ -12,7 +12,8 @@ _logger.LogInformation($"Account Summary: Balance={summary.AccountBalance}");
 ```
 
 **Method Signature** Task<AccountSummaryData> AccountSummaryAsync()
-Input: none
+
+**Input:** none
 
 **Output:** 
 AccountSummaryData — object containing key account metrics:
