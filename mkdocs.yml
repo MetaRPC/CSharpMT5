@@ -5,8 +5,8 @@ nav:
   - Account Information:
       - AccountSummary: account/AccountSummary.md
       - AccountInfoDouble: account/AccountInfoDouble.md
-      -AccountInfoInteger: account/AccountInfoInteger.md
-      -AccountInfoString: account/AccountInfoString.md
+      - AccountInfoInteger: account/AccountInfoInteger.md
+      - AccountInfoString: account/AccountInfoString.md
 theme:
   name: material
   palette:
