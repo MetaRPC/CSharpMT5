@@ -1,16 +1,25 @@
-# Account details
+# Getting an Account Summary
 
-Description of inut and output parameters
+>**Request:** full account summary (AccountSummaryData) from MT5
 
-=== "Python"
+✨Fetch full account summary
 
-    ```python
-    print("Hello, world!")
-    ```
+### Code Example
 
-=== "Curl"
+```csharp
+var summary = await _mt5Account.AccountSummaryAsync();
+_logger.LogInformation($"Account Summary: Balance={summary.AccountBalance}");
+```
 
-    ```bash
-    curl https://api.example.com
-    ```
+**Method Signature** Task<AccountSummaryData> AccountSummaryAsync()
+Input: none
 
+**Output:** 
+AccountSummaryData — object containing key account metrics:
+AccountBalance
+Equity
+Margin
+FreeMargin
+etc.
+
+**Purpose** - Retrieve all core account metrics in a single call, making your monitoring, logging, and code workflow more efficient. 🚀
