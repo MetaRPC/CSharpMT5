@@ -11,7 +11,7 @@ var balance = await _mt5Account.AccountInfoDoubleAsync(
     AccountInfoDoublePropertyType.AccountBalance
 );
 _logger.LogInformation($"AccountInfoDouble: Balance={balance}");
-
+```
 
 **Method Signature:** AccountInfoDoubleAsync(AccountInfoDoublePropertyType property)
 
