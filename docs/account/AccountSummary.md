@@ -17,10 +17,10 @@ _logger.LogInformation($"Account Summary: Balance={summary.AccountBalance}");
 
 **Output:** 
 AccountSummaryData — object containing key account metrics:
-AccountBalance
-Equity
-Margin
-FreeMargin
+AccountBalance,
+Equity,
+Margin,
+FreeMargin,
 etc.
 
 **Purpose** - Retrieve all core account metrics in a single call, making your monitoring, logging, and code workflow more efficient. 🚀
