@@ -19,4 +19,4 @@ _logger.LogInformation($"AccountInfoInteger: Leverage={leverage}");
 
 **Output:** Int - the value of the requested property (for example, leverage = 100).
 
-**Purpose** - Allows you to select and get any integer property of an account through a single universal method, while ma
+**Purpose** - Allows you to select and get any integer property of an account through a single universal method, while keeping your code clean, consistent, and easy to extend.🚀
