@@ -1,4 +1,4 @@
-## Getting a Double Account Property
+# Getting a Double Account Property
 
 > **Request:** account balance (double) from MT5
 
