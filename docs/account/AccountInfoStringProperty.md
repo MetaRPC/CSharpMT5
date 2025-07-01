@@ -15,9 +15,9 @@ _logger.LogInformation($"AccountInfoString: Currency={currency}");
 **Input:** property (AccountInfoStringPropertyType) — enumeration value indicating which text property to fetch.
 
 **Examples:**
-AccountCurrency(e.g. “USD”)
-ServerName — name of the trading server
-AccountOwner — owner’s name
+AccountCurrency(e.g. “USD”),
+ServerName — name of the trading server,
+AccountOwner — owner’s name.
 
 **Output:** string — the requested value (for example, "EUR").
 
