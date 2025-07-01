@@ -4,8 +4,8 @@
 
 ### Code Example
 
+✨ Fetch the account balance as a double
 <code>```csharp</code>
-// ✨ Fetch the account balance as a double
 var balance = await _mt5Account.AccountInfoDoubleAsync(
     AccountInfoDoublePropertyType.AccountBalance
 );
