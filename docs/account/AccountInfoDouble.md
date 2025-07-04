@@ -15,9 +15,9 @@ _logger.LogInformation($"AccountInfoDouble: Balance={balance}");
 
 **Method Signature:** _AccountInfoDoubleAsync(AccountInfoDoublePropertyType property)_
 
-**Input:** _property (AccountInfoDoublePropertyType)_: enumeration value indicating which double‐precision property to fetch.
+**Input:** ***property (AccountInfoDoublePropertyType): enumeration value indicating which double‐precision property to fetch.***
 
-**Examples:** ***AccountBalance, Equity(current equity), FreeMargin, Credit.***
+**Examples:** _AccountBalance, Equity(current equity), FreeMargin, Credit._
 
 **Output:** ***double — the requested numeric value (e.g., balance = 12345.67).***
 
