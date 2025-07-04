@@ -10,16 +10,16 @@ var currency = await _mt5Account.AccountInfoStringAsync(
 );
 _logger.LogInformation($"AccountInfoString: Currency={currency}");
 ```
-**Method Signature:** AccountInfoStringAsync(AccountInfoStringPropertyType property)
+✨**Method Signature:** AccountInfoStringAsync(AccountInfoStringPropertyType property)
 
-**Input:** property (AccountInfoStringPropertyType) — enumeration value indicating which text property to fetch.
+* **Input: property (AccountInfoStringPropertyType) — enumeration value indicating which text property to fetch. **
 
-**Examples:**
-AccountCurrency(e.g. “USD”),
-ServerName — name of the trading server,
-AccountOwner — owner’s name.
+* **Examples:**
+_AccountCurrency_(e.g. “USD”),
+_ServerName_ — name of the trading server,
+_AccountOwner_ — owner’s name.
 
-**Output:** string — the requested value (for example, "EUR").
+* **Output: string — the requested value (for example, "EUR"). **
 
 **Purpose:** Use this single, universal method to retrieve any string-based account property, keeping your code clean, consistent, and easy to extend. 🚀
 
