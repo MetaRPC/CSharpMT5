@@ -2,7 +2,7 @@
 
 > **Request:** account balance (double) from MT5
 
-✨ Fetch the account balance as a double
+ Fetch the account balance as a double
 
 ### Code Example
 
@@ -13,7 +13,7 @@ var balance = await _mt5Account.AccountInfoDoubleAsync(
 _logger.LogInformation($"AccountInfoDouble: Balance={balance}");
 ```
 
-**Method Signature:** AccountInfoDoubleAsync(AccountInfoDoublePropertyType property)
+✨**Method Signature:** AccountInfoDoubleAsync(AccountInfoDoublePropertyType property)
 
 * **Input: property (AccountInfoDoublePropertyType): enumeration value indicating which double‐precision property to fetch.**
 
