@@ -9,11 +9,16 @@ _logger.LogInformation(
     "OpenedOrdersAsync: Count={Count}",
     openedOrdersData.OpenedOrders.Count);
 ```
-**Method Signature:** Task<OpenedOrdersResponse> OpenedOrdersAsync();
-**Input:**  -<span style="background-color:gray; color:white">Здесь фон серый, а текст белый</span>
+**Method Signature:** _Task<OpenedOrdersResponse> OpenedOrdersAsync()_;
 
-**Output:** OpenedOrdersResponse — объект с полем
-OpenedOrders (IReadOnlyList<OrderInfo>) — список всех текущих открытых ордеров.
+**Input:**  _None — this method takes no parameters_.
+
+**Output:** 
+* **OpenedOrdersResponse** — an object with a field.
+* **OpenedOrders (IReadOnlyList<OrderInfo>)** — list of all current open orders.
+
+**Purpose:**
+It allows you to receive all open orders on the account in one universal call, so that you can polish, process or make decisions on them without wasting on a bunch of separate methods. 🚀
 
 
 
