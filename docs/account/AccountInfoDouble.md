@@ -15,10 +15,10 @@ _logger.LogInformation($"AccountInfoDouble: Balance={balance}");
 
 **Method Signature:** _AccountInfoDoubleAsync(AccountInfoDoublePropertyType property)_
 
-**Input:** ***property (AccountInfoDoublePropertyType): enumeration value indicating which double‐precision property to fetch.***
+* **Input: property (AccountInfoDoublePropertyType): enumeration value indicating which double‐precision property to fetch.**
 
-**Examples:** _AccountBalance, Equity(current equity), FreeMargin, Credit._
+* **Examples:** _AccountBalance, Equity(current equity), FreeMargin, Credit._
 
-**Output:** ***double — the requested numeric value (e.g., balance = 12345.67).***
+* **Output: double — the requested numeric value (e.g., balance = 12345.67).**
 
 **Purpose** - Keep your code concise and future-ready by using one universal method to retrieve any floating-point account property. No more copy-paste overload — simply swap the enum and you’re good to go! 🚀
