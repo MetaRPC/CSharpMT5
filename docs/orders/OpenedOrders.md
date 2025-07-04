@@ -10,7 +10,7 @@ _logger.LogInformation(
     openedOrdersData.OpenedOrders.Count);
 ```
 **Method Signature:** Task<OpenedOrdersResponse> OpenedOrdersAsync();
-**Input:**  -<span style="color:red"> None — this method takes no parameters. </span>
+**Input:**  <span style="background-color:gray; color:white">Здесь фон серый, а текст белый</span>
 
 **Output:** OpenedOrdersResponse — объект с полем
 OpenedOrders (IReadOnlyList<OrderInfo>) — список всех текущих открытых ордеров.
