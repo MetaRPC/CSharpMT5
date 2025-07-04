@@ -17,7 +17,11 @@ _logger.LogInformation($"AccountInfoDouble: Balance={balance}");
 
 * **Input: property (AccountInfoDoublePropertyType): enumeration value indicating which double‐precision property to fetch.**
 
-* **Examples:** AccountBalance, Equity(current equity), FreeMargin, Credit.
+* **Examples:** 
+    * _AccountBalance_
+    * _Equity_(current equity)
+    *  _FreeMargin_
+    *   _Credit_
 
 * **Output: double — the requested numeric value (e.g., balance = 12345.67).**
 
