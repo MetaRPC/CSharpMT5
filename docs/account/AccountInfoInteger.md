@@ -11,12 +11,12 @@ var leverage = await _mt5Account.AccountInfoIntegerAsync(
 _logger.LogInformation($"AccountInfoInteger: Leverage={leverage}");
 ```
 
-**Method Signature:** AccountInfoIntegerAsync(AccountInfoIntegerPropertyType property)
+✨**Method Signature:** AccountInfoIntegerAsync(AccountInfoIntegerPropertyType property)
 
-**Input:** property (AccountInfoIntegerPropertyType) - an enumeration indicating which integer property to get.
+* **Input: property (AccountInfoIntegerPropertyType) - an enumeration indicating which integer property to get.**
 
-**Examples:** AccountLeverage, AccountLogin(account ID), TradeMode.
+* **Examples:** AccountLeverage, AccountLogin(account ID), TradeMode.
 
-**Output:** Int - the value of the requested property (for example, leverage = 100).
+* **Output: Int - the value of the requested property (for example, leverage = 100).**
 
 **Purpose** - Allows you to select and get any integer property of an account through a single universal method, while keeping your code clean, consistent, and easy to extend.🚀
