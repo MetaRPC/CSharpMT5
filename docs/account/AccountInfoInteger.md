@@ -15,7 +15,10 @@ _logger.LogInformation($"AccountInfoInteger: Leverage={leverage}");
 
 * **Input: property (AccountInfoIntegerPropertyType) - an enumeration indicating which integer property to get.**
 
-* **Examples:** AccountLeverage, AccountLogin(account ID), TradeMode.
+* **Examples:** 
+   * _AccountLeverage_
+   * _AccountLogin_(account ID)
+   * _TradeMode_.
 
 * **Output: Int - the value of the requested property (for example, leverage = 100).**
 
