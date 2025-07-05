@@ -16,7 +16,7 @@ _logger.LogInformation(
 Task<OpenedOrdersTicketsResponse> OpenedOrdersTicketsAsync();
 ```
 
-* **Input:** None — this method takes no parameters.
+* **Input: None** — this method takes no parameters.
 
 * **Output:** 
     * **OpenedOrdersTicketsResponse** — object with property.
