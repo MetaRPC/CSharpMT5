@@ -7,13 +7,11 @@ nav:
       - AccountInfoDouble: account/AccountInfoDouble.md
       - AccountInfoInteger: account/AccountInfoInteger.md
       - AccountInfoString: account/AccountInfoString.md
-
-- Performing operations with orders:
+  - Performing operations with orders:
       - Opened Orders: orders/OpenedOrders.md
       - Opened Orders Tickets: orders/OpenedOrdersTickets.md
       - Order History: orders/OrderHistory.md
       - Symbol Info Tick: orders/SymbolInfoTick.md
-    - 
 
 theme:
   name: material
