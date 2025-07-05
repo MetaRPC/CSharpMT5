@@ -41,7 +41,7 @@ This guide provides a step-by-step tutorial on how to set up and access your Met
 
 
 
-### Important Notes⚠️:
+### Important Notes⚠️
 
  * Keep your account details secure.  Do not share your passwords with anyone.
  * If you encounter any problems, refer to the MetaTrader 5 help documentation or contact your broker's support team.
