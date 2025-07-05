@@ -19,7 +19,10 @@ _logger.LogInformation(
 );
 ```
 
-✨**Method Signature:** Task<OrderCloseResponse> OrderCloseAsync(OrderCloseRequest request);
+✨**Method Signature:** 
+```csharp
+Task<OrderCloseResponse> OrderCloseAsync(OrderCloseRequest request);
+```
 
 * **Input:**
   * **request (OrderCloseRequest)** — object with properties:
