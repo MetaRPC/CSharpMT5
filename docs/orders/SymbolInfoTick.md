@@ -19,7 +19,10 @@ _logger.LogInformation(
 );
 ```
 
-✨**Method Signature:** Task<MrpcMqlTick> SymbolInfoTickAsync(string symbol);
+✨**Method Signature:** 
+```csharp
+Task<MrpcMqlTick> SymbolInfoTickAsync(string symbol);
+```
 
 * **symbol (string)** — the symbol to retrieve tick data for (e.g., Constants.DefaultSymbol).
 
