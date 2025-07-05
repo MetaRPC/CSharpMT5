@@ -15,7 +15,7 @@ _logger.LogInformation($"AccountInfoString: Currency={currency}");
  ```csharp
 AccountInfoStringAsync(AccountInfoStringPropertyType property)
  ```
-* **Input: property (AccountInfoStringPropertyType) — enumeration value indicating which text property to fetch.**
+* **Input: property (AccountInfoStringPropertyType)** — enumeration value indicating which text property to fetch.
 
 * **Examples:**
    * _AccountCurrency_(e.g. “USD”)
