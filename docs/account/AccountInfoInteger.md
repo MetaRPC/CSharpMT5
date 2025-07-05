@@ -16,7 +16,7 @@ _logger.LogInformation($"AccountInfoInteger: Leverage={leverage}");
 AccountInfoIntegerAsync(AccountInfoIntegerPropertyType property)
 ```
 
-* **Input: property (AccountInfoIntegerPropertyType) - an enumeration indicating which integer property to get.**
+* **Input: property (AccountInfoIntegerPropertyType)** - an enumeration indicating which integer property to get.
 
 * **Examples:** 
    * _AccountLeverage_
