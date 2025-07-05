@@ -10,8 +10,10 @@
 var total = await _mt5Account.PositionsTotalAsync();
 _logger.LogInformation("PositionsTotalAsync full: {@positions}", total);
 ```
-✨**Method Signature:** Task<PositionsTotalResponse> PositionsTotalAsync();
-
+✨**Method Signature:**
+```csharp
+ Task<PositionsTotalResponse> PositionsTotalAsync();
+```
 * **Input:** None.
 
 * **Output:** 
@@ -38,7 +40,10 @@ var history = await _mt5Account.PositionsHistoryAsync(
 );
 _logger.LogInformation("PositionsHistoryAsync: Count={Count}", history.HistoryPositions.Count);
 ```
-✨ **Method Signature:** Task<PositionsHistoryResponse> PositionsHistoryAsync( AH_ENUM_POSITIONS_HISTORY_SORT_TYPE sortType, DateTime from, DateTime to );
+✨ **Method Signature:** 
+```csharp
+Task<PositionsHistoryResponse> PositionsHistoryAsync( AH_ENUM_POSITIONS_HISTORY_SORT_TYPE sortType, DateTime from, DateTime to );
+```
 
 * **Input:**
    * **sortType (AH_ENUM_POSITIONS_HISTORY_SORT_TYPE)** — sort order (e.g., AhPositionOpenTimeAsc).
