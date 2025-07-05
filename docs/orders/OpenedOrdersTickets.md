@@ -11,7 +11,10 @@ _logger.LogInformation(
     string.Join(", ", openedTicketsData.OpenedOrdersTickets)
 );
 ```
-✨**Method Signature:** Task<OpenedOrdersTicketsResponse> OpenedOrdersTicketsAsync();
+✨**Method Signature:** 
+```csharp
+Task<OpenedOrdersTicketsResponse> OpenedOrdersTicketsAsync();
+```
 
 * **Input:** None — this method takes no parameters.
 
