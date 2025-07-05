@@ -11,7 +11,10 @@ var leverage = await _mt5Account.AccountInfoIntegerAsync(
 _logger.LogInformation($"AccountInfoInteger: Leverage={leverage}");
 ```
 
-✨**Method Signature:** AccountInfoIntegerAsync(AccountInfoIntegerPropertyType property)
+✨**Method Signature:** 
+```csharp
+AccountInfoIntegerAsync(AccountInfoIntegerPropertyType property)
+```
 
 * **Input: property (AccountInfoIntegerPropertyType) - an enumeration indicating which integer property to get.**
 
