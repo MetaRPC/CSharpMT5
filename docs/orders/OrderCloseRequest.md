@@ -31,6 +31,6 @@ _logger.LogInformation(
     * **ReturnedCode (int)** — result code of the close operation.
     * **ReturnedCodeDescription (string)** — human-readable description of the result.
 
-Purpose:
+**Purpose:**
 Allows you to close an existing order (partially or fully) by ticket in a single call and receive the operation’s return code and description for logging and handling errors. 🚀
   
