@@ -11,7 +11,10 @@ var summary = await _mt5Account.AccountSummaryAsync();
 _logger.LogInformation($"Account Summary: Balance={summary.AccountBalance}");
 ```
 
-✨**Method Signature** Task<AccountSummaryData> AccountSummaryAsync()
+✨**Method Signature**
+ ```csharp
+ Task<AccountSummaryData> AccountSummaryAsync()
+```
 
 * **Input: none**
 
