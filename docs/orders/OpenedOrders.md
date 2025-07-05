@@ -9,9 +9,12 @@ _logger.LogInformation(
     "OpenedOrdersAsync: Count={Count}",
     openedOrdersData.OpenedOrders.Count);
 ```
-✨**Method Signature:** _Task<OpenedOrdersResponse> OpenedOrdersAsync()_;
+✨**Method Signature:** 
+```csharp
+Task<OpenedOrdersResponse> OpenedOrdersAsync();
+```
 
-* **Input:**  _None — this method takes no parameters_.
+* **Input: None** — this method takes no parameters.
 
 * **Output:** 
   * **OpenedOrdersResponse** — an object with a field.
