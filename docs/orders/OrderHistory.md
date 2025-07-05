@@ -15,7 +15,10 @@ _logger.LogInformation(
 );
 ```
 
-✨**Method Signature:** Task<OrderHistoryResponse> OrderHistoryAsync(DateTime from, DateTime to);
+✨**Method Signature:**
+```csharp
+ Task<OrderHistoryResponse> OrderHistoryAsync(DateTime from, DateTime to);
+```
 
 * **Input:**  
   - **from (DateTime)** — beginning of the period (UTC).  
