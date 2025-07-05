@@ -6,7 +6,7 @@ nav:
       - AccountSummary: account/AccountSummary.md
       - AccountInfoDouble: account/AccountInfoDouble.md
       - AccountInfoInteger: account/AccountInfoInteger.md
-      - AccountInfoStringProperty: account/AccountInfoStringProperety.md
+      - AccountInfoString: account/AccountInfoString.md
 
 - Performing operations with orders:
       - Opened Orders: orders/OpenedOrders.md
