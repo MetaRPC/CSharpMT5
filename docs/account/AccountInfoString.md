@@ -10,8 +10,11 @@ var currency = await _mt5Account.AccountInfoStringAsync(
 );
 _logger.LogInformation($"AccountInfoString: Currency={currency}");
 ```
-✨**Method Signature:** AccountInfoStringAsync(AccountInfoStringPropertyType property)
 
+✨**Method Signature:**
+ ```csharp
+AccountInfoStringAsync(AccountInfoStringPropertyType property)
+ ```
 * **Input: property (AccountInfoStringPropertyType) — enumeration value indicating which text property to fetch.**
 
 * **Examples:**
