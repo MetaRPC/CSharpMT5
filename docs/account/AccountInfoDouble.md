@@ -13,7 +13,10 @@ var balance = await _mt5Account.AccountInfoDoubleAsync(
 _logger.LogInformation($"AccountInfoDouble: Balance={balance}");
 ```
 
-✨**Method Signature:** AccountInfoDoubleAsync(AccountInfoDoublePropertyType property)
+✨**Method Signature:** 
+```csharp
+AccountInfoDoubleAsync(AccountInfoDoublePropertyType property)
+```
 
 * **Input: property (AccountInfoDoublePropertyType): enumeration value indicating which double‐precision property to fetch.**
 
