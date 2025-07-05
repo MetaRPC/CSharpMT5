@@ -16,8 +16,10 @@ var sendResult = await _mt5Account.OrderSendAsync(sendRequest);
 ulong ticket = sendResult.Order;
 _logger.LogInformation("OrderSendAsync: Order={Order}", ticket);
 ``` 
-✨**Method Signature:** Task<OrderSendResponse> OrderSendAsync(OrderSendRequest request);
-
+✨**Method Signature:** 
+```csharp
+Task<OrderSendResponse> OrderSendAsync(OrderSendRequest request);
+```
 * **Input:**
    **request (OrderSendRequest) — object with properties:**
     * **Symbol (string)** — the symbol to trade (e.g., Constants.DefaultSymbol).
