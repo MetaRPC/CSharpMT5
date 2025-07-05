@@ -18,7 +18,7 @@ _logger.LogInformation($"AccountInfoDouble: Balance={balance}");
 AccountInfoDoubleAsync(AccountInfoDoublePropertyType property)
 ```
 
-* **Input: property (AccountInfoDoublePropertyType): enumeration value indicating which double‐precision property to fetch.**
+* **Input: property (AccountInfoDoublePropertyType):** enumeration value indicating which double‐precision property to fetch.
 
 * **Examples:** 
     * _AccountBalance_
