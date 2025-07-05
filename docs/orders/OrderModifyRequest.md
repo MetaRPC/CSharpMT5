@@ -15,7 +15,11 @@ var modifyRequest = new OrderModifyRequest
 var modifyResult = await _mt5Account.OrderModifyAsync(modifyRequest);
 _logger.LogInformation("OrderModifyAsync: OrderId={Order}", modifyResult.Order);
 ```
-✨**Method Signature:** Task<OrderModifyResponse> OrderModifyAsync(OrderModifyRequest request);
+
+✨**Method Signature:**
+```csharp
+ Task<OrderModifyResponse> OrderModifyAsync(OrderModifyRequest request);
+```
 
 * **Input:**
     * **request (OrderModifyRequest)** — object with properties:
