@@ -26,14 +26,14 @@ This guide provides a step-by-step tutorial on how to set up and access your Met
 
 11. ![**Login to Trading Account:**](ImagesForGuidance/9..png) Go to `File` > `Log in to Trading Account`.
 
-12. [**Verify and Save:**](ImagesForGuidance/10..png) Enter the login details provided in step 10. Check the Enter the login details provided in step 10. 
+12. [**Verify and Save:**](ImagesForGuidance/10..png) Enter the login details provided in "Step 10". Check the Enter the login details provided in "Step 10". 
  Check the `Save password` box (if desired) and click `OK`.
 
 ## Accessing the WebTrader
 
-13. [**Access WebTrader:**](ImagesForGuidance/11..png) Go to Enter the login details provided in step 10. Check the Enter the `File` > `Log in to WebTrader`.
+13. [**Access WebTrader:**](ImagesForGuidance/11..png) Go to Enter the login details provided in Enter the login details provided in "Step 10". Check the Enter the login details provided in "Step 10". Check the Enter the `File` > `Log in to WebTrader`.
 
-14. [**Login to WebTrader:**](ImagesForGuidance/12..png)  Log in using the trading account login and investor password obtained in step 10.
+14. [**Login to WebTrader:**](ImagesForGuidance/12..png)  Log in using the trading account login and investor password obtained in Enter the login details provided in "Step 10". Check the Enter the login details provided in "Step 10". 
 
 15. ![**Connect to Account:**](ImagesForGuidance/13..png) Click `Connect to Account` and enter your login details **(trading account login and investor password)**.
 
