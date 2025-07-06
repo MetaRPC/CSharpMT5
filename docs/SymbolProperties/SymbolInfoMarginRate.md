@@ -25,14 +25,14 @@ Task<SymbolInfoMarginRateData> SymbolInfoMarginRateAsync(
 )
 ```
 
-* **Input:**
-    * **symbol (string):** the symbol name, e.g. `EURUSD`.
-    * **orderType (ENUM_ORDER_TYPE):** buy or sell direction, e.g. `OrderTypeBuy` or `OrderTypeSell`.
+ **Input:**
+ * **symbol** (`string`): the symbol name, e.g. `EURUSD`.
+ * **orderType** (`ENUM_ORDER_TYPE`): buy or sell direction, e.g. `OrderTypeBuy` or `OrderTypeSell`.
 
-* **Output:**
-    * **SymbolInfoMarginRateData** with properties:
-      * `InitialMarginRate (double)` — the margin required to open a new position.
-      * `MarginMaintenanceRate (double)` — the maintenance margin rate.
+ **Output:**
+* **SymbolInfoMarginRateData** with properties:
+* **InitialMarginRate** (`double`) — the margin required to open a new position.
+* **MarginMaintenanceRate** (`double`) — the maintenance margin rate.
 
 **Purpose:** Quickly determine margin requirements programmatically for risk checks and position sizing. 🚀
 
