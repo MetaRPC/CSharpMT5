@@ -20,14 +20,14 @@ Task<OrderCheckData> OrderCheckAsync(
     CancellationToken cancellationToken = default
 )
 ```
-* **Input:** 
-    * **request (OrderCheckRequest):**
-      * encapsulates an `MrpcMqlTradeRequest` with fields like `Symbol`, `Volume`, `Price`, `StopLoss`, `TakeProfit`, etc.
+ **Input:** 
+* **request** (`OrderCheckRequest`):
+ * encapsulates an `MrpcMqlTradeRequest` with fields like `Symbol`, `Volume`, `Price`, `StopLoss`, `TakeProfit`, etc.
 
-* **Output:**
-    * **OrderCheckData** with property:
-      * **MqlTradeCheckResult (MqlTradeCheckResultData)** — contains:
-        * `Margin (double)` — margin required for the proposed trade.
-        * `FreeMargin (double)` — remaining free margin after this trade.
+ **Output:**
+ * **OrderCheckData** with property:
+  * **MqlTradeCheckResult** (`MqlTradeCheckResultData`) — contains:
+    * **Margin** (`double`) — margin required for the proposed trade.
+    * **FreeMargin** (`double`) — remaining free margin after this trade.
 
 **Purpose:** Ensure a trade is valid and inspect both the required margin and the impact on your free margin before execution. 🚀
