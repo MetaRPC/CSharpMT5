@@ -14,7 +14,31 @@ nav:
       - Symbol Info Tick: orders/SymbolInfoTick.md
   - Positions:
       - Show Positions: Positions/ShowPositions.md
-
+  - Market Info:
+      - SymbolsTotal: MarketInfo/SymbolsTotal.md
+      - SymbolExist: MarketInfo/SymbolExist.md
+      - SymbolName: MarketInfo/SymbolName.md
+      - SymbolParamsMany: MarketInfo/SymbolParamsMany.md
+      - SymbolSelect: MarketInfo/SymbolSelect.md
+      - SymbolIsSynchronized: MarketInfo/SymbolIsSynchronized.md
+   - Symbo lProperties:
+       - SymbolInfoDouble: SymbolProperties/SymbolInfoDouble.md
+       - SymbolInfoInteger: SymbolProperties/SymbolInfoInteger.md
+       - SymbolInfoString: SymbolProperties/SymbolInfoString.md
+       - SymbolInfoMarginRate: SymbolProperties/SymbolInfoMarginRate.md
+       - SymbolInfoTick: SymbolProperties/SymbolInfoTick.md
+       - SymbolInfoSessionQuote: SymbolProperties/SymbolInfoSessionQuote.md
+       - SymbolInfoSessionTrade: SymbolProperties/SymbolInfoSessionTrade.md
+    - TradeFunctions:
+       - OrderCalcMargin: TradeFunctions/OrderCalcMargin.md
+       - OrderCheckRequest: TradeFunctions/OrderCheck.md
+       - VerificationLogResult: TradeFunctions/VerificationLogResult.md
+    - Streaming:
+       - OnSymbolTick: DoStreaming/OnSymbolTickAsync.md
+       - OnTrade: DoStreaming/OnTradeAsync.md
+       - OnPositionProfit: DoStreaming/OnPositionProfitAsync.md
+       - PositionsAndPending: DoStreaming/PositionsAndPending.md
+       - OnTradeTransaction: DoStreaming/OnTradeTransactionAsync.md
 
 
 theme:
