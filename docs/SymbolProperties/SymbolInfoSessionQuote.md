@@ -40,7 +40,7 @@ Task<SymbolInfoSessionQuoteData> SymbolInfoSessionQuoteAsync(
      * **From** (`Timestamp`) — session start time (UTC).
      * **To** (`Timestamp`) — session end time (UTC).
 
-**Purpose** Determine when a symbol’s market quotes are active on a given day, so you can schedule trades or data pulls within live quote windows. 🚀
+**Purpose:** Determine when a symbol’s market quotes are active on a given day, so you can schedule trades or data pulls within live quote windows. 🚀
 
 
 
