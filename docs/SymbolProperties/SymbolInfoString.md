@@ -25,18 +25,18 @@ Task<SymbolInfoStringData> SymbolInfoStringAsync(
 )
 ```
 
-* **Input:**
-    * **symbol (string):** the symbol name, e.g. `EURUSD`, `XAUUSD`.
-    * **property (SymbolInfoStringProperty):** which string value to fetch.
-      * **Examples:**
-        * `SymbolCurrencyBase` — base currency (e.g., "EUR").
-        * `SymbolCurrencyProfit` — profit currency (e.g., "USD").
-        * `SymbolDescription` — human‐readable description.
-        * `SymbolExchange` — exchange name, etc.
+ **Input:**
+* **symbol** (`string`): the symbol name, e.g. `EURUSD`, `XAUUSD`.
+* **property** (`SymbolInfoStringProperty`): which string value to fetch.
+  * **Examples:**
+    * `SymbolCurrencyBase` — base currency (e.g., "EUR").
+    * `SymbolCurrencyProfit` — profit currency (e.g., "USD").
+    * `SymbolDescription` — human‐readable description.
+    * `SymbolExchange` — exchange name, etc.
 
-* **Output:**
-    * **SymbolInfoStringData** with property:
-   *  **Value (string)** — the requested text property.
+ **Output:**
+* **SymbolInfoStringData** with property:
+*  **Value** (`string`) — the requested text property.
 
 **Purpose:** – Consolidate all string‐type symbol queries into a single method call; just swap the enum to get any descriptive field. 🚀
 
