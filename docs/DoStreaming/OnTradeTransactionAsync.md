@@ -20,10 +20,10 @@ IAsyncEnumerable<OnTradeTransactionData> OnTradeTransactionAsync(
     CancellationToken cancellationToken = default
 )
 ```
-* **Input:**
-    * **cancellationToken** (`CancellationToken`) — token to cancel the streaming.     
+ **Input:**
+ * **cancellationToken** (`CancellationToken`) — token to cancel the streaming.     
 
-* **Output:**
-    * async stream of **OnTradeTransactionData**, each containing full details of a trade transaction (order, deal, position change).
+ **Output:**
+ * async stream of **OnTradeTransactionData**, each containing full details of a trade transaction (order, deal, position change).
 
 **Purpose:** Capture every granular trade transaction in real time, enabling audit logs, custom notifications, or automated trade-management logic as soon as activity occurs. 🚀
