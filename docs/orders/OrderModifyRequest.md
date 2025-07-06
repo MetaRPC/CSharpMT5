@@ -21,17 +21,19 @@ _logger.LogInformation("OrderModifyAsync: OrderId={Order}", modifyResult.Order);
  Task<OrderModifyResponse> OrderModifyAsync(OrderModifyRequest request);
 ```
 
-* **Input:**
-    * **request (OrderModifyRequest)** — object with properties:
-      * **Ticket (ulong)** — ticket ID of the order to modify.
-      * **Price (double)** — new execution price.
-      * **StopLoss (double)** — new stop-loss level.
-      * **TakeProfit (double)** — new take-profit level.
+**Input:**
+
+- **request** (`OrderModifyRequest`) — object with properties:
+  - **Ticket** (`ulong`) — ticket ID of the order to modify.
+  - **Price** (`double`) — new execution price.
+  - **StopLoss** (`double`) — new stop-loss level.
+  - **TakeProfit** (`double`) — new take-profit level.
 
 
-* **Output:**
+
+ **Output:**
    * **OrderModifyResponse** — object with properties:
-      * **Order (ulong)** — ticket ID of the modified order.
+      * **Order** (`ulong`) — ticket ID of the modified order.
 
 **Purpose:**
 Allows you to adjust price, stop-loss, and take-profit of an existing order in a single call, streamlining your risk management workflow. 🚀
