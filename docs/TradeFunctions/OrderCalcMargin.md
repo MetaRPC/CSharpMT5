@@ -29,15 +29,15 @@ Task<OrderCalcMarginData> OrderCalcMarginAsync(
 )
 ```
 
-* **Input:**
-    * **request (OrderCalcMarginRequest):**
-      * `Symbol (string)`: the name of the symbol, for example "EURUSD".
-      * `OrderType (ENUM_ORDER_TYPE_TF)`: the direction of the transaction, for example, OrderTypeTfBuy or OrderTypeTfSell.
-      * `Volume (double)`: the volume of the transaction (in lots).
-      * `Open Price (double)`: the price of opening a position.
+ **Input:**
+ * **request (OrderCalcMarginRequest):**
+  * **Symbol** (`string`): the name of the symbol, for example "EURUSD".
+  * **OrderType** (`ENUM_ORDER_TYPE_TF`): the direction of the transaction, for example, OrderTypeTfBuy or OrderTypeTfSell.
+  * **Volume** (`double`): the volume of the transaction (in lots).
+  * **Open Price** (`double`): the price of opening a position.
 
-* **Output:**
-    * **OrderCalcMarginData** with the field:
-      * `Margin (double)` — the required margin in the account currency.
+ **Output:**
+ * **OrderCalcMarginData** with the field:
+  * **Margin** (`double`) — the required margin in the account currency.
 
 **Purpose:** Allow pre-trade margin checks programmatically, so you can manage risk and position sizing before sending an order. 🚀
