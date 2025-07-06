@@ -41,22 +41,22 @@ Task<OrderCheckData> OrderCheckAsync(
     CancellationToken cancellationToken = default
 )
 ```
-* **Input:**
-    * **request (OrderCheckRequest):**
-      * **MqlTradeRequest** (MrpcMqlTradeRequest):
-        * `Symbol` (string) – symbol name, e.g. "EURUSD".
-        * `Volume` (double) – volume in lots.
-        * `Price` (double) – desired execution price.
-        * `StopLimit`, `StopLoss`, `TakeProfit` (double?) – optional price levels.
-        * `Deviation` (int) – maximum allowed slippage.
-        * `OrderType` (ENUM_ORDER_TYPE_TF) – buy/sell direction.
-        * `Expiration` (DateTime?), `Comment` (string), `Position`, `PositionBy` – other trade fields.
+ **Input:**
+* **request (OrderCheckRequest):**
+   * **MqlTradeRequest** (MrpcMqlTradeRequest):
+   * `Symbol` (string) – symbol name, e.g. "EURUSD".
+   * `Volume` (double) – volume in lots.
+   * `Price` (double) – desired execution price.
+   * `StopLimit`, `StopLoss`, `TakeProfit` (double?) – optional price levels.
+   * `Deviation` (int) – maximum allowed slippage.
+   * `OrderType` (ENUM_ORDER_TYPE_TF) – buy/sell direction.
+   * `Expiration` (DateTime?), `Comment` (string), `Position`, `PositionBy` – other trade fields.
 
-* **Output:**
-    * **OrderCheckData** with properties:
-      * `Margin (double)` – required margin for this request.
-      * `ReturnedCode (uint)` – server return code.
-      * `ReturnedStringCode (string)` – human‐readable return code.
+ **Output:**
+* **OrderCheckData** with properties:
+  * `Margin (double)` – required margin for this request.
+  * `ReturnedCode (uint)` – server return code.
+  * `ReturnedStringCode (string)` – human‐readable return code.
 
 **Purpose:** Perform a dry‐run of your trade logic to catch margin violations, invalid volumes, or price errors before placing real orders. 🚀
 
