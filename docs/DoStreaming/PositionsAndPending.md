@@ -27,11 +27,11 @@ IAsyncEnumerable<OnPositionsAndPendingOrdersTicketsData> OnPositionsAndPendingOr
 )
 ```
 
-* **Input:**
-    * **intervalMs** (`int`) — interval in milliseconds between each poll.
-    * **cancellationToken** (`CancellationToken`) — token to signal cancellation.
+ **Input:**
+ * **intervalMs** (`int`) — interval in milliseconds between each poll.
+ * **cancellationToken** (`CancellationToken`) — token to signal cancellation.
 
-* **Output:**
-    * async stream of **OnPositionsAndPendingOrdersTicketsData**, containing a collection of ticket IDs (e.g. `TicketIds` or similar).
+ **Output:**
+ * async stream of **OnPositionsAndPendingOrdersTicketsData**, containing a collection of ticket IDs (e.g. `TicketIds` or similar).
 
 **Purpose:** Keep track of your current open positions and pending orders IDs in real time, enabling you to react instantly to changes in your order book. 🚀
