@@ -30,15 +30,15 @@ Task<SymbolInfoSessionQuoteData> SymbolInfoSessionQuoteAsync(
 )
 ```
 
-* **Input:**
-   * **symbol (string):** the symbol name (e.g. `EURUSD`).
-   * **dayOfWeek (DayOfWeek):** the weekday to query (e.g. `DayOfWeek.Monday`).
-   * **sessionIndex (uint):** session index for that day (usually 0 for the first session).
+ **Input:**
+* **symbol** (`string`): the symbol name (e.g. `EURUSD`).
+* **dayOfWeek** (`DayOfWeek`): the weekday to query (e.g. `DayOfWeek.Monday`).
+* **sessionIndex** (`uint`): session index for that day (usually 0 for the first session).
 
-* **Output:**
-   * **SymbolInfoSessionQuoteData** with properties:
-     * **From** (`Timestamp`) — session start time (UTC).
-     * **To** (`Timestamp`) — session end time (UTC).
+ **Output:**
+* **SymbolInfoSessionQuoteData** with properties:
+    * **From** (`Timestamp`) — session start time (UTC).
+    * **To** (`Timestamp`) — session end time (UTC).
 
 **Purpose:** Determine when a symbol’s market quotes are active on a given day, so you can schedule trades or data pulls within live quote windows. 🚀
 
