@@ -25,13 +25,13 @@ Task<SymbolInfoDoubleData> SymbolInfoDoubleAsync(
 )
 ```
 
-* **Input:**
-    * **symbol (string):** the symbol name, e.g. `EURUSD`, `XAUUSD`.
-    * **property (SymbolInfoDoubleProperty):** which double value to fetch.
-      * **Examples:** `SymbolBid`, `SymbolAsk`, `SymbolLast`, `SymbolBidhigh`, `SymbolBidlow`, etc.
+ **Input:**
+* **symbol** (`string`): the symbol name, e.g. `EURUSD`, `XAUUSD`.
+* **property** (`SymbolInfoDoubleProperty`): which double value to fetch.
+* **Examples:** `SymbolBid`, `SymbolAsk`, `SymbolLast`, `SymbolBidhigh`, `SymbolBidlow`, etc.
 
-* **Output:**
-    * **SymbolInfoDoubleData** with property:
-      * `Value (double)` — the requested numeric property (e.g., ask price = 1.2345).
+ **Output:**
+* **SymbolInfoDoubleData** with property:
+* **Value** (`double`) — the requested numeric property (e.g., ask price = 1.2345).
 
 **Purpose:** Keep your code DRY by using a single endpoint for all double-type symbol properties; just swap the enum and you’re set! 🚀
