@@ -20,7 +20,6 @@ Task<OpenedOrdersTicketsResponse> OpenedOrdersTicketsAsync();
 
  **Output:** 
     * **OpenedOrdersTicketsResponse** — object with property.
-
     * **OpenedOrdersTickets** (`IReadOnlyList<long>`) — a list of ticket numbers for all open orders.
 
 **Purpose:**
