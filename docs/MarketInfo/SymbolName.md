@@ -23,15 +23,15 @@ Task<SymbolNameData> SymbolNameAsync(
 )
 ```
 
-* **Input:**
-    * **index (int):** zero-based position of the symbol in the list.
-    * **selectedOnly (bool):**
-      * `false` — search within all symbols.
-      * `true` — search only within Market Watch symbols.
+ **Input:**
+* **index** (`int`): zero-based position of the symbol in the list.
+* **selectedOnly** (`bool`):
+  * `false` — search within all symbols.
+  * `true` — search only within Market Watch symbols.
 
-* **Output:**
-    * **SymbolNameData with property:**
-      * **Name (string)** — the symbol name at the specified index.
+ **Output:**
+* **SymbolNameData with property:**
+ * **Name** (`string`) — the symbol name at the specified index.
 
 **Purpose:** Quickly retrieve a symbol’s name based on its position, enabling dynamic list navigation or pagination. 🚀
 
