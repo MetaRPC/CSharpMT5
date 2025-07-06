@@ -8,12 +8,12 @@ nav:
       - AccountInfoInteger: account/AccountInfoInteger.md
       - AccountInfoString: account/AccountInfoString.md
   - Performing operations:
-      - Opened Orders: orders/OpenedOrders.md
-      - Opened Orders Tickets: orders/OpenedOrdersTickets.md
-      - Order History: orders/OrderHistory.md
-      - Symbol Info Tick: orders/SymbolInfoTick.md
+      - OpenedOrders: orders/OpenedOrders.md
+      - OpenedOrders Tickets: orders/OpenedOrdersTickets.md
+      - OrderHistory: orders/OrderHistory.md
+      - SymbolInfoTick: orders/SymbolInfoTick.md
   - Positions:
-      - Show Positions: Positions/ShowPositions.md
+      - ShowPositions: Positions/ShowPositions.md
   - Market Info:
       - SymbolsTotal: MarketInfo/SymbolsTotal.md
       - SymbolExist: MarketInfo/SymbolExist.md
