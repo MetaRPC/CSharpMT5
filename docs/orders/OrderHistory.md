@@ -21,13 +21,13 @@ _logger.LogInformation(
  Task<OrderHistoryResponse> OrderHistoryAsync(DateTime from, DateTime to);
 ```
 
-* **Input:**  
-  - **from (DateTime)** — beginning of the period (UTC).  
-  - **to (DateTime)** — end of the period (UTC).
+ **Input:**  
+  - **from** (`DateTime`) — beginning of the period (UTC).  
+  - **to** (`DateTime`) — end of the period (UTC).
 
-* **Output:**  
+ **Output:**  
   - **OrderHistoryResponse** — an object with a field:  
-  - **HistoryData (IReadOnlyList<OrderInfo>)** — list of historical orders for the specified period.
+  - **HistoryData** (`IReadOnlyList<OrderInfo>`) — list of historical orders for the specified period.
 
 **Purpose:**
 It allows you to receive all closed and executed orders in one call for the required time interval for subsequent audit, reporting or analysis. 🚀
