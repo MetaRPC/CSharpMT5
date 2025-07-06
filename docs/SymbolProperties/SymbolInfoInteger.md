@@ -24,13 +24,13 @@ Task<SymbolInfoIntegerData> SymbolInfoIntegerAsync(
     CancellationToken cancellationToken = default
 )
 ```
-* **Input:**
-    * **symbol (string):** the symbol name, e.g. `EURUSD`, `XAUUSD`.
-    * **property (SymbolInfoIntegerProperty)**: which integer value to fetch.
-      * Examples: `SymbolVisible`, `SymbolDigits`, `SymbolSpread`, `SymbolVolumeDecimals`, etc.
+ **Input:**
+* **symbol** (`string`): the symbol name, e.g. `EURUSD`, `XAUUSD`.
+* **property** (`SymbolInfoIntegerProperty`): which integer value to fetch.
+ * Examples: `SymbolVisible`, `SymbolDigits`, `SymbolSpread`, `SymbolVolumeDecimals`, etc.
 
-* **Output:**
-    * **SymbolInfoIntegerData** with property:
-      * `Value (int)` — the requested numeric property (e.g., visibility flag = 1).
+ **Output:**
+* **SymbolInfoIntegerData** with property:
+* **Value** (`int`) — the requested numeric property (e.g., visibility flag = 1).
 
 **Purpose:** Use a single, consistent endpoint for all integer‐type symbol properties; simply swap the enum to retrieve any integer metric. 🚀
