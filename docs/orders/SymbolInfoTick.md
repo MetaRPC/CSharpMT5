@@ -23,21 +23,20 @@ _logger.LogInformation(
 ```csharp
 Task<MrpcMqlTick> SymbolInfoTickAsync(string symbol);
 ```
+**Input:** **symbol** (`string`) — the symbol to retrieve tick data for (e.g., `Constants.DefaultSymbol`).
 
-* **symbol (string)** — the symbol to retrieve tick data for (e.g., Constants.DefaultSymbol).
+ **Output:**
+     **MrpcMqlTick** — object with properties:
 
-* **Output:**
-     **MrpcMqlTick — object with properties:**
+ * **Bid**** (`double`) — current bid price.
 
-   * **Bid (double)** — current bid price.
+ * **Ask** (`double`) — current ask price.
 
-   * **Ask (double)** — current ask price.
+ * **Last** (`double`) — last trade price.
 
-   * **Last (double)** — last trade price.
+ * **Volume** (`long`) — tick volume.
 
-   * **Volume (long)** — tick volume.
-
-   * **Time (DateTime)** — UTC timestamp of the tick.
+* **Time** (`DateTime`) — UTC timestamp of the tick.
 
 **Purpose:**
 Allows you to fetch the most recent market tick for a specified symbol in one call, enabling real-time pricing, analytics, or triggering trading logic. 🚀
