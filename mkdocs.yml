@@ -8,12 +8,12 @@ nav:
       - AccountInfoInteger: account/AccountInfoInteger.md
       - AccountInfoString: account/AccountInfoString.md
   - Performing operations:
-      - OpenedOrders: orders/OpenedOrders.md
-      - OpenedOrders Tickets: orders/OpenedOrdersTickets.md
-      - OrderHistory: orders/OrderHistory.md
-      - SymbolInfoTick: orders/SymbolInfoTick.md
+      - Opened Orders: orders/OpenedOrders.md
+      - Opened Orders Tickets: orders/OpenedOrdersTickets.md
+      - Order History: orders/OrderHistory.md
+      - Symbol Info Tick: orders/SymbolInfoTick.md
   - Positions:
-      - ShowPositions: Positions/ShowPositions.md
+      - Show Positions: Positions/ShowPositions.md
   - Market Info:
       - SymbolsTotal: MarketInfo/SymbolsTotal.md
       - SymbolExist: MarketInfo/SymbolExist.md
@@ -21,24 +21,25 @@ nav:
       - SymbolParamsMany: MarketInfo/SymbolParamsMany.md
       - SymbolSelect: MarketInfo/SymbolSelect.md
       - SymbolIsSynchronized: MarketInfo/SymbolIsSynchronized.md
-   - Symbo lProperties:
-       - SymbolInfoDouble: SymbolProperties/SymbolInfoDouble.md
-       - SymbolInfoInteger: SymbolProperties/SymbolInfoInteger.md
-       - SymbolInfoString: SymbolProperties/SymbolInfoString.md
-       - SymbolInfoMarginRate: SymbolProperties/SymbolInfoMarginRate.md
-       - SymbolInfoTick: SymbolProperties/SymbolInfoTick.md
-       - SymbolInfoSessionQuote: SymbolProperties/SymbolInfoSessionQuote.md
-       - SymbolInfoSessionTrade: SymbolProperties/SymbolInfoSessionTrade.md
-    - TradeFunctions:
-       - OrderCalcMargin: TradeFunctions/OrderCalcMargin.md
-       - OrderCheckRequest: TradeFunctions/OrderCheck.md
-       - VerificationLogResult: TradeFunctions/VerificationLogResult.md
-    - Streaming:
-       - OnSymbolTick: DoStreaming/OnSymbolTickAsync.md
-       - OnTrade: DoStreaming/OnTradeAsync.md
-       - OnPositionProfit: DoStreaming/OnPositionProfitAsync.md
-       - PositionsAndPending: DoStreaming/PositionsAndPending.md
-       - OnTradeTransaction: DoStreaming/OnTradeTransactionAsync.md
+  - Symbol Properties:
+      - SymbolInfoDouble: SymbolProperties/SymbolInfoDouble.md
+      - SymbolInfoInteger: SymbolProperties/SymbolInfoInteger.md
+      - SymbolInfoString: SymbolProperties/SymbolInfoString.md
+      - SymbolInfoMarginRate: SymbolProperties/SymbolInfoMarginRate.md
+      - SymbolInfoTick: SymbolProperties/SymbolInfoTick.md
+      - SymbolInfoSessionQuote: SymbolProperties/SymbolInfoSessionQuote.md
+      - SymbolInfoSessionTrade: SymbolProperties/SymbolInfoSessionTrade.md
+  - Trade Functions:
+      - OrderCalcMargin: TradeFunctions/OrderCalcMargin.md
+      - OrderCheck: TradeFunctions/OrderCheck.md
+      - VerificationLogResult: TradeFunctions/VerificationLogResult.md
+  - Streaming:
+      - OnSymbolTick: DoStreaming/OnSymbolTickAsync.md
+      - OnTrade: DoStreaming/OnTradeAsync.md
+      - OnPositionProfit: DoStreaming/OnPositionProfitAsync.md
+      - PositionsAndPending: DoStreaming/PositionsAndPending.md
+      - OnTradeTransaction: DoStreaming/OnTradeTransactionAsync.md
+
 
 
 theme:
