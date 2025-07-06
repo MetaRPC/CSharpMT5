@@ -26,13 +26,13 @@ IAsyncEnumerable<OnPositionProfitData> OnPositionProfitAsync(
     CancellationToken cancellationToken = default
 )
 ```
-* **Input:**
-    * **intervalMs** (`int`) — polling interval in milliseconds.
-    * **ignoreEmpty** (`bool`) — skip updates with no change if `true`.
-    * **cancellationToken** (`CancellationToken`) — token to cancel the stream.
+ **Input:**
+ * **intervalMs** (`int`) — polling interval in milliseconds.
+ * **ignoreEmpty** (`bool`) — skip updates with no change if `true`.
+ * **cancellationToken** (`CancellationToken`) — token to cancel the stream.
 
-* **Output:**
-    * async stream of **OnPositionProfitData** objects, each containing profit update details (e.g., `Profit`).
+ **Output:**
+ * async stream of **OnPositionProfitData** objects, each containing profit update details (e.g., `Profit`).
 
 **Purpose:** Monitor position profitability in real time, allowing automated alerts or risk controls when thresholds are crossed. 🚀
 
