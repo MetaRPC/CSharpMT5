@@ -14,9 +14,9 @@ _logger.LogInformation(
 Task<OpenedOrdersResponse> OpenedOrdersAsync();
 ```
 
-* **Input: None** — this method takes no parameters.
+ **Input:** None — this method takes no parameters.
 
-* **Output:** 
+ **Output:** 
   * **OpenedOrdersResponse** — an object with a field.
   * **OpenedOrders (IReadOnlyList<OrderInfo>)** — list of all current open orders.
 
