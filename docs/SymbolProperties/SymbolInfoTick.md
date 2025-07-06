@@ -23,13 +23,13 @@ Task<MrpcMqlTick> SymbolInfoTickAsync(
 )
 ```
 
-* **Input:**
-    * **symbol (string):** the symbol name, e.g. `EURUSD`, `XAUUSD`.
+ **Input:**
+* **symbol** (`string`): the symbol name, e.g. `EURUSD`, `XAUUSD`.
 
-* **Output:**
-    * **MrpcMqlTick** with properties:
-      * `Bid (double)` — the current best bid price.
-      * `Ask (double)` — the current best ask price.
-      * (also contains `Last`, `Volume`, etc., if needed)
+ **Output:**
+* **MrpcMqlTick** with properties:
+    * **Bid** (`double`) — the current best bid price.
+    * **Ask** (`double`) — the current best ask price.
+    * (also contains `Last`, `Volume`, etc., if needed)
 
 **Purpose:** Instantly obtain up-to-the-millisecond bid/ask quotes for real-time decision-making in your trading algorithms. 🚀
