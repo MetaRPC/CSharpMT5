@@ -21,10 +21,11 @@ Task<SymbolExistData> SymbolExistAsync(
     CancellationToken cancellationToken = default
 )
 ```
-* **Input:** 
-    * **symbol (string):** the symbol name to check, for example `EURUSD` or `XAUUSD`.
-* **Output:**
-    * **SymbolExistData with property:**
-      * **Exists (bool)** — `true` if the symbol exists on the server; `false` otherwise.
+ **Input:** 
+* **symbol** (`string`): the symbol name to check, for example `EURUSD` or `XAUUSD`.
+
+ **Output:**
+* **SymbolExistData with property:**
+* **Exists** (`bool`) — `true` if the symbol exists on the server; `false` otherwise.
 
 **Purpose:** Instantly know if a symbol is supported without scanning full symbol lists; just one boolean call. 🚀
