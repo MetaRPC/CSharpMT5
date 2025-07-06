@@ -30,15 +30,15 @@ Task<SymbolSelectData> SymbolSelectAsync(
 )
 ```
 
-* **Input:** 
-   * **symbol (string):** the symbol name to add or remove (e.g., `EURUSD`).
-   * **select (bool):**
-     * `true` — add the symbol to Market Watch.
-     * `false` — remove the symbol from Market Watch.
+ **Input:** 
+* **symbol** (`string`): the symbol name to add or remove (e.g., "EURUSD").
+* **select** (`bool`):
+ * `true` — add the symbol to Market Watch.
+ * `false` — remove the symbol from Market Watch.
 
-* **Output:**
-    * **SymbolSelectData** with property:
-       * **Success (bool)** — `true` if the operation succeeded; `false` otherwise.
+ **Output:**
+* **SymbolSelectData** with property:
+ * **Success** (`bool`) — `true` if the operation succeeded; `false` otherwise.
 
 **Purpose:**  Dynamically manage your Market Watch list from code with a single, clear method call. 🚀
 
