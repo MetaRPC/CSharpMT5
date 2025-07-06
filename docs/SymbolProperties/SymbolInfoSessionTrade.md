@@ -30,14 +30,14 @@ Task<SymbolInfoSessionTradeData> SymbolInfoSessionTradeAsync(
 )
 ```
 
-* **Input:**
-    * **symbol (string):** the symbol name (e.g., `EURUSD`).
-    * **dayOfWeek (DayOfWeek):** the weekday to query (e.g., `DayOfWeek.Monday`).
-    * **sessionIndex (uint):** trade session index for that day (usually 0 for the first session).
+ **Input:**
+ * **symbol** (`string`): the symbol name (e.g., `EURUSD`).
+  * **dayOfWeek** (`DayOfWeek`): the weekday to query (e.g., `DayOfWeek.Monday`).
+  * **sessionIndex** (`uint`): trade session index for that day (usually 0 for the first session).
 
-* **Output:**
-    * **SymbolInfoSessionTradeData** with properties:
-      * **From** (`Timestamp`) — session start time (UTC).
-      * **To** (`Timestamp`) — session end time (UTC).
+ **Output:**
+* **SymbolInfoSessionTradeData** with properties:
+ * **From** (`Timestamp`) — session start time (UTC).
+ * **To** (`Timestamp`) — session end time (UTC).
 
 **Purpose:** Identify active trading windows for a symbol, enabling you to schedule order placement or analysis only during valid market hours. 🚀
