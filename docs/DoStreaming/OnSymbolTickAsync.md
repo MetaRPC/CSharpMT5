@@ -22,13 +22,13 @@ IAsyncEnumerable<OnSymbolTickData> OnSymbolTickAsync(
     CancellationToken cancellationToken = default
 )
 ```
-* **Input:**
-    * **symbols** (`IEnumerable<string>`) — a list of character names.
-    * **CancellationToken** (`CancellationToken`) — cancellation token.
+ **Input:**
+ * **symbols** (`IEnumerable<string>`) — a list of character names.
+ * **CancellationToken** (`CancellationToken`) — cancellation token.
 
-* **Output:**
-    * Stream of **OnSymbolTickData** objects with fields:
-      * **SymbolTick.Symbol** (`string`) — symbol name.
-      * **SymbolTick.Bid/Ask** (`double`) — prices.
+ **Output:**
+ * Stream of **OnSymbolTickData** objects with fields:
+  * **SymbolTick.Symbol** (`string`) — symbol name.
+  * **SymbolTick.Bid/Ask** (`double`) — prices.
 
 The purpose is to connect to the live tick channel and receive updates on several symbols at once.🚀
