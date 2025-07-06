@@ -20,16 +20,16 @@ _logger.LogInformation("OrderSendAsync: Order={Order}", ticket);
 ```csharp
 Task<OrderSendResponse> OrderSendAsync(OrderSendRequest request);
 ```
-* **Input:**
-   **request (OrderSendRequest) — object with properties:**
-    * **Symbol (string)** — the symbol to trade (e.g., Constants.DefaultSymbol).
-    * **Operation (TMT5_ENUM_ORDER_TYPE)** — the type of order (e.g., Tmt5OrderTypeBuy, Tmt5OrderTypeSell).
-    * **Volume (double)** — the volume of the order in lots.
-    * **Price (double)** — the execution price (e.g., market Bid/Ask).
+ **Input:**
+ **request** (`OrderSendRequest`) — object with properties:
+ * **Symbol** (`string`) — the symbol to trade (e.g., Constants.DefaultSymbol).
+ * **Operation** (`TMT5_ENUM_ORDER_TYPE`) — the type of order (e.g., Tmt5OrderTypeBuy, Tmt5OrderTypeSell).
+ * **Volume** (`double`) — the volume of the order in lots.
+ * **Price** (`double`) — the execution price (e.g., market Bid/Ask).
 
-* **Output:**
-    * **OrderSendResponse** — object with properties:
-    * **Order (ulong)** — the ticket number of the newly created order.
+ **Output:**
+ * **OrderSendResponse** — object with properties:
+ * **Order** (`ulong`) — the ticket number of the newly created order.
 
 **Purpose:**
 Allows you to send a new trading order to MT5 in one call, returning the ticket for tracking, modification, or closing later. 🚀
