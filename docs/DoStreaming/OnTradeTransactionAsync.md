@@ -29,15 +29,56 @@ IAsyncEnumerable<OnTradeTransactionData> OnTradeTransactionAsync(
 
 * **`cancellationToken`** (`CancellationToken`) — token to cancel the streaming.
 
+---
+
 ## Output
 
-* **`OnTradeTransactionData`** — structure containing detailed transaction data. Fields include:
+**`OnTradeTransactionData`** — structure representing a single trade transaction event.
 
-  * **`Transaction`** (`Mt5TradeTransaction`) — the raw trade transaction info (e.g., order/deal IDs, types).
-  * **`ErrorCode`** (`int`) — any error code from the server.
-  * **`ErrorString`** (`string`) — human-readable error message, if any.
+### `OnTradeTransactionData` Fields
 
-> **Note:** please verify and list all actual fields of `OnTradeTransactionData`, including any nested structures and enums.
+* **`Time`** (`DateTime`) — UTC timestamp when the transaction was recorded.
+* **`Type`** (`TradeTransactionType`) — kind of transaction. Possible enum values:
+
+  * `TradeTransactionOrderAdd`
+  * `TradeTransactionOrderUpdate`
+  * `TradeTransactionOrderRemove`
+  * `TradeTransactionDealAdd`
+  * `TradeTransactionDealUpdate`
+  * `TradeTransactionDealRemove`
+  * `TradeTransactionPositionOpen`
+  * `TradeTransactionPositionUpdate`
+  * `TradeTransactionPositionClose`
+* **`Symbol`** (`string`) — trading symbol associated with the transaction.
+* **`Order`** (`TradeTransactionOrderData?`) — details of the order involved (if applicable):
+
+  * **`OrderId`** (`ulong`)
+  * **`Action`** (`OrderActionType` enum)
+  * **`Volume`** (`double`)
+  * **`Price`** (`double`)
+  * **`StopLimit`**, **`StopLoss`**, **`TakeProfit`** (`double?`)
+  * **`Deviation`** (`int`)
+  * **`MagicNumber`** (`ulong`)
+  * **`Comment`** (`string`)
+* **`Deal`** (`TradeTransactionDealData?`) — details of the deal involved (if applicable):
+
+  * **`DealId`** (`ulong`)
+  * **`OrderId`** (`ulong`)
+  * **`Volume`** (`double`)
+  * **`Price`** (`double`)
+  * **`Profit`** (`double`)
+* **`Position`** (`TradeTransactionPositionData?`) — details of the position involved (if applicable):
+
+  * **`PositionId`** (`ulong`)
+  * **`OrderId`** (`ulong`)
+  * **`Volume`** (`double`)
+  * **`PriceOpen`** (`double`)
+  * **`Swap`** (`double`)
+  * **`Profit`** (`double`)
+* **`RequestId`** (`ulong`) — identifier of the original trade request (if produced).
+* **`Reason`** (`TradeTransactionReason`) — why the transaction occurred (enum).
+* **`ErrorCode`** (`int`) — server error code, if any.
+* **`ErrorMessage`** (`string`) — human-readable error description, if any.
 
 ---
 
