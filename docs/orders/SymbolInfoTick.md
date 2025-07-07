@@ -1,6 +1,8 @@
-## Getting current tick for a symbol
+# Getting Current Tick for a Symbol
 
-> **Requesting** the latest tick information for a given symbol from MT5.
+> **Request:** retrieve the latest tick information for a given symbol from MT5.
+
+Fetch market data for a single symbol at the most recent tick.
 
 ### Code Example
 
@@ -19,24 +21,32 @@ _logger.LogInformation(
 );
 ```
 
-✨**Method Signature:** 
+✨ **Method Signature:**
+
 ```csharp
-Task<MrpcMqlTick> SymbolInfoTickAsync(string symbol);
+Task<MrpcMqlTick> SymbolInfoTickAsync(string symbol)
 ```
-**Input:** **symbol** (`string`) — the symbol to retrieve tick data for (e.g., `Constants.DefaultSymbol`).
 
- **Output:**
-     **MrpcMqlTick** — object with properties:
+---
 
- * **Bid**** (`double`) — current bid price.
+## Input
 
- * **Ask** (`double`) — current ask price.
+* **`symbol`** (`string`) — the symbol to retrieve tick data for (e.g., `Constants.DefaultSymbol`).
 
- * **Last** (`double`) — last trade price.
+---
 
- * **Volume** (`long`) — tick volume.
+## Output
 
-* **Time** (`DateTime`) — UTC timestamp of the tick.
+**`MrpcMqlTick`** — structure with the following properties:
 
-**Purpose:**
+* **`Bid`** (`double`) — the current bid price.
+* **`Ask`** (`double`) — the current ask price.
+* **`Last`** (`double`) — the price of the last executed trade (if available).
+* **`Volume`** (`long`) — the tick volume (number of trades at this tick).
+* **`Time`** (`DateTime`) — the UTC timestamp when this tick was recorded.
+
+---
+
+## Purpose
+
 Allows you to fetch the most recent market tick for a specified symbol in one call, enabling real-time pricing, analytics, or triggering trading logic. 🚀
