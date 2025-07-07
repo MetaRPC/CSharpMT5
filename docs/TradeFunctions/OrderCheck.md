@@ -1,4 +1,4 @@
-# Checking Trade Request Validity
+## Checking Trade Request Validity (OrderCheckAsync)
 
 > **Request:** simulate and validate a trade order without sending it
 
@@ -28,8 +28,9 @@ var checkRequest = new OrderCheckRequest
 };
 var check = await _mt5Account.OrderCheckAsync(checkRequest);
 _logger.LogInformation(
-    "OrderCheckAsync: Margin={Margin} ReturnCode={RetCode} ReturnString={RetString}",
+    "OrderCheckAsync: Margin={Margin} FreeMargin={FreeMargin} ReturnCode={RetCode} ReturnString={RetString}",
     check.Margin,
+    check.FreeMargin,
     check.ReturnedCode,
     check.ReturnedStringCode
 );
@@ -62,14 +63,7 @@ Task<OrderCheckData> OrderCheckAsync(
   * **`Deviation`** (`int`) — maximum allowed slippage in price.
   * **`OrderType`** (`ENUM_ORDER_TYPE_TF`) — type of order. Possible values:
 
-    * `OrderTypeTfBuy` — market Buy order
-    * `OrderTypeTfSell` — market Sell order
-    * `OrderTypeTfBuyLimit` — pending Buy Limit order
-    * `OrderTypeTfSellLimit` — pending Sell Limit order
-    * `OrderTypeTfBuyStop` — pending Buy Stop order
-    * `OrderTypeTfSellStop` — pending Sell Stop order
-    * `OrderTypeTfBuyStopLimit` — pending Buy Stop Limit order
-    * `OrderTypeTfSellStopLimit` — pending Sell Stop Limit order
+    * `OrderTypeTfBuy`, `OrderTypeTfSell`, `OrderTypeTfBuyLimit`, `OrderTypeTfSellLimit`, `OrderTypeTfBuyStop`, `OrderTypeTfSellStop`, `OrderTypeTfBuyStopLimit`, `OrderTypeTfSellStopLimit`.
   * **`Expiration`** (`DateTime?`) — expiration time for pending orders (optional).
   * **`Comment`** (`string`) — arbitrary comment attached to the order.
   * **`Position`** (`ulong`) — reference ticket for modification (optional).
@@ -82,6 +76,7 @@ Task<OrderCheckData> OrderCheckAsync(
 **`OrderCheckData`** — structure with the following fields:
 
 * **`Margin`** (`double`) — required margin for this request.
+* **`FreeMargin`** (`double`) — remaining free margin after this request.
 * **`ReturnedCode`** (`uint`) — server-side validation code.
 * **`ReturnedStringCode`** (`string`) — human-readable description of the validation result.
 
