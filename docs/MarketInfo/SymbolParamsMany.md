@@ -1,4 +1,4 @@
-# Retrieving Multiple Symbol Parameters
+## Retrieving Multiple Symbol Parameters
 
 > **Request:** fetch parameters for multiple symbols from MT5
 > Retrieve detailed parameter data for a set of symbols (with optional paging).
@@ -38,7 +38,7 @@ Task<SymbolParamsManyData> SymbolParamsManyAsync(
 
 * **`SymbolName`** (`string`) — optional filter: only return symbols whose name contains this value.
 
-  * *HasSymbolName* tells you if it was set.
+  * *HasSymbolName* indicates whether it was set.
 * **`SortType`** (`AH_SYMBOL_PARAMS_MANY_SORT_TYPE`) — sort order for the returned list. Possible values:
 
   * **`AhParamsManySortTypeSymbolNameAsc`** — by symbol name ascending (default)
@@ -54,24 +54,29 @@ Task<SymbolParamsManyData> SymbolParamsManyAsync(
 
   * *HasItemsPerPage* indicates whether you explicitly set it; default is 0 (no paging).
 
+Optional parameters (on the async call):
+
+* **`deadline`** (`DateTime?`) — optional UTC deadline for the operation.
+* **`cancellationToken`** (`CancellationToken`) — optional token to cancel the request.
+
 ---
 
 ## Output
 
-**`SymbolParamsManyData`** — structure with:
+**`SymbolParamsManyData`** — structure with the following properties:
 
 * **`SymbolInfos`** (`RepeatedField<SymbolParameters>`) — list of symbol parameter records matching your request (one page).
 * **`SymbolsTotal`** (`int`) — total number of symbols matching your filter (across all pages).
-* **`PageNumber`** (`int`) — the page index you received (only if you set it).
-* **`ItemsPerPage`** (`int`) — the items-per-page you received (only if you set it).
+* **`PageNumber`** (`int`) — the page index returned.
+* **`ItemsPerPage`** (`int`) — the items-per-page returned.
 
 ---
 
-### `SymbolParameters` structure
+### `SymbolParameters` Structure
 
-Each item in `SymbolInfos` is a `SymbolParameters` message with dozens of fields—for example:
+Each item in `SymbolInfos` is a `SymbolParameters` message with many fields. Key examples include:
 
-* **`Symbol`** (`string`) — the symbol name (e.g. `"EURUSD"`).
+* **`Symbol`** (`string`) — the symbol name (e.g., "EURUSD").
 * **`Digits`** (`int`) — number of decimal places.
 * **`Point`** (`double`) — the minimal price change.
 * **`Spread`** (`int`) — current spread (in points).
@@ -79,9 +84,9 @@ Each item in `SymbolInfos` is a `SymbolParameters` message with dozens of fields
 * **`MarginInitial`**, **`MarginMaintenance`** — margin requirements per lot.
 * **`SwapLong`**, **`SwapShort`** — swap (rollover) rates.
 * **`SessionTradeFrom`**, **`SessionTradeTo`** — trading session windows.
-* *(…many more fields: tick values, contract size, option Greeks, session quotes, etc…)*
+* *…and dozens more: tick values, contract size, option Greeks, session quotes, etc.*
 
-For the full list, see the generated `SymbolParameters` class in your MT5 gRPC client (or the original `.proto`).
+*For the complete list of fields, see the generated `SymbolParameters` class in your MT5 gRPC client (or the original `.proto`).*
 
 ---
 
