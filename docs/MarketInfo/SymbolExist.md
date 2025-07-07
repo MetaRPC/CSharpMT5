@@ -1,19 +1,20 @@
 # Checking Symbol Existence
 
-> **Request:** symbol existence (bool) from MT5
-
-Verify whether a given symbol is available on the server (standard or custom).
+> **Request:** symbol existence (`bool`) from MT5
+> Verify whether a given symbol is available on the server (standard or custom).
 
 ### Code Example
 
 ```csharp
-var exists = await _mt5Account.SymbolExistAsync(Constants.DefaultSymbol);
+var existsData = await _mt5Account.SymbolExistAsync(Constants.DefaultSymbol);
 _logger.LogInformation(
     "SymbolExistAsync: Exists={Exists}",
-    exists.Exists);
+    existsData.Exists
+);
 ```
 
-✨**Method Signature:**
+✨ **Method Signature:**
+
 ```csharp
 Task<SymbolExistData> SymbolExistAsync(
     string symbol,
@@ -21,11 +22,28 @@ Task<SymbolExistData> SymbolExistAsync(
     CancellationToken cancellationToken = default
 )
 ```
- **Input:** 
-* **symbol** (`string`): the symbol name to check, for example `EURUSD` or `XAUUSD`.
 
- **Output:**
-* **SymbolExistData with property:**
-* **Exists** (`bool`) — `true` if the symbol exists on the server; `false` otherwise.
+---
 
-**Purpose:** Instantly know if a symbol is supported without scanning full symbol lists; just one boolean call. 🚀
+## Input
+
+* **symbol** (`string`) — the name of the symbol to check (e.g., `"EURUSD"`, `"XAUUSD"`).
+
+Optional parameters:
+
+* **deadline** (`DateTime?`) — optional UTC deadline for the request.
+* **cancellationToken** (`CancellationToken`) — optional token to cancel the request.
+
+---
+
+## Output
+
+**`SymbolExistData`** — structure with the following field:
+
+* **`Exists`** (`bool`) — `true` if the symbol exists on the server; `false` otherwise.
+
+---
+
+## Purpose
+
+Allows you to quickly determine if a symbol is supported by the broker/server without loading full symbol lists, enabling dynamic symbol validation in your application. 🚀
