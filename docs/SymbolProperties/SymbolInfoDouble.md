@@ -80,6 +80,13 @@ Task<SymbolInfoDoubleData> SymbolInfoDoubleAsync(
   * **SymbolPriceRho** (`SYMBOL_PRICE_RHO`) — option rho.
   * **SymbolPriceOmega** (`SYMBOL_PRICE_OMEGA`) — option omega.
   * **SymbolPriceSensitivity** (`SYMBOL_PRICE_SENSITIVITY`) — option sensitivity ([mql5.com](https://www.mql5.com/en/docs/constants/environment_state/marketinfoconstants))
+  * **SymbolSwapLong** (`SYMBOL_SWAP_LONG`) — swap size for a long position.
+  * **SymbolSwapShort** (`SYMBOL_SWAP_SHORT`) — swap size for a short position.
+  * **SymbolSwapSunday** (`SYMBOL_SWAP_SUNDAY`) — Sunday rollover multiplier (0/1/3).
+  * …and so on for Monday…Saturday.
+  * **SymbolVolumeMax** (`SYMBOL_VOLUME_MAX`) — maximal volume for a single deal.
+  * **SymbolVolumeStep** (`SYMBOL_VOLUME_STEP`) — minimal volume change increment.
+  * **SymbolVolumeLimit** (`SYMBOL_VOLUME_LIMIT`) — max aggregate volume per direction.
 
 ---
 
