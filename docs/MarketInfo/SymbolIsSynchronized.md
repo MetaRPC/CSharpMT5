@@ -1,19 +1,20 @@
 # Checking Symbol Synchronization Status
 
-> **Request:** symbol data synchronization status (bool) from MT5
-
-Fetch whether a given symbol’s market data is fully synchronized with the server.
+> **Request:** symbol data synchronization status (`bool`) from MT5
+> Fetch whether a given symbol’s market data is fully synchronized with the server.
 
 ### Code Example
 
 ```csharp
-var sync = await _mt5Account.SymbolIsSynchronizedAsync(Constants.DefaultSymbol);
+var syncData = await _mt5Account.SymbolIsSynchronizedAsync(Constants.DefaultSymbol);
 _logger.LogInformation(
     "SymbolIsSynchronizedAsync: IsSync={IsSync}",
-    sync.Synchronized);
+    syncData.Synchronized
+);
 ```
 
-✨**Method Signature:**
+✨ **Method Signature:**
+
 ```csharp
 Task<SymbolIsSynchronizedData> SymbolIsSynchronizedAsync(
     string symbol,
@@ -22,11 +23,27 @@ Task<SymbolIsSynchronizedData> SymbolIsSynchronizedAsync(
 )
 ```
 
- **Input:**
-* **symbol** (`string`): the symbol name to check, e.g. `EURUSD`, `XAUUSD`.
+---
 
- **Output:**
-* **SymbolIsSynchronizedData** with property:
- * **Synchronized** (`bool`) — `true` if the symbol’s data is up-to-date and in sync; `false` otherwise.
+## Input
 
-**Purpose:** Quickly verify that real-time quotes and other symbol data are fully synchronized before placing trades or analyzing market data. 🚀
+* **symbol** (`string`) — the name of the symbol to check (e.g., `"EURUSD"`, `"XAUUSD"`).
+
+Optional parameters:
+
+* **deadline** (`DateTime?`) — optional UTC deadline for the request.
+* **cancellationToken** (`CancellationToken`) — optional token to cancel the request.
+
+---
+
+## Output
+
+**`SymbolIsSynchronizedData`** — structure with the following field:
+
+* **`Synchronized`** (`bool`) — `true` if the symbol’s data is fully synchronized (quotes, ticks, session data) with the server; `false` otherwise.
+
+---
+
+## Purpose
+
+Quickly verify that real-time quotes and other symbol data are in sync before placing trades or performing analysis, ensuring your application uses up-to-date market information. 🚀
