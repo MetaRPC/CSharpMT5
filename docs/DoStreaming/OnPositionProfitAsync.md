@@ -1,4 +1,4 @@
-# Streaming: OnPositionProfitAsync
+## Streaming: OnPositionProfitAsync
 
 > **Request:** real-time position profit updates from MT5
 
@@ -18,7 +18,8 @@ await foreach (var profitUpdate in _mt5Account.OnPositionProfitAsync(
 }
 ```
 
-✨**Method Signature:**
+✨ **Method Signature:**
+
 ```csharp
 IAsyncEnumerable<OnPositionProfitData> OnPositionProfitAsync(
     int intervalMs,
@@ -26,13 +27,31 @@ IAsyncEnumerable<OnPositionProfitData> OnPositionProfitAsync(
     CancellationToken cancellationToken = default
 )
 ```
- **Input:**
- * **intervalMs** (`int`) — polling interval in milliseconds.
- * **ignoreEmpty** (`bool`) — skip updates with no change if `true`.
- * **cancellationToken** (`CancellationToken`) — token to cancel the stream.
 
- **Output:**
- * async stream of **OnPositionProfitData** objects, each containing profit update details (e.g., `Profit`).
+---
 
-**Purpose:** Monitor position profitability in real time, allowing automated alerts or risk controls when thresholds are crossed. 🚀
+## Input
 
+* **`intervalMs`** (`int`) — polling interval in milliseconds.
+* **`ignoreEmpty`** (`bool`, optional, default=`true`) — skip updates with no profit change if `true`.
+* **`cancellationToken`** (`CancellationToken`, optional) — token to cancel the streaming operation.
+
+---
+
+## Output
+
+**`IAsyncEnumerable<OnPositionProfitData>`** — asynchronous stream of profit update items:
+
+**`OnPositionProfitData`** — structure with:
+
+* **`Data`** (`PositionProfitData`) — payload object containing:
+
+  * **`Ticket`** (`ulong`) — unique identifier for the position.
+  * **`Profit`** (`double`) — current profit or loss for the position (in account currency).
+  * *(other fields if provided by the API)*
+
+---
+
+## Purpose
+
+Enable continuous, real-time tracking of position profitability, allowing automated alerts or risk-management actions when profit thresholds are crossed. 🚀
