@@ -1,8 +1,8 @@
-# Streaming: OnPositionsAndPendingOrdersTicketsAsync
+# Streaming: `OnPositionsAndPendingOrdersTicketsAsync`
 
-> **Request:** real-time snapshots of open positions and pending order ticket IDs
+> **Request:** real-time snapshots of open positions and pending order ticket IDs from MT5
 
-Subscribe to a live stream of ticket lists for both positions and pending orders at a given interval.
+Subscribe to a live stream that provides, at a regular interval, the current lists of ticket IDs for both open positions and pending orders.
 
 ### Code Example
 
@@ -14,12 +14,13 @@ await foreach (var snapshot in _mt5Account.OnPositionsAndPendingOrdersTicketsAsy
 {
     _logger.LogInformation(
         "OnPositionsAndPendingOrdersTicketsAsync: Tickets={Tickets}",
-        string.Join(", ", snapshot.TicketIds) // replace `TicketIds` with the actual property name
+        string.Join(", ", snapshot.TicketIds)
     );
 }
 ```
 
-✨**Method Signature:**
+✨ **Method Signature:**
+
 ```csharp
 IAsyncEnumerable<OnPositionsAndPendingOrdersTicketsData> OnPositionsAndPendingOrdersTicketsAsync(
     int intervalMs,
@@ -27,11 +28,25 @@ IAsyncEnumerable<OnPositionsAndPendingOrdersTicketsData> OnPositionsAndPendingOr
 )
 ```
 
- **Input:**
- * **intervalMs** (`int`) — interval in milliseconds between each poll.
- * **cancellationToken** (`CancellationToken`) — token to signal cancellation.
+---
 
- **Output:**
- * async stream of **OnPositionsAndPendingOrdersTicketsData**, containing a collection of ticket IDs (e.g. `TicketIds` or similar).
+## Input
 
-**Purpose:** Keep track of your current open positions and pending orders IDs in real time, enabling you to react instantly to changes in your order book. 🚀
+* **`intervalMs`** (`int`) — polling interval in milliseconds between each snapshot.
+* **`cancellationToken`** (`CancellationToken`) — token to cancel the streaming when requested.
+
+---
+
+## Output
+
+**`OnPositionsAndPendingOrdersTicketsData`** — structure with:
+
+* **`TicketIds`** (`IReadOnlyList<ulong>`) — combined list of ticket IDs for all currently open positions and pending orders.
+
+> *Note: If your implementation separates position and pending-order tickets into different lists (e.g., `PositionTicketIds` and `PendingOrderTicketIds`), describe each accordingly.*
+
+---
+
+## Purpose
+
+Enables continuous monitoring of your MT5 account’s orders by providing up-to-the-moment ticket lists, so you can automatically react to any changes in positions or pending orders without polling manually. 🚀
