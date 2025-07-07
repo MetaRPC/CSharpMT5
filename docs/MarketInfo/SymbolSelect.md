@@ -39,6 +39,8 @@ Task<SymbolSelectData> SymbolSelectAsync(
 
   * `true` — add the symbol to Market Watch.
   * `false` — remove the symbol from Market Watch.
+* **`deadline`** (`DateTime?`, optional) — UTC deadline for the operation; cancels if exceeded.
+* **`cancellationToken`** (`CancellationToken`, optional) — token to cancel the request prematurely.
 
 ---
 
