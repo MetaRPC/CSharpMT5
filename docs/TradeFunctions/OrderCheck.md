@@ -2,11 +2,12 @@
 
 > **Request:** simulate and validate a trade order without sending it
 
-Verify that a proposed market or pending order meets all server‐side conditions (margin, volume, price) before execution.
+Verify that a proposed market or pending order meets all server-side conditions (margin, volume, price) before execution.
 
 ### Code Example
 
 ```csharp
+var tick = await _mt5Account.SymbolInfoTickAsync(Constants.DefaultSymbol);
 var checkRequest = new OrderCheckRequest
 {
     MqlTradeRequest = new MrpcMqlTradeRequest
@@ -14,10 +15,10 @@ var checkRequest = new OrderCheckRequest
         Symbol     = Constants.DefaultSymbol,
         Volume     = Constants.DefaultVolume,
         Price      = tick.Ask,
-        StopLimit  = tick.Ask + 0.0005,  // example values
+        StopLimit  = tick.Ask + 0.0005,
         StopLoss   = tick.Ask - 0.0010,
         TakeProfit = tick.Ask + 0.0010,
-        Deviation  = 10,                 // max slippage
+        Deviation  = 10,
         OrderType  = ENUM_ORDER_TYPE_TF.OrderTypeTfBuy,
         Expiration = null,
         Comment    = string.Empty,
@@ -30,10 +31,12 @@ _logger.LogInformation(
     "OrderCheckAsync: Margin={Margin} ReturnCode={RetCode} ReturnString={RetString}",
     check.Margin,
     check.ReturnedCode,
-    check.ReturnedStringCode);
+    check.ReturnedStringCode
+);
 ```
 
-✨**Method Signature:**
+✨ **Method Signature:**
+
 ```csharp
 Task<OrderCheckData> OrderCheckAsync(
     OrderCheckRequest request,
@@ -41,24 +44,49 @@ Task<OrderCheckData> OrderCheckAsync(
     CancellationToken cancellationToken = default
 )
 ```
- **Input:**
-* **request (OrderCheckRequest):**
-   * **MqlTradeRequest** (MrpcMqlTradeRequest):
-   * `Symbol` (string) – symbol name, e.g. "EURUSD".
-   * `Volume` (double) – volume in lots.
-   * `Price` (double) – desired execution price.
-   * `StopLimit`, `StopLoss`, `TakeProfit` (double?) – optional price levels.
-   * `Deviation` (int) – maximum allowed slippage.
-   * `OrderType` (ENUM_ORDER_TYPE_TF) – buy/sell direction.
-   * `Expiration` (DateTime?), `Comment` (string), `Position`, `PositionBy` – other trade fields.
 
- **Output:**
-* **OrderCheckData** with properties:
-  * `Margin (double)` – required margin for this request.
-  * `ReturnedCode (uint)` – server return code.
-  * `ReturnedStringCode (string)` – human‐readable return code.
+---
 
-**Purpose:** Perform a dry‐run of your trade logic to catch margin violations, invalid volumes, or price errors before placing real orders. 🚀
+## Input
 
+**`OrderCheckRequest`** — structure with the following field:
 
+* **`MqlTradeRequest`** (`MrpcMqlTradeRequest`) — trade parameters to validate:
 
+  * **`Symbol`** (`string`) — trading symbol (e.g., `"EURUSD"`).
+  * **`Volume`** (`double`) — volume in lots (e.g., `0.1`).
+  * **`Price`** (`double`) — desired execution price for market or pending order.
+  * **`StopLimit`** (`double?`) — price for a stop-limit order (optional).
+  * **`StopLoss`** (`double?`) — stop-loss level (optional).
+  * **`TakeProfit`** (`double?`) — take-profit level (optional).
+  * **`Deviation`** (`int`) — maximum allowed slippage in price.
+  * **`OrderType`** (`ENUM_ORDER_TYPE_TF`) — type of order. Possible values:
+
+    * `OrderTypeTfBuy` — market Buy order
+    * `OrderTypeTfSell` — market Sell order
+    * `OrderTypeTfBuyLimit` — pending Buy Limit order
+    * `OrderTypeTfSellLimit` — pending Sell Limit order
+    * `OrderTypeTfBuyStop` — pending Buy Stop order
+    * `OrderTypeTfSellStop` — pending Sell Stop order
+    * `OrderTypeTfBuyStopLimit` — pending Buy Stop Limit order
+    * `OrderTypeTfSellStopLimit` — pending Sell Stop Limit order
+  * **`Expiration`** (`DateTime?`) — expiration time for pending orders (optional).
+  * **`Comment`** (`string`) — arbitrary comment attached to the order.
+  * **`Position`** (`ulong`) — reference ticket for modification (optional).
+  * **`PositionBy`** (`ulong`) — ticket to modify if specified (optional).
+
+---
+
+## Output
+
+**`OrderCheckData`** — structure with the following fields:
+
+* **`Margin`** (`double`) — required margin for this request.
+* **`ReturnedCode`** (`uint`) — server-side validation code.
+* **`ReturnedStringCode`** (`string`) — human-readable description of the validation result.
+
+---
+
+## Purpose
+
+Performs a dry-run of your trade logic to catch margin violations, invalid volumes, or price errors before placing real orders, improving reliability and user feedback. 🚀
