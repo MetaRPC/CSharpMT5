@@ -10,7 +10,7 @@ namespace MetaRPC.CSharpMT5;
 /// <summary>
 /// Represents an MT5 trading account connected via gRPC.
 /// </summary>
-internal class MT5Account //врменно паблик для теста 
+public class MT5Account
 {
     /// <summary>
     /// Gets the MT5 user account number.
