@@ -21,12 +21,12 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Setup .NET
+      - name: Setup .NET 8.0 SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '8.0.x'
 
-      - name: Build C# Project
+      - name: Build C# Project (net8.0)
         run: dotnet build MetaRPC.CSharpMT5.csproj -c Release
 
       - name: Install xmldocmd (.NET tool)
@@ -37,13 +37,13 @@ jobs:
       - name: Generate Markdown from XML Docs
         run: |
           mkdir -p docs/api
-          xmldocmd bin/Release/net9.0/MetaRPC.CSharpMT5.dll docs/api --source MetaRPC.CSharpMT5.csproj --visibility public
+          xmldocmd bin/Release/net8.0/MetaRPC.CSharpMT5.dll docs/api --source MetaRPC.CSharpMT5.csproj --visibility public
 
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Cache MkDocs dependencies
+      - name: Cache MkDocs Dependencies
         run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
 
       - uses: actions/cache@v4
