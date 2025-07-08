@@ -26,13 +26,16 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: Build C# Project
+      - name: Build Project (with XML Docs)
         run: dotnet build MetaRPC.CSharpMT5.csproj -c Release
 
-      - name: Restore XmlDocMarkdown tool
+      - name: Restore XmlDocMarkdown CLI tool
         run: dotnet tool restore
 
-      - name: Generate Markdown with XmlDocMarkdown
+      - name: Add local tools to PATH
+        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+
+      - name: Generate Markdown from XML Docs
         run: |
           mkdir -p docs/api
           dotnet tool run xmldocmd bin/Release/net9.0/MetaRPC.CSharpMT5.dll docs/api --source MetaRPC.CSharpMT5.csproj --visibility public
@@ -53,5 +56,5 @@ jobs:
 
       - run: pip install mkdocs-material pymdown-extensions
 
-      - name: Deploy Docs
+      - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force --clean
