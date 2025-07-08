@@ -6,6 +6,8 @@
     <RootNamespace>csharp_nuget</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>MetaRPC.CSharpMT5.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
