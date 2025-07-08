@@ -25,13 +25,15 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: Build project and generate XML docs
+      - name: Build Project (with XML docs)
         run: dotnet build MetaRPC.CSharpMT5.csproj -c Release
 
       - name: Install XmlDocMarkdown
-        run: dotnet tool install -g XmlDocMarkdown.Console
+        run: |
+          dotnet tool install -g XmlDocMarkdown
+          echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
-      - name: Convert XML docs to Markdown
+      - name: Generate Markdown from XML Docs
         run: |
           mkdir -p docs/api
           xmldocmd bin/Release/net9.0/MetaRPC.CSharpMT5.dll docs/api --source MetaRPC.CSharpMT5.csproj --visibility public
@@ -40,7 +42,8 @@ jobs:
         with:
           python-version: '3.x'
 
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+      - name: Cache MkDocs Dependencies
+        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
 
       - uses: actions/cache@v4
         with:
@@ -51,5 +54,5 @@ jobs:
 
       - run: pip install mkdocs-material pymdown-extensions
 
-      - name: Deploy Docs to GitHub Pages
+      - name: Deploy Documentation to GitHub Pages
         run: mkdocs gh-deploy --force --clean
