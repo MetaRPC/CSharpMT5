@@ -33,6 +33,27 @@ jobs:
           dotnet tool install -g docfx || dotnet tool update -g docfx
           echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
+      - name: Ensure docfx.json exists
+        run: |
+          if [ ! -f docfx.json ]; then
+            echo '{
+              "metadata": [{
+                "src": [{
+                  "files": ["**/*.csproj"],
+                  "exclude": ["**/bin/**", "**/obj/**"]
+                }],
+                "dest": "api"
+              }],
+              "build": {
+                "content": [
+                  { "files": [ "api/**.yml" ] },
+                  { "files": [ "api/index.md" ] }
+                ],
+                "dest": "_site"
+              }
+            }' > docfx.json
+          fi
+
       - name: Generate Docs with DocFX
         run: |
           docfx metadata
