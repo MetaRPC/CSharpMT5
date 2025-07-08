@@ -130,7 +130,18 @@ namespace MetaRPC.CSharpMT5
                 historyData.HistoryData.Count);
 
             // 4) Current tick
-            var tick = await _mt5Account.SymbolInfoTickAsync(Constants.DefaultSymbol);
+            var symbol = Constants.DefaultSymbol;
+            var tick = await _mt5Account.SymbolInfoTickAsync(symbol);
+
+            _logger.LogInformation(
+                "SymbolInfoTickAsync: Symbol={Symbol}, Bid={Bid}, Ask={Ask}, Last={Last}, Volume={Volume}, Time={Time}",
+                symbol,         
+                tick.Bid,
+                tick.Ask,
+                tick.Last,
+                tick.Volume,
+                tick.Time
+            );
 
             // 5) Opening an order
             var sendRequest = new OrderSendRequest
