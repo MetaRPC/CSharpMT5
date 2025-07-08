@@ -3,7 +3,7 @@ site_name: MetaRPC MT5 C# Documentation
 nav:
   - Home: index.md
   - API Reference:
-      - MT5Account: api/MetaRPC.CSharpMT5.MT5Account.md
+      - MT5Account: api/MetaRPC.CSharpMT5.md
   - Account Information:
       - AccountSummary: account/AccountSummary.md
       - AccountInfoDouble: account/AccountInfoDouble.md
