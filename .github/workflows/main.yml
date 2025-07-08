@@ -28,13 +28,21 @@ jobs:
       - name: Build Project
         run: dotnet build MetaRPC.CSharpMT5.csproj -c Release
 
-      - name: Install XmlDocMarkdown
-        run: dotnet tool install -g XmlDocMarkdown
+      - name: Install DocFX
+        run: |
+          wget https://github.com/dotnet/docfx/releases/download/v2.70.1/docfx.zip
+          unzip docfx.zip -d docfx
+          echo "$(pwd)/docfx" >> $GITHUB_PATH
 
-      - name: Convert XML Docs to Markdown
+      - name: Generate Docs using DocFX
+        run: |
+          docfx metadata
+          docfx build
+
+      - name: Copy Generated Markdown to MkDocs
         run: |
           mkdir -p docs/api
-          xmldocmd bin/Release/net8.0/MetaRPC.CSharpMT5.dll docs/api --source MetaRPC.CSharpMT5.csproj --visibility public
+          cp -r _site/api/* docs/api/ || echo "No api content found"
 
       - uses: actions/setup-python@v5
         with:
