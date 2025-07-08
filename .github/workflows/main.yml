@@ -29,16 +29,15 @@ jobs:
       - name: Build C# Project
         run: dotnet build MetaRPC.CSharpMT5.csproj -c Release
 
-      - name: Restore XmlDocMarkdown CLI Tool
-        run: dotnet tool restore
-
-      - name: Add dotnet tools to PATH
-        run: echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+      - name: Install xmldocmd (.NET tool)
+        run: |
+          dotnet tool install -g xmldocmd
+          echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
       - name: Generate Markdown from XML Docs
         run: |
           mkdir -p docs/api
-          dotnet tool run xmldocmarkdown bin/Release/net9.0/MetaRPC.CSharpMT5.dll docs/api --source MetaRPC.CSharpMT5.csproj --visibility public
+          xmldocmd bin/Release/net9.0/MetaRPC.CSharpMT5.dll docs/api --source MetaRPC.CSharpMT5.csproj --visibility public
 
       - uses: actions/setup-python@v5
         with:
