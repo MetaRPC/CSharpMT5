@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using mt5_term_api;
@@ -11,6 +12,7 @@ namespace MetaRPC.CSharpMT5
 {
     public class MT5Options
     {
+        public string ServerName { get; set; }
         public ulong AccountId { get; set; }
         public string Password { get; set; }
     }
@@ -20,13 +22,7 @@ namespace MetaRPC.CSharpMT5
         private readonly ILogger<Program> _logger;
         private readonly IConfiguration _configuration;
         private readonly MT5Account _mt5Account;
-
-        private static class Constants
-        {
-            public const string DefaultSymbol = "EURUSD";
-            public const double DefaultVolume = 0.1;
-            public const string DefaultServer = "MetaQuotes-Demo";
-        }
+                                  
 
         public Program()
         {
@@ -329,11 +325,13 @@ namespace MetaRPC.CSharpMT5
                     StopLoss = tick.Ask - 0.0010,
                     TakeProfit = tick.Ask + 0.0010,
                     Deviation = 10,                             // max. slippage
-                    OrderType = ENUM_ORDER_TYPE_TF.OrderTypeTfBuy,
-                    Expiration = null,                           // if not in use
+                    OrderType = ENUM_ORDER_TYPE_TF.OrderTypeTfBuy,                                               
+                    Expiration = Timestamp.FromDateTime(DateTime.UtcNow),
                     Comment = string.Empty,
                     Position = 0,
-                    PositionBy = 0
+                    PositionBy = 0,
+
+                    
                 }
             };
 
