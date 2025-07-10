@@ -15,6 +15,9 @@ namespace MetaRPC.CSharpMT5
         public string ServerName { get; set; }
         public ulong AccountId { get; set; }
         public string Password { get; set; }
+
+        public string Host { get; set; }         
+        public int Port { get; set; } = 443;
     }
 
     public class Program
@@ -55,7 +58,13 @@ namespace MetaRPC.CSharpMT5
             {
                 // 1) Connecting to the server
                 _logger.LogInformation("Connecting to server...");
-                _mt5Account.ConnectByServerName(Constants.DefaultServer);
+                var options = _configuration.GetSection("MT5Options").Get<MT5Options>();
+                await _mt5Account.ConnectByHostPortAsync(
+                    host: options.Host,
+                    port: options.Port,
+                    baseChartSymbol: "EURUSD",
+                    waitForTerminalIsAlive: true
+                );
 
                 // 2) Launching all methods
                 await ShowAccountInfo();
