@@ -303,6 +303,10 @@ namespace MetaRPC.CSharpMT5
             // 1) Getting the current tick
             var tick = await _mt5Account.SymbolInfoTickAsync(Constants.DefaultSymbol);
 
+            await _mt5Account.SymbolSelectAsync(Constants.DefaultSymbol, true);
+            _logger.LogInformation("Preparing OrderCheck: Symbol={Symbol}, Ask={Ask}", Constants.DefaultSymbol, tick.Ask);
+
+
             // 2) We calculate the required margin
             var margin = await _mt5Account.OrderCalcMarginAsync(new OrderCalcMarginRequest
             {
