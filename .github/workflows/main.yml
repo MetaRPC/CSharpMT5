@@ -34,10 +34,10 @@ jobs:
           dotnet tool install -g xmldocmd
           echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
 
-      - name: Generate Markdown from MetaRPC.MT4 Docs
+      - name: Generate Markdown from XML Docs
         run: |
           mkdir -p docs/api
-          xmldocmd deps/MetaRPC.MT4.dll docs/api --visibility public
+          xmldocmd bin/Release/net8.0/MetaRPC.CSharpMT5.dll docs/api --source MetaRPC.CSharpMT5.csproj --visibility public
           
       - uses: actions/setup-python@v5
         with:
