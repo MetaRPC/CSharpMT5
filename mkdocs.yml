@@ -4,10 +4,10 @@ nav:
   - Home: index.md
   - API Reference: api/MetaRPC.CSharpMT5.md
   - Account Information:
-      - AccountSummary: account/AccountSummary.md
-      - AccountInfoDouble: account/AccountInfoDouble.md
-      - AccountInfoInteger: account/AccountInfoInteger.md
-      - AccountInfoString: account/AccountInfoString.md
+      - Account Summary: account/AccountSummary.md
+      - Account Info Double: account/AccountInfoDouble.md
+      - Account Info Integer: account/AccountInfoInteger.md
+      - Account Info String: account/AccountInfoString.md
   - Performing operations:
       - Opened Orders: orders/OpenedOrders.md
       - Opened Orders Tickets: orders/OpenedOrdersTickets.md
@@ -16,30 +16,30 @@ nav:
   - Positions:
       - Show Positions: Positions/ShowPositions.md
   - Market Info:
-      - SymbolsTotal: MarketInfo/SymbolsTotal.md
-      - SymbolExist: MarketInfo/SymbolExist.md
-      - SymbolName: MarketInfo/SymbolName.md
-      - SymbolParamsMany: MarketInfo/SymbolParamsMany.md
-      - SymbolSelect: MarketInfo/SymbolSelect.md
-      - SymbolIsSynchronized: MarketInfo/SymbolIsSynchronized.md
+      - Symbols Total: MarketInfo/SymbolsTotal.md
+      - Symbol Exist: MarketInfo/SymbolExist.md
+      - Symbol Name: MarketInfo/SymbolName.md
+      - Symbol Params Many: MarketInfo/SymbolParamsMany.md
+      - Symbol Select: MarketInfo/SymbolSelect.md
+      - Symbol Is Synchronized: MarketInfo/SymbolIsSynchronized.md
   - Symbol Properties:
-      - SymbolInfoDouble: SymbolProperties/SymbolInfoDouble.md
-      - SymbolInfoInteger: SymbolProperties/SymbolInfoInteger.md
-      - SymbolInfoString: SymbolProperties/SymbolInfoString.md
-      - SymbolInfoMarginRate: SymbolProperties/SymbolInfoMarginRate.md
-      - SymbolInfoTick: SymbolProperties/SymbolInfoTick.md
-      - SymbolInfoSessionQuote: SymbolProperties/SymbolInfoSessionQuote.md
-      - SymbolInfoSessionTrade: SymbolProperties/SymbolInfoSessionTrade.md
+      - Symbol Info Double: SymbolProperties/SymbolInfoDouble.md
+      - Symbol Info Integer: SymbolProperties/SymbolInfoInteger.md
+      - Symbol Info String: SymbolProperties/SymbolInfoString.md
+      - Symbol Info Margin Rate: SymbolProperties/SymbolInfoMarginRate.md
+      - Symbol Info Tick: SymbolProperties/SymbolInfoTick.md
+      - Symbol Info Session Quote: SymbolProperties/SymbolInfoSessionQuote.md
+      - Symbol Info Session Trade: SymbolProperties/SymbolInfoSessionTrade.md
   - Trade Functions:
-      - OrderCalcMargin: TradeFunctions/OrderCalcMargin.md
-      - OrderCheck: TradeFunctions/OrderCheck.md
-      - VerificationLogResult: TradeFunctions/VerificationLogResult.md
+      - Order Calc Margin: TradeFunctions/OrderCalcMargin.md
+      - Order Check: TradeFunctions/OrderCheck.md
+      - Verification Log Result: TradeFunctions/VerificationLogResult.md
   - Streaming:
-      - OnSymbolTick: DoStreaming/OnSymbolTickAsync.md
-      - OnTrade: DoStreaming/OnTradeAsync.md
-      - OnPositionProfit: DoStreaming/OnPositionProfitAsync.md
-      - PositionsAndPending: DoStreaming/PositionsAndPending.md
-      - OnTradeTransaction: DoStreaming/OnTradeTransactionAsync.md
+      - On Symbol Tick: DoStreaming/OnSymbolTickAsync.md
+      - On Trade: DoStreaming/OnTradeAsync.md
+      - On Position Profit: DoStreaming/OnPositionProfitAsync.md
+      - Positions And Pending: DoStreaming/PositionsAndPending.md
+      - On Trade Transaction: DoStreaming/OnTradeTransactionAsync.md
 
 
 
