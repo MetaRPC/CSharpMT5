@@ -3,6 +3,8 @@
 > **Request:** current list of open orders from MT5
 > Fetch all open orders on the account in one call.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -13,7 +15,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<OpenedOrdersResponse> OpenedOrdersAsync()
@@ -21,54 +25,73 @@ Task<OpenedOrdersResponse> OpenedOrdersAsync()
 
 ---
 
-## Input
+## 🔽 Input
 
-*None* — this method takes no parameters.
+No input parameters.
 
 ---
 
-## Output
+## ⬆️ Output
 
-**`OpenedOrdersResponse`** — structure with:
+Returns an **`OpenedOrdersResponse`** object with:
 
-* **`OpenedOrders`** (`IReadOnlyList<OrderInfo>`) — list of all current open orders.
+| Field          | Type                       | Description                       |
+| -------------- | -------------------------- | --------------------------------- |
+| `OpenedOrders` | `IReadOnlyList<OrderInfo>` | List of all currently open orders |
 
 ### `OrderInfo` Structure
 
-Each item in `OpenedOrders` contains:
+Each order includes:
 
-* **`Ticket`** (`ulong`) — unique ticket number of the order.
-* **`Symbol`** (`string`) — trading symbol (e.g., `"EURUSD"`).
-* **`Type`** (`TMT5_ENUM_ORDER_TYPE`) — order type. Possible values:
+| Field           | Type                    | Description                         |
+| --------------- | ----------------------- | ----------------------------------- |
+| `Ticket`        | `ulong`                 | Unique ticket number                |
+| `Symbol`        | `string`                | Trading symbol (e.g., "EURUSD")     |
+| `Type`          | `TMT5_ENUM_ORDER_TYPE`  | Type of the order (Buy, Sell, etc.) |
+| `VolumeInitial` | `double`                | Volume at order placement           |
+| `VolumeCurrent` | `double`                | Remaining open volume               |
+| `PriceOpen`     | `double`                | Open price                          |
+| `PriceCurrent`  | `double`                | Current price                       |
+| `StopLoss`      | `double`                | Stop Loss level                     |
+| `TakeProfit`    | `double`                | Take Profit level                   |
+| `Commission`    | `double`                | Accrued commission                  |
+| `Swap`          | `double`                | Accrued swap                        |
+| `Profit`        | `double`                | Current floating profit/loss        |
+| `TimeSetup`     | `DateTime`              | Time order was placed (UTC)         |
+| `State`         | `TMT5_ENUM_ORDER_STATE` | Order status                        |
 
-  * **`Tmt5OrderTypeBuy`** — market Buy order.
-  * **`Tmt5OrderTypeSell`** — market Sell order.
-  * **`Tmt5OrderTypeBuyLimit`** — pending Buy Limit order.
-  * **`Tmt5OrderTypeSellLimit`** — pending Sell Limit order.
-  * **`Tmt5OrderTypeBuyStop`** — pending Buy Stop order.
-  * **`Tmt5OrderTypeSellStop`** — pending Sell Stop order.
-  * **`Tmt5OrderTypeBuyStopLimit`** — pending Buy Stop Limit order.
-  * **`Tmt5OrderTypeSellStopLimit`** — pending Sell Stop Limit order.
-* **`VolumeInitial`** (`double`) — original volume of the order when placed.
-* **`VolumeCurrent`** (`double`) — remaining volume of the order.
-* **`PriceOpen`** (`double`) — price at which the order was opened.
-* **`PriceCurrent`** (`double`) — current market price for the symbol.
-* **`StopLoss`** (`double`) — current stop-loss level.
-* **`TakeProfit`** (`double`) — current take-profit level.
-* **`Commission`** (`double`) — commission charged so far on the order.
-* **`Swap`** (`double`) — swap or rollover charges accrued.
-* **`Profit`** (`double`) — the current floating profit or loss of the order.
-* **`TimeSetup`** (`DateTime`) — UTC timestamp when the order was placed.
-* **`State`** (`TMT5_ENUM_ORDER_STATE`) — current state of the order. Possible values:
+### `TMT5_ENUM_ORDER_TYPE` Values
 
-  * **`Tmt5OrderStatePlaced`**
-  * **`Tmt5OrderStateExecuted`**
-  * **`Tmt5OrderStateCancelled`**
-  * **`Tmt5OrderStateRejected`**
-  * **`Tmt5OrderStateExpired`**
+| Value                        | Description             |
+| ---------------------------- | ----------------------- |
+| `Tmt5OrderTypeBuy`           | Market Buy              |
+| `Tmt5OrderTypeSell`          | Market Sell             |
+| `Tmt5OrderTypeBuyLimit`      | Pending Buy Limit       |
+| `Tmt5OrderTypeSellLimit`     | Pending Sell Limit      |
+| `Tmt5OrderTypeBuyStop`       | Pending Buy Stop        |
+| `Tmt5OrderTypeSellStop`      | Pending Sell Stop       |
+| `Tmt5OrderTypeBuyStopLimit`  | Pending Buy Stop Limit  |
+| `Tmt5OrderTypeSellStopLimit` | Pending Sell Stop Limit |
+
+### `TMT5_ENUM_ORDER_STATE` Values
+
+| Value                     | Description         |
+| ------------------------- | ------------------- |
+| `Tmt5OrderStatePlaced`    | Order is placed     |
+| `Tmt5OrderStateExecuted`  | Order is filled     |
+| `Tmt5OrderStateCancelled` | Order was cancelled |
+| `Tmt5OrderStateRejected`  | Order was rejected  |
+| `Tmt5OrderStateExpired`   | Order expired       |
 
 ---
 
-## Purpose
+## 🎯 Purpose
 
-Allows you to receive all open orders on the account in one universal call, so that you can log, process, or make decisions on them without juggling multiple methods. 🚀
+Use this method to retrieve all currently active orders on the account.
+It is ideal for:
+
+* Monitoring trading state
+* Building dashboards
+* Running logic based on open exposure
+
+All order details are returned in one efficient call.
