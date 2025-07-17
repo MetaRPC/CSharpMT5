@@ -3,6 +3,8 @@
 > **Request:** list of ticket IDs for all open orders from MT5
 > Fetch ticket IDs of current open orders.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -13,7 +15,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<OpenedOrdersTicketsResponse> OpenedOrdersTicketsAsync()
@@ -21,20 +25,30 @@ Task<OpenedOrdersTicketsResponse> OpenedOrdersTicketsAsync()
 
 ---
 
-## Input
+## 🔽 Input
 
-*None* — this method takes no parameters.
-
----
-
-## Output
-
-**`OpenedOrdersTicketsResponse`** — object with the following property:
-
-* **`OpenedOrdersTickets`** (`IReadOnlyList<long>`) — list of ticket numbers for all currently open orders.
+No input parameters.
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Allows you to retrieve just the ticket IDs of open orders in a single call, simplifying logging, filtering, or acting on orders by their identifiers without loading full order details. 🚀
+Returns an **`OpenedOrdersTicketsResponse`** object with:
+
+| Field                 | Type                  | Description                            |
+| --------------------- | --------------------- | -------------------------------------- |
+| `OpenedOrdersTickets` | `IReadOnlyList<long>` | List of ticket numbers for open orders |
+
+Each ticket represents a unique identifier for an active order on the MT5 account.
+
+---
+
+## 🎯 Purpose
+
+Use this method when you only need the **IDs** of active orders — useful for:
+
+* Fast filtering and routing
+* Linking tickets to external logic
+* Executing follow-up actions (e.g. modify, close) without full order fetch
+
+This is a lightweight alternative to retrieving full order data.
