@@ -1,12 +1,14 @@
-# Streaming: OnSymbolTickAsync
+## Streaming: OnSymbolTickAsync
 
 > **Request:** real-time tick updates for one or more symbols
+
+---
 
 ### Code Example
 
 ```csharp
 await foreach (var tick in _mt5Account.OnSymbolTickAsync(
-    new[] { Constants.DefaultSymbol }, 
+    new[] { Constants.DefaultSymbol },
     cts.Token))
 {
     _logger.LogInformation(
@@ -16,7 +18,9 @@ await foreach (var tick in _mt5Account.OnSymbolTickAsync(
 }
 ```
 
-✨**Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 IAsyncEnumerable<OnSymbolTickData> OnSymbolTickAsync(
@@ -27,24 +31,40 @@ IAsyncEnumerable<OnSymbolTickData> OnSymbolTickAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **`symbols`** (`IEnumerable<string>`) — list of symbol names (e.g., `"EURUSD"`, `"XAUUSD"`).
-* **`cancellationToken`** (`CancellationToken`) — token to cancel the streaming subscription.
+| Parameter           | Type                  | Description                                    |
+| ------------------- | --------------------- | ---------------------------------------------- |
+| `symbols`           | `IEnumerable<string>` | List of symbols to subscribe to (e.g., EURUSD) |
+| `cancellationToken` | `CancellationToken`   | Token to cancel the streaming session          |
 
-## Output
+---
 
-**`OnSymbolTickData`** — structure containing:
+## ⬆️ Output
 
-* **`SymbolTick`** (`MrpcMqlTick`) — the tick data for each symbol, with fields:
+Returns a stream of **OnSymbolTickData** items:
 
-  * **`Symbol`** (`string`) — the symbol name.
-  * **`Bid`** (`double`) — current best bid price.
-  * **`Ask`** (`double`) — current best ask price.
-  * **`Last`** (`double`) — last trade price.
-  * **`Volume`** (`long`) — tick volume.
-  * **`Time`** (`DateTime`) — UTC timestamp of the tick.
+| Field        | Type          | Description                           |
+| ------------ | ------------- | ------------------------------------- |
+| `SymbolTick` | `MrpcMqlTick` | Tick structure containing market data |
 
-## Purpose
+### `MrpcMqlTick` Structure
 
-Allows you to subscribe to live market tick updates for multiple symbols simultaneously, enabling real-time price monitoring, analytics, or algorithmic trading triggers. 🚀
+| Field    | Type       | Description                         |
+| -------- | ---------- | ----------------------------------- |
+| `Symbol` | `string`   | Symbol name (e.g., EURUSD)          |
+| `Bid`    | `double`   | Current bid price                   |
+| `Ask`    | `double`   | Current ask price                   |
+| `Last`   | `double`   | Last deal price                     |
+| `Volume` | `long`     | Volume at the tick                  |
+| `Time`   | `DateTime` | UTC time when the tick was recorded |
+
+---
+
+## 🎯 Purpose
+
+This stream enables your application to receive **live tick data for one or more symbols** in real time. Useful for:
+
+* Updating charting interfaces
+* Real-time dashboards
+* Triggering trades or alerts in algorithmic systems
