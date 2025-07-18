@@ -2,6 +2,8 @@
 
 > **Request:** simulate a trade and retrieve required margin and remaining free margin.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -13,7 +15,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<OrderCheckData> OrderCheckAsync(
@@ -25,40 +29,72 @@ Task<OrderCheckData> OrderCheckAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-**`OrderCheckRequest`** — structure with the following field:
+**OrderCheckRequest** — object with:
 
-* **`MqlTradeRequest`** (`MrpcMqlTradeRequest`) — trade parameters to validate:
+| Field             | Type                  | Description                           |
+| ----------------- | --------------------- | ------------------------------------- |
+| `MqlTradeRequest` | `MrpcMqlTradeRequest` | Trade parameters to simulate/validate |
 
-  * **`Symbol`** (`string`) — trading symbol (e.g., `"EURUSD"`).
-  * **`Volume`** (`double`) — requested volume in lots.
-  * **`Price`** (`double`) — desired execution price.
-  * **`StopLimit`** (`double?`) — stop-limit price (optional).
-  * **`StopLoss`** (`double?`) — stop-loss level (optional).
-  * **`TakeProfit`** (`double?`) — take-profit level (optional).
-  * **`Deviation`** (`int`) — maximum allowed slippage in points.
-  * **`OrderType`** (`ENUM_ORDER_TYPE_TF`) — order type. Possible values:
+### `MrpcMqlTradeRequest` Fields
 
-    * `OrderTypeTfBuy`, `OrderTypeTfSell`, `OrderTypeTfBuyLimit`, `OrderTypeTfSellLimit`, `OrderTypeTfBuyStop`, `OrderTypeTfSellStop`, `OrderTypeTfBuyStopLimit`, `OrderTypeTfSellStopLimit`.
-  * **`Expiration`** (`DateTime?`) — expiration time for pending orders (optional).
-  * **`Comment`** (`string`) — optional comment attached to the order.
-  * **`Position`** (`ulong`) — ticket of order to be modified (optional).
-  * **`PositionBy`** (`ulong`) — secondary ticket reference (optional).
+| Field        | Type                 | Description                                   |
+| ------------ | -------------------- | --------------------------------------------- |
+| `Symbol`     | `string`             | Trading symbol (e.g., "EURUSD")               |
+| `Volume`     | `double`             | Volume in lots                                |
+| `Price`      | `double`             | Desired execution price                       |
+| `StopLimit`  | `double?`            | Stop limit price (optional)                   |
+| `StopLoss`   | `double?`            | Stop Loss level (optional)                    |
+| `TakeProfit` | `double?`            | Take Profit level (optional)                  |
+| `Deviation`  | `int`                | Max price slippage in points                  |
+| `OrderType`  | `ENUM_ORDER_TYPE_TF` | Order type                                    |
+| `Expiration` | `DateTime?`          | Expiration time for pending orders (optional) |
+| `Comment`    | `string`             | Order comment (optional)                      |
+| `Position`   | `ulong`              | Order to be modified (optional)               |
+| `PositionBy` | `ulong`              | Secondary reference (optional)                |
+
+### `ENUM_ORDER_TYPE_TF` Values
+
+| Value                      | Description             |
+| -------------------------- | ----------------------- |
+| `OrderTypeTfBuy`           | Market Buy              |
+| `OrderTypeTfSell`          | Market Sell             |
+| `OrderTypeTfBuyLimit`      | Pending Buy Limit       |
+| `OrderTypeTfSellLimit`     | Pending Sell Limit      |
+| `OrderTypeTfBuyStop`       | Pending Buy Stop        |
+| `OrderTypeTfSellStop`      | Pending Sell Stop       |
+| `OrderTypeTfBuyStopLimit`  | Pending Buy Stop Limit  |
+| `OrderTypeTfSellStopLimit` | Pending Sell Stop Limit |
 
 ---
 
-## Output
+## ⬆️ Output
 
-**`OrderCheckData`** — structure with the following field:
+Returns an **OrderCheckData** object:
 
-* **`MqlTradeCheckResult`** (`MqlTradeCheckResultData`) — result of the simulated trade check:
+| Field                 | Type                      | Description                |
+| --------------------- | ------------------------- | -------------------------- |
+| `MqlTradeCheckResult` | `MqlTradeCheckResultData` | Result of trade simulation |
 
-  * **`Margin`** (`double`) — required margin for this request.
-  * **`FreeMargin`** (`double`) — remaining free margin after the simulated trade.
+### `MqlTradeCheckResultData` Fields
+
+| Field        | Type     | Description                            |
+| ------------ | -------- | -------------------------------------- |
+| `Margin`     | `double` | Required margin for this trade request |
+| `FreeMargin` | `double` | Remaining free margin after execution  |
 
 ---
 
-## Purpose
+## 🎯 Purpose
 
-Ensures a trade is valid and shows both the required margin and the impact on free margin before execution, improving pre-trade risk management and decision-making. 🚀
+Use this method to simulate a trade **and** view:
+
+* How much margin would be required
+* What free margin would remain
+
+Ideal for:
+
+* Building visual risk previews
+* Pre-trade eligibility checks
+* Risk-informed trading decisions
