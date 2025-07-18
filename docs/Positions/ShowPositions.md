@@ -4,6 +4,8 @@
 
 > **Request:** total number of open positions on the account.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -11,7 +13,9 @@ var total = await _mt5Account.PositionsTotalAsync();
 _logger.LogInformation("PositionsTotalAsync: Total={Total}", total.Total);
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<PositionsTotalResponse> PositionsTotalAsync()
@@ -19,24 +23,38 @@ Task<PositionsTotalResponse> PositionsTotalAsync()
 
 ---
 
-### Input
+## 🔽 Input
 
 *None* — this method takes no parameters.
 
-### Output
+---
 
-**`PositionsTotalResponse`** — structure with:
+## ⬆️ Output
 
-* **`Total`** (`int`) — total number of currently open positions.
+Returns a **PositionsTotalResponse** object:
 
-**Purpose:**
-Quickly determine how many positions are currently open without fetching full position details. 🚀
+| Field   | Type  | Description                               |
+| ------- | ----- | ----------------------------------------- |
+| `Total` | `int` | Total number of open positions on account |
+
+---
+
+## 🎯 Purpose
+
+Quickly determine how many positions are currently open without fetching full position details.
+
+Ideal for:
+
+* Basic position status display
+* Conditional logic (e.g., skip placing order if no positions are open)
 
 ---
 
 ## Getting Positions History
 
 > **Request:** list of historical open/closed positions for a given period, sorted by open time (or other criteria).
+
+---
 
 ### Code Example
 
@@ -49,7 +67,9 @@ var history = await _mt5Account.PositionsHistoryAsync(
 _logger.LogInformation("PositionsHistoryAsync: Count={Count}", history.HistoryPositions.Count);
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<PositionsHistoryResponse> PositionsHistoryAsync(
@@ -61,43 +81,57 @@ Task<PositionsHistoryResponse> PositionsHistoryAsync(
 
 ---
 
-### Input
+## 🔽 Input
 
-* **`sortType`** (`AH_ENUM_POSITIONS_HISTORY_SORT_TYPE`) — sort order for returned positions. Possible values:
+| Parameter  | Type                                  | Description                            |
+| ---------- | ------------------------------------- | -------------------------------------- |
+| `sortType` | `AH_ENUM_POSITIONS_HISTORY_SORT_TYPE` | Sorting strategy for results           |
+| `from`     | `DateTime`                            | UTC start time of the history interval |
+| `to`       | `DateTime`                            | UTC end time of the history interval   |
 
-  * **AhPositionOpenTimeAsc** — sort by open time ascending.
-  * **AhPositionOpenTimeDesc** — sort by open time descending.
-  * **AhPositionCloseTimeAsc** — sort by close time ascending.
-  * **AhPositionCloseTimeDesc** — sort by close time descending.
+### Sort Type Enum Values
 
-* **`from`** (`DateTime`) — start of the period (UTC).
+| Value                     | Description                   |
+| ------------------------- | ----------------------------- |
+| `AhPositionOpenTimeAsc`   | Sort by open time ascending   |
+| `AhPositionOpenTimeDesc`  | Sort by open time descending  |
+| `AhPositionCloseTimeAsc`  | Sort by close time ascending  |
+| `AhPositionCloseTimeDesc` | Sort by close time descending |
 
-* **`to`** (`DateTime`) — end of the period (UTC).
+---
 
-### Output
+## ⬆️ Output
 
-**`PositionsHistoryResponse`** — structure with:
+Returns a **PositionsHistoryResponse** object:
 
-* **`HistoryPositions`** (`IReadOnlyList<PositionInfo>`) — list of positions within the specified period.
+| Field              | Type                          | Description                      |
+| ------------------ | ----------------------------- | -------------------------------- |
+| `HistoryPositions` | `IReadOnlyList<PositionInfo>` | List of historical position data |
 
 ### `PositionInfo` Structure
 
-Each item in `HistoryPositions` contains:
+| Field          | Type                    | Description                               |
+| -------------- | ----------------------- | ----------------------------------------- |
+| `Ticket`       | `ulong`                 | Unique ID of the position                 |
+| `Symbol`       | `string`                | Trading symbol                            |
+| `Type`         | `AH_ENUM_POSITION_TYPE` | Position type (Buy/Sell)                  |
+| `Volume`       | `double`                | Position volume in lots                   |
+| `PriceOpen`    | `double`                | Entry price                               |
+| `PriceCurrent` | `double`                | Current price                             |
+| `Swap`         | `double`                | Accrued swap charges                      |
+| `Profit`       | `double`                | Floating or realized profit/loss          |
+| `Commission`   | `double`                | Commissions charged                       |
+| `OpenTime`     | `DateTime`              | UTC timestamp when opened                 |
+| `CloseTime`    | `DateTime`              | UTC timestamp when closed (if applicable) |
 
-* **`Ticket`** (`ulong`) — unique identifier of the position.
-* **`Symbol`** (`string`) — trading symbol (e.g., "EURUSD").
-* **`Type`** (`AH_ENUM_POSITION_TYPE`) — position type. Possible values:
+---
 
-  * **PositionTypeBuy** — long position.
-  * **PositionTypeSell** — short position.
-* **`Volume`** (`double`) — volume in lots.
-* **`PriceOpen`** (`double`) — price at which the position was opened.
-* **`PriceCurrent`** (`double`) — current market price for the symbol.
-* **`Swap`** (`double`) — accumulated swap/rollover charges.
-* **`Profit`** (`double`) — floating profit or loss of the position in deposit currency.
-* **`Commission`** (`double`) — commissions charged for the position.
-* **`OpenTime`** (`DateTime`) — UTC timestamp when the position was opened.
-* **`CloseTime`** (`DateTime`) — UTC timestamp when the position was closed (for closed positions history).
+## 🎯 Purpose
 
-**Purpose:**
-Provides full position details over a given period with sorting, enabling in-depth analysis, reporting, and auditing of trading activity. 🚀
+Use this method to retrieve full **position activity history** within a selected date range.
+
+Perfect for:
+
+* Auditing and reporting
+* Generating trade logs
+* Analyzing performance over time
