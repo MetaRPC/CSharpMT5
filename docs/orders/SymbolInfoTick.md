@@ -1,8 +1,9 @@
 # Getting Current Tick for a Symbol
 
-> **Request:** retrieve the latest tick information for a given symbol from MT5.
+> **Request:** retrieve the latest tick information for a given symbol from MT5
+> Fetch market data for a single symbol at the most recent tick.
 
-Fetch market data for a single symbol at the most recent tick.
+---
 
 ### Code Example
 
@@ -21,7 +22,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<MrpcMqlTick> SymbolInfoTickAsync(string symbol)
@@ -29,24 +32,34 @@ Task<MrpcMqlTick> SymbolInfoTickAsync(string symbol)
 
 ---
 
-## Input
+## 🔽 Input
 
-* **`symbol`** (`string`) — the symbol to retrieve tick data for (e.g., `Constants.DefaultSymbol`).
-
----
-
-## Output
-
-**`MrpcMqlTick`** — structure with the following properties:
-
-* **`Bid`** (`double`) — the current bid price.
-* **`Ask`** (`double`) — the current ask price.
-* **`Last`** (`double`) — the price of the last executed trade (if available).
-* **`Volume`** (`long`) — the tick volume (number of trades at this tick).
-* **`Time`** (`DateTime`) — the UTC timestamp when this tick was recorded.
+| Parameter | Type     | Description                                       |
+| --------- | -------- | ------------------------------------------------- |
+| `symbol`  | `string` | Symbol to retrieve tick data for (e.g., "EURUSD") |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Allows you to fetch the most recent market tick for a specified symbol in one call, enabling real-time pricing, analytics, or triggering trading logic. 🚀
+Returns a **MrpcMqlTick** object:
+
+| Field    | Type       | Description                                |
+| -------- | ---------- | ------------------------------------------ |
+| `Bid`    | `double`   | Current bid price                          |
+| `Ask`    | `double`   | Current ask price                          |
+| `Last`   | `double`   | Last traded price (if available)           |
+| `Volume` | `long`     | Tick volume (number of deals in this tick) |
+| `Time`   | `DateTime` | UTC timestamp of the latest tick           |
+
+---
+
+## 🎯 Purpose
+
+Use this method to retrieve **real-time market data** for a given symbol, typically for:
+
+* Updating UI pricing components
+* Triggering trading logic
+* Performing real-time analysis or alerts
+
+It gives the latest snapshot of bid, ask, last price, and tick volume.
