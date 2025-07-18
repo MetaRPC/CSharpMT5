@@ -4,6 +4,8 @@
 
 > **Request:** fetch the count of symbols (either all available or only those selected in Market Watch) from MT5.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -14,7 +16,9 @@ var total = await _mt5Account.SymbolsTotalAsync(false);
 var selectedTotal = await _mt5Account.SymbolsTotalAsync(true);
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<SymbolsTotalData> SymbolsTotalAsync(
@@ -26,25 +30,32 @@ Task<SymbolsTotalData> SymbolsTotalAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **`selectedOnly`** (`bool`) — filter flag:
-
-  * `false` — return the total count of **all** available symbols.
-  * `true` — return the total count of symbols **selected** in Market Watch.
-* **`deadline`** (`DateTime?`, optional) — UTC timestamp by which the request must complete; if `null`, default timeout applies.
-* **`cancellationToken`** (`CancellationToken`, optional) — token to cancel the request.
-
----
-
-## Output
-
-**`SymbolsTotalData`** — structure with:
-
-* **`Total`** (`int`) — number of symbols matching the `selectedOnly` filter.
+| Parameter           | Type                | Description                                                                 |
+| ------------------- | ------------------- | --------------------------------------------------------------------------- |
+| `selectedOnly`      | `bool`              | If `true`, return only Market Watch symbols; if `false`, return all symbols |
+| `deadline`          | `DateTime?`         | Optional UTC deadline to complete the request                               |
+| `cancellationToken` | `CancellationToken` | Optional cancellation token                                                 |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Use one method to get either “all-symbol” or “selected-symbol” counts simply by toggling a boolean—keeping your code DRY and future-ready. 🚀
+Returns a **SymbolsTotalData** object:
+
+| Field   | Type  | Description                                           |
+| ------- | ----- | ----------------------------------------------------- |
+| `Total` | `int` | Number of symbols based on the selectedOnly condition |
+
+---
+
+## 🎯 Purpose
+
+This method provides a **quick count of available or watched trading symbols** with a simple flag — great for:
+
+* Dynamic UI updates
+* Pagination logic
+* Building symbol selectors or dashboards
+
+It streamlines symbol counting and avoids redundant filtering logic in client apps.
