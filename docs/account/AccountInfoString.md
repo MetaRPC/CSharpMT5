@@ -1,8 +1,9 @@
 # Getting a String Account Property
 
 > **Request:** account string property from MT5 (e.g., currency)
+> Fetch any string-based account property as a text value.
 
-Fetch any string-based account property as a text value.
+---
 
 ### Code Example
 
@@ -13,7 +14,9 @@ var currency = await _mt5Account.AccountInfoStringAsync(
 _logger.LogInformation($"AccountInfoString: Currency={currency}");
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<string> AccountInfoStringAsync(AccountInfoStringPropertyType property)
@@ -21,23 +24,39 @@ Task<string> AccountInfoStringAsync(AccountInfoStringPropertyType property)
 
 ---
 
-## Input
+## 🔽 Input
 
-**property** (`AccountInfoStringPropertyType`): enumeration value indicating which string account property to fetch. Available values:
+| Parameter  | Type                            | Description                                                |
+| ---------- | ------------------------------- | ---------------------------------------------------------- |
+| `property` | `AccountInfoStringPropertyType` | Enum that specifies which string account property to fetch |
 
-* **AccountName** (`ACCOUNT_NAME`) — the name of the account owner (e.g., client’s full name).
-* **AccountServer** (`ACCOUNT_SERVER`) — the trading server name (e.g., "MetaQuotes-Demo").
-* **AccountCurrency** (`ACCOUNT_CURRENCY`) — the deposit currency of the account (e.g., "USD").
-* **AccountCompany** (`ACCOUNT_COMPANY`) — the name of the company (broker) that serves the account.
+### `AccountInfoStringPropertyType` Enum Values
+
+| Value             | MQL5 Const         | Description                                       |
+| ----------------- | ------------------ | ------------------------------------------------- |
+| `AccountName`     | `ACCOUNT_NAME`     | Full name of the account owner                    |
+| `AccountServer`   | `ACCOUNT_SERVER`   | Trading server name (e.g., "MetaQuotes-Demo")     |
+| `AccountCurrency` | `ACCOUNT_CURRENCY` | Deposit currency of the account (e.g., "USD")     |
+| `AccountCompany`  | `ACCOUNT_COMPANY`  | Name of the brokerage company serving the account |
 
 ---
 
-## Output
+## ⬆️ Output
 
-* `string` — the requested text value (e.g., "EUR", "broker\_name").
+| Type     | Description                  |
+| -------- | ---------------------------- |
+| `string` | Requested account text value |
 
 ---
 
-## Purpose
+## 🎯 Purpose
 
-Use this single, universal method to retrieve any string-based account property, keeping your code clean, consistent, and easy to extend. Simply swap the enum value to get the desired text property! 🚀
+Use this method to retrieve any **string-type account attribute** via a consistent enum interface.
+
+Perfect for:
+
+* Displaying user or broker identity
+* Logging deposit currency or server location
+* Building dynamic UIs based on account metadata
+
+Change only the enum to retrieve other string fields.
