@@ -1,6 +1,8 @@
-## Closing an Existing Order
+# Closing an Existing Order
 
 > **Request:** to close an open order in MT5.
+
+---
 
 ### Code Example
 
@@ -19,7 +21,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<OrderCloseResponse> OrderCloseAsync(OrderCloseRequest request)
@@ -27,24 +31,34 @@ Task<OrderCloseResponse> OrderCloseAsync(OrderCloseRequest request)
 
 ---
 
-## Input
+## 🔽 Input
 
-* **request** (`OrderCloseRequest`) — object with properties:
+**OrderCloseRequest** — object with the following fields:
 
-  * **Ticket** (`ulong`) — ticket ID of the order to close.
-  * **Volume** (`double`) — volume to close (in lots).
-
----
-
-## Output
-
-* **OrderCloseResponse** — object with properties:
-
-  * **ReturnedCode** (`int`) — result code of the close operation.
-  * **ReturnedCodeDescription** (`string`) — human-readable description of the result.
+| Field    | Type     | Description               |
+| -------- | -------- | ------------------------- |
+| `Ticket` | `ulong`  | ID of the order to close  |
+| `Volume` | `double` | Volume to close (in lots) |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Allows you to close an existing order (partially or fully) by ticket in a single call and receive the operation’s return code and description for logging and handling errors. 🚀
+Returns an **OrderCloseResponse** object with:
+
+| Field                     | Type     | Description                                |
+| ------------------------- | -------- | ------------------------------------------ |
+| `ReturnedCode`            | `int`    | Code indicating result of the operation    |
+| `ReturnedCodeDescription` | `string` | Description of the result (human-readable) |
+
+---
+
+## 🎯 Purpose
+
+Use this method to **partially or fully close** an existing trade in MT5 by specifying the order ticket and volume.
+
+It provides a simple response with a result code and message, useful for:
+
+* Logging success/failure of close operations
+* Error handling in trade workflows
+* Manual or automated trade exits
