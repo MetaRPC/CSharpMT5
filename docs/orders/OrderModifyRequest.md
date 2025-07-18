@@ -1,6 +1,8 @@
-## Modifying an Existing Order
+# Modifying an Existing Order
 
-> **Request:** update parameters of an existing order in MT5.
+> **Request:** update parameters of an existing order in MT5
+
+---
 
 ### Code Example
 
@@ -16,7 +18,9 @@ var modifyResult = await _mt5Account.OrderModifyAsync(modifyRequest);
 _logger.LogInformation("OrderModifyAsync: OrderId={Order}", modifyResult.Order);
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<OrderModifyResponse> OrderModifyAsync(OrderModifyRequest request)
@@ -24,25 +28,35 @@ Task<OrderModifyResponse> OrderModifyAsync(OrderModifyRequest request)
 
 ---
 
-## Input
+## 🔽 Input
 
-**`OrderModifyRequest`** — structure with the following fields:
+**OrderModifyRequest** — object with the following fields:
 
-* **`Ticket`** (`ulong`) — unique ticket identifier of the order to modify.
-* **`Price`** (`double`) — new execution price for the order.
-* **`StopLoss`** (`double`) — updated stop-loss level.
-* **`TakeProfit`** (`double`) — updated take-profit level.
-
----
-
-## Output
-
-**`OrderModifyResponse`** — structure with the following field:
-
-* **`Order`** (`ulong`) — ticket identifier of the modified order (matches the input `Ticket`).
+| Field        | Type     | Description                                   |
+| ------------ | -------- | --------------------------------------------- |
+| `Ticket`     | `ulong`  | Ticket ID of the order to modify              |
+| `Price`      | `double` | New price to update (used for pending orders) |
+| `StopLoss`   | `double` | Updated Stop Loss level                       |
+| `TakeProfit` | `double` | Updated Take Profit level                     |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Allows you to adjust the execution price, stop-loss, and take-profit of an existing order in a single call, streamlining your position management and risk control workflows. 🚀
+Returns an **OrderModifyResponse** object:
+
+| Field   | Type    | Description                                     |
+| ------- | ------- | ----------------------------------------------- |
+| `Order` | `ulong` | Ticket ID of the modified order (same as input) |
+
+---
+
+## 🎯 Purpose
+
+Use this method to update order parameters such as **execution price**, **stop-loss**, and **take-profit** in a single call.
+
+It is essential for:
+
+* Managing pending orders
+* Adjusting trade protection levels
+* Implementing automated trailing logic or user-driven changes
