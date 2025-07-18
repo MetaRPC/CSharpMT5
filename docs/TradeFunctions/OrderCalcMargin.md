@@ -1,8 +1,9 @@
 # Calculating Required Margin
 
 > **Request:** margin calculation for a planned trade
+> Compute the margin needed to open a position with given parameters.
 
-Compute the margin needed to open a position with given parameters.
+---
 
 ### Code Example
 
@@ -22,7 +23,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<OrderCalcMarginData> OrderCalcMarginAsync(
@@ -34,39 +37,55 @@ Task<OrderCalcMarginData> OrderCalcMarginAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-**`OrderCalcMarginRequest`** — structure with the following fields:
+**OrderCalcMarginRequest** — object with the following fields:
 
-* **`Symbol`** (`string`) — trading symbol to calculate margin for (e.g., `"EURUSD"`).
-* **`OrderType`** (`ENUM_ORDER_TYPE_TF`) — type of order. Possible values:
+| Field       | Type                 | Description                    |
+| ----------- | -------------------- | ------------------------------ |
+| `Symbol`    | `string`             | Symbol to calculate margin for |
+| `OrderType` | `ENUM_ORDER_TYPE_TF` | Type of trade order            |
+| `Volume`    | `double`             | Volume in lots                 |
+| `OpenPrice` | `double`             | Expected open price            |
 
-  * **`OrderTypeTfBuy`** — market Buy order
-  * **`OrderTypeTfSell`** — market Sell order
-  * **`OrderTypeTfBuyLimit`** — pending Buy Limit order
-  * **`OrderTypeTfSellLimit`** — pending Sell Limit order
-  * **`OrderTypeTfBuyStop`** — pending Buy Stop order
-  * **`OrderTypeTfSellStop`** — pending Sell Stop order
-  * **`OrderTypeTfBuyStopLimit`** — pending Buy Stop Limit order
-  * **`OrderTypeTfSellStopLimit`** — pending Sell Stop Limit order
-* **`Volume`** (`double`) — volume in lots for which to calculate margin (e.g., `0.1`).
-* **`OpenPrice`** (`double`) — proposed opening price of the position.
+### `ENUM_ORDER_TYPE_TF` Values
 
-Optional parameters (passed directly to the async call):
+| Value                      | Description             |
+| -------------------------- | ----------------------- |
+| `OrderTypeTfBuy`           | Market Buy              |
+| `OrderTypeTfSell`          | Market Sell             |
+| `OrderTypeTfBuyLimit`      | Pending Buy Limit       |
+| `OrderTypeTfSellLimit`     | Pending Sell Limit      |
+| `OrderTypeTfBuyStop`       | Pending Buy Stop        |
+| `OrderTypeTfSellStop`      | Pending Sell Stop       |
+| `OrderTypeTfBuyStopLimit`  | Pending Buy Stop Limit  |
+| `OrderTypeTfSellStopLimit` | Pending Sell Stop Limit |
 
-* **`deadline`** (`DateTime?`) — optional UTC deadline for the operation.
-* **`cancellationToken`** (`CancellationToken`) — optional token to cancel the request.
+Optional parameters:
+
+| Parameter           | Type                | Description                 |
+| ------------------- | ------------------- | --------------------------- |
+| `deadline`          | `DateTime?`         | Optional request timeout    |
+| `cancellationToken` | `CancellationToken` | Optional cancellation token |
 
 ---
 
-## Output
+## ⬆️ Output
 
-**`OrderCalcMarginData`** — structure with the following field:
+Returns an **OrderCalcMarginData** object:
 
-* **`Margin`** (`double`) — required margin amount in the account currency.
+| Field    | Type     | Description                         |
+| -------- | -------- | ----------------------------------- |
+| `Margin` | `double` | Required margin in account currency |
 
 ---
 
-## Purpose
+## 🎯 Purpose
 
-Allows pre-trade margin checks programmatically, so you can manage risk and position sizing before sending an order. 🚀
+Use this method to calculate the **required margin** before placing an order.
+
+Perfect for:
+
+* Validating sufficient funds
+* Pre-trade simulations and risk controls
+* Dynamic lot size calculations
