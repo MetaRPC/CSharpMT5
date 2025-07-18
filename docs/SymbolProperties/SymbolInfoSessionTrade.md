@@ -3,6 +3,8 @@
 > **Request:** session trade start/end times for a symbol on a specific day from MT5
 > Fetch the market trade session hours (when trading is allowed) for a given symbol and weekday.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -20,7 +22,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<SymbolInfoSessionTradeData> SymbolInfoSessionTradeAsync(
@@ -34,37 +38,47 @@ Task<SymbolInfoSessionTradeData> SymbolInfoSessionTradeAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **symbol** (`string`) — the symbol name (e.g., `"EURUSD"`).
+| Parameter           | Type                     | Description                                |
+| ------------------- | ------------------------ | ------------------------------------------ |
+| `symbol`            | `string`                 | Symbol name (e.g., "EURUSD")               |
+| `dayOfWeek`         | `mt5_term_api.DayOfWeek` | Day of the week to query (Sunday–Saturday) |
+| `sessionIndex`      | `uint`                   | Index of the trade session (0-based)       |
+| `deadline`          | `DateTime?`              | Optional timeout deadline                  |
+| `cancellationToken` | `CancellationToken`      | Optional cancellation token                |
 
-* **dayOfWeek** (`mt5_term_api.DayOfWeek`) — the weekday to query. Possible values:
+### `DayOfWeek` Enum
 
-  * **Sunday** (`0`)
-  * **Monday** (`1`)
-  * **Tuesday** (`2`)
-  * **Wednesday** (`3`)
-  * **Thursday** (`4`)
-  * **Friday** (`5`)
-  * **Saturday** (`6`)
-
-* **sessionIndex** (`uint`) — session index for that day (0-based, usually `0` for the first session).
-
-* **deadline** (`DateTime?`) — optional UTC deadline for the request.
-
-* **cancellationToken** (`CancellationToken`) — optional token to cancel the request.
-
----
-
-## Output
-
-**`SymbolInfoSessionTradeData`** — structure with the following fields:
-
-* **From** (`Timestamp`) — session start time in UTC.
-* **To** (`Timestamp`) — session end time in UTC.
+| Value | Name      |
+| ----- | --------- |
+| `0`   | Sunday    |
+| `1`   | Monday    |
+| `2`   | Tuesday   |
+| `3`   | Wednesday |
+| `4`   | Thursday  |
+| `5`   | Friday    |
+| `6`   | Saturday  |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Identifies active trading windows for a symbol on a given day, enabling scheduling of order placement or data analysis only during valid market hours. 🚀
+Returns a **SymbolInfoSessionTradeData** object:
+
+| Field  | Type        | Description                  |
+| ------ | ----------- | ---------------------------- |
+| `From` | `Timestamp` | UTC time when trading starts |
+| `To`   | `Timestamp` | UTC time when trading ends   |
+
+---
+
+## 🎯 Purpose
+
+Use this method to determine **when trading is allowed** for a given symbol on any given weekday.
+
+Perfect for:
+
+* Automated scheduling of trade activity
+* Avoiding order placement during restricted times
+* Building calendar-aware trading systems and UIs
