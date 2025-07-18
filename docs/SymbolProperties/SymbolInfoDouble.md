@@ -3,6 +3,8 @@
 > **Request:** a specific double property (Bid, Ask, Last, etc.) for a symbol from MT5
 > Fetch any floating-point market data value for a given symbol using one universal method.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -16,7 +18,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<SymbolInfoDoubleData> SymbolInfoDoubleAsync(
@@ -29,75 +33,94 @@ Task<SymbolInfoDoubleData> SymbolInfoDoubleAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **symbol** (`string`) — the symbol name (e.g., `Constants.DefaultSymbol`).
-* **property** (`SymbolInfoDoubleProperty`) — which double value to fetch. Possible values:
+| Parameter  | Type                       | Description                                  |
+| ---------- | -------------------------- | -------------------------------------------- |
+| `symbol`   | `string`                   | Symbol name (e.g., "EURUSD")                 |
+| `property` | `SymbolInfoDoubleProperty` | Enum specifying which double property to get |
 
-  * **SymbolBid** (`SYMBOL_BID`) — Bid - best sell offer.
-  * **SymbolBidHigh** (`SYMBOL_BIDHIGH`) — maximal Bid of the day.
-  * **SymbolBidLow** (`SYMBOL_BIDLOW`) — minimal Bid of the day.
-  * **SymbolAsk** (`SYMBOL_ASK`) — Ask - best buy offer.
-  * **SymbolAskHigh** (`SYMBOL_ASKHIGH`) — maximal Ask of the day.
-  * **SymbolAskLow** (`SYMBOL_ASKLOW`) — minimal Ask of the day.
-  * **SymbolLast** (`SYMBOL_LAST`) — price of the last deal.
-  * **SymbolLastHigh** (`SYMBOL_LASTHIGH`) — maximal Last of the day.
-  * **SymbolLastLow** (`SYMBOL_LASTLOW`) — minimal Last of the day.
-  * **SymbolVolumeReal** (`SYMBOL_VOLUME_REAL`) — volume of the last deal.
-  * **SymbolVolumeHighReal** (`SYMBOL_VOLUMEHIGH_REAL`) — maximum volume of the day.
-  * **SymbolVolumeLowReal** (`SYMBOL_VOLUMELOW_REAL`) — minimum volume of the day.
-  * **SymbolOptionStrike** (`SYMBOL_OPTION_STRIKE`) — strike price of an option.
-  * **SymbolPoint** (`SYMBOL_POINT`) — symbol point value.
-  * **SymbolTradeTickValue** (`SYMBOL_TRADE_TICK_VALUE`) — base tick price derivation ([mql5.com](https://www.mql5.com/en/docs/constants/environment_state/marketinfoconstants))
-  * **SymbolTradeTickValueProfit** (`SYMBOL_TRADE_TICK_VALUE_PROFIT`) — tick price for profitable position.
-  * **SymbolTradeTickValueLoss** (`SYMBOL_TRADE_TICK_VALUE_LOSS`) — tick price for losing position.
-  * **SymbolTradeTickSize** (`SYMBOL_TRADE_TICK_SIZE`) — minimal price change.
-  * **SymbolTradeContractSize** (`SYMBOL_TRADE_CONTRACT_SIZE`) — contract size per lot.
-  * **SymbolTradeAccruedInterest** (`SYMBOL_TRADE_ACCRUED_INTEREST`) — accumulated coupon interest.
-  * **SymbolTradeFaceValue** (`SYMBOL_TRADE_FACE_VALUE`) — bond face value.
-  * **SymbolTradeLiquidityRate** (`SYMBOL_TRADE_LIQUIDITY_RATE`) — liquidity rate.
-  * **SymbolVolumeMin** (`SYMBOL_VOLUME_MIN`) — minimal volume for a deal.
-  * **SymbolMarginMaintenance** (`SYMBOL_MARGIN_MAINTENANCE`) — maintenance margin per lot.
-  * **SymbolSessionVolume** (`SYMBOL_SESSION_VOLUME`) — summary volume of session deals.
-  * **SymbolSessionTurnover** (`SYMBOL_SESSION_TURNOVER`) — total session turnover.
-  * **SymbolSessionInterest** (`SYMBOL_SESSION_INTEREST`) — open interest.
-  * **SymbolSessionBuyOrdersVolume** (`SYMBOL_SESSION_BUY_ORDERS_VOLUME`) — buy orders volume.
-  * **SymbolSessionSellOrdersVolume** (`SYMBOL_SESSION_SELL_ORDERS_VOLUME`) — sell orders volume.
-  * **SymbolSessionOpen** (`SYMBOL_SESSION_OPEN`) — session open price.
-  * **SymbolSessionClose** (`SYMBOL_SESSION_CLOSE`) — session close price.
-  * **SymbolSessionAw** (`SYMBOL_SESSION_AW`) — average weighted session price.
-  * **SymbolSessionPriceSettlement** (`SYMBOL_SESSION_PRICE_SETTLEMENT`) — session settlement price.
-  * **SymbolSessionPriceLimitMin** (`SYMBOL_SESSION_PRICE_LIMIT_MIN`) — session minimum price.
-  * **SymbolSessionPriceLimitMax** (`SYMBOL_SESSION_PRICE_LIMIT_MAX`) — session maximum price.
-  * **SymbolMarginHedged** (`SYMBOL_MARGIN_HEDGED`) — hedged margin per lot.
-  * **SymbolPriceChange** (`SYMBOL_PRICE_CHANGE`) — price change since previous close (%).
-  * **SymbolPriceVolatility** (`SYMBOL_PRICE_VOLATILITY`) — price volatility (%).
-  * **SymbolPriceTheoretical** (`SYMBOL_PRICE_THEORETICAL`) — theoretical option price.
-  * **SymbolPriceDelta** (`SYMBOL_PRICE_DELTA`) — option delta.
-  * **SymbolPriceTheta** (`SYMBOL_PRICE_THETA`) — option theta.
-  * **SymbolPriceGamma** (`SYMBOL_PRICE_GAMMA`) — option gamma.
-  * **SymbolPriceVega** (`SYMBOL_PRICE_VEGA`) — option vega.
-  * **SymbolPriceRho** (`SYMBOL_PRICE_RHO`) — option rho.
-  * **SymbolPriceOmega** (`SYMBOL_PRICE_OMEGA`) — option omega.
-  * **SymbolPriceSensitivity** (`SYMBOL_PRICE_SENSITIVITY`) — option sensitivity ([mql5.com](https://www.mql5.com/en/docs/constants/environment_state/marketinfoconstants))
-  * **SymbolSwapLong** (`SYMBOL_SWAP_LONG`) — swap size for a long position.
-  * **SymbolSwapShort** (`SYMBOL_SWAP_SHORT`) — swap size for a short position.
-  * **SymbolSwapSunday** (`SYMBOL_SWAP_SUNDAY`) — Sunday rollover multiplier (0/1/3).
-  * …and so on for Monday…Saturday.
-  * **SymbolVolumeMax** (`SYMBOL_VOLUME_MAX`) — maximal volume for a single deal.
-  * **SymbolVolumeStep** (`SYMBOL_VOLUME_STEP`) — minimal volume change increment.
-  * **SymbolVolumeLimit** (`SYMBOL_VOLUME_LIMIT`) — max aggregate volume per direction.
+### `SymbolInfoDoubleProperty` Enum Values
+
+| Enum Value                      | Description                          |
+| ------------------------------- | ------------------------------------ |
+| `SymbolBid`                     | Current Bid price                    |
+| `SymbolBidHigh`                 | Highest Bid of the day               |
+| `SymbolBidLow`                  | Lowest Bid of the day                |
+| `SymbolAsk`                     | Current Ask price                    |
+| `SymbolAskHigh`                 | Highest Ask of the day               |
+| `SymbolAskLow`                  | Lowest Ask of the day                |
+| `SymbolLast`                    | Last deal price                      |
+| `SymbolLastHigh`                | Highest Last price of the day        |
+| `SymbolLastLow`                 | Lowest Last price of the day         |
+| `SymbolVolumeReal`              | Last deal volume                     |
+| `SymbolVolumeHighReal`          | Highest deal volume of the day       |
+| `SymbolVolumeLowReal`           | Lowest deal volume of the day        |
+| `SymbolOptionStrike`            | Option strike price                  |
+| `SymbolPoint`                   | Point size                           |
+| `SymbolTradeTickValue`          | Tick value                           |
+| `SymbolTradeTickValueProfit`    | Tick value for profit                |
+| `SymbolTradeTickValueLoss`      | Tick value for loss                  |
+| `SymbolTradeTickSize`           | Minimal price change                 |
+| `SymbolTradeContractSize`       | Contract size per lot                |
+| `SymbolTradeAccruedInterest`    | Accrued coupon interest              |
+| `SymbolTradeFaceValue`          | Bond face value                      |
+| `SymbolTradeLiquidityRate`      | Liquidity rate                       |
+| `SymbolVolumeMin`               | Minimum volume per deal              |
+| `SymbolMarginMaintenance`       | Maintenance margin per lot           |
+| `SymbolSessionVolume`           | Total session deal volume            |
+| `SymbolSessionTurnover`         | Total session turnover               |
+| `SymbolSessionInterest`         | Open interest                        |
+| `SymbolSessionBuyOrdersVolume`  | Buy order volume during session      |
+| `SymbolSessionSellOrdersVolume` | Sell order volume during session     |
+| `SymbolSessionOpen`             | Session open price                   |
+| `SymbolSessionClose`            | Session close price                  |
+| `SymbolSessionAw`               | Session average weighted price       |
+| `SymbolSessionPriceSettlement`  | Session settlement price             |
+| `SymbolSessionPriceLimitMin`    | Minimum session price                |
+| `SymbolSessionPriceLimitMax`    | Maximum session price                |
+| `SymbolMarginHedged`            | Hedged margin per lot                |
+| `SymbolPriceChange`             | Price change from previous close (%) |
+| `SymbolPriceVolatility`         | Price volatility (%)                 |
+| `SymbolPriceTheoretical`        | Theoretical option price             |
+| `SymbolPriceDelta`              | Option delta                         |
+| `SymbolPriceTheta`              | Option theta                         |
+| `SymbolPriceGamma`              | Option gamma                         |
+| `SymbolPriceVega`               | Option vega                          |
+| `SymbolPriceRho`                | Option rho                           |
+| `SymbolPriceOmega`              | Option omega                         |
+| `SymbolPriceSensitivity`        | Option sensitivity                   |
+| `SymbolSwapLong`                | Swap size for long position          |
+| `SymbolSwapShort`               | Swap size for short position         |
+| `SymbolSwapSunday`              | Sunday rollover multiplier           |
+| `SymbolSwapMonday`              | Monday rollover multiplier           |
+| `SymbolSwapTuesday`             | Tuesday rollover multiplier          |
+| `SymbolSwapWednesday`           | Wednesday rollover multiplier        |
+| `SymbolSwapThursday`            | Thursday rollover multiplier         |
+| `SymbolSwapFriday`              | Friday rollover multiplier           |
+| `SymbolSwapSaturday`            | Saturday rollover multiplier         |
+| `SymbolVolumeMax`               | Maximum volume per deal              |
+| `SymbolVolumeStep`              | Minimum volume step                  |
+| `SymbolVolumeLimit`             | Max total volume per direction       |
 
 ---
 
-## Output
+## ⬆️ Output
 
-**`SymbolInfoDoubleData`** — structure with the following field:
+Returns a **SymbolInfoDoubleData** object:
 
-* **Value** (`double`) — the requested numeric property value.
+| Field   | Type     | Description                             |
+| ------- | -------- | --------------------------------------- |
+| `Value` | `double` | Numeric value of the requested property |
 
 ---
 
-## Purpose
+## 🎯 Purpose
 
-Keep your code DRY by using a single endpoint for all double-type symbol properties; just swap the enum and you’re set! 🚀
+Use this method to fetch **any floating-point market or trading value** for a given symbol.
+
+Ideal for:
+
+* Building flexible symbol-based UIs
+* Pricing/risk modeling based on live data
+* Eliminating the need for multiple API endpoints — just use a different enum!
