@@ -3,6 +3,8 @@
 > **Request:** symbol data synchronization status (`bool`) from MT5
 > Fetch whether a given symbol’s market data is fully synchronized with the server.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -13,7 +15,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<SymbolIsSynchronizedData> SymbolIsSynchronizedAsync(
@@ -25,25 +29,33 @@ Task<SymbolIsSynchronizedData> SymbolIsSynchronizedAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **symbol** (`string`) — the name of the symbol to check (e.g., `"EURUSD"`, `"XAUUSD"`).
-
-Optional parameters:
-
-* **deadline** (`DateTime?`) — optional UTC deadline for the request.
-* **cancellationToken** (`CancellationToken`) — optional token to cancel the request.
-
----
-
-## Output
-
-**`SymbolIsSynchronizedData`** — structure with the following field:
-
-* **`Synchronized`** (`bool`) — `true` if the symbol’s data is fully synchronized (quotes, ticks, session data) with the server; `false` otherwise.
+| Parameter           | Type                | Description                            |
+| ------------------- | ------------------- | -------------------------------------- |
+| `symbol`            | `string`            | Symbol name (e.g., "EURUSD", "XAUUSD") |
+| `deadline`          | `DateTime?`         | Optional timeout deadline              |
+| `cancellationToken` | `CancellationToken` | Optional cancel token                  |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Quickly verify that real-time quotes and other symbol data are in sync before placing trades or performing analysis, ensuring your application uses up-to-date market information. 🚀
+Returns a **SymbolIsSynchronizedData** structure:
+
+| Field          | Type   | Description                                                           |
+| -------------- | ------ | --------------------------------------------------------------------- |
+| `Synchronized` | `bool` | Whether all market data for the symbol is in sync (`true` or `false`) |
+
+---
+
+## 🎯 Purpose
+
+Use this method to confirm that **symbol market data is live and current** before relying on:
+
+* Quotes
+* Tick streams
+* Session times
+* Trade validation logic
+
+Helps ensure **data integrity** when operating in real-time or mission-critical workflows.
