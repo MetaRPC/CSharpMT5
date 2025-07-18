@@ -1,8 +1,9 @@
 # Getting an Integer Account Property
 
 > **Request:** integer account property from MT5 (e.g., leverage)
+> Fetch any integer-precision account property as a `long` value.
 
-Fetch any integer-precision account property as a long value.
+---
 
 ### Code Example
 
@@ -13,7 +14,9 @@ var leverage = await _mt5Account.AccountInfoIntegerAsync(
 _logger.LogInformation($"AccountInfoInteger: Leverage={leverage}");
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<long> AccountInfoIntegerAsync(AccountInfoIntegerPropertyType property)
@@ -21,30 +24,44 @@ Task<long> AccountInfoIntegerAsync(AccountInfoIntegerPropertyType property)
 
 ---
 
-## Input
+## 🔽 Input
 
-**property** (`AccountInfoIntegerPropertyType`): enumeration value indicating which integer account property to fetch. Available values: ([mql5.com](https://www.mql5.com/en/docs/constants/environment_state/accountinformation))
+| Parameter  | Type                             | Description                                            |
+| ---------- | -------------------------------- | ------------------------------------------------------ |
+| `property` | `AccountInfoIntegerPropertyType` | Enum that specifies which integer account value to get |
 
-* **AccountLogin** (`ACCOUNT_LOGIN`) — account number (long)
-* **AccountTradeMode** (`ACCOUNT_TRADE_MODE`) — account trade mode (`AccountTradeMode` enum)
-* **AccountLeverage** (`ACCOUNT_LEVERAGE`) — account leverage (long)
-* **AccountLimitOrders** (`ACCOUNT_LIMIT_ORDERS`) — maximum allowed number of active pending orders (int)
-* **AccountMarginSoMode** (`ACCOUNT_MARGIN_SO_MODE`) — mode for setting the minimal allowed margin (`StopoutMode` enum)
-* **AccountTradeAllowed** (`ACCOUNT_TRADE_ALLOWED`) — trade allowed for the current account (bool)
-* **AccountTradeExpert** (`ACCOUNT_TRADE_EXPERT`) — trade allowed for an Expert Advisor (bool)
-* **AccountMarginMode** (`ACCOUNT_MARGIN_MODE`) — margin calculation mode (`AccountMarginMode` enum)
-* **AccountCurrencyDigits** (`ACCOUNT_CURRENCY_DIGITS`) — number of decimal places in account currency (int)
-* **AccountFifoClose** (`ACCOUNT_FIFO_CLOSE`) — positions can only be closed by FIFO rule (bool)
-* **AccountHedgeAllowed** (`ACCOUNT_HEDGE_ALLOWED`) — allowed opposite positions on a single symbol (bool)
+### `AccountInfoIntegerPropertyType` Enum Values
+
+| Value                   | MQL5 Const                | Description                                            |
+| ----------------------- | ------------------------- | ------------------------------------------------------ |
+| `AccountLogin`          | `ACCOUNT_LOGIN`           | Account number (login ID)                              |
+| `AccountTradeMode`      | `ACCOUNT_TRADE_MODE`      | Trade mode (see `AccountTradeMode` enum)               |
+| `AccountLeverage`       | `ACCOUNT_LEVERAGE`        | Account leverage                                       |
+| `AccountLimitOrders`    | `ACCOUNT_LIMIT_ORDERS`    | Max number of allowed active pending orders            |
+| `AccountMarginSoMode`   | `ACCOUNT_MARGIN_SO_MODE`  | Stop-out margin mode (see `StopoutMode` enum)          |
+| `AccountTradeAllowed`   | `ACCOUNT_TRADE_ALLOWED`   | Whether manual trading is allowed (boolean)            |
+| `AccountTradeExpert`    | `ACCOUNT_TRADE_EXPERT`    | Whether Expert Advisors can trade (boolean)            |
+| `AccountMarginMode`     | `ACCOUNT_MARGIN_MODE`     | Margin calculation mode (see `AccountMarginMode` enum) |
+| `AccountCurrencyDigits` | `ACCOUNT_CURRENCY_DIGITS` | Decimal digits for account currency display            |
+| `AccountFifoClose`      | `ACCOUNT_FIFO_CLOSE`      | Whether FIFO close rule is enforced                    |
+| `AccountHedgeAllowed`   | `ACCOUNT_HEDGE_ALLOWED`   | Whether hedging (opposite positions) is allowed        |
 
 ---
 
-## Output
+## ⬆️ Output
 
-* `long` — the requested numeric value (e.g., `100`).
+| Type   | Description                                  |
+| ------ | -------------------------------------------- |
+| `long` | Numeric value of the requested account field |
 
 ---
 
-## Purpose
+## 🎯 Purpose
 
-Keep your code concise and future-ready by using one universal method to retrieve any integer account property — simply swap the enum value! 🚀
+Use this method to access **integer-type account properties** in a flexible way by passing an enum key.
+
+Perfect for:
+
+* Reading account leverage or login ID
+* Checking trading permissions and platform modes
+* Building adaptive trading logic without hardcoding constant names
