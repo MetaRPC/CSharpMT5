@@ -1,7 +1,9 @@
 # Getting Order History
 
-> **Request:** list of historical orders from MT5 for a given time range.
+> **Request:** list of historical orders from MT5 for a given time range
 > Fetch all closed and executed orders in the specified time window.
+
+---
 
 ### Code Example
 
@@ -16,7 +18,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<OrderHistoryResponse> OrderHistoryAsync(DateTime from, DateTime to)
@@ -24,36 +28,71 @@ Task<OrderHistoryResponse> OrderHistoryAsync(DateTime from, DateTime to)
 
 ---
 
-## Input
+## 🔽 Input
 
-* **from** (`DateTime`) — start of the period (UTC).
-* **to** (`DateTime`) — end of the period (UTC).
+| Parameter | Type       | Description                          |
+| --------- | ---------- | ------------------------------------ |
+| `from`    | `DateTime` | Start of the historical period (UTC) |
+| `to`      | `DateTime` | End of the historical period (UTC)   |
 
 ---
 
-## Output
+## ⬆️ Output
 
-**`OrderHistoryResponse`** — object with the following property:
+Returns an **OrderHistoryResponse** object with:
 
-* **`HistoryData`** (`IReadOnlyList<OrderInfo>`) — list of historical orders for the specified period.
+| Field         | Type                       | Description                             |
+| ------------- | -------------------------- | --------------------------------------- |
+| `HistoryData` | `IReadOnlyList<OrderInfo>` | Historical orders for the time interval |
 
 ### `OrderInfo` Structure
 
-Each item in `HistoryData` has the following fields:
+| Field        | Type                    | Description                              |
+| ------------ | ----------------------- | ---------------------------------------- |
+| `Ticket`     | `ulong`                 | Unique ticket number                     |
+| `Symbol`     | `string`                | Trading symbol (e.g., "EURUSD")          |
+| `Type`       | `TMT5_ENUM_ORDER_TYPE`  | Type of order (Buy, Sell, etc.)          |
+| `Volume`     | `double`                | Executed volume in lots                  |
+| `PriceOpen`  | `double`                | Price at which the order was opened      |
+| `StopLoss`   | `double`                | Stop Loss level                          |
+| `TakeProfit` | `double`                | Take Profit level                        |
+| `TimeSetup`  | `DateTime`              | Order placement time (UTC)               |
+| `State`      | `TMT5_ENUM_ORDER_STATE` | Final state of the order                 |
+| `Profit`     | `double`                | Realized profit/loss in deposit currency |
 
-* **`Ticket`** (`ulong`) — unique ticket number of the order.
-* **`Symbol`** (`string`) — trading symbol (e.g., "EURUSD").
-* **`Type`** (`TMT5_ENUM_ORDER_TYPE`) — order type (`Tmt5OrderTypeBuy` / `Tmt5OrderTypeSell`).
-* **`Volume`** (`double`) — volume of the order in lots.
-* **`PriceOpen`** (`double`) — price at which the order was opened.
-* **`StopLoss`** (`double`) — stop-loss level set for the order.
-* **`TakeProfit`** (`double`) — take-profit level set for the order.
-* **`TimeSetup`** (`DateTime`) — UTC timestamp when the order was placed.
-* **`State`** (`TMT5_ENUM_ORDER_STATE`) — final state of the order (e.g., executed, canceled).
-* **`Profit`** (`double`) — realized profit or loss in the deposit currency.
+### `TMT5_ENUM_ORDER_TYPE` Values
+
+| Value                        | Description             |
+| ---------------------------- | ----------------------- |
+| `Tmt5OrderTypeBuy`           | Market Buy              |
+| `Tmt5OrderTypeSell`          | Market Sell             |
+| `Tmt5OrderTypeBuyLimit`      | Pending Buy Limit       |
+| `Tmt5OrderTypeSellLimit`     | Pending Sell Limit      |
+| `Tmt5OrderTypeBuyStop`       | Pending Buy Stop        |
+| `Tmt5OrderTypeSellStop`      | Pending Sell Stop       |
+| `Tmt5OrderTypeBuyStopLimit`  | Pending Buy Stop Limit  |
+| `Tmt5OrderTypeSellStopLimit` | Pending Sell Stop Limit |
+
+### `TMT5_ENUM_ORDER_STATE` Values
+
+| Value                     | Description    |
+| ------------------------- | -------------- |
+| `Tmt5OrderStatePlaced`    | Order placed   |
+| `Tmt5OrderStateExecuted`  | Order executed |
+| `Tmt5OrderStateCancelled` | Order canceled |
+| `Tmt5OrderStateRejected`  | Order rejected |
+| `Tmt5OrderStateExpired`   | Order expired  |
 
 ---
 
-## Purpose
+## 🎯 Purpose
 
-Allows you to fetch all closed and executed orders in a single call for the given time interval, enabling audit, reporting, or analysis workflows. 🚀
+Use this method to retrieve all **historical closed orders** within a specific date range.
+
+It is ideal for:
+
+* Trade history review and auditing
+* Generating reports
+* Performance and strategy analysis
+
+Provides full detail per order in a single call.
