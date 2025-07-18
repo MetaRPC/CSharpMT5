@@ -1,7 +1,9 @@
 # Sending a New Order
 
-> **Request:** to place a new trade order in MT5.
+> **Request:** to place a new trade order in MT5
 > Fetch ticket ID of the newly created order.
+
+---
 
 ### Code Example
 
@@ -19,7 +21,9 @@ ulong ticket  = sendResult.Order;
 _logger.LogInformation("OrderSendAsync: Order={Order}", ticket);
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<OrderSendResponse> OrderSendAsync(OrderSendRequest request)
@@ -27,34 +31,48 @@ Task<OrderSendResponse> OrderSendAsync(OrderSendRequest request)
 
 ---
 
-## Input
+## 🔽 Input
 
-**`OrderSendRequest`** — structure with the following fields:
+**OrderSendRequest** — object with the following fields:
 
-* **`Symbol`** (`string`) — trading symbol to place the order on (e.g., `"EURUSD"`).
-* **`Operation`** (`TMT5_ENUM_ORDER_TYPE`) — type of order to execute. Possible values:
+| Field       | Type                   | Description                     |
+| ----------- | ---------------------- | ------------------------------- |
+| `Symbol`    | `string`               | Trading symbol (e.g., "EURUSD") |
+| `Operation` | `TMT5_ENUM_ORDER_TYPE` | Order type (market or pending)  |
+| `Volume`    | `double`               | Volume in lots                  |
+| `Price`     | `double`               | Execution price                 |
 
-  * **`Tmt5OrderTypeBuy`** — market Buy order
-  * **`Tmt5OrderTypeSell`** — market Sell order
-  * **`Tmt5OrderTypeBuyLimit`** — pending Buy Limit order
-  * **`Tmt5OrderTypeSellLimit`** — pending Sell Limit order
-  * **`Tmt5OrderTypeBuyStop`** — pending Buy Stop order
-  * **`Tmt5OrderTypeSellStop`** — pending Sell Stop order
-  * **`Tmt5OrderTypeBuyStopLimit`** — pending Buy Stop Limit order
-  * **`Tmt5OrderTypeSellStopLimit`** — pending Sell Stop Limit order
-* **`Volume`** (`double`) — volume in lots to trade (e.g., `0.1`).
-* **`Price`** (`double`) — execution price for the order (e.g., `tick.Ask` for Buy).
+### `TMT5_ENUM_ORDER_TYPE` Values
 
----
-
-## Output
-
-**`OrderSendResponse`** — structure with the following field:
-
-* **`Order`** (`ulong`) — ticket ID of the newly created order.
+| Value                        | Description             |
+| ---------------------------- | ----------------------- |
+| `Tmt5OrderTypeBuy`           | Market Buy              |
+| `Tmt5OrderTypeSell`          | Market Sell             |
+| `Tmt5OrderTypeBuyLimit`      | Pending Buy Limit       |
+| `Tmt5OrderTypeSellLimit`     | Pending Sell Limit      |
+| `Tmt5OrderTypeBuyStop`       | Pending Buy Stop        |
+| `Tmt5OrderTypeSellStop`      | Pending Sell Stop       |
+| `Tmt5OrderTypeBuyStopLimit`  | Pending Buy Stop Limit  |
+| `Tmt5OrderTypeSellStopLimit` | Pending Sell Stop Limit |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Allows you to send a new trading order to MT5 in a single call, returning the ticket for tracking, modification, or closing later. 🚀
+Returns an **OrderSendResponse** object:
+
+| Field   | Type    | Description                          |
+| ------- | ------- | ------------------------------------ |
+| `Order` | `ulong` | Ticket ID of the newly created order |
+
+---
+
+## 🎯 Purpose
+
+Use this method to **send a new trade order** (market or pending) to MT5.
+
+It returns the **ticket number** which can be used for further management:
+
+* Logging or tracking
+* Modifying the order later
+* Closing the order manually or automatically
