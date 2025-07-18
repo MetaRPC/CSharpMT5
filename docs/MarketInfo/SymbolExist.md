@@ -3,6 +3,8 @@
 > **Request:** symbol existence (`bool`) from MT5
 > Verify whether a given symbol is available on the server (standard or custom).
 
+---
+
 ### Code Example
 
 ```csharp
@@ -13,7 +15,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<SymbolExistData> SymbolExistAsync(
@@ -25,25 +29,32 @@ Task<SymbolExistData> SymbolExistAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **symbol** (`string`) — the name of the symbol to check (e.g., `"EURUSD"`, `"XAUUSD"`).
-
-Optional parameters:
-
-* **deadline** (`DateTime?`) — optional UTC deadline for the request.
-* **cancellationToken** (`CancellationToken`) — optional token to cancel the request.
-
----
-
-## Output
-
-**`SymbolExistData`** — structure with the following field:
-
-* **`Exists`** (`bool`) — `true` if the symbol exists on the server; `false` otherwise.
+| Parameter           | Type                | Description                            |
+| ------------------- | ------------------- | -------------------------------------- |
+| `symbol`            | `string`            | Symbol name to verify (e.g., "EURUSD") |
+| `deadline`          | `DateTime?`         | Optional timeout deadline              |
+| `cancellationToken` | `CancellationToken` | Optional cancel token                  |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Allows you to quickly determine if a symbol is supported by the broker/server without loading full symbol lists, enabling dynamic symbol validation in your application. 🚀
+Returns a **SymbolExistData** structure:
+
+| Field    | Type   | Description                                  |
+| -------- | ------ | -------------------------------------------- |
+| `Exists` | `bool` | Whether the symbol exists (`true` / `false`) |
+
+---
+
+## 🎯 Purpose
+
+Use this method to verify if a **symbol is recognized by the broker/server** before attempting to place orders or load data.
+
+Great for:
+
+* Dynamic symbol validation in forms or UIs
+* Filtering user inputs before submission
+* Fast pre-check without listing all symbols
