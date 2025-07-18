@@ -3,6 +3,8 @@
 > **Request:** initial and maintenance margin rates for a symbol and order type from MT5
 > Fetch the margin requirements (initial & maintenance) for a given symbol/order direction.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -17,7 +19,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<SymbolInfoMarginRateData> SymbolInfoMarginRateAsync(
@@ -30,31 +34,45 @@ Task<SymbolInfoMarginRateData> SymbolInfoMarginRateAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **symbol** (`string`) — the name of the financial instrument (e.g., `"EURUSD"`, `"XAUUSD"`).
-* **orderType** (`ENUM_ORDER_TYPE`) — direction/type of order. Possible values:
+| Parameter   | Type              | Description                                  |
+| ----------- | ----------------- | -------------------------------------------- |
+| `symbol`    | `string`          | Symbol name (e.g., "EURUSD", "XAUUSD")       |
+| `orderType` | `ENUM_ORDER_TYPE` | Type of order used to determine margin rates |
 
-  * **OrderTypeBuy** — market Buy order
-  * **OrderTypeSell** — market Sell order
-  * **OrderTypeBuyLimit** — pending Buy Limit order
-  * **OrderTypeSellLimit** — pending Sell Limit order
-  * **OrderTypeBuyStop** — pending Buy Stop order
-  * **OrderTypeSellStop** — pending Sell Stop order
-  * **OrderTypeBuyStopLimit** — pending Buy Stop Limit order
-  * **OrderTypeSellStopLimit** — pending Sell Stop Limit order
+### `ENUM_ORDER_TYPE` Values
 
----
-
-## Output
-
-**`SymbolInfoMarginRateData`** — structure with the following properties:
-
-* **InitialMarginRate** (`double`) — required margin rate to open a new position (in fraction of volume).
-* **MarginMaintenanceRate** (`double`) — required maintenance margin rate after opening a position.
+| Value                    | Description              |
+| ------------------------ | ------------------------ |
+| `OrderTypeBuy`           | Market Buy order         |
+| `OrderTypeSell`          | Market Sell order        |
+| `OrderTypeBuyLimit`      | Pending Buy Limit order  |
+| `OrderTypeSellLimit`     | Pending Sell Limit order |
+| `OrderTypeBuyStop`       | Pending Buy Stop order   |
+| `OrderTypeSellStop`      | Pending Sell Stop order  |
+| `OrderTypeBuyStopLimit`  | Pending Buy Stop Limit   |
+| `OrderTypeSellStopLimit` | Pending Sell Stop Limit  |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Quickly determine margin requirements programmatically for risk checks and position sizing. 🚀
+Returns a **SymbolInfoMarginRateData** object:
+
+| Field                   | Type     | Description                                   |
+| ----------------------- | -------- | --------------------------------------------- |
+| `InitialMarginRate`     | `double` | Margin rate required to open a new position   |
+| `MarginMaintenanceRate` | `double` | Margin rate required to maintain the position |
+
+---
+
+## 🎯 Purpose
+
+Use this method to determine **margin requirements** based on symbol and order type.
+
+Perfect for:
+
+* Pre-trade risk analysis
+* Calculating how much margin will be used and retained
+* Building margin-aware trading UIs or risk engines
