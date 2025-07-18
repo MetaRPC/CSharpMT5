@@ -3,6 +3,8 @@
 > **Request:** symbol name at a given index from MT5
 > Fetch the name of a symbol by its index in the Market Watch or the full symbol list.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -16,7 +18,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<SymbolNameData> SymbolNameAsync(
@@ -29,31 +33,33 @@ Task<SymbolNameData> SymbolNameAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **`index`** (`int`) — zero-based position of the symbol in the list.
-
-  * For example, `0` returns the first symbol.
-* **`selectedOnly`** (`bool`) — whether to search only among Market Watch symbols or all symbols:
-
-  * `true`  — search only within symbols currently selected in Market Watch.
-  * `false` — search within the full symbol list (including unselected symbols).
-
-Optional parameters:
-
-* **`deadline`** (`DateTime?`) — optional UTC deadline for the request (cancels if not completed).
-* **`cancellationToken`** (`CancellationToken`) — optional token to cancel the request prematurely.
+| Parameter           | Type                | Description                                                               |
+| ------------------- | ------------------- | ------------------------------------------------------------------------- |
+| `index`             | `int`               | Zero-based index of the symbol in the list                                |
+| `selectedOnly`      | `bool`              | If `true`, search only among Market Watch symbols; if `false`, search all |
+| `deadline`          | `DateTime?`         | Optional deadline for request execution                                   |
+| `cancellationToken` | `CancellationToken` | Optional cancellation token                                               |
 
 ---
 
-## Output
+## ⬆️ Output
 
-**`SymbolNameData`** — structure with the following field:
+Returns a **SymbolNameData** object:
 
-* **`Name`** (`string`) — the symbol name at the specified index, if available; otherwise empty string.
+| Field  | Type     | Description                           |
+| ------ | -------- | ------------------------------------- |
+| `Name` | `string` | Name of the symbol at the given index |
 
 ---
 
-## Purpose
+## 🎯 Purpose
 
-Allows you to dynamically retrieve symbol names by index for list navigation, pagination, or custom symbol ordering in your application. 🚀
+Use this method to retrieve **symbol names dynamically by index**, enabling:
+
+* Pagination through symbol lists
+* Building custom navigation UIs
+* Listing or filtering available trading instruments
+
+Especially useful for platforms that display symbols progressively or allow user-customized symbol panels.
