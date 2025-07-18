@@ -3,15 +3,16 @@
 > **Request:** fetch parameters for multiple symbols from MT5
 > Retrieve detailed parameter data for a set of symbols (with optional paging).
 
+---
+
 ### Code Example
 
 ```csharp
 var request = new SymbolParamsManyRequest
 {
-    // optional filters:
-    SymbolName   = "EURUSD",                             // only symbols whose name contains this
+    SymbolName   = "EURUSD",
     SortType     = AH_SYMBOL_PARAMS_MANY_SORT_TYPE.AhParamsManySortTypeSymbolNameAsc,
-    PageNumber   = 0,                                    // zero-based
+    PageNumber   = 0,
     ItemsPerPage = 50
 };
 var symbols = await _mt5Account.SymbolParamsManyAsync(request);
@@ -20,7 +21,9 @@ _logger.LogInformation(
     symbols.SymbolInfos.Count);
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<SymbolParamsManyData> SymbolParamsManyAsync(
@@ -32,63 +35,71 @@ Task<SymbolParamsManyData> SymbolParamsManyAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
 **`SymbolParamsManyRequest`** — structure with the following fields:
 
-* **`SymbolName`** (`string`) — optional filter: only return symbols whose name contains this value.
+| Field               | Type                              | Description                                        |
+| ------------------- | --------------------------------- | -------------------------------------------------- |
+| `SymbolName`        | `string`                          | Optional filter to return matching symbol names    |
+| `SortType`          | `AH_SYMBOL_PARAMS_MANY_SORT_TYPE` | Enum for sorting results (e.g., by name or spread) |
+| `PageNumber`        | `int`                             | Zero-based page number                             |
+| `ItemsPerPage`      | `int`                             | Number of records per page                         |
+| `deadline`          | `DateTime?`                       | Optional timeout                                   |
+| `cancellationToken` | `CancellationToken`               | Optional cancel token                              |
 
-  * *HasSymbolName* indicates whether it was set.
-* **`SortType`** (`AH_SYMBOL_PARAMS_MANY_SORT_TYPE`) — sort order for the returned list. Possible values:
+### Sort Type Enum Values (Examples)
 
-  * **`AhParamsManySortTypeSymbolNameAsc`** — by symbol name ascending (default)
-  * **`AhParamsManySortTypeSymbolNameDesc`** — by symbol name descending
-  * **`AhParamsManySortTypeSpreadAsc`** — by current spread ascending
-  * **`AhParamsManySortTypeSpreadDesc`** — by current spread descending
-  * *(…other sort criteria as defined in the enum…)*
-  * *HasSortType* indicates whether you explicitly set it.
-* **`PageNumber`** (`int`) — zero-based page index for pagination.
-
-  * *HasPageNumber* indicates whether you explicitly set it; default is 0.
-* **`ItemsPerPage`** (`int`) — number of items to return per page.
-
-  * *HasItemsPerPage* indicates whether you explicitly set it; default is 0 (no paging).
-
-Optional parameters (on the async call):
-
-* **`deadline`** (`DateTime?`) — optional UTC deadline for the operation.
-* **`cancellationToken`** (`CancellationToken`) — optional token to cancel the request.
+| Enum Value                           | Description                    |
+| ------------------------------------ | ------------------------------ |
+| `AhParamsManySortTypeSymbolNameAsc`  | Sort by symbol name A→Z        |
+| `AhParamsManySortTypeSymbolNameDesc` | Sort by symbol name Z→A        |
+| `AhParamsManySortTypeSpreadAsc`      | Sort by spread (lowest first)  |
+| `AhParamsManySortTypeSpreadDesc`     | Sort by spread (highest first) |
 
 ---
 
-## Output
+## ⬆️ Output
 
-**`SymbolParamsManyData`** — structure with the following properties:
+Returns a **SymbolParamsManyData** object:
 
-* **`SymbolInfos`** (`RepeatedField<SymbolParameters>`) — list of symbol parameter records matching your request (one page).
-* **`SymbolsTotal`** (`int`) — total number of symbols matching your filter (across all pages).
-* **`PageNumber`** (`int`) — the page index returned.
-* **`ItemsPerPage`** (`int`) — the items-per-page returned.
+| Field          | Type                              | Description                                      |
+| -------------- | --------------------------------- | ------------------------------------------------ |
+| `SymbolInfos`  | `RepeatedField<SymbolParameters>` | List of parameter data per symbol (current page) |
+| `SymbolsTotal` | `int`                             | Total number of matched symbols                  |
+| `PageNumber`   | `int`                             | Page number returned                             |
+| `ItemsPerPage` | `int`                             | Number of items per page                         |
+
+### `SymbolParameters` Structure (partial)
+
+Each `SymbolInfo` includes fields like:
+
+| Field               | Type        | Description                  |
+| ------------------- | ----------- | ---------------------------- |
+| `Symbol`            | `string`    | Symbol name (e.g., "EURUSD") |
+| `Digits`            | `int`       | Number of decimal places     |
+| `Point`             | `double`    | Minimum price change         |
+| `Spread`            | `int`       | Current spread in points     |
+| `VolumeMin`         | `double`    | Minimum trading volume       |
+| `VolumeMax`         | `double`    | Maximum trading volume       |
+| `VolumeStep`        | `double`    | Step for volume changes      |
+| `SwapLong`          | `double`    | Swap for long positions      |
+| `SwapShort`         | `double`    | Swap for short positions     |
+| `SessionTradeFrom`  | `Timestamp` | Session start (UTC)          |
+| `SessionTradeTo`    | `Timestamp` | Session end (UTC)            |
+| `MarginInitial`     | `double`    | Initial margin per lot       |
+| `MarginMaintenance` | `double`    | Maintenance margin per lot   |
+
+*For the full list, refer to the original gRPC schema or generated model.*
 
 ---
 
-### `SymbolParameters` Structure
+## 🎯 Purpose
 
-Each item in `SymbolInfos` is a `SymbolParameters` message with many fields. Key examples include:
+Use this endpoint to retrieve **full trading parameters** for multiple symbols in a single query.
 
-* **`Symbol`** (`string`) — the symbol name (e.g., "EURUSD").
-* **`Digits`** (`int`) — number of decimal places.
-* **`Point`** (`double`) — the minimal price change.
-* **`Spread`** (`int`) — current spread (in points).
-* **`VolumeMin`**, **`VolumeMax`**, **`VolumeStep`** — trading volume limits.
-* **`MarginInitial`**, **`MarginMaintenance`** — margin requirements per lot.
-* **`SwapLong`**, **`SwapShort`** — swap (rollover) rates.
-* **`SessionTradeFrom`**, **`SessionTradeTo`** — trading session windows.
-* *…and dozens more: tick values, contract size, option Greeks, session quotes, etc.*
+Perfect for:
 
-*For the complete list of fields, see the generated `SymbolParameters` class in your MT5 gRPC client (or the original `.proto`).*
-
----
-
-**Purpose:**
-Use one call to retrieve bulk symbol settings (prices, volumes, margins, sessions, etc.) with optional filtering, sorting, and pagination—keeping your code concise and flexible. 🚀
+* Building symbol configuration panels
+* Trading UI setup
+* Dynamic filtering and analysis
