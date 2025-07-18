@@ -1,8 +1,9 @@
 # Streaming: OnTradeTransactionAsync
 
 > **Request:** real-time trade transaction events (order creation, modification, execution) from MT5
+> Subscribe to a live stream of detailed trade transaction data.
 
-Subscribe to a live stream of detailed trade transaction data.
+---
 
 ### Code Example
 
@@ -15,7 +16,9 @@ await foreach (var txn in _mt5Account.OnTradeTransactionAsync(cts.Token))
 }
 ```
 
-✨**Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 IAsyncEnumerable<OnTradeTransactionData> OnTradeTransactionAsync(
@@ -25,63 +28,52 @@ IAsyncEnumerable<OnTradeTransactionData> OnTradeTransactionAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **`cancellationToken`** (`CancellationToken`) — token to cancel the streaming.
-
----
-
-## Output
-
-**`OnTradeTransactionData`** — structure representing a single trade transaction event.
-
-### `OnTradeTransactionData` Fields
-
-* **`Time`** (`DateTime`) — UTC timestamp when the transaction was recorded.
-* **`Type`** (`TradeTransactionType`) — kind of transaction. Possible enum values:
-
-  * `TradeTransactionOrderAdd`
-  * `TradeTransactionOrderUpdate`
-  * `TradeTransactionOrderRemove`
-  * `TradeTransactionDealAdd`
-  * `TradeTransactionDealUpdate`
-  * `TradeTransactionDealRemove`
-  * `TradeTransactionPositionOpen`
-  * `TradeTransactionPositionUpdate`
-  * `TradeTransactionPositionClose`
-* **`Symbol`** (`string`) — trading symbol associated with the transaction.
-* **`Order`** (`TradeTransactionOrderData?`) — details of the order involved (if applicable):
-
-  * **`OrderId`** (`ulong`)
-  * **`Action`** (`OrderActionType` enum)
-  * **`Volume`** (`double`)
-  * **`Price`** (`double`)
-  * **`StopLimit`**, **`StopLoss`**, **`TakeProfit`** (`double?`)
-  * **`Deviation`** (`int`)
-  * **`MagicNumber`** (`ulong`)
-  * **`Comment`** (`string`)
-* **`Deal`** (`TradeTransactionDealData?`) — details of the deal involved (if applicable):
-
-  * **`DealId`** (`ulong`)
-  * **`OrderId`** (`ulong`)
-  * **`Volume`** (`double`)
-  * **`Price`** (`double`)
-  * **`Profit`** (`double`)
-* **`Position`** (`TradeTransactionPositionData?`) — details of the position involved (if applicable):
-
-  * **`PositionId`** (`ulong`)
-  * **`OrderId`** (`ulong`)
-  * **`Volume`** (`double`)
-  * **`PriceOpen`** (`double`)
-  * **`Swap`** (`double`)
-  * **`Profit`** (`double`)
-* **`RequestId`** (`ulong`) — identifier of the original trade request (if produced).
-* **`Reason`** (`TradeTransactionReason`) — why the transaction occurred (enum).
-* **`ErrorCode`** (`int`) — server error code, if any.
-* **`ErrorMessage`** (`string`) — human-readable error description, if any.
+| Parameter           | Type                | Description                |
+| ------------------- | ------------------- | -------------------------- |
+| `cancellationToken` | `CancellationToken` | Token to cancel the stream |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Capture every granular trade transaction in real time, enabling audit logs, custom notifications, or automated trade-management logic as soon as activity occurs. 🚀
+Returns a stream of **OnTradeTransactionData** items:
+
+| Field          | Type                            | Description                          |
+| -------------- | ------------------------------- | ------------------------------------ |
+| `Time`         | `DateTime`                      | UTC time of transaction              |
+| `Type`         | `TradeTransactionType`          | Type of transaction (see enum below) |
+| `Symbol`       | `string`                        | Symbol associated with transaction   |
+| `Order`        | `TradeTransactionOrderData?`    | Related order details (nullable)     |
+| `Deal`         | `TradeTransactionDealData?`     | Related deal details (nullable)      |
+| `Position`     | `TradeTransactionPositionData?` | Related position details (nullable)  |
+| `RequestId`    | `ulong`                         | ID of original trade request         |
+| `Reason`       | `TradeTransactionReason`        | Reason for the transaction (enum)    |
+| `ErrorCode`    | `int`                           | Server error code (if any)           |
+| `ErrorMessage` | `string`                        | Server error description (if any)    |
+
+### `TradeTransactionType` Enum Values
+
+| Value                            | Description          |
+| -------------------------------- | -------------------- |
+| `TradeTransactionOrderAdd`       | Order was added      |
+| `TradeTransactionOrderUpdate`    | Order was updated    |
+| `TradeTransactionOrderRemove`    | Order was removed    |
+| `TradeTransactionDealAdd`        | Deal was added       |
+| `TradeTransactionDealUpdate`     | Deal was updated     |
+| `TradeTransactionDealRemove`     | Deal was removed     |
+| `TradeTransactionPositionOpen`   | Position was opened  |
+| `TradeTransactionPositionUpdate` | Position was updated |
+| `TradeTransactionPositionClose`  | Position was closed  |
+
+---
+
+## 🎯 Purpose
+
+This stream captures **every trade transaction in real time** including order actions, deal results, and position changes. Ideal for:
+
+* Building detailed audit logs
+* Triggering custom alerts
+* Tracking execution feedback immediately
+* Supporting trade lifecycle automation
