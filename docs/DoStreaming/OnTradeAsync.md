@@ -1,8 +1,9 @@
 # Streaming: OnTradeAsync
 
 > **Request:** real-time trade events from MT5
+> Subscribe to a live stream of trade events (orders, deals, positions).
 
-Subscribe to a live stream of trade events (orders, deals, positions).
+---
 
 ### Code Example
 
@@ -15,7 +16,9 @@ await foreach (var tradeEvent in _mt5Account.OnTradeAsync(cts.Token))
 }
 ```
 
-✨**Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 IAsyncEnumerable<OnTradeData> OnTradeAsync(
@@ -25,32 +28,47 @@ IAsyncEnumerable<OnTradeData> OnTradeAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **`cancellationToken`** (`CancellationToken`) — token to cancel the streaming.
+| Parameter           | Type                | Description                |
+| ------------------- | ------------------- | -------------------------- |
+| `cancellationToken` | `CancellationToken` | Token to cancel the stream |
 
-## Output
+---
 
-* **Async stream of `OnTradeData` objects** — each representing a trade event. The `OnTradeData` structure includes:
+## ⬆️ Output
 
-  * **`Symbol`** (`string`) — trading symbol associated with the event.
-  * **`Type`** (`TradeEventType`) — kind of event (e.g., `OrderAdd`, `OrderUpdate`, `DealAdd`, `DealUpdate`, `PositionAdd`, `PositionUpdate`, `PositionClose`).
-  * **`Order`** (`OrderInfo?`) — details of the order involved, if applicable.
-  * **`Deal`** (`DealInfo?`) — details of the deal involved, if applicable.
-  * **`Position`** (`PositionInfo?`) — details of the position involved, if applicable.
-  * **`Timestamp`** (`DateTime`) — UTC time of the event.
+Returns a stream of **OnTradeData** items:
+
+| Field       | Type             | Description                                         |
+| ----------- | ---------------- | --------------------------------------------------- |
+| `Symbol`    | `string`         | Trading symbol involved in the event                |
+| `Type`      | `TradeEventType` | Event type (order, deal, position add/update/close) |
+| `Order`     | `OrderInfo?`     | Details of the related order (nullable)             |
+| `Deal`      | `DealInfo?`      | Details of the related deal (nullable)              |
+| `Position`  | `PositionInfo?`  | Details of the related position (nullable)          |
+| `Timestamp` | `DateTime`       | UTC time when the event occurred                    |
 
 ### `TradeEventType` Enum Values
 
-* `OrderAdd` — a new order was placed.
-* `OrderUpdate` — an existing order was modified.
-* `OrderClose` — an order was closed.
-* `DealAdd` — a new deal was executed.
-* `DealUpdate` — a deal update (e.g., partial fill).
-* `PositionAdd` — a new position was opened.
-* `PositionUpdate` — an existing position’s parameters changed.
-* `PositionClose` — a position was closed.
+| Value            | Description                        |
+| ---------------- | ---------------------------------- |
+| `OrderAdd`       | A new order was placed             |
+| `OrderUpdate`    | An existing order was modified     |
+| `OrderClose`     | An order was closed                |
+| `DealAdd`        | A new deal was executed            |
+| `DealUpdate`     | A deal update (e.g., partial fill) |
+| `PositionAdd`    | A new position was opened          |
+| `PositionUpdate` | An existing position was modified  |
+| `PositionClose`  | A position was closed              |
 
-## Purpose
+---
 
-Allows your application to react immediately to any server‐side trade event in real time, enabling instant logging, risk management, or user notifications when orders, deals, or positions change. 🚀
+## 🎯 Purpose
+
+This method enables your app to receive **live trade activity from the server**, so it can:
+
+* Update UI or logs instantly
+* React to position changes with automation
+* Notify users of real-time order/deal execution
+* Enforce compliance or risk logic in real time
