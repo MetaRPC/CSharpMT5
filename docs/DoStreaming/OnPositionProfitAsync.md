@@ -1,8 +1,9 @@
 ## Streaming: OnPositionProfitAsync
 
 > **Request:** real-time position profit updates from MT5
+> Subscribe to a live stream of profit changes for open positions.
 
-Subscribe to a live stream of profit changes for open positions.
+---
 
 ### Code Example
 
@@ -14,11 +15,13 @@ await foreach (var profitUpdate in _mt5Account.OnPositionProfitAsync(
 {
     _logger.LogInformation(
         "OnPositionProfitAsync: Profit={Profit}",
-        profitUpdate.Data.Profit); // replace .Data.Profit with the actual profit property
+        profitUpdate.Data.Profit);
 }
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 IAsyncEnumerable<OnPositionProfitData> OnPositionProfitAsync(
@@ -30,28 +33,37 @@ IAsyncEnumerable<OnPositionProfitData> OnPositionProfitAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **`intervalMs`** (`int`) — polling interval in milliseconds.
-* **`ignoreEmpty`** (`bool`, optional, default=`true`) — skip updates with no profit change if `true`.
-* **`cancellationToken`** (`CancellationToken`, optional) — token to cancel the streaming operation.
-
----
-
-## Output
-
-**`IAsyncEnumerable<OnPositionProfitData>`** — asynchronous stream of profit update items:
-
-**`OnPositionProfitData`** — structure with:
-
-* **`Data`** (`PositionProfitData`) — payload object containing:
-
-  * **`Ticket`** (`ulong`) — unique identifier for the position.
-  * **`Profit`** (`double`) — current profit or loss for the position (in account currency).
-  * *(other fields if provided by the API)*
+| Parameter           | Type                | Description                                        |
+| ------------------- | ------------------- | -------------------------------------------------- |
+| `intervalMs`        | `int`               | Polling interval in milliseconds                   |
+| `ignoreEmpty`       | `bool`              | If `true`, skips updates without meaningful change |
+| `cancellationToken` | `CancellationToken` | Optional token to cancel the stream                |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Enable continuous, real-time tracking of position profitability, allowing automated alerts or risk-management actions when profit thresholds are crossed. 🚀
+Returns a stream of **OnPositionProfitData** items:
+
+| Field  | Type                 | Description                                |
+| ------ | -------------------- | ------------------------------------------ |
+| `Data` | `PositionProfitData` | Structure with position profit information |
+
+### `PositionProfitData` Structure
+
+| Field    | Type     | Description                                  |
+| -------- | -------- | -------------------------------------------- |
+| `Ticket` | `ulong`  | Unique identifier of the open position       |
+| `Profit` | `double` | Current profit or loss (in deposit currency) |
+
+---
+
+## 🎯 Purpose
+
+This method allows your app to **track position profitability in real time**, which is ideal for:
+
+* Monitoring profit/loss dynamics continuously
+* Triggering auto-close or notifications based on thresholds
+* Providing users with live PnL updates in dashboards
