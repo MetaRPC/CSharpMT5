@@ -3,6 +3,8 @@
 > **Request:** current bid and ask prices for a symbol from MT5
 > Fetch the most recent tick (market snapshot) data for a given symbol.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -15,7 +17,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<MrpcMqlTick> SymbolInfoTickAsync(
@@ -27,24 +31,36 @@ Task<MrpcMqlTick> SymbolInfoTickAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **symbol** (`string`) — the symbol name to query (e.g., `"EURUSD"`, `"XAUUSD"`).
-
----
-
-## Output
-
-**`MrpcMqlTick`** — structure with the following properties:
-
-* **`Bid`** (`double`) — the current best bid price.
-* **`Ask`** (`double`) — the current best ask price.
-* **`Last`** (`double`) — the price of the last executed trade.
-* **`Volume`** (`long`) — tick volume (number of trades at this tick).
-* **`Time`** (`DateTime`) — UTC timestamp when the tick was recorded.
+| Parameter           | Type                | Description                            |
+| ------------------- | ------------------- | -------------------------------------- |
+| `symbol`            | `string`            | Symbol name (e.g., "EURUSD", "XAUUSD") |
+| `deadline`          | `DateTime?`         | Optional timeout deadline              |
+| `cancellationToken` | `CancellationToken` | Optional cancel token                  |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Instants fetching of up-to-the-millisecond bid/ask quotes (and full tick details) for real-time decision-making in trading algorithms. 🚀
+Returns a **MrpcMqlTick** structure:
+
+| Field    | Type       | Description                       |
+| -------- | ---------- | --------------------------------- |
+| `Bid`    | `double`   | Current best bid price            |
+| `Ask`    | `double`   | Current best ask price            |
+| `Last`   | `double`   | Last executed trade price         |
+| `Volume` | `long`     | Tick volume at this point in time |
+| `Time`   | `DateTime` | UTC timestamp of the tick         |
+
+---
+
+## 🎯 Purpose
+
+Use this method to get the **latest tick data** — including bid, ask, and last prices — for **real-time pricing** and **decision-making** in trading strategies.
+
+Ideal for:
+
+* Up-to-the-millisecond execution logic
+* Real-time dashboards and trade UIs
+* Price validation before sending orders
