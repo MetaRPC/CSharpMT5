@@ -116,8 +116,8 @@ Update your account credentials:
 ```json
 {
   "MT5": {
-    "AccountId": 91817113,
-    "Password": "@g3qCpMt",
+    "AccountId": 12345678,
+    "Password": "grY65VbnM",
     "Host": "127.0.0.1",
     "Port": 8222,
     "DefaultSymbol": "EURUSD",
