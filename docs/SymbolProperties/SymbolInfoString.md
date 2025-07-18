@@ -3,6 +3,8 @@
 > **Request:** a specific string property (CurrencyBase, CurrencyProfit, Description, etc.) for a symbol from MT5
 > Fetch any text‑based market data value for a given symbol using one universal method.
 
+---
+
 ### Code Example
 
 ```csharp
@@ -16,7 +18,9 @@ _logger.LogInformation(
 );
 ```
 
-✨ **Method Signature:**
+---
+
+### Method Signature
 
 ```csharp
 Task<SymbolInfoStringData> SymbolInfoStringAsync(
@@ -29,29 +33,43 @@ Task<SymbolInfoStringData> SymbolInfoStringAsync(
 
 ---
 
-## Input
+## 🔽 Input
 
-* **symbol** (`string`) — the symbol name (e.g., `"EURUSD"`, `"XAUUSD"`).
-* **property** (`SymbolInfoStringProperty`) — which string property to fetch. Possible values:
+| Parameter  | Type                       | Description                               |
+| ---------- | -------------------------- | ----------------------------------------- |
+| `symbol`   | `string`                   | Symbol name (e.g., "EURUSD", "XAUUSD")    |
+| `property` | `SymbolInfoStringProperty` | Enum specifying which string field to get |
 
-  * **SymbolCurrencyBase** (`SYMBOL_CURRENCY_BASE`) — base currency of the symbol (e.g., "EUR").
-  * **SymbolCurrencyProfit** (`SYMBOL_CURRENCY_PROFIT`) — currency used to calculate profit (e.g., "USD").
-  * **SymbolCurrencyMargin** (`SYMBOL_CURRENCY_MARGIN`) — currency used to calculate margin (e.g., "USD").
-  * **SymbolCurrencySwap** (`SYMBOL_CURRENCY_SWAP`) — currency used to calculate swap (e.g., "USD").
-  * **SymbolDescription** (`SYMBOL_DESCRIPTION`) — human‑readable description of the symbol (e.g., "Euro vs US Dollar").
-  * **SymbolPath** (`SYMBOL_PATH`) — full path of the symbol in Market Watch tree (e.g., "Forex\EURUSD").
-  * **SymbolExchange** (`SYMBOL_EXCHANGE`) — name of the exchange or trading platform (e.g., "NYSE").
+### `SymbolInfoStringProperty` Enum Values
 
----
-
-## Output
-
-**`SymbolInfoStringData`** — structure with the following field:
-
-* **Value** (`string`) — the requested string property value.
+| Enum Value             | MQL5 Const               | Description                                                   |
+| ---------------------- | ------------------------ | ------------------------------------------------------------- |
+| `SymbolCurrencyBase`   | `SYMBOL_CURRENCY_BASE`   | Base currency of the symbol (e.g., "EUR")                     |
+| `SymbolCurrencyProfit` | `SYMBOL_CURRENCY_PROFIT` | Currency for profit calculation (e.g., "USD")                 |
+| `SymbolCurrencyMargin` | `SYMBOL_CURRENCY_MARGIN` | Currency for margin calculation (e.g., "USD")                 |
+| `SymbolCurrencySwap`   | `SYMBOL_CURRENCY_SWAP`   | Currency used for swap calculations (e.g., "USD")             |
+| `SymbolDescription`    | `SYMBOL_DESCRIPTION`     | Human-readable symbol description (e.g., "Euro vs US Dollar") |
+| `SymbolPath`           | `SYMBOL_PATH`            | Full symbol path in Market Watch (e.g., "Forex\EURUSD")       |
+| `SymbolExchange`       | `SYMBOL_EXCHANGE`        | Exchange or platform name (e.g., "NYSE")                      |
 
 ---
 
-## Purpose
+## ⬆️ Output
 
-Consolidates all string‑type symbol queries into a single method call; just swap the enum to retrieve any descriptive field. 🚀
+Returns a **SymbolInfoStringData** object:
+
+| Field   | Type     | Description                          |
+| ------- | -------- | ------------------------------------ |
+| `Value` | `string` | Text value of the requested property |
+
+---
+
+## 🎯 Purpose
+
+Use this method to retrieve any **string-type descriptive attribute** of a trading symbol.
+
+Great for:
+
+* Displaying market metadata
+* Logging and audit information
+* Platform-specific routing and symbol grouping
