@@ -6,8 +6,9 @@
     <RootNamespace>csharp_nuget</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <NoWarn>1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1591;1573;1570;1572;1710;1711;1712</NoWarn>
+    <WarningsAsErrors></WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
