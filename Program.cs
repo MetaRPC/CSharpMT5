@@ -10,7 +10,7 @@ using mt5_term_api;
 
 namespace MetaRPC.CSharpMT5
 {
-    public class MT5Options
+    public class MT5Options 
     {
         public string ServerName { get; set; }
         public ulong AccountId { get; set; }
