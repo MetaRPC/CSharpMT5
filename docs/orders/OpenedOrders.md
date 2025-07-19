@@ -5,7 +5,7 @@
 
 ---
 
-### Code Example
+### Code Example1
 
 ```csharp
 var openedOrdersData = await _mt5Account.OpenedOrdersAsync();
