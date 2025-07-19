@@ -106,7 +106,6 @@ Download the [CSharpMT5](https://github.com/MetaRPC/CSharpMT5) project to your m
 
 #### 2. Open the Project in Your Code Editor
 
-[![](ImagesForGuidance/15..png)](ImagesForGuidance/15..png)
 Open the repo in Visual Studio or VS Code.
 
 #### 3. Open `appsettings.json`
