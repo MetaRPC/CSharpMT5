@@ -48,7 +48,8 @@ jobs:
             --visibility public \
             --assembly-bin ./bin/Release/net8.0 \
             --no-throw \
-            --clean
+            --clean \
+            --force
 
 
       - name: 🐍 Setup Python
