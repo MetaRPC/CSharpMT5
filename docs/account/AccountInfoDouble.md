@@ -1,4 +1,4 @@
-# Getting a Double Account Property
+# Getting a Double Account Property1
 
 > **Request:** account balance (double) from MT5
 > Fetch the account balance or other floating-point property as a `double`.
