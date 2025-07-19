@@ -47,7 +47,8 @@ jobs:
             --source MetaRPC.CSharpMT5.csproj \
             --visibility public \
             --assembly-bin ./bin/Release/net8.0 \
-            --no-throw
+            --no-throw \
+            --clean
 
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
