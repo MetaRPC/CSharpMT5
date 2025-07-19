@@ -1,4 +1,4 @@
-## Streaming: OnPositionProfitAsync
+## Streaming: OnPositionProfitAsync1
 
 > **Request:** real-time position profit updates from MT5
 > Subscribe to a live stream of profit changes for open positions.
