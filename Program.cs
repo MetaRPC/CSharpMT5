@@ -4724,14 +4724,14 @@ root.AddCommand(histExport);
             || _mt5Account.Password != password
             || !string.Equals(_currentGrpc, grpc, StringComparison.OrdinalIgnoreCase))
         {
-            // ✅ ПЕРЕСОЗДАЁМ КЛИЕНТ С ЛОГГЕРОМ ЗДЕСЬ
+            // ✅ RE-CREATING THE CLIENT WITH THE LOGGER HERE
             _mt5Account = new MT5Account(options.AccountId, password, grpc, id: default, logger: _accLogger);
             _currentGrpc = grpc;
         }
 
         using (_logger.BeginScope("Grpc:{Grpc}", grpc ?? "(default)"))
         {
-            // CTS объявляем внутри фигурных скобок
+            // We declare CTS inside curly brackets
             using var connectCts = new CancellationTokenSource(_opTimeoutOverride ?? _rpcTimeout);
 
             var serverName = options.ServerName;
@@ -4748,7 +4748,7 @@ root.AddCommand(histExport);
             }
             else
             {
-                // host должен быть non-null
+                
                 string host = options.Host
                     ?? throw new InvalidOperationException(
                         "Neither ServerName nor Host is set for the selected profile. Set 'ServerName' or 'Host'+'Port' in profiles.json.");
