@@ -1,9 +1,4 @@
 ﻿using Mt5TermApi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MetaRPC.CSharpMT5;
 
