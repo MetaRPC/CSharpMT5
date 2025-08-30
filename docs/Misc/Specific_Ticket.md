@@ -99,7 +99,7 @@ private static object? TryFindByTicketInAggregate(object openedAggregate, ulong 
     return null;
 }
 ```
-**An example of usage inside the ticket** `show handler`
+**An example of usage inside the ticket** `show handler` 🧩
 
 ```csharp
 // inside 'ticket show' handler, after ConnectAsync()
