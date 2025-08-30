@@ -1,4 +1,4 @@
-# CLI Shortcasts — extracted from Program.cs
+A FRAMEWORK FOR WORK
 
 ## `profiles` — Working with profiles
 
