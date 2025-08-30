@@ -77,4 +77,94 @@ close-all    # or alias if you have one in shortcasts
 
 ## Code Reference 🔧
 
-*Please paste your exact handler from `Program.cs` here so we can keep this section 1:1 with your code (as we did for `history`). Once you drop it, we’ll update this block verbatim.*
+```csharp
+var caSymbolOpt = new Option<string?>(new[] { "--filter-symbol", "-s" }, "Close only positions for this symbol (e.g., EURUSD)");
+var caYesOpt    = new Option<bool>(new[] { "--yes", "-y" }, "Do not ask for confirmation");
+var caDevOpt    = new Option<int>(new[] { "--deviation" }, () => 10, "Max slippage in points");
+
+var closeAll = new Command("close-all", "Close ALL open positions (optionally filtered by symbol)");
+closeAll.AddAlias("flatten");
+closeAll.AddAlias("close.all"); 
+
+closeAll.AddOption(profileOpt);
+closeAll.AddOption(caSymbolOpt);
+closeAll.AddOption(caYesOpt);
+closeAll.AddOption(caDevOpt);
+closeAll.AddOption(timeoutOpt);
+closeAll.AddOption(dryRunOpt);
+
+closeAll.SetHandler(async (InvocationContext ctx) =>
+{
+    var profile      = ctx.ParseResult.GetValueForOption(profileOpt)!;
+    var filterSymbol = ctx.ParseResult.GetValueForOption(caSymbolOpt);
+    var yes          = ctx.ParseResult.GetValueForOption(caYesOpt);
+    var deviation    = ctx.ParseResult.GetValueForOption(caDevOpt);
+    var timeoutMs    = ctx.ParseResult.GetValueForOption(timeoutOpt);
+    var dryRun       = ctx.ParseResult.GetValueForOption(dryRunOpt);
+
+    Validators.EnsureProfile(profile);
+    if (!string.IsNullOrWhiteSpace(filterSymbol)) _ = Validators.EnsureSymbol(filterSymbol);
+
+    using (UseOpTimeout(timeoutMs))
+    using (_logger.BeginScope("Cmd:CLOSE-ALL Profile:{Profile}", profile))
+    using (_logger.BeginScope("FilterSymbol:{Symbol} Dev:{Dev}", filterSymbol ?? "<any>", deviation))
+    {
+        try
+        {
+            await ConnectAsync();
+            using var opCts = StartOpCts();
+
+            var map = await CallWithRetry(
+                ct => _mt5Account.ListPositionVolumesAsync(filterSymbol, ct),
+                opCts.Token);
+
+            if (map.Count == 0)
+            {
+                Console.WriteLine("No positions to close.");
+                return;
+            }
+
+            if (!yes || dryRun)
+            {
+                Console.WriteLine($"Will close {map.Count} position(s){(filterSymbol is null ? "" : $" for {filterSymbol}")}. Deviation={deviation}");
+                foreach (var (ticket, vol) in map.Take(10))
+                    Console.WriteLine($"  #{ticket} vol={vol}");
+                if (map.Count > 10) Console.WriteLine($"  ... and {map.Count - 10} more");
+                if (dryRun) return;
+                Console.WriteLine("Pass --yes to execute.");
+                Environment.ExitCode = 2;
+                return;
+            }
+
+            int ok = 0, fail = 0;
+            foreach (var (ticket, vol) in map)
+            {
+                try
+                {
+                    await CallWithRetry(ct => _mt5Account.ClosePositionFullAsync(ticket, vol, deviation, ct), opCts.Token);
+                    ok++;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning("Close #{Ticket} vol={Vol} failed: {Msg}", ticket, vol, ex.Message);
+                    fail++;
+                }
+            }
+
+            Console.WriteLine($"Closed OK: {ok}; Failed: {fail}");
+            Environment.ExitCode = fail == 0 ? 0 : 1;
+        }
+        catch (Exception ex)
+        {
+            ErrorPrinter.Print(_logger, ex, IsDetailed());
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
+        }
+    }
+});
+
+root.AddCommand(closeAll);
+```
