@@ -1162,10 +1162,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// Produces a lightweight (Bid, Ask, Time) tick stream by polling.
-    /// Fallback for when native quote streaming is unavailable.
-    /// Yields one item per interval; honors cancellation.
-    /// Uses UTC pull time for Time; swap to server tick time if needed.
+    // Produces a lightweight (Bid, Ask, Time) tick stream by polling.
+    // Fallback for when native quote streaming is unavailable.
+    // Yields one item per interval; honors cancellation.
+    // Uses UTC pull time for Time; swap to server tick time if needed.
     private async IAsyncEnumerable<(double Bid, double Ask, DateTime Time)> PollTicksAsync(
         string symbol,
         TimeSpan interval,
@@ -1198,12 +1198,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Heuristic fallback for symbol point size when SDK value is unavailable.
-    /// JPY pairs → 0.01; metals (XAU/XAG) → 0.1; otherwise → 0.0001.
-    /// Not a guaranteed broker tick size; prefer SymbolInfoDouble(SymbolPoint).
-    /// Intended for internal use when precise params are missing.
-    /// </summary>
+    // Heuristic fallback for symbol point size when SDK value is unavailable.
+    // JPY pairs → 0.01; metals (XAU/XAG) → 0.1; otherwise → 0.0001.
+    // Not a guaranteed broker tick size; prefer SymbolInfoDouble(SymbolPoint).
+    // Intended for internal use when precise params are missing.
     private static double GuessPointSizeInternal(string symbol)
     {
         if (string.IsNullOrWhiteSpace(symbol)) return 0.0001;
@@ -1214,12 +1212,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Best-effort read of a position’s Stop Loss by ticket.
-    /// Fetches opened positions, finds the ticket, then reads SL via StopLoss/SL/Sl.
-    /// Returns the SL value or null if not available (missing position/field or errors).
-    /// Non-throwing helper; pulls a full snapshot per call (consider caching or a dedicated RPC).
-    /// </summary>
+    // Best-effort read of a position’s Stop Loss by ticket.
+    // Fetches opened positions, finds the ticket, then reads SL via StopLoss/SL/Sl.
+    // Returns the SL value or null if not available (missing position/field or errors).
+    // Non-throwing helper; pulls a full snapshot per call (consider caching or a dedicated RPC).
     private async Task<double?> TryGetPositionSlAsync(ulong ticket, CancellationToken ct)
     {
         try
@@ -1241,22 +1237,18 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Checks if a public instance property with the specified name exists on the object.
-    /// Case-sensitive lookup; returns false when the object is null.
-    /// Uses reflection and does not consider fields.
-    /// Prefer TryGetDoubleProperty for numeric reads.
-    /// </summary>
+    // Checks if a public instance property with the specified name exists on the object.
+    // Case-sensitive lookup; returns false when the object is null.
+    // Uses reflection and does not consider fields.
+    // Prefer TryGetDoubleProperty for numeric reads.
     private static bool HasProperty(object? o, string name) =>
         o?.GetType().GetProperty(name) is not null;
 
 
-    /// <summary>
-    /// Gets a public instance property by name and converts its value to double.
-    /// Case-sensitive; returns null if object, property, or value is missing.
-    /// Uses invariant culture for conversion and may throw on non-convertible values.
-    /// For safer, exception-free parsing use TryGetDoubleProperty.
-    /// </summary>
+    // Gets a public instance property by name and converts its value to double.
+    // Case-sensitive; returns null if object, property, or value is missing.
+    // Uses invariant culture for conversion and may throw on non-convertible values.
+    // For safer, exception-free parsing use TryGetDoubleProperty.
     private static double? GetDouble(object? o, string name)
     {
         if (o is null) return null;
@@ -1268,13 +1260,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Modifies an existing pending order by ticket.
-    /// Supports updating price, stop, limit, SL/TP, and TIF parameters.
-    /// Validates StopLimit invariants (limit ≤ stop for Buy, limit ≥ stop for Sell).
-    /// Throws if parameters are invalid or inconsistent with the order type.
-    /// Returns true if modification request was successfully sent.
-    /// </summary>
+    // Modifies an existing pending order by ticket.
+    // Supports updating price, stop, limit, SL/TP, and TIF parameters.
+    // Validates StopLimit invariants (limit ≤ stop for Buy, limit ≥ stop for Sell).
+    // Throws if parameters are invalid or inconsistent with the order type.
+    // Returns true if modification request was successfully sent.
     public async Task<bool> ModifyPendingOrderAsync(
         ulong ticket,
         string? type,               // "buylimit"|"selllimit"|"buystop"|"sellstop"|"buystoplimit"|"sellstoplimit" | null
@@ -1372,13 +1362,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves a compact account summary (balances, equity, margin, etc.) from MT5.
-    /// Uses ExecuteWithReconnect to handle transient errors and lost terminal instance.
-    /// Throws if the connection is not active or the server returns an error.
-    /// Supports optional deadline and cancellation token.
-    /// Returns the summary payload from the server.
-    /// </summary>
+    // Retrieves a compact account summary (balances, equity, margin, etc.) from MT5.
+    // Uses ExecuteWithReconnect to handle transient errors and lost terminal instance.
+    // Throws if the connection is not active or the server returns an error.
+    // Supports optional deadline and cancellation token.
+    // Returns the summary payload from the server.
     public async Task<AccountSummaryData> AccountSummaryAsync(
         DateTime? deadline = null,
         CancellationToken cancellationToken = default)
@@ -1400,15 +1388,13 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Returns a snapshot map of open positions: ticket → volume (lots).
-    /// Optionally filters by <paramref name="symbol"/> (case-insensitive).
-    /// Uses OpenedOrdersAsync to fetch current positions; orders are ignored.
-    /// Returns an empty dictionary if there are no positions.
-    /// </summary>
-    /// <param name="symbol">Optional symbol filter (e.g., "EURUSD"); null/empty = all.</param>
-    /// <param name="ct">Cancellation token.</param>
-    /// <returns>Dictionary of position ticket to volume.</returns>
+// Returns a snapshot map of open positions: ticket → volume (lots).
+// Optionally filters by symbol (case-insensitive).
+// Uses OpenedOrdersAsync to fetch current positions; orders are ignored.
+// Returns an empty dictionary if there are no positions.
+// symbol: Optional symbol filter (e.g., "EURUSD"); null/empty = all.
+// ct: Cancellation token.
+// Returns: Dictionary of position ticket to volume.
     public async Task<Dictionary<ulong, double>> ListPositionVolumesAsync(string? symbol, CancellationToken ct)
     {
         var opened = await OpenedOrdersAsync(deadline: null, cancellationToken: ct);
@@ -1431,13 +1417,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Infers position direction from common MT5-like fields.
-    /// Checks Type text for Buy/Long or Sell/Short (case-insensitive).
-    /// Falls back to IsBuy/IsLong boolean if available.
-    /// Returns true for long, false for short; defaults to true if unknown.
-    /// Reflection-based helper intended for heterogeneous SDK models.
-    /// </summary>
+    // Infers position direction from common MT5-like fields.
+    // Checks Type text for Buy/Long or Sell/Short (case-insensitive).
+    // Falls back to IsBuy/IsLong boolean if available.
+    // Returns true for long, false for short; defaults to true if unknown.
+    // Reflection-based helper intended for heterogeneous SDK models.
     private static bool IsLongPositionLocal(object pos)
     {
         var typeProp = pos.GetType().GetProperty("Type");
@@ -1454,13 +1438,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         return true;
     }
 
-    /// <summary>
     /// Sets a position’s SL/TP by distances in symbol points from entry price.
     /// Detects direction (long/short), converts points → price using point size.
     /// Uses GuessPointSizeInternal as fallback and calls ModifyPositionSlTpAsync.
     /// Throws if the position is missing or both SL/TP are null.
     /// Returns true once the modify request is submitted.
-    /// </summary>
     public async Task<bool> SetPositionSlTpByPointsAsync(ulong ticket, int? slPts, int? tpPts, CancellationToken ct)
     {
         if (ticket == 0) throw new ArgumentOutOfRangeException(nameof(ticket));
@@ -1537,15 +1519,15 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         _ = await TradeClient.OrderModifyAsync(req, cancellationToken: ct);
     }
 
-    /// <summary>
-    /// Gets the summary information for a trading account synchronously.
-    /// </summary>
-    /// <param name="deadline">Optional deadline after which the request will be canceled if not completed.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the request.</param>
-    /// <returns>The server's response containing account summary data.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected before calling this method.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails due to communication or protocol errors.</exception>
+// Gets the summary information for a trading account synchronously.
+// deadline: Optional deadline after which the request will be canceled if not completed.
+// cancellationToken: Optional cancellation token to cancel the request.
+// Returns: The server's response containing account summary data.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the account is not connected before calling this method.
+//   ApiExceptionMT5 — thrown if the server returns an error in the response.
+//   Grpc.Core.RpcException — thrown if the gRPC call fails due to communication or protocol errors.
+
     public AccountSummaryData AccountSummary(
         DateTime? deadline = null,
         CancellationToken cancellationToken = default)
@@ -1553,16 +1535,16 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         return AccountSummaryAsync(deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
-    /// <summary>
-    /// Gets the currently opened orders and positions for the connected account asynchronously.
-    /// </summary>
-    /// <param name="sortMode">The sort mode for the opened orders (0 - open time, 1 - close time, 2 - ticket ID).</param>
-    /// <param name="deadline">Optional deadline after which the request will be canceled if not completed.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the request.</param>
-    /// <returns>A task representing the asynchronous operation. The result contains opened orders and positions.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected before calling this method.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails due to communication or protocol errors.</exception>
+
+// Gets the currently opened orders and positions for the connected account asynchronously.
+// sortMode: The sort mode for the opened orders (0 - open time, 1 - close time, 2 - ticket ID).
+// deadline: Optional deadline after which the request will be canceled if not completed.
+// cancellationToken: Optional cancellation token to cancel the request.
+// Returns: A task representing the asynchronous operation. The result contains opened orders and positions.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the account is not connected before calling this method.
+//   ApiExceptionMT5 — thrown if the server returns an error in the response.
+//   Grpc.Core.RpcException — thrown if the gRPC call fails due to communication or protocol errors.
     public async Task<OpenedOrdersData> OpenedOrdersAsync(
         BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
         DateTime? deadline = null,
@@ -1584,16 +1566,16 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         return res.Data;
     }
 
-    /// <summary>
-    /// Gets the currently opened orders and positions for the connected account synchronously.
-    /// </summary>
-    /// <param name="sortMode">The sort mode for the opened orders (0 - open time, 1 - close time, 2 - ticket ID).</param>
-    /// <param name="deadline">Optional deadline after which the request will be canceled if not completed.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the request.</param>
-    /// <returns>The server's response containing opened orders and positions.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected before calling this method.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails due to communication or protocol errors.</exception>
+
+// Gets the currently opened orders and positions for the connected account synchronously.
+// sortMode: The sort mode for the opened orders (0 - open time, 1 - close time, 2 - ticket ID).
+// deadline: Optional deadline after which the request will be canceled if not completed.
+// cancellationToken: Optional cancellation token to cancel the request.
+// Returns: The server's response containing opened orders and positions.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the account is not connected before calling this method.
+//   ApiExceptionMT5 — thrown if the server returns an error in the response.
+//   Grpc.Core.RpcException — thrown if the gRPC call fails due to communication or protocol errors.
     public OpenedOrdersData OpenedOrders(
         BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
         DateTime? deadline = null,
@@ -1602,20 +1584,20 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         return OpenedOrdersAsync(sortMode, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
-    /// <summary>
-    /// Gets the historical orders for the connected trading account within the specified time range asynchronously.
-    /// </summary>
-    /// <param name="from">The start time for the history query (server time).</param>
-    /// <param name="to">The end time for the history query (server time).</param>
-    /// <param name="sortMode">The sort mode: 0 - by open time, 1 - by close time, 2 - by ticket ID.</param>
-    /// <param name="pageNumber">The page number for paginated results (default 0).</param>
-    /// <param name="itemsPerPage">The number of items per page (default 0 = all).</param>
-    /// <param name="deadline">Optional deadline after which the request will be canceled if not completed.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the request.</param>
-    /// <returns>A task representing the asynchronous operation. The result contains paged historical order data.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+
+// Gets the historical orders for the connected trading account within the specified time range asynchronously.
+// from: The start time for the history query (server time).
+// to: The end time for the history query (server time).
+// sortMode: The sort mode (0 - by open time, 1 - by close time, 2 - by ticket ID).
+// pageNumber: The page number for paginated results (default 0).
+// itemsPerPage: The number of items per page (default 0 = all).
+// deadline: Optional deadline after which the request will be canceled if not completed.
+// cancellationToken: Optional cancellation token to cancel the request.
+// Returns: A task representing the asynchronous operation. The result contains paged historical order data.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public async Task<OrdersHistoryData> OrderHistoryAsync(
         DateTime from,
         DateTime to,
@@ -1647,20 +1629,19 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Gets the historical orders for the connected trading account within the specified time range synchronously.
-    /// </summary>
-    /// <param name="from">The start time for the history query (server time).</param>
-    /// <param name="to">The end time for the history query (server time).</param>
-    /// <param name="sortMode">The sort mode: 0 - by open time, 1 - by close time, 2 - by ticket ID.</param>
-    /// <param name="pageNumber">The page number for paginated results (default 0).</param>
-    /// <param name="itemsPerPage">The number of items per page (default 0 = all).</param>
-    /// <param name="deadline">Optional deadline after which the request will be canceled if not completed.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the request.</param>
-    /// <returns>The server's response containing paged historical order data.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+    // Gets the historical orders for the connected trading account within the specified time range synchronously.
+// from: The start time for the history query (server time).
+// to: The end time for the history query (server time).
+// sortMode: The sort mode (0 - by open time, 1 - by close time, 2 - by ticket ID).
+// pageNumber: The page number for paginated results (default 0).
+// itemsPerPage: The number of items per page (default 0 = all).
+// deadline: Optional deadline after which the request will be canceled if not completed.
+// cancellationToken: Optional cancellation token to cancel the request.
+// Returns: The server's response containing paged historical order data.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public OrdersHistoryData OrderHistory(
         DateTime from,
         DateTime to,
@@ -1674,15 +1655,14 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Gets ticket IDs of all currently opened orders and positions asynchronously.
-    /// </summary>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Task containing collection of opened order and position tickets.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Gets ticket IDs of all currently opened orders and positions asynchronously.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Task containing collection of opened order and position tickets.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public async Task<OpenedOrdersTicketsData> OpenedOrdersTicketsAsync(DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -1700,31 +1680,29 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Gets ticket IDs of all currently opened orders and positions synchronously.
-    /// </summary>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Collection of opened order and position tickets.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Gets ticket IDs of all currently opened orders and positions synchronously.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Collection of opened order and position tickets.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public OpenedOrdersTicketsData OpenedOrdersTickets(DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return OpenedOrdersTicketsAsync(deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Retrieves symbol parameters for multiple instruments asynchronously.
-    /// </summary>
-    /// <param name="request">The request containing filters and pagination.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Task containing symbol parameter details.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves symbol parameters for multiple instruments asynchronously.
+// request: The request containing filters and pagination.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Task containing symbol parameter details.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public async Task<SymbolParamsManyData> SymbolParamsManyAsync(SymbolParamsManyRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -1740,32 +1718,30 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves symbol parameters for multiple instruments synchronously.
-    /// </summary>
-    /// <param name="request">The request containing filters and pagination.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Symbol parameter details.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves symbol parameters for multiple instruments synchronously.
+// request: The request containing filters and pagination.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Symbol parameter details.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public SymbolParamsManyData SymbolParamsMany(SymbolParamsManyRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return SymbolParamsManyAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Gets tick value and tick size data for the given symbols asynchronously.
-    /// </summary>
-    /// <param name="symbols">List of symbol names.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Task containing tick value and contract size info per symbol.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Gets tick value and tick size data for the given symbols asynchronously.
+// symbols: List of symbol names.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Task containing tick value and contract size info per symbol.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public async Task<TickValueWithSizeData> TickValueWithSizeAsync(IEnumerable<string> symbols, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -1783,36 +1759,35 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         return res.Data;
     }
 
-    /// <summary>
-    /// Gets tick value and tick size data for the given symbols synchronously.
-    /// </summary>
-    /// <param name="symbols">List of symbol names.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Tick value and contract size info per symbol.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+
+// Gets tick value and tick size data for the given symbols synchronously.
+// symbols: List of symbol names.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Tick value and contract size info per symbol.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public TickValueWithSizeData TickValueWithSize(IEnumerable<string> symbols, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return TickValueWithSizeAsync(symbols, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Retrieves historical positions based on filter and time range asynchronously.
-    /// </summary>
-    /// <param name="sortType">Sorting type for historical positions.</param>
-    /// <param name="openFrom">Optional start of open time filter (UTC).</param>
-    /// <param name="openTo">Optional end of open time filter (UTC).</param>
-    /// <param name="page">Optional page number.</param>
-    /// <param name="size">Optional items per page.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Task containing historical position records.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves historical positions based on filter and time range asynchronously.
+// sortType: Sorting type for historical positions.
+// openFrom: Optional start of open time filter (UTC).
+// openTo: Optional end of open time filter (UTC).
+// page: Optional page number.
+// size: Optional items per page.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Task containing historical position records.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public async Task<PositionsHistoryData> PositionsHistoryAsync(
         AH_ENUM_POSITIONS_HISTORY_SORT_TYPE sortType,
         DateTime? openFrom = null,
@@ -1847,20 +1822,20 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         return res.Data;
     }
 
-    /// <summary>
-    /// Retrieves historical positions based on filter and time range synchronously.
-    /// </summary>
-    /// <param name="sortType">Sorting type for historical positions.</param>
-    /// <param name="openFrom">Optional start of open time filter (UTC).</param>
-    /// <param name="openTo">Optional end of open time filter (UTC).</param>
-    /// <param name="page">Optional page number.</param>
-    /// <param name="size">Optional items per page.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Historical position records.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+
+// Retrieves historical positions based on filter and time range synchronously.
+// sortType: Sorting type for historical positions.
+// openFrom: Optional start of open time filter (UTC).
+// openTo: Optional end of open time filter (UTC).
+// page: Optional page number.
+// size: Optional items per page.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Historical position records.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public PositionsHistoryData PositionsHistory(
         AH_ENUM_POSITIONS_HISTORY_SORT_TYPE sortType,
         DateTime? openFrom = null,
@@ -1874,16 +1849,15 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Sends a market or pending order to the trading server asynchronously.
-    /// </summary>
-    /// <param name="request">The order request to send.</param>
-    /// <param name="deadline">Optional deadline for the operation.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Task containing response with deal/order confirmation data.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Sends a market or pending order to the trading server asynchronously.
+// request: The order request to send.
+// deadline: Optional deadline for the operation.
+// cancellationToken: Optional cancellation token.
+// Returns: Task containing response with deal/order confirmation data.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the account is not connected.
+//   ApiExceptionMT5 — thrown if the server returns an error in the response.
+//   Grpc.Core.RpcException — thrown if the gRPC call fails.
     public async Task<OrderSendData> OrderSendAsync(OrderSendRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -1899,32 +1873,26 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Sends a market or pending order to the trading server synchronously.
-    /// </summary>
-    /// <param name="request">The order request to send.</param>
-    /// <param name="deadline">Optional deadline for the operation.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Response containing deal/order confirmation data.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Sends a market or pending order to the trading server synchronously.
+// request: The order request to send.
+// deadline: Optional deadline for the operation.
+// cancellationToken: Optional cancellation token.
+// Returns: Response containing deal/order confirmation data.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the account is not connected.
+//   ApiExceptionMT5 — thrown if the server returns an error in the response.
+//   Grpc.Core.RpcException — thrown if the gRPC call fails.
     public OrderSendData OrderSend(OrderSendRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return OrderSendAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Modifies an existing order or position asynchronously.
-    /// </summary>
-    /// <param name="request">The modification request (SL, TP, price, expiration, etc.).</param>
-    /// <param name="deadline">Optional deadline for the operation.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Task containing updated order/deal info.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Modifies an existing order or position asynchronously.
+// request: The modification request (SL, TP, price, expiration, etc.).
+// deadline: Optional deadline for the operation.
+// cancellationToken: Optional cancellation token.
+// Returns: Task containing updated order/deal info.
     public async Task<OrderModifyData> OrderModifyAsync(OrderModifyRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -1939,32 +1907,23 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         return res.Data;
     }
 
-    /// <summary>
-    /// Modifies an existing order or position synchronously.
-    /// </summary>
-    /// <param name="request">The modification request (SL, TP, price, expiration, etc.).</param>
-    /// <param name="deadline">Optional deadline for the operation.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Response containing updated order/deal info.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+
+// Modifies an existing order or position synchronously.
+// request: The modification request (SL, TP, price, expiration, etc.).
+// deadline: Optional deadline for the operation.
+// cancellationToken: Optional cancellation token.
+// Returns: Response containing updated order/deal info.
     public OrderModifyData OrderModify(OrderModifyRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return OrderModifyAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Closes a market or pending order asynchronously.
-    /// </summary>
-    /// <param name="request">The close request including ticket, volume, and slippage.</param>
-    /// <param name="deadline">Optional deadline for the operation.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Task containing the close result and return codes.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Closes a market or pending order asynchronously.
+// request: The close request including ticket, volume, and slippage.
+// deadline: Optional deadline for the operation.
+// cancellationToken: Optional cancellation token.
+// Returns: Task containing the close result and return codes.
     public async Task<OrderCloseData> OrderCloseAsync(OrderCloseRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -1980,49 +1939,36 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Closes a market or pending order synchronously.
-    /// </summary>
-    /// <param name="request">The close request including ticket, volume, and slippage.</param>
-    /// <param name="deadline">Optional deadline for the operation.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Response describing the close result and return codes.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Closes a market or pending order synchronously.
+// request: The close request including ticket, volume, and slippage.
+// deadline: Optional deadline for the operation.
+// cancellationToken: Optional cancellation token.
+// Returns: Response describing the close result and return codes.
     public OrderCloseData OrderClose(OrderCloseRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return OrderCloseAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Executes a gRPC server-streaming call with automatic reconnection logic on recoverable errors.
-    /// </summary>
-    /// <typeparam name="TRequest">The request type sent to the stream method.</typeparam>
-    /// <typeparam name="TReply">The reply type received from the stream.</typeparam>
-    /// <typeparam name="TData">The extracted data type yielded to the consumer.</typeparam>
-    /// <param name="request">The request object to initiate the stream with.</param>
-    /// <param name="streamInvoker">
-    /// A delegate that opens the stream. It receives the request, metadata headers, and cancellation token, 
-    /// and returns an <see cref="Grpc.Core.AsyncServerStreamingCall{TReply}"/>.
-    /// </param>
-    /// <param name="getErrorCode">
-    /// A delegate that extracts the error code (if any) from a <typeparamref name="TReply"/> instance.
-    /// Return <c>"TERMINAL_INSTANCE_NOT_FOUND"</c> to trigger reconnection logic, or any non-null code to throw <see cref="ApiExceptionMT5"/>.
-    /// </param>
-    /// <param name="getData">
-    /// A delegate that extracts the data object from a <typeparamref name="TReply"/> instance.
-    /// Return <c>null</c> to skip the current message.
-    /// </param>
-    /// <param name="headers">The gRPC metadata headers to include in the stream request.</param>
-    /// <param name="cancellationToken">Optional cancellation token to stop streaming and reconnection attempts.</param>
-    /// <returns>
-    /// An <see cref="IAsyncEnumerable{T}"/> of extracted <typeparamref name="TData"/> items streamed from the server.
-    /// </returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if reconnection logic fails due to missing account context.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown when the stream response contains a known API error.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if a non-recoverable gRPC error occurs.</exception>
+// Executes a gRPC server-streaming call with automatic reconnection logic on recoverable errors.
+// TRequest: The request type sent to the stream method.
+// TReply: The reply type received from the stream.
+// TData: The extracted data type yielded to the consumer.
+// request: The request object to initiate the stream with.
+// streamInvoker: A delegate that opens the stream. It receives the request, metadata headers,
+//                and cancellation token, and returns a Grpc.Core.AsyncServerStreamingCall<TReply>.
+// getErrorCode: A delegate that extracts the error code (if any) from a TReply instance.
+//               Return "TERMINAL_INSTANCE_NOT_FOUND" to trigger reconnection logic,
+//               or any non-null code to throw ApiExceptionMT5.
+// getData: A delegate that extracts the data object from a TReply instance. Return null to skip the message.
+// headers: The gRPC metadata headers to include in the stream request.
+// cancellationToken: Optional cancellation token to stop streaming and reconnection attempts.
+// Returns: An IAsyncEnumerable<TData> of extracted items streamed from the server.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if reconnection logic fails due to missing account context.
+//   ApiExceptionMT5 — thrown when the stream response contains a known API error.
+//   Grpc.Core.RpcException — thrown if a non-recoverable gRPC error occurs.
+
     private async IAsyncEnumerable<TData> ExecuteStreamWithReconnect<TRequest, TReply, TData>(
     TRequest request,
     Func<TRequest, Metadata, CancellationToken, AsyncServerStreamingCall<TReply>> streamInvoker,
@@ -2097,15 +2043,14 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Subscribes to real-time tick data for specified symbols.
-    /// </summary>
-    /// <param name="symbols">The symbol names to subscribe to.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Async stream of tick data responses.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="Grpc.Core.RpcException">If the stream fails.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if an error is received from the stream.</exception>
+// Subscribes to real-time tick data for specified symbols.
+// symbols: The symbol names to subscribe to.
+// cancellationToken: Optional cancellation token.
+// Returns: Async stream of tick data responses.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the account is not connected.
+//   Grpc.Core.RpcException — thrown if the stream fails.
+//   ApiExceptionMT5 — thrown if an error is received from the stream.
     public async IAsyncEnumerable<OnSymbolTickData> OnSymbolTickAsync(
         IEnumerable<string> symbols,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
