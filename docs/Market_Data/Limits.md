@@ -72,4 +72,77 @@ limits -s EURUSD
 
 ## Code Reference (to be filled by you) 🧩
 
-> Paste your exact handler from `Program.cs` here to keep documentation 1:1 with the code.
+```csharp
+var symLimits = new Command("limits", "Show min/step/max volume for the symbol");
+symLimits.AddAlias("lim");
+            symLimits.SetHandler(async (string profile, string output, string? s, int timeoutMs) =>
+            {
+                Validators.EnsureProfile(profile);
+                var symbolName = Validators.EnsureSymbol(s ?? GetOptions().DefaultSymbol);
+                _selectedProfile = profile;
+
+                using (UseOpTimeout(timeoutMs))
+                using (_logger.BeginScope("Cmd:SYMBOL-LIMITS Profile:{Profile}", profile))
+                using (_logger.BeginScope("Symbol:{Symbol}", symbolName))
+                {
+                    try
+                    {
+                        await ConnectAsync();
+
+                        // Best-effort visibility (some servers require it)
+                        try
+                        {
+                            using var visCts = StartOpCts();
+                            await _mt5Account.EnsureSymbolVisibleAsync(
+                                symbolName, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
+                        }
+                        catch (Exception ex) when (ex is not OperationCanceledException)
+                        {
+                            _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
+                        }
+
+                        using var opCts = StartOpCts();
+                        var (min, step, max) = await CallWithRetry(
+                            ct => _mt5Account.GetVolumeConstraintsAsync(symbolName, deadline: null, cancellationToken: ct),
+                            opCts.Token);
+
+                        // Show also a quick normalization example
+                        var exampleVol = GetOptions().DefaultVolume;
+                        var normalized = MT5Account.NormalizeVolume(exampleVol, min, step, max);
+
+                        if (IsJson(output))
+                        {
+                            var json = new
+                            {
+                                symbol = symbolName,
+                                volume = new { min, step, max },
+                                example = new { requested = exampleVol, normalized }
+                            };
+                            Console.WriteLine(ToJson(json));
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{symbolName} volume limits:");
+                            Console.WriteLine($"  min = {min}");
+                            Console.WriteLine($"  step= {step}");
+                            Console.WriteLine($"  max = {max}");
+                            Console.WriteLine($"example: requested {exampleVol} -> normalized {normalized}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorPrinter.Print(_logger, ex, IsDetailed());
+                        Environment.ExitCode = 1;
+                    }
+                    finally
+                    {
+                        try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
+                    }
+                }
+            }, profileOpt, outputOpt, symbolOpt, timeoutOpt);
+            symLimits.AddOption(profileOpt);
+            symLimits.AddOption(symbolOpt);
+            symLimits.AddOption(outputOpt);
+            symLimits.AddOption(timeoutOpt);
+            symbol.AddCommand(symLimits);
+```
