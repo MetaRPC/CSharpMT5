@@ -81,7 +81,7 @@ tsh -t 123456 -d 7
 
 ---
 
-## Code Reference (to be filled by you) 🧩
+## Code Reference 🧩
 
 ```csharp
 var ticketCmd = new Command("ticket", "Work with a specific ticket");
