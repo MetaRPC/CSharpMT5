@@ -70,7 +70,7 @@ panic
 
 ---
 
-## Code Reference (to be filled by you) 🧩
+## Code Reference 🧩
 
 ```csharp
 var panicSymbolOpt = new Option<string?>(new[] { "--symbol", "-s" }, "Limit to symbol (optional)");
