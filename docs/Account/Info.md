@@ -1,120 +1,83 @@
 # Getting an Account Summary (`info`) 📟
 
-**Goal:** Fetch `AccountSummaryData` from MT5 and print a one‑shot account snapshot (text or JSON).
+## What it Does 🎯
 
-**Architecture (Under the hood):**
-
-```
-                ┌─────────────────────────────────────┐
-                │        💻 MT5 Terminal / Server     │
-                │ (broker connection, quotes, orders) │
-                └───────────────────┬─────────────────┘
-                                    │ gRPC
-                                    ▼
-                 ┌──────────────────────────────────┐
-                 │   🛰️ MT5 gRPC Services (stubs)   │
-                 │  AccountHelper / TradingHelper   │
-                 └───────────────┬──────────────────┘
-                                 │
-                                 ▼
-          ┌────────────────────────────────────────────┐
-          │  ⚙️ C# CLI App (Program.cs)                │
-          │  • info handler (System.CommandLine)       │
-          │  • Validators.EnsureProfile / UseOpTimeout │
-          │  • calls _mt5Account.AccountSummaryAsync() │
-          └───────────────┬────────────────────────────┘
-                          │
-                          ▼
-          ┌────────────────────────────────────────────┐
-          │  📦 _mt5Account (service wrapper)          │
-          │  • builds protobuf request                  │
-          │  • invokes AccountHelper.AccountSummary()   │
-          └───────────────┬────────────────────────────┘
-                          │
-          ┌───────────────┴───────────────┐
-          │                               │
-          ▼                               ▼
-┌──────────────────────┐       ┌────────────────────────┐
-│ 🖥️ Text output        │       │ 🧾 JSON output          │
-│ (logger/console)     │       │ (for scripts/CI)       │
-└──────────────────────┘       └────────────────────────┘
-
-(Optionally via shortcuts)
-┌───────────────────────────────────────────────────────────┐
-│  📜 PowerShell shortcuts (ps/shortcasts.ps1)               │
-│  • mt5 info ...   • use-pf demo   • info -p demo -t 90000 │
-└───────────────────────────────────────────────────────────┘
-```
+Fetches **real-time account snapshot** from MT5 and prints it either in **text** (console) or **JSON** (machine-readable).
+Used for checking account state, verifying connectivity, and quick diagnostics.
 
 ---
 
-## Why / When to Use ❓
+## Input Parameters ⬇️
 
-* **Monitoring**: check account health before trading (balance, equity, margin).
-* **Automation**: feed JSON summary into CI/CD pipelines or monitoring dashboards.
-* **Diagnostics**: verify connection to MT5 and correct profile configuration.
-* **Risk control**: ensure free margin and leverage are correct before sending orders.
-
----
-
-## Quick Code Example 🧩
-
-```csharp
-Validators.EnsureProfile(profile);
-using (UseOpTimeout(timeoutMs))
-{
-    await ConnectAsync();
-    var summary = await _mt5Account.AccountSummaryAsync();
-    Console.WriteLine(output == "json"
-        ? JsonSerializer.Serialize(summary)
-        : $"Balance: {summary.AccountBalance}");
-    try { await _mt5Account.DisconnectAsync(); } catch { }
-}
-```
+| Parameter      | Type   | Required | Description                                                                  |
+| -------------- | ------ | -------- | ---------------------------------------------------------------------------- |
+| `--profile`    | string | ✅        | Which profile to use (from `profiles.json` — holds login, server, password). |
+| `--output`     | string | ❌        | Output format: `text` (default) or `json`.                                   |
+| `--timeout-ms` | int    | ❌        | Per-RPC timeout in milliseconds (default: 30000).                            |
 
 ---
 
-# Quick Access Commands ⚙️
+## Output Fields ⬆️
 
-### Plain .NET (full form)
+Printed from `AccountSummaryData` + extra info via `AccountInformation`:
+
+| Field        | Type     | Description                          |
+| ------------ | -------- | ------------------------------------ |
+| `Login`      | int64    | Account ID (login).                  |
+| `UserName`   | string   | Account holder’s name.               |
+| `Currency`   | string   | Deposit currency (e.g. USD, EUR).    |
+| `Balance`    | double   | Current balance excluding open P/L.  |
+| `Equity`     | double   | Balance including floating P/L.      |
+| `Leverage`   | int      | Account leverage (e.g. 500).         |
+| `TradeMode`  | enum     | Account trade mode (e.g. Demo/Real). |
+| `Company`    | string   | Broker name.                         |
+| `Margin`     | double   | Currently used margin.               |
+| `FreeMargin` | double   | Margin still available for trading.  |
+| `ServerTime` | DateTime | Server time in UTC.                  |
+| `UTC Shift`  | int      | Timezone offset in minutes.          |
+
+---
+
+## How to Use 🛠️
+
+### Full CLI
 
 ```powershell
 dotnet run -- info -p demo --output json --timeout-ms 90000
 ```
 
-* Always available, but verbose.
-
 ### PowerShell Shortcuts (from `ps/shortcasts.ps1`)
-
-Load once per session:
 
 ```powershell
 . .\ps\shortcasts.ps1
-```
-
-Now you get *short commands*:
-
-* `info` → runs `mt5 info ...` under the hood.
-* `use-pf demo` → sets default profile to `demo` (saved in `$PF`).
-* `use-to 90000` → sets default timeout in ms (saved in `$TO`).
-
-So you can simply type:
-
-```powershell
+use-pf demo
+use-to 90000
 info
 ```
 
-and it will expand to `mt5 info -p demo --timeout-ms 90000` automatically.
+* `use-pf demo` → choose profile `demo` once.
+* `use-to 90000` → set default timeout (ms).
+* `info` → expands to `mt5 info -p demo --timeout-ms 90000`.
 
-### Why profile matters 👤
+---
 
-* Each profile in `profiles.json` holds server, login, and password.
-* Switching profile = connecting to another account/broker quickly.
-* Example: `use-pf live` vs `use-pf demo` to test without touching real funds.
+## When to Use ❓
 
-### Why timeout matters ⏱️
+* **Before sending orders** — check equity, free margin, leverage.
+* **Monitoring** — feed JSON into dashboards, CI/CD or alerts.
+* **Diagnostics** — confirm MT5 terminal is connected and profile credentials work.
+* **Risk control** — margin usage visible before high-risk trades.
 
-* Protects against hanging terminal or slow network.
-* Default usually 90s; lower if you want fast failure, higher if MT5 is sluggish.
-* Example: `use-to 3000` for CI checks (fail fast), `use-to 120000` for heavy accounts.
+---
 
+## Code Reference 🧩
+
+```csharp
+var summary = await _mt5Account.AccountSummaryAsync();
+
+_logger.LogInformation("=== Account Info ===");
+_logger.LogInformation("Login: {0}", summary.AccountLogin);
+_logger.LogInformation("Balance: {0}", summary.AccountBalance);
+_logger.LogInformation("Equity: {0}", summary.AccountEquity);
+// ... prints leverage, trade mode, margin, free margin, etc.
+```
