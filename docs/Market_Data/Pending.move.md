@@ -84,7 +84,7 @@ pmove -t 123456 --price 1.1000
 
 ---
 
-## Code Reference (to be filled by you) 🧩
+## Code Reference 🧩
 
 ```csharp
 var pmByPtsOpt  = new Option<int>(new[] { "--by-points", "-P" }, "Shift by points (signed, e.g. +15 or -20)") { IsRequired = true };
