@@ -75,7 +75,7 @@ close-all    # or alias if you have one in shortcasts
 
 ---
 
-## Code Reference 🔧
+## Code Reference 🧩
 
 ```csharp
 var caSymbolOpt = new Option<string?>(new[] { "--filter-symbol", "-s" }, "Close only positions for this symbol (e.g., EURUSD)");
