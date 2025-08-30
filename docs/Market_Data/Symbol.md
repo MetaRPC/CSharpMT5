@@ -85,6 +85,83 @@ sh      # expands to: mt5 symbol show -p demo -s EURUSD --timeout-ms 90000
 
 ---
 
-## Code Reference (to be filled by you) 🧩
+## Code Reference 🧩
 
-> Paste the exact `symbol show` handler from `Program.cs` here for 1:1 reference.
+```csharp
+var symShow = new Command("show", "Short card: Quote + Limits");
+symShow.AddAlias("sh");
+            symShow.SetHandler(async (string profile, string output, string? s, int timeoutMs) =>
+            {
+                Validators.EnsureProfile(profile);
+                var symbolName = Validators.EnsureSymbol(s ?? GetOptions().DefaultSymbol);
+                _selectedProfile = profile;
+
+                using (UseOpTimeout(timeoutMs))
+                using (_logger.BeginScope("Cmd:SYMBOL-SHOW Profile:{Profile}", profile))
+                using (_logger.BeginScope("Symbol:{Symbol}", symbolName))
+                {
+                    try
+                    {
+                        await ConnectAsync();
+
+                        // Ensure visible
+                        try
+                        {
+                            using var visCts = StartOpCts();
+                            await _mt5Account.EnsureSymbolVisibleAsync(
+                                symbolName, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
+                        }
+                        catch (Exception ex) when (ex is not OperationCanceledException)
+                        {
+                            _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
+                        }
+
+                        // Quote
+                        using var qCts = StartOpCts();
+                        var tick = await CallWithRetry(
+                            ct => _mt5Account.SymbolInfoTickAsync(symbolName, deadline: null, cancellationToken: ct),
+                            qCts.Token);
+
+                        // Limits
+                        using var lCts = StartOpCts();
+                        var (min, step, max) = await CallWithRetry(
+                            ct => _mt5Account.GetVolumeConstraintsAsync(symbolName, deadline: null, cancellationToken: ct),
+                            lCts.Token);
+
+                        if (IsJson(output))
+                        {
+                            var json = new
+                            {
+                                symbol = symbolName,
+                                quote = new { tick.Bid, tick.Ask, tick.Time },
+                                volume = new { min, step, max }
+                            };
+                            Console.WriteLine(ToJson(json));
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{symbolName}:");
+                            Console.WriteLine($"  Quote: Bid={tick.Bid} Ask={tick.Ask} Time={tick.Time}");
+                            Console.WriteLine($"  Volume: min={min} step={step} max={max}");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorPrinter.Print(_logger, ex, IsDetailed());
+                        Environment.ExitCode = 1;
+                    }
+                    finally
+                    {
+                        try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
+                    }
+                }
+            }, profileOpt, outputOpt, symbolOpt, timeoutOpt);
+            symShow.AddOption(profileOpt);
+            symShow.AddOption(symbolOpt);
+            symShow.AddOption(outputOpt);
+            symShow.AddOption(timeoutOpt);
+            symbol.AddCommand(symShow);
+
+            // register the group
+            root.AddCommand(symbol);
+```
