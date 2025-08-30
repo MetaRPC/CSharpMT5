@@ -10,9 +10,9 @@ Lists all **currently opened pending orders** and **opened position tickets** fo
 
 | Parameter         | Type   | Required | Description                                |
 | ----------------- | ------ | -------- | ------------------------------------------ |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.              |
-| `--output`, `-o`  | string | ❌        | Output format: `text` (default) or `json`. |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: `30000`).      |
+| `--profile`, `-p` | string | Yes        | Profile from `profiles.json`.              |
+| `--output`, `-o`  | string | No       | Output format: `text` (default) or `json`. |
+| `--timeout-ms`    | int    | No        | RPC timeout in ms (default: `30000`).      |
 
 ---
 
