@@ -59,7 +59,7 @@ tsh -t 123456
 
 ---
 
-## Code Reference (to be filled by you) 🧩
+## Code Reference 🧩
 
 ```csharp
 // --- Helper: search ticket across aggregated collections (positions, pendings, etc.)
