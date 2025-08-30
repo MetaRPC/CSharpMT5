@@ -2354,16 +2354,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Checks if a symbol with the specified name exists (standard or custom).
-    /// </summary>
-    /// <param name="symbol">The symbol name to check.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Information about symbol existence and type.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Checks if a symbol with the specified name exists (standard or custom).
+// symbol: The symbol name to check.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Information about symbol existence and type.
     public async Task<SymbolExistData> SymbolExistAsync(string symbol, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -2382,33 +2377,23 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Checks if a symbol with the specified name exists (standard or custom).
-    /// </summary>
-    /// <param name="symbol">The symbol name to check.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Information about symbol existence and type.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Checks if a symbol with the specified name exists (standard or custom).
+// symbol: The symbol name to check.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Information about symbol existence and type.
     public SymbolExistData SymbolExist(string symbol, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return SymbolExistAsync(symbol, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Returns the name of a symbol by index.
-    /// </summary>
-    /// <param name="index">Symbol index (starting at 0).</param>
-    /// <param name="selected">True to use only Market Watch symbols.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The symbol name at the specified index.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Returns the name of a symbol by index.
+// index: Symbol index (starting at 0).
+// selected: True to use only Market Watch symbols.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The symbol name at the specified index.
     public async Task<SymbolNameData> SymbolNameAsync(int index, bool selected, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -2427,34 +2412,24 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Returns the name of a symbol by index.
-    /// </summary>
-    /// <param name="index">Symbol index (starting at 0).</param>
-    /// <param name="selected">True to use only Market Watch symbols.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The symbol name at the specified index.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Returns the name of a symbol by index.
+// index: Symbol index (starting at 0).
+// selected: True to use only Market Watch symbols.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The symbol name at the specified index.
     public SymbolNameData SymbolName(int index, bool selected, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return SymbolNameAsync(index, selected, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Adds or removes a symbol from Market Watch.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="select">True to add, false to remove.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Success status of the operation.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Adds or removes a symbol from Market Watch.
+// symbol: Symbol name.
+// select: True to add, false to remove.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Success status of the operation.
     public async Task<SymbolSelectData> SymbolSelectAsync(string symbol, bool select, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -2473,34 +2448,27 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Adds or removes a symbol from Market Watch.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="select">True to add, false to remove.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Success status of the operation.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Adds or removes a symbol from Market Watch.
+// symbol: Symbol name.
+// select: True to add, false to remove.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Success status of the operation.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public SymbolSelectData SymbolSelect(string symbol, bool select, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return SymbolSelectAsync(symbol, select, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-
-    /// <summary>
-    /// Checks if the symbol's data is synchronized with the server.
-    /// </summary>
-    /// <param name="symbol">Symbol name to check.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>True if synchronized, false otherwise.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Checks if the symbol's data is synchronized with the server.
+// symbol: Symbol name to check.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: True if synchronized, false otherwise.
     public async Task<SymbolIsSynchronizedData> SymbolIsSynchronizedAsync(string symbol, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -2517,16 +2485,15 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
 
         return res.Data;
     }
-    /// <summary>
-    /// Checks if the symbol's data is synchronized with the server.
-    /// </summary>
-    /// <param name="symbol">Symbol name to check.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>True if synchronized, false otherwise.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Checks if the symbol's data is synchronized with the server.
+// symbol: Symbol name to check.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: True if synchronized, false otherwise.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public SymbolIsSynchronizedData SymbolIsSynchronized(string symbol, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return SymbolIsSynchronizedAsync(symbol, deadline, cancellationToken).GetAwaiter().GetResult();
