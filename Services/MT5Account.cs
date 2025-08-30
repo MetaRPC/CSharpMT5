@@ -2073,14 +2073,13 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Subscribes to all trade-related events: orders, deals, positions.
-    /// </summary>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Async stream of trade event data.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the stream fails.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the stream returns a known API error.</exception>
+// Subscribes to all trade-related events: orders, deals, positions.
+// cancellationToken: Optional cancellation token.
+// Returns: Async stream of trade event data.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the account is not connected.
+//   Grpc.Core.RpcException — thrown if the stream fails.
+//   ApiExceptionMT5 — thrown if the stream returns a known API error.
     public async IAsyncEnumerable<OnTradeData> OnTradeAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -2100,16 +2099,14 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Subscribes to real-time profit updates for open positions.
-    /// </summary>
-    /// <param name="intervalMs">Interval in milliseconds to poll server.</param>
-    /// <param name="ignoreEmpty">Skip frames with no change.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Async stream of profit updates.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the stream fails.</exception>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Subscribes to real-time profit updates for open positions.
+// intervalMs: Interval in milliseconds to poll server.
+// ignoreEmpty: Skip frames with no change.
+// cancellationToken: Optional cancellation token.
+// Returns: Async stream of profit updates.
+// Exceptions:
+//   ConnectExceptionMT5
+//   Grpc.Core.RpcException — thrown if the stream fails.
     public async IAsyncEnumerable<OnPositionProfitData> OnPositionProfitAsync(
     int intervalMs,
     bool ignoreEmpty = true,
@@ -2136,15 +2133,14 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Subscribes to updates of position and pending order ticket IDs.
-    /// </summary>
-    /// <param name="intervalMs">Polling interval in milliseconds.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Async stream of ticket ID snapshots.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the stream fails.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the stream returns a known API error.</exception>
+// Subscribes to updates of position and pending order ticket IDs.
+// intervalMs: Polling interval in milliseconds.
+// cancellationToken: Optional cancellation token.
+// Returns: Async stream of ticket ID snapshots.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the account is not connected.
+//   Grpc.Core.RpcException — thrown if the stream fails.
+//   ApiExceptionMT5 — thrown if the stream returns a known API error.
     public async IAsyncEnumerable<OnPositionsAndPendingOrdersTicketsData> OnPositionsAndPendingOrdersTicketsAsync(
     int intervalMs,
     [EnumeratorCancellation] CancellationToken cancellationToken = default)
@@ -2172,14 +2168,13 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Subscribes to real-time trade transaction events such as order creation, update, or execution.
-    /// </summary>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Async stream of trade transaction replies.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the account is not connected.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the stream fails.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the stream returns a known API error.</exception>
+// Subscribes to real-time trade transaction events such as order creation, update, or execution.
+// cancellationToken: Optional cancellation token.
+// Returns: Async stream of trade transaction replies.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the account is not connected.
+//   Grpc.Core.RpcException — thrown if the stream fails.
+//   ApiExceptionMT5 — thrown if the stream returns a known API error.
     public async IAsyncEnumerable<OnTradeTransactionData> OnTradeTransactionAsync(
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
@@ -2203,16 +2198,15 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Calculates the margin required for a planned trade operation.
-    /// </summary>
-    /// <param name="request">The request containing symbol, order type, volume, and price.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The required margin in account currency.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the client is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns a business error.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if gRPC fails to connect or respond.</exception>
+// Calculates the margin required for a planned trade operation.
+// request: The request containing symbol, order type, volume, and price.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The required margin in account currency.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the client is not connected.
+//   ApiExceptionMT5 — thrown if the server returns a business error.
+//   Grpc.Core.RpcException — thrown if gRPC fails to connect or respond.
     public async Task<OrderCalcMarginData> OrderCalcMarginAsync(
     OrderCalcMarginRequest request,
     DateTime? deadline = null,
@@ -2232,32 +2226,30 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Calculates the margin required for a planned trade operation.
-    /// </summary>
-    /// <param name="request">The request containing symbol, order type, volume, and price.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The required margin in account currency.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the client is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns a business error.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if gRPC fails to connect or respond.</exception>
+// Calculates the margin required for a planned trade operation.
+// request: The request containing symbol, order type, volume, and price.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The required margin in account currency.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the client is not connected.
+//   ApiExceptionMT5 — thrown if the server returns a business error.
+//   Grpc.Core.RpcException — thrown if gRPC fails to connect or respond.
     public OrderCalcMarginData OrderCalcMargin(OrderCalcMarginRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return OrderCalcMarginAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Checks whether a trade request can be successfully executed under current market conditions.
-    /// </summary>
-    /// <param name="request">The trade request to validate.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Result of the trade request check, including margin and balance details.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Checks whether a trade request can be successfully executed under current market conditions.
+// request: The trade request to validate.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Result of the trade request check, including margin and balance details.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public async Task<OrderCheckData> OrderCheckAsync(
     OrderCheckRequest request,
     DateTime? deadline = null,
@@ -2277,31 +2269,29 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Checks whether a trade request can be successfully executed under current market conditions.
-    /// </summary>
-    /// <param name="request">The trade request to validate.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Result of the trade request check, including margin and balance details.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Checks whether a trade request can be successfully executed under current market conditions.
+// request: The trade request to validate.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Result of the trade request check, including margin and balance details.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public OrderCheckData OrderCheck(OrderCheckRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return OrderCheckAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Returns the total number of open positions on the current account.
-    /// </summary>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The total number of open positions.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Returns the total number of open positions on the current account.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The total number of open positions.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public async Task<PositionsTotalData> PositionsTotalAsync(
     DateTime? deadline = null,
     CancellationToken cancellationToken = default)
@@ -2320,31 +2310,21 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Returns the total number of open positions on the current account.
-    /// </summary>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The total number of open positions.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Returns the total number of open positions on the current account.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The total number of open positions.
     public PositionsTotalData PositionsTotal(DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return PositionsTotalAsync(deadline, cancellationToken).GetAwaiter().GetResult();
     }
 
 
-    /// <summary>
-    /// Returns the total number of symbols available on the platform.
-    /// </summary>
-    /// <param name="selectedOnly">True to count only Market Watch symbols, false to count all.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Total symbol count data.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Returns the total number of symbols available on the platform.
+// selectedOnly: True to count only Market Watch symbols, false to count all.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Total symbol count data.
     public async Task<SymbolsTotalData> SymbolsTotalAsync(bool selectedOnly, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         if (Id == default)
@@ -2363,16 +2343,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    // <summary>
-    /// Returns the total number of symbols available on the platform.
-    /// </summary>
-    /// <param name="selectedOnly">True to count only Market Watch symbols, false to count all.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>Total symbol count data.</returns>
-    /// <exception cref="ConnectException"/>
-    /// <exception cref="ApiException"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Returns the total number of symbols available on the platform.
+// selectedOnly: True to count only Market Watch symbols, false to count all.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: Total symbol count data.
     public SymbolsTotalData SymbolsTotal(bool selectedOnly, DateTime? deadline = null, CancellationToken cancellationToken = default)
     {
         return SymbolsTotalAsync(selectedOnly, deadline, cancellationToken).GetAwaiter().GetResult();
