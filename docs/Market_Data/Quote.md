@@ -66,7 +66,7 @@ q -s XAUUSD    # overrides default symbol
 
 ---
 
-## Code Reference (exact) 🧷
+## Code Reference 🧷
 
 ```csharp
 var quoteCmd = new Command("quote", "Get a snapshot price (Bid/Ask/Time)");
