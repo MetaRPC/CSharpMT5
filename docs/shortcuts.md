@@ -7,16 +7,16 @@
 
 ## Global options (most used)
 
-| Option                  | Meaning                                           | Notes                                       |   |
-| ----------------------- | ------------------------------------------------- | ------------------------------------------- | - |
-| `-p, --profile <name>`  | Profile from `profiles.json` (default: `default`) |                                             |   |
-| `-s, --symbol <SYM>`    | Instrument/ticker, e.g., `EURUSD`                 |                                             |   |
-| `-v, --volume <lots>`   | Order volume in lots                              |                                             |   |
-| `--deviation <pts>`     | Max slippage in points                            |                                             |   |
-| \`-o, --output text     | json\`                                            | Output format (if supported by the command) |   |
-| `--timeout-ms <ms>`     | Per-RPC timeout (default `30000`)                 |                                             |   |
-| `--dry-run`             | Don’t send anything, just show what would be done |                                             |   |
-| `--verbose` / `--trace` | Extended logging                                  |                                             |   |
+| Option                  | Meaning                                           | 
+| ----------------------- | ------------------------------------------------- | 
+| `-p, --profile <name>`  | Profile from `profiles.json` (default: `default`) |                                       
+| `-s, --symbol <SYM>`    | Instrument/ticker, e.g., `EURUSD`                 |                                      
+| `-v, --volume <lots>`   | Order volume in lots                              | 
+| `--deviation <pts>`     | Max slippage in points                            | 
+| \`-o, --output text     | json\`                                            | 
+| `--timeout-ms <ms>`     | Per-RPC timeout (default `30000`)                 | 
+| `--dry-run`             | Don’t send anything, just show what would be done |                                            
+| `--verbose` / `--trace` | Extended logging                                  |                                             
 
 **Tip:** keep passwords out of files — set an environment variable `MT5_PASSWORD`.
 
