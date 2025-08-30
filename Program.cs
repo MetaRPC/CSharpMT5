@@ -953,47 +953,129 @@ profilesCmd.AddCommand(showCmd);
             //  - timeoutMs applies to each RPC (per-op), not the whole handler duration.
             //  - Consider adding more fields to text output (Equity, Margin, FreeMargin, Currency) if needed.
             //  - Any RpcException with transient code is retried by CallWithRetry; others bubble to catch.
-            var info = new Command("info", "Show account summary");
-    info.AddAlias("i");
+var info = new Command("info", "Show account summary");
 
-    info.AddOption(profileOpt);
-    info.AddOption(outputOpt);
-    info.SetHandler(async (string profile, string output, int timeoutMs) =>
+// Alias + options
+info.AddAlias("i");
+info.AddOption(profileOpt);
+info.AddOption(outputOpt);
+info.AddOption(timeoutOpt);
+
+// Single handler, single print point
+info.SetHandler(async (string profile, string output, int timeoutMs) =>
+{
+    // 1) Validate + select profile
+    Validators.EnsureProfile(profile);
+    _selectedProfile = profile;
+
+    // 2) Bound the whole operation with a timeout + logging scopes
+    using (UseOpTimeout(timeoutMs))
+    using (_logger.BeginScope("Cmd:INFO Profile:{Profile}", profile))
     {
-        Validators.EnsureProfile(profile);
-        _selectedProfile = profile;
-
-        using (UseOpTimeout(timeoutMs))
-        using (_logger.BeginScope("Cmd:INFO Profile:{Profile}", profile))
+        try
         {
+            // 3) Connect once
+            await ConnectAsync();
+
+            // 4) Summary with retry (no printing inside the retry!)
+            using var opCts = StartOpCts();
+            var summary = await CallWithRetry(
+                ct => _mt5Account.AccountSummaryAsync(deadline: null, cancellationToken: ct),
+                opCts.Token);
+
+            // 5) Extra metrics via AccountInformation
+            var ct = opCts.Token;
+            double margin = 0, freeMargin = 0;
+
             try
             {
-                await ConnectAsync();
+                var marginTask     = _mt5Account.AccountInfoDoubleAsync(AccountInfoDoublePropertyType.AccountMargin,     null, ct);
+                var freeMarginTask = _mt5Account.AccountInfoDoubleAsync(AccountInfoDoublePropertyType.AccountMarginFree, null, ct);
+                await Task.WhenAll(marginTask, freeMarginTask);
+                margin     = await marginTask;
+                freeMargin = await freeMarginTask;
+            }
+            catch
+            {
+                // keep zeros; we will apply a fallback below
+            }
 
-                using var opCts = StartOpCts();
-                var summary = await CallWithRetry(
-                    ct => _mt5Account.AccountSummaryAsync(deadline: null, cancellationToken: ct),
-                    opCts.Token);
+            // Fallback: if server returns zero FreeMargin, compute from Equity - Margin
+            var freeMarginFixed = (freeMargin <= 0 && summary.AccountEquity > 0)
+                ? summary.AccountEquity - margin
+                : freeMargin;
 
-                if (IsJson(output)) Console.WriteLine(ToJson(summary));
-                else
+            // 6) Single printing point
+            if (IsJson(output))
+            {
+                var payload = new
                 {
-                    _logger.LogInformation("=== Account Info ===");
-                    _logger.LogInformation("Balance: {Balance}", summary.AccountBalance);
+                    summary.AccountLogin,
+                    summary.AccountBalance,
+                    summary.AccountEquity,
+                    summary.AccountUserName,
+                    summary.AccountLeverage,
+                    summary.AccountTradeMode,
+                    summary.AccountCompanyName,
+                    summary.AccountCurrency,
+                    summary.ServerTime,
+                    summary.UtcTimezoneServerTimeShiftMinutes,
+                    summary.AccountCredit,
+                    // extras:
+                    Margin     = margin,
+                    FreeMargin = freeMarginFixed
+                };
+
+                Console.WriteLine(JsonSerializer.Serialize(payload));
+            }
+            else
+            {
+                _logger.LogInformation("=== Account Info ===");
+
+                void Print<T>(string label, T v) =>
+                    _logger.LogInformation("{Label}: {Value}", label, v);
+
+                // summary fields
+                Print("Login",       summary.AccountLogin);
+                Print("UserName",    summary.AccountUserName);
+                Print("Currency",    summary.AccountCurrency);
+                Print("Balance",     summary.AccountBalance);
+                Print("Equity",      summary.AccountEquity);
+                Print("Leverage",    summary.AccountLeverage);
+                Print("TradeMode",   summary.AccountTradeMode);
+                Print("Company",     summary.AccountCompanyName);
+
+                // extras (with fallback applied)
+                Print("Margin",      margin);
+                Print("FreeMargin",  freeMarginFixed);
+
+                // optional: server time
+                try
+                {
+                    var dt = summary.ServerTime?.ToDateTime();
+                    if (dt != null) Print("ServerTime (UTC)", dt.Value.ToUniversalTime().ToString("u"));
+                    Print("UTC Shift (min)", summary.UtcTimezoneServerTimeShiftMinutes);
                 }
-            }
-            catch (Exception ex)
-            {
-                ErrorPrinter.Print(_logger, ex, IsDetailed());
-                Environment.ExitCode = 1;
-            }
-            finally
-            {
-                try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
+                catch { /* ignore */ }
             }
         }
-    }, profileOpt, outputOpt, timeoutOpt);
-    root.AddCommand(info);
+        catch (Exception ex)
+        {
+            // 7) Unified error path
+            ErrorPrinter.Print(_logger, ex, IsDetailed());
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            // 8) Always disconnect
+            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
+        }
+    }
+},
+// Bind options to handler parameters (order matters)
+profileOpt, outputOpt, timeoutOpt);
+
+root.AddCommand(info);
 
 
             //=====================================================
@@ -1010,15 +1092,17 @@ profilesCmd.AddCommand(showCmd);
             // - FirstTickAsync depends on stream delivering at least one tick; StartOpCts() timeout prevents hanging.
             // - Visibility check failure is non-fatal by design; you still attempt to read a tick.
             // - Always disconnects in finally; errors go through ErrorPrinter and set ExitCode=1.
-            var quoteCmd = new Command("quote", "Get a snapshot price (Bid/Ask/Time)");
+var quoteCmd = new Command("quote", "Get a snapshot price (Bid/Ask/Time)");
 quoteCmd.AddAlias("q");
 
 quoteCmd.AddOption(profileOpt);
 quoteCmd.AddOption(symbolOpt);
 quoteCmd.AddOption(outputOpt);
+quoteCmd.AddOption(timeoutOpt);
 
 quoteCmd.SetHandler(async (string profile, string? symbol, string output, int timeoutMs) =>
 {
+    // Validate + select profile
     Validators.EnsureProfile(profile);
     var s = Validators.EnsureSymbol(symbol ?? GetOptions().DefaultSymbol);
     _selectedProfile = profile;
@@ -1031,7 +1115,7 @@ quoteCmd.SetHandler(async (string profile, string? symbol, string output, int ti
         {
             await ConnectAsync();
 
-            // best-effort: ensure visibility
+            // Best-effort: ensure symbol visible
             try
             {
                 using var visCts = StartOpCts();
@@ -1043,11 +1127,41 @@ quoteCmd.SetHandler(async (string profile, string? symbol, string output, int ti
                 _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
             }
 
+            // Fetch first tick with retry
             using var opCts = StartOpCts();
             var snap = await CallWithRetry(ct => FirstTickAsync(s, ct), opCts.Token);
 
-            if (IsJson(output)) Console.WriteLine(ToJson(snap));
-            else Console.WriteLine($"{snap.Symbol}  bid={snap.Bid}  ask={snap.Ask}  time={snap.TimeUtc:O}");
+// Derivatives & staleness (handle nullable TimeUtc)
+var mid     = (snap.Bid + snap.Ask) / 2.0;
+var spread  = snap.Ask - snap.Bid;
+double ageMs = snap.TimeUtc.HasValue
+    ? Math.Abs((DateTime.UtcNow - snap.TimeUtc.Value).TotalMilliseconds)
+    : double.NaN;
+var timeStr = snap.TimeUtc.HasValue ? snap.TimeUtc.Value.ToString("O") : "null";
+
+if (IsJson(output))
+{
+    // Single print point (JSON)
+    var payload = new
+    {
+        snap.Symbol,
+        snap.Bid,
+        snap.Ask,
+        snap.TimeUtc,    // nullable DateTime?
+        Mid    = mid,
+        Spread = spread,
+        AgeMs  = ageMs
+    };
+    Console.WriteLine(JsonSerializer.Serialize(payload));
+}
+else
+{
+    // Single print point (text)
+    var stale = (!double.IsNaN(ageMs) && ageMs > 5000) ? "  [STALE >5s]" : "";
+    var ageStr = double.IsNaN(ageMs) ? "NA" : ((int)ageMs).ToString();
+    Console.WriteLine($"{snap.Symbol}  bid={snap.Bid}  ask={snap.Ask}  mid={mid}  spr={spread}  ageMs={ageStr}  time={timeStr}{stale}");
+}
+
         }
         catch (Exception ex)
         {
@@ -1064,10 +1178,11 @@ quoteCmd.SetHandler(async (string profile, string? symbol, string output, int ti
 root.AddCommand(quoteCmd);
 
 
+
             //=====================================================
             //==--------------------- buy -----------------------==
             //=====================================================
-    
+
 
             // buy command — market BUY with optional SL/TP and slippage.
             // Flow:
@@ -1086,72 +1201,116 @@ root.AddCommand(quoteCmd);
             //  - SL/TP are absolute prices; server will enforce Stops/Freeze levels and distances.
             //  - Visibility check failures are logged but do not stop the order (idempotent on server).
             //  - Errors go through ErrorPrinter and set ExitCode=1.
-            var buy = new Command("buy", "Market buy");
-    buy.AddAlias("b");
 
-    buy.AddOption(profileOpt);
-    buy.AddOption(symbolOpt);
-    buy.AddOption(volumeOpt);
-    buy.AddOption(slOpt);
-    buy.AddOption(tpOpt);
-    buy.AddOption(devOpt);
-            buy.SetHandler(async (string profile, string? symbol, double volume, double? sl, double? tp, int deviation, int timeoutMs, bool dryRun) =>
+        var buy = new Command("buy", "Market buy");
+
+            buy.AddAlias("b");
+            buy.AddOption(profileOpt);
+            buy.AddOption(symbolOpt);
+            buy.AddOption(volumeOpt);
+            buy.AddOption(slOpt);
+            buy.AddOption(tpOpt);
+            buy.AddOption(devOpt);
+            buy.AddOption(outputOpt);
+            buy.AddOption(timeoutOpt);
+            buy.AddOption(dryRunOpt);
+
+
+buy.SetHandler(async (InvocationContext ctx) =>
+{
+    var profile   = ctx.ParseResult.GetValueForOption(profileOpt)!;
+    var symbolV   = ctx.ParseResult.GetValueForOption(symbolOpt);
+    var volume    = ctx.ParseResult.GetValueForOption(volumeOpt);
+    var sl        = ctx.ParseResult.GetValueForOption(slOpt);
+    var tp        = ctx.ParseResult.GetValueForOption(tpOpt);
+    var deviation = ctx.ParseResult.GetValueForOption(devOpt);
+    var output    = ctx.ParseResult.GetValueForOption(outputOpt) ?? "text";
+    var timeoutMs = ctx.ParseResult.GetValueForOption(timeoutOpt);
+    var dryRun    = ctx.ParseResult.GetValueForOption(dryRunOpt);
+
+    Validators.EnsureProfile(profile);
+    Validators.EnsureVolume(volume);
+    Validators.EnsureDeviation(deviation);
+
+    var s = Validators.EnsureSymbol(symbolV ?? GetOptions().DefaultSymbol);
+    _selectedProfile = profile;
+
+    using (UseOpTimeout(timeoutMs))
+    using (_logger.BeginScope("Cmd:BUY Profile:{Profile}", profile))
+    using (_logger.BeginScope("Symbol:{Symbol}", s))
+    using (_logger.BeginScope("OrderParams Vol:{Vol} Dev:{Dev} SL:{SL} TP:{TP}", volume, deviation, sl, tp))
+    {
+        if (dryRun)
         {
-            Validators.EnsureProfile(profile);
-            Validators.EnsureVolume(volume);
-            Validators.EnsureDeviation(deviation);
-
-            var s = Validators.EnsureSymbol(symbol ?? GetOptions().DefaultSymbol);
-            _selectedProfile = profile;
-
-            using (UseOpTimeout(timeoutMs))
-            using (_logger.BeginScope("Cmd:BUY Profile:{Profile}", profile))
-            using (_logger.BeginScope("Symbol:{Symbol}", s))
-            using (_logger.BeginScope("OrderParams Vol:{Vol} Dev:{Dev} SL:{SL} TP:{TP}", volume, deviation, sl, tp))
+            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
             {
-                if (dryRun)
-                {
-                    Console.WriteLine($"[DRY-RUN] BUY {s} vol={volume} dev={deviation} SL={sl} TP={tp}");
-                    return;
-                }
-
-                try
-                {
-                    await ConnectAsync();
-
-                    try
-                    {
-                        using var visCts = StartOpCts();
-                        await _mt5Account.EnsureSymbolVisibleAsync(
-                            s, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
-                    }
-                    catch (Exception ex) when (ex is not OperationCanceledException)
-                    {
-                        _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
-                    }
-
-                    using var opCts = StartOpCts();
-                    var ticket = await CallWithRetry(
-                        ct => _mt5Account.SendMarketOrderAsync(
-                            symbol: s, isBuy: true, volume: volume, deviation: deviation,
-                            stopLoss: sl, takeProfit: tp, deadline: null, cancellationToken: ct),
-                        opCts.Token);
-
-                    _logger.LogInformation("BUY done: ticket={Ticket}", ticket);
-                }
-                catch (Exception ex)
-                {
-                    ErrorPrinter.Print(_logger, ex, IsDetailed());
-                    Environment.ExitCode = 1;
-                }
-                finally
-                {
-                    try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-                }
+                var payload = new { DryRun = true, Side = "BUY", Symbol = s, Volume = volume, Deviation = deviation, SL = sl, TP = tp };
+                Console.WriteLine(JsonSerializer.Serialize(payload));
             }
-        }, profileOpt, symbolOpt, volumeOpt, slOpt, tpOpt, devOpt, timeoutOpt, dryRunOpt);
+            else
+            {
+                Console.WriteLine($"[DRY-RUN] BUY {s} vol={volume} dev={deviation} SL={sl} TP={tp}");
+            }
+            return;
+        }
 
-        root.AddCommand(buy);
+        try
+        {
+            await ConnectAsync();
+
+            // Ensure symbol visible (best-effort)
+            try
+            {
+                using var visCts = StartOpCts();
+                await _mt5Account.EnsureSymbolVisibleAsync(s, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
+            }
+            catch (Exception ex) when (ex is not OperationCanceledException)
+            {
+                _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
+            }
+
+            using var opCts = StartOpCts();
+            // --- preflight for BUY ---
+            var q = await CallWithRetry(ct => FirstTickAsync(s, ct), opCts.Token);
+            var bid = q.Bid; var ask = q.Ask;
+
+            int? digits = null;             // TODO: fetch via MarketInfo if 
+            double? stopLevelPoints = null; 
+            double? point = null;           
+
+            PreflightStops(isBuy: true, bid: bid, ask: ask, sl: ref sl, tp: ref tp,
+                           digits: digits, stopLevelPoints: stopLevelPoints, point: point);
+
+            // Send order with retry
+            var ticket = await CallWithRetry(
+                ct => _mt5Account.SendMarketOrderAsync(
+                    symbol: s, isBuy: true, volume: volume, deviation: deviation,
+                    stopLoss: sl, takeProfit: tp, deadline: null, cancellationToken: ct),
+                opCts.Token);
+
+            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
+            {
+                var payload = new { Side = "BUY", Symbol = s, Volume = volume, Deviation = deviation, SL = sl, TP = tp, Ticket = ticket };
+                Console.WriteLine(JsonSerializer.Serialize(payload));
+            }
+            else
+            {
+                _logger.LogInformation("BUY done: ticket={Ticket}", ticket);
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorPrinter.Print(_logger, ex, IsDetailed());
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
+        }
+    }
+});
+
+root.AddCommand(buy);
 
 
             //======================================
@@ -1430,71 +1589,115 @@ root.AddCommand(trailStop);
             // - UseOpTimeout + StartOpCts control per-RPC timeout; CallWithRetry handles transient gRPC errors.
             // - If you want profile-aware defaults, use GetEffectiveOptions(profile).DefaultSymbol.
             var sell = new Command("sell", "Market sell");
-sell.AddAlias("s");
 
-    sell.AddOption(profileOpt);
-    sell.AddOption(symbolOpt);
-    sell.AddOption(volumeOpt);
-    sell.AddOption(slOpt);
-    sell.AddOption(tpOpt);
-    sell.AddOption(devOpt);
-            sell.SetHandler(async (string profile, string? symbol, double volume, double? sl, double? tp, int deviation, int timeoutMs, bool dryRun) =>
+            sell.AddAlias("s");
+
+            sell.AddOption(profileOpt);
+            sell.AddOption(symbolOpt);
+            sell.AddOption(volumeOpt);
+            sell.AddOption(slOpt);
+            sell.AddOption(tpOpt);
+            sell.AddOption(devOpt);
+            sell.AddOption(outputOpt);
+            sell.AddOption(timeoutOpt);
+            sell.AddOption(dryRunOpt);
+
+
+sell.SetHandler(async (InvocationContext ctx) =>
+{
+    var profile   = ctx.ParseResult.GetValueForOption(profileOpt)!;
+    var symbolV   = ctx.ParseResult.GetValueForOption(symbolOpt);
+    var volume    = ctx.ParseResult.GetValueForOption(volumeOpt);
+    var sl        = ctx.ParseResult.GetValueForOption(slOpt);
+    var tp        = ctx.ParseResult.GetValueForOption(tpOpt);
+    var deviation = ctx.ParseResult.GetValueForOption(devOpt);
+    var output    = ctx.ParseResult.GetValueForOption(outputOpt) ?? "text";
+    var timeoutMs = ctx.ParseResult.GetValueForOption(timeoutOpt);
+    var dryRun    = ctx.ParseResult.GetValueForOption(dryRunOpt);
+
+    Validators.EnsureProfile(profile);
+    Validators.EnsureVolume(volume);
+    Validators.EnsureDeviation(deviation);
+
+    var s = Validators.EnsureSymbol(symbolV ?? GetOptions().DefaultSymbol);
+    _selectedProfile = profile;
+
+    using (UseOpTimeout(timeoutMs))
+    using (_logger.BeginScope("Cmd:SELL Profile:{Profile}", profile))
+    using (_logger.BeginScope("Symbol:{Symbol}", s))
+    using (_logger.BeginScope("OrderParams Vol:{Vol} Dev:{Dev} SL:{SL} TP:{TP}", volume, deviation, sl, tp))
+    {
+        if (dryRun)
         {
-            Validators.EnsureProfile(profile);
-            Validators.EnsureVolume(volume);
-            Validators.EnsureDeviation(deviation);
-
-            var s = Validators.EnsureSymbol(symbol ?? GetOptions().DefaultSymbol);
-            _selectedProfile = profile;
-
-            using (UseOpTimeout(timeoutMs))
-            using (_logger.BeginScope("Cmd:SELL Profile:{Profile}", profile))
-            using (_logger.BeginScope("Symbol:{Symbol}", s))
-            using (_logger.BeginScope("OrderParams Vol:{Vol} Dev:{Dev} SL:{SL} TP:{TP}", volume, deviation, sl, tp))
+            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
             {
-                if (dryRun)
-                {
-                    Console.WriteLine($"[DRY-RUN] SELL {s} vol={volume} dev={deviation} SL={sl} TP={tp}");
-                    return;
-                }
-
-                try
-                {
-                    await ConnectAsync();
-
-                    try
-                    {
-                        using var visCts = StartOpCts();
-                        await _mt5Account.EnsureSymbolVisibleAsync(
-                            s, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
-                    }
-                    catch (Exception ex) when (ex is not OperationCanceledException)
-                    {
-                        _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
-                    }
-
-                    using var opCts = StartOpCts();
-                    var ticket = await CallWithRetry(
-                        ct => _mt5Account.SendMarketOrderAsync(
-                            symbol: s, isBuy: false, volume: volume, deviation: deviation,
-                            stopLoss: sl, takeProfit: tp, deadline: null, cancellationToken: ct),
-                        opCts.Token);
-
-                    _logger.LogInformation("SELL done: ticket={Ticket}", ticket);
-                }
-                catch (Exception ex)
-                {
-                    ErrorPrinter.Print(_logger, ex, IsDetailed());
-                    Environment.ExitCode = 1;
-                }
-                finally
-                {
-                    try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-                }
+                var payload = new { DryRun = true, Side = "SELL", Symbol = s, Volume = volume, Deviation = deviation, SL = sl, TP = tp };
+                Console.WriteLine(JsonSerializer.Serialize(payload));
             }
-        }, profileOpt, symbolOpt, volumeOpt, slOpt, tpOpt, devOpt, timeoutOpt, dryRunOpt);
+            else
+            {
+                Console.WriteLine($"[DRY-RUN] SELL {s} vol={volume} dev={deviation} SL={sl} TP={tp}");
+            }
+            return;
+        }
 
-          root.AddCommand(sell);
+        try
+        {
+            await ConnectAsync();
+
+            // Ensure symbol visible (best-effort)
+            try
+            {
+                using var visCts = StartOpCts();
+                await _mt5Account.EnsureSymbolVisibleAsync(s, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
+            }
+            catch (Exception ex) when (ex is not OperationCanceledException)
+            {
+                _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
+            }
+
+            using var opCts = StartOpCts();
+            // --- preflight for SELL ---
+            var q = await CallWithRetry(ct => FirstTickAsync(s, ct), opCts.Token);
+            var bid = q.Bid; var ask = q.Ask;
+
+            int? digits = null;             
+            double? stopLevelPoints = null; 
+            double? point = null;           // TODO: fetch via MarketInfo if 
+
+            PreflightStops(isBuy: false, bid: bid, ask: ask, sl: ref sl, tp: ref tp,
+                           digits: digits, stopLevelPoints: stopLevelPoints, point: point);
+
+            // Send order with retry
+            var ticket = await CallWithRetry(
+                ct => _mt5Account.SendMarketOrderAsync(
+                    symbol: s, isBuy: false, volume: volume, deviation: deviation,
+                    stopLoss: sl, takeProfit: tp, deadline: null, cancellationToken: ct),
+                opCts.Token);
+
+            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
+            {
+                var payload = new { Side = "SELL", Symbol = s, Volume = volume, Deviation = deviation, SL = sl, TP = tp, Ticket = ticket };
+                Console.WriteLine(JsonSerializer.Serialize(payload));
+            }
+            else
+            {
+                _logger.LogInformation("SELL done: ticket={Ticket}", ticket);
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorPrinter.Print(_logger, ex, IsDetailed());
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
+        }
+    }
+});
+
+root.AddCommand(sell);
 
 
             //====================================
@@ -3604,7 +3807,7 @@ var modSymbolOpt = new Option<string?>(
     description: "Symbol (optional; used to ensure visibility if needed)");
 
 modify.AddOption(profileOpt);
-modify.AddOption(modTicketOpt);
+modify.AddOption(modTicketOpt); 
 modify.AddOption(modSlOpt);
 modify.AddOption(modTpOpt);
 modify.AddOption(modSymbolOpt);
@@ -4724,14 +4927,14 @@ root.AddCommand(histExport);
             || _mt5Account.Password != password
             || !string.Equals(_currentGrpc, grpc, StringComparison.OrdinalIgnoreCase))
         {
-            // ✅ ПЕРЕСОЗДАЁМ КЛИЕНТ С ЛОГГЕРОМ ЗДЕСЬ
+            
             _mt5Account = new MT5Account(options.AccountId, password, grpc, id: default, logger: _accLogger);
             _currentGrpc = grpc;
         }
 
         using (_logger.BeginScope("Grpc:{Grpc}", grpc ?? "(default)"))
         {
-            // CTS объявляем внутри фигурных скобок
+            
             using var connectCts = new CancellationTokenSource(_opTimeoutOverride ?? _rpcTimeout);
 
             var serverName = options.ServerName;
@@ -4748,7 +4951,7 @@ root.AddCommand(histExport);
             }
             else
             {
-                // host должен быть non-null
+                
                 string host = options.Host
                     ?? throw new InvalidOperationException(
                         "Neither ServerName nor Host is set for the selected profile. Set 'ServerName' or 'Host'+'Port' in profiles.json.");
@@ -4766,6 +4969,62 @@ root.AddCommand(histExport);
         }
 
         _logger.LogInformation("Connected. AccountId={AccountId}", options.AccountId);
+    }
+}
+
+// --- Preflight helper: validate & normalize SL/TP vs current price ---
+static void PreflightStops(
+    bool isBuy,
+    double bid,
+    double ask,
+    ref double? sl,
+    ref double? tp,
+    int? digits = null,          // e.g. 5 for EURUSD; if null -> no rounding
+    double? stopLevelPoints = null, // broker stop level in points; if null -> skip check
+    double? point = null)           // point size (e.g. 0.00001); used only if stopLevelPoints given
+{
+    // 1) Business rules: relative to current prices
+    if (isBuy)
+    {
+        if (sl.HasValue && sl.Value >= bid)
+            throw new ArgumentException($"Invalid SL for BUY: must be < Bid (Bid={bid}).");
+        if (tp.HasValue && tp.Value <= ask)
+            throw new ArgumentException($"Invalid TP for BUY: must be > Ask (Ask={ask}).");
+    }
+    else
+    {
+        if (sl.HasValue && sl.Value <= ask)
+            throw new ArgumentException($"Invalid SL for SELL: must be > Ask (Ask={ask}).");
+        if (tp.HasValue && tp.Value >= bid)
+            throw new ArgumentException($"Invalid TP for SELL: must be < Bid (Bid={bid}).");
+    }
+
+    // 2) Broker StopLevel (min distance from price), if provided
+    if (stopLevelPoints.HasValue && point.HasValue)
+    {
+        var minDist = stopLevelPoints.Value * point.Value;
+        if (isBuy)
+        {
+            if (sl.HasValue && (bid - sl.Value) < minDist)
+                throw new ArgumentException($"SL too close for BUY: min distance {minDist}");
+            if (tp.HasValue && (tp.Value - ask) < minDist)
+                throw new ArgumentException($"TP too close for BUY: min distance {minDist}");
+        }
+        else
+        {
+            if (sl.HasValue && (sl.Value - ask) < minDist)
+                throw new ArgumentException($"SL too close for SELL: min distance {minDist}");
+            if (tp.HasValue && (bid - tp.Value) < minDist)
+                throw new ArgumentException($"TP too close for SELL: min distance {minDist}");
+        }
+    }
+
+    // 3) Normalize to symbol precision (digits), if provided
+    if (digits.HasValue)
+    {
+        double round(double v) => Math.Round(v, digits.Value, MidpointRounding.AwayFromZero);
+        if (sl.HasValue) sl = round(sl.Value);
+        if (tp.HasValue) tp = round(tp.Value);
     }
 }
 

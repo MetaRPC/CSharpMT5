@@ -506,6 +506,7 @@ private readonly ILogger<MT5Account>? _logger;
     private MarketInfo.MarketInfoClient Mkt => Require(MarketInfoClient, nameof(MarketInfoClient));
     private TradeFunctions.TradeFunctionsClient TF => Require(TradeFunctionsClient, nameof(TradeFunctionsClient));
     private AccountInformation.AccountInformationClient AccInfo => Require(AccountInformationClient, nameof(AccountInformationClient));
+    
 
 
     /// <summary>

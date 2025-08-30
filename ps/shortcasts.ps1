@@ -1,23 +1,23 @@
 # ===== shortcasts.ps1 =====
-# Короткие ярлыки поверх "dotnet run -- ..." для MetaRPC.CSharpMT5
+# Short labels on top "dotnet run -- ..."
 
-# --- дефолты для текущей сессии ---
-$script:PF  = 'demo'       # профиль по умолчанию
-$script:SYM = 'GBPUSD'     # символ по умолчанию
-$script:TO  = 90000        # timeout-ms по умолчанию
+# --- defaults for the current session ---
+$script:PF  = 'demo'       # default profile
+$script:SYM = 'GBPUSD'     # the default character
+$script:TO = 90000         # timeout-ms by default
 $ci = [System.Globalization.CultureInfo]::InvariantCulture
 
 function use-pf  { param([string]$p) $script:PF=$p;  Write-Host "Default profile: $p" }
 function use-sym { param([string]$s) $script:SYM=$s; Write-Host "Default symbol:  $s" }
 function use-to  { param([int]$t)    $script:TO=$t;  Write-Host "Default timeout: $t ms" }
 
-# Базовый раннер ("dotnet run -- ...")
+# Basic Runner ("dotnet run -- ...")
 function mt5 {
   param([Parameter(ValueFromRemainingArguments=$true)][string[]]$Args)
   dotnet run -- @Args
 }
 
-# ========= БАЗОВЫЕ =========
+# ========= BASIC =========
 function info { param([string]$p=$PF,[int]$t=$TO) mt5 info -p $p --timeout-ms $t }
 function positions { param([string]$p=$PF,[int]$t=$TO) mt5 positions -p $p --timeout-ms $t }
 Set-Alias pos positions
@@ -55,7 +55,7 @@ function s {
 }
 
 # ========= CLOSE / CANCEL =========
-function c {  # close by ticket (опц. volume)
+function c {  # close by ticket (volume)
   param([ulong]$t,[Nullable[Double]]$v,[string]$s,$p=$PF,[int]$to=$TO)
   $args=@('close','-p',$p,'-t',$t,'--timeout-ms',$to)
   if ($s) { $args += @('-s',$s) }
@@ -153,7 +153,7 @@ function be { # breakeven
 # ========= PENDING ORDERS =========
 function pdls { param([string]$p=$PF,[int]$to=$TO) mt5 pending list -p $p --timeout-ms $to }
 
-function pm { # pending.modify (универсальный)
+function pm { # pending.modify (universal)
   param(
     [ulong]$t,[string]$type,[Nullable[Double]]$price,[Nullable[Double]]$stop,[Nullable[Double]]$limit,
     [Nullable[Double]]$sl,[Nullable[Double]]$tp,[string]$tif,[Nullable[DateTime]]$expire,
@@ -192,4 +192,4 @@ function lc {
 }
 function ping { param([string]$p=$PF,[int]$t=$TO,[ValidateSet('text','json')][string]$o='text') mt5 health -p $p -o $o --timeout-ms $t }
 function st   { param([int]$sec=10,[string]$s=$SYM,[string]$p=$PF,[int]$t=$TO) mt5 stream -p $p --seconds $sec -s $s --timeout-ms $t }
-# ====== конец ======
+# ====== end ======
