@@ -71,7 +71,7 @@ pdls     # expands to: mt5 pending list -p demo --timeout-ms 90000
 
 ---
 
-## Code Reference (to be filled by you) 🧩
+## Code Reference 🧩
 
 ```csharp
 var pending = new Command("pending", "Pending orders utilities");
