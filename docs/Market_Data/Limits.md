@@ -70,7 +70,7 @@ limits -s EURUSD
 
 ---
 
-## Code Reference (to be filled by you) 🧩
+## Code Reference 🧩
 
 ```csharp
 var symLimits = new Command("limits", "Show min/step/max volume for the symbol");
