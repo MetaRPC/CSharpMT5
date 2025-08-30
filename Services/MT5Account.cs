@@ -14,113 +14,60 @@ using Microsoft.Extensions.Logging;
 
 namespace MetaRPC.CSharpMT5;
 
-
-/// <summary>
-/// MT5 trading account connected through gRPC.
-/// Provides access to trading and market data operations.
-/// </summary>
+// MT5 trading account connected through gRPC.
+// Provides access to trading and market data operations.
 public class MT5Account
 {
 
-    /// <summary>
-    /// Unique login number of the MT5 account.
-    /// </summary>
+    // Unique login number of the MT5 account.
     public ulong User { get; }
 
-
-    /// <summary>
-    /// Password used to authenticate the MT5 account.
-    /// </summary>
+    // Password used to authenticate the MT5 account.
     public string Password { get; }
 
-
-    /// <summary>
-    /// Address of the MT5 trade server.
-    /// </summary>
+    // Address of the MT5 trade server.
     public string Host { get; private set; } = string.Empty;
 
-
-    /// <summary>
-    /// Network port of the MT5 trade server (default 443).
-    /// </summary>
+    // Network port of the MT5 trade server (default 443).
     public int Port { get; private set; } = 443;
 
-
-    /// <summary>
-    /// Name of the MT5 server as defined by the broker.
-    /// </summary>
+    // Name of the MT5 server as defined by the broker.
     public string? ServerName { get; private set; }
 
-
-    /// <summary>
-    /// Default chart symbol used when no other is specified (e.g., EURUSD).
-    /// </summary>
+    // Default chart symbol used when no other is specified (e.g., EURUSD).
     public string BaseChartSymbol { get; private set; } = "EURUSD";
 
-
-    /// <summary>
-    /// Timeout in seconds for establishing a connection to the MT5 server.
-    /// </summary>
+    // Timeout in seconds for establishing a connection to the MT5 server.
     public int ConnectTimeoutSeconds { get; private set; } = 30;
 
-
-    /// <summary>
-    /// Full gRPC server endpoint used for MT5 connection.
-    /// </summary>
+    // Full gRPC server endpoint used for MT5 connection.
     public string GrpcServer { get; private set; } = "https://mt5.mrpc.pro:443";
 
-
-    /// <summary>
-    /// Active gRPC channel for communicating with the MT5 server.
-    /// </summary>
+    // Active gRPC channel for communicating with the MT5 server.
     public Grpc.Net.Client.GrpcChannel? GrpcChannel { get; private set; }
 
-
-    /// <summary>
-    /// gRPC client used for MT5 connection management.
-    /// </summary>
+    // gRPC client used for MT5 connection management.
     public Connection.ConnectionClient? ConnectionClient { get; private set; }
 
-
-    /// <summary>
-    /// gRPC client for managing MT5 data subscriptions.
-    /// </summary>
+    // gRPC client for managing MT5 data subscriptions.
     public SubscriptionService.SubscriptionServiceClient? SubscriptionClient { get; private set; }
 
-
-    /// <summary>
-    /// gRPC client for retrieving MT5 account information.
-    /// </summary>
+    // gRPC client for retrieving MT5 account information.
     public AccountHelper.AccountHelperClient? AccountClient { get; private set; }
 
-
-    /// <summary>
-    /// gRPC client for executing MT5 trading operations.
-    /// </summary>
+    // gRPC client for executing MT5 trading operations.
     public TradingHelper.TradingHelperClient? TradeClient { get; private set; }
 
-
-    /// <summary>
-    /// gRPC client for requesting MT5 market information.
-    /// </summary>
+    // gRPC client for requesting MT5 market information.
     public MarketInfo.MarketInfoClient? MarketInfoClient { get; private set; }
 
-
-    /// <summary>
-    /// gRPC client providing access to MT5 trade functions.
-    /// </summary>
+    // gRPC client providing access to MT5 trade functions.
     public TradeFunctions.TradeFunctionsClient? TradeFunctionsClient { get; private set; }
 
-
-    /// <summary>
-    /// gRPC client for accessing MT5 account details and status.
-    /// </summary>
+    // gRPC client for accessing MT5 account details and status.
     public AccountInformation.AccountInformationClient? AccountInformationClient { get; private set; }
 
-
-    /// <summary>
-    /// Unique identifier of this MT5 account instance.
-    /// </summary>
+    // Unique identifier of this MT5 account instance.
     public Guid Id { get; private set; } = Guid.Empty;
 
 #pragma warning disable CS0169, CS0414
@@ -129,15 +76,11 @@ public class MT5Account
 
 private readonly ILogger<MT5Account>? _logger;
 
-
-
-    /// <summary>
-    /// Places a stop-limit order on the MT5 server.
-    /// Validates parameters and maps them to MT5 enums.
-    /// Supports TIF options (GTC, DAY, GTD, SPECIFIED).
-    /// Ensures the trading symbol is visible before sending.
-    /// Returns the ticket ID of the created order.
-    /// </summary>
+    // Places a stop-limit order on the MT5 server.
+    // Validates parameters and maps them to MT5 enums.
+    // Supports TIF options (GTC, DAY, GTD, SPECIFIED).
+    // Ensures the trading symbol is visible before sending.
+    // Returns the ticket ID of the created order.
     public async Task<ulong> PlaceStopLimitOrderAsync(
         string symbol,
         string type,                 // "buystoplimit" | "sellstoplimit"
@@ -369,14 +312,10 @@ private readonly ILogger<MT5Account>? _logger;
         public DateTime? TimeDone { get; set; }
     }
 
-
-
-    /// <summary>
-    /// Estimates the value of 1 point per 1 lot in the quote currency.
-    /// Uses simple heuristics: metals (XAU≈10, XAG≈5) and FX rules (XXXUSD / USDXXX).
-    /// Falls back to 100000 * point for generic FX; point guessed if missing.
-    /// Uses mid price for USDXXX pairs via TryGetMidAsync.
-    /// </summary>
+    // Estimates the value of 1 point per 1 lot in the quote currency.
+    // Uses simple heuristics: metals (XAU≈10, XAG≈5) and FX rules (XXXUSD / USDXXX).
+    // Falls back to 100000 * point for generic FX; point guessed if missing.
+    // Uses mid price for USDXXX pairs via TryGetMidAsync.
     public async Task<double> EstimatePointValuePerLotAsync(string symbol, CancellationToken ct)
     {
         // Point size (e.g., 0.0001 for EURUSD, 0.01 for XXXJPY)
@@ -432,12 +371,9 @@ private readonly ILogger<MT5Account>? _logger;
     // It does NOT confirm an active gRPC channel — use IsConnected for that.
     private bool Connected => Host is not null || ServerName is not null;
 
-
-    /// <summary>
-    /// True if the account has an active gRPC channel,
-    /// a valid identifier, and all required clients initialized.
-    /// Used to confirm full MT5 connection state.
-    /// </summary>
+    // True if the account has an active gRPC channel,
+    // a valid identifier, and all required clients initialized.
+    // Used to confirm full MT5 connection state.
     public bool IsConnected =>
         GrpcChannel is not null
         && Id != Guid.Empty
@@ -449,11 +385,8 @@ private readonly ILogger<MT5Account>? _logger;
         && TradeFunctionsClient is not null
         && AccountInformationClient is not null;
 
-
-    /// <summary>
-    /// Initializes gRPC clients for all MT5 services using the given address.
-    /// Creates channel only if it is not already initialized.
-    /// </summary>
+    // Initializes gRPC clients for all MT5 services using the given address.
+    // Creates channel only if it is not already initialized.
     private void CreateGrpcClients(string address)
     {
         if (GrpcChannel is not null) return; // already created
@@ -470,11 +403,8 @@ private readonly ILogger<MT5Account>? _logger;
         AccountInformationClient = new AccountInformation.AccountInformationClient(GrpcChannel);
     }
 
-
-    /// <summary>
-    /// Builds gRPC metadata headers for requests.
-    /// Adds account <c>Id</c> if it is set, otherwise returns empty headers.
-    /// </summary>
+    // Builds gRPC metadata headers for requests.
+    // Adds account <c>Id</c> if it is set, otherwise returns empty headers.
     private Metadata BuildHeaders()
     {
         return Id != Guid.Empty
@@ -483,17 +413,13 @@ private readonly ILogger<MT5Account>? _logger;
     }
 
 
-    /// <summary>
-    /// Ensures the given value is not null; otherwise throws an exception.
-    /// Used to enforce initialization before access.
-    /// </summary>
+    // Ensures the given value is not null; otherwise throws an exception.
+    // Used to enforce initialization before access.
     private static T Require<T>(T? value, string name) where T : class =>
         value ?? throw new InvalidOperationException($"{name} is not initialized. Call Connect* first.");
 
 
-    /// <summary>
-    /// Builds request headers with account <c>Id</c> if available.
-    /// </summary>
+    // Builds request headers with account <c>Id</c> if available.
     private Metadata GetHeaders() =>
         Id != Guid.Empty ? new Metadata { { "id", Id.ToString() } } : new Metadata();
 
@@ -508,13 +434,10 @@ private readonly ILogger<MT5Account>? _logger;
     private AccountInformation.AccountInformationClient AccInfo => Require(AccountInformationClient, nameof(AccountInformationClient));
     
 
-
-    /// <summary>
-    /// Disconnects from the MT5 server and disposes the gRPC channel.
-    /// Clears the account <c>Id</c> and all client instances.
-    /// Safe to call multiple times; ignores dispose errors.
-    /// Returns a completed task when cleanup is done.
-    /// </summary>
+    // Disconnects from the MT5 server and disposes the gRPC channel.
+    // Clears the account <c>Id</c> and all client instances.
+    // Safe to call multiple times; ignores dispose errors.
+    // Returns a completed task when cleanup is done.
     public Task DisconnectAsync()
     {
         try { (GrpcChannel as IDisposable)?.Dispose(); } // release channel if active
@@ -535,13 +458,10 @@ private readonly ILogger<MT5Account>? _logger;
         return Task.CompletedTask;
     }
 
-
-    /// <summary>
-    /// Ensures the given symbol is visible and synchronized in Market Watch.
-    /// Selects the symbol on the server and waits until it is ready.
-    /// Allows optional timeout, polling interval, and deadline.
-    /// Throws if the symbol is missing, cannot be selected, or sync times out.
-    /// </summary>
+    // Ensures the given symbol is visible and synchronized in Market Watch.
+    // Selects the symbol on the server and waits until it is ready.
+    // Allows optional timeout, polling interval, and deadline.
+    // Throws if the symbol is missing, cannot be selected, or sync times out.
     public async Task EnsureSymbolVisibleAsync(
         string symbol,
         TimeSpan? maxWait = null,
@@ -578,13 +498,11 @@ private readonly ILogger<MT5Account>? _logger;
     }
 
 
-    /// <summary>
-    /// Reads volume constraints for the given symbol from MT5.
-    /// Returns minimum lot, step size, and maximum lot as a tuple.
-    /// Useful for validating order volume before sending.
-    /// Defaults step to 0.01 if server returns invalid value.
-    /// Supports optional deadline and cancellation token.
-    /// </summary>
+    // Reads volume constraints for the given symbol from MT5.
+    // Returns minimum lot, step size, and maximum lot as a tuple.
+    // Useful for validating order volume before sending.
+    // Defaults step to 0.01 if server returns invalid value.
+    // Supports optional deadline and cancellation token.
     public async Task<(double Min, double Step, double Max)> GetVolumeConstraintsAsync(
         string symbol,
         DateTime? deadline = null,
@@ -600,13 +518,11 @@ private readonly ILogger<MT5Account>? _logger;
     }
 
 
-    /// <summary>
-    /// Normalizes the given volume to fit within min, step, and max.
-    /// Adjusts value to nearest valid step between limits.
-    /// Rounds to 8 decimals to avoid floating errors.
-    /// Throws if the result is zero or below minimum.
-    /// Returns the normalized volume ready for order placement.
-    /// </summary>
+    // Normalizes the given volume to fit within min, step, and max.
+    // Adjusts value to nearest valid step between limits.
+    // Rounds to 8 decimals to avoid floating errors.
+    // Throws if the result is zero or below minimum.
+    // Returns the normalized volume ready for order placement.
     public static double NormalizeVolume(double volume, double min, double step, double max)
     {
         if (volume < min) volume = min;
@@ -621,13 +537,11 @@ private readonly ILogger<MT5Account>? _logger;
     }
 
 
-    /// <summary>
-    /// Sends a market order (Buy or Sell) with minimal setup.
-    /// Ensures the symbol is visible before trading.
-    /// Normalizes the requested volume to allowed min/step/max.
-    /// Executes the order at current Bid/Ask with optional SL/TP.
-    /// Returns the ticket number of the created order.
-    /// </summary>
+    // Sends a market order (Buy or Sell) with minimal setup.
+    // Ensures the symbol is visible before trading.
+    // Normalizes the requested volume to allowed min/step/max.
+    // Executes the order at current Bid/Ask with optional SL/TP.
+    // Returns the ticket number of the created order.
     public async Task<ulong> SendMarketOrderAsync(
             string symbol,
             bool isBuy,
@@ -681,11 +595,9 @@ private readonly ILogger<MT5Account>? _logger;
     }
 
 
-    /// <summary>
-    /// Returns a list of tickets for all pending orders.
-    /// Can optionally filter by symbol.
-    /// Uses AccountClient to query opened orders.
-    /// </summary>
+    // Returns a list of tickets for all pending orders.
+    // Can optionally filter by symbol.
+    // Uses AccountClient to query opened orders.
     public async Task<IReadOnlyList<ulong>> ListPendingTicketsAsync(string? symbol, CancellationToken ct)
     {
         if (AccountClient is null)
@@ -721,11 +633,9 @@ private readonly ILogger<MT5Account>? _logger;
     }
 
 
-    /// <summary>
-    /// Builds a map (ticket → type string) for the given pending orders.
-    /// Useful for filtering by order type ("buylimit", "sellstop", etc.).
-    /// Returns an empty dictionary if no tickets provided.
-    /// </summary>
+    // Builds a map (ticket → type string) for the given pending orders.
+    // Useful for filtering by order type ("buylimit", "sellstop", etc.).
+    // Returns an empty dictionary if no tickets provided.
     public async Task<Dictionary<ulong, string>> GetPendingKindsAsync(IEnumerable<ulong> tickets, CancellationToken ct)
     {
         var set = tickets?.ToHashSet() ?? new HashSet<ulong>();
@@ -760,11 +670,9 @@ private readonly ILogger<MT5Account>? _logger;
     }
 
 
-    /// <summary>
-    /// Cancels a pending order by its ticket ID.
-    /// Sends OrderClose request through TradeClient.
-    /// Throws if ticket is invalid or TradeClient not initialized.
-    /// </summary>
+    // Cancels a pending order by its ticket ID.
+    // Sends OrderClose request through TradeClient.
+    // Throws if ticket is invalid or TradeClient not initialized.
     public async Task CancelPendingOrderAsync(ulong ticket, CancellationToken ct)
     {
         if (ticket == 0) throw new ArgumentOutOfRangeException(nameof(ticket));
@@ -783,13 +691,11 @@ private readonly ILogger<MT5Account>? _logger;
     }
 
 
-    /// <summary>
-    /// Closes an existing order by its ticket ID.
-    /// Ensures the symbol is visible and normalizes volume before closing.
-    /// Builds and sends an OrderCloseRequest via gRPC.
-    /// Throws if the connection is not active or the server returns an error.
-    /// Supports optional deadline and cancellation token.
-    /// </summary>
+    // Closes an existing order by its ticket ID.
+    // Ensures the symbol is visible and normalizes volume before closing.
+    // Builds and sends an OrderCloseRequest via gRPC.
+    // Throws if the connection is not active or the server returns an error.
+    // Supports optional deadline and cancellation token.
 public async Task CloseOrderByTicketAsync(
     ulong ticket,
     string symbol,
@@ -829,13 +735,10 @@ public async Task CloseOrderByTicketAsync(
 }
 
 
-
-    /// <summary>
-    /// Creates a new MT5Account instance with given login and password.
-    /// Optionally accepts a custom gRPC server address (default is mt5.mrpc.pro:443).
-    /// You may also provide a predefined Guid identifier for this account.
-    /// Stores credentials and connection settings for later use.
-    /// </summary>
+    // Creates a new MT5Account instance with given login and password.
+    // Optionally accepts a custom gRPC server address (default is mt5.mrpc.pro:443).
+    // You may also provide a predefined Guid identifier for this account.
+    // Stores credentials and connection settings for later use.
     public MT5Account(ulong user, string password, string? grpcServer = null, Guid id = default)
 {
     // init
@@ -855,13 +758,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
 }
 
 
-    /// <summary>
-    /// Reconnects the account to the MT5 server.
-    /// First disconnects the current gRPC channel and clients.
-    /// Then connects again using either ServerName or Host/Port.
-    /// Ensures base chart symbol is set and terminal is alive.
-    /// Supports deadline and cancellation token for control.
-    /// </summary>
+    // Reconnects the account to the MT5 server.
+    // First disconnects the current gRPC channel and clients.
+    // Then connects again using either ServerName or Host/Port.
+    // Ensures base chart symbol is set and terminal is alive.
+    // Supports deadline and cancellation token for control.
     public async Task Reconnect(DateTime? deadline, CancellationToken cancellationToken)
     {
         // Quenching the current connection
@@ -894,11 +795,9 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Checks if the given gRPC status code is considered transient.
-    /// Transient codes trigger reconnect/backoff logic.
-    /// Can be extended with more codes if needed.
-    /// </summary>
+    // Checks if the given gRPC status code is considered transient.
+    // Transient codes trigger reconnect/backoff logic.
+    // Can be extended with more codes if needed.
     private static bool IsTransient(StatusCode code) =>
         code == StatusCode.Unavailable
         || code == StatusCode.DeadlineExceeded
@@ -907,12 +806,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         || code == StatusCode.Unknown;
 
 
-    /// <summary>
-    /// Computes exponential backoff with jitter for reconnect attempts.
-    /// Base delay doubles each retry up to 8000 ms (max 5 steps).
-    /// Adds ±250 ms random jitter to avoid thundering herd.
-    /// Returns the calculated delay as TimeSpan.
-    /// </summary>
+    // Computes exponential backoff with jitter for reconnect attempts.
+    // Base delay doubles each retry up to 8000 ms (max 5 steps).
+    // Adds ±250 ms random jitter to avoid thundering herd.
+    // Returns the calculated delay as TimeSpan.
     private static TimeSpan ComputeBackoff(int attempt)
     {
         var pow = Math.Pow(2, Math.Min(attempt, 5));         // 2,4,8,16,32,32
@@ -922,12 +819,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Updates SL and/or TP for an existing position by ticket.
-    /// Requires at least one of SL/TP; uses GTC as expiration type.
-    /// Sends OrderModify via TradeClient; throws on invalid state.
-    /// Returns true when the request is sent successfully.
-    /// </summary>
+    // Updates SL and/or TP for an existing position by ticket.
+    // Requires at least one of SL/TP; uses GTC as expiration type.
+    // Sends OrderModify via TradeClient; throws on invalid state.
+    // Returns true when the request is sent successfully.
     public async Task<bool> ModifyPositionSlTpAsync(ulong ticket, double? sl, double? tp, CancellationToken ct)
     {
         if (ticket == 0) throw new ArgumentOutOfRangeException(nameof(ticket));
@@ -949,17 +844,16 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Connects to the MT5 terminal using credentials provided in the constructor.
-    /// </summary>
-    /// <param name="host">The IP address or domain of the MT5 server.</param>
-    /// <param name="port">The port on which the MT5 server listens (default is 443).</param>
-    /// <param name="baseChartSymbol">The base chart symbol to use (e.g., "EURUSD").</param>
-    /// <param name="waitForTerminalIsAlive">Whether to wait for terminal readiness before returning.</param>
-    /// <param name="timeoutSeconds">How long to wait for terminal readiness before timing out.</param>
-    /// <returns>A task representing the asynchronous connection operation.</returns>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
+// Connects to the MT5 terminal using credentials provided in the constructor.
+// host: The IP address or domain of the MT5 server.
+// port: The port on which the MT5 server listens (default is 443).
+// baseChartSymbol: The base chart symbol to use (e.g., "EURUSD").
+// waitForTerminalIsAlive: Whether to wait for terminal readiness before returning.
+// timeoutSeconds: How long to wait for terminal readiness before timing out.
+// Returns: A task representing the asynchronous connection operation.
+// Exceptions:
+//   ApiExceptionMT5 — thrown if the server returns an error response.
+//   Grpc.Core.RpcException — thrown if the gRPC connection fails.
     public async Task ConnectByHostPortAsync(
     string host,
     int port = 443,
@@ -1005,12 +899,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Establishes a synchronous connection to the MT5 terminal.
-    /// Wraps the asynchronous ConnectByHostPortAsync and waits for completion.
-    /// Typically used in apps without async entrypoints.
-    /// Allows specifying host, port, base symbol, readiness check, and timeout.
-    /// </summary>
+    // Establishes a synchronous connection to the MT5 terminal.
+    // Wraps the asynchronous ConnectByHostPortAsync and waits for completion.
+    // Typically used in apps without async entrypoints.
+    // Allows specifying host, port, base symbol, readiness check, and timeout.
     public void Connect(
         string host,
         int port = 443,
@@ -1022,16 +914,15 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Connects to the MT5 terminal using credentials provided in the constructor.
-    /// </summary>
-    /// <param name="serverName">MT5 server name from MT5 Terminal.</param>
-    /// <param name="baseChartSymbol">The base chart symbol to use (e.g., "EURUSD").</param>
-    /// <param name="waitForTerminalIsAlive">Whether to wait for terminal readiness before returning.</param>
-    /// <param name="timeoutSeconds">How long to wait for terminal readiness before timing out.</param>
-    /// <returns>A task representing the asynchronous connection operation.</returns>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns an error response.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
+// Connects to the MT5 terminal using credentials provided in the constructor.
+// serverName: MT5 server name from MT5 Terminal.
+// baseChartSymbol: The base chart symbol to use (e.g., "EURUSD").
+// waitForTerminalIsAlive: Whether to wait for terminal readiness before returning.
+// timeoutSeconds: How long to wait for terminal readiness before timing out.
+// Returns: A task representing the asynchronous connection operation.
+// Exceptions:
+//   ApiExceptionMT5 — thrown if the server returns an error response.
+//   Grpc.Core.RpcException — thrown if the gRPC connection fails.
     public async Task ConnectByServerNameAsync(
     string serverName,
     string baseChartSymbol = "EURUSD",
@@ -1073,13 +964,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Executes a gRPC call with automatic reconnect handling.
-    /// Wraps the provided call, adding retries on transient errors or lost terminal instance.
-    /// If RpcException(Unavailable) or specific error codes are returned, reconnects and retries.
-    /// Throws ApiExceptionMT5 for other server-side errors.
-    /// Throws OperationCanceledException if canceled by the caller.
-    /// </summary>
+// Executes a gRPC call with automatic reconnect handling.
+// Wraps the provided call, adding retries on transient errors or lost terminal instance.
+// If RpcException(Unavailable) or specific error codes are returned, reconnects and retries.
+// Throws ApiExceptionMT5 for other server-side errors.
+// Throws OperationCanceledException if canceled by the caller.
     private async Task<T> ExecuteWithReconnect<T>(
      Func<Metadata, T> grpcCall,
      Func<T, Mt5TermApi.Error?> errorSelector,
@@ -1137,13 +1026,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     private readonly ConcurrentDictionary<ulong, CancellationTokenSource> _activeTrails = new();
 
 
-    /// <summary>
     /// Starts a background trailing-stop for the given ticket.
     /// Distance/step are in symbol points (not pips).
     /// Replaces an existing worker for this ticket if present.
     /// Linked to the provided cancellation token; cleans up on exit.
     /// Returns immediately after scheduling.
-    /// </summary>
     public Task StartTrailingAsync(
         ulong ticket, string symbol, bool isLong, int distancePoints, int stepPoints, TrailMode mode, CancellationToken ct)
     {
@@ -1180,12 +1067,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
     /// Stops the trailing worker for the specified ticket.
     /// Thread-safe and idempotent; safe to call multiple times.
     /// Cancels and disposes the worker CTS if present.
     /// No-op if no worker is registered for this ticket.
-    /// </summary>
     public void StopTrailing(ulong ticket)
     {
         if (_activeTrails.TryRemove(ticket, out var cts))
@@ -1196,12 +1081,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
     /// Runs the trailing-stop loop for a single ticket.
     /// Classic: offset from price; Chandelier: from running extreme.
     /// distancePts/stepPts are in symbol points; throttles SL updates.
     /// Polls ticks until canceled; ignores transient errors.
-    /// </summary>
     private async Task RunTrailingLoopAsync(
         ulong ticket, string symbol, bool isLong, int distancePts, int stepPts, TrailMode mode, CancellationToken ct)
     {
@@ -1279,12 +1162,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
     /// Produces a lightweight (Bid, Ask, Time) tick stream by polling.
     /// Fallback for when native quote streaming is unavailable.
     /// Yields one item per interval; honors cancellation.
     /// Uses UTC pull time for Time; swap to server tick time if needed.
-    /// </summary>
     private async IAsyncEnumerable<(double Bid, double Ask, DateTime Time)> PollTicksAsync(
         string symbol,
         TimeSpan interval,
