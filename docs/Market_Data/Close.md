@@ -61,7 +61,7 @@ close -t 123456
 
 ---
 
-## Code Reference (exact) 🧩
+## Code Reference 🧩
 
 ```csharp
 var close = new Command("close", "Close order by ticket");
