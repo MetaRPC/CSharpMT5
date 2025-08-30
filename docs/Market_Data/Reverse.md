@@ -92,7 +92,7 @@ rvt -t 123456       # reverse specific ticket
 
 ---
 
-## Code Reference (to be filled by you) 🧩
+## Code Reference 🧩
 
 ```csharp
 var modeOpt = new Option<string>(
