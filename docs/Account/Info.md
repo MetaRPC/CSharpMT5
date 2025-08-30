@@ -74,19 +74,47 @@ using (UseOpTimeout(timeoutMs))
 
 ---
 
-## Quick Access Commands ⚙️
+# Quick Access Commands ⚙️
 
-### Plain .NET
+### Plain .NET (full form)
 
 ```powershell
 dotnet run -- info -p demo --output json --timeout-ms 90000
 ```
 
-### PowerShell Shortcuts
+* Always available, but verbose.
+
+### PowerShell Shortcuts (from `ps/shortcasts.ps1`)
+
+Load once per session:
 
 ```powershell
 . .\ps\shortcasts.ps1
-use-pf demo
-use-to 90000
+```
+
+Now you get *short commands*:
+
+* `info` → runs `mt5 info ...` under the hood.
+* `use-pf demo` → sets default profile to `demo` (saved in `$PF`).
+* `use-to 90000` → sets default timeout in ms (saved in `$TO`).
+
+So you can simply type:
+
+```powershell
 info
 ```
+
+and it will expand to `mt5 info -p demo --timeout-ms 90000` automatically.
+
+### Why profile matters 👤
+
+* Each profile in `profiles.json` holds server, login, and password.
+* Switching profile = connecting to another account/broker quickly.
+* Example: `use-pf live` vs `use-pf demo` to test without touching real funds.
+
+### Why timeout matters ⏱️
+
+* Protects against hanging terminal or slow network.
+* Default usually 90s; lower if you want fast failure, higher if MT5 is sluggish.
+* Example: `use-to 3000` for CI checks (fail fast), `use-to 120000` for heavy accounts.
+
