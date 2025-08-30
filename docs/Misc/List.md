@@ -61,7 +61,7 @@ list          # show all available profiles
 
 ---
 
-## Code Reference (to be filled by you) 🧩
+## Code Reference 🧩
 
 ```csharp
 var listCmd = new Command("list", "Show profile names from profiles.json");
