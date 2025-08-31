@@ -38,7 +38,10 @@ The CLI looks for `profiles.json` in the **working directory**.
 If you keep it in `Config/`, run from the repo root so it’s discovered, or copy it next to the executable.
 
 !!! warning "Secrets"
-Don’t commit real passwords. Prefer an environment variable `MT5_PASSWORD` to override `Password` at runtime.
+Don’t commit real passwords. Prefer an environment variable **`MT5_PASSWORD`** to override `Password` at runtime.
+
+!!! tip "Precedence"
+If **`MT5_PASSWORD`** is set, it **wins over** the value in `profiles.json`. You can keep `Password` empty in the file to force env‑only usage.
 
 ---
 
