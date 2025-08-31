@@ -10,7 +10,7 @@ This section groups all commands related to **account identity, connectivity, an
 
 ---
 
-## When to use which? 🤔
+## When to use which?
 
 | Task                                                | Use          |
 | --------------------------------------------------- | ------------ |
