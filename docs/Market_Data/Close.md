@@ -106,29 +106,6 @@ close.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-            var result = await CallWithRetry(
-                ct => _mt5Account.CloseOrderAsync(ticket, volume, dev, ct),
-                opCts.Token);
-
-            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
-                Console.WriteLine(ToJson(result));
-            else
-                _logger.LogInformation("Closed: ticket={Ticket} vol={Vol}", ticket, volume ?? -1);
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { }
-        }
-    }
-});
-
-root.AddCommand(close);
 ```
 
 ---
