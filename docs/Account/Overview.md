@@ -51,3 +51,37 @@ This section groups all commands related to **account identity, connectivity, an
 * Need more? See **[Troubleshooting & FAQ](../Troubleshooting%28FAQ%29.md)** and **[Timeouts & Retries Policy](../Timeouts_RetriesPolicy.md)**.
 
 ---
+
+## 🧪 Examples
+
+???+ example "CLI (JSON)"
+    ```powershell
+    # Full JSON snapshot (good for scripting)
+    dotnet run -- info -p demo -o json --timeout-ms 90000
+    ```
+
+???+ example "CLI (text)"
+    ```powershell
+    # Compact, readable dump
+    dotnet run -- info -p demo -o text
+    ```
+
+???+ example "PowerShell Shortcasts"
+    ```powershell
+    . .\ps\shortcasts.ps1
+    use-pf demo
+    use-to 90000
+    info   # expands to: mt5 info -p demo --timeout-ms 90000
+    ```
+
+???+ example "C# API"
+    ```csharp
+    var summary = await _mt5Account.AccountSummaryAsync();
+
+    _logger.LogInformation("=== Account Info ===");
+    _logger.LogInformation("Login: {0}", summary.AccountLogin);
+    _logger.LogInformation("Balance: {0}", summary.AccountBalance);
+    _logger.LogInformation("Equity: {0}", summary.AccountEquity);
+    // ... leverage, trade mode, margin, free margin, etc.
+    ```
+
