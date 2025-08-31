@@ -1,4 +1,6 @@
-# Profiles (`profiles.json`) 👤
+хорошо
+идем дальше
+# Profiles (`profiles.json`)
 
 ## What it Does 🎯
 
@@ -33,16 +35,6 @@ Typical `profiles.json`:
 * `default` — fallback profile (used if you don’t specify `--profile`).
 * `live` — second profile for a real account.
 
-!!! note "Where the file is read from"
-The CLI looks for `profiles.json` in the **working directory**.
-If you keep it in `Config/`, run from the repo root so it’s discovered, or copy it next to the executable.
-
-!!! warning "Secrets"
-Don’t commit real passwords. Prefer an environment variable **`MT5_PASSWORD`** to override `Password` at runtime.
-
-!!! tip "Precedence"
-If **`MT5_PASSWORD`** is set, it **wins over** the value in `profiles.json`. You can keep `Password` empty in the file to force env-only usage.
-
 ---
 
 ## Input Parameters ⬇️
@@ -70,10 +62,7 @@ When you run commands (`info`, `quote`, `buy`, `sell`, etc.):
 ### CLI
 
 ```powershell
-# Use a specific profile
 dotnet run -- info --profile default
-
-# Quote with an explicit profile & symbol
 dotnet run -- quote --profile live --symbol EURUSD
 ```
 
@@ -83,7 +72,6 @@ dotnet run -- quote --profile live --symbol EURUSD
 . .\ps\shortcasts.ps1
 use-pf default   # selects default profile
 info             # runs with that profile
-
 use-pf live      # instantly switch
 info             # now runs on live account
 ```
@@ -93,18 +81,17 @@ info             # now runs on live account
 ## Code Reference 🧩
 
 ```csharp
-// Validate and select the profile
+// Validate and select profile
 Validators.EnsureProfile(profile);
 _selectedProfile = profile;
 
-// Later used in ConnectAsync()
+// later used in ConnectAsync()
 await ConnectAsync();
 ```
 
 ---
 
-📌 **In short**:
-
-* `profiles.json` = your connection catalog.
-* `--profile` or `use-pf` = the switch.
-* In code: `Validators.EnsureProfile` → `_selectedProfile` → `ConnectAsync()`.
+📌 In short:
+— `profiles.json` = your connection catalog.
+— `--profile` or `use-pf` = the switch.
+— In code always via `Validators.EnsureProfile` → `_selectedProfile`.
