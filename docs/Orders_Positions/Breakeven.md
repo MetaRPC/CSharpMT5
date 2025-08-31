@@ -1,6 +1,6 @@
 # Breakeven (`breakeven`) ⚖️
 
-## What it Does 🎯
+## What it Does
 
 Moves **Stop Loss** on a position to **breakeven** (near entry price), with optional **offset**.
 Used to remove downside risk after the trade goes in your favor.
@@ -9,15 +9,15 @@ Used to remove downside risk after the trade goes in your favor.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                                              |
-| ----------------- | ------ | -------- | ------------------------------------------------------------------------ |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.                                            |
-| `--ticket`, `-t`  | ulong  | ✅        | Position ticket to adjust.                                               |
-| `--offset`        | double | ❌        | Offset from entry price in **price units** (e.g., `0.0002`).             |
-| `--offset-points` | int    | ❌        | Offset from entry price in **points** (e.g., `20`).                      |
-| `--force`         | flag   | ❌        | Force move even if it would **worsen** SL (by default, we only improve). |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                                              |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).                                      |
+| Parameter         | Type   | Description                                                              |
+| ----------------- | ------ | ------------------------------------------------------------------------ |
+| `--profile`, `-p` | string | Profile from `profiles.json`.                                            |
+| `--ticket`, `-t`  | ulong  | Position ticket to adjust.                                               |
+| `--offset`        | double | Offset from entry price in **price units** (e.g., `0.0002`).             |
+| `--offset-points` | int    | Offset from entry price in **points** (e.g., `20`).                      |
+| `--force`         | flag   | Force move even if it would **worsen** SL (by default, we only improve). |
+| `--output`, `-o`  | string | `text` (default) or `json`.                                              |
+| `--timeout-ms`    | int    |  RPC timeout in ms (default: 30000).                                      |
 
 > If both `--offset` and `--offset-points` are provided, the price `--offset` usually takes precedence.
 
