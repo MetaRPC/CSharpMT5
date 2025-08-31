@@ -1,6 +1,6 @@
 # Limits (`limits`) 📏
 
-## What it Does 🎯
+## What it Does
 
 Shows **volume trading limits** for a given symbol in MT5:
 
@@ -14,12 +14,12 @@ This helps validate user input before sending orders.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                  |
-| ----------------- | ------ | -------- | -------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Which profile to use (from `profiles.json`). |
-| `--symbol`, `-s`  | string | ✅        | Target symbol (e.g. `EURUSD`).               |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                  |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).          |
+| Parameter         | Type   |Description                                  |
+| ----------------- | ------ |-------------------------------------------- |
+| `--profile`, `-p` | string | Which profile to use (from `profiles.json`). |
+| `--symbol`, `-s`  | string | Target symbol (e.g. `EURUSD`).               |
+| `--output`, `-o`  | string | `text` (default) or `json`.                  |
+| `--timeout-ms`    | int    |  RPC timeout in ms (default: 30000).          |
 
 ---
 
