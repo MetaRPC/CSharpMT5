@@ -94,33 +94,6 @@ histExport.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            var data = await CallWithRetry(
-                ct => _mt5Account.ExportHistoryAsync(days, symbol, to, ct),
-                opCts.Token);
-
-            System.IO.File.WriteAllText(file, data);
-            Console.WriteLine($"✔ history.export written to: {file}");
-        }
-        catch (NotSupportedException nse)
-        {
-            Console.WriteLine(nse.Message);
-            Environment.ExitCode = 2;
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { }
-        }
-    }
-});
-
-root.AddCommand(histExport);
 ```
 
 ---
