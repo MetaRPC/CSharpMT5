@@ -7,7 +7,7 @@ Tickets can represent **open positions**, **pending orders**, or **historical tr
 
 Sub‑commands include:
 
-* `ticket show` → display details of a ticket (open/recent). *(see [Ticket Show](Ticket_Show_Doc.md))*
+* `ticket show` → display details of a ticket (open/recent).
 * Other extensions may be added (e.g., `ticket modify`, `ticket close`) depending on implementation.
 
 ---
