@@ -1,6 +1,6 @@
 # Close All (`close-all`) 🧹
 
-## What it Does 🎯
+## What it Does
 
 Closes **all open positions** on the current MT5 account in one go.
 Useful for emergency flattening, end-of-session cleanup, or switching strategies.
@@ -11,15 +11,15 @@ Useful for emergency flattening, end-of-session cleanup, or switching strategies
 
 ## Input Parameters ⬇️
 
-| Parameter                     | Type   | Required | Description                                               |
-| ----------------------------- | ------ | -------- | --------------------------------------------------------- |
-| `--profile`, `-p`             | string | ✅        | Which profile to use (from `profiles.json`).              |
-| `--output`, `-o`              | string | ❌        | `text` (default) or `json`.                               |
-| `--timeout-ms`                | int    | ❌        | RPC timeout in ms (default: 30000).                       |
-| `--dry-run`                   | flag   | ❌        | Print planned actions without sending requests.           |
-| *(optional)* `--symbol`, `-s` | string | ❌        | Close only positions for a symbol (if supported by code). |
-| *(optional)* `--side`         | string | ❌        | `buy` / `sell` (if supported).                            |
-| *(optional)* `--magic`        | int    | ❌        | Filter by EA magic (if supported).                        |
+| Parameter                     | Type   | Description                                               |
+| ----------------------------- | ------ | --------------------------------------------------------- |
+| `--profile`, `-p`             | string | Which profile to use (from `profiles.json`).              |
+| `--output`, `-o`              | string | `text` (default) or `json`.                               |
+| `--timeout-ms`                | int    | RPC timeout in ms (default: 30000).                       |
+| `--dry-run`                   | flag   |  Print planned actions without sending requests.           |
+| *(optional)* `--symbol`, `-s` | string |  Close only positions for a symbol (if supported by code). |
+| *(optional)* `--side`         | string | `buy` / `sell` (if supported).                            |
+| *(optional)* `--magic`        | int    |  Filter by EA magic (if supported).                        |
 
 ---
 
