@@ -1,4 +1,4 @@
-# Close All (`close-all`) 🧹
+# Close All (`close-all`)
 
 ## What it Does
 
@@ -110,59 +110,4 @@ closeAll.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            var map = await CallWithRetry(
-                ct => _mt5Account.ListPositionVolumesAsync(filterSymbol, ct),
-                opCts.Token);
-
-            if (map.Count == 0)
-            {
-                Console.WriteLine("No positions to close.");
-                return;
-            }
-
-            if (!yes || dryRun)
-            {
-                Console.WriteLine($"Will close {map.Count} position(s){(filterSymbol is null ? "" : $" for {filterSymbol}")}. Deviation={deviation}");
-                foreach (var (ticket, vol) in map.Take(10))
-                    Console.WriteLine($"  #{ticket} vol={vol}");
-                if (map.Count > 10) Console.WriteLine($"  ... and {map.Count - 10} more");
-                if (dryRun) return;
-                Console.WriteLine("Pass --yes to execute.");
-                Environment.ExitCode = 2;
-                return;
-            }
-
-            int ok = 0, fail = 0;
-            foreach (var (ticket, vol) in map)
-            {
-                try
-                {
-                    await CallWithRetry(ct => _mt5Account.ClosePositionFullAsync(ticket, vol, deviation, ct), opCts.Token);
-                    ok++;
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogWarning("Close #{Ticket} vol={Vol} failed: {Msg}", ticket, vol, ex.Message);
-                    fail++;
-                }
-            }
-
-            Console.WriteLine($"Closed OK: {ok}; Failed: {fail}");
-            Environment.ExitCode = fail == 0 ? 0 : 1;
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-});
-
-root.AddCommand(closeAll);
 ```
