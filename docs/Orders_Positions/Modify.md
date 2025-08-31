@@ -1,6 +1,6 @@
 # Modify (`modify`) ✏️
 
-## What it Does 🎯
+## What it Does
 
 Updates **Stop Loss** and/or **Take Profit** for a position **by ticket**.
 
@@ -10,15 +10,15 @@ Updates **Stop Loss** and/or **Take Profit** for a position **by ticket**.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type    | Required | Description                                                  |
-| ----------------- | ------- | -------- | ------------------------------------------------------------ |
-| `--profile`, `-p` | string  | ✅        | Profile from `profiles.json`.                                |
-| `--ticket`, `-t`  | ulong   | ✅        | Position ticket to modify.                                   |
-| `--sl`            | double? | ❌        | New **Stop Loss price** (absolute).                          |
-| `--tp`            | double? | ❌        | New **Take Profit price** (absolute).                        |
-| `--symbol`, `-s`  | string? | ❌        | Optional symbol (used to ensure visibility on some servers). |
-| `--timeout-ms`    | int     | ❌        | RPC timeout in ms (default: `30000`).                        |
-| `--dry-run`       | flag    | ❌        | Print intended action without sending the request.           |
+| Parameter         | Type    | Description                                                  |
+| ----------------- | ------- | ------------------------------------------------------------ |
+| `--profile`, `-p` | string  | Profile from `profiles.json`.                                |
+| `--ticket`, `-t`  | ulong   | Position ticket to modify.                                   |
+| `--sl`            | double? | New **Stop Loss price** (absolute).                          |
+| `--tp`            | double? | New **Take Profit price** (absolute).                        |
+| `--symbol`, `-s`  | string? | Optional symbol (used to ensure visibility on some servers). |
+| `--timeout-ms`    | int     | RPC timeout in ms (default: `30000`).                        |
+| `--dry-run`       | flag    | Print intended action without sending the request.           |
 
 > At least **one** of `--sl` or `--tp` **must** be provided.
 
