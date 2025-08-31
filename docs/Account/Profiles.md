@@ -67,28 +67,26 @@ When you run commands (`info`, `quote`, `buy`, `sell`, etc.):
 
 ## How to Use 🛠️
 
-???+ example "CLI"
-\`\`\`powershell
-\# Use a specific profile
+### CLI
+
+```powershell
+# Use a specific profile
 dotnet run -- info --profile default
 
-````
 # Quote with an explicit profile & symbol
 dotnet run -- quote --profile live --symbol EURUSD
 ```
-````
 
-???+ tip "PowerShell Shortcuts"
-\`\`\`powershell
+### PowerShell Shortcuts
+
+```powershell
 . .\ps\shortcasts.ps1
 use-pf default   # selects default profile
 info             # runs with that profile
 
-````
 use-pf live      # instantly switch
 info             # now runs on live account
 ```
-````
 
 ---
 
