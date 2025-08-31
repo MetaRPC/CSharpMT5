@@ -20,9 +20,6 @@ Returns a size that fits the risk budget and respects the symbol’s min/step/ma
 | `--max-lot`      | double | ❌        | Maximum lot (optional; if omitted, no upper clamp beyond server limits). |
 | `--output`, `-o` | string | ❌        | Output: `text` (default) or `json`.                                      |
 | `--timeout-ms`   | int    | ❌        | Timeout in ms (default: 30000).                                          |
-
-> Tip: You can fetch `min-lot/lot-step/max-lot` first via `symbol limits`.
-
 ---
 
 ## Output Fields ⬆️
@@ -39,30 +36,6 @@ Returns a size that fits the risk budget and respects the symbol’s min/step/ma
 | `lot_step`            | double  | Lot step used for rounding.                         |
 | `min_lot`             | double  | Minimum lot allowed.                                |
 | `max_lot`             | double? | Maximum lot cap (if specified).                     |
-
-|-------------------------|---------|-------------|
-| `symbol`                | string  | Target symbol used for calculation. |
-| `balance`               | double  | Balance value passed in the request. |
-| `risk_pct`              | double  | Risk percentage applied to balance. |
-| `sl_points`             | int     | Stop‑loss distance in points. |
-| `point_value_per_lot`   | double  | Money value per point per 1 lot (from server). |
-| `volume_raw`            | double  | Calculated raw volume before rounding. |
-| `volume`                | double  | Final recommended volume (after rounding and clamping). |
-| `lot_step`              | double  | Lot step used for rounding. |
-| `min_lot`               | double  | Minimum lot allowed. |
-| `max_lot`               | double? | Maximum lot cap (if specified). |
-
------------------------|--------|-------------|
-| `Symbol`              | string | Target symbol. |
-| `RiskPct`             | double | Risk percent used. |
-| `Balance`             | double | Balance used in the calc. |
-| `StopDistancePoints`  | int    | SL distance in points. |
-| `ValuePerPoint`       | double | Estimated money value per point per 1.0 lot (symbol-specific). |
-| `RawLots`             | double | Unclamped/unrounded lots from the risk formula. |
-| `RoundedLots`         | double | Rounded to `lot-step`. |
-| `ClampedLots`         | double | Enforced by `min-lot` and `max-lot` (if provided). |
-| `RiskAmount`          | double | Monetary risk for `ClampedLots`. |
-
 ---
 
 ## How to Use 🛠️
