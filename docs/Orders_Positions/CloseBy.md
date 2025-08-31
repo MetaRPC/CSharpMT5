@@ -1,6 +1,6 @@
 # CloseBy (`closeby`) 🔁
 
-## What it Does 🎯
+## What it Does
 
 Closes **two opposite positions** on the **same symbol** by emulating MT5 *Close By* with **two separate closes**.
 This is implemented via `_mt5Account.CloseByEmulatedAsync(...)`.
