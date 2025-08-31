@@ -1,4 +1,4 @@
-# Close by Symbol (`close-symbol`) 🎯
+# Close by Symbol (`close-symbol`)
 
 ## What it Does
 
@@ -105,49 +105,4 @@ closeSymbol.SetHandler(async (string profile, string? symbol, bool yes, int time
             }
 
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            var opened = await CallWithRetry(
-                ct => _mt5Account.OpenedOrdersAsync(deadline: null, cancellationToken: ct),
-                opCts.Token);
-
-            var positions = opened.PositionInfos
-                .Where(p => string.Equals(p.Symbol, s, StringComparison.OrdinalIgnoreCase))
-                .Select(p => (p.Ticket, p.Symbol, p.Volume))
-                .ToList();
-
-            if (positions.Count == 0)
-            {
-                Console.WriteLine($"No positions to close for {s}.");
-                return;
-            }
-
-            if (!yes)
-            {
-                Console.WriteLine($"Will close {positions.Count} position(s) for {s}:");
-                foreach (var (t, sym, v) in positions.Take(10))
-                    Console.WriteLine($"  #{t} {sym} vol={v}");
-                if (positions.Count > 10) Console.WriteLine($"  ... and {positions.Count - 10} more");
-                Console.WriteLine("Pass --yes to execute.");
-                Environment.ExitCode = 2; // require confirmation
-                return;
-            }
-
-            var (ok, fail) = await ClosePositionsAsync(positions, opCts.Token);
-            Console.WriteLine($"Closed OK: {ok}; Failed: {fail}");
-            Environment.ExitCode = fail == 0 ? 0 : 1;
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-}, profileOpt, symbolOpt, caYesOpt, timeoutOpt, dryRunOpt);
-
-root.AddCommand(closeSymbol);
 ```
