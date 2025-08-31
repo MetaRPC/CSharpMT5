@@ -1,6 +1,6 @@
 # Stream (`stream`) 📡
 
-## What it Does 🎯
+## What it Does
 
 Subscribes to **real‑time quotes** for a symbol and prints ticks (Bid/Ask/Time) for a limited duration.
 Useful for monitoring, quick diagnostics, and feeding other tools via stdout.
@@ -9,13 +9,13 @@ Useful for monitoring, quick diagnostics, and feeding other tools via stdout.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                  |
-| ----------------- | ------ | -------- | -------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.                |
-| `--symbol`, `-s`  | string | ✅        | Symbol to stream (e.g., `EURUSD`).           |
-| `--seconds`       | int    | ❌        | How long to stream (seconds). Default: `10`. |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json` per tick.         |
-| `--timeout-ms`    | int    | ❌        | Per‑RPC timeout in ms (default: 30000).      |
+| Parameter         | Type   |Description                                  |
+| ----------------- | ------ |-------------------------------------------- |
+| `--profile`, `-p` | string | Profile from `profiles.json`.                |
+| `--symbol`, `-s`  | string | Symbol to stream (e.g., `EURUSD`).           |
+| `--seconds`       | int    | How long to stream (seconds). Default: `10`. |
+| `--output`, `-o`  | string | `text` (default) or `json` per tick.         |
+| `--timeout-ms`    | int    | Per‑RPC timeout in ms (default: 30000).      |
 
 ---
 
@@ -93,29 +93,4 @@ stream.SetHandler(async (string profile, int seconds, string? symbol, int timeou
         try
         {
             await ConnectAsync();
-
-            using var streamCts = new CancellationTokenSource(TimeSpan.FromSeconds(seconds));
-            _logger.LogInformation("Streaming started (auto-reconnect enabled).");
-
-            await StreamWithReconnectAsync(s, TimeSpan.FromSeconds(seconds), streamCts.Token);
-        }
-        catch (OperationCanceledException)
-        {
-            _logger.LogInformation("Streaming cancelled (likely reached time limit).");
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            var elapsed = DateTime.UtcNow - startedAt;
-            _logger.LogInformation("Streaming stopped. Elapsed={ElapsedSec:F1}s", elapsed.TotalSeconds);
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-}, profileOpt, secsOpt, symbolOpt, timeoutOpt);
-
-root.AddCommand(stream);
 ```
