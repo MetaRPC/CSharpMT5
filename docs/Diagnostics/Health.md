@@ -1,6 +1,6 @@
 # Health (`health`) 🩺
 
-## What it Does 🎯
+## What it Does
 
 Performs a quick **health check** of the MT5 connection.
 Confirms that the profile is valid, the terminal/server is reachable, and basic RPCs respond.
@@ -11,9 +11,9 @@ Confirms that the profile is valid, the terminal/server is reachable, and basic 
 
 | Parameter      | Type   | Required | Description                                       |
 | -------------- | ------ | -------- | ------------------------------------------------- |
-| `--profile`    | string | ✅        | Which profile to use (from `profiles.json`).      |
-| `--output`     | string | ❌        | Output format: `text` (default) or `json`.        |
-| `--timeout-ms` | int    | ❌        | Per-RPC timeout in milliseconds (default: 30000). |
+| `--profile`    | string | yes        | Which profile to use (from `profiles.json`).      |
+| `--output`     | string | no        | Output format: `text` (default) or `json`.        |
+| `--timeout-ms` | int    | no        | Per-RPC timeout in milliseconds (default: 30000). |
 
 ---
 
