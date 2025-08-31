@@ -1,6 +1,6 @@
 # Partial Close (`partial-close`) ✂️
 
-## What it Does 🎯
+## What it Does
 
 Closes **part** of an open position by ticket. You can specify either:
 
@@ -11,14 +11,14 @@ Closes **part** of an open position by ticket. You can specify either:
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type    | Required      | Description                                 |
-| ----------------- | ------- | ------------- | ------------------------------------------- |
-| `--profile`, `-p` | string  | ✅             | Profile from `profiles.json`.               |
-| `--ticket`, `-t`  | ulong   | ✅             | Position ticket.                            |
-| `--percent`, `-P` | int?    | ⛔ (either/or) | Percent of current volume to close (1–100). |
-| `--volume`, `-v`  | double? | ⛔ (either/or) | Exact volume (lots) to close.               |
-| `--timeout-ms`    | int     | ❌             | RPC timeout in ms (default: `30000`).       |
-| `--dry-run`       | flag    | ❌             | Print intended action without sending.      |
+| Parameter         | Type    | Description                                 |
+| ----------------- | ------- |  ------------------------------------------- |
+| `--profile`, `-p` | string  | Profile from `profiles.json`.               |
+| `--ticket`, `-t`  | ulong   | Position ticket.                            |
+| `--percent`, `-P` | int?    | Percent of current volume to close (1–100). |
+| `--volume`, `-v`  | double? | Exact volume (lots) to close.               |
+| `--timeout-ms`    | int     | RPC timeout in ms (default: `30000`).       |
+| `--dry-run`       | flag    | Print intended action without sending.      |
 
 ⚠️ Exactly one of `--percent` **or** `--volume` must be provided.
 
