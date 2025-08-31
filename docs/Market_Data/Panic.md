@@ -101,46 +101,4 @@ panic.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            var pos = await CallWithRetry(ct => _mt5Account.ListPositionVolumesAsync(symbol, ct), opCts.Token);
-
-            var pend = await CallWithRetry(ct => _mt5Account.ListPendingTicketsAsync(symbol, ct), opCts.Token);
-
-            Console.WriteLine($"PANIC targets: positions={pos.Count}, pendings={pend.Count}");
-
-            if (dryRun)
-            {
-                foreach (var kv in pos)  Console.WriteLine($"[DRY-RUN] CLOSE ticket={kv.Key} vol={kv.Value}");
-                foreach (var t in pend)   Console.WriteLine($"[DRY-RUN] CANCEL ticket={t}");
-                return;
-            }
-
-            foreach (var (ticket, vol) in pos)
-            {
-                try { await CallWithRetry(ct => _mt5Account.ClosePositionFullAsync(ticket, vol, deviation, ct), opCts.Token); }
-                catch (Exception ex) { _logger.LogWarning("Close {Ticket} failed: {Msg}", ticket, ex.Message); }
-            }
-
-            foreach (var t in pend)
-            {
-                try { await CallWithRetry(ct => _mt5Account.CancelPendingOrderAsync(t, ct), opCts.Token); }
-                catch (Exception ex) { _logger.LogWarning("Cancel {Ticket} failed: {Msg}", t, ex.Message); }
-            }
-
-            Console.WriteLine("✔ panic done");
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-});
-
-root.AddCommand(panic);
 ```
