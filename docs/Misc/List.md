@@ -1,6 +1,6 @@
 # List Profiles (`list`) 📂
 
-## What it Does 🎯
+## What it Does
 
 Displays all available **profile names** from your `profiles.json`.
 Profiles contain login, server, and password settings for connecting to MT5.
@@ -9,10 +9,10 @@ Profiles contain login, server, and password settings for connecting to MT5.
 
 ## Input Parameters ⬇️
 
-| Parameter        | Type   | Required | Description                                       |
-| ---------------- | ------ | -------- | ------------------------------------------------- |
-| `--output`, `-o` | string | ❌        | Output format: `text` (default) or `json`.        |
-| `--timeout-ms`   | int    | ❌        | Timeout in ms for the operation (default: 30000). |
+| Parameter        | Type   | Description                                       |
+| ---------------- | ------ |  ------------------------------------------------- |
+| `--output`, `-o` | string |  Output format: `text` (default) or `json`.        |
+| `--timeout-ms`   | int    | Timeout in ms for the operation (default: 30000). |
 
 ---
 
