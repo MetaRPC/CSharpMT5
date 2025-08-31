@@ -19,15 +19,15 @@ This is implemented via `_mt5Account.CloseByEmulatedAsync(...)`.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                               |
-| ----------------- | ------ | -------- | ----------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.             |
-| `--a`, `-a`       | ulong  | ✅        | Ticket of the **first position**.         |
-| `--b`, `-b`       | ulong  | ✅        | Ticket of the **opposite position**.      |
-| `--volume`, `-v`  | double | ✅        | Volume (lots) to close on each leg.       |
-| `--deviation`     | int    | ❌        | Max slippage in points. Default: `10`.    |
-| `--timeout-ms`    | int    | ❌        | Per‑RPC timeout in ms (default: `30000`). |
-| `--dry-run`       | flag   | ❌        | Print action without sending request.     |
+| Parameter         | Type   | Description                               |
+| ----------------- | ------ | ----------------------------------------- |
+| `--profile`, `-p` | string |  Profile from `profiles.json`.             |
+| `--a`, `-a`       | ulong  |  Ticket of the **first position**.         |
+| `--b`, `-b`       | ulong  |  Ticket of the **opposite position**.      |
+| `--volume`, `-v`  | double |  Volume (lots) to close on each leg.       |
+| `--deviation`     | int    |  Max slippage in points. Default: `10`.    |
+| `--timeout-ms`    | int    |  Per‑RPC timeout in ms (default: `30000`). |
+| `--dry-run`       | flag   |  Print action without sending request.     |
 
 ---
 
@@ -129,23 +129,4 @@ closeby.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            await CallWithRetry(ct => _mt5Account.CloseByEmulatedAsync(a, b, volume, deviation, ct), opCts.Token);
-
-            Console.WriteLine("✔ closeby (emulated) done");
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-});
-
-root.AddCommand(closeby);
 ```
