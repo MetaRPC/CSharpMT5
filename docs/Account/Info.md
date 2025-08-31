@@ -81,8 +81,3 @@ _logger.LogInformation("Balance: {0}", summary.AccountBalance);
 _logger.LogInformation("Equity: {0}", summary.AccountEquity);
 // ... prints leverage, trade mode, margin, free margin, etc.
 ```
-
-Можешь сделать оформление более изящным (Я по правде говоря даже не знаю как это описать)
-
-и Я хочу где раздел код экземпл видеть такую же раскрывающиеся табличку как в примере выше только на нашу тему
-а не на тему что на скрине(код от код экземпл поместить туда для красивого оформления
