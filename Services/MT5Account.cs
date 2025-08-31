@@ -1026,11 +1026,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     private readonly ConcurrentDictionary<ulong, CancellationTokenSource> _activeTrails = new();
 
 
-    /// Starts a background trailing-stop for the given ticket.
-    /// Distance/step are in symbol points (not pips).
-    /// Replaces an existing worker for this ticket if present.
-    /// Linked to the provided cancellation token; cleans up on exit.
-    /// Returns immediately after scheduling.
+    // Starts a background trailing-stop for the given ticket.
+    // Distance/step are in symbol points (not pips).
+    // Replaces an existing worker for this ticket if present.
+    // Linked to the provided cancellation token; cleans up on exit.
+    // Returns immediately after scheduling.
     public Task StartTrailingAsync(
         ulong ticket, string symbol, bool isLong, int distancePoints, int stepPoints, TrailMode mode, CancellationToken ct)
     {
@@ -2500,7 +2500,7 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-/// Retrieves a double-precision property value of a symbol.
+// Retrieves a double-precision property value of a symbol.
 // symbol: Symbol name.
 // property: The double-type property to retrieve.
 // deadline: Optional gRPC deadline.
