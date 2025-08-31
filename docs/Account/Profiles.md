@@ -1,5 +1,3 @@
-хорошо
-идем дальше
 # Profiles (`profiles.json`)
 
 ## What it Does
