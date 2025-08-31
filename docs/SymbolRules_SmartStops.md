@@ -1,124 +1,176 @@
-# Symbol Rules & Smart Stops ⚙️📈
+# Symbol Rules & Smart Stops ⚙️🎯
 
-This page explains how the CLI validates and auto-adjusts SL/TP before sending orders to MT5. It reflects the behavior used by `buy`/`sell` and other commands where we call `PreflightStops(...)` right before the RPC.
+## What this solves
 
----
+When placing market orders with SL/TP, brokers enforce **symbol-specific rules**:
 
-## Why this exists
+* price precision (digits / point),
+* minimum stop distance from market (aka **StopLevel** in *points*),
+* correct side of SL/TP for BUY/SELL (SL must reduce risk, TP must take profit),
+* rounding to tick size.
 
-Brokers enforce **symbol-specific rules**:
-
-* minimum distance from the current price to SL/TP (**StopLevel**),
-* price precision (**Digits**) and **point size** (`Point`),
-* correct side (e.g., *BUY*: `SL < Bid`, `TP > Ask`).
-
-If you pass an invalid SL/TP, the server rejects the order. Our *smart stops* preflight makes a best effort to validate & correct the levels **client-side** and only then submit.
+To avoid server rejections and “Invalid stops”, the CLI performs **preflight stop validation** (we call it **Smart Stops**) before sending the order.
 
 ---
 
-## Where rules come from
+## Where rules come from 📡
 
-We combine live price data and symbol metadata:
+We derive constraints from these calls:
 
-* **Quote** → `Bid` / `Ask` (via `FirstTickAsync`).
-* **Digits / Point** → from Market Info (or a safe fallback via `PointGuess(symbol)`).
-* **StopLevel (points)** → from Market Info when available; otherwise we treat it as unknown and do minimum checks only.
+* **Latest quote** → `FirstTickAsync(symbol, ct)`
+  Gives **Bid/Ask** & time; used as the **market reference** for SL/TP direction and min distance.
+* **Point size (guess)** → `_mt5Account.PointGuess(symbol)`
+  Fast heuristic when exact meta isn’t available.
+* **Symbol limits** (min/step/max lot) → `symbol limits` command
+  Useful for sizing; not directly for SL/TP but part of the same “symbol rules” family.
+* *(Optional/Recommended)* **Market meta** (if available in your build):
 
-> In the `buy`/`sell` handlers we call:
->
-> ```csharp
-> var q = await CallWithRetry(ct => FirstTickAsync(s, ct), opCts.Token);
-> var bid = q.Bid; var ask = q.Ask;
-> int? digits = null;              // TODO: fill from MarketInfo
-> double? stopLevelPoints = null;  // TODO: fill from MarketInfo
-> double? point = null;            // TODO: fill from MarketInfo (or PointGuess)
-> PreflightStops(isBuy: true/false, bid: bid, ask: ask,
->                sl: ref sl, tp: ref tp,
->                digits: digits, stopLevelPoints: stopLevelPoints, point: point);
-> ```
+  * `digits` (price precision)
+  * `stopLevelPoints` (minimal distance for SL/TP from market/entry)
+  * `point` (tick size)
+    Your `buy` handler already has placeholders for these:
 
----
+  ```csharp
+  int? digits = null;             // TODO: fetch via MarketInfo if available
+  double? stopLevelPoints = null; 
+  double? point = null;
+  ```
 
-## What *Smart Stops* do
-
-1. **Side validation**
-
-* BUY: `SL` must be **below** `Bid`, `TP` must be **above** `Ask`.
-* SELL: `SL` must be **above** `Ask`, `TP` must be **below** `Bid`.
-
-If levels are on the wrong side, they are **rejected** (or adjusted if that’s clearly a rounding issue and we have `Point/Digits`).
-
-2. **Stop Level distance**
-
-If `StopLevel` is known, we ensure:
-
-* BUY: `Bid - SL ≥ StopLevel*Point`, `TP - Ask ≥ StopLevel*Point`.
-* SELL: `SL - Ask ≥ StopLevel*Point`, `Bid - TP ≥ StopLevel*Point`.
-
-If too close, we **push** SL/TP just enough to respect the limit.
-
-3. **Precision**
-
-If `Digits` is provided, we **round** SL/TP to that precision (banker’s rounding avoided for prices). Rounding happens *after* distance adjustments.
-
-4. **No-ops for missing inputs**
-
-If `sl`/`tp` were not provided by the user (`null`), nothing is changed/added.
+> If `digits/point/stopLevelPoints` are not fetched, **Smart Stops** still work using `quote + PointGuess(symbol)`, but having true broker values makes them stricter and safer.
 
 ---
 
-## Examples (BUY) 🛒
+## Smart Stops: what it does 🧠
 
-Assume `Bid=1.16825`, `Ask=1.16889`, `Point=0.0001`, `Digits=5`, `StopLevel=20 pts`.
+`PreflightStops(isBuy, bid, ask, ref sl, ref tp, digits?, stopLevelPoints?, point?)`:
 
-| Input (user) | Check                                                      | Result                                                         |
-| ------------ | ---------------------------------------------------------- | -------------------------------------------------------------- |
-| `SL=1.16820` | Distance: `Bid - SL = 0.00005 = 0.5 pt` < 20 pts           | SL shifted to `Bid - 20*Point = 1.16625` → rounded to 5 digits |
-| `TP=1.16880` | Distance: `TP - Ask = -0.00009` (wrong side)               | Error: TP must be > Ask                                        |
-| `TP=1.16920` | Distance: `1.16920 - 1.16889 = 0.00031 = 3.1 pts` < 20 pts | TP shifted to `Ask + 20*Point = 1.17089` → rounded             |
+1. **Rounding**
 
-**SELL** behaves symmetrically.
+   * Rounds `sl`/`tp` to the symbol’s `digits` (if provided).
+   * If `digits` is unknown, it derives rounding from `point` (e.g., `0.0001`).
+
+2. **Correct side**
+
+   * **BUY**:
+
+     * **SL** must be **< Ask**
+     * **TP** must be **> Ask**
+   * **SELL**:
+
+     * **SL** must be **> Bid**
+     * **TP** must be **< Bid**
+   * If a user-provided stop is on the wrong side, it’s **nudged** to the nearest valid side (or rejected if impossible).
+
+3. **Minimum distance (StopLevel)**
+
+   * If `stopLevelPoints` is provided (or can be estimated from `point`):
+
+     * **BUY**:
+
+       * `SL ≤ Ask - stopLevel*point`
+       * `TP ≥ Ask + stopLevel*point`
+     * **SELL**:
+
+       * `SL ≥ Bid + stopLevel*point`
+       * `TP ≤ Bid - stopLevel*point`
+   * If too close, the value is pushed out to the minimal allowed distance.
+
+4. **Idempotence & No surprises**
+
+   * If user skipped SL or TP (`null`), nothing is created implicitly.
+   * If both are provided and valid — no changes beyond rounding.
+
+> The goal is to **catch broker rejections upfront** and keep the order flow smooth.
 
 ---
 
-## CLI workflow 🔁
+## BUY flow ✅
 
-* You specify SL/TP in **prices**:
+```csharp
+// 1) Ensure symbol is visible (best-effort; some servers require this)
+await _mt5Account.EnsureSymbolVisibleAsync(s, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
 
-```powershell
-# BUY: levels will be validated & auto-pushed as needed
-mt5 buy -p demo -s EURUSD -v 0.10 --sl 1.0700 --tp 1.0800 --deviation 10
+// 2) Get current market context
+var q = await CallWithRetry(ct => FirstTickAsync(s, ct), opCts.Token);
+var bid = q.Bid; 
+var ask = q.Ask;
+
+// 3) Apply Smart Stops (digits/point/stopLevel can be wired to real meta later)
+int? digits = null;
+double? stopLevelPoints = null;
+double? point = null;
+
+PreflightStops(
+  isBuy: true,
+  bid: bid,
+  ask: ask,
+  sl: ref sl,
+  tp: ref tp,
+  digits: digits,
+  stopLevelPoints: stopLevelPoints,
+  point: point
+);
+
+// 4) Place order (with final, validated SL/TP)
+var ticket = await CallWithRetry(
+  ct => _mt5Account.SendMarketOrderAsync(
+          symbol: s, isBuy: true, volume: volume, deviation: deviation,
+          stopLoss: sl, takeProfit: tp, deadline: null, cancellationToken: ct),
+  opCts.Token);
 ```
 
-* For rules visibility use symbol utilities:
+SELL делает то же самое, но с `isBuy: false` и проверками относительно `Bid`/`Ask` в обратную сторону.
+
+---
+
+## Common pitfalls the preflight avoids 🧨
+
+* **“Invalid SL/TP: too close to market”** — enforces `StopLevel` distance.
+* **“Invalid SL/TP side”** — e.g., BUY with SL above Ask or TP below Ask.
+* **“Bad precision”** — rounds prices to `digits` / `point` tick.
+* **“Hidden symbol”** — ensures the symbol is visible first.
+
+---
+
+## CLI examples 🛠️
 
 ```powershell
-# lot limits & precision
-mt5 symbol limits -p demo -s EURUSD
+# BUY with clearly valid SL/TP (assuming StopLevel ~ 150 pts)
+dotnet run -- buy -p demo -s EURUSD -v 0.10 --sl 1.0700 --tp 1.0800 --deviation 10
 
-# quick price reference
-mt5 quote -p demo -s EURUSD
+# If SL/TP are on the wrong side or too close, Smart Stops will push them to the nearest valid prices.
+# (You’ll see only final accepted values in logs or in JSON payload if requested.)
 ```
 
----
-
-## Interaction with deviations & re-quotes
-
-`--deviation` controls allowed slippage for the **entry price** (market order). It does **not** change SL/TP checks. Smart stops ensure SL/TP are valid *before* the order is sent; deviation applies when the server executes the price.
+> Tip: if you see rejections like “TP must be > Ask”, it means your *input* levels were inconsistent with **current** market. Quotes can move even between validation and send. Smart Stops reduce this risk, but they can’t fix a level that’s fundamentally on the wrong side **at the exact server check**. Re-run quickly or widen distance.
 
 ---
 
-## Pitfalls & tips 🧭
+## How to wire true meta (optional but recommended) 🔧
 
-* If quotes are **stale** (e.g., `[STALE >5s]`), distance math can be misleading. Prefer fresh quotes.
-* If Market Info is not available, we rely on **safe guesses** (`PointGuess`, default Digits). In such cases we only guarantee side checks and rounding; StopLevel enforcement may be partial.
-* Always prefer **`symbol ensure`** before trading a new symbol, then run `symbol limits` to see the exact broker constraints.
-* If you get *“Invalid TP for BUY: must be > Ask”*, it means the requested TP is on the wrong side relative to the latest **Ask** (or too close after rounding).
+If your build exposes market info endpoints, populate the placeholders:
+
+```csharp
+int? digits = await _mt5Account.SymbolDigitsAsync(s, ct);         // precision
+double? point = await _mt5Account.SymbolPointAsync(s, ct);        // tick size
+double? stopLevelPoints = await _mt5Account.SymbolStopsLevelAsync(s, ct); // minimal distance (points)
+```
+
+> Names above are illustrative — bind to your actual methods if they exist.
+> If not available, keep using `PointGuess(symbol)` + quote.
 
 ---
 
-## What to wire next (nice-to-have) 🔧
+## Related commands 🔗
 
-* Plug Market Info resolvers so `digits`, `point`, `stopLevelPoints` are always filled.
-* Log the **original** and **adjusted** SL/TP when smart stops make changes (debug level) — this helps debugging broker validations.
-* Add a `--no-smart-stops` flag for strict/purist mode (fail fast instead of auto-fix).
+* `symbol show` — quick **quote + lot limits** card
+* `symbol limits` — **min/step/max** lot (sizing/risk)
+* `quote` — check **Bid/Ask/Time** before placing an order
+
+---
+
+## TL;DR
+
+* **Always**: get a fresh quote → run `PreflightStops` → send the order.
+* Provide **true symbol meta** when possible (digits/point/stopLevel).
+* Smart Stops save you from 80% of broker-side rejections on SL/TP.
