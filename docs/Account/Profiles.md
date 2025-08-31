@@ -2,7 +2,7 @@
 идем дальше
 # Profiles (`profiles.json`)
 
-## What it Does 🎯
+## What it Does
 
 Profiles act as **connection presets** for MT5 accounts.
 Each entry in `profiles.json` stores credentials and server details, so you don’t have to type them every time.
