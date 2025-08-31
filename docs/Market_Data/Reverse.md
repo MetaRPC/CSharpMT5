@@ -1,6 +1,6 @@
 # Reverse (`reverse`) 🔄
 
-## What it Does 🎯
+## What it Does
 
 Reverses the position(s) on a given symbol — closes current exposure and opens a new position in the opposite direction.
 
@@ -15,30 +15,30 @@ Variants:
 
 ### For `reverse`
 
-| Parameter         | Type   | Required | Description                                |
-| ----------------- | ------ | -------- | ------------------------------------------ |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.              |
-| `--symbol`, `-s`  | string | ✅        | Symbol to reverse.                         |
-| `--mode`          | string | ❌        | Reverse mode: `net` (default) or `all`.    |
-| `--sl`            | double | ❌        | Optional Stop Loss for the new position.   |
-| `--tp`            | double | ❌        | Optional Take Profit for the new position. |
-| `--deviation`     | int    | ❌        | Max slippage in points (default: 10).      |
-| `--output`, `-o`  | string | ❌        | Output: `text` (default) or `json`.        |
-| `--timeout-ms`    | int    | ❌        | Timeout in ms (default: 30000).            |
-| `--dry-run`       | flag   | ❌        | Show action plan without sending orders.   |
+| Parameter         | Type   | Description                                |
+| ----------------- | ------ | ------------------------------------------ |
+| `--profile`, `-p` | string | Profile from `profiles.json`.              |
+| `--symbol`, `-s`  | string |  Symbol to reverse.                         |
+| `--mode`          | string | Reverse mode: `net` (default) or `all`.    |
+| `--sl`            | double | Optional Stop Loss for the new position.   |
+| `--tp`            | double |  Optional Take Profit for the new position. |
+| `--deviation`     | int    | Max slippage in points (default: 10).      |
+| `--output`, `-o`  | string |  Output: `text` (default) or `json`.        |
+| `--timeout-ms`    | int    |  Timeout in ms (default: 30000).            |
+| `--dry-run`       | flag   |  Show action plan without sending orders.   |
 
 ### For `reverse.ticket`
 
-| Parameter         | Type   | Required | Description                        |
-| ----------------- | ------ | -------- | ---------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile.                           |
-| `--ticket`, `-t`  | ulong  | ✅        | Ticket of the position to reverse. |
-| `--sl`            | double | ❌        | Optional Stop Loss.                |
-| `--tp`            | double | ❌        | Optional Take Profit.              |
-| `--deviation`     | int    | ❌        | Slippage tolerance.                |
-| `--output`, `-o`  | string | ❌        | Output: `text` or `json`.          |
-| `--timeout-ms`    | int    | ❌        | Timeout in ms.                     |
-| `--dry-run`       | flag   | ❌        | Plan only, no execution.           |
+| Parameter         | Type   | Description                        |
+| ----------------- | ------ |  ---------------------------------- |
+| `--profile`, `-p` | string | Profile.                           |
+| `--ticket`, `-t`  | ulong  |  Ticket of the position to reverse. |
+| `--sl`            | double |  Optional Stop Loss.                |
+| `--tp`            | double |  Optional Take Profit.              |
+| `--deviation`     | int    |  Slippage tolerance.                |
+| `--output`, `-o`  | string |  Output: `text` or `json`.          |
+| `--timeout-ms`    | int    |  Timeout in ms.                     |
+| `--dry-run`       | flag   |  Plan only, no execution.           |
 
 ---
 
