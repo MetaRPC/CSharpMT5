@@ -1,6 +1,6 @@
 # Panic (`panic`) 🚨
 
-## What it Does 🎯
+## What it Does
 
 Runs an **emergency flatten** routine: quickly brings the account to **flat exposure**.
 Typical behavior: close all open positions (and optionally pending orders), then report a summary.
@@ -11,12 +11,12 @@ Typical behavior: close all open positions (and optionally pending orders), then
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                          |
-| ----------------- | ------ | -------- | ---------------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Which profile to use (from `profiles.json`).         |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                          |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).                  |
-| `--dry-run`       | flag   | ❌        | Print intended actions but do **not** send requests. |
+| Parameter         | Type   |Description                                          |
+| ----------------- | ------ |---------------------------------------------------- |
+| `--profile`, `-p` | string | Which profile to use (from `profiles.json`).         |
+| `--output`, `-o`  | string |`text` (default) or `json`.                          |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).                  |
+| `--dry-run`       | flag   | Print intended actions but do **not** send requests. |
 
 > If your implementation supports extra filters (e.g., `--symbol`, `--side`, `--magic`), add them here and in the code reference.
 
