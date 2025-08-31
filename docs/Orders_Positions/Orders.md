@@ -1,6 +1,6 @@
 # Orders (`orders`) 📋
 
-## What it Does 🎯
+## What it Does
 
 Lists all **currently opened pending orders** and **opened position tickets** for the selected profile/account.
 
@@ -8,11 +8,11 @@ Lists all **currently opened pending orders** and **opened position tickets** fo
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                |
-| ----------------- | ------ | -------- | ------------------------------------------ |
-| `--profile`, `-p` | string | Yes        | Profile from `profiles.json`.              |
-| `--output`, `-o`  | string | No       | Output format: `text` (default) or `json`. |
-| `--timeout-ms`    | int    | No        | RPC timeout in ms (default: `30000`).      |
+| Parameter         | Type   | Description                                |
+| ----------------- | ------ | ------------------------------------------ |
+| `--profile`, `-p` | string | Profile from `profiles.json`.              |
+| `--output`, `-o`  | string | Output format: `text` (default) or `json`. |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: `30000`).      |
 
 ---
 
@@ -88,37 +88,4 @@ var orders = new Command("orders", "List open orders and positions tickets");
             try
             {
                 await ConnectAsync();
-                using var opCts = StartOpCts();
-
-                var tickets = await CallWithRetry(
-                    ct => _mt5Account.OpenedOrdersTicketsAsync(deadline: null, cancellationToken: ct),
-                    opCts.Token);
-
-                if (IsJson(output)) Console.WriteLine(ToJson(tickets));
-                else
-                {
-                    var o = tickets.OpenedOrdersTickets;
-                    var p = tickets.OpenedPositionTickets;
-
-                    Console.WriteLine($"Opened orders:   {o.Count}");
-                    if (o.Count > 20) Console.WriteLine(string.Join(", ", o.Take(20)) + " ...");
-                    else if (o.Count > 0) Console.WriteLine(string.Join(", ", o));
-
-                    Console.WriteLine($"Opened positions:{p.Count}");
-                    if (p.Count > 20) Console.WriteLine(string.Join(", ", p.Take(20)) + " ...");
-                    else if (p.Count > 0) Console.WriteLine(string.Join(", ", p));
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorPrinter.Print(_logger, ex, IsDetailed());
-                Environment.ExitCode = 1;
-            }
-            finally
-            {
-                try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-            }
-        }
-    }, profileOpt, outputOpt, timeoutOpt);
-    root.AddCommand(orders);
 ```
