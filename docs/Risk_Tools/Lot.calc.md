@@ -40,30 +40,28 @@ Returns a size that fits the risk budget and respects the symbol’s min/step/ma
 | `min_lot`             | double  | Minimum lot allowed.                                |
 | `max_lot`             | double? | Maximum lot cap (if specified).                     |
 
-\-------------------------|---------|-------------|
-\| `symbol`                | string  | Target symbol used for calculation. |
-\| `balance`               | double  | Balance value passed in the request. |
-\| `risk_pct`              | double  | Risk percentage applied to balance. |
-\| `sl_points`             | int     | Stop‑loss distance in points. |
-\| `point_value_per_lot`   | double  | Money value per point per 1 lot (from server). |
-\| `volume_raw`            | double  | Calculated raw volume before rounding. |
-\| `volume`                | double  | Final recommended volume (after rounding and clamping). |
-\| `lot_step`              | double  | Lot step used for rounding. |
-\| `min_lot`               | double  | Minimum lot allowed. |
-\| `max_lot`               | double? | Maximum lot cap (if specified). |
+|-------------------------|---------|-------------|
+| `symbol`                | string  | Target symbol used for calculation. |
+| `balance`               | double  | Balance value passed in the request. |
+| `risk_pct`              | double  | Risk percentage applied to balance. |
+| `sl_points`             | int     | Stop‑loss distance in points. |
+| `point_value_per_lot`   | double  | Money value per point per 1 lot (from server). |
+| `volume_raw`            | double  | Calculated raw volume before rounding. |
+| `volume`                | double  | Final recommended volume (after rounding and clamping). |
+| `lot_step`              | double  | Lot step used for rounding. |
+| `min_lot`               | double  | Minimum lot allowed. |
+| `max_lot`               | double? | Maximum lot cap (if specified). |
 
-\-----------------------|--------|-------------|
-\| `Symbol`              | string | Target symbol. |
-\| `RiskPct`             | double | Risk percent used. |
-\| `Balance`             | double | Balance used in the calc. |
-\| `StopDistancePoints`  | int    | SL distance in points. |
-\| `ValuePerPoint`       | double | Estimated money value per point per 1.0 lot (symbol-specific). |
-\| `RawLots`             | double | Unclamped/unrounded lots from the risk formula. |
-\| `RoundedLots`         | double | Rounded to `lot-step`. |
-\| `ClampedLots`         | double | Enforced by `min-lot` and `max-lot` (if provided). |
-\| `RiskAmount`          | double | Monetary risk for `ClampedLots`. |
-
-> Exact field names depend on your implementation; the list reflects common outputs for `lot.calc`.
+-----------------------|--------|-------------|
+| `Symbol`              | string | Target symbol. |
+| `RiskPct`             | double | Risk percent used. |
+| `Balance`             | double | Balance used in the calc. |
+| `StopDistancePoints`  | int    | SL distance in points. |
+| `ValuePerPoint`       | double | Estimated money value per point per 1.0 lot (symbol-specific). |
+| `RawLots`             | double | Unclamped/unrounded lots from the risk formula. |
+| `RoundedLots`         | double | Rounded to `lot-step`. |
+| `ClampedLots`         | double | Enforced by `min-lot` and `max-lot` (if provided). |
+| `RiskAmount`          | double | Monetary risk for `ClampedLots`. |
 
 ---
 
@@ -139,78 +137,4 @@ lotCalc.AddOption(timeoutOpt);
 lotCalc.AddOption(outputOpt);
 
 lotCalc.SetHandler(async (InvocationContext ctx) =>
-{
-    var symbol   = Validators.EnsureSymbol(ctx.ParseResult.GetValueForOption(lcSymbolOpt)!);
-    var riskPct  = ctx.ParseResult.GetValueForOption(lcRiskPctOpt);
-    var slPoints = ctx.ParseResult.GetValueForOption(lcSlPtsOpt);
-    var balance  = ctx.ParseResult.GetValueForOption(lcBalanceOpt);
-    var minLot   = ctx.ParseResult.GetValueForOption(lcMinLotOpt);
-    var lotStep  = ctx.ParseResult.GetValueForOption(lcStepLotOpt);
-    var maxLot   = ctx.ParseResult.GetValueForOption(lcMaxLotOpt);
-    var timeoutMs= ctx.ParseResult.GetValueForOption(timeoutOpt);
-    var output   = (ctx.ParseResult.GetValueForOption(outputOpt) ?? "text").Trim().ToLowerInvariant();
-
-    if (riskPct <= 0 || riskPct > 100) throw new ArgumentOutOfRangeException(nameof(riskPct), "Use (0;100].");
-    if (slPoints <= 0) throw new ArgumentOutOfRangeException(nameof(slPoints));
-    if (balance <= 0) throw new ArgumentOutOfRangeException(nameof(balance));
-    if (minLot <= 0) throw new ArgumentOutOfRangeException(nameof(minLot));
-    if (lotStep <= 0) throw new ArgumentOutOfRangeException(nameof(lotStep));
-    if (maxLot is not null && maxLot <= 0) throw new ArgumentOutOfRangeException(nameof(maxLot));
-
-    using (UseOpTimeout(timeoutMs))
-    using (_logger.BeginScope("Cmd:LOT.CALC Symbol:{Symbol} Risk%:{Risk} SLpts:{SL} Bal:{Bal}", symbol, riskPct, slPoints, balance))
-    {
-        try
-        {
-            double pvPerPointPerLot = await _mt5Account.EstimatePointValuePerLotAsync(symbol, default);
-
-            double riskAmt = balance * (riskPct / 100.0);
-            double volRaw  = riskAmt / (slPoints * pvPerPointPerLot);
-
-            double vol = Math.Max(minLot, RoundToStep(volRaw, lotStep));
-            if (maxLot is not null) vol = Math.Min(vol, maxLot.Value);
-
-            if (output == "json")
-            {
-                var payload = new
-                {
-                    symbol,
-                    balance,
-                    risk_pct = riskPct,
-                    sl_points = slPoints,
-                    point_value_per_lot = pvPerPointPerLot,
-                    volume_raw = volRaw,
-                    volume = vol,
-                    lot_step = lotStep,
-                    min_lot = minLot,
-                    max_lot = maxLot
-                };
-                Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(
-                    payload, new JsonSerializerOptions { WriteIndented = true }));
-            }
-            else
-            {
-                Console.WriteLine($"Symbol: {symbol}");
-                Console.WriteLine($"Risk:   {riskPct}% of {balance} = {riskAmt}");
-                Console.WriteLine($"SL:     {slPoints} points");
-                Console.WriteLine($"Point value (1 lot): {pvPerPointPerLot}");
-                Console.WriteLine($"Volume raw: {volRaw}");
-                Console.WriteLine($"Volume => {vol} (step {lotStep}, min {minLot}{(maxLot is null ? "" : $", max {maxLot}")})");
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-    }
-
-    static double RoundToStep(double value, double step)
-    {
-        var k = Math.Round(value / step, MidpointRounding.AwayFromZero);
-        return k * step;
-    }
-});
-
-root.AddCommand(lotCalc);
 ```
