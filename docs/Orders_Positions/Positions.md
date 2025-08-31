@@ -1,6 +1,6 @@
 # Positions (`positions`) 📈
 
-## What it Does 🎯
+## What it Does
 
 Lists all **active (open) positions** for the selected profile/account.
 
@@ -10,11 +10,11 @@ Alias: `pos`
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                |
-| ----------------- | ------ | -------- | ------------------------------------------ |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.              |
-| `--output`, `-o`  | string | ❌        | Output format: `text` (default) or `json`. |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: `30000`).      |
+| Parameter         | Type   | Description                                |
+| ----------------- | ------ | ------------------------------------------ |
+| `--profile`, `-p` | string | Profile from `profiles.json`.              |
+| `--output`, `-o`  | string | Output format: `text` (default) or `json`. |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: `30000`).      |
 
 ---
 
@@ -100,32 +100,4 @@ var positions = new Command("positions", "List active positions");
             try
             {
                 await ConnectAsync();
-                using var opCts = StartOpCts();
-
-                var opened = await CallWithRetry(
-                    ct => _mt5Account.OpenedOrdersAsync(deadline: null, cancellationToken: ct),
-                    opCts.Token);
-
-                if (IsJson(output)) Console.WriteLine(ToJson(opened));
-                else
-                {
-                    var list = opened.PositionInfos;
-                    Console.WriteLine($"Positions: {list.Count}");
-                    foreach (var p in list.Take(10))
-                        Console.WriteLine($"{p.Symbol}  #{p.Ticket}  vol={p.Volume}  open={p.PriceOpen}  pnl={p.Profit}");
-                    if (list.Count > 10) Console.WriteLine($"... and {list.Count - 10} more");
-                }
-            }
-            catch (Exception ex)
-            {
-                ErrorPrinter.Print(_logger, ex, IsDetailed());
-                Environment.ExitCode = 1;
-            }
-            finally
-            {
-                try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-            }
-        }
-    }, profileOpt, outputOpt, timeoutOpt);
-    root.AddCommand(positions);
 ```
