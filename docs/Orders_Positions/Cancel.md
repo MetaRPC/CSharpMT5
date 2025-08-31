@@ -1,6 +1,6 @@
 # Cancel (`cancel`) 🗑️
 
-## What it Does 🎯
+## What it Does
 
 Cancels a **pending order by ticket** on the selected MT5 account/profile.
 Use when you want to remove a single Buy/Sell Limit/Stop (including *Limit* variants) without touching other orders.
@@ -11,14 +11,14 @@ Use when you want to remove a single Buy/Sell Limit/Stop (including *Limit* vari
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                    |
-| ----------------- | ------ | -------- | ---------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.                  |
-| `--ticket`, `-t`  | ulong  | ✅        | **Pending order** ticket to cancel.            |
-| `--symbol`, `-s`  | string | ❌        | Optional symbol filter (safety guard).         |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                    |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).            |
-| `--dry-run`       | flag   | ❌        | Print intended action without sending request. |
+| Parameter         | Type   | Description                                    |
+| ----------------- | ------ |---------------------------------------------- |
+| `--profile`, `-p` | string | Profile from `profiles.json`.                  |
+| `--ticket`, `-t`  | ulong  | **Pending order** ticket to cancel.            |
+| `--symbol`, `-s`  | string | Optional symbol filter (safety guard).         |
+| `--output`, `-o`  | string | `text` (default) or `json`.                    |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).            |
+| `--dry-run`       | flag   | Print intended action without sending request. |
 
 ---
 
@@ -111,43 +111,4 @@ cancel.SetHandler(async (string profile, ulong ticket, string symbol, int timeou
         try
         {
             await ConnectAsync();
-
-            // Best-effort: ensure symbol is visible (some servers require it even for pending ops)
-            try
-            {
-                using var visCts = StartOpCts();
-                await _mt5Account.EnsureSymbolVisibleAsync(
-                    symbol, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
-            }
-            catch (Exception ex) when (ex is not OperationCanceledException)
-            {
-                _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
-            }
-
-            // Volume=0 — convention: delete pending order by ticket
-            using var opCts = StartOpCts();
-            await CallWithRetry(
-                ct => _mt5Account.CloseOrderByTicketAsync(
-                    ticket: ticket,
-                    symbol: symbol,
-                    volume: 0.0,               // <<< key: 0 = delete pending
-                    deadline: null,
-                    cancellationToken: ct),
-                opCts.Token);
-
-            _logger.LogInformation("CANCEL done: ticket={Ticket}", ticket);
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-}, profileOpt, cancelTicketOpt, cancelSymbolOpt, timeoutOpt, dryRunOpt);
-
-root.AddCommand(cancel);
 ```
