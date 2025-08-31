@@ -1,6 +1,6 @@
 # Close (`close`) 🔒
 
-## What it Does 🎯
+## What it Does
 
 Closes an **open position** or **order** in MT5 by ticket ID.
 Supports both **real execution** and **dry-run** mode for testing.
@@ -9,15 +9,15 @@ Supports both **real execution** and **dry-run** mode for testing.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                             |
-| ----------------- | ------ | -------- | ------------------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Which profile to use (from `profiles.json`).            |
-| `--ticket`, `-t`  | ulong  | ✅        | Ticket ID of the order/position to close.               |
-| `--volume`, `-v`  | double | ❌        | Volume (lots) to close. If omitted → close full volume. |
-| `--deviation`     | int    | ❌        | Max slippage in points (default: 10).                   |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                             |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).                     |
-| `--dry-run`       | flag   | ❌        | Print what would happen, but don’t send order.          |
+| Parameter         | Type   | Description                                             |
+| ----------------- | ------ | ------------------------------------------------------- |
+| `--profile`, `-p` | string | Which profile to use (from `profiles.json`).            |
+| `--ticket`, `-t`  | ulong  | Ticket ID of the order/position to close.               |
+| `--volume`, `-v`  | double | Volume (lots) to close. If omitted → close full volume. |
+| `--deviation`     | int    | Max slippage in points (default: 10).                   |
+| `--output`, `-o`  | string |  `text` (default) or `json`.                             |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).                     |
+| `--dry-run`       | flag   | Print what would happen, but don’t send order.          |
 
 ---
 
