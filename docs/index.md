@@ -108,39 +108,131 @@ Download the [CSharpMT5](https://github.com/MetaRPC/CSharpMT5) project to your m
 
 Open the repo in Visual Studio or VS Code.
 
-#### 3. Open `appsettings.json`
+#### 3. Open `profiles.json`
 
-Update your account credentials:
+Fill in the relevant information.
+You can also create multiple profiles and switch through them quickly.
 
 ```json
 {
-  "MT5": {
-    "AccountId": 12345678,
-    "Password": "grY65VbnM",
-    "Host": "127.0.0.1",
-    "Port": 8222,
+  "default": {
+    "AccountId": 21455,
+    "Password": "1nJeS+Ae",
+    "Host": "95.217.147.61",
+    "Port": 443,
+    "GrpcServer": "https://mt5.mrpc.pro:443",
     "DefaultSymbol": "EURUSD",
     "DefaultVolume": 0.1
+  },
+  "demo": {
+    "AccountId": 95591860,
+    "Password": "GyI@7a1m",
+    "ServerName": "MetaQuotes-Demo",
+    "GrpcServer": "https://mt5.mrpc.pro:443",
+    "DefaultSymbol": "GBPUSD",
+    "DefaultVolume": 0.2
   }
 }
 ```
 
-#### 4. Launch the Project
+---
 
-[![](ImagesForGuidance/17..png)](ImagesForGuidance/17..png)
-Run the app. You should see your account balance and current quotes printed in the console.
+## ▶️ After filling `profiles.json`
+
+Once your **profiles.json** is ready, the next step is to actually run the MT5 C# CLI and test connectivity.
+
+### 1. Restore and build
+
+From the repo root:
+
+```powershell
+dotnet restore
+```
+
+### 2. Run commands
+
+The general pattern is:
+
+```powershell
+dotnet run -- <command> [options]
+```
+
+Examples:
+
+```powershell
+# Show all available profiles
+dotnet run -- profiles list
+
+# Show details for your "default" profile
+dotnet run -- profiles show -p default
+
+# Health check (ping)
+dotnet run -- health -p default
+
+# Get one quote
+dotnet run -- quote -p default -s EURUSD
+```
+
+### 3. Place your first order (demo profile)
+
+```powershell
+dotnet run -- buy -p demo -s EURUSD -v 0.10 --sl 1.0700 --tp 1.0800 --deviation 10
+```
+
+> Tip: use `--dry-run` to preview what would be sent without touching the account.
 
 ---
 
-## ⚠️ Notes
+## ⚡ Shortcasts (optional but handy)
 
-* Keep your account credentials safe.
-* If you experience connectivity issues, verify that:
+You can also load PowerShell aliases once per session:
 
-  * ✅ The MT5 terminal is running
-  * ✅ gRPC plugin is enabled and listening on the correct port
-* For advanced usage, refer to the documentation on available service methods.
+```powershell
+. .\ps\shortcasts.ps1
+use-pf demo
+use-sym EURUSD
+
+info   # expands to: mt5 info -p demo
+q      # expands to: mt5 quote -p demo -s EURUSD
+b -v 0.10   # market buy with defaults
+```
+
+See also: **CLI Shortcasts & Live Examples**.
 
 ---
 
-✅ You're all set — enjoy programmatic access to MT5 via gRPC!
+## 🧠 SL/TP rules (quick)
+
+* **BUY**: enter at **Ask** → `SL < Ask`, `TP > Ask`
+* **SELL**: enter at **Bid** → `SL > Bid`, `TP < Bid`
+* Use `position.modify.points` with `--from entry|market` to set distances in **points**.
+
+---
+
+## ⏱ Timeouts & retries
+
+* `--timeout-ms` bounds each RPC. Internally we wrap operations in `UseOpTimeout` and per‑call CTS via `StartOpCts`.
+* Calls go through `CallWithRetry(...)` to automatically retry selected transient errors.
+* For CI, reduce timeout (fast fail). For slow terminals, increase to 60–120s.
+
+---
+
+## 🛟 Troubleshooting
+
+* **“Set Host or MtClusterName”** → profile not picked up. Run `profiles show` and verify `profiles.json` path.
+* **Hidden symbol** → `symbol ensure -s <SYM>` before trading or pending changes.
+* **Timeouts** → raise `--timeout-ms`, test with `--trace` to see where it stuck.
+* **Zero Margin/FreeMargin** on empty accounts is normal; equity ≈ balance when flat.
+
+---
+
+## 🔗 What next
+
+* **Profiles** → details & tips: `Profiles_Reference.md`
+* **Account / Info** → `Info.md`
+* **Market data** → `Quote.md`, `Symbol/Show.md`, `Symbol/Limits.md`, `Symbol/Ensure.md`
+* **Orders & Positions** → `Orders_Positions_Overview.md`
+* **History** → `History.md`, `History_Export.md`
+* **Misc tools** → `Ticket.md`, `Lot_Calc.md`, `Panic.md`
+
+If something is unclear, open an issue or ping in the repo discussions — happy to help! 🎯
