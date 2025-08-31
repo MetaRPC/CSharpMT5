@@ -1,6 +1,6 @@
 # Place (`place`) 🧱
 
-## What it Does 🎯
+## What it Does
 
 Places a **pending order** on MT5. Supports **Limit**, **Stop**, and **Stop‑Limit** types, optional **SL/TP**, and **TIF/expiry**.
 
@@ -16,21 +16,21 @@ Places a **pending order** on MT5. Supports **Limit**, **Stop**, and **Stop‑Li
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type            | Required | Description                                                                         |       |        |
-| ----------------- | --------------- | -------- | ----------------------------------------------------------------------------------- | ----- | ------ |
-| `--profile`, `-p` | string          | ✅        | Profile from `profiles.json`.                                                       |       |        |
-| `--symbol`, `-s`  | string          | ✅        | Symbol (e.g., `EURUSD`).                                                            |       |        |
-| `--volume`, `-v`  | double          | ✅        | Volume in lots.                                                                     |       |        |
-| `--type`          | string          | ✅        | One of: `buylimit` `selllimit` `buystop` `sellstop` `buystoplimit` `sellstoplimit`. |       |        |
-| `--price`         | double?         | ⚠️       | **Entry price** for **Limit/Stop** (not used for Stop‑Limit).                       |       |        |
-| `--stop`          | double?         | ⚠️       | **Trigger** price for **Stop‑Limit**.                                               |       |        |
-| `--limit`         | double?         | ⚠️       | **Limit** price for **Stop‑Limit**.                                                 |       |        |
-| `--tif`           | string?         | ❌        | Time‑in‑force: `GTC`                                                                | `DAY` | `GTD`. |
-| `--expire`        | DateTimeOffset? | ❌        | Expiry (ISO‑8601) when `--tif=GTD`.                                                 |       |        |
-| `--sl`            | double?         | ❌        | Stop Loss price.                                                                    |       |        |
-| `--tp`            | double?         | ❌        | Take Profit price.                                                                  |       |        |
-| `--timeout-ms`    | int             | ❌        | Per‑RPC timeout in ms (default: `30000`).                                           |       |        |
-| `--dry-run`       | flag            | ❌        | Print the plan without sending order.                                               |       |        |
+| Parameter         | Type            | Description                                                                         |       |        |
+| ----------------- | --------------- | ----------------------------------------------------------------------------------- | ----- | ------ |
+| `--profile`, `-p` | string          |  Profile from `profiles.json`.                                                       |       |        |
+| `--symbol`, `-s`  | string          |  Symbol (e.g., `EURUSD`).                                                            |       |        |
+| `--volume`, `-v`  | double          |  Volume in lots.                                                                     |       |        |
+| `--type`          | string          |  One of: `buylimit` `selllimit` `buystop` `sellstop` `buystoplimit` `sellstoplimit`. |       |        |
+| `--price`         | double?         |  **Entry price** for **Limit/Stop** (not used for Stop‑Limit).                       |       |        |
+| `--stop`          | double?         |  **Trigger** price for **Stop‑Limit**.                                               |       |        |
+| `--limit`         | double?         |  **Limit** price for **Stop‑Limit**.                                                 |       |        |
+| `--tif`           | string?         |  Time‑in‑force: `GTC`                                                                | `DAY` | `GTD`. |
+| `--expire`        | DateTimeOffset? |  Expiry (ISO‑8601) when `--tif=GTD`.                                                 |       |        |
+| `--sl`            | double?         |  Stop Loss price.                                                                    |       |        |
+| `--tp`            | double?         |  Take Profit price.                                                                  |       |        |
+| `--timeout-ms`    | int             |  Per‑RPC timeout in ms (default: `30000`).                                           |       |        |
+| `--dry-run`       | flag            | Print the plan without sending order.                                               |       |        |
 
 ---
 
@@ -143,23 +143,4 @@ place.SetHandler(async (InvocationContext ctx) =>
     var tp         = ctx.ParseResult.GetValueForOption(tpOpt);
     var timeoutMs  = ctx.ParseResult.GetValueForOption(timeoutOpt);
     var dryRun     = ctx.ParseResult.GetValueForOption(dryRunOpt);
-
-    Validators.EnsureProfile(profile);
-    Validators.EnsureVolume(volume);
-
-    var s = Validators.EnsureSymbol(symbolArg ?? GetOptions().DefaultSymbol);
-    _selectedProfile = profile;
-
-    var orderKind = ParseOrderType(typeStr);           // TMT5_ENUM_ORDER_TYPE...
-    var tifKind   = ParseTif(tifStr);                  // TMT5_ENUM_ORDER_TYPE_TIME...
-
-    bool isStopLimit = orderKind is
-        TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeBuyStopLimit or
-        TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeSellStopLimit;
-
-    bool isLimitOrStop = orderKind is
-        TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeBuyLimit or
-        TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeSellLimit or
-        TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeBuyStop  or
-        TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeSellStop;
 ```
