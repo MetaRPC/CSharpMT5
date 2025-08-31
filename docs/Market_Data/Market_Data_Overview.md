@@ -35,15 +35,3 @@ This section contains commands related to **symbols, quotes, and trading utiliti
 * **Pending orders:** adjust or move pending orders dynamically.
 
 ---
-
-## Shortcuts ⌨️
-
-These commands are also available via PowerShell shortcuts [shortcasts.ps1 (raw)](https://raw.githubusercontent.com/MetaRPC/CSharpMT5/main/ps/shortcasts.ps1):
-
-* `q` → `quote`
-* `en` → `symbol ensure`
-* `lim` → `symbol limits`
-* `sh` → `symbol show`
-* `rv` → `reverse`
-* `cs` → `close-symbol`
-* `flatten` → `close-all`
