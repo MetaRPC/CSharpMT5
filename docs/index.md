@@ -228,11 +228,11 @@ See also: **CLI Shortcasts & Live Examples**.
 
 ## 🔗 What next
 
-* **Profiles** → details & tips: `Profiles_Reference.md`
-* **Account / Info** → `Info.md`
-* **Market data** → `Quote.md`, `Symbol/Show.md`, `Symbol/Limits.md`, `Symbol/Ensure.md`
-* **Orders & Positions** → `Orders_Positions_Overview.md`
-* **History** → `History.md`, `History_Export.md`
-* **Misc tools** → `Ticket.md`, `Lot_Calc.md`, `Panic.md`
-
-If something is unclear, open an issue or ping in the repo discussions — happy to help! 🎯
+* **Profiles** → details & tips: [Profiles.md](Account/Profiles.md)
+* **Account / Info** → [Info.md](Account/Info.md) · [Overview.md](Account/Overview.md) · [Show.md](Account/Show.md)
+* **Market data** → [Quote.md](Market_Data/Quote.md) · [Symbol.md](Market_Data/Symbol.md) · [Limits.md](Market_Data/Limits.md) · [Ensure Symbol Visible](Market_Data/Ensure_Symbol_Visible.md)
+* **Orders & Positions** → [Orders_Positions_Overview.md](Orders_Positions/Orders_Positions_Overview.md) · [Place.md](Orders_Positions/Place.md) · [Modify.md](Orders_Positions/Modify.md) · [Buy.md](Orders_Positions/Buy.md) · [Sell.md](Orders_Positions/Sell.md)
+* **History** → [History.md](History/History.md) · [History_export.md](History/History_export.md) · [History_Overview.md](History/History_Overview.md)
+* **Diagnostics / Ops** → [Health.md](Diagnostics/Health.md) · [SymbolRules_SmartStops.md](SymbolRules_SmartStops.md) · [Troubleshooting (FAQ)](Troubleshooting%28FAQ%29.md)
+* **Risk tools** → [Lot.calc.md](Risk_Tools/Lot.calc.md)
+* **Misc tools** → [Ticket_Show.md](Misc/Ticket_Show.md) · [Specific_Ticket.md](Misc/Specific_Ticket.md) · [Reverse_Ticket.md](Misc/Reverse_Ticket.md) · [Pending_List.md](Misc/Pending_List.md) · [Panic.md](Market_Data/Panic.md)
