@@ -17,9 +17,6 @@ Typical behavior: close all open positions (and optionally pending orders), then
 | `--output`, `-o`  | string |`text` (default) or `json`.                          |
 | `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).                  |
 | `--dry-run`       | flag   | Print intended actions but do **not** send requests. |
-
-> If your implementation supports extra filters (e.g., `--symbol`, `--side`, `--magic`), add them here and in the code reference.
-
 ---
 
 ## Output Fields ⬆️
@@ -29,7 +26,6 @@ Typical behavior: close all open positions (and optionally pending orders), then
 | `Closed`  | int   | Number of positions successfully closed.                      |
 | `Errors`  | int   | Number of positions that failed to close.                     |
 | `Items[]` | array | Per-ticket results (ticket, symbol, volume, status, message). |
-
 ---
 
 ## How to Use 🛠️
