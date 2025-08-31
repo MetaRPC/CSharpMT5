@@ -4,12 +4,6 @@
 
 Provides a group of commands to **work with a specific ticket**.
 Tickets can represent **open positions**, **pending orders**, or **historical trades**.
-
-Sub‑commands include:
-
-* `ticket show` → display details of a ticket (open/recent).
-* Other extensions may be added (e.g., `ticket modify`, `ticket close`) depending on implementation.
-
 ---
 
 ## Input Parameters (generic) ⬇️
