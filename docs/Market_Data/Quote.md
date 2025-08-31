@@ -89,38 +89,6 @@ quoteCmd.SetHandler(async (string profile, string? symbol, string output, int ti
         try
         {
             await ConnectAsync();
-
-            // best-effort: ensure visibility
-            try
-            {
-                using var visCts = StartOpCts();
-                await _mt5Account.EnsureSymbolVisibleAsync(
-                    s, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
-            }
-            catch (Exception ex) when (ex is not OperationCanceledException)
-            {
-                _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
-            }
-
-            using var opCts = StartOpCts();
-            var snap = await CallWithRetry(ct => FirstTickAsync(s, ct), opCts.Token);
-
-            if (IsJson(output)) Console.WriteLine(ToJson(snap));
-            else Console.WriteLine($"{snap.Symbol}  bid={snap.Bid}  ask={snap.Ask}  time={snap.TimeUtc:O}");
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-}, profileOpt, symbolOpt, outputOpt, timeoutOpt);
-
-root.AddCommand(quoteCmd);
 ```
 
 ---
