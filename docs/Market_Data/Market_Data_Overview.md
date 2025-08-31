@@ -38,7 +38,7 @@ This section contains commands related to **symbols, quotes, and trading utiliti
 
 ## Shortcuts ⌨️
 
-These commands are also available via PowerShell shortcuts (see [shortcasts.ps1](../ps/shortcasts.ps1))
+These commands are also available via PowerShell shortcuts (see [shortcasts.ps1](../ps/shortcasts.ps1)):
 
 * `q` → `quote`
 * `en` → `symbol ensure`
