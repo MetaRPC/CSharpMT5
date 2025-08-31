@@ -106,4 +106,6 @@ For tick size/point, contract size, filters for SL/TP, and margin settings, see 
 
 📌 **In short**
 
-* \`show
+* `show` = list of instruments.
+* `--all` toggles between visible vs. full catalog.
+* Profiles and timeouts behave the same as other commands.
