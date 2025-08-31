@@ -4,6 +4,30 @@ This section documents all commands for **trading operations** — placing, modi
 
 ---
 
+⚠️ Related commands:
+
+* [Breakeven](./Breakeven.md) → move SL to breakeven.
+* [Buy](./Buy.md) → open market buy order.
+* [Cancel](./Cancel.md) → cancel (delete) pending order by ticket.
+* [Cancel\_All](./Cancel_All.md) → cancel all pending orders (with filters).
+* [Close.half](./Close.half.md) → close half of the position.
+* [Close.partial](./Close.partial.md) → close by exact volume.
+* [Close.percent](./Close.percent.md) → close by percent of position.
+* [CloseBy](./CloseBy.md) → close a position by another opposite one.
+* [Modify](./Modify.md) → modify SL/TP by ticket.
+* [Orders](./Orders.md) → list open orders and positions tickets.
+* [Partial-close](./Partial-close.md) → partially close a position.
+* [Pending](./Pending.md) → pending orders utilities.
+* [Place](./Place.md) → place a pending order.
+* [Position.modify](./Position.modify.md) → modify SL/TP of a position.
+* [Position.modify.points](./Position.modify.points.md) → set SL/TP by distance in points.
+* [Positions](./Positions.md) → list active positions.
+* [Sell](./Sell.md) → open market sell order.
+* [Trail.start](./Trail.start.md) → start local trailing stop.
+* [Trail.stop](./Trail.stop.md) → stop local trailing stop.
+
+---
+
 ## 📌 Covered Commands
 
 | Command                  | Alias     | Purpose                                                |
