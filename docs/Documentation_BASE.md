@@ -89,13 +89,13 @@ No magic. Just MT5, C#, and clear recipes: get a quote, open/modify/close safely
 - [Ticket Toolbox](Ticket_Toolbox.md)
 - [Logging: Output Formats](Logging_OutputFormats.md)
 
-### Account
+###📊 Account
 - [Overview](Account/Overview.md)
 - [Show](Account/Show.md)
 - [Info](Account/Info.md)
 - [Profiles](Account/Profiles.md)
 
-### Market Data
+###📈 Market Data
 - [Overview](Market_Data/Market_Data_Overview.md)
 - [Quote](Market_Data/Quote.md)
 - [Symbol](Market_Data/Symbol.md)
@@ -109,7 +109,7 @@ No magic. Just MT5, C#, and clear recipes: get a quote, open/modify/close safely
 - [Pending: move](Market_Data/Pending.move.md)
 - [Pending: modify](Market_Data/Pending.modify.md)
 
-### Orders & Positions
+###📦 Orders & Positions
 - [Overview](Orders_Positions/Orders_Positions_Overview.md)
 - [Orders](Orders_Positions/Orders.md)
 - [Positions](Orders_Positions/Positions.md)
@@ -130,27 +130,27 @@ No magic. Just MT5, C#, and clear recipes: get a quote, open/modify/close safely
 - [Trail.start](Orders_Positions/Trail.start.md)
 - [Trail.stop](Orders_Positions/Trail.stop.md)
 
-### Streaming
+###🔁 Streaming
 - [Subscribe](Streaming/Subscribe.md)
 
-### History
+###📄 History
 - [Overview](History/History_Overview.md)
 - [History](History/History.md)
 - [Export](History/History_export.md)
 - [History Expor (legacy)](History_Expor.md)
 
-### Diagnostics / Ops
+###❤️ Diagnostics / Ops
 - [Health](Diagnostics/Health.md)
 - [Troubleshooting & FAQ](Troubleshooting%28FAQ%29.md)
 - [Symbol Rules & Smart Stops](SymbolRules_SmartStops.md)
 
-### API Reference
+###📘 API Reference
 - [Overview](API_Reference/Overview.md)
 - [Enums](API_Reference/Enums.md)
 - [Messages](API_Reference/Messages.md)
 - [Streaming](API_Reference/Streaming.md)
 
-### Misc
+###📚 Misc
 - [Overview](Misc/Misc_Overview.md)
 - [List](Misc/List.md)
 - [Ticket Show](Misc/Ticket_Show.md)
