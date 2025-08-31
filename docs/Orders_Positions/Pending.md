@@ -1,6 +1,6 @@
 # Pending (`pending`) 🕒
 
-## What it Does 🎯
+## What it Does
 
 Provides utilities for working with **pending orders**. Currently supports listing tickets of all open pending orders.
 
@@ -14,11 +14,11 @@ Lists tickets of all current pending orders for the selected profile/account.
 
 #### Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                |
-| ----------------- | ------ | -------- | ------------------------------------------ |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.              |
-| `--output`, `-o`  | string | ❌        | Output format: `text` (default) or `json`. |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: `30000`).      |
+| Parameter         | Type   | Description                                |
+| ----------------- | ------ |------------------------------------------ |
+| `--profile`, `-p` | string | Profile from `profiles.json`.              |
+| `--output`, `-o`  | string | Output format: `text` (default) or `json`. |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: `30000`).      |
 
 #### Output Fields ⬆️
 
@@ -95,46 +95,4 @@ pendingList.SetHandler(async (string profile, string output, int timeoutMs) =>
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            // This call returns both pending-order tickets and open-position tickets
-            var tickets = await CallWithRetry(
-                ct => _mt5Account.OpenedOrdersTicketsAsync(deadline: null, cancellationToken: ct),
-                opCts.Token);
-
-            var pendingTickets  = tickets.OpenedOrdersTickets;     // pending orders
-            // var positionTickets = tickets.OpenedPositionTickets; // not used here
-
-            if (IsJson(output))
-            {
-                var dto = new
-                {
-                    count   = pendingTickets.Count,
-                    tickets = pendingTickets.ToArray()
-                };
-                Console.WriteLine(ToJson(dto));
-            }
-            else
-            {
-                Console.WriteLine($"Pending orders: {pendingTickets.Count}");
-                if (pendingTickets.Count > 20)
-                    Console.WriteLine(string.Join(", ", pendingTickets.Take(20)) + " ...");
-                else if (pendingTickets.Count > 0)
-                    Console.WriteLine(string.Join(", ", pendingTickets));
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-}, profileOpt, outputOpt, timeoutOpt);
-
-pending.AddCommand(pendingList);
-root.AddCommand(pending);
 ```
