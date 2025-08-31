@@ -107,7 +107,7 @@ using var opCts = StartOpCts();
 
 // 1) get current open aggregates (whatever your API returns)
 var opened = await CallWithRetry(
-    ct => _mt5Account.GetOpenedAggregateAsync(ct),  // <- замените на ваш реальный вызов
+    ct => _mt5Account.GetOpenedAggregateAsync(ct),
     opCts.Token);
 
 // 2) try to locate in opened (positions / pendings)
