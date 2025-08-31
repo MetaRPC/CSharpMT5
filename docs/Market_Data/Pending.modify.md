@@ -166,48 +166,4 @@ pendingModify.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-
-            if (!string.IsNullOrWhiteSpace(s))
-            {
-                try
-                {
-                    using var visCts = StartOpCts();
-                    await _mt5Account.EnsureSymbolVisibleAsync(s!, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
-                }
-                catch (Exception ex) when (ex is not OperationCanceledException)
-                {
-                    _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
-                }
-            }
-
-            using var opCts = StartOpCts();
-            var ok = await CallWithRetry(
-                ct => _mt5Account.ModifyPendingOrderAsync(
-                    ticket: ticket,
-                    type: typeStr, 
-                    price: price,
-                    stop: stop,
-                    limit: limit,
-                    sl: sl,
-                    tp: tp,
-                    tif: tifStr,
-                    expire: expire,
-                    ct: ct),
-                opCts.Token);
-
-            Console.WriteLine(ok ? "✔ pending.modify done" : "✖ pending.modify failed");
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-});
-
-root.AddCommand(pendingModify);
 ```
