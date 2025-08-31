@@ -119,10 +119,6 @@ var ticket = await CallWithRetry(
   opCts.Token);
 ```
 
-SELL делает то же самое, но с `isBuy: false` и проверками относительно `Bid`/`Ask` в обратную сторону.
-
----
-
 ## Common pitfalls the preflight avoids 🧨
 
 * **“Invalid SL/TP: too close to market”** — enforces `StopLevel` distance.
