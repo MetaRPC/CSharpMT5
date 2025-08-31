@@ -1,6 +1,6 @@
 # Show (`show`) 🔍
 
-## What it Does 🎯
+## What it Does
 
 Lists available symbols from MT5 terminal.
 By default prints visible (active) symbols, but can also fetch the entire symbol catalog.
@@ -11,10 +11,10 @@ By default prints visible (active) symbols, but can also fetch the entire symbol
 
 | Parameter      | Type   | Required | Description                                            |
 | -------------- | ------ | -------- | ------------------------------------------------------ |
-| `--profile`    | string | ✅        | Which profile to use (from `profiles.json`).           |
-| `--output`     | string | ❌        | Output format: `text` (default) or `json`.             |
-| `--timeout-ms` | int    | ❌        | Per-RPC timeout in milliseconds (default: 30000).      |
-| `--all`        | flag   | ❌        | If set, lists **all symbols** (not only visible ones). |
+| `--profile`    | string | yes        | Which profile to use (from `profiles.json`).           |
+| `--output`     | string | no        | Output format: `text` (default) or `json`.             |
+| `--timeout-ms` | int    | no        | Per-RPC timeout in milliseconds (default: 30000).      |
+| `--all`        | flag   | no        | If set, lists **all symbols** (not only visible ones). |
 
 ---
 
