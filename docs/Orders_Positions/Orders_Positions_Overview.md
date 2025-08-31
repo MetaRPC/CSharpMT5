@@ -70,7 +70,6 @@ This section documents all commands for **trading operations** — placing, modi
 
 ## 🔗 Related Sections
 
-* [Account](../Account/Account_Overview.md) → for profiles, info, account state.
 * [History](../History/History_Overview.md) → for historical orders/trades.
 * [Market Data](../Market_Data/Market_Data_Overview.md) → for quotes, symbol settings.
 * [Misc](../Misc/Misc_Overview.md) → for ticket utilities and extra tools.
