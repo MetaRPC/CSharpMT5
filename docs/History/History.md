@@ -1,6 +1,6 @@
 # History (`history`) 🕰️
 
-## What it Does 🎯
+## What it Does
 
 Fetches **account trading history** for the **last N days** from MT5 and prints it in **text** or **JSON**.
 Under the hood it calls `_mt5Account.OrderHistoryAsync(from, to)` where `from = UtcNow - days` and `to = UtcNow`.
@@ -11,10 +11,10 @@ Under the hood it calls `_mt5Account.OrderHistoryAsync(from, to)` where `from = 
 
 | Parameter      | Type   | Required | Description                                       |
 | -------------- | ------ | -------- | ------------------------------------------------- |
-| `--profile`    | string | ✅        | Profile to use (from `profiles.json`).            |
-| `--output`     | string | ❌        | `text` (default) or `json`.                       |
-| `--days`       | int    | ✅        | Number of days to look back. **Must be > 0**.     |
-| `--timeout-ms` | int    | ❌        | Per-RPC timeout in milliseconds (default: 30000). |
+| `--profile`    | string | yes        | Profile to use (from `profiles.json`).            |
+| `--output`     | string | no        | `text` (default) or `json`.                       |
+| `--days`       | int    | yes        | Number of days to look back. **Must be > 0**.     |
+| `--timeout-ms` | int    | no        | Per-RPC timeout in milliseconds (default: 30000). |
 
 > Note: This command uses a **fixed time window** (`now - days` → `now`). There are no `--from/--to` or `--mode` switches in the current implementation.
 
@@ -142,7 +142,6 @@ history.SetHandler(async (string profile, string output, int days, int timeoutMs
 }, profileOpt, outputOpt, daysOpt, timeoutOpt);
 root.AddCommand(history);
 ```
-
 ---
 
 📌 In short:
