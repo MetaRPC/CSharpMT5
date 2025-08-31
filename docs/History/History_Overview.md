@@ -4,7 +4,7 @@ The **History** section provides access to closed deals and account history over
 
 ---
 
-## Commands Included ⚙️
+## Commands Included
 
 | Command                                    | Alias     | Description                                              |
 | ------------------------------------------ | --------- | -------------------------------------------------------- |
