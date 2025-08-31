@@ -93,54 +93,6 @@ history.SetHandler(async (string profile, string output, int days, int timeoutMs
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            var from = DateTime.UtcNow.AddDays(-Math.Abs(days));
-            var to   = DateTime.UtcNow;
-
-            var res = await CallWithRetry(
-                ct => _mt5Account.OrderHistoryAsync(from, to, deadline: null, cancellationToken: ct),
-                opCts.Token);
-
-            if (IsJson(output)) Console.WriteLine(ToJson(res));
-            else
-            {
-                var items = res.HistoryData;
-                Console.WriteLine($"History items: {items.Count}");
-                foreach (var h in items.Take(10))
-                {
-                    if (h.HistoryOrder is not null)
-                    {
-                        var o = h.HistoryOrder;
-                        var setup = o.SetupTime?.ToDateTime();
-                        var done  = o.DoneTime?.ToDateTime();
-                        Console.WriteLine(
-                            $"ORDER  #{o.Ticket}  {o.Symbol}...vol={o.VolumeInitial}->{o.VolumeCurrent}  open={o.PriceOpen} " +
-                            $"setup={setup:O} done={done:O}");
-                    }
-                    else if (h.HistoryDeal is not null)
-                    {
-                        var d = h.HistoryDeal;
-                        var t = d.Time?.ToDateTime();
-                        Console.WriteLine(
-                            $"DEAL   #{d.Ticket}  {d.Symbol}...  vol={d.Volume}  price={d.Price}  pnl={d.Profit}  time={t:O}");
-                    }
-                }
-                if (items.Count > 10) Console.WriteLine($"... and {items.Count - 10} more");
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-}, profileOpt, outputOpt, daysOpt, timeoutOpt);
-root.AddCommand(history);
 ```
 ---
 
