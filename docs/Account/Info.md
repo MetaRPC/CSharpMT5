@@ -47,46 +47,27 @@ Values are composed from `AccountSummaryData` + additional `AccountInformation` 
 
 ## 🧪 Examples
 
-\=== "CLI (JSON)"
-
-````
-???+ example "Code example — CLI with JSON output"
-
+???+ example "CLI (JSON)"
     ```powershell
     # Full JSON snapshot (good for scripting)
     dotnet run -- info -p demo -o json --timeout-ms 90000
     ```
-````
 
-\=== "CLI (text)"
-
-````
-???+ example "Code example — human‑readable text"
-
+???+ example "CLI (text)"
     ```powershell
     # Compact, readable dump
     dotnet run -- info -p demo -o text
     ```
-````
 
-\=== "PowerShell Shortcasts"
-
-````
-???+ example "Code example — using aliases from ps/shortcasts.ps1"
-
+???+ example "PowerShell Shortcasts"
     ```powershell
     . .\ps\shortcasts.ps1
     use-pf demo
     use-to 90000
     info   # expands to: mt5 info -p demo --timeout-ms 90000
     ```
-````
 
-\=== "C# API"
-
-````
-???+ example "Code example — call from your C# app"
-
+???+ example "C# API"
     ```csharp
     var summary = await _mt5Account.AccountSummaryAsync();
 
@@ -94,10 +75,8 @@ Values are composed from `AccountSummaryData` + additional `AccountInformation` 
     _logger.LogInformation("Login: {0}", summary.AccountLogin);
     _logger.LogInformation("Balance: {0}", summary.AccountBalance);
     _logger.LogInformation("Equity: {0}", summary.AccountEquity);
-    // ... leverage, trade mode, margin, free margin, company, etc.
+    // ... leverage, trade mode, margin, free margin, etc.
     ```
-````
-
 ---
 
 ## ❓ When to use
