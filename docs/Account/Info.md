@@ -11,9 +11,9 @@ Used for checking account state, verifying connectivity, and quick diagnostics.
 
 | Parameter      | Type   | Required | Description                                                                  |
 | -------------- | ------ | -------- | ---------------------------------------------------------------------------- |
-| `--profile`    | string | ✅        | Which profile to use (from `profiles.json` — holds login, server, password). |
-| `--output`     | string | ❌        | Output format: `text` (default) or `json`.                                   |
-| `--timeout-ms` | int    | ❌        | Per-RPC timeout in milliseconds (default: 30000).                            |
+| `--profile`    | string | yes        | Which profile to use (from `profiles.json` — holds login, server, password). |
+| `--output`     | string | no        | Output format: `text` (default) or `json`.                                   |
+| `--timeout-ms` | int    | no        | Per-RPC timeout in milliseconds (default: 30000).                            |
 
 ---
 
