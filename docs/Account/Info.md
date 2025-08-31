@@ -1,6 +1,8 @@
 # Getting an Account Summary (`info`) 📟
 
-Fetches **real‑time account snapshot** from MT5 and prints it either in **text** (console) or **JSON** (machine‑readable).
+## What it Does 
+
+Fetches **real-time account snapshot** from MT5 and prints it either in **text** (console) or **JSON** (machine-readable).
 Used for checking account state, verifying connectivity, and quick diagnostics.
 
 ---
@@ -8,10 +10,10 @@ Used for checking account state, verifying connectivity, and quick diagnostics.
 ## Input Parameters ⬇️
 
 | Parameter      | Type   | Required | Description                                                                  |
-| -------------- | ------ | :------: | ---------------------------------------------------------------------------- |
-| `--profile`    | string |     ✅    | Which profile to use (from `profiles.json` — holds login, server, password). |
-| `--output`     | string |     ❌    | Output format: `text` (default) or `json`.                                   |
-| `--timeout-ms` | int    |     ❌    | Per‑RPC timeout in milliseconds (default: 30000).                            |
+| -------------- | ------ | -------- | ---------------------------------------------------------------------------- |
+| `--profile`    | string | ✅        | Which profile to use (from `profiles.json` — holds login, server, password). |
+| `--output`     | string | ❌        | Output format: `text` (default) or `json`.                                   |
+| `--timeout-ms` | int    | ❌        | Per-RPC timeout in milliseconds (default: 30000).                            |
 
 ---
 
@@ -64,7 +66,7 @@ info
 * **Before sending orders** — check equity, free margin, leverage.
 * **Monitoring** — feed JSON into dashboards, CI/CD or alerts.
 * **Diagnostics** — confirm MT5 terminal is connected and profile credentials work.
-* **Risk control** — margin usage visible before high‑risk trades.
+* **Risk control** — margin usage visible before high-risk trades.
 
 ---
 
@@ -79,3 +81,8 @@ _logger.LogInformation("Balance: {0}", summary.AccountBalance);
 _logger.LogInformation("Equity: {0}", summary.AccountEquity);
 // ... prints leverage, trade mode, margin, free margin, etc.
 ```
+
+Можешь сделать оформление более изящным (Я по правде говоря даже не знаю как это описать)
+
+и Я хочу где раздел код экземпл видеть такую же раскрывающиеся табличку как в примере выше только на нашу тему
+а не на тему что на скрине(код от код экземпл поместить туда для красивого оформления
