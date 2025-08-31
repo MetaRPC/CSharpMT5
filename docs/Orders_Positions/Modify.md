@@ -4,8 +4,6 @@
 
 Updates **Stop Loss** and/or **Take Profit** for a position **by ticket**.
 
-> Your repo also has a `position.modify` flow used by the shortcast `posmod`. This page documents the generic **`modify`** command you pasted; if your build exposes it as `position.modify`, adjust the command name in examples accordingly.
-
 ---
 
 ## Input Parameters ⬇️
