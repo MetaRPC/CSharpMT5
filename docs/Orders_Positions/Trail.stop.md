@@ -1,10 +1,10 @@
-# `trail.stop` 🛑📉
+# `trail.stop` 🛑
 
 Stops a local trailing stop that was previously started with [`trail.start`](../trail_start_doc).
 
 ---
 
-## Purpose 🎯
+## Purpose 
 
 * Cancel an active trailing stop logic for a specific position.
 * Useful when you no longer want the system to automatically move Stop Loss.
