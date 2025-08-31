@@ -9,15 +9,15 @@ Great for scaling‑out with rules like “take 50% at +1R, trail the rest”.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                    |
-| ----------------- | ------ | -------- | ---------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.                  |
-| `--ticket`, `-t`  | ulong  | ✅        | Position ticket to partially close.            |
-| `--pct`           | double | ✅        | Percentage to close (e.g., `50` for 50%).      |
-| `--deviation`     | int    | ❌        | Max slippage (points). Default: `10`.          |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                    |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).            |
-| `--dry-run`       | flag   | ❌        | Print intended action without sending request. |
+| Parameter         | Type   | Description                                    |
+| ----------------- | ------ |---------------------------------------------- |
+| `--profile`, `-p` | string | Profile from `profiles.json`.                  |
+| `--ticket`, `-t`  | ulong  | Position ticket to partially close.            |
+| `--pct`           | double | Percentage to close (e.g., `50` for 50%).      |
+| `--deviation`     | int    | Max slippage (points). Default: `10`.          |
+| `--output`, `-o`  | string | `text` (default) or `json`.                    |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).            |
+| `--dry-run`       | flag   | Print intended action without sending request. |
 
 ---
 
@@ -113,49 +113,4 @@ closePercent.AddOption(dryRunOpt);
                     try
                     {
                         await ConnectAsync();
-                        using var opCts = StartOpCts();
-
-                        var opened = await CallWithRetry(
-                            ct => _mt5Account.OpenedOrdersAsync(deadline: null, cancellationToken: ct),
-                            opCts.Token);
-
-                        var pos = opened.PositionInfos.FirstOrDefault(p => Convert.ToUInt64(p.Ticket) == ticket);
-                        if (pos is null)
-                        {
-                            Console.WriteLine($"Position #{ticket} not found.");
-                            Environment.ExitCode = 2;
-                            return;
-                        }
-
-                        var symbol = pos.Symbol;
-                        var posVol = pos.Volume;                  // double
-                        var toClose = posVol * (pct / 100.0);
-
-                        toClose = Math.Round(toClose, 2, MidpointRounding.AwayFromZero);
-                        if (toClose <= 0) { Console.WriteLine("Nothing to close after rounding."); Environment.ExitCode = 2; return; }
-                        if (toClose > posVol) toClose = posVol;
-
-                        if (dryRun)
-                        {
-                            Console.WriteLine($"[DRY-RUN] CLOSE.PERCENT #{ticket} {symbol}: close {toClose} of {posVol} (dev={deviation})");
-                            return;
-                        }
-
-                        await CallWithRetry(
-                            ct => _mt5Account.ClosePositionPartialAsync(ticket, toClose, deviation, ct),
-                            opCts.Token);
-
-                        Console.WriteLine($"✔ close.percent done: #{ticket} vol={toClose}");
-                    }
-                    catch (Exception ex)
-                    {
-                        ErrorPrinter.Print(_logger, ex, IsDetailed());
-                        Environment.ExitCode = 1;
-                    }
-                    finally
-                    {
-                        try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-                    }
-                }
-            });
 ```
