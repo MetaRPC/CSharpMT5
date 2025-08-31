@@ -1,6 +1,6 @@
 # Close Half (`close.half`) ✂️
 
-## What it Does 🎯
+## What it Does
 
 Closes **half of a position’s volume** by ticket.
 Convenient for partial profit‑taking while keeping the other half running.
@@ -9,14 +9,14 @@ Convenient for partial profit‑taking while keeping the other half running.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                    |
-| ----------------- | ------ | -------- | ---------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.                  |
-| `--ticket`, `-t`  | ulong  | ✅        | Position ticket to partially close.            |
-| `--deviation`     | int    | ❌        | Max slippage (points). Default: `10`.          |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                    |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).            |
-| `--dry-run`       | flag   | ❌        | Print intended action without sending request. |
+| Parameter         | Type   | Description                                    |
+| ----------------- | ------ | ---------------------------------------------- |
+| `--profile`, `-p` | string | Profile from `profiles.json`.                  |
+| `--ticket`, `-t`  | ulong  | Position ticket to partially close.            |
+| `--deviation`     | int    | Max slippage (points). Default: `10`.          |
+| `--output`, `-o`  | string | `text` (default) or `json`.                    |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).            |
+| `--dry-run`       | flag   | Print intended action without sending request. |
 
 ---
 
