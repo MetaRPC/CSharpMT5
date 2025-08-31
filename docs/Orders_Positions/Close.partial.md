@@ -1,6 +1,6 @@
 # Close Partial (`close.partial`) 🪓
 
-## What it Does 🎯
+## What it Does
 
 Closes a **specific volume** of a position by ticket.
 Unlike `close.half` or `close.percent`, this command lets you choose the **exact number of lots** to close.
@@ -9,15 +9,15 @@ Unlike `close.half` or `close.percent`, this command lets you choose the **exact
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                    |
-| ----------------- | ------ | -------- | ---------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.                  |
-| `--ticket`, `-t`  | ulong  | ✅        | Position ticket to partially close.            |
-| `--volume`, `-v`  | double | ✅        | Exact volume to close (in lots).               |
-| `--deviation`     | int    | ❌        | Max slippage (points). Default: `10`.          |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                    |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).            |
-| `--dry-run`       | flag   | ❌        | Print intended action without sending request. |
+| Parameter         | Type   | Description                                    |
+| ----------------- | ------ | ---------------------------------------------- |
+| `--profile`, `-p` | string | Profile from `profiles.json`.                  |
+| `--ticket`, `-t`  | ulong  | Position ticket to partially close.            |
+| `--volume`, `-v`  | double | Exact volume to close (in lots).               |
+| `--deviation`     | int    | Max slippage (points). Default: `10`.          |
+| `--output`, `-o`  | string | `text` (default) or `json`.                    |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).            |
+| `--dry-run`       | flag   | Print intended action without sending request. |
 
 ---
 
@@ -119,25 +119,4 @@ closePartial.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-
-            using var opCts = StartOpCts();
-            await CallWithRetry(
-                ct => _mt5Account.ClosePositionPartialAsync(ticket, volume, deviation, ct),
-                opCts.Token);
-
-            Console.WriteLine("✔ close.partial done");
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-});
-
-root.AddCommand(closePartial);
 ```
