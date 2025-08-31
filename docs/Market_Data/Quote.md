@@ -1,6 +1,6 @@
 # Quote (`quote`) 💬
 
-## What it Does 🎯
+## What it Does
 
 Fetches a **snapshot price** for a symbol (Bid/Ask/Time) from MT5.
 Used for quick checks, scripts, and preflight before placing orders.
@@ -9,12 +9,12 @@ Used for quick checks, scripts, and preflight before placing orders.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                  |
-| ----------------- | ------ | -------- | -------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Which profile to use (from `profiles.json`). |
-| `--symbol`, `-s`  | string | ✅        | Symbol to query (e.g., `EURUSD`).            |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                  |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).          |
+| Parameter         | Type   | Description                                  |
+| ----------------- | ------ |  -------------------------------------------- |
+| `--profile`, `-p` | string |  Which profile to use (from `profiles.json`). |
+| `--symbol`, `-s`  | string |  Symbol to query (e.g., `EURUSD`).            |
+| `--output`, `-o`  | string |  `text` (default) or `json`.                  |
+| `--timeout-ms`    | int    |  RPC timeout in ms (default: 30000).          |
 
 ---
 
