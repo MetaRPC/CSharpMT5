@@ -1,6 +1,6 @@
 # Pending Move (`pending.move`) ↔️
 
-## What it Does 🎯
+## What it Does
 
 Moves a **pending order** to a **new entry price** (or by an **offset** if supported).
 Useful to chase price action without recreating the order.
@@ -11,18 +11,18 @@ Useful to chase price action without recreating the order.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type     | Required | Description                                           |
-| ----------------- | -------- | -------- | ----------------------------------------------------- |
-| `--profile`, `-p` | string   | ✅        | Which profile to use (from `profiles.json`).          |
-| `--ticket`, `-t`  | ulong    | ✅        | Ticket ID of the pending order to move.               |
-| `--price`         | double   | ❌        | **Absolute** new entry price.                         |
-| `--offset-points` | int      | ❌        | **Relative** shift in points (e.g., `+50`, `-25`).    |
-| `--sl`            | double   | ❌        | Optional new Stop Loss (kept unchanged if omitted).   |
-| `--tp`            | double   | ❌        | Optional new Take Profit (kept unchanged if omitted). |
-| `--expiration`    | DateTime | ❌        | Optional new expiration (UTC).                        |
-| `--output`, `-o`  | string   | ❌        | `text` (default) or `json`.                           |
-| `--timeout-ms`    | int      | ❌        | RPC timeout in ms (default: 30000).                   |
-| `--dry-run`       | flag     | ❌        | Print the intended change without sending request.    |
+| Parameter         | Type     | Description                                           |
+| ----------------- | -------- | ----------------------------------------------------- |
+| `--profile`, `-p` | string   | Which profile to use (from `profiles.json`).          |
+| `--ticket`, `-t`  | ulong    | Ticket ID of the pending order to move.               |
+| `--price`         | double   |  **Absolute** new entry price.                         |
+| `--offset-points` | int      | **Relative** shift in points (e.g., `+50`, `-25`).    |
+| `--sl`            | double   | Optional new Stop Loss (kept unchanged if omitted).   |
+| `--tp`            | double   |  Optional new Take Profit (kept unchanged if omitted). |
+| `--expiration`    | DateTime |  Optional new expiration (UTC).                        |
+| `--output`, `-o`  | string   |  `text` (default) or `json`.                           |
+| `--timeout-ms`    | int      |  RPC timeout in ms (default: 30000).                   |
+| `--dry-run`       | flag     |  Print the intended change without sending request.    |
 
 > Your build may support **either** `--price` **or** `--offset-points`, or both. If both are provided, prefer absolute `--price`.
 
