@@ -1,6 +1,6 @@
 # Symbol Show (`symbol show`) 🔍
 
-## What it Does 🎯
+## What it Does
 
 Displays **full metadata** about a given symbol from MT5.
 Useful for diagnostics, research, or verifying broker settings (digits, contract size, trade mode, etc.).
@@ -14,12 +14,12 @@ Useful for diagnostics, research, or verifying broker settings (digits, contract
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                |
-| ----------------- | ------ | -------- | ------------------------------------------ |
-| `--profile`, `-p` | string | ✅        | Profile to use (from `profiles.json`).     |
-| `--symbol`, `-s`  | string | ✅        | Symbol to query (e.g., `EURUSD`).          |
-| `--output`, `-o`  | string | ❌        | Output format: `text` (default) or `json`. |
-| `--timeout-ms`    | int    | ❌        | RPC timeout (default: 30000).              |
+| Parameter         | Type   | Description                                |
+| ----------------- | ------ | ------------------------------------------ |
+| `--profile`, `-p` | string |  Profile to use (from `profiles.json`).     |
+| `--symbol`, `-s`  | string |  Symbol to query (e.g., `EURUSD`).          |
+| `--output`, `-o`  | string |  Output format: `text` (default) or `json`. |
+| `--timeout-ms`    | int    |  RPC timeout (default: 30000).              |
 
 ---
 
