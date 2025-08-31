@@ -148,6 +148,6 @@ A: A small, fixed number to avoid long stalls (keep user experience snappy). Che
 
 ## Related
 
-* Getting Started → `Getting_Started.md`
-* Logging & Output → `CLI_Logging_Output.md` (optional page)
-* Shortcasts → `cli_shortcasts_examples.md`
+* [Getting Started](Getting_Started.md)
+* [Shortcasts & Live Examples](Shortcasts_LiveExamples.md)
+
