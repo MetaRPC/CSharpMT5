@@ -1,7 +1,3 @@
-# CSharpMT5 — Documentation BASE (C#)
-
-No magic. Just MT5, C#, and clear recipes: get a quote, open/modify/close safely, and stream ticks.
-
 <div class="grid cards" markdown>
 
 -   :material-rocket-launch: **Start Here**
@@ -15,7 +11,7 @@ No magic. Just MT5, C#, and clear recipes: get a quote, open/modify/close safely
     ---
     Data flow, health checks, timeouts & retries.
     <br>
-    [:material-topology: Data Flow](Architecture_DataFlow.md){ .md-button }
+    [:material-sitemap: Data Flow](Architecture_DataFlow.md){ .md-button } 
     [:material-clock-alert: Timeouts & Retries](Timeouts_RetriesPolicy.md){ .md-button-outline }
     [:material-heart-pulse: Health](Diagnostics/Health.md){ .md-button-outline }
 
@@ -33,7 +29,7 @@ No magic. Just MT5, C#, and clear recipes: get a quote, open/modify/close safely
     <br>
     [:material-cart-plus: Place](Orders_Positions/Place.md){ .md-button }
     [:material-pencil: Modify](Orders_Positions/Modify.md){ .md-button-outline }
-    [:material-select-group: Close %](Orders_Positions/Close.percent.md){ .md-button-outline }
+    [:material-percent-outline: Close %](Orders_Positions/Close.percent.md){ .md-button-outline }
 
 -   :material-broadcast: **Streaming**
     ---
@@ -56,7 +52,7 @@ No magic. Just MT5, C#, and clear recipes: get a quote, open/modify/close safely
     [:material-view-list: Overview](API_Reference/Overview.md){ .md-button }
     [:material-format-list-bulleted-type: Enums](API_Reference/Enums.md){ .md-button-outline }
     [:material-email: Messages](API_Reference/Messages.md){ .md-button-outline }
-    [:material-email-fast: Streaming](API_Reference/Streaming.md){ .md-button-outline }
+    [:material-email-fast-outline: Streaming](API_Reference/Streaming.md){ .md-button-outline }
 
 -   :material-hammer-wrench: **Shortcasts & Tools**
     ---
@@ -64,18 +60,18 @@ No magic. Just MT5, C#, and clear recipes: get a quote, open/modify/close safely
     <br>
     [:material-video-outline: Live Examples](Shortcasts_LiveExamples.md){ .md-button }
     [:material-ticket-account: Ticket Toolbox](Ticket_Toolbox.md){ .md-button-outline }
-    [:material-xml: Logging Formats](Logging_OutputFormats.md){ .md-button-outline }
+    [:material-code-json: Logging Formats](Logging_OutputFormats.md){ .md-button-outline }
 
 -   :material-shield-lock: **Ops**
     ---
     Smart stops, risk tools, troubleshooting.
     <br>
     [:material-shield: Smart Stops](SymbolRules_SmartStops.md){ .md-button }
-    [:material-shield-search: Lot Calc](Risk_Tools/Lot.calc.md){ .md-button-outline }
+    [:material-calculator-variant: Lot Calc](Risk_Tools/Lot.calc.md){ .md-button-outline }
     [:material-frequently-asked-questions: Troubleshooting](Troubleshooting%28FAQ%29.md){ .md-button-outline }
+
 </div>
 
----
 
 ## 📑 Table of Contents
 
