@@ -1,4 +1,55 @@
 site_name: MetaRPC MT5 C# Documentation
+site_url: https://metarpc.github.io/CSharpMT5/
+repo_name: MetaRPC/CSharpMT5
+repo_url: https://github.com/MetaRPC/CSharpMT5
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: en
+  font:
+    text: Inter
+    code: JetBrains Mono
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - navigation.tabs
+    - toc.integrate
+    - content.code.copy
+    - content.action.edit
+    - content.tabs.link
+    - search.highlight
+    - search.suggest
+    - palette.toggle
+    - palette.auto
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/MetaRPC/CSharpMT5
+      name: GitHub
+  generator: false
+  consent:
+    title: Cookies & telemetry
+    description: We use GitHub Pages basic analytics only. No tracking cookies.
+
+copyright: >
+  © {{ date | strftime("%Y") }} MetaRPC. MT5 is a MetaQuotes software. This site is a community-made documentation.
 
 nav:
   - Home: Documentation_BASE.md
@@ -83,36 +134,30 @@ nav:
       - "Pending List": Misc/Pending_List.md
       - "Reverse by Ticket": Misc/Reverse_Ticket.md
 
-theme:
-  name: material
-  palette:
-    - scheme: default
-      primary: indigo
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-    - scheme: slate
-      primary: indigo
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-  features:
-    - navigation.instant
-    - navigation.sections
-    - content.code.copy
-    - content.code.annotate
-    - palette.toggle
-    - palette.auto
-
 markdown_extensions:
   - admonition
-  - attr_list
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.superfences
   - pymdownx.details
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.superfences
+  - md_in_html
   - tables
   - toc:
       permalink: true
+  - codehilite
+  - pymdownx.inlinehilite
+  - pymdownx.highlight
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - def_list
+  - abbr
+  - footnotes
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.critic
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+plugins:
+  - search
