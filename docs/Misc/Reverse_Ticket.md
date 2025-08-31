@@ -1,6 +1,6 @@
 # Reverse Ticket (`reverse.ticket`) 🔄
 
-## What it Does 🎯
+## What it Does
 
 Reverses a **single position by ticket** — closes the specified position and immediately opens a new one of the opposite side with the same volume (and optional SL/TP).
 
@@ -8,15 +8,15 @@ Reverses a **single position by ticket** — closes the specified position and i
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                         |
-| ----------------- | ------ | -------- | --------------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile to use (from `profiles.json`).              |
-| `--ticket`, `-t`  | ulong  | ✅        | Position ticket ID to reverse.                      |
-| `--sl`            | double | ❌        | Optional Stop Loss for the new reversed position.   |
-| `--tp`            | double | ❌        | Optional Take Profit for the new reversed position. |
-| `--deviation`     | int    | ❌        | Max. slippage (points), default: 10.                |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).                 |
-| `--output`, `-o`  | string | ❌        | Output format: `text` (default) or `json`.          |
+| Parameter         | Type   |  Description                                         |
+| ----------------- | ------ |  --------------------------------------------------- |
+| `--profile`, `-p` | string |  Profile to use (from `profiles.json`).              |
+| `--ticket`, `-t`  | ulong  |  Position ticket ID to reverse.                      |
+| `--sl`            | double |  Optional Stop Loss for the new reversed position.   |
+| `--tp`            | double |  Optional Take Profit for the new reversed position. |
+| `--deviation`     | int    |  Max. slippage (points), default: 10.                |
+| `--timeout-ms`    | int    |  RPC timeout in ms (default: 30000).                 |
+| `--output`, `-o`  | string |  Output format: `text` (default) or `json`.          |
 
 ---
 
