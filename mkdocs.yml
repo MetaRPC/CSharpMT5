@@ -1,47 +1,86 @@
 site_name: MetaRPC MT5 C# Documentation
 
 nav:
-  - Home: index.md
-  - API Reference: api/MetaRPC.CSharpMT5.md
-  - Account Information:
-      - Account Summary: account/AccountSummary.md
-      - Account Info Double: account/AccountInfoDouble.md
-      - Account Info Integer: account/AccountInfoInteger.md
-      - Account Info String: account/AccountInfoString.md
-  - Performing operations:
-      - Opened Orders: orders/OpenedOrders.md
-      - Opened Orders Tickets: orders/OpenedOrdersTickets.md
-      - Order History: orders/OrderHistory.md
-      - Symbol Info Tick: orders/SymbolInfoTick.md
-  - Positions:
-      - Show Positions: Positions/ShowPositions.md
-  - Market Info:
-      - Symbols Total: MarketInfo/SymbolsTotal.md
-      - Symbol Exist: MarketInfo/SymbolExist.md
-      - Symbol Name: MarketInfo/SymbolName.md
-      - Symbol Params Many: MarketInfo/SymbolParamsMany.md
-      - Symbol Select: MarketInfo/SymbolSelect.md
-      - Symbol Is Synchronized: MarketInfo/SymbolIsSynchronized.md
-  - Symbol Properties:
-      - Symbol Info Double: SymbolProperties/SymbolInfoDouble.md
-      - Symbol Info Integer: SymbolProperties/SymbolInfoInteger.md
-      - Symbol Info String: SymbolProperties/SymbolInfoString.md
-      - Symbol Info Margin Rate: SymbolProperties/SymbolInfoMarginRate.md
-      - Symbol Info Tick: SymbolProperties/SymbolInfoTick.md
-      - Symbol Info Session Quote: SymbolProperties/SymbolInfoSessionQuote.md
-      - Symbol Info Session Trade: SymbolProperties/SymbolInfoSessionTrade.md
-  - Trade Functions:
-      - Order Calc Margin: TradeFunctions/OrderCalcMargin.md
-      - Order Check: TradeFunctions/OrderCheck.md
-      - Verification Log Result: TradeFunctions/VerificationLogResult.md
+  - Home: Documentation_BASE.md
+
+  - Core Guides:
+      - Getting Started: Getting_Started.md
+      - Architecture & Data Flow: Architecture_DataFlow.md
+      - Timeouts & Retries Policy: Timeouts_RetriesPolicy.md
+      - Command Index: Command_Index.md
+      - Glossary: Glossary.md
+      - Shortcasts: Live Examples: Shortcasts_LiveExamples.md
+      - Ticket Toolbox: Ticket_Toolbox.md
+      - Logging: Output Formats: Logging_OutputFormats.md
+
+  - Account:
+      - Overview: Account/Overview.md
+      - Show: Account/Show.md
+      - Info: Account/Info.md
+      - Profiles: Account/Profiles.md
+
+  - Market Data:
+      - Overview: Market_Data/Market_Data_Overview.md
+      - Quote: Market_Data/Quote.md
+      - Symbol: Market_Data/Symbol.md
+      - Limits: Market_Data/Limits.md
+      - Ensure Symbol Visible: Market_Data/Ensure_Symbol_Visible.md
+      - Reverse: Market_Data/Reverse.md
+      - Close (generic): Market_Data/Close.md
+      - Close (by symbol): Market_Data/Close-symbol.md
+      - Close (all): Market_Data/Close-all.md
+      - Panic: Market_Data/Panic.md
+      - Pending: move: Market_Data/Pending.move.md
+      - Pending: modify: Market_Data/Pending.modify.md
+
+  - Orders & Positions:
+      - Overview: Orders_Positions/Orders_Positions_Overview.md
+      - Orders: Orders_Positions/Orders.md
+      - Positions: Orders_Positions/Positions.md
+      - Place: Orders_Positions/Place.md
+      - Buy: Orders_Positions/Buy.md
+      - Sell: Orders_Positions/Sell.md
+      - Pending: Orders_Positions/Pending.md
+      - Modify: Orders_Positions/Modify.md
+      - Position.modify: Orders_Positions/Position.modify.md
+      - Position.modify.points: Orders_Positions/Position.modify.points.md
+      - CloseBy: Orders_Positions/CloseBy.md
+      - Cancel: Orders_Positions/Cancel.md
+      - Cancel All: Orders_Positions/Cancel_All.md
+      - Partial-close (how-to): Orders_Positions/Partial-close.md
+      - Close.half: Orders_Positions/Close.half.md
+      - Close.partial: Orders_Positions/Close.partial.md
+      - Close.percent: Orders_Positions/Close.percent.md
+      - Trail.start: Orders_Positions/Trail.start.md
+      - Trail.stop: Orders_Positions/Trail.stop.md
+
   - Streaming:
-      - On Symbol Tick: DoStreaming/OnSymbolTickAsync.md
-      - On Trade: DoStreaming/OnTradeAsync.md
-      - On Position Profit: DoStreaming/OnPositionProfitAsync.md
-      - Positions And Pending: DoStreaming/PositionsAndPending.md
-      - On Trade Transaction: DoStreaming/OnTradeTransactionAsync.md
+      - Subscribe: Streaming/Subscribe.md
 
+  - History:
+      - Overview: History/History_Overview.md
+      - History: History/History.md
+      - Export: History/History_export.md
+      - History Expor (legacy): History_Expor.md
 
+  - Diagnostics / Ops:
+      - Health: Diagnostics/Health.md
+      - Troubleshooting & FAQ: Troubleshooting%28FAQ%29.md
+      - Symbol Rules & Smart Stops: SymbolRules_SmartStops.md
+
+  - API Reference:
+      - Overview: API_Reference/Overview.md
+      - Enums: API_Reference/Enums.md
+      - Messages: API_Reference/Messages.md
+      - Streaming: API_Reference/Streaming.md
+
+  - Misc:
+      - Overview: Misc/Misc_Overview.md
+      - List: Misc/List.md
+      - Ticket Show: Misc/Ticket_Show.md
+      - Specific Ticket: Misc/Specific_Ticket.md
+      - Pending List: Misc/Pending_List.md
+      - Reverse by Ticket: Misc/Reverse_Ticket.md
 
 theme:
   name: material
@@ -57,10 +96,16 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
   features:
+    - navigation.instant
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
     - palette.toggle
     - palette.auto
 
 markdown_extensions:
+  - admonition
+  - attr_list
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.superfences
