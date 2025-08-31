@@ -1,6 +1,6 @@
 # Show (`show`) 🔍
 
-## What it Does 
+## What it Does
 
 Lists available symbols from the MT5 terminal.
 By default prints **visible (active)** symbols, but can also fetch the **entire symbol catalog**.
@@ -106,6 +106,4 @@ For tick size/point, contract size, filters for SL/TP, and margin settings, see 
 
 📌 **In short**
 
-* `show` = list of instruments.
-* `--all` toggles between visible vs. full catalog.
-* Profiles and timeouts behave the same as other commands.
+* \`show
