@@ -1,6 +1,6 @@
 # Pending List (`pending list`) 📝
 
-## What it Does 🎯
+## What it Does
 
 Shows all **pending orders** for the selected account/profile.
 Useful to review stop/limit orders before modifying or cancelling them.
@@ -9,11 +9,11 @@ Useful to review stop/limit orders before modifying or cancelling them.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                |
-| ----------------- | ------ | -------- | ------------------------------------------ |
-| `--profile`, `-p` | string | ✅        | Profile to use (from `profiles.json`).     |
-| `--output`, `-o`  | string | ❌        | Output format: `text` (default) or `json`. |
-| `--timeout-ms`    | int    | ❌        | RPC timeout (default: 30000).              |
+| Parameter         | Type   | Description                                |
+| ----------------- | ------ |  ------------------------------------------ |
+| `--profile`, `-p` | string |  Profile to use (from `profiles.json`).     |
+| `--output`, `-o`  | string | Output format: `text` (default) or `json`. |
+| `--timeout-ms`    | int    |  RPC timeout (default: 30000).              |
 
 ---
 
