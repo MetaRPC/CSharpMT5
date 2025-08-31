@@ -1,6 +1,6 @@
 # History Export (`history.export`) 📤
 
-## What it Does 🎯
+## What it Does
 
 Exports **trading history** for the last *N* days to a **file** in either **CSV** or **JSON** format.
 The command calls `_mt5Account.ExportHistoryAsync(days, symbol, to, ct)` and writes the returned payload to disk.
@@ -11,12 +11,12 @@ The command calls `_mt5Account.ExportHistoryAsync(days, symbol, to, ct)` and wri
 
 | Parameter         | Type   | Required | Description                                                            |
 | ----------------- | ------ | -------- | ---------------------------------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile to use (from `profiles.json`).                                 |
-| `--days`, `-d`    | int    | ✅        | How many days back to fetch. Must be `> 0`.                            |
-| `--symbol`, `-s`  | string | ❌        | Filter by symbol (e.g. `EURUSD`). If omitted, exports **all** symbols. |
-| `--to`            | string | ❌        | Output format: `csv` (default) or `json`.                              |
-| `--file`, `-f`    | string | ✅        | **Output path** to write to (e.g. `C:\temp\hist.csv`).                 |
-| `--timeout-ms`    | int    | ❌        | Per-RPC timeout in milliseconds (default: 30000).                      |
+| `--profile`, `-p` | string | yes        | Profile to use (from `profiles.json`).                                 |
+| `--days`, `-d`    | int    | yes        | How many days back to fetch. Must be `> 0`.                            |
+| `--symbol`, `-s`  | string | no        | Filter by symbol (e.g. `EURUSD`). If omitted, exports **all** symbols. |
+| `--to`            | string | no        | Output format: `csv` (default) or `json`.                              |
+| `--file`, `-f`    | string | yes        | **Output path** to write to (e.g. `C:\temp\hist.csv`).                 |
+| `--timeout-ms`    | int    | no        | Per-RPC timeout in milliseconds (default: 30000).                      |
 
 > Format validation: the command enforces `--to csv|json` and fails otherwise.
 
