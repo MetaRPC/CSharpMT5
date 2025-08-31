@@ -1,86 +1,86 @@
 site_name: MetaRPC MT5 C# Documentation
 
 nav:
-  - Home: Documentation_BASE.md
+  - "Home": Documentation_BASE.md
 
-  - Core Guides:
-      - Getting Started: Getting_Started.md
-      - Architecture & Data Flow: Architecture_DataFlow.md
-      - Timeouts & Retries Policy: Timeouts_RetriesPolicy.md
-      - Command Index: Command_Index.md
-      - Glossary: Glossary.md
-      - Shortcasts: Live Examples: Shortcasts_LiveExamples.md
-      - Ticket Toolbox: Ticket_Toolbox.md
-      - Logging: Output Formats: Logging_OutputFormats.md
+  - "Core Guides":
+      - "Getting Started": Getting_Started.md
+      - "Architecture & Data Flow": Architecture_DataFlow.md
+      - "Timeouts & Retries Policy": Timeouts_RetriesPolicy.md
+      - "Command Index": Command_Index.md
+      - "Glossary": Glossary.md
+      - "Shortcasts: Live Examples": Shortcasts_LiveExamples.md
+      - "Ticket Toolbox": Ticket_Toolbox.md
+      - "Logging: Output Formats": Logging_OutputFormats.md
 
-  - Account:
-      - Overview: Account/Overview.md
-      - Show: Account/Show.md
-      - Info: Account/Info.md
-      - Profiles: Account/Profiles.md
+  - "Account":
+      - "Overview": Account/Overview.md
+      - "Show": Account/Show.md
+      - "Info": Account/Info.md
+      - "Profiles": Account/Profiles.md
 
-  - Market Data:
-      - Overview: Market_Data/Market_Data_Overview.md
-      - Quote: Market_Data/Quote.md
-      - Symbol: Market_Data/Symbol.md
-      - Limits: Market_Data/Limits.md
-      - Ensure Symbol Visible: Market_Data/Ensure_Symbol_Visible.md
-      - Reverse: Market_Data/Reverse.md
-      - Close (generic): Market_Data/Close.md
-      - Close (by symbol): Market_Data/Close-symbol.md
-      - Close (all): Market_Data/Close-all.md
-      - Panic: Market_Data/Panic.md
-      - Pending: move: Market_Data/Pending.move.md
-      - Pending: modify: Market_Data/Pending.modify.md
+  - "Market Data":
+      - "Overview": Market_Data/Market_Data_Overview.md
+      - "Quote": Market_Data/Quote.md
+      - "Symbol": Market_Data/Symbol.md
+      - "Limits": Market_Data/Limits.md
+      - "Ensure Symbol Visible": Market_Data/Ensure_Symbol_Visible.md
+      - "Reverse": Market_Data/Reverse.md
+      - "Close (generic)": Market_Data/Close.md
+      - "Close (by symbol)": Market_Data/Close-symbol.md
+      - "Close (all)": Market_Data/Close-all.md
+      - "Panic": Market_Data/Panic.md
+      - "Pending: move": Market_Data/Pending.move.md
+      - "Pending: modify": Market_Data/Pending.modify.md
 
-  - Orders & Positions:
-      - Overview: Orders_Positions/Orders_Positions_Overview.md
-      - Orders: Orders_Positions/Orders.md
-      - Positions: Orders_Positions/Positions.md
-      - Place: Orders_Positions/Place.md
-      - Buy: Orders_Positions/Buy.md
-      - Sell: Orders_Positions/Sell.md
-      - Pending: Orders_Positions/Pending.md
-      - Modify: Orders_Positions/Modify.md
-      - Position.modify: Orders_Positions/Position.modify.md
-      - Position.modify.points: Orders_Positions/Position.modify.points.md
-      - CloseBy: Orders_Positions/CloseBy.md
-      - Cancel: Orders_Positions/Cancel.md
-      - Cancel All: Orders_Positions/Cancel_All.md
-      - Partial-close (how-to): Orders_Positions/Partial-close.md
-      - Close.half: Orders_Positions/Close.half.md
-      - Close.partial: Orders_Positions/Close.partial.md
-      - Close.percent: Orders_Positions/Close.percent.md
-      - Trail.start: Orders_Positions/Trail.start.md
-      - Trail.stop: Orders_Positions/Trail.stop.md
+  - "Orders & Positions":
+      - "Overview": Orders_Positions/Orders_Positions_Overview.md
+      - "Orders": Orders_Positions/Orders.md
+      - "Positions": Orders_Positions/Positions.md
+      - "Place": Orders_Positions/Place.md
+      - "Buy": Orders_Positions/Buy.md
+      - "Sell": Orders_Positions/Sell.md
+      - "Pending": Orders_Positions/Pending.md
+      - "Modify": Orders_Positions/Modify.md
+      - "Position.modify": Orders_Positions/Position.modify.md
+      - "Position.modify.points": Orders_Positions/Position.modify.points.md
+      - "CloseBy": Orders_Positions/CloseBy.md
+      - "Cancel": Orders_Positions/Cancel.md
+      - "Cancel All": Orders_Positions/Cancel_All.md
+      - "Partial-close (how-to)": Orders_Positions/Partial-close.md
+      - "Close.half": Orders_Positions/Close.half.md
+      - "Close.partial": Orders_Positions/Close.partial.md
+      - "Close.percent": Orders_Positions/Close.percent.md
+      - "Trail.start": Orders_Positions/Trail.start.md
+      - "Trail.stop": Orders_Positions/Trail.stop.md
 
-  - Streaming:
-      - Subscribe: Streaming/Subscribe.md
+  - "Streaming":
+      - "Subscribe": Streaming/Subscribe.md
 
-  - History:
-      - Overview: History/History_Overview.md
-      - History: History/History.md
-      - Export: History/History_export.md
-      - History Expor (legacy): History_Expor.md
+  - "History":
+      - "Overview": History/History_Overview.md
+      - "History": History/History.md
+      - "Export": History/History_export.md
+      - "History Expor (legacy)": History_Expor.md
 
-  - Diagnostics / Ops:
-      - Health: Diagnostics/Health.md
-      - Troubleshooting & FAQ: Troubleshooting%28FAQ%29.md
-      - Symbol Rules & Smart Stops: SymbolRules_SmartStops.md
+  - "Diagnostics / Ops":
+      - "Health": Diagnostics/Health.md
+      - "Troubleshooting & FAQ": Troubleshooting%28FAQ%29.md
+      - "Symbol Rules & Smart Stops": SymbolRules_SmartStops.md
 
-  - API Reference:
-      - Overview: API_Reference/Overview.md
-      - Enums: API_Reference/Enums.md
-      - Messages: API_Reference/Messages.md
-      - Streaming: API_Reference/Streaming.md
+  - "API Reference":
+      - "Overview": API_Reference/Overview.md
+      - "Enums": API_Reference/Enums.md
+      - "Messages": API_Reference/Messages.md
+      - "Streaming": API_Reference/Streaming.md
 
-  - Misc:
-      - Overview: Misc/Misc_Overview.md
-      - List: Misc/List.md
-      - Ticket Show: Misc/Ticket_Show.md
-      - Specific Ticket: Misc/Specific_Ticket.md
-      - Pending List: Misc/Pending_List.md
-      - Reverse by Ticket: Misc/Reverse_Ticket.md
+  - "Misc":
+      - "Overview": Misc/Misc_Overview.md
+      - "List": Misc/List.md
+      - "Ticket Show": Misc/Ticket_Show.md
+      - "Specific Ticket": Misc/Specific_Ticket.md
+      - "Pending List": Misc/Pending_List.md
+      - "Reverse by Ticket": Misc/Reverse_Ticket.md
 
 theme:
   name: material
