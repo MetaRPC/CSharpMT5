@@ -5,8 +5,6 @@
 Closes **all open positions** on the current MT5 account in one go.
 Useful for emergency flattening, end-of-session cleanup, or switching strategies.
 
-> *If your implementation supports filters (e.g., by symbol/side/magic), use them to limit what gets closed. Otherwise it closes **everything** that’s open.*
-
 ---
 
 ## Input Parameters ⬇️
