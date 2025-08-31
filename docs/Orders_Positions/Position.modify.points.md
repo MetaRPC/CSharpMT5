@@ -1,6 +1,6 @@
 # Position Modify Points (`position.modify.points`) 📐
 
-## What it Does 🎯
+## What it Does
 
 Sets **Stop Loss** and/or **Take Profit** by a **distance in points** from a chosen base price — either the **entry price** or the current **market** price.
 
@@ -10,15 +10,15 @@ Alias: `pmp`
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required      | Description                                |
-| ----------------- | ------ | ------------- | ------------------------------------------ |
-| `--profile`, `-p` | string | ✅             | Profile from `profiles.json`.              |
-| `--ticket`, `-t`  | ulong  | ✅             | Position ticket (> 0).                     |
-| `--sl-points`     | int?   | ⛔ (either/or) | SL distance in **points** (≥ 0).           |
-| `--tp-points`     | int?   | ⛔ (either/or) | TP distance in **points** (≥ 0).           |
-| `--from`          | string | ❌             | Base price: `entry` (default) or `market`. |
-| `--timeout-ms`    | int    | ❌             | RPC timeout in ms (default: `30000`).      |
-| `--dry-run`       | flag   | ❌             | Print intended action without sending.     |
+| Parameter         | Type   | Description                                |
+| ----------------- | ------ |------------------------------------------ |
+| `--profile`, `-p` | string | Profile from `profiles.json`.              |
+| `--ticket`, `-t`  | ulong  | Position ticket (> 0).                     |
+| `--sl-points`     | int?   | SL distance in **points** (≥ 0).           |
+| `--tp-points`     | int?   | TP distance in **points** (≥ 0).           |
+| `--from`          | string | Base price: `entry` (default) or `market`. |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: `30000`).      |
+| `--dry-run`       | flag   | Print intended action without sending.     |
 
 > At least **one** of `--sl-points` or `--tp-points` must be provided.
 > `--from` selects the base price: *entry* uses `PriceOpen`; *market* uses **Bid** for BUY and **Ask** for SELL.
@@ -137,63 +137,4 @@ posModPts.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            var opened = await CallWithRetry(
-                ct => _mt5Account.OpenedOrdersAsync(deadline: null, cancellationToken: ct),
-                opCts.Token);
-
-            var pos = opened.PositionInfos.FirstOrDefault(p => Convert.ToUInt64(p.Ticket) == ticket);
-            if (pos is null)
-            {
-                Console.WriteLine($"Position #{ticket} not found.");
-                Environment.ExitCode = 2;
-                return;
-            }
-
-            var symbol = pos.Symbol;
-
-            bool isLong = IsLongPosition(pos);
-            double basePrice;
-            if (fromStr == "entry")
-            {
-                basePrice = pos.PriceOpen;
-            }
-            else
-            {
-                var q = await CallWithRetry(ct => FirstTickAsync(symbol, ct), opCts.Token);
-                basePrice = isLong ? q.Bid : q.Ask;
-            }
-
-            var point = _mt5Account.PointGuess(symbol);
-            if (point <= 0)
-                point = symbol.EndsWith("JPY", StringComparison.OrdinalIgnoreCase) ? 0.01 : 0.0001;
-
-            double? newSl = null, newTp = null;
-            if (slPts is not null)
-                newSl = isLong ? basePrice - slPts.Value * point : basePrice + slPts.Value * point;
-            if (tpPts is not null)
-                newTp = isLong ? basePrice + tpPts.Value * point : basePrice - tpPts.Value * point;
-
-            if (dryRun)
-            {
-                Console.WriteLine($"[DRY-RUN] POSITION.MODIFY.POINTS #{ticket} {symbol} from={fromStr} → SL={(newSl?.ToString() ?? "-")} TP={(newTp?.ToString() ?? "-")}");
-                return;
-            }
-
-            await CallWithRetry(
-                ct => _mt5Account.ModifyPositionSlTpAsync(ticket, newSl, newTp, ct),
-                opCts.Token);
-
-            Console.WriteLine($"✔ position.modify.points done ({fromStr}): SL={(newSl?.ToString() ?? "-")} TP={(newTp?.ToString() ?? "-")}");
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-    }
-});
-
-root.AddCommand(posModPts);
 ```
