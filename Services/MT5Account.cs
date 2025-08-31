@@ -1067,10 +1067,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// Stops the trailing worker for the specified ticket.
-    /// Thread-safe and idempotent; safe to call multiple times.
-    /// Cancels and disposes the worker CTS if present.
-    /// No-op if no worker is registered for this ticket.
+    // Stops the trailing worker for the specified ticket.
+    // Thread-safe and idempotent; safe to call multiple times.
+    // Cancels and disposes the worker CTS if present.
+    // No-op if no worker is registered for this ticket.
     public void StopTrailing(ulong ticket)
     {
         if (_activeTrails.TryRemove(ticket, out var cts))
@@ -1081,10 +1081,10 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// Runs the trailing-stop loop for a single ticket.
-    /// Classic: offset from price; Chandelier: from running extreme.
-    /// distancePts/stepPts are in symbol points; throttles SL updates.
-    /// Polls ticks until canceled; ignores transient errors.
+    // Runs the trailing-stop loop for a single ticket.
+    // Classic: offset from price; Chandelier: from running extreme.
+    // distancePts/stepPts are in symbol points; throttles SL updates.
+    // Polls ticks until canceled; ignores transient errors.
     private async Task RunTrailingLoopAsync(
         ulong ticket, string symbol, bool isLong, int distancePts, int stepPts, TrailMode mode, CancellationToken ct)
     {
@@ -1438,11 +1438,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
         return true;
     }
 
-    /// Sets a position’s SL/TP by distances in symbol points from entry price.
-    /// Detects direction (long/short), converts points → price using point size.
-    /// Uses GuessPointSizeInternal as fallback and calls ModifyPositionSlTpAsync.
-    /// Throws if the position is missing or both SL/TP are null.
-    /// Returns true once the modify request is submitted.
+    // Sets a position’s SL/TP by distances in symbol points from entry price.
+    // Detects direction (long/short), converts points → price using point size.
+    // Uses GuessPointSizeInternal as fallback and calls ModifyPositionSlTpAsync.
+    // Throws if the position is missing or both SL/TP are null.
+    // Returns true once the modify request is submitted.
     public async Task<bool> SetPositionSlTpByPointsAsync(ulong ticket, int? slPts, int? tpPts, CancellationToken ct)
     {
         if (ticket == 0) throw new ArgumentOutOfRangeException(nameof(ticket));
@@ -2500,17 +2500,16 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves a double-precision property value of a symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="property">The double-type property to retrieve.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The double property value.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+/// Retrieves a double-precision property value of a symbol.
+// symbol: Symbol name.
+// property: The double-type property to retrieve.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The double property value.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public async Task<SymbolInfoDoubleData> SymbolInfoDoubleAsync(
     string symbol,
     SymbolInfoDoubleProperty property,
@@ -2531,17 +2530,14 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
 
         return res.Data;
     }
-    /// <summary>
-    /// Retrieves a double-precision property value of a symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="property">The double-type property to retrieve.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The double property value.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+
+
+// Retrieves a double-precision property value of a symbol.
+// symbol: Symbol name.
+// property: The double-type property to retrieve.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The double property value.
     public SymbolInfoDoubleData SymbolInfoDouble(
         string symbol,
         SymbolInfoDoubleProperty property,
@@ -2552,17 +2548,12 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves an integer-type property value of a symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="property">The integer property to query.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The integer property value.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves an integer-type property value of a symbol.
+// symbol: Symbol name.
+// property: The integer property to query.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The integer property value.
     public async Task<SymbolInfoIntegerData> SymbolInfoIntegerAsync(
     string symbol,
     SymbolInfoIntegerProperty property,
@@ -2585,17 +2576,12 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves an integer-type property value of a symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="property">The integer property to query.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The integer property value.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves an integer-type property value of a symbol.
+// symbol: Symbol name.
+// property: The integer property to query.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The integer property value.
     public SymbolInfoIntegerData SymbolInfoInteger(
         string symbol,
         SymbolInfoIntegerProperty property,
@@ -2606,17 +2592,12 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves a string-type property value of a symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="property">The string property to retrieve.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The string property value.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves a string-type property value of a symbol.
+// symbol: Symbol name.
+// property: The string property to retrieve.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The string property value.
     public async Task<SymbolInfoStringData> SymbolInfoStringAsync(
     string symbol,
     SymbolInfoStringProperty property,
@@ -2639,17 +2620,12 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves a string-type property value of a symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="property">The string property to retrieve.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The string property value.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves a string-type property value of a symbol.
+// symbol: Symbol name.
+// property: The string property to retrieve.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The string property value.
     public SymbolInfoStringData SymbolInfoString(
         string symbol,
         SymbolInfoStringProperty property,
@@ -2660,17 +2636,12 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves the margin rates for a given symbol and order type.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="orderType">The order type (buy/sell/etc).</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The initial and maintenance margin rates.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves the margin rates for a given symbol and order type.
+// symbol: Symbol name.
+// orderType: The order type (buy/sell/etc).
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The initial and maintenance margin rates.
     public async Task<SymbolInfoMarginRateData> SymbolInfoMarginRateAsync(
     string symbol,
     ENUM_ORDER_TYPE orderType,
@@ -2693,17 +2664,16 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves the margin rates for a given symbol and order type.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="orderType">The order type (buy/sell/etc).</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The initial and maintenance margin rates.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves the margin rates for a given symbol and order type.
+// symbol: Symbol name.
+// orderType: The order type (buy/sell/etc).
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The initial and maintenance margin rates.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public SymbolInfoMarginRateData SymbolInfoMarginRate(
         string symbol,
         ENUM_ORDER_TYPE orderType,
@@ -2714,16 +2684,15 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves the current tick data (bid, ask, last, volume) for a given symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name to fetch tick info for.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The latest tick information.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves the current tick data (bid, ask, last, volume) for a given symbol.
+// symbol: Symbol name to fetch tick info for.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The latest tick information.
+// Exceptions:
+//   ConnectExceptionMT5
+//   ApiExceptionMT5
+//   Grpc.Core.RpcException
     public async Task<MrpcMqlTick> SymbolInfoTickAsync(
     string symbol,
     DateTime? deadline = null,
@@ -2745,16 +2714,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves the current tick data (bid, ask, last, volume) for a given symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name to fetch tick info for.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The latest tick information.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Retrieves the current tick data (bid, ask, last, volume) for a given symbol.
+// symbol: Symbol name to fetch tick info for.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The latest tick information.
     public MrpcMqlTick SymbolInfoTick(
         string symbol,
         DateTime? deadline = null,
@@ -2764,18 +2728,13 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Gets the quoting session start and end time for a symbol on a specific day and session index.
-    /// </summary>
-    /// <param name="symbol">The symbol name.</param>
-    /// <param name="dayOfWeek">The day of the week.</param>
-    /// <param name="sessionIndex">Index of the quoting session (starting at 0).</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The session quote start and end time.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Gets the quoting session start and end time for a symbol on a specific day and session index.
+// symbol: The symbol name.
+// dayOfWeek: The day of the week.
+// sessionIndex: Index of the quoting session (starting at 0).
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The session quote start and end time.
     public async Task<SymbolInfoSessionQuoteData> SymbolInfoSessionQuoteAsync(
     string symbol,
     mt5_term_api.DayOfWeek dayOfWeek,
@@ -2804,18 +2763,13 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Gets the quoting session start and end time for a symbol on a specific day and session index.
-    /// </summary>
-    /// <param name="symbol">The symbol name.</param>
-    /// <param name="dayOfWeek">The day of the week.</param>
-    /// <param name="sessionIndex">Index of the quoting session (starting at 0).</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The session quote start and end time.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Gets the quoting session start and end time for a symbol on a specific day and session index.
+// symbol: The symbol name.
+// dayOfWeek: The day of the week.
+// sessionIndex: Index of the quoting session (starting at 0).
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The session quote start and end time.
     public SymbolInfoSessionQuoteData SymbolInfoSessionQuote(
         string symbol,
         mt5_term_api.DayOfWeek dayOfWeek,
@@ -2827,18 +2781,13 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Gets the trading session start and end time for a symbol on a specific day and session index.
-    /// </summary>
-    /// <param name="symbol">The symbol name.</param>
-    /// <param name="dayOfWeek">The day of the week.</param>
-    /// <param name="sessionIndex">Index of the trading session (starting at 0).</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The trading session start and end time.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Gets the trading session start and end time for a symbol on a specific day and session index.
+// symbol: The symbol name.
+// dayOfWeek: The day of the week.
+// sessionIndex: Index of the trading session (starting at 0).
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The trading session start and end time.
     public async Task<SymbolInfoSessionTradeData> SymbolInfoSessionTradeAsync(
     string symbol,
     mt5_term_api.DayOfWeek dayOfWeek,
@@ -2867,18 +2816,13 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Gets the trading session start and end time for a symbol on a specific day and session index.
-    /// </summary>
-    /// <param name="symbol">The symbol name.</param>
-    /// <param name="dayOfWeek">The day of the week.</param>
-    /// <param name="sessionIndex">Index of the trading session (starting at 0).</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>The trading session start and end time.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Gets the trading session start and end time for a symbol on a specific day and session index.
+// symbol: The symbol name.
+// dayOfWeek: The day of the week.
+// sessionIndex: Index of the trading session (starting at 0).
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: The trading session start and end time.
     public SymbolInfoSessionTradeData SymbolInfoSessionTrade(
         string symbol,
         mt5_term_api.DayOfWeek dayOfWeek,
@@ -2890,16 +2834,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Opens the Depth of Market (DOM) for a symbol and subscribes to updates.
-    /// </summary>
-    /// <param name="symbol">Symbol name to subscribe.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>True if DOM subscription was successful.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Opens the Depth of Market (DOM) for a symbol and subscribes to updates.
+// symbol: Symbol name to subscribe.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: True if DOM subscription was successful.
     public async Task<MarketBookAddData> MarketBookAddAsync(
     string symbol,
     DateTime? deadline = null,
@@ -2921,16 +2860,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Opens the Depth of Market (DOM) for a symbol and subscribes to updates.
-    /// </summary>
-    /// <param name="symbol">Symbol name to subscribe.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>True if DOM subscription was successful.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Opens the Depth of Market (DOM) for a symbol and subscribes to updates.
+// symbol: Symbol name to subscribe.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: True if DOM subscription was successful.
     public MarketBookAddData MarketBookAdd(
         string symbol,
         DateTime? deadline = null,
@@ -2940,16 +2874,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Releases the Depth of Market (DOM) for a symbol and stops receiving updates.
-    /// </summary>
-    /// <param name="symbol">Symbol name to unsubscribe.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>True if DOM release was successful.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Releases the Depth of Market (DOM) for a symbol and stops receiving updates.
+// symbol: Symbol name to unsubscribe.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: True if DOM release was successful.
     public async Task<MarketBookReleaseData> MarketBookReleaseAsync(
     string symbol,
     DateTime? deadline = null,
@@ -2971,16 +2900,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Releases the Depth of Market (DOM) for a symbol and stops receiving updates.
-    /// </summary>
-    /// <param name="symbol">Symbol name to unsubscribe.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>True if DOM release was successful.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Releases the Depth of Market (DOM) for a symbol and stops receiving updates.
+// symbol: Symbol name to unsubscribe.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: True if DOM release was successful.
     public MarketBookReleaseData MarketBookRelease(
         string symbol,
         DateTime? deadline = null,
@@ -2990,16 +2914,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Gets the current Depth of Market (DOM) data for a symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>A list of book entries for the symbol's DOM.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Gets the current Depth of Market (DOM) data for a symbol.
+// symbol: Symbol name.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: A list of book entries for the symbol's DOM.
     public async Task<MarketBookGetData> MarketBookGetAsync(
     string symbol,
     DateTime? deadline = null,
@@ -3021,16 +2940,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Gets the current Depth of Market (DOM) data for a symbol.
-    /// </summary>
-    /// <param name="symbol">Symbol name.</param>
-    /// <param name="deadline">Optional gRPC deadline.</param>
-    /// <param name="cancellationToken">Optional cancellation token.</param>
-    /// <returns>A list of book entries for the symbol's DOM.</returns>
-    /// <exception cref="ConnectExceptionMT5"/>
-    /// <exception cref="ApiExceptionMT5"/>
-    /// <exception cref="Grpc.Core.RpcException"/>
+// Gets the current Depth of Market (DOM) data for a symbol.
+// symbol: Symbol name.
+// deadline: Optional gRPC deadline.
+// cancellationToken: Optional cancellation token.
+// Returns: A list of book entries for the symbol's DOM.
     public MarketBookGetData MarketBookGet(
         string symbol,
         DateTime? deadline = null,
@@ -3172,16 +3086,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves a double-precision account property (e.g. balance, equity, margin).
-    /// </summary>
-    /// <param name="property">The account double property to retrieve.</param>
-    /// <param name="deadline">Optional deadline after which the call will be cancelled.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the operation.</param>
-    /// <returns>The double value of the requested account property.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the client is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns a business error.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Retrieves a double-precision account property (e.g. balance, equity, margin).
+// property: The account double property to retrieve.
+// deadline: Optional deadline after which the call will be cancelled.
+// cancellationToken: Optional cancellation token to cancel the operation.
+// Returns: The double value of the requested account property.
     public async Task<double> AccountInfoDoubleAsync(
     AccountInfoDoublePropertyType property,
     DateTime? deadline = null,
@@ -3203,16 +3112,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves a double-precision account property (e.g. balance, equity, margin).
-    /// </summary>
-    /// <param name="property">The account double property to retrieve.</param>
-    /// <param name="deadline">Optional deadline after which the call will be cancelled.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the operation.</param>
-    /// <returns>The double value of the requested account property.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the client is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns a business error.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Retrieves a double-precision account property (e.g. balance, equity, margin).
+// property: The account double property to retrieve.
+// deadline: Optional deadline after which the call will be cancelled.
+// cancellationToken: Optional cancellation token to cancel the operation.
+// Returns: The double value of the requested account property.
     public double AccountInfoDouble(
     AccountInfoDoublePropertyType property,
     DateTime? deadline = null,
@@ -3222,16 +3126,11 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves an integer account property (e.g. login, leverage, trade mode).
-    /// </summary>
-    /// <param name="property">The account integer property to retrieve.</param>
-    /// <param name="deadline">Optional deadline after which the call will be cancelled.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the operation.</param>
-    /// <returns>The integer value of the requested account property.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the client is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns a business error.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Retrieves an integer account property (e.g. login, leverage, trade mode).
+// property: The account integer property to retrieve.
+// deadline: Optional deadline after which the call will be cancelled.
+// cancellationToken: Optional cancellation token to cancel the operation.
+// Returns: The integer value of the requested account property.
     public async Task<int> AccountInfoIntegerAsync(
     AccountInfoIntegerPropertyType property,
     DateTime? deadline = null,
@@ -3253,16 +3152,15 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves an integer account property (e.g. login, leverage, trade mode).
-    /// </summary>
-    /// <param name="property">The account integer property to retrieve.</param>
-    /// <param name="deadline">Optional deadline after which the call will be cancelled.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the operation.</param>
-    /// <returns>The integer value of the requested account property.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the client is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns a business error.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Retrieves an integer account property (e.g. login, leverage, trade mode).
+// property: The account integer property to retrieve.
+// deadline: Optional deadline after which the call will be cancelled.
+// cancellationToken: Optional cancellation token to cancel the operation.
+// Returns: The integer value of the requested account property.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the client is not connected.
+//   ApiExceptionMT5 — thrown if the server returns a business error.
+//   Grpc.Core.RpcException — thrown if the gRPC call fails.
     public int AccountInfoInteger(
     AccountInfoIntegerPropertyType property,
     DateTime? deadline = null,
@@ -3272,16 +3170,15 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves a string account property (e.g. account name, currency, server).
-    /// </summary>
-    /// <param name="property">The account string property to retrieve.</param>
-    /// <param name="deadline">Optional deadline after which the call will be cancelled.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the operation.</param>
-    /// <returns>The string value of the requested account property.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the client is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns a business error.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Retrieves a string account property (e.g. account name, currency, server).
+// property: The account string property to retrieve.
+// deadline: Optional deadline after which the call will be cancelled.
+// cancellationToken: Optional cancellation token to cancel the operation.
+// Returns: The string value of the requested account property.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the client is not connected.
+//   ApiExceptionMT5 — thrown if the server returns a business error.
+//   Grpc.Core.RpcException — thrown if the gRPC call fails.
     public async Task<string> AccountInfoStringAsync(
     AccountInfoStringPropertyType property,
     DateTime? deadline = null,
@@ -3303,16 +3200,15 @@ public MT5Account(ulong user, string password, string? grpcServer, Guid id, ILog
     }
 
 
-    /// <summary>
-    /// Retrieves a string account property (e.g. account name, currency, server).
-    /// </summary>
-    /// <param name="property">The account string property to retrieve.</param>
-    /// <param name="deadline">Optional deadline after which the call will be cancelled.</param>
-    /// <param name="cancellationToken">Optional cancellation token to cancel the operation.</param>
-    /// <returns>The string value of the requested account property.</returns>
-    /// <exception cref="ConnectExceptionMT5">Thrown if the client is not connected.</exception>
-    /// <exception cref="ApiExceptionMT5">Thrown if the server returns a business error.</exception>
-    /// <exception cref="Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+// Retrieves a string account property (e.g. account name, currency, server).
+// property: The account string property to retrieve.
+// deadline: Optional deadline after which the call will be cancelled.
+// cancellationToken: Optional cancellation token to cancel the operation.
+// Returns: The string value of the requested account property.
+// Exceptions:
+//   ConnectExceptionMT5 — thrown if the client is not connected.
+//   ApiExceptionMT5 — thrown if the server returns a business error.
+//   Grpc.Core.RpcException — thrown if the gRPC call fails.
     public string AccountInfoString(
         AccountInfoStringPropertyType property,
         DateTime? deadline = null,
