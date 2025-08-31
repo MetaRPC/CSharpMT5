@@ -1,6 +1,6 @@
-# Trail Start (`trail.start`) 🏃‍♂️💨
+# Trail Start (`trail.start`)
 
-## What it Does 🎯
+## What it Does
 
 Starts a **local trailing stop** for an existing position (by ticket). The app monitors price ticks and **moves SL** according to selected mode and distances.
 
@@ -17,15 +17,15 @@ Starts a **local trailing stop** for an existing position (by ticket). The app m
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Default | Description                                |               |
-| ----------------- | ------ | -------- | ------- | ------------------------------------------ | ------------- |
-| `--profile`, `-p` | string | ✅        | —       | Profile from `profiles.json`.              |               |
-| `--ticket`, `-t`  | ulong  | ✅        | —       | Position ticket to trail.                  |               |
-| `--distance`      | int    | ✅        | 150     | Distance in **points** from price to SL.   |               |
-| `--step`          | int    | ✅        | 20      | Minimal move in **points** to update SL.   |               |
-| `--mode`          | string | ✅        | classic | Trailing mode: `classic`                   | `chandelier`. |
-| `--timeout-ms`    | int    | ❌        | 30000   | RPC timeout in ms for initial queries.     |               |
-| `--dry-run`       | flag   | ❌        | —       | Print intent without starting the trailer. |               |
+| Parameter         | Type   | Default | Description                                |               |
+| ----------------- | ------ | ------- | ------------------------------------------ | ------------- |
+| `--profile`, `-p` | string | —       | Profile from `profiles.json`.              |               |
+| `--ticket`, `-t`  | ulong  | —       | Position ticket to trail.                  |               |
+| `--distance`      | int    | 150     | Distance in **points** from price to SL.   |               |
+| `--step`          | int    | 20      | Minimal move in **points** to update SL.   |               |
+| `--mode`          | string | classic | Trailing mode: `classic`                   | `chandelier`. |
+| `--timeout-ms`    | int    | 30000   | RPC timeout in ms for initial queries.     |               |
+| `--dry-run`       | flag   | —       | Print intent without starting the trailer. |               |
 
 Validation:
 
@@ -121,43 +121,4 @@ trailStart.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            var opened = await CallWithRetry(
-                ct => _mt5Account.OpenedOrdersAsync(deadline: null, cancellationToken: ct),
-                opCts.Token);
-
-            var pos = opened.PositionInfos.FirstOrDefault(p => Convert.ToUInt64(p.Ticket) == ticket);
-            if (pos is null)
-            {
-                Console.WriteLine($"Position #{ticket} not found.");
-                Environment.ExitCode = 2;
-                return;
-            }
-
-            var symbol = pos.Symbol;
-            var isLong = IsLongPosition(pos);
-
-            if (dryRun)
-            {
-                Console.WriteLine($"[DRY-RUN] TRAIL.START #{ticket} {symbol} mode={mode} dist={distance} step={step}");
-                return;
-            }
-
-            await _mt5Account.StartTrailingAsync(ticket, symbol, isLong, distance, step, mode, opCts.Token);
-            Console.WriteLine("✔ trail.start scheduled");
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-});
-
-root.AddCommand(trailStart);
 ```
