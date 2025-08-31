@@ -197,7 +197,7 @@ q      # expands to: mt5 quote -p demo -s EURUSD
 b -v 0.10   # market buy with defaults
 ```
 
-See also: **CLI Shortcasts & Live Examples**.
+See also: [CLI Shortcasts & Live Examples](Shortcasts_LiveExamples.md) · [Logging: Output Formats](Logging_OutputFormats.md).
 
 ---
 
@@ -207,24 +207,29 @@ See also: **CLI Shortcasts & Live Examples**.
 * **SELL**: enter at **Bid** → `SL > Bid`, `TP < Bid`
 * Use `position.modify.points` with `--from entry|market` to set distances in **points**.
 
+**Learn more:** [Position.modify.points](Orders_Positions/Position.modify.points.md) · [Modify (overview)](Orders_Positions/Modify.md) · [Symbol Rules & Smart Stops](SymbolRules_SmartStops.md)
+
 ---
 
 ## ⏱ Timeouts & retries
 
-* `--timeout-ms` bounds each RPC. Internally we wrap operations in `UseOpTimeout` and per‑call CTS via `StartOpCts`.
+* `--timeout-ms` bounds each RPC. Internally we wrap operations in `UseOpTimeout` and per-call CTS via `StartOpCts`.
 * Calls go through `CallWithRetry(...)` to automatically retry selected transient errors.
 * For CI, reduce timeout (fast fail). For slow terminals, increase to 60–120s.
+
+**Details:** [Timeouts & Retries Policy](Timeouts_RetriesPolicy.md) · [Health checks](Diagnostics/Health.md)
 
 ---
 
 ## 🛟 Troubleshooting
 
-* **“Set Host or MtClusterName”** → profile not picked up. Run `profiles show` and verify `profiles.json` path.
-* **Hidden symbol** → `symbol ensure -s <SYM>` before trading or pending changes.
-* **Timeouts** → raise `--timeout-ms`, test with `--trace` to see where it stuck.
+* **“Set Host or MtClusterName”** → profile not picked up. Run `profiles show` and verify `profiles.json` path. See: [Profiles](Account/Profiles.md).
+* **Hidden symbol** → `symbol ensure -s <SYM>` before trading or pending changes. See: [Ensure Symbol Visible](Market_Data/Ensure_Symbol_Visible.md).
+* **Timeouts** → raise `--timeout-ms`, test with `--trace` to see where it stuck. See: [Timeouts & Retries Policy](Timeouts_RetriesPolicy.md).
 * **Zero Margin/FreeMargin** on empty accounts is normal; equity ≈ balance when flat.
 
----
+More fixes: [Troubleshooting & FAQ](Troubleshooting%28FAQ%29.md)
+
 
 ## 🔗 What next
 
