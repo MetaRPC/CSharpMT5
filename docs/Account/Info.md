@@ -106,17 +106,6 @@ Values are composed from `AccountSummaryData` + additional `AccountInformation` 
 * **Monitoring** — feed JSON to dashboards/alerts.
 * **Diagnostics** — verify terminal connection + credentials.
 * **Risk control** — margin usage before high‑risk trades.
-
----
-
-## ⚠️ Exit codes & common errors
-
-!!! warning "Common pitfalls"
-\* **“Set Host or MtClusterName”** → profile not picked up. Run `profiles show` and verify the `profiles.json` path.
-\* **Hidden symbol** → ensure visibility before trading or pending changes: see **[Ensure Symbol Visible](../Market_Data/Ensure_Symbol_Visible.md)**.
-\* **Timeouts** → increase `--timeout-ms`; use `--trace` to pinpoint slowness.
-\* **Empty accounts** → `FreeMargin`≈`Equity`≈`Balance` when flat — this is normal.
-
 ---
 
 ## 🔗 Related
