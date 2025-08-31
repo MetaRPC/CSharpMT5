@@ -1,6 +1,6 @@
 # Pending Modify (`pending.modify`) ✏️
 
-## What it Does 🎯
+## What it Does
 
 Modifies an existing **pending order** in MT5 (e.g., Buy Limit, Sell Stop, Buy Stop Limit).
 Allows changing entry price, stop loss, take profit, and expiration.
@@ -9,17 +9,17 @@ Allows changing entry price, stop loss, take profit, and expiration.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type     | Required | Description                                          |
-| ----------------- | -------- | -------- | ---------------------------------------------------- |
-| `--profile`, `-p` | string   | ✅        | Which profile to use (from `profiles.json`).         |
-| `--ticket`, `-t`  | ulong    | ✅        | Ticket ID of the pending order.                      |
-| `--price`         | double   | ❌        | New entry price.                                     |
-| `--sl`            | double   | ❌        | New Stop Loss price.                                 |
-| `--tp`            | double   | ❌        | New Take Profit price.                               |
-| `--expiration`    | DateTime | ❌        | Expiration time (UTC).                               |
-| `--output`, `-o`  | string   | ❌        | `text` (default) or `json`.                          |
-| `--timeout-ms`    | int      | ❌        | RPC timeout in ms (default: 30000).                  |
-| `--dry-run`       | flag     | ❌        | Print intended modification without sending request. |
+| Parameter         | Type     | Description                                          |
+| ----------------- | -------- |---------------------------------------------------- |
+| `--profile`, `-p` | string   | Which profile to use (from `profiles.json`).         |
+| `--ticket`, `-t`  | ulong    | Ticket ID of the pending order.                      |
+| `--price`         | double   | New entry price.                                     |
+| `--sl`            | double   |  New Stop Loss price.                                 |
+| `--tp`            | double   |  New Take Profit price.                               |
+| `--expiration`    | DateTime |  Expiration time (UTC).                               |
+| `--output`, `-o`  | string   | `text` (default) or `json`.                          |
+| `--timeout-ms`    | int      |  RPC timeout in ms (default: 30000).                  |
+| `--dry-run`       | flag     |  Print intended modification without sending request. |
 
 ---
 
