@@ -142,21 +142,6 @@ dotnet run -- buy -p demo -s EURUSD -v 0.10 --sl 1.0700 --tp 1.0800 --deviation 
 
 ---
 
-## How to wire true meta (optional but recommended) 🔧
-
-If your build exposes market info endpoints, populate the placeholders:
-
-```csharp
-int? digits = await _mt5Account.SymbolDigitsAsync(s, ct);         // precision
-double? point = await _mt5Account.SymbolPointAsync(s, ct);        // tick size
-double? stopLevelPoints = await _mt5Account.SymbolStopsLevelAsync(s, ct); // minimal distance (points)
-```
-
-> Names above are illustrative — bind to your actual methods if they exist.
-> If not available, keep using `PointGuess(symbol)` + quote.
-
----
-
 ## Related commands 🔗
 
 * `symbol show` — quick **quote + lot limits** card
