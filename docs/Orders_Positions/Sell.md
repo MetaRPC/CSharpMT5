@@ -1,6 +1,6 @@
 # Sell (`sell`) 📉
 
-## What it Does 🎯
+## What it Does
 
 Sends a **market SELL order** (opens/extends a short position) on the selected symbol via `_mt5Account.SendMarketOrderAsync(..., isBuy: false, ...)`.
 
@@ -8,17 +8,17 @@ Sends a **market SELL order** (opens/extends a short position) on the selected s
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type    | Required | Description                                                     |
-| ----------------- | ------- | -------- | --------------------------------------------------------------- |
-| `--profile`, `-p` | string  | ✅        | Profile from `profiles.json`.                                   |
-| `--symbol`, `-s`  | string  | ❌        | Symbol (e.g., `EURUSD`). Defaults to profile’s `DefaultSymbol`. |
-| `--volume`, `-v`  | double  | ✅        | Volume in lots.                                                 |
-| `--sl`            | double? | ❌        | Stop Loss price (absolute).                                     |
-| `--tp`            | double? | ❌        | Take Profit price (absolute).                                   |
-| `--deviation`     | int     | ❌        | Max slippage (points). Default: `10`.                           |
-| `--output`, `-o`  | string  | ❌        | `text` (default) or `json`.                                     |
-| `--timeout-ms`    | int     | ❌        | Per‑RPC timeout in ms (default: `30000`).                       |
-| `--dry-run`       | flag    | ❌        | Print intended action without sending order.                    |
+| Parameter         | Type    | Description                                                     |
+| ----------------- | ------- | --------------------------------------------------------------- |
+| `--profile`, `-p` | string  | Profile from `profiles.json`.                                   |
+| `--symbol`, `-s`  | string  | Symbol (e.g., `EURUSD`). Defaults to profile’s `DefaultSymbol`. |
+| `--volume`, `-v`  | double  | Volume in lots.                                                 |
+| `--sl`            | double? | Stop Loss price (absolute).                                     |
+| `--tp`            | double? | Take Profit price (absolute).                                   |
+| `--deviation`     | int     | Max slippage (points). Default: `10`.                           |
+| `--output`, `-o`  | string  | `text` (default) or `json`.                                     |
+| `--timeout-ms`    | int     | Per‑RPC timeout in ms (default: `30000`).                       |
+| `--dry-run`       | flag    | Print intended action without sending order.                    |
 
 ---
 
@@ -138,58 +138,4 @@ sell.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-
-            // Ensure symbol visible (best-effort)
-            try
-            {
-                using var visCts = StartOpCts();
-                await _mt5Account.EnsureSymbolVisibleAsync(s, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
-            }
-            catch (Exception ex) when (ex is not OperationCanceledException)
-            {
-                _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
-            }
-
-            using var opCts = StartOpCts();
-            // --- preflight for SELL ---
-            var q = await CallWithRetry(ct => FirstTickAsync(s, ct), opCts.Token);
-            var bid = q.Bid; var ask = q.Ask;
-
-            int? digits = null;             
-            double? stopLevelPoints = null;
-            double? point = null;           // TODO: fetch via MarketInfo if available
-
-            PreflightStops(isBuy: false, bid: bid, ask: ask, sl: ref sl, tp: ref tp,
-                           digits: digits, stopLevelPoints: stopLevelPoints, point: point);
-
-            // Send order with retry
-            var ticket = await CallWithRetry(
-                ct => _mt5Account.SendMarketOrderAsync(
-                    symbol: s, isBuy: false, volume: volume, deviation: deviation,
-                    stopLoss: sl, takeProfit: tp, deadline: null, cancellationToken: ct),
-                opCts.Token);
-
-            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
-            {
-                var payload = new { Side = "SELL", Symbol = s, Volume = volume, Deviation = deviation, SL = sl, TP = tp, Ticket = ticket };
-                Console.WriteLine(JsonSerializer.Serialize(payload));
-            }
-            else
-            {
-                _logger.LogInformation("SELL done: ticket={Ticket}", ticket);
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-});
-
-root.AddCommand(sell);
 ```
