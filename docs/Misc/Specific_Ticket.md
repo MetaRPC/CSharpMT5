@@ -1,6 +1,6 @@
 # Ticket (`ticket`) 🎫
 
-## What it Does 🎯
+## What it Does
 
 Provides a group of commands to **work with a specific ticket**.
 Tickets can represent **open positions**, **pending orders**, or **historical trades**.
@@ -16,12 +16,12 @@ Sub‑commands include:
 
 Most ticket sub‑commands share these core parameters:
 
-| Parameter         | Type   | Required | Description                      |
-| ----------------- | ------ | -------- | -------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.    |
-| `--ticket`, `-t`  | ulong  | ✅        | Ticket ID to operate on.         |
-| `--timeout-ms`    | int    | ❌        | RPC timeout (default: 30000).    |
-| `--output`, `-o`  | string | ❌        | Output format: `text` or `json`. |
+| Parameter         | Type   | Description                      |
+| ----------------- | ------ |  -------------------------------- |
+| `--profile`, `-p` | string |  Profile from `profiles.json`.    |
+| `--ticket`, `-t`  | ulong  |  Ticket ID to operate on.         |
+| `--timeout-ms`    | int    |  RPC timeout (default: 30000).    |
+| `--output`, `-o`  | string |  Output format: `text` or `json`. |
 
 ---
 
