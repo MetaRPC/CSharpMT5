@@ -1,6 +1,6 @@
-# Cancel All (`cancel.all`) 🧹
+# Cancel All (`cancel.all`) 
 
-## What it Does 🎯
+## What it Does
 
 Cancels **multiple pending orders** in one go.
 You can optionally filter by **symbol** and **pending type**.
@@ -11,13 +11,13 @@ You can optionally filter by **symbol** and **pending type**.
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                                                                            |
-| ----------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------ |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json`.                                                                          |
-| `--symbol`        | string | ❌        | Filter: only cancel pendings for this symbol (e.g., `EURUSD`).                                         |
-| `--type`          | string | ❌        | Filter by pending type: `any` (default), `limit`, `stop`, `stoplimit` (adjust to your implementation). |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                                                                            |
-| `--timeout-ms`    | int    | ❌        | RPC timeout in ms (default: 30000).                                                                    |
+| Parameter         | Type   | Description                                                                                            |
+| ----------------- | ------ | ------------------------------------------------------------------------------------------------------ |
+| `--profile`, `-p` | string | Profile from `profiles.json`.                                                                          |
+| `--symbol`        | string | Filter: only cancel pendings for this symbol (e.g., `EURUSD`).                                         |
+| `--type`          | string | Filter by pending type: `any` (default), `limit`, `stop`, `stoplimit` (adjust to your implementation). |
+| `--output`, `-o`  | string | `text` (default) or `json`.                                                                            |
+| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).                                                                    |
 
 > No `--yes` flag here — this command targets **pending orders** only.
 
@@ -113,61 +113,4 @@ cancelAll.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
-            using var opCts = StartOpCts();
-
-            var tickets = await CallWithRetry(
-                ct => _mt5Account.ListPendingTicketsAsync(symbol, ct),
-                opCts.Token);
-
-            if (tickets.Count == 0)
-            {
-                Console.WriteLine("No pending orders match the filter.");
-                return;
-            }
-
-            IEnumerable<ulong> list = tickets;
-            if (!string.IsNullOrWhiteSpace(typeStr) && typeStr != "any")
-            {
-                var kinds = await _mt5Account.GetPendingKindsAsync(tickets, opCts.Token);
-                bool Want(string k) => typeStr switch
-                {
-                    "limit"     => k.Contains("limit") && !k.Contains("stoplimit"),
-                    "stop"      => k.EndsWith("stop") && !k.Contains("limit"),
-                    "stoplimit" => k.Contains("stoplimit"),
-                    _           => true
-                };
-                list = tickets.Where(t => kinds.TryGetValue(t, out var k) && Want(k));
-            }
-
-            var toCancel = list.ToList();
-            Console.WriteLine($"Found {toCancel.Count} pending order(s) to cancel.");
-
-            if (dryRun)
-            {
-                foreach (var t in toCancel) Console.WriteLine($"[DRY-RUN] CANCEL ticket={t}");
-                return;
-            }
-
-            int ok = 0, fail = 0;
-            foreach (var t in toCancel)
-            {
-                try { await CallWithRetry(ct => _mt5Account.CancelPendingOrderAsync(t, ct), opCts.Token); ok++; }
-                catch (Exception ex) { _logger.LogWarning("Cancel {Ticket} failed: {Msg}", t, ex.Message); fail++; }
-            }
-
-            Console.WriteLine($"✔ Cancelled: {ok}, ✖ Failed: {fail}");
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-});
-
-root.AddCommand(cancelAll);
 ```
