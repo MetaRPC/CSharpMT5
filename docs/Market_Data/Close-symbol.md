@@ -9,16 +9,16 @@ Great for flattening exposure on one instrument without touching others.
 
 ## Input Parameters ⬇️
 
-| Parameter              | Type   | Required | Description                                             |
-| ---------------------- | ------ | -------- | ------------------------------------------------------- |
-| `--profile`, `-p`      | string | ✅        | Which profile to use (from `profiles.json`).            |
-| `--symbol`, `-s`       | string | ✅        | Symbol to close (e.g. `EURUSD`).                        |
-| `--deviation`          | int    | ❌        | Max slippage in points (default: 10).                   |
-| `--output`, `-o`       | string | ❌        | `text` (default) or `json`.                             |
-| `--timeout-ms`         | int    | ❌        | Per-RPC timeout in ms (default: 30000).                 |
-| `--dry-run`            | flag   | ❌        | Print planned actions without sending requests.         |
-| *(optional)* `--side`  | string | ❌        | Limit to `buy` or `sell` positions only (if supported). |
-| *(optional)* `--magic` | int    | ❌        | Filter by EA magic number (if supported).               |
+| Parameter              | Type   | Description                                             |
+| ---------------------- | ------ | ------------------------------------------------------- |
+| `--profile`, `-p`      | string | Which profile to use (from `profiles.json`).            |
+| `--symbol`, `-s`       | string | Symbol to close (e.g. `EURUSD`).                        |
+| `--deviation`          | int    | Max slippage in points (default: 10).                   |
+| `--output`, `-o`       | string | `text` (default) or `json`.                             |
+| `--timeout-ms`         | int    | Per-RPC timeout in ms (default: 30000).                 |
+| `--dry-run`            | flag   | Print planned actions without sending requests.         |
+| *(optional)* `--side`  | string | Limit to `buy` or `sell` positions only (if supported). |
+| *(optional)* `--magic` | int    | Filter by EA magic number (if supported).               |
 
 ---
 
