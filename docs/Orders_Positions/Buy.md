@@ -1,6 +1,6 @@
 # Buy (`buy`) 🟢
 
-## What it Does 🎯
+## What it Does
 
 Places a **market BUY** order on MT5 for the selected symbol and volume.
 Supports optional **SL/TP**, **deviation**, **timeout**, **output mode**, and **dry‑run**.
@@ -9,17 +9,17 @@ Supports optional **SL/TP**, **deviation**, **timeout**, **output mode**, and **
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Required | Description                                                |
-| ----------------- | ------ | -------- | ---------------------------------------------------------- |
-| `--profile`, `-p` | string | ✅        | Profile from `profiles.json` to connect with.              |
-| `--symbol`, `-s`  | string | ✅        | Symbol to trade (e.g., `EURUSD`). Defaults to app setting. |
-| `--volume`, `-v`  | double | ✅        | Trade volume in lots (e.g., `0.10`).                       |
-| `--sl`            | double | ❌        | Stop Loss **price** (absolute). Optional.                  |
-| `--tp`            | double | ❌        | Take Profit **price** (absolute). Optional.                |
-| `--deviation`     | int    | ❌        | Max slippage in **points** (default: `10`).                |
-| `--output`, `-o`  | string | ❌        | `text` (default) or `json`.                                |
-| `--timeout-ms`    | int    | ❌        | Per‑RPC timeout in milliseconds (default: `30000`).        |
-| `--dry-run`       | flag   | ❌        | Print action plan without sending an order.                |
+| Parameter         | Type   |Description                                                |
+| ----------------- | ------ |---------------------------------------------------------- |
+| `--profile`, `-p` | string | Profile from `profiles.json` to connect with.              |
+| `--symbol`, `-s`  | string | Symbol to trade (e.g., `EURUSD`). Defaults to app setting. |
+| `--volume`, `-v`  | double | Trade volume in lots (e.g., `0.10`).                       |
+| `--sl`            | double | Stop Loss **price** (absolute). Optional.                  |
+| `--tp`            | double | Take Profit **price** (absolute). Optional.                |
+| `--deviation`     | int    | Max slippage in **points** (default: `10`).                |
+| `--output`, `-o`  | string | `text` (default) or `json`.                                |
+| `--timeout-ms`    | int    | Per‑RPC timeout in milliseconds (default: `30000`).        |
+| `--dry-run`       | flag   | Print action plan without sending an order.                |
 
 ---
 
@@ -139,54 +139,6 @@ buy.SetHandler(async (InvocationContext ctx) =>
         {
             await ConnectAsync();
 
-            // Ensure symbol visible (best-effort)
-            try
-            {
-                using var visCts = StartOpCts();
-                await _mt5Account.EnsureSymbolVisibleAsync(
-                    s, maxWait: TimeSpan.FromSeconds(3), cancellationToken: visCts.Token);
-            }
-            catch (Exception ex) when (ex is not OperationCanceledException)
-            {
-                _logger.LogWarning("EnsureSymbolVisibleAsync failed: {Msg}", ex.Message);
-            }
-
-            // Send order with retry
-            using var opCts = StartOpCts();
-            var ticket = await CallWithRetry(
-                ct => _mt5Account.SendMarketOrderAsync(
-                    symbol: s, isBuy: true, volume: volume, deviation: deviation,
-                    stopLoss: sl, takeProfit: tp, deadline: null, cancellationToken: ct),
-                opCts.Token);
-
-            // Single print point
-            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
-            {
-                var payload = new {
-                    Side = "BUY", Symbol = s, Volume = volume, Deviation = deviation,
-                    SL = sl, TP = tp, Ticket = ticket
-                };
-                Console.WriteLine(JsonSerializer.Serialize(payload));
-            }
-            else
-            {
-                _logger.LogInformation("BUY done: ticket={Ticket}", ticket);
-            }
-        }
-        catch (Exception ex)
-        {
-            ErrorPrinter.Print(_logger, ex, IsDetailed());
-            Environment.ExitCode = 1;
-        }
-        finally
-        {
-            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
-        }
-    }
-});
-
-// Add command once
-root.AddCommand(buy);
 ```
 
 ---
