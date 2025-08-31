@@ -4,6 +4,7 @@
 
 Provides a group of commands to **work with a specific ticket**.
 Tickets can represent **open positions**, **pending orders**, or **historical trades**.
+
 ---
 
 ## Input Parameters (generic) ⬇️
