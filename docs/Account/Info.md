@@ -1,83 +1,127 @@
 # Getting an Account Summary (`info`) 📟
 
-## What it Does 🎯
-
-Fetches **real-time account snapshot** from MT5 and prints it either in **text** (console) or **JSON** (machine-readable).
-Used for checking account state, verifying connectivity, and quick diagnostics.
+Fetch a **real‑time account snapshot** from MT5 and print it in **text** (human) or **JSON** (machine‑readable). Use it to verify connectivity, monitor balances/equity, or script health checks.
 
 ---
 
-## Input Parameters ⬇️
-
-| Parameter      | Type   | Required | Description                                                                  |
-| -------------- | ------ | -------- | ---------------------------------------------------------------------------- |
-| `--profile`    | string | ✅        | Which profile to use (from `profiles.json` — holds login, server, password). |
-| `--output`     | string | ❌        | Output format: `text` (default) or `json`.                                   |
-| `--timeout-ms` | int    | ❌        | Per-RPC timeout in milliseconds (default: 30000).                            |
-
----
-
-## Output Fields ⬆️
-
-Printed from `AccountSummaryData` + extra info via `AccountInformation`:
-
-| Field        | Type     | Description                          |
-| ------------ | -------- | ------------------------------------ |
-| `Login`      | int64    | Account ID (login).                  |
-| `UserName`   | string   | Account holder’s name.               |
-| `Currency`   | string   | Deposit currency (e.g. USD, EUR).    |
-| `Balance`    | double   | Current balance excluding open P/L.  |
-| `Equity`     | double   | Balance including floating P/L.      |
-| `Leverage`   | int      | Account leverage (e.g. 500).         |
-| `TradeMode`  | enum     | Account trade mode (e.g. Demo/Real). |
-| `Company`    | string   | Broker name.                         |
-| `Margin`     | double   | Currently used margin.               |
-| `FreeMargin` | double   | Margin still available for trading.  |
-| `ServerTime` | DateTime | Server time in UTC.                  |
-| `UTC Shift`  | int      | Timezone offset in minutes.          |
-
----
-
-## How to Use 🛠️
-
-### Full CLI
+## 🔎 Synopsis
 
 ```powershell
-dotnet run -- info -p demo --output json --timeout-ms 90000
+dotnet run -- info -p <profile> [-o text|json] [--timeout-ms <ms>]
 ```
 
-### PowerShell Shortcuts (from `ps/shortcasts.ps1`)
-
-```powershell
-. .\ps\shortcasts.ps1
-use-pf demo
-use-to 90000
-info
-```
-
-* `use-pf demo` → choose profile `demo` once.
-* `use-to 90000` → set default timeout (ms).
-* `info` → expands to `mt5 info -p demo --timeout-ms 90000`.
+> Tip: Prefer `-o json` when piping into tools, dashboards, or CI.
 
 ---
 
-## When to Use ❓
+## ⬇️ Input parameters
 
-* **Before sending orders** — check equity, free margin, leverage.
-* **Monitoring** — feed JSON into dashboards, CI/CD or alerts.
-* **Diagnostics** — confirm MT5 terminal is connected and profile credentials work.
-* **Risk control** — margin usage visible before high-risk trades.
+| Option                 | Type   | Required | Description                                             |
+| ---------------------- | ------ | :------: | ------------------------------------------------------- |
+| `-p, --profile <name>` | string |     ✅    | Profile from `profiles.json` (login, server, password). |
+| `-o, --output <fmt>`   | string |     ❌    | `text` (default) or `json`.                             |
+| `--timeout-ms <ms>`    | int    |     ❌    | Per‑RPC timeout (default **30000**).                    |
 
 ---
 
-## Code Reference 🧩
+## ⬆️ Output fields
 
-```csharp
-var summary = await _mt5Account.AccountSummaryAsync();
+Values are composed from `AccountSummaryData` + additional `AccountInformation` reads.
 
-_logger.LogInformation("=== Account Info ===");
-_logger.LogInformation("Login: {0}", summary.AccountLogin);
-_logger.LogInformation("Balance: {0}", summary.AccountBalance);
-_logger.LogInformation("Equity: {0}", summary.AccountEquity);
-// ... prints leverage, trade mode, margin, free margin, etc.
-```
+| Field        | Type     | Meaning                         |
+| ------------ | -------- | ------------------------------- |
+| `Login`      | int64    | Account ID (login).             |
+| `UserName`   | string   | Account holder name.            |
+| `Currency`   | string   | Deposit currency (USD/EUR/…).   |
+| `Balance`    | double   | Balance excluding floating P/L. |
+| `Equity`     | double   | Balance incl. floating P/L.     |
+| `Leverage`   | int      | e.g. 500.                       |
+| `TradeMode`  | enum     | Demo/Real/etc.                  |
+| `Company`    | string   | Broker name.                    |
+| `Margin`     | double   | Used margin.                    |
+| `FreeMargin` | double   | Available margin.               |
+| `ServerTime` | DateTime | Server time (UTC).              |
+| `UTC Shift`  | int      | Timezone offset in minutes.     |
+
+---
+
+## 🧪 Examples
+
+\=== "CLI (JSON)"
+
+````
+???+ example "Code example — CLI with JSON output"
+
+    ```powershell
+    # Full JSON snapshot (good for scripting)
+    dotnet run -- info -p demo -o json --timeout-ms 90000
+    ```
+````
+
+\=== "CLI (text)"
+
+````
+???+ example "Code example — human‑readable text"
+
+    ```powershell
+    # Compact, readable dump
+    dotnet run -- info -p demo -o text
+    ```
+````
+
+\=== "PowerShell Shortcasts"
+
+````
+???+ example "Code example — using aliases from ps/shortcasts.ps1"
+
+    ```powershell
+    . .\ps\shortcasts.ps1
+    use-pf demo
+    use-to 90000
+    info   # expands to: mt5 info -p demo --timeout-ms 90000
+    ```
+````
+
+\=== "C# API"
+
+````
+???+ example "Code example — call from your C# app"
+
+    ```csharp
+    var summary = await _mt5Account.AccountSummaryAsync();
+
+    _logger.LogInformation("=== Account Info ===");
+    _logger.LogInformation("Login: {0}", summary.AccountLogin);
+    _logger.LogInformation("Balance: {0}", summary.AccountBalance);
+    _logger.LogInformation("Equity: {0}", summary.AccountEquity);
+    // ... leverage, trade mode, margin, free margin, company, etc.
+    ```
+````
+
+---
+
+## ❓ When to use
+
+* **Before sending orders** — confirm equity, free margin, leverage.
+* **Monitoring** — feed JSON to dashboards/alerts.
+* **Diagnostics** — verify terminal connection + credentials.
+* **Risk control** — margin usage before high‑risk trades.
+
+---
+
+## ⚠️ Exit codes & common errors
+
+!!! warning "Common pitfalls"
+\* **“Set Host or MtClusterName”** → profile not picked up. Run `profiles show` and verify the `profiles.json` path.
+\* **Hidden symbol** → ensure visibility before trading or pending changes: see **[Ensure Symbol Visible](../Market_Data/Ensure_Symbol_Visible.md)**.
+\* **Timeouts** → increase `--timeout-ms`; use `--trace` to pinpoint slowness.
+\* **Empty accounts** → `FreeMargin`≈`Equity`≈`Balance` when flat — this is normal.
+
+---
+
+## 🔗 Related
+
+* Profiles → **[Account/Profiles](../Account/Profiles.md)**
+* Health checks → **[Diagnostics/Health](../Diagnostics/Health.md)**
+* Timeouts & retries → **[Timeouts\_RetriesPolicy](../Timeouts_RetriesPolicy.md)**
+* Troubleshooting → **[Troubleshooting & FAQ](../Troubleshooting%28FAQ%29.md)**
