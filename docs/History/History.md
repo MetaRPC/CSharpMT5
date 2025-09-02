@@ -11,6 +11,18 @@ Default RPC args used by the wrapper:
 * `pageNumber = 0`, `itemsPerPage = 0` (no paging)
 
 ---
+## Method Signature
+
+```csharp
+public Task<OrdersHistoryData> OrderHistoryAsync(
+    DateTime from,
+    DateTime to,
+    BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
+    int pageNumber = 0,
+    int itemsPerPage = 0,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
 
 ## Input Parameters ⬇️
 
@@ -102,15 +114,4 @@ else
 }
 ```
 
-### Method Signature
 
-```csharp
-public Task<OrdersHistoryData> OrderHistoryAsync(
-    DateTime from,
-    DateTime to,
-    BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
-    int pageNumber = 0,
-    int itemsPerPage = 0,
-    DateTime? deadline = null,
-    CancellationToken cancellationToken = default);
-```
