@@ -1,108 +1,77 @@
-# Close by Symbol (`close-symbol`)
+# Close by Symbol (`close-symbol`) 🎯
 
 ## What it Does
 
-Closes **all open positions** for a specific **symbol** on the current MT5 account.
-Great for flattening exposure on one instrument without touching others.
+Closes **all open positions for one symbol** on the current MT5 account. Shows a preview unless confirmed with `--yes`. `--dry-run` prints the plan and exits without sending requests.
 
 ---
+## Method Signatures
+
+```csharp
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+public Task CloseOrderByTicketAsync(
+    ulong ticket,
+    string symbol,
+    double volume,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
 
 ## Input Parameters ⬇️
 
-| Parameter              | Type   | Description                                             |
-| ---------------------- | ------ | ------------------------------------------------------- |
-| `--profile`, `-p`      | string | Which profile to use (from `profiles.json`).            |
-| `--symbol`, `-s`       | string | Symbol to close (e.g. `EURUSD`).                        |
-| `--deviation`          | int    | Max slippage in points (default: 10).                   |
-| `--output`, `-o`       | string | `text` (default) or `json`.                             |
-| `--timeout-ms`         | int    | Per-RPC timeout in ms (default: 30000).                 |
-| `--dry-run`            | flag   | Print planned actions without sending requests.         |
-| *(optional)* `--side`  | string | Limit to `buy` or `sell` positions only (if supported). |
-| *(optional)* `--magic` | int    | Filter by EA magic number (if supported).               |
+| Parameter       | Type   | Required | Description                                            |
+| --------------- | ------ | -------- | ------------------------------------------------------ |
+| `--profile, -p` | string | yes      | Which profile to use (from `profiles.json`).           |
+| `--symbol, -s`  | string | no       | Target symbol (defaults to profile’s `DefaultSymbol`). |
+| `--yes, -y`     | flag   | no       | Execute without interactive confirmation.              |
+| `--dry-run`     | flag   | no       | Print intended actions and exit (no network calls).    |
+| `--timeout-ms`  | int    | no       | Per-RPC timeout in milliseconds (default: `30000`).    |
+
+Aliases: `cs`, `flatten-symbol`.
 
 ---
 
-## Output Fields ⬆️
+## Output ⬆️
 
-| Field     | Type   | Description                                       |
-| --------- | ------ | ------------------------------------------------- |
-| `Symbol`  | string | Target symbol.                                    |
-| `Total`   | int    | How many positions were targeted.                 |
-| `Closed`  | int    | How many were successfully closed.                |
-| `Errors`  | int    | How many failed to close.                         |
-| `Items[]` | array  | Per-ticket results (ticket, volume, status, msg). |
+**Text only.**
+
+* No offers → "No positions to close by <SYMBOL>".
+* Without "-yes" → Previous (first 10 seconds) + "Pass" - yes for execution.` (exit=2).
+* `--intermediate run" → "[INTERMEDIATE RUN] Will close all positions by <CHARACTER>.`
+* Execution → "Closed normally: X; Error: Y" (output=0/1).
 
 ---
 
 ## How to Use 🛠️
 
-### CLI
-
 ```powershell
-# Close all EURUSD positions
+# Preview
 dotnet run -- close-symbol -p demo -s EURUSD
 
-# Preview only, JSON
-dotnet run -- close-symbol -p demo -s EURUSD --dry-run -o json --timeout-ms 60000
+# Execute
+dotnet run -- close-symbol -p demo -s EURUSD --yes
+
+# Dry-run
+dotnet run -- close-symbol -p demo -s EURUSD --dry-run
 ```
-
-### PowerShell Shortcuts
-
-```powershell
-. .\ps\shortcasts.ps1
-use-pf demo
-close-symbol -s EURUSD
-```
-
----
-
-## When to Use ❓
-
-* Flatten risk on a single instrument quickly.
-* End-of-session cleanup per symbol.
-* Strategy rollovers where only one market needs to be cleared.
-
----
-
-## Notes & Safety 🛡️
-
-* Consider the default `deviation` used for close requests.
-* If the market is closed or trading is disabled for the symbol, items will be reported under `Errors`.
-* `--dry-run` is safe: it logs the intended actions without sending orders.
 
 ---
 
 ## Code Reference 🧩
 
 ```csharp
-var closeSymbol = new Command("close-symbol", "Close ALL open positions for a given symbol");
-closeSymbol.AddAlias("cs");
-closeSymbol.AddAlias("flatten-symbol");
+// Preview / dry-run
+Console.WriteLine($"[DRY-RUN] Would close all positions for {symbol}.");
 
-closeSymbol.AddOption(profileOpt);
-closeSymbol.AddOption(symbolOpt);
-// reuse the global confirmation flag from close-all (caYesOpt)
-closeSymbol.AddOption(caYesOpt);
+// Fetch open positions
+var opened = await _mt5Account.OpenedOrdersAsync();
 
-closeSymbol.SetHandler(async (string profile, string? symbol, bool yes, int timeoutMs, bool dryRun) =>
-{
-    Validators.EnsureProfile(profile);
-
-    // Default to profile's default symbol if not provided
-    var s = Validators.EnsureSymbol(symbol ?? GetOptions().DefaultSymbol);
-    _selectedProfile = profile;
-
-    using (UseOpTimeout(timeoutMs))
-    using (_logger.BeginScope("Cmd:CLOSE-SYMBOL Profile:{Profile}", profile))
-    using (_logger.BeginScope("Symbol:{Symbol}", s))
-    {
-        try
-        {
-            if (dryRun)
-            {
-                Console.WriteLine($"[DRY-RUN] Would close all positions for {s}.");
-                return;
-            }
-
-            await ConnectAsync();
+// Close by ticket
+await _mt5Account.CloseOrderByTicketAsync(ticket, symbol, volume);
 ```
+
+
