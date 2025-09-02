@@ -3,7 +3,7 @@
 ## What it Does
 
 Shows a short card for a symbol: **last quote (Bid/Ask/Time)** and **volume limits (min/step/max)**.
-Best-effort делает символ видимым в терминале перед запросами.
+Best-effort makes the symbol visible in the terminal before requests.
 
 ---
 
@@ -54,9 +54,9 @@ sym show -s EURUSD  # explicit symbol
 
 ## When to Use ❓
 
-* **Quick diagnostics** — быстро проверить котировку и лимиты объёма.
-* **Before placing orders** — сверить доступные объёмы и что символ видимый.
-* **Environment check** — убедиться, что сервер отдаёт корректные данные по инструменту.
+* **Quick diagnostics** — quickly check the quotation and volume limits.
+* **Before placing orders** — verify the available volumes and that the symbol is visible.
+* **Environment check** — to make sure that the server returns the correct data on the tool.
 
 ---
 
