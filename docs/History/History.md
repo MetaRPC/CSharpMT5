@@ -62,7 +62,7 @@ h --days 14          # alias for `history`
 
 ---
 
-## Code Reference 🧩 (без CallWithRetry)
+## Code Reference 🧩
 
 ```csharp
 // Compute time window
