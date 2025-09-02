@@ -65,7 +65,7 @@ pf list       # same as: profiles list
 
 ---
 
-## Code Reference 🧷 (short)
+## Code Reference 🧷
 
 ```csharp
 // Read & print
