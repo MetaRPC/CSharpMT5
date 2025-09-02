@@ -1,52 +1,68 @@
 # Stream (`stream`) 📡
 
-## What it Does
+## What it does
 
-Subscribes to **real‑time quotes** for a symbol and prints ticks (Bid/Ask/Time) for a limited duration.
-Useful for monitoring, quick diagnostics, and feeding other tools via stdout.
+Subscribes to **real‑time events** and writes concise text logs:
 
----
+* **Ticks for a symbol** (prints **only** `Symbol` and `Ask`).
+* Trade events (short service line).
+* Position P\&L updates (short service line).
+* Position & pending‑order tickets (short service line).
 
-## Input Parameters ⬇️
-
-| Parameter         | Type   |Description                                  |
-| ----------------- | ------ |-------------------------------------------- |
-| `--profile`, `-p` | string | Profile from `profiles.json`.                |
-| `--symbol`, `-s`  | string | Symbol to stream (e.g., `EURUSD`).           |
-| `--seconds`       | int    | How long to stream (seconds). Default: `10`. |
-| `--output`, `-o`  | string | `text` (default) or `json` per tick.         |
-| `--timeout-ms`    | int    | Per‑RPC timeout in ms (default: 30000).      |
+Keeps **auto‑reconnecting** until the requested duration elapses.
 
 ---
 
-## Tick Fields ⬆️
+## Input parameters ⬇️
 
-| Field     | Type     | Description                    |
-| --------- | -------- | ------------------------------ |
-| `Symbol`  | string   | Instrument name.               |
-| `Bid`     | double   | Best bid.                      |
-| `Ask`     | double   | Best ask.                      |
-| `TimeUtc` | DateTime | Server time of the tick (UTC). |
-| `Mid`     | double   | (Derived) `(Bid + Ask) / 2`.   |
-| `Spread`  | double   | (Derived) `Ask - Bid`.         |
+| Parameter         | Type   | Description                                                                                                                                                      |
+| ----------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--profile`, `-p` | string | Profile name from `profiles.json`.                                                                                                                               |
+| `--seconds`, `-S` | int    | How many seconds to run. **Default:** `10`.                                                                                                                      |
+| `--symbol`, `-s`  | string | Desired symbol. **Current behavior:** the subscription internally uses the **profile’s `DefaultSymbol`**; this flag **does not change** the actual subscription. |
+| `--timeout-ms`    | int    | Global per‑RPC timeout (applies to RPC calls). **Default:** `30000`.                                                                                             |
 
-> Printed once **per tick** until the duration elapses or the stream is cancelled.
+> ⚠️ **Not supported:** `--output` and JSON mode. The command prints **text logs only**.
 
 ---
 
-## How to Use 🛠️
+## What gets printed ⬆️
+
+### Ticks
+
+One line per tick:
+
+```
+OnSymbolTickAsync: Symbol=EURUSD Ask=1.23456
+```
+
+Fields `Bid`, `Time`, `Mid`, `Spread` are **not** printed.
+
+### Other event lines
+
+Periodic service lines may appear:
+
+```
+OnTradeAsync: Trade event received
+OnPositionProfitAsync: Update received
+OnPositionsAndPendingOrdersTicketsAsync: Update received
+```
+
+---
+
+## How to use 🛠️
 
 ### CLI
 
 ```powershell
-# Stream EURUSD ticks for 10 seconds (text)
+# 10 seconds of streaming (text logs)
 dotnet run -- stream -p demo -s EURUSD --seconds 10
 
-# JSON per tick for 30 seconds
-dotnet run -- stream -p demo -s EURUSD --seconds 30 -o json
+# Command alias
+dotnet run -- st -p demo -S 15 -s XAUUSD
 ```
 
-### PowerShell Shortcuts (from `ps/shortcasts.ps1`)
+### PowerShell shortcuts (from `ps/shortcasts.ps1`)
 
 ```powershell
 . .\ps\shortcasts.ps1
@@ -59,38 +75,57 @@ st 15 EURUSD   # expands to: mt5 stream -p demo --seconds 15 -s EURUSD --timeout
 
 ## Notes 🧩
 
-* Before subscribing, the code performs **EnsureSymbolVisibleAsync(symbol, \~3s)** to avoid “symbol not selected”.
-* Output in `text` mode is concise; `json` mode emits a JSON object per tick (easy to pipe into processors).
-* Handle **network hiccups** gracefully — your implementation can reconnect or stop at the end of `--seconds`.
+* Before subscribing, the code calls **`EnsureSymbolVisibleAsync(symbol, ~3s)`** to avoid “symbol not selected”. Prep errors are non‑fatal.
+* The actual subscription uses **`DefaultSymbol` from the profile**, not the `--symbol` value.
+* **Auto‑reconnect with backoff** is implemented and runs until `--seconds` is reached.
+* On completion/cancellation the command logs a summary and attempts a clean disconnect.
+* On connection/stream setup failures the process sets `Environment.ExitCode = 1`.
 
 ---
 
-## Code Reference 🧩
+## Method signatures used inside 📘
 
 ```csharp
-var secsOpt = new Option<int>(new[] { "--seconds", "-S" }, () => 10, "How many seconds to listen to streams");
-            var stream = new Command("stream", "Subscribe to trading events/ticks (auto-reconnect)");
-            stream.AddAlias("st");
+// Ensure a symbol is visible in the terminal (best‑effort wait)
+Task EnsureSymbolVisibleAsync(
+    string symbol,
+    TimeSpan? maxWait = null,
+    TimeSpan? pollInterval = null,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
 
-stream.AddOption(profileOpt);
-stream.AddOption(secsOpt);
-stream.AddOption(symbolOpt);
+// Subscribe to real‑time ticks (code uses profile DefaultSymbol)
+IAsyncEnumerable<OnSymbolTickData> OnSymbolTickAsync(
+    IEnumerable<string> symbols,
+    CancellationToken cancellationToken = default);
 
-stream.SetHandler(async (string profile, int seconds, string? symbol, int timeoutMs) =>
-{
-    Validators.EnsureProfile(profile);
-    if (seconds <= 0) throw new ArgumentOutOfRangeException(nameof(seconds), "Seconds must be > 0.");
+// Trade‑related events
+IAsyncEnumerable<OnTradeData> OnTradeAsync(
+    CancellationToken cancellationToken = default);
 
-    var s = Validators.EnsureSymbol(symbol ?? GetOptions().DefaultSymbol);
-    _selectedProfile = profile;
+// Periodic/snapshot P&L updates
+IAsyncEnumerable<OnPositionProfitData> OnPositionProfitAsync(
+    int intervalMs,
+    bool ignoreEmpty = true,
+    CancellationToken cancellationToken = default);
 
-    using (UseOpTimeout(timeoutMs))
-    using (_logger.BeginScope("Cmd:STREAM Profile:{Profile}", profile))
-    using (_logger.BeginScope("Symbol:{Symbol} Seconds:{Seconds}", s, seconds))
-    {
-        var startedAt = DateTime.UtcNow;
+// Tickets for positions & pending orders
+IAsyncEnumerable<OnPositionsAndPendingOrdersTicketsData> OnPositionsAndPendingOrdersTicketsAsync(
+    int intervalMs,
+    CancellationToken cancellationToken = default);
+```
 
-        try
-        {
-            await ConnectAsync();
+---
+
+## Sample logs 🧾
+
+```
+info: Cmd:STREAM Profile:demo
+info: Symbol:EURUSD Seconds:10
+info: Streaming started (auto-reconnect enabled).
+info: OnSymbolTickAsync: Symbol=EURUSD Ask=1.09321
+info: OnPositionProfitAsync: Update received
+info: OnTradeAsync: Trade event received
+info: OnPositionsAndPendingOrdersTicketsAsync: Update received
+info: Streaming stopped. Elapsed=10.0s
 ```
