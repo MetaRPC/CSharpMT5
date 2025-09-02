@@ -2,50 +2,41 @@
 
 ## What it Does
 
-Fetches **account trading history** for the **last N days** from MT5 and prints it in **text** or **JSON**.
-Under the hood it calls `_mt5Account.OrderHistoryAsync(from, to)` where `from = UtcNow - days` and `to = UtcNow`.
+Fetches **account trading history** for the **last N days** and prints it in **text** or **JSON**.
+Under the hood calls `_mt5Account.OrderHistoryAsync(from, to)` with `from = UtcNow - days`, `to = UtcNow`.
+
+Default RPC args used by the wrapper:
+
+* `sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc`
+* `pageNumber = 0`, `itemsPerPage = 0` (no paging)
 
 ---
 
 ## Input Parameters ⬇️
 
-| Parameter      | Type   | Required | Description                                       |
-| -------------- | ------ | -------- | ------------------------------------------------- |
-| `--profile`    | string | yes        | Profile to use (from `profiles.json`).            |
-| `--output`     | string | no        | `text` (default) or `json`.                       |
-| `--days`       | int    | yes        | Number of days to look back. **Must be > 0**.     |
-| `--timeout-ms` | int    | no        | Per-RPC timeout in milliseconds (default: 30000). |
-
-> Note: This command uses a **fixed time window** (`now - days` → `now`). There are no `--from/--to` or `--mode` switches in the current implementation.
+| Parameter       | Type   | Required | Description                                         |
+| --------------- | ------ | -------- | --------------------------------------------------- |
+| `--profile, -p` | string | yes      | Profile to use (from `profiles.json`).              |
+| `--output`      | string | no       | `text` (default) or `json`.                         |
+| `--days, -d`    | int    | yes      | Number of days to look back. **Must be > 0**.       |
+| `--timeout-ms`  | int    | no       | Per-RPC timeout in milliseconds (default: `30000`). |
 
 ---
 
 ## Output Fields ⬆️
 
-Each history **item** is either an **Order** or a **Deal**. The CLI prints up to the first 10 items in text mode (with a "+N more" line if applicable). JSON returns the full payload from the server.
+Each history **item** is either an **Order** (has `HistoryOrder`) or a **Deal** (has `HistoryDeal`).
 
-### Order fields (when `HistoryOrder` is present)
+### Text mode (preview)
 
-| Field           | Type      | Description                   |
-| --------------- | --------- | ----------------------------- |
-| `Ticket`        | int64     | Order/position ticket.        |
-| `Symbol`        | string    | Instrument (e.g., `EURUSD`).  |
-| `VolumeInitial` | double    | Initial lots.                 |
-| `VolumeCurrent` | double    | Current lots at close.        |
-| `PriceOpen`     | double    | Entry price.                  |
-| `SetupTime`     | DateTime? | When the order was set up.    |
-| `DoneTime`      | DateTime? | When the order was completed. |
+* Prints the **first 10 items** and a total count.
+* `ORDER` line: `Ticket`, `Symbol`, `State`, `VolumeInitial`, `VolumeCurrent`, `PriceOpen`, `SetupTime`, `DoneTime`.
+* `DEAL`  line: `Ticket`, `Symbol`, `Type`, `Volume`, `Price`, `Profit`, `Time`.
 
-### Deal fields (when `HistoryDeal` is present)
+### JSON mode (full)
 
-| Field    | Type      | Description       |
-| -------- | --------- | ----------------- |
-| `Ticket` | int64     | Deal ticket.      |
-| `Symbol` | string    | Instrument.       |
-| `Volume` | double    | Executed lots.    |
-| `Price`  | double    | Execution price.  |
-| `Profit` | double    | P/L of this deal. |
-| `Time`   | DateTime? | Deal time.        |
+* Raw server payload (`OrdersHistoryData`) with a collection of items, each containing `HistoryOrder` **or** `HistoryDeal` objects from `mt5_term_api`.
+* In addition to the above, the actual protocol models may contain additional fields (for example, comments, reasons, SL/TP, etc.) — they will be returned to JSON "as is" according to `mt5_term_api`.
 
 ---
 
@@ -64,39 +55,62 @@ dotnet run -- history -p demo --days 30 --output json --timeout-ms 60000
 ### PowerShell Shortcuts
 
 ```powershell
-. .\ps\shortcasts.ps1
+. .\\ps\\shortcasts.ps1
 use-pf demo
 h --days 14          # alias for `history`
 ```
 
 ---
 
-## Code Reference (exact) 🧩
+## Code Reference 🧩 (без CallWithRetry)
 
 ```csharp
-var history = new Command("history", "Orders/deals history for the last N days");
-history.AddAlias("h");
+// Compute time window
+var from = DateTime.UtcNow.AddDays(-Math.Abs(days));
+var to   = DateTime.UtcNow;
 
-history.AddOption(profileOpt);
-history.AddOption(outputOpt);
-history.AddOption(daysOpt);
-history.SetHandler(async (string profile, string output, int days, int timeoutMs) =>
+// Fetch history snapshot
+var res = await _mt5Account.OrderHistoryAsync(from, to);
+
+if (IsJson(output))
 {
-    Validators.EnsureProfile(profile);
-    if (days <= 0) throw new ArgumentOutOfRangeException(nameof(days), "Days must be > 0.");
-    _selectedProfile = profile;
-
-    using (UseOpTimeout(timeoutMs))
-    using (_logger.BeginScope("Cmd:HISTORY Profile:{Profile}", profile))
-    using (_logger.BeginScope("Days:{Days}", days))
+    Console.WriteLine(ToJson(res)); // full server payload
+}
+else
+{
+    var items = res.HistoryData;
+    Console.WriteLine($"History items: {items.Count}");
+    foreach (var h in items.Take(10))
     {
-        try
+        if (h.HistoryOrder is not null)
         {
-            await ConnectAsync();
+            var o = h.HistoryOrder;
+            var setup = o.SetupTime?.ToDateTime();
+            var done  = o.DoneTime?.ToDateTime();
+            Console.WriteLine($"ORDER  #{o.Ticket}  {o.Symbol}  state={o.State}  " +
+                              $"vol={o.VolumeInitial}->{o.VolumeCurrent}  open={o.PriceOpen}  " +
+                              $"setup={setup:O} done={done:O}");
+        }
+        else if (h.HistoryDeal is not null)
+        {
+            var d = h.HistoryDeal;
+            var t = d.Time?.ToDateTime();
+            Console.WriteLine($"DEAL   #{d.Ticket}  {d.Symbol}  type={d.Type}  " +
+                              $"vol={d.Volume}  price={d.Price}  pnl={d.Profit}  time={t:O}");
+        }
+    }
+}
 ```
----
 
-📌 In short:
-— `history` = last-N-days orders & deals, one-shot snapshot.
-— Text prints a concise preview (first 10), JSON returns full payload.
-— Same profile/timeout pattern as the other commands.
+### Method Signature
+
+```csharp
+public Task<OrdersHistoryData> OrderHistoryAsync(
+    DateTime from,
+    DateTime to,
+    BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
+    int pageNumber = 0,
+    int itemsPerPage = 0,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
