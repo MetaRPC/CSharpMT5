@@ -9,21 +9,19 @@ This section contains commands related to **symbols, quotes, and trading utiliti
 
 ---
 
-## Available Commands ⚙️
-
-| Command                                               | Alias   | Description                                                   |
-| ----------------------------------------------------- | ------- | ------------------------------------------------------------- |
-| [Close](./Close.md)                                   | –       | Close a specific position or order by ticket.                 |
-| [Close-all](./Close-all.md)                           | flatten | Close **all** positions (optionally filtered by symbol).      |
-| [Close-symbol](./Close-symbol.md)                     | cs      | Close all positions for a given symbol.                       |
-| [Ensure\_Symbol\_Visible](./Ensure_Symbol_Visible.md) | en      | Ensure the given symbol is visible in Market Watch.           |
-| [Limits](./Limits.md)                                 | lim     | Show min/step/max volume for a symbol.                        |
-| [Panic](./Panic.md)                                   | –       | Emergency: close all positions and cancel all pending orders. |
-| [Pending.modify](./Pending.modify.md)                 | pm      | Modify parameters of an existing pending order.               |
-| [Pending.move](./Pending.move.md)                     | pmove   | Move a pending order by a given number of points.             |
-| [Quote](./Quote.md)                                   | q       | Get a snapshot price (Bid/Ask/Time).                          |
-| [Reverse](./Reverse.md)                               | rv      | Reverse position(s) for a given symbol.                       |
-| [Symbol](./Symbol.md)                                 | sh      | Show detailed information about a trading symbol.             |
+| Command                         | Alias(es)              | Description                                              |
+| ------------------------------- | ---------------------- | -------------------------------------------------------- |
+| **close**                       | `c`                    | Close a specific position or order by ticket.            |
+| **close-all**                   | `flatten`, `close.all` | Close **all** positions (optionally filtered by symbol). |
+| **close-symbol**                | `cs`, `flatten-symbol` | Close all positions for a given symbol.                  |
+| **sym ensure-visible** (helper) | –                      | Ensure the given symbol is visible in Market Watch.      |
+| **sym limits**                  | `lim`                  | Show min/step/max volume for a symbol.                   |
+| **panic**                       | –                      | Emergency: close all positions and cancel all pendings.  |
+| **pending.modify**              | `pm`                   | Modify parameters of an existing pending order.          |
+| **pending.move**                | `pmove`                | Move a pending order by a given number of points.        |
+| **quote**                       | `q`                    | Get a snapshot price (Bid/Ask/Time).                     |
+| **reverse**                     | `rv`                   | Reverse position(s) for a given symbol.                  |
+| **sym show**                    | –                      | Show a compact symbol card: quote + volume limits.       |
 
 ---
 
