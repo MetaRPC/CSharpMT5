@@ -34,8 +34,6 @@ Actual report keys:
 | `terminal`   | string | Terminal/gRPC status: `ok` or `fail: <message>`.       |
 | `balance`    | double | Account balance (present if terminal check succeeded). |
 
-> Примечание: Полей `Status`, `ServerTime`, `LatencyMs` в текущей реализации **нет**.
-
 ---
 
 ## How to Use 🛠️
