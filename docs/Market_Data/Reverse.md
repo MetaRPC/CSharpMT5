@@ -1,116 +1,140 @@
-# Reverse (`reverse`) 🔄
+# Reverse (`reverse`) & Reverse by Ticket (`reverse.ticket`) 🔄
 
-## What it Does
+## What they do
 
-Reverses the position(s) on a given symbol — closes current exposure and opens a new position in the opposite direction.
+* **`reverse`** — reverses positions by symbol: calculates current **net exposure**, then either sends one opposite order (net) or closes all & reopens one (flat).
+* **`reverse.ticket`** — reverses a **single** position by its ticket.
 
-Variants:
-
-* **`reverse`** → by symbol (net exposure or all positions).
-* **`reverse.ticket`** → by exact ticket ID.
+Aliases: `reverse` → `rv`, `reverse.ticket` → `rvt`.
 
 ---
 
 ## Input Parameters ⬇️
 
-### For `reverse`
+### `reverse`
 
-| Parameter         | Type   | Description                                |
-| ----------------- | ------ | ------------------------------------------ |
-| `--profile`, `-p` | string | Profile from `profiles.json`.              |
-| `--symbol`, `-s`  | string |  Symbol to reverse.                         |
-| `--mode`          | string | Reverse mode: `net` (default) or `all`.    |
-| `--sl`            | double | Optional Stop Loss for the new position.   |
-| `--tp`            | double |  Optional Take Profit for the new position. |
-| `--deviation`     | int    | Max slippage in points (default: 10).      |
-| `--output`, `-o`  | string |  Output: `text` (default) or `json`.        |
-| `--timeout-ms`    | int    |  Timeout in ms (default: 30000).            |
-| `--dry-run`       | flag   |  Show action plan without sending orders.   |
+| Parameter       | Type   | Required | Description                                       |
+| --------------- | ------ | -------- | ------------------------------------------------- |
+| `--profile, -p` | string | yes      | Profile from `profiles.json`.                     |
+| `--symbol, -s`  | string | no       | Target symbol (defaults to app `DefaultSymbol`).  |
+| `--mode`        | string | no       | `net` (default) or `flat`.                        |
+| `--sl`          | double | no       | Stop Loss for the **new** position.               |
+| `--tp`          | double | no       | Take Profit for the **new** position.             |
+| `--deviation`   | int    | no       | Slippage tolerance (points), default `10`.        |
+| `--timeout-ms`  | int    | no       | Per‑RPC timeout (default `30000`).                |
+| `--dry-run`     | flag   | no       | Print action plan **without** sending any orders. |
 
-### For `reverse.ticket`
+> There is **no** `--output` option — the command prints text.
 
-| Parameter         | Type   | Description                        |
-| ----------------- | ------ |  ---------------------------------- |
-| `--profile`, `-p` | string | Profile.                           |
-| `--ticket`, `-t`  | ulong  |  Ticket of the position to reverse. |
-| `--sl`            | double |  Optional Stop Loss.                |
-| `--tp`            | double |  Optional Take Profit.              |
-| `--deviation`     | int    |  Slippage tolerance.                |
-| `--output`, `-o`  | string |  Output: `text` or `json`.          |
-| `--timeout-ms`    | int    |  Timeout in ms.                     |
-| `--dry-run`       | flag   |  Plan only, no execution.           |
+### `reverse.ticket`
+
+| Parameter       | Type   | Required | Description                                       |
+| --------------- | ------ | -------- | ------------------------------------------------- |
+| `--profile, -p` | string | yes      | Profile.                                          |
+| `--ticket, -t`  | ulong  | yes      | Position ticket to reverse.                       |
+| `--sl`          | double | no       | Stop Loss for the new position.                   |
+| `--tp`          | double | no       | Take Profit for the new position.                 |
+| `--deviation`   | int    | no       | Slippage tolerance (points), default `10`.        |
+| `--timeout-ms`  | int    | no       | Per‑RPC timeout (default `30000`).                |
+| `--dry-run`     | flag   | no       | Print action plan **without** sending any orders. |
 
 ---
 
-## Output Fields ⬆️
+## Output ⬆️ (text)
 
-| Field      | Type   | Description                                                       |
-| ---------- | ------ | ----------------------------------------------------------------- |
-| `Closed[]` | array  | Info on positions closed (ticket, symbol, volume).                |
-| `Opened`   | object | Info on the new opposite position (ticket, symbol, volume, side). |
-| `Status`   | string | `OK` / `Error` with message.                                      |
+**`reverse`**
+
+* No positions for symbol → `No positions for <SYM> to reverse.` (exit code `2`).
+* Net = 0 → `Net position for <SYM> is zero; nothing to reverse.` (exit code `2`).
+* `--dry-run`:
+
+  * `net`: `[DRY-RUN] REVERSE(net) <SYM>: send <BUY/SELL> vol=<2×|net|> (deviation=...) SL=... TP=...`
+  * `flat`: `[DRY-RUN] REVERSE(flat) <SYM>: close ALL positions; then <BUY/SELL> vol=<|net|> SL=... TP=...`
+* Execution:
+
+  * `net`: log `REVERSE(net) done: ticket=... newSide=... volSent=...`
+  * `flat`: warns if some positions failed to close, then logs `REVERSE(flat) done: ticket=... side=... vol=...`
+
+**`reverse.ticket`**
+
+* Ticket not found → `Position #<ticket> not found.` (exit code `2`).
+* `--dry-run`: `[DRY-RUN] REVERSE.TICKET #<ticket> <SYM>: close <vol>, then <BUY/SELL> <vol> (dev=...) SL=... TP=...`
+* Execution: `✔ reverse.ticket done`
+
+Errors are printed via `ErrorPrinter`; fatal errors set exit code `1`.
 
 ---
 
 ## How to Use 🛠️
 
-### CLI
-
 ```powershell
 # Reverse by symbol (net exposure)
 dotnet run -- reverse -p demo -s EURUSD --mode net
 
-# Reverse by ticket ID
-dotnet run -- reverse.ticket -p demo -t 123456 --sl 1.0950 --tp 1.1050
+# Reverse by symbol (flat: close all, then reopen 1×|net|)
+dotnet run -- reverse -p demo -s EURUSD --mode flat --sl 1.0950 --tp 1.1050
+
+# Reverse by ticket
+dotnet run -- reverse.ticket -p demo -t 123456 --deviation 15
 ```
-
-### PowerShell Shortcuts (from `shortcasts.ps1`)
-
-```powershell
-. .\ps\shortcasts.ps1
-use-pf demo
-rv -s EURUSD        # reverse net exposure on EURUSD
-rvt -t 123456       # reverse specific ticket
-```
-
----
-
-## When to Use ❓
-
-* **Strategy flip** — when algo/opinion changes direction.
-* **Stop-and-reverse systems** — common pattern in trend-following bots.
-* **Manual kill/flip** — quickly switch side during volatile news.
 
 ---
 
 ## Notes & Safety 🛡️
 
-* Ensure enough free margin for the new opposite position.
-* Closing + opening may not be atomic; there can be small slippage.
-* `--mode all` can be heavy: closes all tickets of the symbol before reversing.
-* `--dry-run` is recommended to preview what will be closed/opened.
+* **Margin:** ensure free margin is sufficient for the opposite leg.
+* **Non‑atomic:** close→open are two separate steps; slippage gaps may occur.
+* `flat` may partially fail to close some tickets — result prints `OK/FAIL`.
+* Best‑effort `EnsureSymbolVisibleAsync` is always called before trading.
 
 ---
 
 ## Code Reference 🧩
 
+### `reverse` (`net` vs `flat`)
+
 ```csharp
-var modeOpt = new Option<string>(
-    name: "--mode",
-    description: "Reverse mode: net (single opposite order 2x) | flat (close all for symbol, then open 1x)",
-    getDefaultValue: () => "net");
+// 1) calculate net exposure by symbol
+var opened = await _mt5Account.OpenedOrdersAsync();
+var posList = opened.PositionInfos.Where(p => p.Symbol == s).ToList();
+var net = posList.Sum(p => (IsLongPosition(p) ? 1.0 : -1.0) * p.Volume);
 
-var reverse = new Command("reverse", "Reverse net position for a symbol");
-reverse.AddAlias("rv");
-
-reverse.AddOption(profileOpt);
-reverse.AddOption(symbolOpt);
-reverse.AddOption(modeOpt);
-// reuse SL/TP/deviation so user can set protective exits for the new leg
-reverse.AddOption(slOpt);
-reverse.AddOption(tpOpt);
-reverse.AddOption(devOpt);
-
-reverse.SetHandler(async (string profile, string? symbol, string mode, double? sl, double? tp, int deviation, int timeoutMs, bool dryRun) =>
+if (mode == "net")
 {
+    var volToSend = Math.Abs(net) * 2.0;
+    await _mt5Account.SendMarketOrderAsync(
+        symbol: s,
+        isBuy: net < 0,
+        volume: volToSend,
+        deviation: deviation,
+        stopLoss: sl,
+        takeProfit: tp);
+}
+else // flat
+{
+    // close all, then open 1×|net|
+    var batch = posList.Select(p => (p.Ticket, p.Symbol, p.Volume));
+    var (ok, fail) = await ClosePositionsAsync(batch, CancellationToken.None);
+    await _mt5Account.SendMarketOrderAsync(
+        symbol: s,
+        isBuy: net < 0,
+        volume: Math.Abs(net),
+        deviation: deviation,
+        stopLoss: sl,
+        takeProfit: tp);
+}
 ```
+
+### `reverse.ticket`
+
+```csharp
+var opened = await _mt5Account.OpenedOrdersAsync();
+var pos = opened.PositionInfos.FirstOrDefault(p => (ulong)p.Ticket == ticket);
+var symbol = pos.Symbol; var vol = pos.Volume; var isLong = IsLongPosition(pos);
+
+// steps: close full → open opposite
+await _mt5Account.ClosePositionPartialAsync(ticket, vol, deviation, CancellationToken.None);
+await _mt5Account.SendMarketOrderAsync(symbol, isBuy: !isLong, volume: vol, deviation: deviation, stopLoss: sl, takeProfit: tp);
+```
+
+📌 In short: `reverse net` sends **one** opposite market order with **2×|net|**; `reverse flat` closes all then opens **1×|net|**; `reverse.ticket` does the same for a single ticket.
