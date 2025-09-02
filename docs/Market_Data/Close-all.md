@@ -53,7 +53,7 @@ dotnet run -- close-all -p demo -s EURUSD --deviation 15 --yes
 
 ---
 
-## Code Reference 🧩 (без CallWithRetry)
+## Code Reference 🧩
 
 ```csharp
 // Preconditions: connection already established; profile selected
