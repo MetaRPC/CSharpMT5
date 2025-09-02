@@ -6,6 +6,38 @@ Fetches **real-time account snapshot** from MT5 and prints it either in **text**
 Used for checking account state, verifying connectivity, and quick diagnostics.
 
 ---
+## Method Signature
+
+```csharp
+public Task<AccountSummaryData> AccountSummaryAsync(
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default
+)
+```
+---
+## Code Reference 🧩
+```csharp
+// --- Quick use (service wrapper) ---
+// Prints account summary info in a single call.
+var summary = await _mt5Account.AccountSummaryAsync();
+
+_logger.LogInformation("=== Account Info ===");
+_logger.LogInformation("Login: {0}", summary.AccountLogin);
+_logger.LogInformation("Balance: {0}", summary.AccountBalance);
+_logger.LogInformation("Equity: {0}", summary.AccountEquity);
+// ... prints leverage, trade mode, margin, free margin, etc.
+
+// --- Low-level (direct call with retry and cancellation) ---
+// Preconditions: connection is already established.
+
+using var opCts = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+var summary = await CallWithRetry(
+    ct => _mt5Account.AccountSummaryAsync(deadline: null, cancellationToken: ct),
+    opCts.Token
+);
+
+Console.WriteLine($"Login: {summary.AccountLogin}, Balance: {summary.AccountBalance}");
+```
 
 ## Input Parameters ⬇️
 
@@ -68,16 +100,3 @@ info
 * **Diagnostics** — confirm MT5 terminal is connected and profile credentials work.
 * **Risk control** — margin usage visible before high-risk trades.
 
----
-
-## Code Reference 🧩
-
-```csharp
-var summary = await _mt5Account.AccountSummaryAsync();
-
-_logger.LogInformation("=== Account Info ===");
-_logger.LogInformation("Login: {0}", summary.AccountLogin);
-_logger.LogInformation("Balance: {0}", summary.AccountBalance);
-_logger.LogInformation("Equity: {0}", summary.AccountEquity);
-// ... prints leverage, trade mode, margin, free margin, etc.
-```
