@@ -1,93 +1,94 @@
-# List Profiles (`list`) 📂
+# List Profiles (`profiles list`) 📂
 
 ## What it Does
 
-Displays all available **profile names** from your `profiles.json`.
-Profiles contain login, server, and password settings for connecting to MT5.
+Displays all available **profile names** from `profiles.json` (login/server/password settings for connecting to MT5).
+
+> Subcommand of the **profiles** group. Invoke as `profiles list` (alias: `ls`).
 
 ---
 
 ## Input Parameters ⬇️
 
-| Parameter        | Type   | Description                                       |
-| ---------------- | ------ |  ------------------------------------------------- |
-| `--output`, `-o` | string |  Output format: `text` (default) or `json`.        |
-| `--timeout-ms`   | int    | Timeout in ms for the operation (default: 30000). |
+| Parameter      | Type   | Required | Description                 |
+| -------------- | ------ | -------- | --------------------------- |
+| `--output, -o` | string | no       | `text` (default) or `json`. |
+
+> `--timeout-ms` is **not** supported for this subcommand.
 
 ---
 
-## Output Fields ⬆️
+## Output ⬆️
 
-| Field      | Type  | Description                                           |
-| ---------- | ----- | ----------------------------------------------------- |
-| `Profiles` | array | List of profile names (e.g., `demo`, `live`, `test`). |
+**Text mode**
+
+```
+Profiles:
+- default
+- demo
+- live
+```
+
+**JSON mode**
+
+```json
+["default","demo","live"]
+```
 
 ---
 
 ## How to Use 🛠️
 
-### CLI
-
 ```powershell
-# Show available profiles
-dotnet run -- list
+# Text
+dotnet run -- profiles list
 
-# JSON output
-dotnet run -- list -o json
+# JSON
+dotnet run -- profiles list -o json
 ```
 
 ### PowerShell Shortcuts
 
 ```powershell
 . .\ps\shortcasts.ps1
-use-pf demo   # set default profile to demo
-list          # show all available profiles
+use-pf demo   # set current profile to demo
+pf list       # same as: profiles list
 ```
-
----
-
-## When to Use ❓
-
-* To verify which profiles are configured before connecting.
-* To quickly check if `profiles.json` is loaded correctly.
-* To confirm names before running `use-pf` or commands requiring `-p`.
 
 ---
 
 ## Notes & Safety 🛡️
 
-* If no `profiles.json` is present, this will return an empty list or error.
-* Use in combination with `info` to confirm credentials for a selected profile.
+* File path: `profiles.json` is read from **AppContext.BaseDirectory**.
+* If file is missing/empty or parsing fails, the command prints `profiles.json not found or empty.` in text mode, or returns `[]` in JSON.
+* Iteration order of profile names is not guaranteed. Sort if you need stable output.
 
 ---
 
-## Code Reference 🧩
+## Code Reference 🧷 (short)
 
 ```csharp
-var listCmd = new Command("list", "Show profile names from profiles.json");
-listCmd.AddAlias("ls");
-listCmd.AddOption(outputOpt);
-listCmd.SetHandler((string output) =>
+// Read & print
+var dict = ReadProfiles();
+if (IsJson(output))
+    Console.WriteLine(ToJson(dict.Keys.ToArray()));
+else
 {
-    var dict = ReadProfiles();
+    if (dict.Count == 0) { Console.WriteLine("profiles.json not found or empty."); return; }
+    Console.WriteLine("Profiles:");
+    foreach (var name in dict.Keys) Console.WriteLine($"- {name}");
+}
+```
 
-    if (IsJson(output))
-    {
-        Console.WriteLine(ToJson(dict.Keys.ToArray())); // expect: ["default","demo",...]
-    }
-    else
-    {
-        if (dict.Count == 0)
-        {
-            Console.WriteLine("profiles.json not found or empty.");
-            return;
-        }
+### Helper
 
-        Console.WriteLine("Profiles:");
-        foreach (var name in dict.Keys) // consider: foreach (var name in dict.Keys.OrderBy(x => x))
-            Console.WriteLine($"- {name}");
-    }
-}, outputOpt);
-
-profilesCmd.AddCommand(listCmd);
+```csharp
+private Dictionary<string, MT5Options> ReadProfiles()
+{
+    var path = Path.Combine(AppContext.BaseDirectory, "profiles.json");
+    if (!File.Exists(path)) return new();
+    var json = File.ReadAllText(path);
+    return JsonSerializer.Deserialize<Dictionary<string, MT5Options>>(json,
+        new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new();
+}
 ```
