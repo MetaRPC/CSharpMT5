@@ -2,109 +2,105 @@
 
 ## What it Does
 
-Modifies an existing **pending order** in MT5 (e.g., Buy Limit, Sell Stop, Buy Stop Limit).
-Allows changing entry price, stop loss, take profit, and expiration.
+Modifies an existing **pending order** (Limit / Stop / Stop‑Limit): entry/trigger/limit price, SL/TP, and TIF/expiration.
+
+> A similar command: **`pending.move`** (`pmove') — shifts prices **by ±N points**. The exact setting of the values is shown here.
 
 ---
+## Method Signature
+
+```csharp
+public Task<bool> ModifyPendingOrderAsync(
+    ulong ticket,
+    string? type,               // "buylimit"|"selllimit"|"buystop"|"sellstop"|"buystoplimit"|"sellstoplimit"|null
+    double? price,              // for limit/stop
+    double? stop,               // for stop/stop-limit (trigger)
+    double? limit,              // for stop-limit (limit price)
+    double? sl,
+    double? tp,
+    string? tif,                // "GTC"|"DAY"|"GTD"|null
+    DateTimeOffset? expire,
+    CancellationToken ct);
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type     | Description                                          |
-| ----------------- | -------- |---------------------------------------------------- |
-| `--profile`, `-p` | string   | Which profile to use (from `profiles.json`).         |
-| `--ticket`, `-t`  | ulong    | Ticket ID of the pending order.                      |
-| `--price`         | double   | New entry price.                                     |
-| `--sl`            | double   |  New Stop Loss price.                                 |
-| `--tp`            | double   |  New Take Profit price.                               |
-| `--expiration`    | DateTime |  Expiration time (UTC).                               |
-| `--output`, `-o`  | string   | `text` (default) or `json`.                          |
-| `--timeout-ms`    | int      |  RPC timeout in ms (default: 30000).                  |
-| `--dry-run`       | flag     |  Print intended modification without sending request. |
+| Parameter       | Type           | Required | Description                                                                 |           |         |          |              |                                              |
+| --------------- | -------------- | -------- | --------------------------------------------------------------------------- | --------- | ------- | -------- | ------------ | -------------------------------------------- |
+| `--profile, -p` | string         | yes      | Which profile to use (from `profiles.json`).                                |           |         |          |              |                                              |
+| `--ticket, -t`  | ulong          | yes      | Pending order ticket.                                                       |           |         |          |              |                                              |
+| `--type`        | string         | no       | \`buylimit                                                                  | selllimit | buystop | sellstop | buystoplimit | sellstoplimit\` (для валидации инвариантов). |
+| `--price`       | double         | no       | Новый **entry price** (для Limit/Stop).                                     |           |         |          |              |                                              |
+| `--stop`        | double         | no       | Новый **trigger price** (для Stop/Stop‑Limit).                              |           |         |          |              |                                              |
+| `--limit`       | double         | no       | Новый **limit price** (для Stop‑Limit).                                     |           |         |          |              |                                              |
+| `--sl`          | double         | no       | New Stop Loss (absolute).                                                   |           |         |          |              |                                              |
+| `--tp`          | double         | no       | New Take Profit (absolute).                                                 |           |         |          |              |                                              |
+| `--tif`         | string         | no       | \`GTC                                                                       | DAY       | GTD\`.  |          |              |                                              |
+| `--expire`      | DateTimeOffset | no       | ISO‑8601, **используется только** при `--tif=GTD` (Specified/SpecifiedDay). |           |         |          |              |                                              |
+| `--symbol, -s`  | string         | no       | Для best‑effort `ensure-visible` (необязательный).                          |           |         |          |              |                                              |
+| `--timeout-ms`  | int            | no       | Per‑RPC timeout (default `30000`).                                          |           |         |          |              |                                              |
+| `--dry-run`     | flag           | no       | Показать изменения, **не** отправляя запрос.                                |           |         |          |              |                                              |
+
+> Параметра `--output` **нет** — команда печатает текст.
 
 ---
 
-## Output Fields ⬆️
+## Rules & Validation ✅
 
-| Field        | Type     | Description                              |
-| ------------ | -------- | ---------------------------------------- |
-| `Ticket`     | ulong    | Ticket ID of the modified pending order. |
-| `Symbol`     | string   | Target instrument.                       |
-| `Price`      | double   | Modified entry price.                    |
-| `SL`         | double   | Stop Loss after modification.            |
-| `TP`         | double   | Take Profit after modification.          |
-| `Expiration` | DateTime | Expiration (if set).                     |
-| `Status`     | string   | Result of operation (`OK` / `Error`).    |
+* **Stop‑Limit**: requires **both** `--stop` and `--limit'. '--price` is not allowed for this type of **.
+
+  * `buystoplimit`: `limit ≤ stop`
+  * `sellstoplimit`: `limit ≥ stop`
+* **Limit/Stop**: Requires `--price'.
+* **TIF**: `GTC` / `DAY' / `GTD' (=`Specified`/`SpecifiedDay'); for `GTD`, you can/should set `--expire` (UTC/ISO‑8601).
 
 ---
 
 ## How to Use 🛠️
 
-### CLI
-
 ```powershell
 # Change SL/TP only
 dotnet run -- pending.modify -p demo -t 123456 --sl 1.0950 --tp 1.1050
 
-# Change entry price and expiration
-dotnet run -- pending.modify -p demo -t 123456 --price 1.1000 --expiration "2025-09-01T12:00:00Z"
+# Change entry price (Buy Limit)
+dotnet run -- pending.modify -p demo -t 123456 --type buylimit --price 1.1000
+
+# Stop‑Limit: set trigger & limit (no --price)
+dotnet run -- pending.modify -p demo -t 123456 --type buystoplimit --stop 1.1010 --limit 1.1005
+
+# TIF=GTD with expiry
+dotnet run -- pending.modify -p demo -t 123456 --tif GTD --expire "2025-09-01T12:00:00Z"
+
+# Dry‑run preview
+dotnet run -- pending.modify -p demo -t 123456 --price 1.1000 --dry-run
 ```
-
-### PowerShell Shortcuts
-
-```powershell
-. .\ps\shortcasts.ps1
-use-pf demo
-pm -t 123456 --sl 1.0950 --tp 1.1050
-```
-
----
-
-## When to Use ❓
-
-* To adjust entry prices closer/further as market evolves.
-* To tighten or loosen stop-loss / take-profit.
-* To add or extend expiration.
-
----
-
-## Notes & Safety 🛡️
-
-* Order must be **pending** — you cannot use this command on already executed positions.
-* Check broker restrictions on minimum distance (stops level).
-* Expiration must be in the future and in UTC.
-* `--dry-run` helps validate values before sending.
 
 ---
 
 ## Code Reference 🧩
 
 ```csharp
-var pmTicketOpt = new Option<ulong>(new[] { "--ticket", "-t" }, "Pending order ticket") { IsRequired = true };
-var pmTypeOpt   = new Option<string?>(new[] { "--type" }, "buylimit|selllimit|buystop|sellstop|buystoplimit|sellstoplimit (optional, for validation)");
-var pmPriceOpt  = new Option<double?>(new[] { "--price" }, "New entry price for limit/stop");
-var pmStopOpt   = new Option<double?>(new[] { "--stop" }, "New trigger price for stop/stop-limit");
-var pmLimitOpt  = new Option<double?>(new[] { "--limit" }, "New limit price for stop-limit");
-var pmSlOpt     = new Option<double?>(new[] { "--sl" }, "New Stop Loss (absolute)");
-var pmTpOpt     = new Option<double?>(new[] { "--tp" }, "New Take Profit (absolute)");
-var pmTifOpt    = new Option<string?>(new[] { "--tif" }, "GTC|DAY|GTD");
-var pmExpireOpt = new Option<DateTimeOffset?>(new[] { "--expire" }, "Expiry (ISO-8601) when --tif=GTD");
+// (optional) ensure visibility
+if (!string.IsNullOrWhiteSpace(symbol))
+    await _mt5Account.EnsureSymbolVisibleAsync(symbol, TimeSpan.FromSeconds(3));
 
-var pendingModify = new Command("pending.modify", "Modify a pending order (price/stop-limit/SL/TP/expiry)");
-pendingModify.AddAlias("pm");
+// apply changes
+var ok = await _mt5Account.ModifyPendingOrderAsync(
+    ticket: ticket,
+    type: typeStr,
+    price: price,
+    stop: stop,
+    limit: limit,
+    sl: sl,
+    tp: tp,
+    tif: tifStr,
+    expire: expire,
+    ct: CancellationToken.None
+);
+```
 
-pendingModify.AddOption(profileOpt);
-pendingModify.AddOption(symbolOpt);
-pendingModify.AddOption(pmTicketOpt);
-pendingModify.AddOption(pmTypeOpt);
-pendingModify.AddOption(pmPriceOpt);
-pendingModify.AddOption(pmStopOpt);
-pendingModify.AddOption(pmLimitOpt);
-pendingModify.AddOption(pmSlOpt);
-pendingModify.AddOption(pmTpOpt);
-pendingModify.AddOption(pmTifOpt);
-pendingModify.AddOption(pmExpireOpt);
-
-pendingModify.SetHandler(async (InvocationContext ctx) =>
-{
 
 ```
+
+---
+
+📌 In short: точечная модификация параметров pending‑ордера с жёсткой валидацией инвариантов типа, поддержкой `TIF` и dry‑run превью.
