@@ -108,19 +108,3 @@ This page documents **server‑streaming APIs** in the MT5 gRPC interface (`mt5_
 
 * **Chart stream** — request: `{ symbol, period }`; reply: `{ bar: ChartBar }`.
 * **Chart history stream** — request: `{ symbol, period, chunks: TimeRanges[] }`; reply: `{ bar: ChartBar }`.
-
----
-
-## ⚠️ Errors & Lifetime
-
-* Handle `error` in reply messages and transport `RpcException` (e.g., `Unavailable`, `DeadlineExceeded`).
-* Use `CancellationToken` and per‑call `deadline` to control stream lifetime from C#.
-* On connection loss, reconnect and resubscribe (backoff + jitter recommended).
-
----
-
-## ✅ Client Tips (C#)
-
-* Prefer `await foreach` with gRPC streaming (or explicit loop with `ResponseStream.MoveNext(cancellationToken)`).
-* Offload UI updates to the UI thread; keep network reads on a background context.
-* Debounce redraws when ticks are frequent; batch trade updates if needed.
