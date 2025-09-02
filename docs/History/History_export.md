@@ -55,7 +55,7 @@ dotnet run -- history.export -p demo -d 30 -s EURUSD --to json -f C:\\temp\\euru
 
 ---
 
-## Code Reference 🧩 (без CallWithRetry)
+## Code Reference 🧩
 
 ```csharp
 // Parameters already validated & connection established by caller flow
