@@ -1,113 +1,107 @@
-# Close All (`close-all`)
+# Close All (`close-all`) 🧹
 
 ## What it Does
 
-Closes **all open positions** on the current MT5 account in one go.
-Useful for emergency flattening, end-of-session cleanup, or switching strategies.
+Closes **all open positions** on the current MT5 account in one go. Optional filter by symbol. Safety confirmation required unless `--dry-run`.
 
 ---
 
 ## Input Parameters ⬇️
 
-| Parameter                     | Type   | Description                                               |
-| ----------------------------- | ------ | --------------------------------------------------------- |
-| `--profile`, `-p`             | string | Which profile to use (from `profiles.json`).              |
-| `--output`, `-o`              | string | `text` (default) or `json`.                               |
-| `--timeout-ms`                | int    | RPC timeout in ms (default: 30000).                       |
-| `--dry-run`                   | flag   |  Print planned actions without sending requests.           |
-| *(optional)* `--symbol`, `-s` | string |  Close only positions for a symbol (if supported by code). |
-| *(optional)* `--side`         | string | `buy` / `sell` (if supported).                            |
-| *(optional)* `--magic`        | int    |  Filter by EA magic (if supported).                        |
+| Parameter             | Type   | Required | Description                                                            |
+| --------------------- | ------ | -------- | ---------------------------------------------------------------------- |
+| `--profile, -p`       | string | yes      | Which profile to use (from `profiles.json`).                           |
+| `--filter-symbol, -s` | string | no       | Close only positions for this symbol (e.g., `EURUSD`).                 |
+| `--deviation`         | int    | no       | Max slippage in points (default: `10`).                                |
+| `--yes, -y`           | flag   | no       | Execute without interactive confirmation (otherwise preview & exit=2). |
+| `--dry-run`           | flag   | no       | Print planned actions without sending requests.                        |
+| `--timeout-ms`        | int    | no       | Per-RPC timeout in milliseconds (default: `30000`).                    |
 
 ---
 
-## Output Fields ⬆️
+## Output ⬆️
 
-| Field     | Type  | Description                                           |
-| --------- | ----- | ----------------------------------------------------- |
-| `Total`   | int   | How many positions were targeted.                     |
-| `Closed`  | int   | How many were successfully closed.                    |
-| `Errors`  | int   | How many failed to close.                             |
-| `Items[]` | array | Per-ticket results (ticket, volume, status, message). |
+**Text only.**
+
+* If there are no positions: `No positions to close.`
+* Without `--yes` or with `--dry-run`: prints the plan (up to 10 lines like `#<ticket> vol=<lots>`) and
+
+  * either `Pass --yes to execute.` (exit code = `2`),
+* or simply terminates (in `--dry-run` mode).
+* When executed: the final line is `✔ Closed: <ok>, ✖ Failed: <fail>`.
+
+Exit codes:
+
+* `0` — everything is closed successfully;
+* `1` — part of the closures failed (warning log);
+* `2` — the preview plan is shown without confirmation of `--yes'.
 
 ---
 
 ## How to Use 🛠️
 
-### CLI
-
 ```powershell
-# Close everything on the account (no filters)
-dotnet run -- close-all -p demo
+# Close everything
+dotnet run -- close-all -p demo --yes
 
-# Preview only (no real requests)
-dotnet run -- close-all -p demo --dry-run -o json
+# Preview only (no requests)
+dotnet run -- close-all -p demo --dry-run
 
-# If filters are supported by your build:
-dotnet run -- close-all -p demo -s EURUSD
-```
-
-### PowerShell Shortcuts
-
-```powershell
-. .\ps\shortcasts.ps1
-use-pf demo
-close-all    # or alias if you have one in shortcasts
+# Only for EURUSD (with 15 points deviation)
+dotnet run -- close-all -p demo -s EURUSD --deviation 15 --yes
 ```
 
 ---
 
-## When to Use ❓
-
-* **Emergency flatten** — flatten exposure quickly.
-* **End-of-day** — exit everything before market close.
-* **Strategy switch** — clear previous positions prior to deployment.
-
----
-
-## Notes & Safety 🛡️
-
-* Consider slippage (`deviation`) defaults used internally by your close calls.
-* If server rejects some closes (e.g., trading disabled, market closed), the result should report per-ticket errors.
-* In `--dry-run` mode nothing is sent; use it to confirm filters and scope.
-
----
-
-## Code Reference 🧩
+## Code Reference 🧩 (без CallWithRetry)
 
 ```csharp
-var caSymbolOpt = new Option<string?>(new[] { "--filter-symbol", "-s" }, "Close only positions for this symbol (e.g., EURUSD)");
-var caYesOpt    = new Option<bool>(new[] { "--yes", "-y" }, "Do not ask for confirmation");
-var caDevOpt    = new Option<int>(new[] { "--deviation" }, () => 10, "Max slippage in points");
+// Preconditions: connection already established; profile selected
+var map = await _mt5Account.ListPositionVolumesAsync(filterSymbol: symbol, CancellationToken.None);
 
-var closeAll = new Command("close-all", "Close ALL open positions (optionally filtered by symbol)");
-closeAll.AddAlias("flatten");
-closeAll.AddAlias("close.all"); 
-
-closeAll.AddOption(profileOpt);
-closeAll.AddOption(caSymbolOpt);
-closeAll.AddOption(caYesOpt);
-closeAll.AddOption(caDevOpt);
-closeAll.AddOption(timeoutOpt);
-closeAll.AddOption(dryRunOpt);
-
-closeAll.SetHandler(async (InvocationContext ctx) =>
+if (map.Count == 0)
 {
-    var profile      = ctx.ParseResult.GetValueForOption(profileOpt)!;
-    var filterSymbol = ctx.ParseResult.GetValueForOption(caSymbolOpt);
-    var yes          = ctx.ParseResult.GetValueForOption(caYesOpt);
-    var deviation    = ctx.ParseResult.GetValueForOption(caDevOpt);
-    var timeoutMs    = ctx.ParseResult.GetValueForOption(timeoutOpt);
-    var dryRun       = ctx.ParseResult.GetValueForOption(dryRunOpt);
-
-    Validators.EnsureProfile(profile);
-    if (!string.IsNullOrWhiteSpace(filterSymbol)) _ = Validators.EnsureSymbol(filterSymbol);
-
-    using (UseOpTimeout(timeoutMs))
-    using (_logger.BeginScope("Cmd:CLOSE-ALL Profile:{Profile}", profile))
-    using (_logger.BeginScope("FilterSymbol:{Symbol} Dev:{Dev}", filterSymbol ?? "<any>", deviation))
+    Console.WriteLine("No positions to close.");
+}
+else if (!yes || dryRun)
+{
+    Console.WriteLine($"Will close {map.Count}{(string.IsNullOrEmpty(symbol) ? "" : $" for {symbol}")} Deviation={deviation}");
+    foreach (var (ticket, vol) in map.Take(10))
+        Console.WriteLine($"  #{ticket} vol={vol}");
+    if (map.Count > 10) Console.WriteLine($"  ... and {map.Count - 10} more");
+    // In dry-run: stop here; otherwise require --yes
+}
+else
+{
+    int ok = 0, fail = 0;
+    foreach (var (ticket, vol) in map)
     {
         try
         {
-            await ConnectAsync();
+            await _mt5Account.ClosePositionFullAsync(ticket, vol, deviation, CancellationToken.None);
+            ok++;
+        }
+        catch (Exception ex)
+        {
+            // Log warning; continue with next
+            Console.WriteLine($"WARN: Close #{ticket} vol={vol} failed: {ex.Message}");
+            fail++;
+        }
+    }
+    Console.WriteLine($"\u2714 Closed: {ok}, \u2716 Failed: {fail}");
+}
+```
+
+### Method Signatures
+
+```csharp
+public Task<Dictionary<ulong, double>> ListPositionVolumesAsync(
+    string? symbol,
+    CancellationToken ct);
+
+public Task ClosePositionFullAsync(
+    ulong ticket,
+    double volume,
+    int deviation,
+    CancellationToken ct);
 ```
