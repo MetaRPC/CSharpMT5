@@ -45,8 +45,6 @@ public Task<(double min, double step, double max)> GetVolumeConstraintsAsync(
 
 Aliases: `lim` (subcommand of `symbol`/`sym`).
 
-> This is a **subcommand**: invoke as `sym limits` (or `symbol limits`).
-
 ---
 
 ## Output Fields ⬆️
