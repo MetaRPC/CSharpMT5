@@ -122,9 +122,6 @@ public Task<OrdersHistoryData> OrderHistoryAsync(
 ---
 
 ## Proto Reference (excerpts) 📜
-
-> Relevant messages from your proto bundle used by `ticket show`.
-
 ```proto
 message OpenedOrdersTicketsData {
   repeated int64 opened_orders_tickets = 1;
@@ -233,5 +230,3 @@ enum BMT5_ENUM_POSITION_TYPE {
   BMT5_POSITION_TYPE_SELL = 1;
 }
 ```
-
-> For a concise “what users see” version, open **Ticket\_Show\.md**. This page is the source of truth for the internal flow and proto mapping.
