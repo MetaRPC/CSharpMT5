@@ -2,98 +2,100 @@
 
 ## What it Does
 
-Shows all **pending orders** for the selected account/profile.
-Useful to review stop/limit orders before modifying or cancelling them.
+Shows all **pending orders** for the selected account/profile. Handy to review stop/limit orders before modifying or cancelling.
+
+> Subcommand of **`pending`**. Invoke as `pending list` (alias: `ls`).
 
 ---
+## Method Signature 🧩
+
+```csharp
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Description                                |
-| ----------------- | ------ |  ------------------------------------------ |
-| `--profile`, `-p` | string |  Profile to use (from `profiles.json`).     |
-| `--output`, `-o`  | string | Output format: `text` (default) or `json`. |
-| `--timeout-ms`    | int    |  RPC timeout (default: 30000).              |
+| Parameter       | Type   | Required | Description                            |
+| --------------- | ------ | -------- | -------------------------------------- |
+| `--profile, -p` | string | yes      | Profile to use (from `profiles.json`). |
+| `--output, -o`  | string | no       | `text` (default) or `json`.            |
+| `--timeout-ms`  | int    | no       | Per-RPC timeout (default: `30000`).    |
 
 ---
 
-## Output Fields ⬆️
+## Output ⬆️
 
-Printed per pending order (based on proto definition):
+**Text mode**
 
-| Field        | Type   | Description                                    |
-| ------------ | ------ | ---------------------------------------------- |
-| `Ticket`     | ulong  | Unique order ticket ID.                        |
-| `Symbol`     | string | Target symbol (e.g., `EURUSD`).                |
-| `Type`       | enum   | Pending order type (BuyLimit, SellStop, etc.). |
-| `Volume`     | double | Order volume (lots).                           |
-| `Price`      | double | Entry price.                                   |
-| `StopLoss`   | double | Stop Loss (if set).                            |
-| `TakeProfit` | double | Take Profit (if set).                          |
-| `Expiration` | Date   | Expiration time if applicable.                 |
+```
+Pending orders (<N>):
+#<ticket>  <type>  <symbol>  vol=<lots>  price=<p>  SL=<sl>  TP=<tp>  exp=<iso-or-–>
+...
+```
+
+**JSON mode**
+
+* Raw payload: array of pending entries from `OpenedOrdersData.PendingInfos` (exact fields depend on your proto).
+
+Typical fields per item (may vary by broker/proto):
+
+* `Ticket` (ulong), `Symbol` (string), `Type` (enum), `Volume` (double),
+* `Price` / `Stop` / `Limit` (depending on order kind), `StopLoss`, `TakeProfit`, `Expiration`.
 
 ---
 
 ## How to Use 🛠️
 
-### CLI
-
 ```powershell
-# Show pending orders for default profile
+# Text
 dotnet run -- pending list -p demo
 
-# JSON output
+# JSON
 dotnet run -- pending list -p demo -o json
 ```
 
 ### PowerShell Shortcuts
 
 ```powershell
-. .\ps\shortcasts.ps1
+. .\\ps\\shortcasts.ps1
 use-pf demo
-pdls     # expands to: mt5 pending list -p demo --timeout-ms 90000
+pdls  # expands to: mt5 pending list -p demo --timeout-ms 90000
 ```
-
----
-
-## When to Use ❓
-
-* To review all open pending orders before trading decisions.
-* To fetch order tickets for later use in `pending.modify` or `pending.cancel`.
-* To audit whether expiry times and prices are correct.
 
 ---
 
 ## Notes & Safety 🛡️
 
-* Pending orders can expire automatically — list may be empty if none are active.
-* Combine with `history` to check execution of expired or triggered orders.
+* List may be empty if all orders were filled or expired.
+* For editing/moving: use `pending.modify` / `pending.move`.
+* For cancellation: see `pending cancel` / `cancel` (ticket-based).
 
 ---
 
-## Code Reference 🧩
+## Code Reference 🧷 (short)
 
 ```csharp
-var pending = new Command("pending", "Pending orders utilities");
-pending.AddAlias("pd");
+await ConnectAsync();
 
-// pending list
-var pendingList = new Command("list", "List pending order tickets");
-pendingList.AddAlias("ls");
+var opened = await _mt5Account.OpenedOrdersAsync();
+var pendings = opened.PendingInfos;
 
-pendingList.AddOption(profileOpt);
-pendingList.AddOption(outputOpt);
-
-// we reuse the global timeout option added earlier
-pendingList.SetHandler(async (string profile, string output, int timeoutMs) =>
+if (IsJson(output))
 {
-    Validators.EnsureProfile(profile);
-    _selectedProfile = profile;
-
-    using (UseOpTimeout(timeoutMs))
-    using (_logger.BeginScope("Cmd:PENDING/LIST Profile:{Profile}", profile))
-    {
-        try
-        {
-            await ConnectAsync();
+    Console.WriteLine(ToJson(pendings));
+}
+else
+{
+    if (pendings.Count == 0) { Console.WriteLine("No pending orders."); return; }
+    Console.WriteLine($"Pending orders ({pendings.Count}):");
+    foreach (var p in pendings.Take(50))
+        Console.WriteLine($"#{p.Ticket}  {p.Type}  {p.Symbol}  vol={p.Volume}  price={p.Price}  SL={p.StopLoss}  TP={p.TakeProfit}  exp={p.Expiration}");
+}
 ```
+
+* `OpenedOrdersData` contains both `PositionInfos` and `PendingInfos`.
+* `pending list` uses the `PendingInfos` collection.
+* `sortMode` is always left at the default (`ByOpenTimeAsc`) in CLI.
