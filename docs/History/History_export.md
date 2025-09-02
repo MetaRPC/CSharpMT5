@@ -47,12 +47,6 @@ dotnet run -- history.export -p demo -d 7 --to csv -f C:\\temp\\hist.csv --timeo
 # Last 30 days, only EURUSD, JSON
 dotnet run -- history.export -p demo -d 30 -s EURUSD --to json -f C:\\temp\\eurusd-history.json
 ```
-
-### Notes
-
-* If `--symbol` is omitted, the server exports all symbols.
-* CSV/JSON schema is produced by the server side of `_mt5Account.ExportHistoryAsync(...)` (proto models may include additional fields beyond what CLI previews elsewhere).
-
 ---
 
 ## Code Reference 🧩
