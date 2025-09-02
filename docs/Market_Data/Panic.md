@@ -2,99 +2,106 @@
 
 ## What it Does
 
-Runs an **emergency flatten** routine: quickly brings the account to **flat exposure**.
-Typical behavior: close all open positions (and optionally pending orders), then report a summary.
-
-> This is intended for **oh‑no** moments: unexpected behavior, news spikes, or manual kill‑switch.
+Runs an **emergency flatten**: closes **all open positions** and cancels **all pending orders** (optionally filtered by symbol). Designed for "oh‑no" moments.
 
 ---
+## Method Signatures
 
+```csharp
+public Task<Dictionary<ulong, double>> ListPositionVolumesAsync(
+    string? symbol,
+    CancellationToken ct);
+
+public Task<(int ok, int fail)> ClosePositionsAsync(
+    IEnumerable<(ulong Ticket, string Symbol, double Volume)> batch,
+    CancellationToken ct); // helper in Program (not part of MT5Account)
+
+public Task ClosePositionFullAsync(
+    ulong ticket,
+    double volume,
+    int deviation,
+    CancellationToken ct);
+
+public Task<IReadOnlyList<ulong>> ListPendingTicketsAsync(
+    string? symbol,
+    CancellationToken ct);
+
+public Task CancelPendingOrderAsync(
+    ulong ticket,
+    CancellationToken ct);
+```
 ## Input Parameters ⬇️
 
-| Parameter         | Type   |Description                                          |
-| ----------------- | ------ |---------------------------------------------------- |
-| `--profile`, `-p` | string | Which profile to use (from `profiles.json`).         |
-| `--output`, `-o`  | string |`text` (default) or `json`.                          |
-| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).                  |
-| `--dry-run`       | flag   | Print intended actions but do **not** send requests. |
+| Parameter       | Type   | Required | Description                                          |
+| --------------- | ------ | -------- | ---------------------------------------------------- |
+| `--profile, -p` | string | yes      | Which profile to use (from `profiles.json`).         |
+| `--symbol, -s`  | string | no       | Limit scope to one symbol (e.g., `EURUSD`).          |
+| `--deviation`   | int    | no       | Max slippage (points) for closes (default: `10`).    |
+| `--timeout-ms`  | int    | no       | Per‑RPC timeout in milliseconds (default: `30000`).  |
+| `--dry-run`     | flag   | no       | Print intended actions but **do not** send requests. |
+
+> Note: **Нет** параметра `--output` — команда печатает текст.
+
 ---
 
-## Output Fields ⬆️
+## Output ⬆️
 
-| Field     | Type  | Description                                                   |
-| --------- | ----- | ------------------------------------------------------------- |
-| `Closed`  | int   | Number of positions successfully closed.                      |
-| `Errors`  | int   | Number of positions that failed to close.                     |
-| `Items[]` | array | Per-ticket results (ticket, symbol, volume, status, message). |
+**Text only.**
+
+* Target summary: `PANIC targets: positions=<N>, pendings=<M>`
+* `--dry-run` preview:
+
+  * `[DRY-RUN] CLOSE ticket=<id> vol=<lots>`
+  * `[DRY-RUN] CANCEL ticket=<id>`
+* Execution result: `✔ panic done`
+
+Exit codes:
+
+* `0` — выполнено (отдельные ошибки логируются предупреждениями);
+* `1` — критическая ошибка (распечатана через ErrorPrinter).
+
 ---
 
 ## How to Use 🛠️
 
-### CLI
-
 ```powershell
-# Emergency flatten (no filters)
+# Emergency flatten
 dotnet run -- panic -p demo
 
-# Dry-run preview (JSON)
-dotnet run -- panic -p demo --dry-run -o json --timeout-ms 60000
+# Limit to EURUSD with tighter slippage
+dotnet run -- panic -p demo -s EURUSD --deviation 5
+
+# Dry-run preview
+dotnet run -- panic -p demo --dry-run
 ```
-
-### PowerShell Shortcuts
-
-```powershell
-. .\ps\shortcasts.ps1
-use-pf demo
-panic
-```
-
----
-
-## When to Use ❓
-
-* **Emergency exit** — flatten exposure during spikes or incidents.
-* **Guardrail** — manual kill switch for algos.
-* **Operational reset** — clean up before redeploying a strategy.
-
----
-
-## Notes & Safety 🛡️
-
-* Market conditions may cause slippage; the routine should use reasonable defaults for `deviation`.
-* If the market is closed or trading is disabled, items will be reported under `Errors`.
-* `--dry-run` is safe and recommended for validation in tests/CI.
 
 ---
 
 ## Code Reference 🧩
 
 ```csharp
-var panicSymbolOpt = new Option<string?>(new[] { "--symbol", "-s" }, "Limit to symbol (optional)");
-var panicDevOpt    = new Option<int>(new[] { "--deviation" }, () => 10, "Max slippage for closes");
+await ConnectAsync();
 
-var panic = new Command("panic", "Close ALL positions and cancel ALL pendings (optionally by symbol)");
-panic.AddOption(profileOpt);
-panic.AddOption(panicSymbolOpt);
-panic.AddOption(panicDevOpt);
-panic.AddOption(timeoutOpt);
-panic.AddOption(dryRunOpt);
+// Gather scope
+var pos  = await _mt5Account.ListPositionVolumesAsync(symbol: symbol, CancellationToken.None);
+var pend = await _mt5Account.ListPendingTicketsAsync(symbol: symbol, CancellationToken.None);
+Console.WriteLine($"PANIC targets: positions={pos.Count}, pendings={pend.Count}");
 
-panic.SetHandler(async (InvocationContext ctx) =>
+if (dryRun)
 {
-    var profile   = ctx.ParseResult.GetValueForOption(profileOpt)!;
-    var symbol    = ctx.ParseResult.GetValueForOption(panicSymbolOpt);
-    var deviation = ctx.ParseResult.GetValueForOption(panicDevOpt);
-    var timeoutMs = ctx.ParseResult.GetValueForOption(timeoutOpt);
-    var dryRun    = ctx.ParseResult.GetValueForOption(dryRunOpt);
+    foreach (var kv in pos)  Console.WriteLine($"[DRY-RUN] CLOSE ticket={kv.Key} vol={kv.Value}");
+    foreach (var t in pend)  Console.WriteLine($"[DRY-RUN] CANCEL ticket={t}");
+    return;
+}
 
-    Validators.EnsureProfile(profile);
-    if (!string.IsNullOrWhiteSpace(symbol)) _ = Validators.EnsureSymbol(symbol!);
+// Close positions first (free margin), then cancel pendings
+foreach (var (ticket, vol) in pos)
+    await _mt5Account.ClosePositionFullAsync(ticket, vol, deviation: deviation, CancellationToken.None);
 
-    using (UseOpTimeout(timeoutMs))
-    using (_logger.BeginScope("Cmd:PANIC Profile:{Profile}", profile))
-    using (_logger.BeginScope("Symbol:{Symbol} Dev:{Dev}", symbol ?? "<any>", deviation))
-    {
-        try
-        {
-            await ConnectAsync();
+foreach (var t in pend)
+    await _mt5Account.CancelPendingOrderAsync(t, CancellationToken.None);
+
+Console.WriteLine("✔ panic done");
 ```
+
+
