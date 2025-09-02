@@ -45,25 +45,8 @@ Short, navigable entry point to the MT5 API reference. Use this page to jump to 
 
 ---
 
-## 🔗 Source of truth
-
-This reference is derived from your MT5 `.proto` files. When proto changes, **Messages/Enums/Streaming** are updated to match field order and enum values exactly.
-
----
-
 ## 🚦 Stability notes
 
 * Optional fields may be **omitted** by the server when not applicable.
 * Enums can gain new values — handle **unknown** values defensively on the client side.
 * Streaming replies typically use `oneof { data = 1, error = 2 }`; surface `error` and transport exceptions to your retry logic.
-
----
-
-## 🧭 Quick task → where to go
-
-* “Place a market order with SL/TP” → **Cookbook → Orders → PlaceMarketOrder.md**
-* “Get quotes for 5 symbols” → **Cookbook → MarketInfo → GetMultipleQuotes.md**
-* “Stream position PnL” → **Cookbook → Streaming → StreamPositionProfits.md**
-* “Reconnect with backoff on errors” → **Cookbook → Reliability → HandleReconnect.md**
-
-Happy building! ✨
