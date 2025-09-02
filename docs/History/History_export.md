@@ -6,6 +6,15 @@ Exports **trading history** for the last *N* days to a **file** in either **CSV*
 Under the hood calls `_mt5Account.ExportHistoryAsync(days, symbol, format, ct)` and writes the returned payload to disk.
 
 ---
+## Method Signature
+
+```csharp
+public Task<string> ExportHistoryAsync(
+    int days,
+    string? symbol,
+    string format,
+    CancellationToken ct);
+```
 
 ## Input Parameters ⬇️
 
@@ -58,12 +67,4 @@ System.IO.File.WriteAllText(file, data);
 Console.WriteLine($"\u2714 history.export written to: {file}");
 ```
 
-### Method Signature
 
-```csharp
-public Task<string> ExportHistoryAsync(
-    int days,
-    string? symbol,
-    string format,
-    CancellationToken ct);
-```
