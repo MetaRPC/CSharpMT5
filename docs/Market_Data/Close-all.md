@@ -5,6 +5,19 @@
 Closes **all open positions** on the current MT5 account in one go. Optional filter by symbol. Safety confirmation required unless `--dry-run`.
 
 ---
+## Method Signatures
+
+```csharp
+public Task<Dictionary<ulong, double>> ListPositionVolumesAsync(
+    string? symbol,
+    CancellationToken ct);
+
+public Task ClosePositionFullAsync(
+    ulong ticket,
+    double volume,
+    int deviation,
+    CancellationToken ct);
+```
 
 ## Input Parameters ⬇️
 
@@ -90,18 +103,4 @@ else
     }
     Console.WriteLine($"\u2714 Closed: {ok}, \u2716 Failed: {fail}");
 }
-```
-
-### Method Signatures
-
-```csharp
-public Task<Dictionary<ulong, double>> ListPositionVolumesAsync(
-    string? symbol,
-    CancellationToken ct);
-
-public Task ClosePositionFullAsync(
-    ulong ticket,
-    double volume,
-    int deviation,
-    CancellationToken ct);
 ```
