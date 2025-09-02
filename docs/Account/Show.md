@@ -1,33 +1,33 @@
-# Show (`show`) 🔍
+# Show (`sym show`) 🔍
 
 ## What it Does
 
-Lists available symbols from MT5 terminal.
-By default prints visible (active) symbols, but can also fetch the entire symbol catalog.
+Shows a short card for a symbol: **last quote (Bid/Ask/Time)** and **volume limits (min/step/max)**.
+Best-effort делает символ видимым в терминале перед запросами.
 
 ---
 
 ## Input Parameters ⬇️
 
-| Parameter      | Type   | Required | Description                                            |
-| -------------- | ------ | -------- | ------------------------------------------------------ |
-| `--profile`    | string | yes        | Which profile to use (from `profiles.json`).           |
-| `--output`     | string | no        | Output format: `text` (default) or `json`.             |
-| `--timeout-ms` | int    | no        | Per-RPC timeout in milliseconds (default: 30000).      |
-| `--all`        | flag   | no        | If set, lists **all symbols** (not only visible ones). |
+| Parameter       | Type   | Required | Description                                          |
+| --------------- | ------ | -------- | ---------------------------------------------------- |
+| `--profile, -p` | string | yes      | Which profile to use (from `profiles.json`).         |
+| `--symbol, -s`  | string | no       | Symbol name (defaults to profile’s `DefaultSymbol`). |
+| `--output`      | string | no       | Output format: `text` (default) or `json`.           |
+| `--timeout-ms`  | int    | no       | Per-RPC timeout in milliseconds (default: `30000`).  |
 
 ---
 
 ## Output Fields ⬆️
 
-Each symbol entry typically includes:
-
-| Field     | Type   | Description                            |
-| --------- | ------ | -------------------------------------- |
-| `Symbol`  | string | Symbol name (e.g. EURUSD, XAUUSD).     |
-| `Visible` | bool   | Whether symbol is currently visible.   |
-| `Digits`  | int    | Number of decimal digits (precision).  |
-| `Trade`   | bool   | Whether symbol is allowed for trading. |
+| Field         | Type   | Description              |
+| ------------- | ------ | ------------------------ |
+| `Quote.Bid`   | double | Best bid price           |
+| `Quote.Ask`   | double | Best ask price           |
+| `Quote.Time`  | string | Server time of the quote |
+| `Volume.min`  | double | Minimal allowed volume   |
+| `Volume.step` | double | Volume step              |
+| `Volume.max`  | double | Maximum allowed volume   |
 
 ---
 
@@ -36,8 +36,9 @@ Each symbol entry typically includes:
 ### CLI
 
 ```powershell
-dotnet run -- show -p demo
-dotnet run -- show -p demo --all --output json
+dotnet run -- sym show -p demo
+dotnet run -- sym show -p demo -s EURUSD
+dotnet run -- sym show -p demo -s XAUUSD --output json
 ```
 
 ### PowerShell Shortcuts
@@ -45,40 +46,66 @@ dotnet run -- show -p demo --all --output json
 ```powershell
 . .\ps\shortcasts.ps1
 use-pf demo
-show         # lists visible symbols
-show --all   # lists entire catalog
+sym show            # uses DefaultSymbol from the profile
+sym show -s EURUSD  # explicit symbol
 ```
 
 ---
 
 ## When to Use ❓
 
-* **Before placing orders** — check if a symbol is visible and tradable.
-* **Diagnostics** — verify server provides expected instruments.
-* **Setup** — ensure required instruments are subscribed before trading.
+* **Quick diagnostics** — быстро проверить котировку и лимиты объёма.
+* **Before placing orders** — сверить доступные объёмы и что символ видимый.
+* **Environment check** — убедиться, что сервер отдаёт корректные данные по инструменту.
 
 ---
 
 ## Code Reference 🧩
 
 ```csharp
-using var opCts = StartOpCts();
-var symbols = await CallWithRetry(
-    ct => _mt5Account.SymbolsAsync(all: listAll, cancellationToken: ct),
-    opCts.Token);
+// --- Quick use ---
+// Get quote + volume limits for a symbol.
+var sym = symbol ?? GetOptions().DefaultSymbol;
 
-if (IsJson(output)) Console.WriteLine(ToJson(symbols));
-else
-{
-    foreach (var s in symbols.Items)
-        _logger.LogInformation("{Symbol}  Visible={Vis}  Digits={Digits}  Trade={Trade}",
-            s.Symbol, s.IsVisible, s.Digits, s.TradeMode);
-}
+// Ensure symbol is visible (best-effort)
+await _mt5Account.EnsureSymbolVisibleAsync(sym);
+
+// Quote
+var tick = await _mt5Account.SymbolInfoTickAsync(sym);
+
+// Volume limits
+var (min, step, max) = await _mt5Account.GetVolumeConstraintsAsync(sym);
+
+// Print
+Console.WriteLine($"{sym}: Bid={tick.Bid} Ask={tick.Ask} Time={tick.Time}");
+Console.WriteLine($"Volume: min={min} step={step} max={max}");
+
+// --- JSON output example ---
+// Console.WriteLine(ToJson(new {
+//     symbol = sym,
+//     quote = tick,
+//     volume = new { min, step, max }
+// }));
 ```
 
----
+### Method Signatures
 
-📌 In short:
-— `show` = list of instruments.
-— Supports filtering (visible vs all).
-— Works with profiles + timeouts the same as other commands.
+```csharp
+// Ensures that a symbol is visible in terminal UI (best-effort).
+public Task EnsureSymbolVisibleAsync(
+    string symbol,
+    TimeSpan? maxWait = null,
+    CancellationToken cancellationToken = default);
+
+// Returns last tick (Bid/Ask/Time) for a symbol.
+public Task<TickData> SymbolInfoTickAsync(
+    string symbol,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+// Returns (min, step, max) volume constraints for a symbol.
+public Task<(double min, double step, double max)> GetVolumeConstraintsAsync(
+    string symbol,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
