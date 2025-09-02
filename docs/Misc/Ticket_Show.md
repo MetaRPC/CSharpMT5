@@ -2,41 +2,41 @@
 
 ## What it Does
 
-Displays full **info for a specific ticket** — either an **open trade** or a **recently closed order** (within history range).
+Displays full **info for a specific ticket** — first tries **open sets** (positions/pendings); if not found, searches **recent history** (last *N* days).
+
+> Group: `ticket` (alias `t`). Subcommand: `show` (alias `sh`).
+
+> Need the internal flow and proto details? See **Specific\_Ticket.md**.
 
 ---
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Description                                    |
-| ----------------- | ------ | ---------------------------------------------- |
-| `--profile`, `-p` | string | Profile from `profiles.json`.                  |
-| `--ticket`, `-t`  | ulong  |  Ticket ID to inspect.                          |
-| `--days`, `-d`    | int    |  History lookback window in days (default: 30). |
-| `--timeout-ms`    | int    |  RPC timeout (default: 30000).                  |
-| `--output`, `-o`  | string |  Output format: `text` (default) or `json`.     |
+| Parameter       | Type   | Required | Description                                         |
+| --------------- | ------ | -------- | --------------------------------------------------- |
+| `--profile, -p` | string | yes      | Profile from `profiles.json`.                       |
+| `--ticket, -t`  | ulong  | yes      | Ticket ID to inspect.                               |
+| `--days, -d`    | int    | no       | History lookback if not found open (default: `30`). |
+| `--output, -o`  | string | no       | `text` (default) or `json`.                         |
+| `--timeout-ms`  | int    | no       | Per‑RPC timeout (default: `30000`).                 |
 
 ---
 
-## Output Fields ⬆️
+## Output ⬆️ (what the current handler prints)
 
-Depending on ticket type (open vs closed):
+**Open (position/pending)**
 
-| Field        | Type   | Description                  |
-| ------------ | ------ | ---------------------------- |
-| `Ticket`     | ulong  | Ticket number.               |
-| `Symbol`     | string | Symbol name.                 |
-| `Side`       | string | `BUY` or `SELL`.             |
-| `Volume`     | double | Trade volume (lots).         |
-| `OpenPrice`  | double | Price of entry.              |
-| `ClosePrice` | double | Price of exit (if closed).   |
-| `SL`         | double | Stop Loss (if set).          |
-| `TP`         | double | Take Profit (if set).        |
-| `Commission` | double | Commission charged.          |
-| `Swap`       | double | Swap charged.                |
-| `Profit`     | double | Profit or loss.              |
-| `OpenTime`   | Date   | Time of opening.             |
-| `CloseTime`  | Date   | Time of closing (if closed). |
+* `Symbol`, `Volume`, `Price` (open), optional `SL` / `TP`, optional `Profit`, and bucket tag: `POSITION` or `PENDING`.
+
+**History (order)**
+
+* `Symbol`, `State`, `VolumeInitial→VolumeCurrent`, `PriceOpen`, timestamps `setup` / `done`.
+
+**History (deal)**
+
+* `Symbol`, `Type`, `Volume`, `Price`, `Profit`, `time`.
+
+> Fields like `Side`, `ClosePrice`, `Commission`, `Swap` exist in proto but are **not printed** by the current handler. Extend printing if needed.
 
 ---
 
@@ -48,7 +48,7 @@ Depending on ticket type (open vs closed):
 # Inspect an open or recent ticket
 dotnet run -- ticket show -p demo -t 123456
 
-# With history lookback of 7 days
+# With 7‑day history fallback
 dotnet run -- ticket show -p demo -t 123456 -d 7
 
 # JSON output
@@ -66,33 +66,66 @@ tsh -t 123456 -d 7
 
 ---
 
-## When to Use ❓
-
-* To check **details of an open position** directly by ticket.
-* To retrieve **recently closed order info** without parsing full history.
-* To confirm P/L, SL/TP, and execution prices for audits.
-
----
-
 ## Notes & Safety 🛡️
 
-* Lookback `--days` matters: if ticket closed long ago, it may not appear.
-* Ensure `profiles.json` points to correct account — ticket IDs are per account.
+* `--days` matters: closed long ago → may not show up.
+* Ticket IDs are **per account** — ensure the correct profile.
+* Full proto mapping and internal flow are documented in **Specific\_Ticket.md**.
 
 ---
 
-## Code Reference 🧩
+## Proto Field Mapping (summary) 🧬
+
+**Open — Position** (`PositionInfo`)
+
+* `Symbol` ← `PositionInfo.symbol`
+* `Volume` ← `PositionInfo.volume`
+* `Price` (open) ← `PositionInfo.price_open`
+* `SL` ← `PositionInfo.stop_loss`
+* `TP` ← `PositionInfo.take_profit`
+* `Profit` ← `PositionInfo.profit`
+
+**Open — Pending** (`OpenedOrderInfo`)
+
+* `Symbol` ← `OpenedOrderInfo.symbol` *(if present in your build)*
+* `Volume` ← `OpenedOrderInfo.volume_current` *(or `volume_initial`)*
+* `Price` (entry) ← `OpenedOrderInfo.price_open`
+* `SL` ← `OpenedOrderInfo.stop_loss`
+* `TP` ← `OpenedOrderInfo.take_profit`
+* `Expiration` ← `OpenedOrderInfo.time_expiration`
+
+**History — Order** (`OrderHistoryData`)
+
+* `Symbol` ← `OrderHistoryData.symbol`
+* `State` ← `OrderHistoryData.state`
+* `VolumeInitial→VolumeCurrent` ← `volume_initial` → `volume_current`
+* `PriceOpen` ← `OrderHistoryData.price_open`
+* `setup/done` ← `setup_time` / `done_time`
+
+**History — Deal** (`DealHistoryData`)
+
+* `Symbol` ← `DealHistoryData.symbol`
+* `Type` ← `DealHistoryData.type`
+* `Volume` ← `DealHistoryData.volume`
+* `Price` ← `DealHistoryData.price`
+* `Profit` ← `DealHistoryData.profit`
+* `time` ← `DealHistoryData.time`
+
+> See **Specific\_Ticket.md** → *Proto Reference* for full message/enums.
+
+---
+
+## Code Reference (short)
 
 ```csharp
 var ticketCmd = new Command("ticket", "Work with a specific ticket");
 ticketCmd.AddAlias("t");
 
-// ticket show
 var tShow = new Command("show", "Show info for the ticket (open or from recent history)");
 tShow.AddAlias("sh");
 
-var tOpt = new Option<ulong>(new[] { "--ticket", "-t" }, "Ticket id") { IsRequired = true };
-var tDaysOpt = new Option<int>(new[] { "--days", "-d" }, () => 30, "If not open, search in last N days history");
+var tOpt    = new Option<ulong>(new[] { "--ticket", "-t" }, "Ticket id") { IsRequired = true };
+var tDaysOpt= new Option<int>(new[] { "--days", "-d" }, () => 30, "If not open, search in last N days history");
 
 tShow.AddOption(profileOpt);
 tShow.AddOption(outputOpt);
@@ -109,7 +142,11 @@ tShow.SetHandler(async (string profile, string output, ulong ticket, int days, i
     using (_logger.BeginScope("Cmd:TICKET-SHOW Profile:{Profile}", profile))
     using (_logger.BeginScope("Ticket:{Ticket}", ticket))
     {
-        try
-        {
-            await ConnectAsync();
+        await ConnectAsync();
+        // Lookup flow is described in Specific_Ticket.md (tickets → aggregate → history)
+    }
+}, profileOpt, outputOpt, tOpt, tDaysOpt, timeoutOpt);
+
+ticketCmd.AddCommand(tShow);
+root.AddCommand(ticketCmd);
 ```
