@@ -21,6 +21,7 @@ public Task<bool> ModifyPendingOrderAsync(
     string? tif,                // "GTC"|"DAY"|"GTD"|null
     DateTimeOffset? expire,
     CancellationToken ct);
+```
 
 ## Input Parameters ⬇️
 
@@ -28,17 +29,17 @@ public Task<bool> ModifyPendingOrderAsync(
 | --------------- | -------------- | -------- | --------------------------------------------------------------------------- | --------- | ------- | -------- | ------------ | -------------------------------------------- |
 | `--profile, -p` | string         | yes      | Which profile to use (from `profiles.json`).                                |           |         |          |              |                                              |
 | `--ticket, -t`  | ulong          | yes      | Pending order ticket.                                                       |           |         |          |              |                                              |
-| `--type`        | string         | no       | \`buylimit                                                                  | selllimit | buystop | sellstop | buystoplimit | sellstoplimit\` (для валидации инвариантов). |
-| `--price`       | double         | no       | Новый **entry price** (для Limit/Stop).                                     |           |         |          |              |                                              |
-| `--stop`        | double         | no       | Новый **trigger price** (для Stop/Stop‑Limit).                              |           |         |          |              |                                              |
-| `--limit`       | double         | no       | Новый **limit price** (для Stop‑Limit).                                     |           |         |          |              |                                              |
+| `--type` | string | no | \`buylimit | selllimit | buystop | sellstop | buystoplimit | sellstoplimit\` (for validating invariants). |
+| `--price`       | double | no | New **entry price** (for Limit/Stop).                                     |           |         |          |              |                                              |
+| `--stop`        | double | no | New **trigger price** (for Stop/Stop‑Limit).                              |           |         |          |              |                                              |
+| `--limit`       | double | no | New **limit price** (for Stop‑Limit).                                     |           |         |          |              |                                              |
 | `--sl`          | double         | no       | New Stop Loss (absolute).                                                   |           |         |          |              |                                              |
 | `--tp`          | double         | no       | New Take Profit (absolute).                                                 |           |         |          |              |                                              |
 | `--tif`         | string         | no       | \`GTC                                                                       | DAY       | GTD\`.  |          |              |                                              |
-| `--expire`      | DateTimeOffset | no       | ISO‑8601, **используется только** при `--tif=GTD` (Specified/SpecifiedDay). |           |         |          |              |                                              |
-| `--symbol, -s`  | string         | no       | Для best‑effort `ensure-visible` (необязательный).                          |           |         |          |              |                                              |
+| `--expire`      | DateTimeOffset | no | ISO‑8601, **is used only** for `--tif=GTD` (Specified/SpecifiedDay). |           |         |          |              |                                              |
+| `--symbol, -s` | string | no | For best‑effort `ensure-visible` (optional).                          |           |         |          |              |                                              |
 | `--timeout-ms`  | int            | no       | Per‑RPC timeout (default `30000`).                                          |           |         |          |              |                                              |
-| `--dry-run`     | flag           | no       | Показать изменения, **не** отправляя запрос.                                |           |         |          |              |                                              |
+| `--dry-run`     | flag | no | Show changes, **without** sending a request.                                |           |         |          |              |                                              |
 
 > Параметра `--output` **нет** — команда печатает текст.
 
@@ -96,9 +97,6 @@ var ok = await _mt5Account.ModifyPendingOrderAsync(
     expire: expire,
     ct: CancellationToken.None
 );
-```
-
-
 ```
 
 ---
