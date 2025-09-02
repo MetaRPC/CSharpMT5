@@ -2,98 +2,102 @@
 
 ## What it Does
 
-Fetches a **snapshot price** for a symbol (Bid/Ask/Time) from MT5.
-Used for quick checks, scripts, and preflight before placing orders.
+Gets a **snapshot price** for one symbol: **Bid / Ask / Time**, plus derived metrics (**Mid**, **Spread**, **AgeMs**) in text mode. Best‑effort ensures the symbol is visible before requesting.
+
+Alias: `q`.
 
 ---
+## Method Signatures
+
+```csharp
+public Task EnsureSymbolVisibleAsync(
+    string symbol,
+    TimeSpan? maxWait = null,
+    TimeSpan? pollInterval = null,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+private Task<QuoteDto> FirstTickAsync(string symbol, CancellationToken ct);
+```
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Description                                  |
-| ----------------- | ------ |  -------------------------------------------- |
-| `--profile`, `-p` | string |  Which profile to use (from `profiles.json`). |
-| `--symbol`, `-s`  | string |  Symbol to query (e.g., `EURUSD`).            |
-| `--output`, `-o`  | string |  `text` (default) or `json`.                  |
-| `--timeout-ms`    | int    |  RPC timeout in ms (default: 30000).          |
+| Parameter         | Type   | Required | Description                                  |
+| ----------------- | ------ | -------- | -------------------------------------------- |
+| `--profile`, `-p` | string | yes      | Which profile to use (from `profiles.json`). |
+| `--symbol`, `-s`  | string | no       | Symbol to query (defaults to profile’s).     |
+| `--output`, `-o`  | string | no       | `text` (default) or `json`.                  |
+| `--timeout-ms`    | int    | no       | RPC timeout in ms (default: 30000).          |
 
 ---
 
 ## Output Fields ⬆️
 
-| Field     | Type     | Description                                             |
-| --------- | -------- | ------------------------------------------------------- |
-| `Symbol`  | string   | Instrument name.                                        |
-| `Bid`     | double   | Best bid price.                                         |
-| `Ask`     | double   | Best ask price.                                         |
-| `TimeUtc` | DateTime | Snapshot server time (UTC).                             |
-| `Mid`     | double   | (Derived) `(Bid + Ask) / 2`.                            |
-| `Spread`  | double   | (Derived) `Ask - Bid`.                                  |
-| `AgeMs`   | int      | (Derived) age of the quote in milliseconds.             |
-| `Stale`   | bool     | (Derived) true if `AgeMs > 5000` (5s) — treat as stale. |
+**Text mode:**
 
-> JSON output contains raw fields of the snapshot; in text mode the CLI prints a concise line with bid/ask/time (+ derived metrics if implemented).
+| Field     | Type      | Description                                        |
+| --------- | --------- | -------------------------------------------------- |
+| `Symbol`  | string    | Symbol name.                                       |
+| `Bid`     | double    | Best bid price.                                    |
+| `Ask`     | double    | Best ask price.                                    |
+| `TimeUtc` | DateTime? | Server time of the tick.                           |
+| `Mid`     | double    | `(Bid + Ask) / 2`.                                 |
+| `Spread`  | double    | `Ask - Bid`.                                       |
+| `AgeMs`   | double    | Age in ms since `TimeUtc` (NaN if time is absent). |
+
+**JSON mode:**
+
+```json
+{
+  "Symbol": "EURUSD",
+  "Bid": 1.23456,
+  "Ask": 1.23470,
+  "TimeUtc": "2025-09-02T14:22:33Z"
+}
+```
 
 ---
 
 ## How to Use 🛠️
 
-### CLI
-
 ```powershell
 # Text
-dotnet run -- quote -p demo -s EURUSD --timeout-ms 30000
+dotnet run -- quote -p demo -s EURUSD
 
 # JSON
-dotnet run -- quote -p demo -s EURUSD -o json --timeout-ms 30000
+dotnet run -- quote -p demo -s EURUSD -o json
 ```
 
-### PowerShell Shortcuts (from `ps/shortcasts.ps1`)
+### PowerShell Shortcuts
 
 ```powershell
 . .\ps\shortcasts.ps1
 use-pf demo
 use-sym EURUSD
-q              # expands to: mt5 quote -p demo -s EURUSD --timeout-ms 90000
-q -s XAUUSD    # overrides default symbol
+q
 ```
 
 ---
 
 ## Notes 🧩
 
-* Before fetching a quote the code performs a **best-effort visibility check** for the symbol using `EnsureSymbolVisibleAsync(symbol, 3s, ct)`.
-* If the quote is **stale** (e.g., `AgeMs > 5000`), tooling may mark it as `[STALE >5s]`.
+* Always tries `EnsureSymbolVisibleAsync(symbol, 3s, ct)` before requesting a tick.
+* JSON output = raw server payload (no Mid/Spread/AgeMs).
+* Text output enriches with derived metrics.
 
 ---
 
 ## Code Reference 🧷
 
 ```csharp
-var quoteCmd = new Command("quote", "Get a snapshot price (Bid/Ask/Time)");
-quoteCmd.AddAlias("q");
+var s = symbol ?? GetOptions().DefaultSymbol;
+await _mt5Account.EnsureSymbolVisibleAsync(s, TimeSpan.FromSeconds(3));
 
-quoteCmd.AddOption(profileOpt);
-quoteCmd.AddOption(symbolOpt);
-quoteCmd.AddOption(outputOpt);
+using var cts = StartOpCts();
+var snap = await FirstTickAsync(s, cts.Token);
 
-quoteCmd.SetHandler(async (string profile, string? symbol, string output, int timeoutMs) =>
-{
-    Validators.EnsureProfile(profile);
-    var s = Validators.EnsureSymbol(symbol ?? GetOptions().DefaultSymbol);
-    _selectedProfile = profile;
-
-    using (UseOpTimeout(timeoutMs))
-    using (_logger.BeginScope("Cmd:QUOTE Profile:{Profile}", profile))
-    using (_logger.BeginScope("Symbol:{Symbol}", s))
-    {
-        try
-        {
-            await ConnectAsync();
+var mid    = (snap.Bid + snap.Ask) / 2.0;
+var spread = snap.Ask - snap.Bid;
+var ageMs  = snap.TimeUtc.HasValue ? Math.Abs((DateTime.UtcNow - snap.TimeUtc.Value).TotalMilliseconds) : double.NaN;
 ```
 
----
-
-📌 In short:
-— `quote` = one-shot snapshot with Bid/Ask/Time (plus derived metrics when needed).
-— Works with profiles, timeouts, and integrates the symbol-visibility helper.
-— Use the **`q`** shortcast for fast terminal work.
