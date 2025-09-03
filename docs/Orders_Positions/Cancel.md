@@ -6,7 +6,7 @@ Cancels a **pending order by ticket** on the selected MT5 account/profile. Use w
 
 ---
 
-## Method Signatures 🧩
+## Method Signatures 
 
 > Full details live in the MT5Account service. These are the calls the command uses.
 
@@ -95,7 +95,7 @@ x -t 123456 -s EURUSD
 
 ---
 
-## Code Reference (short) 🧩
+## Code Reference 🧩
 
 > This is illustrative. Your actual wiring uses System.CommandLine and common helpers.
 
