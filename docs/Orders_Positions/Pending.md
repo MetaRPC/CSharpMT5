@@ -1,98 +1,97 @@
 # Pending (`pending`) 🕒
 
-## What it Does
+Utilities for working with **pending orders**. The group currently exposes:
 
-Provides utilities for working with **pending orders**. Currently supports listing tickets of all open pending orders.
+* **`pending list`** — list current **pending orders with details** (type, symbol, price, SL/TP, expiration).
+* See also: **[`Pending.modify`](../Market_Data/Pending.modify.md)** and **[`Pending.move`](../Market_Data/Pending.move.md)** for editing/moving pendings.
+
+> ℹ️ If you only need **ticket IDs**, use the top‑level **[`orders`](../Orders_Positions/Orders.md)** command (it prints tickets for both pendings and positions). The built‑in `pending list` here prints **detailed rows**, not tickets‑only.
 
 ---
 
-## Subcommands 📂
+## Subcommand: `pending list` (`ls`)
 
-### `pending list` (`pdls`)
+Lists **all current pending orders** for the selected profile/account.
 
-Lists tickets of all current pending orders for the selected profile/account.
+### Input Parameters
 
-#### Input Parameters ⬇️
+| Parameter         | Type   | Required | Description                                |
+| ----------------- | ------ | -------- | ------------------------------------------ |
+| `--profile`, `-p` | string | yes      | Profile from `profiles.json`.              |
+| `--output`, `-o`  | string | no       | Output format: `text` (default) or `json`. |
+| `--timeout-ms`    | int    | no       | RPC timeout in ms (default: `30000`).      |
 
-| Parameter         | Type   | Description                                |
-| ----------------- | ------ |------------------------------------------ |
-| `--profile`, `-p` | string | Profile from `profiles.json`.              |
-| `--output`, `-o`  | string | Output format: `text` (default) or `json`. |
-| `--timeout-ms`    | int    | RPC timeout in ms (default: `30000`).      |
+> PowerShell shortcut in `ps/shortcasts.ps1`: **`pdls`** expands to `mt5 pending list -p <profile> --timeout-ms 90000`.
 
-#### Output Fields ⬆️
+### Output
 
-**Text mode**:
+**Text mode** (preview up to 50 rows):
 
 ```
-Pending orders: N
-1111111, 2222222, ...
+Pending orders (N):
+#<ticket>  <type>  <symbol>  vol=<lots>  price=<p>  SL=<sl>  TP=<tp>  exp=<iso-or-–>
+...
 ```
-
-* Shows ticket IDs. If >20, prints first 20 + `...`.
 
 **JSON mode**:
 
-```json
-{
-  "count": 2,
-  "tickets": [1111111, 2222222]
+* Raw payload: array from `OpenedOrdersData.PendingInfos` (fields depend on your proto/build).
+
+### Notes & Safety
+
+* List may be empty if all orders were filled/expired.
+* For cancellation: use **[`Cancel`](../Orders_Positions/Cancel.md)** or **[`Cancel_All`](../Orders_Positions/Cancel_All.md)**.
+* For precise price shifts by points: **[`Pending.move`](../Market_Data/Pending.move.md)**.
+
+---
+
+## Method Signature (MT5Account)
+
+```csharp
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
+
+### Proto reference (excerpt)
+
+```proto
+message OpenedOrdersData {
+  repeated OpenedOrderInfo opened_orders = 1;
+  repeated PositionInfo    position_infos = 2;
 }
 ```
 
 ---
 
-## How to Use 🛠️
-
-### CLI
-
-```powershell
-# Default text output
-dotnet run -- pending list -p demo
-
-# JSON output
-dotnet run -- pending list -p demo -o json
-```
-
-### PowerShell Shortcuts (from `ps/shortcasts.ps1`)
-
-```powershell
-pdls   # expands to: mt5 pending list -p demo --timeout-ms 90000
-```
-
----
-
-## Notes & Safety 🛡️
-
-* Returns **only pending orders**, not active positions.
-* For full order details, use `ticket show -t <id>`.
-* Useful for automation: quickly collect all open pending tickets and feed them to `cancel` or `pending.modify`.
-
----
-
-## Code Reference 🧩
+## Code Reference (actual pattern)
 
 ```csharp
-var pending = new Command("pending", "Pending orders utilities");
-pending.AddAlias("pd");
+await ConnectAsync();
 
-// pending list
-var pendingList = new Command("list", "List pending order tickets");
-pendingList.AddAlias("ls");
+var opened   = await _mt5Account.OpenedOrdersAsync();
+var pendings = opened.PendingInfos; // your build exposes this collection
 
-pendingList.AddOption(profileOpt);
-pendingList.AddOption(outputOpt);
-
-// we reuse the global timeout option added earlier
-pendingList.SetHandler(async (string profile, string output, int timeoutMs) =>
+if (IsJson(output))
 {
-    Validators.EnsureProfile(profile);
-    _selectedProfile = profile;
-
-    using (UseOpTimeout(timeoutMs))
-    using (_logger.BeginScope("Cmd:PENDING/LIST Profile:{Profile}", profile))
-    {
-        try
-        {
-            await ConnectAsync();
+    Console.WriteLine(ToJson(pendings));
+}
+else
+{
+    if (pendings.Count == 0) { Console.WriteLine("No pending orders."); return; }
+    Console.WriteLine($"Pending orders ({pendings.Count}):");
+    foreach (var p in pendings.Take(50))
+        Console.WriteLine($"#{p.Ticket}  {p.Type}  {p.Symbol}  vol={p.Volume}  price={p.Price}  SL={p.StopLoss}  TP={p.TakeProfit}  exp={p.Expiration}");
+}
 ```
+
+---
+
+## See also
+
+* **[`Pending_List`](../Misc/Pending_List.md)** — standalone page for this subcommand (user‑facing)
+* **[`Pending.modify`](../Market_Data/Pending.modify.md)** — set exact prices/SL/TP/TIF
+* **[`Pending.move`](../Market_Data/Pending.move.md)** — shift prices by ±N points
+* **[`Cancel`](../Orders_Positions/Cancel.md)**, **[`Cancel_All`](../Orders_Positions/Cancel_All.md)**
+* **[`Ticket_Show`](../Misc/Ticket_Show.md)** — inspect a specific ticket
