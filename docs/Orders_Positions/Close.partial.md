@@ -30,7 +30,7 @@ public Task CloseOrderByTicketAsync(
     CancellationToken cancellationToken = default);
 ```
 
-## Input Parameters
+## Input Parameters ⬇️
 
 | Parameter         | Type   | Required | Description                                    |
 | ----------------- | ------ | -------- | ---------------------------------------------- |
@@ -45,7 +45,7 @@ public Task CloseOrderByTicketAsync(
 
 ---
 
-## Output (text) & Exit Codes
+## Output ⬆️
 
 Examples:
 
@@ -103,7 +103,7 @@ cp -t 123456 -v 0.03
 
 ---
 
-## Code Reference (illustrative)
+## Code Reference 🧩
 
 ```csharp
 var cpVolumeOpt = new Option<double>(new[] { "--volume", "-v" }, "Volume (lots) to close")
