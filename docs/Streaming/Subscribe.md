@@ -73,7 +73,7 @@ st 15 EURUSD   # expands to: mt5 stream -p demo --seconds 15 -s EURUSD --timeout
 
 ---
 
-## Notes 🧩
+## Notes 
 
 * Before subscribing, the code calls **`EnsureSymbolVisibleAsync(symbol, ~3s)`** to avoid “symbol not selected”. Prep errors are non‑fatal.
 * The actual subscription uses **`DefaultSymbol` from the profile**, not the `--symbol` value.
@@ -83,7 +83,7 @@ st 15 EURUSD   # expands to: mt5 stream -p demo --seconds 15 -s EURUSD --timeout
 
 ---
 
-## Method signatures
+## Method signatures 🧩
 
 ```csharp
 // Ensure a symbol is visible in the terminal (best‑effort wait)
