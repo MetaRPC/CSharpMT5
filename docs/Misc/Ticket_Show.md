@@ -9,6 +9,29 @@ Displays full **info for a specific ticket** — first tries **open sets** (posi
 > Need the internal flow and proto details? See **Specific\_Ticket.md**.
 
 ---
+## Method Signatures (quick ref) 🧩
+
+> Full details live in [Specific_Ticket.md](./Specific_Ticket.md). This page is a user-facing overview.
+
+```csharp
+public Task<OpenedOrdersTicketsData> OpenedOrdersTicketsAsync(
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+public Task<OrdersHistoryData> OrderHistoryAsync(
+    DateTime from,
+    DateTime to,
+    BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
+    int pageNumber = 0,
+    int itemsPerPage = 0,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
 
 ## Input Parameters ⬇️
 
