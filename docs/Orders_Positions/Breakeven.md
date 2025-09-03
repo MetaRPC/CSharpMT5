@@ -6,7 +6,7 @@ Moves a position’s **Stop Loss** to **breakeven** (near the entry price) with 
 Default safety behavior: only improves SL (moves it toward profit). You can override with `--force`.
 
 ---
-## Method signatures (used by this command) 📘
+## Method signatures
 
 ```csharp
 // Fetch open positions (and pending orders)
