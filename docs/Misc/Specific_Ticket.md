@@ -10,6 +10,27 @@ Technical walkthrough of how **`ticket show`** resolves and prints **a specific 
 This page is for engineers (under‑the‑hood). For a user‑facing overview, see **Ticket\_Show\.md**.
 
 ---
+## Method Signatures 
+
+```csharp
+public Task<OpenedOrdersTicketsData> OpenedOrdersTicketsAsync(
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+public Task<OrdersHistoryData> OrderHistoryAsync(
+    DateTime from,
+    DateTime to,
+    BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
+    int pageNumber = 0,
+    int itemsPerPage = 0,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
 
 ## Input Parameters ⬇️
 
@@ -23,7 +44,7 @@ This page is for engineers (under‑the‑hood). For a user‑facing overview, s
 
 ---
 
-## Output ⬆️ (current handler)
+## Output ⬆️
 
 **Open (position/pending)** — prints: **Symbol**, **Volume**, **Price** (open), optional **SL/TP**, optional **Profit**, bucket tag (`POSITION`/`PENDING`).
 
@@ -58,7 +79,7 @@ tsh -t 123456
 
 ---
 
-## Under‑the‑hood Flow 🧩
+## Under‑the‑hood Flow 
 
 1. **Quick membership**: `_mt5Account.OpenedOrdersTicketsAsync()` → detect if the ticket is currently open (orders/positions).
 2. **Fetch object**: `_mt5Account.OpenedOrdersAsync()` → find the element inside the aggregate via `TryFindByTicketInAggregate(...)` and print.
@@ -68,7 +89,7 @@ tsh -t 123456
 
 ---
 
-## Code Reference (short)
+## Code Reference 🧩
 
 ```csharp
 await ConnectAsync();
@@ -93,30 +114,6 @@ else
     var hist = await _mt5Account.OrderHistoryAsync(from, to);
     // locate in HistoryOrder/HistoryDeal and print
 }
-```
-
----
-
-## Method Signatures 🧩
-
-```csharp
-public Task<OpenedOrdersTicketsData> OpenedOrdersTicketsAsync(
-    DateTime? deadline = null,
-    CancellationToken cancellationToken = default);
-
-public Task<OpenedOrdersData> OpenedOrdersAsync(
-    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
-    DateTime? deadline = null,
-    CancellationToken cancellationToken = default);
-
-public Task<OrdersHistoryData> OrderHistoryAsync(
-    DateTime from,
-    DateTime to,
-    BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
-    int pageNumber = 0,
-    int itemsPerPage = 0,
-    DateTime? deadline = null,
-    CancellationToken cancellationToken = default);
 ```
 
 ---
