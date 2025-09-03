@@ -4,6 +4,7 @@
 ## What it Does
 
 Performs a quick **health check** of the MT5 connection: validates profile, checks TCP reachability to the server, opens a session, and queries basic RPCs.
+
 ---
 ## Code Reference 🧩
 
