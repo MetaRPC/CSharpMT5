@@ -67,6 +67,8 @@ pdls  # expands to: mt5 pending list -p demo --timeout-ms 90000
 
 ---
 
+For editing/moving: see [pending.modify](./Pending.modify.md) / [pending.move](./Pending.move.md).
+
 ## Notes & Safety 🛡️
 
 * List may be empty if all orders were filled or expired.
