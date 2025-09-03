@@ -61,15 +61,51 @@ dotnet run -- pending.move -p demo -t 123456 -P -25 --dry-run
 ```csharp
 await ConnectAsync();
 
-// find order & symbol
-var opened = await _mt5Account.OpenedOrdersAsync();
-var ordObj = TryFindByTicketInAggregate(opened, ticket, out var bucket);
-// compute delta = byPoints × point
-var point = _mt5Account.PointGuess(symbol);
+// Build cancellation with timeout (default 30s)
+using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(timeoutMs ?? 30000));
+var ct = cts.Token;
+
+// 1) Find the pending order by ticket
+var opened = await _mt5Account.OpenedOrdersAsync(cancellationToken: ct);
+
+// Your helper should ensure it's a PENDING order and return its symbol.
+// Example signature: TryFindPending(opened, ticket, out var pending)
+var pending = TryFindPending(opened, ticket, out var sym);
+if (pending is null)
+{
+    Console.WriteLine($"Pending order #{ticket} not found.");
+    // return 2;
+}
+
+// 2) Compute point & delta for preview
+// Prefer reliable point from SymbolInfo rather than a local guess
+var symInfo = await _mt5Account.SymbolInfoAsync(sym, cancellationToken: ct);
+var point = symInfo.Point;
 var delta = byPoints * point;
 
-if (!dryRun)
-    await _mt5Account.MovePendingByPointsAsync(ticket, symbol, byPoints, CancellationToken.None);
+if (dryRun)
+{
+    // If your model exposes current prices, print old→new
+    // For Limit/Stop orders:
+    //   var oldPrice = pending.Price;
+    //   var newPrice = MT5Account.NormalizePrice(oldPrice + delta, symInfo.Digits);
+    // For Stop-Limit orders (if fields exist):
+    //   var oldStop  = pending.StopLimit;     // or Trigger
+    //   var oldLimit = pending.Price;         // typical layout
+    //   var newStop  = MT5Account.NormalizePrice(oldStop  + delta, symInfo.Digits);
+    //   var newLimit = MT5Account.NormalizePrice(oldLimit + delta, symInfo.Digits);
 
-Console.WriteLine("✔ pending.move done");
+    Console.WriteLine($"[DRY-RUN] MOVE #{ticket} {sym} by {byPoints} pt (Δ={delta})");
+    // Console.WriteLine($"    price: {oldPrice} -> {newPrice}");
+    // Console.WriteLine($"    stop/limit: {oldStop}->{newStop} / {oldLimit}->{newLimit}");
+    // return 0;
+}
+else
+{
+    // 3) Execute
+    await _mt5Account.MovePendingByPointsAsync(ticket, sym, byPoints, ct);
+    Console.WriteLine("✔ pending.move done");
+    // return 0;
+}
+
 ```
