@@ -42,7 +42,7 @@ public Task CloseOrderByTicketAsync(
     CancellationToken cancellationToken = default);
 ```
 
-## Input Parameters
+## Input Parameters ⬇️
 
 | Parameter         | Type   | Required | Description                                               |
 | ----------------- | ------ | -------- | --------------------------------------------------------- |
@@ -57,7 +57,7 @@ public Task CloseOrderByTicketAsync(
 
 ---
 
-## Output (text) & Exit Codes
+## Output ⬆️
 
 Examples:
 
@@ -117,7 +117,7 @@ cpp -t 123456 -pct 50
 
 ---
 
-## Code Reference (illustrative)
+## Code Reference 🧩
 
 ```csharp
 var cpTicketOpt = new Option<ulong>(new[] { "--ticket", "-t" }, "Position ticket") { IsRequired = true };
