@@ -6,7 +6,7 @@ Closes **half of a position’s volume** by ticket.
 
 ---
 
-## Input Parameters
+## Input Parameters ⬇️
 
 | Parameter         | Type   | Required | Description                           |
 | ----------------- | ------ | -------- | ------------------------------------- |
@@ -19,7 +19,7 @@ Closes **half of a position’s volume** by ticket.
 
 ---
 
-## Output & Exit Codes
+## Output ⬆️
 
 Output format and exit codes are the **same as** in [`close.percent`](./Close.percent.md).
 
@@ -63,7 +63,7 @@ ch -t 123456
 
 ---
 
-## Method Signatures (quick ref)
+## Method Signatures
 
 > `close.half` delegates to `close.percent`, which in turn uses the underlying MT5Account RPCs below. Depending on build, either of the close helpers may be used.
 
@@ -98,7 +98,7 @@ public Task CloseOrderByTicketAsync(
     CancellationToken cancellationToken = default);
 ```
 
-## Alias wiring (illustrative)
+## Alias wiring 🧩
 
 ```csharp
 ctx.Console.WriteLine("(alias) close.half -> close.percent --pct 50");
