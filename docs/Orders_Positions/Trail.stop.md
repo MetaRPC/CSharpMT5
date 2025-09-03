@@ -23,21 +23,30 @@ dotnet run -- trail.stop -p demo -t 123456
 
 ---
 
-## Options ⚙️
+## Input Parameters ⬇️
 
-| Option      | Alias | Required | Description                          |
-| ----------- | ----- | -------- | ------------------------------------ |
-| `--profile` | `-p`  | yes      | Profile name (from `profiles.json`). |
-| `--ticket`  | `-t`  | yes      | Position ticket (numeric ID).        |
+| Parameter         | Type   | Required | Description                          |
+| ----------------- | ------ | -------- | ------------------------------------ |
+| `--profile`, `-p` | string | yes      | Profile name (from `profiles.json`). |
+| `--ticket`, `-t`  | ulong  | yes      | Position ticket (numeric ID).        |
+
+> No `--timeout-ms`: stopping is local (client‑side), not an RPC.
+
+\--------------- | ----- | -------- | ----------------------------------------- |
+\| `--profile`     | `-p`  | yes      | Profile name (from `profiles.json`).      |
+\| `--ticket`      | `-t`  | yes      | Position ticket (numeric ID).             |
 
 > Tip: No `--timeout-ms` is needed; stopping is **local**.
 
 ---
 
-## Output ✅
+## Output ⬆️
 
-* Success: `✔ trailing stopped for #<ticket>`
-* If no active trailer is found: `No active trailing for #<ticket>` (exit code `2`).
+**Text**
+
+* `✔ trailing stopped for #<ticket>` — success (exit code `0`).
+* `No active trailing for #<ticket>` — nothing to stop (exit code `2`).
+* Errors are printed with details; fatal error sets exit code `1`.
 
 ---
 
@@ -49,7 +58,19 @@ dotnet run -- trail.stop -p demo -t 123456
 
 ---
 
-## Code Reference (concise) 💻
+## Method Signatures 
+
+```csharp
+// Preferred, if implemented in service layer
+public bool StopTrailing(ulong ticket);
+
+// Or local Program helper
+public static bool StopTrailingLocal(ulong ticket);
+```
+
+---
+
+## Code Reference 🧩
 
 > Implementation is local to your CLI (Program). If you keep a registry of active trailers (e.g., `ConcurrentDictionary<ulong, CancellationTokenSource>`), stopping is simply a `Cancel()` + removal.
 
