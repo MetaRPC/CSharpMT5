@@ -4,9 +4,30 @@
 ## What it Does
 
 Performs a quick **health check** of the MT5 connection: validates profile, checks TCP reachability to the server, opens a session, and queries basic RPCs.
-
 ---
+## Code Reference 🧩
 
+```csharp
+// Quick connectivity probe via AccountSummary
+try
+{
+    // Profile must be selected and connection established by your app’s flow
+    var summary = await _mt5Account.AccountSummaryAsync();
+    Console.WriteLine($"Health: ok. Balance={summary.AccountBalance}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Health: fail: {ex.Message}");
+}
+```
+
+## Method Signature
+
+```csharp
+public Task<AccountSummaryData> AccountSummaryAsync(
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
 ## Input Parameters ⬇️
 
 | Parameter       | Type   | Required | Description                                         |
@@ -62,27 +83,3 @@ health  # alias: ping
 * **Diagnostics** — distinguish between network problems and terminal failures.
 
 ---
-
-## Code Reference 🧩
-
-```csharp
-// Quick connectivity probe via AccountSummary
-try
-{
-    // Profile must be selected and connection established by your app’s flow
-    var summary = await _mt5Account.AccountSummaryAsync();
-    Console.WriteLine($"Health: ok. Balance={summary.AccountBalance}");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Health: fail: {ex.Message}");
-}
-```
-
-### Method Signature
-
-```csharp
-public Task<AccountSummaryData> AccountSummaryAsync(
-    DateTime? deadline = null,
-    CancellationToken cancellationToken = default);
-```
