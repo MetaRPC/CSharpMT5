@@ -60,7 +60,8 @@ pf list       # same as: profiles list
 ## Notes & Safety 🛡️
 
 * File path: `profiles.json` is read from **AppContext.BaseDirectory**.
-* If file is missing/empty or parsing fails, the command prints `profiles.json not found or empty.` in text mode, or returns `[]` in JSON.
+* If the file is missing or empty → text: profiles.json not found or empty., json: [].
+* If parsing fails (invalid JSON) → error is printed via ErrorPrinter and the command exits with code 1.
 * Iteration order of profile names is not guaranteed. Sort if you need stable output.
 
 ---
