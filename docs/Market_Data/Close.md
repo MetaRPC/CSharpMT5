@@ -11,6 +11,8 @@ Closes an **open position** or **order** in MT5 by ticket ID. Supports full or p
 public Task EnsureSymbolVisibleAsync(
     string symbol,
     TimeSpan? maxWait = null,
+    TimeSpan? pollInterval = null,
+    DateTime? deadline = null,
     CancellationToken cancellationToken = default);
 
 public Task CloseOrderByTicketAsync(
