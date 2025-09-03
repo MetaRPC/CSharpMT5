@@ -79,7 +79,7 @@ q
 
 ---
 
-## Notes 🧩
+## Notes 🧷
 
 * Always tries `EnsureSymbolVisibleAsync(symbol, 3s, ct)` before requesting a tick.
 * JSON output = raw server payload (no Mid/Spread/AgeMs).
@@ -87,7 +87,7 @@ q
 
 ---
 
-## Code Reference 🧷
+## Code Reference 🧩
 
 ```csharp
 var s = symbol ?? GetOptions().DefaultSymbol;
