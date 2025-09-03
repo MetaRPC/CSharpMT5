@@ -1,81 +1,109 @@
 # Close Partial (`close.partial`) 🪓
 
-## What it Does
+Closes an **exact volume** (in lots) of a position by ticket.
 
-Closes a **specific volume** of a position by ticket.
-Unlike `close.half` or `close.percent`, this command lets you choose the **exact number of lots** to close.
+Unlike `close.half` or `close.percent`, this command lets you choose the **precise number of lots** to close.
+
+---
+## Method Signatures (quick ref)
+
+```csharp
+// Read open positions (to validate ticket, get symbol/current volume if needed)
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+// Partial close (variant A — explicit deviation)
+public Task ClosePositionPartialAsync(
+    ulong ticket,
+    double volume,
+    int deviation,
+    CancellationToken cancellationToken);
+
+// Alternative partial close (variant B — by symbol)
+public Task CloseOrderByTicketAsync(
+    ulong ticket,
+    string symbol,
+    double volume,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
+
+## Input Parameters
+
+| Parameter         | Type   | Required | Description                                    |
+| ----------------- | ------ | -------- | ---------------------------------------------- |
+| `--profile`, `-p` | string | yes      | Profile from `profiles.json`.                  |
+| `--ticket`, `-t`  | ulong  | yes      | Position ticket to partially close.            |
+| `--volume`, `-v`  | double | yes      | Exact volume to close (lots).                  |
+| `--deviation`     | int    | no       | Max slippage (points). Default: `10`.          |
+| `--timeout-ms`    | int    | no       | RPC timeout in ms (default: `30000`).          |
+| `--dry-run`       | flag   | no       | Print intended action without sending request. |
+
+> **Note:** This command is **text-only**; JSON output is not supported by the current handler.
 
 ---
 
-## Input Parameters ⬇️
+## Output (text) & Exit Codes
 
-| Parameter         | Type   | Description                                    |
-| ----------------- | ------ | ---------------------------------------------- |
-| `--profile`, `-p` | string | Profile from `profiles.json`.                  |
-| `--ticket`, `-t`  | ulong  | Position ticket to partially close.            |
-| `--volume`, `-v`  | double | Exact volume to close (in lots).               |
-| `--deviation`     | int    | Max slippage (points). Default: `10`.          |
-| `--output`, `-o`  | string | `text` (default) or `json`.                    |
-| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).            |
-| `--dry-run`       | flag   | Print intended action without sending request. |
+Examples:
+
+```
+[DRY-RUN] CLOSE.PARTIAL ticket=123456 volume=0.03 deviation=10
+✔ close.partial done: ticket=123456 closed=0.03
+```
+
+Errors:
+
+```
+Position #123456 not found.          (exit code 2)
+Invalid volume: 0.00                 (exit code 2)
+RPC error: <broker message>          (exit code 1)
+```
+
+**Exit codes**
+
+* `0` — success
+* `2` — validation/not found/guard failures
+* `1` — fatal error (printed via ErrorPrinter)
 
 ---
 
-## Output Fields ⬆️
-
-| Field       | Type   | Description                   |
-| ----------- | ------ | ----------------------------- |
-| `Ticket`    | ulong  | Original position ticket.     |
-| `Closed`    | double | Volume closed (requested).    |
-| `Remaining` | double | Volume still open.            |
-| `Price`     | double | Execution price of the close. |
-| `Status`    | string | `OK` or error description.    |
-
----
-
-## How to Use 🛠️
-
-### CLI
+## How to Use
 
 ```powershell
-# Close exactly 0.03 lots of position 123456
+# Close exactly 0.03 lots
 dotnet run -- close.partial -p demo -t 123456 -v 0.03
 
 # With custom slippage
 dotnet run -- close.partial -p demo -t 123456 -v 0.01 --deviation 20
 
-# JSON + dry-run
-dotnet run -- close.partial -p demo -t 123456 -v 0.05 --dry-run -o json
+# Dry-run (no request sent)
+dotnet run -- close.partial -p demo -t 123456 -v 0.05 --dry-run
 ```
 
-### PowerShell Shortcuts (from `shortcasts.ps1`)
+### PowerShell shortcut (from `ps/shortcasts.ps1`)
 
 ```powershell
 . .\ps\shortcasts.ps1
 use-pf demo
 cp -t 123456 -v 0.03
-# expands to: mt5 close.partial -p demo -t 123456 -v 0.03 --deviation 10 --timeout-ms 90000
+# → mt5 close.partial -p demo -t 123456 -v 0.03 --deviation 10 --timeout-ms 90000
 ```
 
 ---
 
-## When to Use ❓
+## Notes & Safety
 
-* To close an exact lot size rather than a fraction of the whole.
-* Useful for scaling out at predefined levels (e.g., close 0.1 at +10 pips, 0.2 at +20 pips).
-* Can combine with scripts or algos that calculate optimal partial close size.
-
----
-
-## Notes & Safety 🛡️
-
-* Ensure the requested volume respects **symbol min/step/max** — use `symbol limits` to verify.
-* If requested volume > position size, broker rejects the request.
-* Residual must still be ≥ MinLot, otherwise the whole position may close.
+* The requested volume must comply with **symbol min/step/max** — check **[symbol limits](../Market_Data/Limits.md)**. No auto-rounding is performed by this command.
+* If `volume` > current position size, the broker will reject the request.
+* Residual volume must remain ≥ MinLot.
+* RPCs honor `--timeout-ms` via the operation cancellation token.
 
 ---
 
-## Code Reference 🧩
+## Code Reference (illustrative)
 
 ```csharp
 var cpVolumeOpt = new Option<double>(new[] { "--volume", "-v" }, "Volume (lots) to close")
@@ -89,7 +117,7 @@ closePartial.AddAlias("cp");
 closePartial.AddOption(profileOpt);
 closePartial.AddOption(cpTicketOpt);
 closePartial.AddOption(cpVolumeOpt);
-closePartial.AddOption(devOpt);      // reuse: deviation in points
+closePartial.AddOption(devOpt);      // deviation in points
 closePartial.AddOption(timeoutOpt);
 closePartial.AddOption(dryRunOpt);
 
@@ -105,6 +133,7 @@ closePartial.SetHandler(async (InvocationContext ctx) =>
     Validators.EnsureProfile(profile);
     if (ticket == 0) throw new ArgumentOutOfRangeException(nameof(ticket), "Ticket must be > 0.");
     if (volume <= 0) throw new ArgumentOutOfRangeException(nameof(volume), "Volume must be > 0.");
+    // Optional: Validators.EnsureDeviation(deviation);
 
     using (UseOpTimeout(timeoutMs))
     using (_logger.BeginScope("Cmd:CLOSE.PARTIAL Profile:{Profile}", profile))
@@ -116,7 +145,23 @@ closePartial.SetHandler(async (InvocationContext ctx) =>
             return;
         }
 
-        try
-        {
-            await ConnectAsync();
+        await ConnectAsync();
+
+        // (Optional) If you need the symbol for visibility checks or extra guards:
+        // var opened = await _mt5Account.OpenedOrdersAsync();
+        // var pos = opened.PositionInfos.FirstOrDefault(p => (ulong)p.Ticket == ticket);
+        // if (pos is null) { Console.WriteLine($"Position #{ticket} not found."); Environment.ExitCode = 2; return; }
+        // try { await _mt5Account.EnsureSymbolVisibleAsync(pos.Symbol, TimeSpan.FromSeconds(3)); } catch { }
+
+        await _mt5Account.ClosePositionPartialAsync(ticket, volume, deviation, CancellationToken.None);
+        Console.WriteLine($"\u2714 close.partial done: ticket={ticket} closed={volume}");
+    }
+});
 ```
+
+---
+
+## See also
+
+* **[`close.percent`](./Close.percent.md)** — close by percentage of current volume
+* **[`symbol limits`](../Market_Data/Limits.md)** — min/step/max lot constraints
