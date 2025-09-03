@@ -7,7 +7,7 @@ Shows all **pending orders** for the selected account/profile. Handy to review s
 > Subcommand of **`pending`**. Invoke as `pending list` (alias: `ls`).
 
 ---
-## Method Signature 🧩
+## Method Signature 
 
 ```csharp
 public Task<OpenedOrdersData> OpenedOrdersAsync(
@@ -76,7 +76,7 @@ pdls  # expands to: mt5 pending list -p demo --timeout-ms 90000
 
 ---
 
-## Code Reference 🧷 (short)
+## Code Reference 🧩
 
 ```csharp
 await ConnectAsync();
