@@ -1,35 +1,57 @@
 # Cancel (`cancel`) 🗑️
 
-## What it Does
+Cancels a **pending order by ticket** on the selected MT5 account/profile. Use when you want to remove a single Buy/Sell Limit/Stop (including *Stop‑Limit* variants) without touching other orders.
 
-Cancels a **pending order by ticket** on the selected MT5 account/profile.
-Use when you want to remove a single Buy/Sell Limit/Stop (including *Limit* variants) without touching other orders.
+> This command targets **pending** orders only. For closing open positions, use **[close](./Close.md)**.
 
-> This command targets **pending** orders only. For closing open positions, use `close`.
+---
+
+## Method Signatures (quick ref) 🧩
+
+
+```csharp
+// (optional) aggregate snapshot to validate the ticket & symbol
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+// cancel a pending order by its ticket
+public Task CancelPendingOrderAsync(
+    ulong ticket,
+    CancellationToken cancellationToken);
+```
 
 ---
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Description                                    |
-| ----------------- | ------ |---------------------------------------------- |
-| `--profile`, `-p` | string | Profile from `profiles.json`.                  |
-| `--ticket`, `-t`  | ulong  | **Pending order** ticket to cancel.            |
-| `--symbol`, `-s`  | string | Optional symbol filter (safety guard).         |
-| `--output`, `-o`  | string | `text` (default) or `json`.                    |
-| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).            |
-| `--dry-run`       | flag   | Print intended action without sending request. |
+| Parameter         | Type   | Required | Description                                 |
+| ----------------- | ------ | -------- | ------------------------------------------- |
+| `--profile`, `-p` | string | yes      | Profile from `profiles.json`.               |
+| `--ticket`, `-t`  | ulong  | yes      | **Pending** order ticket to cancel.         |
+| `--symbol`, `-s`  | string | yes      | Safety filter: symbol **must** match order. |
+| `--timeout-ms`    | int    | no       | RPC timeout in ms (default: `30000`).       |
+| `--dry-run`       | flag   | no       | Print intended action; no request sent.     |
+
+> **Note:** This command is **text‑only**; `--output` is not supported.
 
 ---
 
-## Output Fields ⬆️
+## Output ⬆️
 
-| Field    | Type   | Description                             |
-| -------- | ------ | --------------------------------------- |
-| `Ticket` | ulong  | Canceled ticket.                        |
-| `Symbol` | string | Symbol of the order.                    |
-| `Type`   | string | Pending type (BuyLimit, SellStop, ...). |
-| `Status` | string | `OK` or error description.              |
+**Text only.**
+
+* Success: `✔ cancel done: #<ticket> <SYMBOL>`
+* Dry‑run: `[DRY-RUN] CANCEL pending #<ticket> <SYMBOL>`
+* Not found / not pending / symbol mismatch:
+  `Pending order #<ticket> not found.` **or** `Ticket #<ticket> does not belong to <SYMBOL>.`
+
+**Exit codes**
+
+* `0` — success
+* `2` — not found / not pending / symbol mismatch / validation guard
+* `1` — fatal error (printed via ErrorPrinter)
 
 ---
 
@@ -38,20 +60,14 @@ Use when you want to remove a single Buy/Sell Limit/Stop (including *Limit* vari
 ### CLI
 
 ```powershell
-# Cancel a pending order by ticket
-dotnet run -- cancel -p demo -t 123456
-
-# JSON output
-dotnet run -- cancel -p demo -t 123456 -o json
-
-# With symbol safety filter
+# Cancel a pending order by ticket (with symbol safety)
 dotnet run -- cancel -p demo -t 123456 -s EURUSD
 
-# Dry-run (no request will be sent)
-dotnet run -- cancel -p demo -t 123456 --dry-run
+# Dry‑run (no request will be sent)
+dotnet run -- cancel -p demo -t 123456 -s EURUSD --dry-run
 ```
 
-### PowerShell Shortcuts (from `shortcasts.ps1`)
+### PowerShell Shortcuts (from `ps/shortcasts.ps1`)
 
 ```powershell
 . .\ps\shortcasts.ps1
@@ -66,19 +82,21 @@ x -t 123456 -s EURUSD
 
 * To remove a **single** pending order quickly.
 * As part of a cleanup routine without affecting other tickets.
-* Before moving/re-placing a pending at a new price (instead of `pending.move`).
+* Before moving/re‑placing a pending at a new price (instead of `pending.move`).
 
 ---
 
 ## Notes & Safety 🛡️
 
-* Verify the **ticket really refers to a pending order**; brokers reject cancel for already-filled/expired tickets.
-* `--symbol` is optional but helps avoid canceling a ticket on the wrong instrument.
-* Combine with `pending list` to find tickets, or with `ticket show` to inspect details first.
+* Verify the **ticket really refers to a pending order**; brokers reject cancel for already‑filled/expired tickets.
+* `--symbol` is an intentional safety guard: the command validates the ticket’s symbol via the open aggregate before cancel.
+* Combine with **[pending list](./Pending.List.md)** to find tickets, or with **[ticket show](./Ticket_Show.md)** to inspect details first.
 
 ---
 
-## Code Reference 🧩
+## Code Reference (short) 🧩
+
+> This is illustrative. Your actual wiring uses System.CommandLine and common helpers.
 
 ```csharp
 var cancel = new Command("cancel", "Cancel (delete) pending order by ticket");
@@ -90,6 +108,8 @@ var cancelSymbolOpt = new Option<string>(new[] { "--symbol", "-s" }, "Symbol (e.
 cancel.AddOption(profileOpt);
 cancel.AddOption(cancelTicketOpt);
 cancel.AddOption(cancelSymbolOpt);
+cancel.AddOption(timeoutOpt);
+cancel.AddOption(dryRunOpt);
 
 cancel.SetHandler(async (string profile, ulong ticket, string symbol, int timeoutMs, bool dryRun) =>
 {
@@ -108,7 +128,19 @@ cancel.SetHandler(async (string profile, ulong ticket, string symbol, int timeou
             return;
         }
 
-        try
-        {
-            await ConnectAsync();
+        await ConnectAsync();
+        // optional pre-check via aggregate (OpenedOrdersAsync) to assert ticket+symbol
+        await _mt5Account.CancelPendingOrderAsync(ticket, CancellationToken.None);
+        Console.WriteLine($"✔ cancel done: #{ticket} {symbol}");
+    }
+}, profileOpt, cancelTicketOpt, cancelSymbolOpt, timeoutOpt, dryRunOpt);
 ```
+
+---
+
+## See also 🔗
+
+* **[pending list](./Pending.List.md)** — enumerate current pendings
+* **[pending.modify](./Pending.modify.md)** — edit pending parameters
+* **[pending.move](./Pending.move.md)** — shift pending by ±points
+* **[ticket show](./Ticket_Show.md)** — inspect a ticket (open/history)
