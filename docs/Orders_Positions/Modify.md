@@ -30,7 +30,7 @@ public Task<OpenedOrdersData> OpenedOrdersAsync(
     CancellationToken cancellationToken = default);
 ```
 
-## Input Parameters
+## Input Parameters ⬇️
 
 | Parameter         | Type    | Required | Description                                                  |
 | ----------------- | ------- | -------- | ------------------------------------------------------------ |
@@ -46,7 +46,7 @@ public Task<OpenedOrdersData> OpenedOrdersAsync(
 
 ---
 
-## Output (text) & Exit Codes
+## Output ⬆️
 
 Examples:
 
