@@ -126,7 +126,7 @@ positions.SetHandler(async (string profile, string output, int timeoutMs) =>
 
 ## Notes & Safety 🛡️
 
-* This is a **quick overview**; use **[Ticket\_Show.md](../Misc/Ticket_Show.md)** for detailed info on a specific ticket.
+* This is a **quick overview**; use **Ticket_Show.md** for detailed info on a specific ticket.
 * PnL shown is a snapshot and may change between calls.
 
 **See also:** **[Orders.md](../Orders_Positions/Orders.md)**, **[Ticket\_Show.md](../Misc/Ticket_Show.md)**
