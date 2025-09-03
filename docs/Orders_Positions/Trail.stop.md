@@ -30,14 +30,6 @@ dotnet run -- trail.stop -p demo -t 123456
 | `--profile`, `-p` | string | yes      | Profile name (from `profiles.json`). |
 | `--ticket`, `-t`  | ulong  | yes      | Position ticket (numeric ID).        |
 
-> No `--timeout-ms`: stopping is local (client‑side), not an RPC.
-
-\--------------- | ----- | -------- | ----------------------------------------- |
-\| `--profile`     | `-p`  | yes      | Profile name (from `profiles.json`).      |
-\| `--ticket`      | `-t`  | yes      | Position ticket (numeric ID).             |
-
-> Tip: No `--timeout-ms` is needed; stopping is **local**.
-
 ---
 
 ## Output ⬆️
