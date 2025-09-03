@@ -31,7 +31,7 @@ public Task<OrdersHistoryData> OrderHistoryAsync(
     int itemsPerPage = 0,
     DateTime? deadline = null,
     CancellationToken cancellationToken = default);
-
+```
 
 ## Input Parameters ⬇️
 
