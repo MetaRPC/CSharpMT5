@@ -1,11 +1,6 @@
 # CloseBy (`closeby`) 🔁
 
-## What it Does
-
-Closes **two opposite positions** on the **same symbol** by emulating MT5 *Close By* with **two separate closes**.
-This is implemented via `_mt5Account.CloseByEmulatedAsync(...)`.
-
-**Note:** Unlike native MT5 CloseBy, this emulated version executes two market closes, so commissions/swaps apply for both legs.
+Closes **two opposite positions** on the **same symbol** by emulating MT5 *Close By* with **two separate market closes**.
 
 ---
 
@@ -17,91 +12,116 @@ This is implemented via `_mt5Account.CloseByEmulatedAsync(...)`.
 
 ---
 
-## Input Parameters ⬇️
+## Input Parameters
 
-| Parameter         | Type   | Description                               |
-| ----------------- | ------ | ----------------------------------------- |
-| `--profile`, `-p` | string |  Profile from `profiles.json`.             |
-| `--a`, `-a`       | ulong  |  Ticket of the **first position**.         |
-| `--b`, `-b`       | ulong  |  Ticket of the **opposite position**.      |
-| `--volume`, `-v`  | double |  Volume (lots) to close on each leg.       |
-| `--deviation`     | int    |  Max slippage in points. Default: `10`.    |
-| `--timeout-ms`    | int    |  Per‑RPC timeout in ms (default: `30000`). |
-| `--dry-run`       | flag   |  Print action without sending request.     |
+| Parameter         | Type   | Required | Description                                        |
+| ----------------- | ------ | -------- | -------------------------------------------------- |
+| `--profile`, `-p` | string | yes      | Profile from `profiles.json`.                      |
+| `--a`, `-a`       | ulong  | yes      | Ticket of the **first** position.                  |
+| `--b`, `-b`       | ulong  | yes      | Ticket of the **opposite** position.               |
+| `--volume`, `-v`  | double | yes      | Volume (lots) to close on each leg (see notes).    |
+| `--deviation`     | int    | no       | Max slippage (points). **Default:** `10`.          |
+| `--timeout-ms`    | int    | no       | RPC timeout in ms. **Default:** `30000`.           |
+| `--dry-run`       | flag   | no       | Print the action plan without sending any request. |
 
----
-
-## Output Fields ⬆️
-
-| Field       | Type   | Description                                   |
-| ----------- | ------ | --------------------------------------------- |
-| `TicketA`   | ulong  | Primary ticket (`--a`).                       |
-| `TicketB`   | ulong  | Counter ticket (`--b`).                       |
-| `Symbol`    | string | Symbol of both positions.                     |
-| `ClosedVol` | double | Volume closed on each leg.                    |
-| `Residual`  | object | If volumes differ: remaining ticket & volume. |
-| `Status`    | string | `OK` or error description.                    |
+> **Note:** This command is **text‑only**; JSON output is **not** supported by the current handler.
 
 ---
 
-## How to Use 🛠️
+## Output (text) & Exit Codes
 
-### CLI
+**Actual handler output (from your `Program.cs`):**
+
+```
+[DRY-RUN] CLOSEBY a=<A> b=<B> volume=<VOL> deviation=<DEV>
+✔ closeby (emulated) done
+```
+
+> The current implementation prints a **single success line** and does **not** include symbol/residual details.
+
+Errors (typical):
+
+```
+One or both positions not found.                (exit code 2)
+Invalid tickets/volume                          (exit code 2)
+RPC error: <broker message>                     (exit code 1)
+```
+
+**Exit codes**
+
+* `0` — success
+* `2` — validation/guard failures
+* `1` — fatal error (printed via ErrorPrinter)
+
+---
+
+## How to Use
 
 ```powershell
-# Close two opposite positions against each other (emulated)
+# Emulate CloseBy for two opposite tickets, 0.10 lots on each leg
 dotnet run -- closeby -p demo -a 123456 -b 654321 -v 0.10
 
-# JSON + custom deviation
-dotnet run -- closeby -p demo -a 111111 -b 222222 -v 0.05 --deviation 20 -o json
+# Custom deviation
+dotnet run -- closeby -p demo -a 111111 -b 222222 -v 0.05 --deviation 20
 
-# Dry-run
+# Dry‑run plan
 dotnet run -- closeby -p demo -a 111111 -b 222222 -v 0.02 --dry-run
 ```
 
-### PowerShell Shortcut (optional)
-
-Not present in your `shortcasts.ps1`. You may add one like:
-
-```powershell
-function cb { param([ulong]$a,[ulong]$b,[double]$v,[string]$p=$PF,[int]$to=$TO)
-  mt5 closeby -p $p -a $a -b $b -v $v --timeout-ms $to }
-```
-
----
-
-## When to Use ❓
-
-* You have BUY and SELL on the same symbol and want to flatten both by equal volume.
-* For scripts/algos that require a CloseBy‑like effect but broker/account does not support native CloseBy.
+> No built‑in PowerShell alias in `ps/shortcasts.ps1`. You can add:
+>
+> ```powershell
+> function cb { param([ulong]$a,[ulong]$b,[double]$v,[string]$p=$PF,[int]$to=$TO)
+>   mt5 closeby -p $p -a $a -b $b -v $v --timeout-ms $to }
+> ```
 
 ---
 
 ## Notes & Safety 🛡️
 
-* This is an **emulation**: broker processes 2 closes, not a single atomic one.
-* Symbols must match exactly.
-* If volumes are unequal, the larger position will remain open with reduced size.
+* **Non‑atomic:** two independent closes → slippage/partial failures possible.
+* **Assumptions not enforced by code:** the current handler does **not** validate same‑symbol or opposite sides; it simply attempts two partial closes via `CloseByEmulatedAsync`. Ensure tickets really are opposite legs on the same symbol.
+* **Volume clamping:** the helper is called with the requested volume; if it exceeds available, the broker will reject. Ensure volume ≤ min(position volumes).
+* **Lot limits:** requested volume must comply with **min/step/max**. See **[symbol limits](../Market_Data/Limits.md)**.
+* **Visibility:** some brokers require the symbol to be visible — best‑effort ensure visibility before closing.
 
 ---
 
-## Code Reference 🧩
+## Method Signatures (quick ref)
 
 ```csharp
-     var cbATicketOpt = new Option<ulong>(new[] { "--a", "-a" }, "Ticket of the first position") { IsRequired = true };
-var cbBTicketOpt = new Option<ulong>(new[] { "--b", "-b" }, "Ticket of the opposite position") { IsRequired = true };
-var cbVolOpt     = new Option<double>(new[] { "--volume", "-v" }, "Volume (lots) to close on each leg") { IsRequired = true };
-var cbDevOpt     = new Option<int>(new[] { "--deviation" }, () => 10, "Max slippage in points");
+// Emulated CloseBy (actual signature in your MT5Account.cs)
+public Task CloseByEmulatedAsync(
+    ulong ticketA,
+    ulong ticketB,
+    double volume,
+    int deviation,
+    CancellationToken ct);
 
-var closeby = new Command("closeby", "Close a position by the opposite position (emulated with two closes)");
-closeby.AddOption(profileOpt);
-closeby.AddOption(cbATicketOpt);
-closeby.AddOption(cbBTicketOpt);
-closeby.AddOption(cbVolOpt);
-closeby.AddOption(cbDevOpt);
-closeby.AddOption(timeoutOpt);
-closeby.AddOption(dryRunOpt);
+// Also used around it in other commands (not strictly required here):
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
 
+public Task<(double min, double step, double max)> GetVolumeConstraintsAsync(
+    string symbol,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+public Task EnsureSymbolVisibleAsync(
+    string symbol,
+    TimeSpan? maxWait = null,
+    TimeSpan? pollInterval = null,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
+
+---
+
+## Code Reference (actual call site)
+
+```csharp
 closeby.SetHandler(async (InvocationContext ctx) =>
 {
     var profile   = ctx.ParseResult.GetValueForOption(profileOpt)!;
@@ -129,4 +149,29 @@ closeby.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
+            using var opCts = StartOpCts();
+
+            await CallWithRetry(ct => _mt5Account.CloseByEmulatedAsync(a, b, volume, deviation, ct), opCts.Token);
+
+            Console.WriteLine("✔ closeby (emulated) done");
+        }
+        catch (Exception ex)
+        {
+            ErrorPrinter.Print(_logger, ex, IsDetailed());
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            try { await _mt5Account.DisconnectAsync(); } catch { /* ignore */ }
+        }
+    }
+});
 ```
+
+---
+
+## See also
+
+* **[`close.partial`](./Close.partial.md)** — close an exact lot amount per position
+* **[`close.percent`](./Close.percent.md)** — close a percentage of current volume
+* **[`symbol limits`](../Market_Data/Limits.md)** — min/step/max lot constraints
