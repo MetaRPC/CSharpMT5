@@ -54,12 +54,11 @@ dotnet run -- trail.stop -p demo -t 123456
 
 ```csharp
 // Preferred, if implemented in service layer
-public bool StopTrailing(ulong ticket);
-
-// Or local Program helper
-public static bool StopTrailingLocal(ulong ticket);
+public void StopTrailing(ulong ticket)
+    {
+        if (_activeTrails.TryRemove(ticket, out var cts))
+        
 ```
-
 ---
 
 ## Code Reference 🧩
