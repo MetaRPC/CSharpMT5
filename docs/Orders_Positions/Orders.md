@@ -11,7 +11,7 @@ public Task<OpenedOrdersTicketsData> OpenedOrdersTicketsAsync(
     CancellationToken cancellationToken = default);
 ```
 
-## Input Parameters
+## Input Parameters ⬇️
 
 | Parameter         | Type   | Required | Description                                |
 | ----------------- | ------ | -------- | ------------------------------------------ |
@@ -21,7 +21,7 @@ public Task<OpenedOrdersTicketsData> OpenedOrdersTicketsAsync(
 
 ---
 
-## Output
+## Output ⬆️
 
 ### Text mode
 
@@ -89,7 +89,7 @@ message OpenedOrdersTicketsData {
 
 ---
 
-## Code Reference (aligned with your handler)
+## Code Reference 🧩
 
 ```csharp
 var orders = new Command("orders", "List open orders and positions tickets");
