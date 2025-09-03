@@ -2,8 +2,6 @@
 
 Closes a **percentage of a position’s volume** by ticket. Great for scaling‑out with rules like “take 50% at +1R, trail the rest”.
 
-> `close.percent` is the base command used by the alias [`close.half`](./Close.half.md).
-
 ---
 ## Method Signatures
 
