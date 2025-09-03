@@ -63,8 +63,6 @@ public void StopTrailing(ulong ticket)
 
 ## Code Reference 🧩
 
-> Implementation is local to your CLI (Program). If you keep a registry of active trailers (e.g., `ConcurrentDictionary<ulong, CancellationTokenSource>`), stopping is simply a `Cancel()` + removal.
-
 ```csharp
 var trTicketOpt = new Option<ulong>(new[] { "--ticket", "-t" }, "Position ticket") { IsRequired = true };
 
