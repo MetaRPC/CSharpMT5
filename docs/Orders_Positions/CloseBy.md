@@ -12,7 +12,7 @@ Closes **two opposite positions** on the **same symbol** by emulating MT5 *Close
 
 ---
 
-## Input Parameters
+## Input Parameters ⬇️
 
 | Parameter         | Type   | Required | Description                                        |
 | ----------------- | ------ | -------- | -------------------------------------------------- |
@@ -28,7 +28,7 @@ Closes **two opposite positions** on the **same symbol** by emulating MT5 *Close
 
 ---
 
-## Output (text) & Exit Codes
+## Output ⬆️
 
 **Actual handler output (from your `Program.cs`):**
 
@@ -87,7 +87,7 @@ dotnet run -- closeby -p demo -a 111111 -b 222222 -v 0.02 --dry-run
 
 ---
 
-## Method Signatures (quick ref)
+## Method Signatures
 
 ```csharp
 // Emulated CloseBy (actual signature in your MT5Account.cs)
@@ -119,7 +119,7 @@ public Task EnsureSymbolVisibleAsync(
 
 ---
 
-## Code Reference (actual call site)
+## Code Reference 🧩
 
 ```csharp
 closeby.SetHandler(async (InvocationContext ctx) =>
