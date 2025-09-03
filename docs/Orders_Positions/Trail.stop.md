@@ -1,13 +1,17 @@
-# `trail.stop` 🛑
+# Trail Stop (`trail.stop`) 🛑
 
-Stops a local trailing stop that was previously started with [`trail.start`](../trail_start_doc).
+Stops a **local trailing stop** previously started with [`trail.start`](./Trail.start.md).
+
+> This cancels the **client‑side** trailing loop for a given position. No server RPC is required.
+
+Alias: `trstop`
 
 ---
 
-## Purpose 
+## Purpose
 
-* Cancel an active trailing stop logic for a specific position.
-* Useful when you no longer want the system to automatically move Stop Loss.
+* Cancel the active trailing logic for a **specific position ticket**.
+* Useful when you no longer want SL to auto‑adjust.
 
 ---
 
@@ -17,44 +21,42 @@ Stops a local trailing stop that was previously started with [`trail.start`](../
 dotnet run -- trail.stop -p demo -t 123456
 ```
 
-### Options ⚙️
+---
 
-| Option      | Alias | Description                       |
-| ----------- | ----- | --------------------------------- |
-| `--profile` | `-p`  | Profile name (from profiles.json) |
-| `--ticket`  | `-t`  | Position ticket (numeric ID)      |
+## Options ⚙️
+
+| Option      | Alias | Required | Description                          |
+| ----------- | ----- | -------- | ------------------------------------ |
+| `--profile` | `-p`  | yes      | Profile name (from `profiles.json`). |
+| `--ticket`  | `-t`  | yes      | Position ticket (numeric ID).        |
+
+> Tip: No `--timeout-ms` is needed; stopping is **local**.
 
 ---
 
-## Example ✅
+## Output ✅
 
-```powershell
-dotnet run -- trail.stop -p demo -t 123456
-```
-
-Output:
-
-```
-✔ trailing stopped for #123456
-```
+* Success: `✔ trailing stopped for #<ticket>`
+* If no active trailer is found: `No active trailing for #<ticket>` (exit code `2`).
 
 ---
 
-## Shortcuts ⌨️
+## Notes & Safety 🛡️
 
-In PowerShell (`ps/shortcasts.ps1`):
-
-```powershell
-# no direct alias, but can be scripted if needed
-mt5 trail.stop -p $PF -t <ticket>
-```
+* Trailing is **client‑side** — it runs only while your app/CLI is running.
+* Stopping a trailer **does not modify** SL/TP on the server; it only stops further automatic updates.
+* You can manually adjust SL/TP afterwards using **[Modify](./Modify.md)** or **[Position.modify.points](./Position.modify.points.md)**.
 
 ---
 
-## Code Reference 🧩
+## Code Reference (concise) 💻
+
+> Implementation is local to your CLI (Program). If you keep a registry of active trailers (e.g., `ConcurrentDictionary<ulong, CancellationTokenSource>`), stopping is simply a `Cancel()` + removal.
 
 ```csharp
-var trailStop = new Command("trail.stop", "Stop local trailing stop");
+var trTicketOpt = new Option<ulong>(new[] { "--ticket", "-t" }, "Position ticket") { IsRequired = true };
+
+var trailStop = new Command("trail.stop", "Stop local trailing stop for a position");
 trailStop.AddOption(profileOpt);
 trailStop.AddOption(trTicketOpt);
 
@@ -62,9 +64,33 @@ trailStop.SetHandler((string profile, ulong ticket) =>
 {
     Validators.EnsureProfile(profile);
     Validators.EnsureTicket(ticket);
-    _mt5Account.StopTrailing(ticket);
-    Console.WriteLine($"✔ trailing stopped for #{ticket}");
+
+    if (StopTrailingLocal(ticket))
+        Console.WriteLine($"\u2714 trailing stopped for #{ticket}");
+    else
+    {
+        Console.WriteLine($"No active trailing for #{ticket}");
+        Environment.ExitCode = 2;
+    }
 }, profileOpt, trTicketOpt);
 
-root.AddCommand(trailStop);
+// Helper in Program:
+static readonly ConcurrentDictionary<ulong, CancellationTokenSource> _trailSessions = new();
+static bool StopTrailingLocal(ulong ticket)
+{
+    return _trailSessions.TryRemove(ticket, out var cts) && TryCancel(cts);
+}
+static bool TryCancel(CancellationTokenSource cts)
+{
+    try { cts.Cancel(); return true; } catch { return false; }
+}
 ```
+
+---
+
+## See also
+
+* **[Trail.start](./Trail.start.md)** — start a local trailing session
+* **[Modify](./Modify.md)** — set SL/TP by absolute price
+* **[Position.modify.points](./Position.modify.points.md)** — set SL/TP by distance in points
+* **[Subscribe](../Streaming/Subscribe.md)** — streaming quotes used by trailing
