@@ -6,6 +6,27 @@ Places a **market BUY** order on MT5 for the selected symbol and volume.
 Supports optional **SL/TP**, **deviation**, **timeout**, **output mode**, and **dry‑run**.
 
 ---
+```csharp
+// Ensure symbol visible (best-effort)
+public Task EnsureSymbolVisibleAsync(
+    string symbol,
+    TimeSpan? maxWait = null,
+    TimeSpan? pollInterval = null,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+// Market order (используется enum-тип BUY/SELL; price=null для market)
+public Task<ulong> SendMarketOrderAsync(
+    string symbol,
+    TMT5_ENUM_ORDER_TYPE type,   // e.g., Bmt5OrderTypeBuy
+    double? price,               // null = market
+    double volume,
+    int deviation,
+    double? stopLoss = null,
+    double? takeProfit = null,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
 
 ## Input Parameters ⬇️
 
@@ -74,7 +95,7 @@ b -s EURUSD -v 0.10 --sl 1.0950 --tp 1.1050 -dev 10
 
 ---
 
-## Code Reference (exact) 🧩
+## Code Reference🧩
 
 ```csharp
 var buy = new Command("buy", "Market buy");
