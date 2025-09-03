@@ -1,70 +1,191 @@
-# History Export (`history.export`) 📤
+# Sell (`sell`) 📉
 
-## What it Does
+Sends a **market SELL** order for the selected symbol and volume.
 
-Exports **trading history** for the last *N* days to a **file** in either **CSV** or **JSON** format.
-Under the hood calls `_mt5Account.ExportHistoryAsync(days, symbol, format, ct)` and writes the returned payload to disk.
+Alias: `s`
 
 ---
-## Method Signature
-
-```csharp
-public Task<string> ExportHistoryAsync(
-    int days,
-    string? symbol,
-    string format,
-    CancellationToken ct);
-```
 
 ## Input Parameters ⬇️
 
-| Parameter       | Type   | Required | Description                                                            |
-| --------------- | ------ | -------- | ---------------------------------------------------------------------- |
-| `--profile, -p` | string | yes      | Profile to use (from `profiles.json`).                                 |
-| `--days, -d`    | int    | yes      | How many days back to fetch. Must be `> 0`.                            |
-| `--symbol, -s`  | string | no       | Filter by symbol (e.g. `EURUSD`). If omitted, exports **all** symbols. |
-| `--to`          | string | no       | Output format: `csv` (default) or `json`.                              |
-| `--file, -f`    | string | yes      | **Output path** to write to (e.g. `C:\\temp\\hist.csv`).               |
-| `--timeout-ms`  | int    | no       | Per-RPC timeout in milliseconds (default: `30000`).                    |
-
-Alias: `hexport`.
-
-> Format validation: the command enforces `--to csv|json` and fails otherwise.
+| Parameter         | Type    | Required | Description                                                     |
+| ----------------- | ------- | -------- | --------------------------------------------------------------- |
+| `--profile`, `-p` | string  | yes      | Profile from `profiles.json`.                                   |
+| `--symbol`, `-s`  | string  | no       | Symbol (e.g., `EURUSD`). Defaults to profile’s `DefaultSymbol`. |
+| `--volume`, `-v`  | double  | yes      | Volume in lots.                                                 |
+| `--sl`            | double? | no       | Stop Loss **price** (absolute).                                 |
+| `--tp`            | double? | no       | Take Profit **price** (absolute).                               |
+| `--deviation`     | int     | no       | Max slippage in **points** (default: `10`).                     |
+| `--output`, `-o`  | string  | no       | `text` (default) or `json`.                                     |
+| `--timeout-ms`    | int     | no       | Per‑RPC timeout in ms (default: `30000`).                       |
+| `--dry-run`       | flag    | no       | Print intended action without sending order.                    |
 
 ---
 
 ## Output ⬆️
 
-* Writes the exported content to the path given by `--file`.
-* Prints a one-line success message: `✔ history.export written to: <file>`
-* **Exit codes**:
+**Text (logger):**
 
-  * `0` — success;
-  * `2` — unsupported format/operation (e.g., server replied `NotSupportedException`);
-  * `1` — other errors (printed via `ErrorPrinter`).
+```
+SELL done: ticket=12345678
+```
+
+**JSON:**
+
+```json
+{
+  "Side": "SELL",
+  "Symbol": "EURUSD",
+  "Volume": 0.1,
+  "Deviation": 10,
+  "SL": 1.1000,
+  "TP": 1.0800,
+  "Ticket": 12345678
+}
+```
+
+Exit codes: `0` success; `1` fatal error.
 
 ---
 
-## How to Use 🛠️
-
-### CLI Examples
+## How to Use
 
 ```powershell
-# Last 7 days, all symbols, CSV to file
-dotnet run -- history.export -p demo -d 7 --to csv -f C:\\temp\\hist.csv --timeout-ms 60000
+# Basic sell (text)
+dotnet run -- sell -p demo -s EURUSD -v 0.10
 
-# Last 30 days, only EURUSD, JSON
-dotnet run -- history.export -p demo -d 30 -s EURUSD --to json -f C:\\temp\\eurusd-history.json
+# With SL/TP + JSON
+dotnet run -- sell -p demo -s EURUSD -v 0.10 --sl 1.1000 --tp 1.0800 -o json
+
+# Dry‑run
+dotnet run -- sell -p demo -s EURUSD -v 0.10 --dry-run
 ```
+
+Shortcast (from `ps/shortcasts.ps1`):
+
+```powershell
+s -s EURUSD -v 0.10 -sl 1.1000 -tp 1.0800
+# → mt5 sell -p demo -s EURUSD -v 0.10 --sl 1.1000 --tp 1.0800 --timeout-ms 90000
+```
+
+---
+
+## Notes & Safety 🛡️
+
+* Best‑effort **EnsureSymbolVisibleAsync** (\~3s) before sending the order.
+* `--sl`/`--tp` are **absolute prices** and must respect broker **StopsLevel** / min distance.
+* Use `--deviation` to control tolerance in volatile markets.
+* Check **lot min/step/max** before trading (see **[Limits](../Market_Data/Limits.md)**).
+
+---
+
+## Method Signatures
+
+```csharp
+public Task EnsureSymbolVisibleAsync(
+    string symbol,
+    TimeSpan? maxWait = null,
+    TimeSpan? pollInterval = null,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+public Task<ulong> SendMarketOrderAsync(
+    string symbol,
+    bool isBuy,
+    double volume,
+    int deviation,
+    double? stopLoss = null,
+    double? takeProfit = null,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
+
 ---
 
 ## Code Reference 🧩
 
 ```csharp
-// Parameters already validated & connection established by caller flow
-var data = await _mt5Account.ExportHistoryAsync(days, symbol, to, CancellationToken.None);
-System.IO.File.WriteAllText(file, data);
-Console.WriteLine($"\u2714 history.export written to: {file}");
+var sell = new Command("sell", "Market sell");
+sell.AddAlias("s");
+
+sell.AddOption(profileOpt);
+sell.AddOption(symbolOpt);
+sell.AddOption(volumeOpt);
+sell.AddOption(slOpt);
+sell.AddOption(tpOpt);
+sell.AddOption(devOpt);
+sell.AddOption(outputOpt);
+sell.AddOption(timeoutOpt);
+sell.AddOption(dryRunOpt);
+
+sell.SetHandler(async (InvocationContext ctx) =>
+{
+    var profile   = ctx.ParseResult.GetValueForOption(profileOpt)!;
+    var symbolV   = ctx.ParseResult.GetValueForOption(symbolOpt);
+    var volume    = ctx.ParseResult.GetValueForOption(volumeOpt);
+    var sl        = ctx.ParseResult.GetValueForOption(slOpt);
+    var tp        = ctx.ParseResult.GetValueForOption(tpOpt);
+    var deviation = ctx.ParseResult.GetValueForOption(devOpt);
+    var output    = ctx.ParseResult.GetValueForOption(outputOpt) ?? "text";
+    var timeoutMs = ctx.ParseResult.GetValueForOption(timeoutOpt);
+    var dryRun    = ctx.ParseResult.GetValueForOption(dryRunOpt);
+
+    Validators.EnsureProfile(profile);
+    Validators.EnsureVolume(volume);
+    Validators.EnsureDeviation(deviation);
+
+    var s = Validators.EnsureSymbol(symbolV ?? GetOptions().DefaultSymbol);
+
+    using (UseOpTimeout(timeoutMs))
+    using (_logger.BeginScope("Cmd:SELL Profile:{Profile}", profile))
+    using (_logger.BeginScope("Symbol:{Symbol}", s))
+    using (_logger.BeginScope("OrderParams Vol:{Vol} Dev:{Dev} SL:{SL} TP:{TP}", volume, deviation, sl, tp))
+    {
+        if (dryRun)
+        {
+            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine(JsonSerializer.Serialize(new { DryRun = true, Side = "SELL", Symbol = s, Volume = volume, Deviation = deviation, SL = sl, TP = tp }));
+            }
+            else
+            {
+                Console.WriteLine($"[DRY-RUN] SELL {s} vol={volume} dev={deviation} SL={sl} TP={tp}");
+            }
+            return;
+        }
+
+        try
+        {
+            await ConnectAsync();
+
+            // Best‑effort visibility (non‑fatal if fails)
+            try { await _mt5Account.EnsureSymbolVisibleAsync(s, TimeSpan.FromSeconds(3)); } catch { }
+
+            // Send SELL
+            var ticket = await _mt5Account.SendMarketOrderAsync(s, isBuy: false, volume: volume, deviation: deviation, stopLoss: sl, takeProfit: tp, cancellationToken: CancellationToken.None);
+
+            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
+                Console.WriteLine(JsonSerializer.Serialize(new { Side = "SELL", Symbol = s, Volume = volume, Deviation = deviation, SL = sl, TP = tp, Ticket = ticket }));
+            else
+                _logger.LogInformation("SELL done: ticket={Ticket}", ticket);
+        }
+        catch (Exception ex)
+        {
+            ErrorPrinter.Print(_logger, ex, IsDetailed());
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            try { await _mt5Account.DisconnectAsync(); } catch { }
+        }
+    }
+});
 ```
 
+---
 
+## See also
+
+* **[Buy](../Orders_Positions/Buy.md)** — market BUY
+* **[Limits](../Market_Data/Limits.md)** — lot min/step/max
+* **[Quote](../Market_Data/Quote.md)** — quick snapshot price
