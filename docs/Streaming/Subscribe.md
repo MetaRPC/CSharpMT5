@@ -83,7 +83,7 @@ st 15 EURUSD   # expands to: mt5 stream -p demo --seconds 15 -s EURUSD --timeout
 
 ---
 
-## Method signatures used inside 📘
+## Method signatures
 
 ```csharp
 // Ensure a symbol is visible in the terminal (best‑effort wait)
