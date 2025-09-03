@@ -40,7 +40,7 @@ SYMBOL  #TICKET  vol=V  open=PRICE  pnl=PROFIT
 
 ---
 
-## Method Signature (MT5Account)
+## Method Signature
 
 ```csharp
 public Task<OpenedOrdersData> OpenedOrdersAsync(
