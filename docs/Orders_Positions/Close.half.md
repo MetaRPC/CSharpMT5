@@ -1,53 +1,50 @@
 # Close Half (`close.half`) ✂️
 
-## What it Does
-
 Closes **half of a position’s volume** by ticket.
-Convenient for partial profit‑taking while keeping the other half running.
+
+> This command is a **thin alias** for **[`close.percent`](./Close.percent.md)** with `--pct 50`. All validation, printing, and exit codes are inherited from `close.percent`.
 
 ---
 
-## Input Parameters ⬇️
+## Input Parameters
 
-| Parameter         | Type   | Description                                    |
-| ----------------- | ------ | ---------------------------------------------- |
-| `--profile`, `-p` | string | Profile from `profiles.json`.                  |
-| `--ticket`, `-t`  | ulong  | Position ticket to partially close.            |
-| `--deviation`     | int    | Max slippage (points). Default: `10`.          |
-| `--output`, `-o`  | string | `text` (default) or `json`.                    |
-| `--timeout-ms`    | int    | RPC timeout in ms (default: 30000).            |
-| `--dry-run`       | flag   | Print intended action without sending request. |
+| Parameter         | Type   | Required | Description                           |
+| ----------------- | ------ | -------- | ------------------------------------- |
+| `--profile`, `-p` | string | yes      | Profile from `profiles.json`.         |
+| `--ticket`, `-t`  | ulong  | yes      | Position ticket to partially close.   |
+| `--deviation`     | int    | no       | Max slippage (points). Default: `10`. |
+| `--timeout-ms`    | int    | no       | RPC timeout in ms (default: `30000`). |
 
----
-
-## Output Fields ⬆️
-
-| Field       | Type   | Description                       |
-| ----------- | ------ | --------------------------------- |
-| `Ticket`    | ulong  | Original position ticket.         |
-| `Closed`    | double | Volume closed (half of original). |
-| `Remaining` | double | Volume still open.                |
-| `Price`     | double | Execution price of the close.     |
-| `Status`    | string | `OK` or error description.        |
+> **Note:** `close.half` does **not** accept `--output` or `--dry-run` directly. The handler delegates to `close.percent --pct 50` and only forwards the options listed above.
 
 ---
 
-## How to Use 🛠️
+## Output & Exit Codes
 
-### CLI
+Output format and exit codes are the **same as** in [`close.percent`](./Close.percent.md).
+
+During execution you may see an info line:
+
+```
+(alias) close.half -> close.percent --pct 50
+```
+
+---
+
+## How to Use
 
 ```powershell
 # Close half of position 123456
 dotnet run -- close.half -p demo -t 123456
 
-# With custom slippage and JSON output
-dotnet run -- close.half -p demo -t 123456 --deviation 20 -o json
+# With custom slippage
+dotnet run -- close.half -p demo -t 123456 --deviation 20
 
-# Dry-run (no request sent)
-dotnet run -- close.half -p demo -t 123456 --dry-run
+# With custom timeout
+dotnet run -- close.half -p demo -t 123456 --timeout-ms 60000
 ```
 
-### PowerShell Shortcuts (from `shortcasts.ps1`)
+### PowerShell shortcut (from `ps/shortcasts.ps1`)
 
 ```powershell
 . .\ps\shortcasts.ps1
@@ -58,60 +55,68 @@ ch -t 123456
 
 ---
 
-## When to Use ❓
+## Notes & Safety
 
-* To lock in profit on half the trade while keeping exposure.
-* Common in scaling‑out strategies (e.g., close 50% at +1R, let rest run).
-* Useful for testing margin/risk effect of partial closes.
-
----
-
-## Notes & Safety 🛡️
-
-* If the position volume is not evenly divisible by 2, the code rounds to nearest lot step (check `symbol limits`).
-* Broker may reject very small residual lots — always confirm `MinLot` and `LotStep`.
-* `--deviation` is critical for fast markets; widen if you get rejections.
+* Real execution is performed by [`close.percent`](./Close.percent.md). If half-volume doesn’t align with the lot step, rounding is handled by the base command.
+* Brokers may reject too-small residual lots — check **[symbol limits](../Market_Data/Limits.md)**.
+* `--deviation` matters in fast markets; widen if you see slippage rejections.
 
 ---
 
-## Code Reference 🧩
+## Method Signatures (quick ref)
+
+> `close.half` delegates to `close.percent`, which in turn uses the underlying MT5Account RPCs below. Depending on build, either of the close helpers may be used.
 
 ```csharp
-var chTicketOpt = new Option<ulong>(new[] { "--ticket", "-t" }, "Position ticket") { IsRequired = true };
+// Read open positions to resolve symbol & current volume
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
 
-var closeHalf = new Command("close.half", "Close half of a position by ticket");
-closeHalf.AddAlias("ch");
+// Best‑effort: ensure the symbol is visible before trading
+public Task EnsureSymbolVisibleAsync(
+    string symbol,
+    TimeSpan? maxWait = null,
+    TimeSpan? pollInterval = null,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
 
-closeHalf.AddOption(profileOpt);
-closeHalf.AddOption(chTicketOpt);
-closeHalf.AddOption(cpDevOpt);
-closeHalf.AddOption(timeoutOpt);
-closeHalf.AddOption(dryRunOpt);
+// Partial close (variant A — explicit deviation)
+public Task ClosePositionPartialAsync(
+    ulong ticket,
+    double volume,
+    int deviation,
+    CancellationToken cancellationToken);
 
-closeHalf.SetHandler(async (InvocationContext ctx) =>
-{
-    var profile   = ctx.ParseResult.GetValueForOption(profileOpt)!;
-    var ticket    = ctx.ParseResult.GetValueForOption(chTicketOpt);
-    var deviation = ctx.ParseResult.GetValueForOption(cpDevOpt);
-    var timeoutMs = ctx.ParseResult.GetValueForOption(timeoutOpt);
-    var dryRun    = ctx.ParseResult.GetValueForOption(dryRunOpt);
-
-    ctx.Console.WriteLine("(alias) close.half -> close.percent --pct 50");
-
-    await closePercent.InvokeAsync(new[]
-    {
-        "--profile",    profile,
-        "--ticket",     ticket.ToString(System.Globalization.CultureInfo.InvariantCulture),
-        "--pct",        "50",
-        "--deviation",  deviation.ToString(System.Globalization.CultureInfo.InvariantCulture),
-        "--timeout-ms", timeoutMs.ToString(System.Globalization.CultureInfo.InvariantCulture),
-        // if desired, we throw dry-run:
-        // dryRun ? "--dry-run" : null
-    }
-        // if you add conditional elements, finish .Where(s => s != null)!.ToArray()
-    );
-});
-
-root.AddCommand(closePercent);
-root.AddCommand(closeHalf);
+// Partial close (variant B — by symbol; deviation handled internally/defaults)
+public Task CloseOrderByTicketAsync(
+    ulong ticket,
+    string symbol,
+    double volume,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
 ```
+
+## Alias wiring (illustrative)
+
+```csharp
+ctx.Console.WriteLine("(alias) close.half -> close.percent --pct 50");
+
+await closePercent.InvokeAsync(new[]
+{
+    "--profile",    profile,
+    "--ticket",     ticket.ToString(CultureInfo.InvariantCulture),
+    "--pct",        "50",
+    "--deviation",  deviation.ToString(CultureInfo.InvariantCulture),
+    "--timeout-ms", timeoutMs.ToString(CultureInfo.InvariantCulture)
+    // Note: --dry-run and --output are NOT forwarded in this alias
+});
+```
+
+---
+
+## See also
+
+* **[`close.percent`](./Close.percent.md)** — base command for partial closes
+* **[`symbol limits`](../Market_Data/Limits.md)** — min/step/max lot constraints
