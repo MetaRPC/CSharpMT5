@@ -1,7 +1,5 @@
 # Positions (`positions`) 📈
 
-## What it Does
-
 Lists all **active (open) positions** for the selected profile/account.
 
 Alias: `pos`
@@ -10,17 +8,17 @@ Alias: `pos`
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Description                                |
-| ----------------- | ------ | ------------------------------------------ |
-| `--profile`, `-p` | string | Profile from `profiles.json`.              |
-| `--output`, `-o`  | string | Output format: `text` (default) or `json`. |
-| `--timeout-ms`    | int    | RPC timeout in ms (default: `30000`).      |
+| Parameter         | Type   | Required | Description                                |
+| ----------------- | ------ | -------- | ------------------------------------------ |
+| `--profile`, `-p` | string | yes      | Profile from `profiles.json`.              |
+| `--output`, `-o`  | string | no       | Output format: `text` (default) or `json`. |
+| `--timeout-ms`    | int    | no       | RPC timeout in ms (default: `30000`).      |
 
 ---
 
 ## Output ⬆️
 
-### Text mode
+**Text**
 
 ```
 Positions: N
@@ -28,76 +26,107 @@ SYMBOL  #TICKET  vol=V  open=PRICE  pnl=PROFIT
 ...
 ```
 
-* Prints up to **10** positions; if more exist, shows `... and K more`.
+\*Prints up to **10** positions; if more exist, shows `... and K more`.\*
 
-### JSON mode
-
-The raw structure from `_mt5Account.OpenedOrdersAsync()` (field `PositionInfos[]`). Example shape:
+**JSON**
 
 ```json
 {
   "PositionInfos": [
-    {
-      "Ticket": 123456,
-      "Symbol": "EURUSD",
-      "Volume": 0.10,
-      "PriceOpen": 1.0950,
-      "Profit": 12.34
-    }
+    { "Ticket": 123456, "Symbol": "EURUSD", "Volume": 0.10, "PriceOpen": 1.0950, "Profit": 12.34 }
   ]
 }
 ```
 
 ---
 
-## How to Use 🛠️
+## Method Signature (MT5Account)
 
-### CLI
+```csharp
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
+
+---
+
+## How to Use
 
 ```powershell
-# Default text
+# Text
 dotnet run -- positions -p demo
 
-# JSON output
+# JSON
 dotnet run -- positions -p demo -o json
 ```
 
-### PowerShell Shortcuts (from `ps/shortcasts.ps1`)
+Shortcasts (from `ps/shortcasts.ps1`):
 
 ```powershell
-. .\ps\shortcasts.ps1
-use-pf demo
-positions   # expands to: mt5 positions -p demo --timeout-ms 90000
+positions   # → mt5 positions -p demo --timeout-ms 90000
 pos         # alias to the same
+```
+
+---
+
+## Code Reference 🧩
+
+```csharp
+var positions = new Command("positions", "List active positions");
+positions.AddAlias("pos");
+positions.AddOption(profileOpt);
+positions.AddOption(outputOpt);
+positions.AddOption(timeoutOpt);
+
+positions.SetHandler(async (string profile, string output, int timeoutMs) =>
+{
+    Validators.EnsureProfile(profile);
+
+    using (UseOpTimeout(timeoutMs))
+    using (_logger.BeginScope("Cmd:POSITIONS Profile:{Profile}", profile))
+    {
+        try
+        {
+            await ConnectAsync();
+            var opened = await _mt5Account.OpenedOrdersAsync();
+            var list = opened.PositionInfos;
+
+            if (string.Equals(output, "json", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine(ToJson(new { PositionInfos = list }));
+                return;
+            }
+
+            if (list.Count == 0)
+            {
+                Console.WriteLine("No positions.");
+                return;
+            }
+
+            Console.WriteLine($"Positions: {list.Count}");
+            foreach (var p in list.Take(10))
+                Console.WriteLine($"{p.Symbol}  #{p.Ticket}  vol={p.Volume}  open={p.PriceOpen}  pnl={p.Profit}");
+            if (list.Count > 10) Console.WriteLine($"... and {list.Count - 10} more");
+        }
+        catch (Exception ex)
+        {
+            ErrorPrinter.Print(_logger, ex, IsDetailed());
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            try { await _mt5Account.DisconnectAsync(); } catch { }
+        }
+    }
+}, profileOpt, outputOpt, timeoutOpt);
 ```
 
 ---
 
 ## Notes & Safety 🛡️
 
-* Designed for **quick overview**; use `ticket show` for full details of a specific position.
-* PnL shown is a snapshot; values may change between calls.
-* If the connection is down or there are no positions, the list may be empty.
+* This is a **quick overview**; use **[Ticket\_Show.md](../Misc/Ticket_Show.md)** for detailed info on a specific ticket.
+* PnL shown is a snapshot and may change between calls.
 
----
-
-## Code Reference (to be filled by you) 🧩
-
-```csharp
-var positions = new Command("positions", "List active positions");
-    positions.AddAlias("pos");
-
-    positions.AddOption(profileOpt);
-    positions.AddOption(outputOpt);
-    positions.SetHandler(async (string profile, string output, int timeoutMs) =>
-    {
-        Validators.EnsureProfile(profile);
-        _selectedProfile = profile;
-
-        using (UseOpTimeout(timeoutMs))
-        using (_logger.BeginScope("Cmd:POSITIONS Profile:{Profile}", profile))
-        {
-            try
-            {
-                await ConnectAsync();
-```
+**See also:** **[Orders.md](../Orders_Positions/Orders.md)**, **[Ticket\_Show.md](../Misc/Ticket_Show.md)**
