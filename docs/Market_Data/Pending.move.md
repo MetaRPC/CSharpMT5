@@ -36,7 +36,7 @@ public Task MovePendingByPointsAsync(
 
 ---
 
-## Output ⬆️ (text)
+## Output ⬆️
 
 * If the ticket is not found: `Pending order #<ticket> not found.` (exit code `2`).
 * Dry‑run: Pre-calculation of old/new prices (Price/PriceTriggerStopLimit, if available).
