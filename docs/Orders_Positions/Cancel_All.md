@@ -6,7 +6,7 @@ Cancels **multiple pending orders** in one go. Optional filters by **symbol** an
 
 ---
 
-## Method Signatures 🧩
+## Method Signatures 
 
 ```csharp
 // Snapshot with detailed items (needed for type filtering)
@@ -105,7 +105,7 @@ ca -s XAUUSD -type stop   # → mt5 cancel.all -p demo --symbol XAUUSD --type st
 
 ---
 
-## Code Reference (illustrative) 🧩
+## Code Reference 🧩
 
 ```csharp
 var pendSymbolOpt = new Option<string?>(new[] { "--symbol", "-s" }, "Filter by symbol (optional)");
