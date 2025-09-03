@@ -31,7 +31,6 @@ _logger.LogInformation("Equity: {0}", summary.AccountEquity);
 // Preconditions: connection is already established.
 
 using var opCts = new CancellationTokenSource(TimeSpan.FromSeconds(3));
-var summary = await CallWithRetry(
     ct => _mt5Account.AccountSummaryAsync(deadline: null, cancellationToken: ct),
     opCts.Token
 );
