@@ -82,19 +82,42 @@ dotnet run -- pending.modify -p demo -t 123456 --price 1.1000 --dry-run
 ```csharp
 // (optional) ensure visibility
 if (!string.IsNullOrWhiteSpace(symbol))
-    await _mt5Account.EnsureSymbolVisibleAsync(symbol, TimeSpan.FromSeconds(3));
+{
+    using var visCts = new CancellationTokenSource(TimeSpan.FromSeconds(3));
+    try
+    {
+        await _mt5Account.EnsureSymbolVisibleAsync(
+            symbol,
+            maxWait: TimeSpan.FromSeconds(3),
+            cancellationToken: visCts.Token);
+    }
+    catch (Exception ex) when (ex is not OperationCanceledException)
+    {
+        Console.WriteLine($"WARN: ensure-visible failed: {ex.Message}");
+    }
+}
 
-// apply changes
+// Build cancellation with command timeout
+using var cts = new CancellationTokenSource(TimeSpan.FromMilliseconds(timeoutMs ?? 30000));
+var ct = cts.Token;
+
+// Guard: at least one change must be provided
+if (price is null && stop is null && limit is null && sl is null && tp is null && tif is null && expire is null)
+    throw new ArgumentException("No changes specified. Provide at least one flag.");
+
+// Apply changes
 var ok = await _mt5Account.ModifyPendingOrderAsync(
     ticket: ticket,
-    type: typeStr,
+    type: typeStr,   // optional; used only to validate invariants client-side
     price: price,
     stop: stop,
     limit: limit,
     sl: sl,
     tp: tp,
-    tif: tifStr,
+    tif: tifStr,     // "GTC"|"DAY"|"GTD" (SPECIFIED/SPECIFIED_DAY also accepted)
     expire: expire,
-    ct: CancellationToken.None
-);
+    ct: ct);
+
+Console.WriteLine(ok ? "✓ pending.modify done" : "⚠ pending.modify returned false");
+
 ```
