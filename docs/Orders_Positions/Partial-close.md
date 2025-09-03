@@ -9,7 +9,7 @@ Closes **part** of an open position by ticket. You can specify either:
 
 ---
 
-## Input Parameters
+## Input Parameters ⬇️
 
 | Parameter         | Type    | Required | Description                                        |
 | ----------------- | ------- | -------- | -------------------------------------------------- |
@@ -24,7 +24,7 @@ Closes **part** of an open position by ticket. You can specify either:
 
 ---
 
-## Output (text) & Exit Codes
+## Output (text) & Exit Codes ⬆️
 
 Examples:
 
@@ -84,7 +84,7 @@ function pc { param([ulong]$t,[int]$P,[double]$v,[string]$p=$PF,[int]$to=$TO)
 
 ---
 
-## Method Signatures (quick ref)
+## Method Signatures
 
 ```csharp
 // Resolve ticket → symbol & current volume
@@ -117,7 +117,7 @@ public Task ClosePositionPartialAsync(
 
 ---
 
-## Code Reference (aligned wrapper)
+## Code Reference 🧩
 
 ```csharp
 var pcTicketOpt  = new Option<ulong>(new[] { "--ticket", "-t" }, "Position ticket to partially close") { IsRequired = true };
