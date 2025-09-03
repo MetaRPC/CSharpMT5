@@ -5,7 +5,7 @@ Closes an **exact volume** (in lots) of a position by ticket.
 Unlike `close.half` or `close.percent`, this command lets you choose the **precise number of lots** to close.
 
 ---
-## Method Signatures (quick ref)
+## Method Signatures
 
 ```csharp
 // Read open positions (to validate ticket, get symbol/current volume if needed)
