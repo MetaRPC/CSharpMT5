@@ -13,7 +13,7 @@ Utilities for working with **pending orders**. The group currently exposes:
 
 Lists **all current pending orders** for the selected profile/account.
 
-### Input Parameters
+### Input Parameters ⬇️
 
 | Parameter         | Type   | Required | Description                                |
 | ----------------- | ------ | -------- | ------------------------------------------ |
@@ -23,7 +23,7 @@ Lists **all current pending orders** for the selected profile/account.
 
 > PowerShell shortcut in `ps/shortcasts.ps1`: **`pdls`** expands to `mt5 pending list -p <profile> --timeout-ms 90000`.
 
-### Output
+### Output ⬆️
 
 **Text mode** (preview up to 50 rows):
 
@@ -45,7 +45,7 @@ Pending orders (N):
 
 ---
 
-## Method Signature (MT5Account)
+## Method Signature
 
 ```csharp
 public Task<OpenedOrdersData> OpenedOrdersAsync(
@@ -54,7 +54,7 @@ public Task<OpenedOrdersData> OpenedOrdersAsync(
     CancellationToken cancellationToken = default);
 ```
 
-### Proto reference (excerpt)
+### Proto reference
 
 ```proto
 message OpenedOrdersData {
@@ -65,7 +65,7 @@ message OpenedOrdersData {
 
 ---
 
-## Code Reference (actual pattern)
+## Code Reference 🧩
 
 ```csharp
 await ConnectAsync();
