@@ -63,7 +63,7 @@ health  # alias: ping
 
 ---
 
-## Code Reference 🧩 (без CallWithRetry)
+## Code Reference 🧩
 
 ```csharp
 // Quick connectivity probe via AccountSummary
