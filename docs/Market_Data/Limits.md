@@ -23,15 +23,16 @@ public Task EnsureSymbolVisibleAsync(
     DateTime? deadline = null,
     CancellationToken cancellationToken = default);
 
-public Task<TickData> SymbolInfoTickAsync(
+public Task<MrpcMqlTick> SymbolInfoTickAsync(
     string symbol,
     DateTime? deadline = null,
     CancellationToken cancellationToken = default);
 
-public Task<(double min, double step, double max)> GetVolumeConstraintsAsync(
+public Task<(double Min, double Step, double Max)> GetVolumeConstraintsAsync(
     string symbol,
     DateTime? deadline = null,
     CancellationToken cancellationToken = default);
+
 ```
 
 ## Input Parameters ⬇️
