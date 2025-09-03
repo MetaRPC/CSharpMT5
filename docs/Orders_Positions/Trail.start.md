@@ -1,65 +1,58 @@
-# Trail Start (`trail.start`)
+# Trail Start (`trail.start`) 🚦
 
-## What it Does
+Starts a **local trailing stop** for an existing position (by ticket). The app monitors ticks and **moves SL** according to chosen mode and distances.
 
-Starts a **local trailing stop** for an existing position (by ticket). The app monitors price ticks and **moves SL** according to selected mode and distances.
+> Client‑side feature: trailing works **while the CLI/app is running and connected**.
 
-> This is **client‑side** trailing: it works while your CLI/app is running and connected.
+Alias: `trstart`
 
 ---
 
 ## Modes ⚙️
 
-* `classic` — SL trails the price by a fixed **distance** in points; updated only when price moves by at least **step** points.
-* `chandelier` — SL follows an internal high/low buffer (ATR‑like style), respecting `distance` and `step`. *(Depends on your `_mt5Account` implementation of `TrailMode`.)*
+* `classic` — SL trails price by a fixed **distance** (points), updating only when price moves by at least **step** points.
+* `chandelier` — SL follows an internal high/low buffer (ATR‑style), honoring `distance` and `step` (requires enum `MT5Account.TrailMode`).
 
 ---
 
 ## Input Parameters ⬇️
 
-| Parameter         | Type   | Default | Description                                |               |
-| ----------------- | ------ | ------- | ------------------------------------------ | ------------- |
-| `--profile`, `-p` | string | —       | Profile from `profiles.json`.              |               |
-| `--ticket`, `-t`  | ulong  | —       | Position ticket to trail.                  |               |
-| `--distance`      | int    | 150     | Distance in **points** from price to SL.   |               |
-| `--step`          | int    | 20      | Minimal move in **points** to update SL.   |               |
-| `--mode`          | string | classic | Trailing mode: `classic`                   | `chandelier`. |
-| `--timeout-ms`    | int    | 30000   | RPC timeout in ms for initial queries.     |               |
-| `--dry-run`       | flag   | —       | Print intent without starting the trailer. |               |
+| Parameter         | Type   | Required | Default | Description                                |
+| ----------------- | ------ | -------- | ------- | ------------------------------------------ |
+| `--profile`, `-p` | string | yes      | —       | Profile from `profiles.json`.              |
+| `--ticket`, `-t`  | ulong  | yes      | —       | Position ticket to trail.                  |
+| `--distance`      | int    | no       | 150     | Distance in **points** from price to SL.   |
+| `--step`          | int    | no       | 20      | Minimal **price move (points)** to update. |
+| `--mode`          | string | no       | classic | `classic` or `chandelier`.                 |
+| `--timeout-ms`    | int    | no       | 30000   | RPC timeout for initial queries.           |
+| `--dry-run`       | flag   | no       | —       | Print intent without starting trailing.    |
 
-Validation:
-
-* `--distance > 0`, `--step > 0`.
-* `--mode` must be one of `classic|chandelier` (case‑insensitive).
+**Validation**: `distance > 0`, `step > 0`, `mode ∈ {classic, chandelier}` (case‑insensitive).
 
 ---
 
 ## Output ⬆️
 
-* On success: prints `✔ trail.start scheduled`.
-* On dry‑run: prints the plan with parameters.
-* Errors are logged with details and non‑zero exit code.
+* Success: `✔ trail.start scheduled`
+* Dry‑run: plan with parameters
+* Errors: detailed log + non‑zero exit code
 
 ---
 
-## How to Use 🛠️
-
-### CLI
+## How to Use
 
 ```powershell
-# Start Classic trailing: 150 pts distance, 20 pts step
+# Classic trailing: 150 pts distance, 20 pts step
 dotnet run -- trail.start -p demo -t 123456 --distance 150 --step 20 --mode classic
 
-# Chandelier trailing: wider distance
+# Chandelier: wider distances
 dotnet run -- trail.start -p demo -t 123456 --distance 300 --step 50 --mode chandelier
 
-# Dry‑run (no start)
+# Dry‑run
 dotnet run -- trail.start -p demo -t 123456 --distance 200 --step 30 --dry-run
 ```
 
-### Optional PowerShell Shortcast
-
-If you want a short command, add to `ps/shortcasts.ps1`:
+Optional shortcast (`ps/shortcasts.ps1`):
 
 ```powershell
 function trstart { param([ulong]$t,[int]$dist=150,[int]$step=20,[string]$mode='classic',[string]$p=$PF,[int]$to=$TO)
@@ -68,17 +61,35 @@ function trstart { param([ulong]$t,[int]$dist=150,[int]$step=20,[string]$mode='c
 
 ---
 
-## Notes & Safety 🛡️
+## Method Signatures
 
-* **Local process**: trailing stops when the CLI/app **exits** or **disconnects**.
-* SL moves only **toward profit** (implementation‑specific; classic trailing should never widen risk).
-* Distances are in **points** (not pips). Check `symbol show` for point size.
-* Broker **StopsLevel** and min distance rules still apply.
-* Works only for **positions** (not pendings).
+```csharp
+public Task<OpenedOrdersData> OpenedOrdersAsync(
+    BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+public double PointGuess(string symbol);
+
+public Task EnsureSymbolVisibleAsync(
+    string symbol,
+    TimeSpan? maxWait = null,
+    TimeSpan? pollInterval = null,
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+
+public Task<bool> ModifyPositionSlTpAsync(
+    ulong ticket,
+    double? sl,
+    double? tp,
+    CancellationToken ct);
+```
+
+> Trailing tick feed/loop is implemented in the **command handler** (Program) using quotes; initial snapshot may use `SymbolInfoTickAsync`. No extra MT5Account RPCs are required beyond SL updates.
 
 ---
 
-## Code Reference (exact) 💻
+## Code Reference 🧩
 
 ```csharp
 var trTicketOpt = new Option<ulong>(new[] { "--ticket", "-t" }, "Position ticket") { IsRequired = true };
@@ -101,7 +112,7 @@ trailStart.SetHandler(async (InvocationContext ctx) =>
     var ticket   = ctx.ParseResult.GetValueForOption(trTicketOpt);
     var distance = ctx.ParseResult.GetValueForOption(trDistOpt);
     var step     = ctx.ParseResult.GetValueForOption(trStepOpt);
-    var modestr  = ctx.ParseResult.GetValueForOption(trModeOpt);
+    var modeStr  = ctx.ParseResult.GetValueForOption(trModeOpt) ?? "classic";
     var timeoutMs= ctx.ParseResult.GetValueForOption(timeoutOpt);
     var dryRun   = ctx.ParseResult.GetValueForOption(dryRunOpt);
 
@@ -109,9 +120,7 @@ trailStart.SetHandler(async (InvocationContext ctx) =>
     Validators.EnsureTicket(ticket);
     if (distance <= 0) throw new ArgumentOutOfRangeException(nameof(distance));
     if (step <= 0)     throw new ArgumentOutOfRangeException(nameof(step));
-
-    var modeText = (modestr ?? "classic").Trim();
-    if (!System.Enum.TryParse<MT5Account.TrailMode>(modeText, ignoreCase: true, out var mode))
+    if (!Enum.TryParse<MT5Account.TrailMode>(modeStr, ignoreCase: true, out var mode))
         throw new ArgumentException("Invalid --mode. Use classic|chandelier.");
 
     using (UseOpTimeout(timeoutMs))
@@ -121,4 +130,57 @@ trailStart.SetHandler(async (InvocationContext ctx) =>
         try
         {
             await ConnectAsync();
+
+            // Ensure the symbol is visible (best‑effort, non‑fatal if fails)
+            var opened = await _mt5Account.OpenedOrdersAsync();
+            var pos = opened.PositionInfos.FirstOrDefault(p => (ulong)p.Ticket == ticket || p.Ticket == (long)ticket)
+                      ?? throw new InvalidOperationException($"Position #{ticket} not found.");
+            try { await _mt5Account.EnsureSymbolVisibleAsync(pos.Symbol, TimeSpan.FromSeconds(3)); } catch { }
+
+            if (dryRun)
+            {
+                Console.WriteLine($"[DRY-RUN] TRAIL.START ticket={ticket} mode={mode} dist={distance} step={step}");
+                return;
+            }
+
+            // Launch trailing (helper in Program; loops ticks & calls ModifyPositionSlTpAsync)
+            _ = RunTrailingAsync(ticket, pos.Symbol, distance, step, mode, CancellationToken.None);
+            Console.WriteLine("✔ trail.start scheduled");
+        }
+        catch (Exception ex)
+        {
+            ErrorPrinter.Print(_logger, ex, IsDetailed());
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            try { await _mt5Account.DisconnectAsync(); } catch { }
+        }
+    }
+});
+
+// Helper (Program): advances SL only toward profit depending on mode
+static async Task RunTrailingAsync(ulong ticket, string symbol, int distance, int step, MT5Account.TrailMode mode, CancellationToken ct)
+{
+    // Pseudocode: subscribe or poll quotes, compute target SL, call ModifyPositionSlTpAsync when step threshold reached.
+}
 ```
+
+---
+
+## Notes & Safety 🛡️
+
+* **Local process**: trailing stops when CLI/app **exits** or **disconnects**.
+* SL only moves **toward profit** (never widens risk in `classic`).
+* Distances are in **points** (not pips). Verify point size via **[Symbol → Limits](../Market_Data/Limits.md)** or **[Quote](../Market_Data/Quote.md)**.
+* Broker **StopsLevel / FreezeLevel** rules still apply.
+* Works only with **positions** (not pendings). For pending orders see **[Pending.md](../Orders_Positions/Pending.md)**.
+
+---
+
+## See also
+
+* **[Position.modify.points](./Position.modify.points.md)** — set SL/TP by point distance
+* **[Modify](./Modify.md)** — set SL/TP by absolute price
+* **[Trail.stop](./Trail.stop.md)** — stop a running trailing session
+* **[Subscribe](../Streaming/Subscribe.md)** — price stream fundamentals
