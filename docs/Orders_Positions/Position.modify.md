@@ -68,7 +68,7 @@ posmod -t 123456 -sl 1.0900 -tp 1.1100
 
 ---
 
-## Code Reference (exact) 🧩
+## Code Reference 🧩
 
 ```csharp
 var posModTicketOpt = new Option<ulong>(new[] { "--ticket", "-t" }, "Position ticket") { IsRequired = true };
