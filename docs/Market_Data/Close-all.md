@@ -70,7 +70,7 @@ dotnet run -- close-all -p demo -s EURUSD --deviation 15 --yes
 
 ```csharp
 // Preconditions: connection already established; profile selected
-var map = await _mt5Account.ListPositionVolumesAsync(filterSymbol: symbol, CancellationToken.None);
+var map = await _mt5Account.ListPositionVolumesAsync(symbol: symbol, ct: CancellationToken.None);
 
 if (map.Count == 0)
 {
