@@ -6,6 +6,13 @@
 Performs a quick **health check** of the MT5 connection: validates profile, checks TCP reachability to the server, opens a session, and queries basic RPCs.
 
 ---
+## Method Signature
+
+```csharp
+public Task<AccountSummaryData> AccountSummaryAsync(
+    DateTime? deadline = null,
+    CancellationToken cancellationToken = default);
+```
 ## Code Reference 🧩
 
 ```csharp
@@ -22,13 +29,6 @@ catch (Exception ex)
 }
 ```
 
-## Method Signature
-
-```csharp
-public Task<AccountSummaryData> AccountSummaryAsync(
-    DateTime? deadline = null,
-    CancellationToken cancellationToken = default);
-```
 ## Input Parameters ⬇️
 
 | Parameter       | Type   | Required | Description                                         |
