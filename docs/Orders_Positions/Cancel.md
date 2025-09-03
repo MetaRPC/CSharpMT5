@@ -2,12 +2,13 @@
 
 Cancels a **pending order by ticket** on the selected MT5 account/profile. Use when you want to remove a single Buy/Sell Limit/Stop (including *Stop‑Limit* variants) without touching other orders.
 
-> This command targets **pending** orders only. For closing open positions, use **[close](./Close.md)**.
+> This command targets **pending** orders only. For closing open positions, use **[close](../Market_Data/Close.md)**.
 
 ---
 
-## Method Signatures (quick ref) 🧩
+## Method Signatures 🧩
 
+> Full details live in the MT5Account service. These are the calls the command uses.
 
 ```csharp
 // (optional) aggregate snapshot to validate the ticket & symbol
@@ -90,7 +91,7 @@ x -t 123456 -s EURUSD
 
 * Verify the **ticket really refers to a pending order**; brokers reject cancel for already‑filled/expired tickets.
 * `--symbol` is an intentional safety guard: the command validates the ticket’s symbol via the open aggregate before cancel.
-* Combine with **[pending list](./Pending.List.md)** to find tickets, or with **[ticket show](./Ticket_Show.md)** to inspect details first.
+* Combine with **[pending list](../Misc/Pending_List.md)** to find tickets, or with **[ticket show](../Misc/Ticket_Show.md)** to inspect details first.
 
 ---
 
@@ -140,7 +141,7 @@ cancel.SetHandler(async (string profile, ulong ticket, string symbol, int timeou
 
 ## See also 🔗
 
-* **[pending list](./Pending.List.md)** — enumerate current pendings
-* **[pending.modify](./Pending.modify.md)** — edit pending parameters
-* **[pending.move](./Pending.move.md)** — shift pending by ±points
-* **[ticket show](./Ticket_Show.md)** — inspect a ticket (open/history)
+* **[pending list](../Misc/Pending_List.md)** — enumerate current pendings
+* **[pending.modify](../Market_Data/Pending.modify.md)** — edit pending parameters
+* **[pending.move](../Market_Data/Pending.move.md)** — shift pending by ±points
+* **[ticket show](../Misc/Ticket_Show.md)** — inspect a ticket (open/history)
