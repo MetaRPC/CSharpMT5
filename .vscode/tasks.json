@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "${workspaceFolder}/CSharpMT5/MetaRPC.CSharpMT5.csproj", "-c", "Debug"],
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

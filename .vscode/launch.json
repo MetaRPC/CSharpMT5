@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Launch (CSharpMT5)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/CSharpMT5/bin/Debug/net8.0/MetaRPC.CSharpMT5.dll",
+      "cwd": "${workspaceFolder}/CSharpMT5",
+      "preLaunchTask": "build",
+      "console": "integratedTerminal",
+      "env": {
+        // It can be set here, or in appsettings.json
+        // "MT5_LOGIN": "5040701170",
+        // "MT5_PASSWORD": "N_t0o4I?",
+        // "MT5_GRPC": "https://mt5.mrpc.pro:443",
+        // "BASE_SYMBOL": "EURUSD"
+      }
+    }
+  ]
+}

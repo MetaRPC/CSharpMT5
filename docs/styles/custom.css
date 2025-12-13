@@ -1,0 +1,300 @@
+/* ===========================
+   CSharpMT5 — custom.css (calm ocean aurora)
+   Blue to Cyan gradient: #0078D4 → #00D9C0
+   =========================== */
+
+/* 1) Material Symbols (Rounded) — icon font */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght,FILL,GRAD@400..700,0..1,0..200');
+
+.material-symbols-rounded{
+  font-family: 'Material Symbols Rounded';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: inline-block;
+  font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 48;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: normal;
+  white-space: nowrap;
+}
+
+/* 2) Background: Light theme (default) - soft teal gradient */
+[data-md-color-scheme="default"] body {
+  background: linear-gradient(135deg, #f1f8f8 0%, #e8f5f4 50%, #e0f2f1 100%);
+  background-attachment: fixed;
+}
+
+[data-md-color-scheme="default"] body::before{
+  content:"";
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(50% 50% at 30% 20%, rgba(178,223,219,.05), transparent 50%),
+    radial-gradient(60% 60% at 70% 60%, rgba(77,182,172,.06), transparent 55%),
+    radial-gradient(45% 45% at 50% 80%, rgba(38,166,154,.04), transparent 50%);
+  filter: blur(40px);
+  animation: oceanGlow 60s ease-in-out infinite;
+  opacity:.5;
+}
+
+/* Background: Dark theme (slate) - dark gradient with teal warmth */
+[data-md-color-scheme="slate"] body {
+  background: linear-gradient(135deg, #0a1414 0%, #0d1a1a 50%, #0a1212 100%);
+  background-attachment: fixed;
+}
+
+[data-md-color-scheme="slate"] body::before{
+  content:"";
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(50% 50% at 30% 20%, rgba(77,182,172,.08), transparent 50%),
+    radial-gradient(60% 60% at 70% 60%, rgba(38,166,154,.1), transparent 55%),
+    radial-gradient(45% 45% at 50% 80%, rgba(0,150,136,.06), transparent 50%);
+  filter: blur(40px);
+  animation: oceanGlow 60s ease-in-out infinite;
+  opacity:.6;
+}
+@keyframes oceanGlow{
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  50%  { transform: translate3d(3%,2%,0) scale(1.03); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+.md-container, .md-main, .md-content { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce){
+  body::before{ animation: none !important; }
+}
+
+/* 3) Pyramid Grid: 1-2-3 layout */
+.home-grid{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  margin: 1.2rem 0 2.2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* First card - centered, spans 2 columns, offset by 2 */
+.home-grid .card:nth-child(1) {
+  grid-column: 3 / 5;
+}
+
+/* Second row - 2 cards, each spans 2 columns */
+.home-grid .card:nth-child(2) {
+  grid-column: 2 / 4;
+}
+.home-grid .card:nth-child(3) {
+  grid-column: 4 / 6;
+}
+
+/* Third row - 3 cards, each spans 2 columns */
+.home-grid .card:nth-child(4) {
+  grid-column: 1 / 3;
+}
+.home-grid .card:nth-child(5) {
+  grid-column: 3 / 5;
+}
+.home-grid .card:nth-child(6) {
+  grid-column: 5 / 7;
+}
+
+/* Responsive: tablet */
+@media (max-width: 960px){
+  .home-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .home-grid .card:nth-child(1),
+  .home-grid .card:nth-child(2),
+  .home-grid .card:nth-child(3),
+  .home-grid .card:nth-child(4),
+  .home-grid .card:nth-child(5),
+  .home-grid .card:nth-child(6) {
+    grid-column: span 1;
+  }
+}
+
+/* Responsive: mobile */
+@media (max-width: 620px){
+  .home-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 4) Cards: glass + gradient frame */
+.card{
+  position:relative; display:block;
+  padding:1.5rem 1.2rem; min-height:180px;
+  border-radius:16px; text-decoration:none; color:inherit;
+  text-align: center;
+  border:2px solid transparent;
+  backdrop-filter: blur(8px);
+  transform-style: preserve-3d;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-width .2s ease;
+}
+
+/* Light theme cards */
+[data-md-color-scheme="default"] .card{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.95), rgba(248,250,252,.92)) padding-box,
+    linear-gradient(135deg, rgb(var(--g1)), rgb(var(--g2))) border-box;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+/* Dark theme cards */
+[data-md-color-scheme="slate"] .card{
+  background:
+    linear-gradient(180deg, rgba(15,20,30,.92), rgba(10,14,23,.88)) padding-box,
+    linear-gradient(135deg, rgb(var(--g1)), rgb(var(--g2))) border-box;
+  box-shadow:0 12px 28px rgba(0,0,0,.3);
+}
+
+.card h3{ margin:.6rem 0 .3rem; font-weight:700; font-size:1.15rem; letter-spacing:.3px; }
+.card p{ margin:0; font-size:.88rem; line-height:1.3rem; opacity:.88; }
+
+/* 5) Centered icon with gradient fill */
+.card .material-symbols-rounded{
+  display: block;
+  font-size: 2.8rem;
+  margin: 0 auto .5rem;
+  background: linear-gradient(135deg, rgb(var(--g1)), rgb(var(--g2)));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 6px 18px rgba(var(--g1), .3));
+}
+
+/* 6) Hover Cards: Easy Lift and Inner Shade */
+.card:hover{
+  transform: translateY(-4px);
+  border-width: 3px;
+}
+
+[data-md-color-scheme="default"] .card:hover{
+  box-shadow: 0 12px 32px rgba(0,0,0,.15);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,252,.95)) padding-box,
+    linear-gradient(135deg, rgb(var(--g1)), rgb(var(--g2))) border-box;
+}
+
+[data-md-color-scheme="slate"] .card:hover{
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  background:
+    linear-gradient(180deg, rgba(20,25,35,.95), rgba(15,20,30,.92)) padding-box,
+    linear-gradient(135deg, rgb(var(--g1)), rgb(var(--g2))) border-box;
+}
+
+/* 7) Side color glow (soft, color = card gradient) */
+.card::after{
+  content:""; position:absolute; inset:-1px; border-radius:inherit; pointer-events:none;
+  background:
+    radial-gradient(60% 90% at -12% 50%, rgba(var(--g1), .18), transparent 60%),
+    radial-gradient(60% 90% at 112% 50%, rgba(var(--g2), .18), transparent 60%);
+  opacity:0; transition: opacity .22s ease;
+}
+.card:hover::after{ opacity:.7; }
+
+/* 8) Unique Gradient Palettes - Each card has its own colors */
+
+/* Card 1: Getting Started - Yellow-Orange-Pink (Row 4, Col 2) */
+.card-1{
+  --g1: 255,213,79;   /* #FFD54F - Warm Yellow */
+  --g2: 255,138,128;  /* #FF8A80 - Coral Pink */
+}
+
+/* Card 2: Project Map - Yellow-Blue (Row 4, Col 4) */
+.card-2{
+  --g1: 255,241,118;  /* #FFF176 - Light Yellow */
+  --g2: 100,181,246;  /* #64B5F6 - Sky Blue */
+}
+
+/* Card 3: Glossary - Pink-Purple (harmonized) */
+.card-3{
+  --g1: 240,98,146;   /* #F06292 - Pink */
+  --g2: 171,71,188;   /* #AB47BC - Purple */
+}
+
+/* Card 4: MT5Service - Blue (clean) */
+.card-4{
+  --g1: 66,165,245;   /* #42A5F5 - Blue */
+  --g2: 33,150,243;   /* #2196F3 - Deep Blue */
+}
+
+/* Card 5: MT5Account - Cyan (clean) */
+.card-5{
+  --g1: 38,198,218;   /* #26C6DA - Cyan */
+  --g2: 0,188,212;    /* #00BCD4 - Deep Cyan */
+}
+
+/* Card 6: MT5Sugar - Green (clean emerald) */
+.card-6{
+  --g1: 102,187,106;  /* #66BB6A - Light Green */
+  --g2: 56,142,60;    /* #388E3C - Emerald Green */
+}
+
+/* 9) Accessibility */
+@media (prefers-reduced-motion: reduce){
+  .card{ transition: none !important; }
+}
+
+/* 10) Code blocks enhancement - Light theme */
+[data-md-color-scheme="default"] .md-typeset code {
+  background-color: rgba(0,120,212,.06);
+  border: 1px solid rgba(0,120,212,.15);
+}
+
+[data-md-color-scheme="default"] .md-typeset pre {
+  background-color: rgba(248,250,252,.95);
+  border: 1px solid rgba(0,120,212,.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+/* Code blocks enhancement - Dark theme */
+[data-md-color-scheme="slate"] .md-typeset code {
+  background-color: rgba(0,120,212,.08);
+  border: 1px solid rgba(0,120,212,.12);
+}
+
+[data-md-color-scheme="slate"] .md-typeset pre {
+  background-color: rgba(13,17,23,.92);
+  border: 1px solid rgba(0,120,212,.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+
+/* 11) Architecture diagram styling - Light theme */
+[data-md-color-scheme="default"] .architecture-diagram {
+  background: linear-gradient(180deg, rgba(248,250,252,.95), rgba(241,245,249,.92));
+  border: 1px solid rgba(0,120,212,.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  text-align: center;
+  line-height: 2;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+[data-md-color-scheme="default"] .architecture-diagram strong {
+  color: #0078D4;
+  font-size: 1.05rem;
+}
+
+/* Architecture diagram styling - Dark theme */
+[data-md-color-scheme="slate"] .architecture-diagram {
+  background: linear-gradient(180deg, rgba(13,17,23,.86), rgba(13,17,23,.82));
+  border: 1px solid rgba(0,217,192,.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  text-align: center;
+  line-height: 2;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+}
+
+[data-md-color-scheme="slate"] .architecture-diagram strong {
+  color: #00D9C0;
+  font-size: 1.05rem;
+}

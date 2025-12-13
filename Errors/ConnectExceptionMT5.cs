@@ -2,7 +2,7 @@
 namespace MetaRPC.CSharpMT5;
 
 [Serializable]
-internal class ConnectExceptionMT5 : Exception
+public class ConnectExceptionMT5 : Exception
 {
     public ConnectExceptionMT5()
     {

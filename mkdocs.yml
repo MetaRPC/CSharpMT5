@@ -1,5 +1,7 @@
-site_name: MetaRPC MT5 C# Documentation
+site_name: CSharpMT5 SDK Documentation
 site_url: https://metarpc.github.io/CSharpMT5/
+site_description: Complete C# SDK for MetaTrader 5 trading automation
+
 repo_name: MetaRPC/CSharpMT5
 repo_url: https://github.com/MetaRPC/CSharpMT5
 edit_uri: edit/main/docs/
@@ -10,154 +12,84 @@ theme:
   font:
     text: Inter
     code: JetBrains Mono
+  icon:
+    logo: material/language-csharp
+    repo: fontawesome/brands/github
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: indigo
       accent: indigo
       toggle:
-        icon: material/weather-night
+        icon: material/brightness-7
         name: Switch to dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: indigo
       accent: indigo
       toggle:
-        icon: material/weather-sunny
+        icon: material/brightness-4
         name: Switch to light mode
   features:
     - navigation.instant
     - navigation.tracking
-    - navigation.sections
+    - navigation.expand
     - navigation.top
-    - navigation.tabs
-    - toc.integrate
+    - navigation.footer
     - content.code.copy
-    - content.action.edit
-    - content.tabs.link
-    - search.highlight
-    - search.suggest
-    - palette.toggle
-    - palette.auto
+    - toc.follow
+  custom_dir: docs/includes
 
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/MetaRPC/CSharpMT5
-      name: GitHub
-  generator: false
-  consent:
-    title: Cookies & telemetry
-    description: We use GitHub Pages basic analytics only. No tracking cookies.
+      name: CSharpMT5 on GitHub
 
-copyright: >
-  © {{ date | strftime("%Y") }} MetaRPC. MT5 is a MetaQuotes software. This site is a community-made documentation.
+extra_css:
+  - styles/custom.css
 
-nav:
-  - Home: Documentation_BASE.md
-  - Getting Started (Registration & First Steps): index.md
-
-  - "Core Guides":
-      - "Getting Started": Getting_Started.md
-      - "Architecture & Data Flow": Architecture_DataFlow.md
-      - "Timeouts & Retries Policy": Timeouts_RetriesPolicy.md
-      - "Command Index": Command_Index.md
-      - "Glossary": Glossary.md
-      - "Shortcasts: Live Examples": Shortcasts_LiveExamples.md
-      - "Ticket Toolbox": Ticket_Toolbox.md
-      - "Logging: Output Formats": Logging_OutputFormats.md
-
-  - "Account":
-      - "Overview": Account/Overview.md
-      - "Show": Account/Show.md
-      - "Info": Account/Info.md
-      - "Profiles": Account/Profiles.md
-
-  - "Market Data":
-      - "Overview": Market_Data/Market_Data_Overview.md
-      - "Quote": Market_Data/Quote.md
-      - "Symbol": Market_Data/Symbol.md
-      - "Limits": Market_Data/Limits.md
-      - "Ensure Symbol Visible": Market_Data/Ensure_Symbol_Visible.md
-      - "Reverse": Market_Data/Reverse.md
-      - "Close (generic)": Market_Data/Close.md
-      - "Close (by symbol)": Market_Data/Close-symbol.md
-      - "Close (all)": Market_Data/Close-all.md
-      - "Panic": Market_Data/Panic.md
-      - "Pending: move": Market_Data/Pending.move.md
-      - "Pending: modify": Market_Data/Pending.modify.md
-
-  - "Orders & Positions":
-      - "Overview": Orders_Positions/Orders_Positions_Overview.md
-      - "Orders": Orders_Positions/Orders.md
-      - "Positions": Orders_Positions/Positions.md
-      - "Place": Orders_Positions/Place.md
-      - "Buy": Orders_Positions/Buy.md
-      - "Sell": Orders_Positions/Sell.md
-      - "Pending": Orders_Positions/Pending.md
-      - "Modify": Orders_Positions/Modify.md
-      - "Position.modify": Orders_Positions/Position.modify.md
-      - "Position.modify.points": Orders_Positions/Position.modify.points.md
-      - "CloseBy": Orders_Positions/CloseBy.md
-      - "Cancel": Orders_Positions/Cancel.md
-      - "Cancel All": Orders_Positions/Cancel_All.md
-      - "Partial-close (how-to)": Orders_Positions/Partial-close.md
-      - "Close.half": Orders_Positions/Close.half.md
-      - "Close.partial": Orders_Positions/Close.partial.md
-      - "Close.percent": Orders_Positions/Close.percent.md
-      - "Trail.start": Orders_Positions/Trail.start.md
-      - "Trail.stop": Orders_Positions/Trail.stop.md
-
-  - "Streaming":
-      - "Subscribe": Streaming/Subscribe.md
-
-  - "History":
-      - "Overview": History/History_Overview.md
-      - "History": History/History.md
-      - "Export": History/History_export.md
-      - "History Expor (legacy)": History_Expor.md
-
-  - "Diagnostics / Ops":
-      - "Health": Diagnostics/Health.md
-      - "Troubleshooting & FAQ": Troubleshooting%28FAQ%29.md
-      - "Symbol Rules & Smart Stops": SymbolRules_SmartStops.md
-
-  - "API Reference":
-      - "Overview": API_Reference/Overview.md
-      - "Enums": API_Reference/Enums.md
-      - "Messages": API_Reference/Messages.md
-      - "Streaming": API_Reference/Streaming.md
-
-  - "Misc":
-      - "Overview": Misc/Misc_Overview.md
-      - "List": Misc/List.md
-      - "Ticket Show": Misc/Ticket_Show.md
-      - "Specific Ticket": Misc/Specific_Ticket.md
-      - "Pending List": Misc/Pending_List.md
-      - "Reverse by Ticket": Misc/Reverse_Ticket.md
+extra_javascript:
+  - javascripts/ux.js
 
 markdown_extensions:
   - admonition
-  - pymdownx.details
-  - pymdownx.superfences
   - md_in_html
   - tables
-  - toc:
-      permalink: true
-  - codehilite
-  - pymdownx.inlinehilite
-  - pymdownx.highlight
-  - pymdownx.snippets
-  - pymdownx.tabbed:
-      alternate_style: true
   - attr_list
-  - def_list
-  - abbr
-  - footnotes
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.critic
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - toc:
+      permalink: "¶"
+      toc_depth: 3
 
 plugins:
   - search
+
+copyright: >
+  Copyright © 2024–2025 MetaRPC. MT5 is a trademark of MetaQuotes Software Corp.
+  This documentation is community-maintained and not affiliated with MetaQuotes.
+
+nav:
+  - Home: index.md
+
+  - Guides:
+    - MT5 for Beginners: MT5_For_Beginners.md
+    - User Code Sandbox: UserCode_Sandbox_Guide.md
+    - gRPC Streaming: GRPC_STREAM_MANAGEMENT.md
+    - Sync vs Async: Sync_vs_Async.md
+    - Return Codes: ReturnCodes_Reference_EN.md
+    - Protobuf Inspector: ProtobufInspector.README.EN.md
+
+  - API Reference:
+    - MT5Account API: API_Reference/MT5Account.API.md
+    - MT5Service API: API_Reference/MT5Service.API.md
+    - MT5Sugar API: API_Reference/MT5Sugar.API.md
+
+  - Strategies:
+    - Orchestrators: Strategies/Strategies.Master.Overview.md
+    - Presets: Strategies/Presets/AdaptiveMarketModePreset.md
