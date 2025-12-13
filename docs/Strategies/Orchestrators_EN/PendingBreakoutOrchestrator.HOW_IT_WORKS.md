@@ -33,7 +33,7 @@ public class PendingBreakoutOrchestrator
     // └─────────────────────────────────────────
     public PendingBreakoutOrchestrator(MT5Service service)
     {
-        _service = service;  // ← Получаем MT5Service извне
+        _service = service; 
     }
 }
 ```
