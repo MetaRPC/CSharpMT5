@@ -362,3 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /.idea/.idea.mt4rest-iis/.idea
+
+# MkDocs build output
+site/
