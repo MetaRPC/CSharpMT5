@@ -366,5 +366,5 @@ FodyWeavers.xsd
 # MkDocs build output
 site/
 
-# Claude Code settings
+# Local settings
 .claude/settings.local.json
