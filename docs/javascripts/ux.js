@@ -26,7 +26,7 @@ const PROGRESS_STORAGE_KEY = 'csharpmt5_docs_progress';
 // Documentation structure: 119 total files
 const DOC_STRUCTURE = {
   'guides': {
-    name: '📘 Основные гайды',
+    name: '📘 Guides',
     pages: [
       'Getting_Started',
       'MT5_For_Beginners',
@@ -234,48 +234,107 @@ function saveProgress(progress) {
 
 function createProgressBar() {
   // Check if progress bar already exists
-  if (document.getElementById('docs-progress-bar')) return;
+  if (document.getElementById('progress-float-btn')) return;
 
-  const progressBarHTML = `
-    <div id="docs-progress-bar" class="docs-progress-container">
-      <div class="docs-progress-header">
-        <span class="docs-progress-title">📊 Прогресс изучения</span>
-        <button id="progress-reset-btn" class="progress-reset-btn" title="Сбросить прогресс">↻</button>
+  const progressHTML = `
+    <!-- Floating Button -->
+    <button id="progress-float-btn" class="progress-float-btn" title="Learning Progress">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 6v6l4 2"></path>
+      </svg>
+      <span class="progress-badge" id="progress-badge">0%</span>
+    </button>
+
+    <!-- Side Panel -->
+    <div id="progress-panel" class="progress-panel">
+      <div class="progress-panel-header">
+        <h3>📊 Learning Progress</h3>
+        <button id="progress-panel-close" class="progress-panel-close" title="Close">&times;</button>
       </div>
-      <div class="docs-progress-overall">
-        <div class="progress-bar-wrapper">
-          <div class="progress-bar-fill" id="overall-progress-fill"></div>
-          <span class="progress-bar-text" id="overall-progress-text">0%</span>
+
+      <div class="progress-panel-content">
+        <div class="progress-overall-section">
+          <div class="progress-stats">
+            <span class="progress-count" id="overall-progress-text">0 / 119</span>
+            <span class="progress-percentage" id="overall-progress-pct">0%</span>
+          </div>
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar-fill" id="overall-progress-fill"></div>
+          </div>
+          <p class="progress-subtitle">Total Documentation Pages</p>
         </div>
+
+        <div class="progress-categories-section">
+          <h4>By Category</h4>
+          <div id="progress-categories"></div>
+        </div>
+
+        <button id="progress-reset-btn" class="progress-reset-btn-panel">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+            <path d="M21 3v5h-5"></path>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+            <path d="M3 21v-5h5"></path>
+          </svg>
+          Reset Progress
+        </button>
       </div>
-      <div id="progress-categories" class="docs-progress-categories"></div>
-      <button id="progress-toggle-btn" class="progress-toggle-btn">Показать детали ▼</button>
     </div>
+
+    <!-- Overlay -->
+    <div id="progress-overlay" class="progress-overlay"></div>
   `;
 
-  // Insert progress bar at the top of main content
-  const contentArea = document.querySelector('.md-content');
-  if (contentArea) {
-    contentArea.insertAdjacentHTML('afterbegin', progressBarHTML);
+  // Insert at end of body
+  document.body.insertAdjacentHTML('beforeend', progressHTML);
 
-    // Add event listeners
-    document.getElementById('progress-reset-btn').addEventListener('click', resetProgress);
-    document.getElementById('progress-toggle-btn').addEventListener('click', toggleProgressDetails);
-  }
+  // Add event listeners
+  document.getElementById('progress-float-btn').addEventListener('click', openProgressPanel);
+  document.getElementById('progress-panel-close').addEventListener('click', closeProgressPanel);
+  document.getElementById('progress-overlay').addEventListener('click', closeProgressPanel);
+  document.getElementById('progress-reset-btn').addEventListener('click', resetProgress);
+}
+
+function openProgressPanel() {
+  document.getElementById('progress-panel').classList.add('open');
+  document.getElementById('progress-overlay').classList.add('visible');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProgressPanel() {
+  document.getElementById('progress-panel').classList.remove('open');
+  document.getElementById('progress-overlay').classList.remove('visible');
+  document.body.style.overflow = '';
 }
 
 function updateProgressDisplay() {
   const progress = getProgress();
   const stats = calculateProgress(progress);
 
-  // Update overall progress bar
+  const percentage = Math.round(stats.overall.percentage);
+
+  // Update floating button badge
+  const badge = document.getElementById('progress-badge');
+  if (badge) {
+    badge.textContent = percentage + '%';
+  }
+
+  // Update overall progress in panel
   const overallFill = document.getElementById('overall-progress-fill');
   const overallText = document.getElementById('overall-progress-text');
+  const overallPct = document.getElementById('overall-progress-pct');
 
-  if (overallFill && overallText) {
-    const percentage = Math.round(stats.overall.percentage);
+  if (overallFill) {
     overallFill.style.width = percentage + '%';
-    overallText.textContent = `${stats.overall.completed} / ${stats.overall.total} (${percentage}%)`;
+  }
+
+  if (overallText) {
+    overallText.textContent = `${stats.overall.completed} / ${stats.overall.total}`;
+  }
+
+  if (overallPct) {
+    overallPct.textContent = percentage + '%';
   }
 
   // Update category progress
@@ -284,7 +343,7 @@ function updateProgressDisplay() {
     categoriesContainer.innerHTML = '';
 
     Object.entries(stats.categories).forEach(([key, cat]) => {
-      const percentage = Math.round(cat.percentage);
+      const catPercentage = Math.round(cat.percentage);
       const categoryHTML = `
         <div class="progress-category">
           <div class="progress-category-header">
@@ -292,7 +351,7 @@ function updateProgressDisplay() {
             <span class="progress-category-count">${cat.completed}/${cat.total}</span>
           </div>
           <div class="progress-bar-wrapper small">
-            <div class="progress-bar-fill" style="width: ${percentage}%"></div>
+            <div class="progress-bar-fill" style="width: ${catPercentage}%"></div>
           </div>
         </div>
       `;
@@ -332,26 +391,9 @@ function calculateProgress(progress) {
 }
 
 function resetProgress() {
-  if (confirm('Вы уверены, что хотите сбросить весь прогресс?')) {
+  if (confirm('Are you sure you want to reset all progress?')) {
     localStorage.removeItem(PROGRESS_STORAGE_KEY);
     updateProgressDisplay();
     console.log('Progress reset');
-  }
-}
-
-function toggleProgressDetails() {
-  const categoriesContainer = document.getElementById('progress-categories');
-  const toggleBtn = document.getElementById('progress-toggle-btn');
-
-  if (categoriesContainer && toggleBtn) {
-    const isHidden = categoriesContainer.style.display === 'none' || !categoriesContainer.style.display;
-
-    if (isHidden) {
-      categoriesContainer.style.display = 'block';
-      toggleBtn.textContent = 'Скрыть детали ▲';
-    } else {
-      categoriesContainer.style.display = 'none';
-      toggleBtn.textContent = 'Показать детали ▼';
-    }
   }
 }
