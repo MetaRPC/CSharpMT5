@@ -55,7 +55,7 @@ public static class ErrorHandlingExamples
         var service = new MT5Service(account);
 
         // Create MT5Sugar convenience API
-        var sugar = new MT5Sugar(service);
+        // MT5Sugar methods are extension methods on MT5Service
 
         // Define symbol for examples
         string symbol = "EURUSD";
@@ -165,8 +165,8 @@ public static class ErrorHandlingExamples
         var result = await service.BuyMarketAsync(
             symbol,         // "EURUSD"
             invalidVolume,  // Invalid volume (too small)
-            sl: 0,          // No stop loss
-            tp: 0           // No take profit
+            stopLoss: 0,    // No stop loss
+            takeProfit: 0   // No take profit
         );
 
         Console.WriteLine($"   Returned from call\n");
@@ -331,21 +331,21 @@ public static class ErrorHandlingExamples
 
         // STEP 1: Normalize volume
         Console.WriteLine($"📐 Step 1: Normalize volume");
-        double normalizedVolume = await sugar.NormalizeVolumeAsync(symbol, testVolume);
+        double normalizedVolume = await service.NormalizeVolumeAsync(symbol, testVolume);
         Console.WriteLine($"   Original: {testVolume}");
         Console.WriteLine($"   Normalized: {normalizedVolume}");
         Console.WriteLine($"   Status: {(testVolume == normalizedVolume ? "Already valid ✓" : "Adjusted ✓")}\n");
 
         // STEP 2: Check margin
         Console.WriteLine($"🔍 Step 2: Check margin availability");
-        var (hasMargin, freeMgn, reqMgn) = await sugar.CheckMarginAvailabilityAsync(
+        var (hasEnough, freeMargin, required) = await service.CheckMarginAvailabilityAsync(
             symbol,
             normalizedVolume,
             isBuy: true
         );
-        Console.WriteLine($"   Free margin: ${freeMgn:F2}");
-        Console.WriteLine($"   Required: ${reqMgn:F2}");
-        Console.WriteLine($"   Status: {(hasMargin ? "Sufficient ✓" : "Insufficient ✗")}\n");
+        Console.WriteLine($"   Free margin: ${freeMargin:F2}");
+        Console.WriteLine($"   Required: ${required:F2}");
+        Console.WriteLine($"   Status: {(hasEnough ? "Sufficient ✓" : "Insufficient ✗")}\n");
 
         // STEP 3: Validate order
         Console.WriteLine($"🔍 Step 3: Validate order with broker");
@@ -356,7 +356,7 @@ public static class ErrorHandlingExamples
 
         // Call ValidateOrderAsync - simulates the order without executing it
         // Returns same ReturnCode as real order would return
-        var validation = await sugar.ValidateOrderAsync(
+        var validation = await service.ValidateOrderAsync(
             symbol,
             normalizedVolume,
             buyPrice,
@@ -367,7 +367,7 @@ public static class ErrorHandlingExamples
         Console.WriteLine($"   Status: {(validation.ReturnedCode == 10009 ? "Will succeed ✓" : $"Will fail: {validation.Comment} ✗")}\n");
 
         // FINAL DECISION
-        if (hasMargin && validation.ReturnedCode == 10009)
+        if (hasEnough && validation.ReturnedCode == 10009)
         {
             Console.WriteLine($"✅ ALL VALIDATIONS PASSED:");
             Console.WriteLine($"   - Volume is normalized ✓");
@@ -378,7 +378,7 @@ public static class ErrorHandlingExamples
         else
         {
             Console.WriteLine($"❌ VALIDATION FAILED:");
-            if (!hasMargin)
+            if (!hasEnough)
                 Console.WriteLine($"   - Insufficient margin ✗");
             if (validation.ReturnedCode != 10009)
                 Console.WriteLine($"   - Broker will reject: {validation.Comment} ✗");

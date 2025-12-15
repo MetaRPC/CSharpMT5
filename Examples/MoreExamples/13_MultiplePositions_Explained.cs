@@ -49,11 +49,8 @@ public static class MultiplePositionsExamples
         var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
         Console.WriteLine("✓ Connected to MT5 Terminal\n");
 
-        // Create MT5Service wrapper
+        // Create MT5Service wrapper (MT5Sugar methods are extension methods on MT5Service)
         var service = new MT5Service(account);
-
-        // Create MT5Sugar convenience API
-        var sugar = new MT5Sugar(service);
 
         // Define symbol for examples
         string symbol = "EURUSD";
@@ -124,15 +121,15 @@ public static class MultiplePositionsExamples
         Console.WriteLine($"📞 CODE TO OPEN MULTIPLE POSITIONS:");
         Console.WriteLine(@"
    // Open first position
-   var result1 = await sugar.BuyMarket(symbol, 0.01, 20, 30);
+   var result1 = await service.BuyMarket(symbol, 0.01, 20, 30);
    Console.WriteLine($""Position 1: #{result1.Order}"");
 
    // Open second position
-   var result2 = await sugar.BuyMarket(symbol, 0.01, 20, 40);
+   var result2 = await service.BuyMarket(symbol, 0.01, 20, 40);
    Console.WriteLine($""Position 2: #{result2.Order}"");
 
    // Open third position
-   var result3 = await sugar.BuyMarket(symbol, 0.01, 20, 50);
+   var result3 = await service.BuyMarket(symbol, 0.01, 20, 50);
    Console.WriteLine($""Position 3: #{result3.Order}"");
 
    // Now you have 3 independent BUY positions!
@@ -153,7 +150,7 @@ public static class MultiplePositionsExamples
         Console.WriteLine("═══════════════════════════════════════════════════════════════\n");
 
         // Get all positions
-        var positions = await service.PositionsAsync();
+        var positions = await service.OpenedOrdersAsync();
 
         Console.WriteLine($"📊 Total open positions: {positions.Count}\n");
 
@@ -215,16 +212,16 @@ public static class MultiplePositionsExamples
         Console.WriteLine($"📚 THREE METHODS:\n");
 
         Console.WriteLine($"1. CLOSE ALL POSITIONS (all symbols):");
-        Console.WriteLine($"   int closed = await sugar.CloseAll();");
+        Console.WriteLine($"   int closed = await service.CloseAll();");
         Console.WriteLine($"   Console.WriteLine($\"Closed {{closed}} positions\");\n");
 
         Console.WriteLine($"2. CLOSE ALL FOR SPECIFIC SYMBOL:");
-        Console.WriteLine($"   int closed = await sugar.CloseAllPositions(\"{symbol}\");");
+        Console.WriteLine($"   int closed = await service.CloseAllPositions(\"{symbol}\");");
         Console.WriteLine($"   Console.WriteLine($\"Closed {{closed}} {symbol} positions\");\n");
 
         Console.WriteLine($"3. MANUAL LOOP (more control):");
         Console.WriteLine(@"
-   var positions = await service.PositionsAsync();
+   var positions = await service.OpenedOrdersAsync();
    int count = 0;
 
    foreach (var pos in positions)
@@ -258,16 +255,16 @@ public static class MultiplePositionsExamples
         Console.WriteLine($"📚 METHODS:\n");
 
         Console.WriteLine($"1. CLOSE ALL BUY POSITIONS:");
-        Console.WriteLine($"   int closed = await sugar.CloseAllBuy();");
+        Console.WriteLine($"   int closed = await service.CloseAllBuy();");
         Console.WriteLine($"   Console.WriteLine($\"Closed {{closed}} BUY positions\");\n");
 
         Console.WriteLine($"2. CLOSE ALL SELL POSITIONS:");
-        Console.WriteLine($"   int closed = await sugar.CloseAllSell();");
+        Console.WriteLine($"   int closed = await service.CloseAllSell();");
         Console.WriteLine($"   Console.WriteLine($\"Closed {{closed}} SELL positions\");\n");
 
         Console.WriteLine($"3. CLOSE BUY FOR SPECIFIC SYMBOL:");
         Console.WriteLine(@"
-   var positions = await service.PositionsAsync();
+   var positions = await service.OpenedOrdersAsync();
    var buyPositions = positions.Where(p =>
        p.Symbol == ""EURUSD"" && p.Type == 0  // Type 0 = BUY
    ).ToList();
@@ -361,7 +358,7 @@ public static class MultiplePositionsExamples
 
         Console.WriteLine($"✅ CALCULATION FORMULA:");
         Console.WriteLine(@"
-   var positions = await service.PositionsAsync();
+   var positions = await service.OpenedOrdersAsync();
    var symbolPos = positions.Where(p => p.Symbol == symbol);
 
    double buyVolume = symbolPos.Where(p => p.Type == 0).Sum(p => p.Volume);
@@ -404,7 +401,7 @@ public static class MultiplePositionsExamples
    double closeVolume = 0.6;      // Close this much
    double remainVolume = 0.4;     // Keep this much
 
-   var positions = await service.PositionsAsync();
+   var positions = await service.OpenedOrdersAsync();
    var pos = positions.FirstOrDefault(p => p.Ticket == ticket);
 
    if (pos != null)

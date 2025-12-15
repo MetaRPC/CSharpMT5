@@ -57,7 +57,7 @@ public static class MarketDepthExamples
         var service = new MT5Service(account);
 
         // Create MT5Sugar convenience API
-        var sugar = new MT5Sugar(service);
+        // MT5Sugar methods are extension methods on MT5Service
 
         // Define symbol for examples
         string symbol = "EURUSD";
@@ -219,8 +219,8 @@ public static class MarketDepthExamples
 
         try
         {
-            Console.WriteLine($"📞 Calling: sugar.GetMarketBookSnapshotAsync(\"{symbol}\")");
-            var snapshot = await sugar.GetMarketBookSnapshotAsync(symbol);
+            Console.WriteLine($"📞 Calling: service.GetMarketBookSnapshotAsync(\"{symbol}\")");
+            var snapshot = await service.GetMarketBookSnapshotAsync(symbol);
 
             if (snapshot != null && snapshot.Count > 0)
             {
@@ -256,12 +256,12 @@ public static class MarketDepthExamples
 
         try
         {
-            Console.WriteLine($"📞 Calling: sugar.GetBestBidAskFromBookAsync(\"{symbol}\")");
-            var (bestBid, bestAsk) = await sugar.GetBestBidAskFromBookAsync(symbol);
+            Console.WriteLine($"📞 Calling: service.GetBestBidAskFromBookAsync(\"{symbol}\")");
+            var (bestBid, bestAsk) = await service.GetBestBidAskFromBookAsync(symbol);
 
             Console.WriteLine($"   Best BID: {bestBid:F5} (highest buy order)");
             Console.WriteLine($"   Best ASK: {bestAsk:F5} (lowest sell order)");
-            Console.WriteLine($"   Spread: {(bestAsk - bestBid) / await sugar.GetPointAsync(symbol):F1} points\n");
+            Console.WriteLine($"   Spread: {(bestAsk - bestBid) / await service.GetPointAsync(symbol):F1} points\n");
         }
         catch
         {
@@ -289,11 +289,11 @@ public static class MarketDepthExamples
             var tick = await service.SymbolInfoTickAsync(symbol);
             double targetPrice = tick.Ask;
 
-            Console.WriteLine($"📞 Calling: sugar.CalculateLiquidityAtLevelAsync()");
+            Console.WriteLine($"📞 Calling: service.CalculateLiquidityAtLevelAsync()");
             Console.WriteLine($"   Target price: {targetPrice:F5}");
             Console.WriteLine($"   Looking for: SELL orders (you want to BUY)\n");
 
-            double liquidity = await sugar.CalculateLiquidityAtLevelAsync(symbol, targetPrice);
+            double liquidity = await service.CalculateLiquidityAtLevelAsync(symbol, targetPrice);
 
             Console.WriteLine($"📊 RESULT:");
             Console.WriteLine($"   Available liquidity: {liquidity:F2} lots");
@@ -367,7 +367,7 @@ public static class MarketDepthExamples
    }
 
    // Subscribe
-   await sugar.SubscribeToMarketBookAsync(symbol, OnMarketBookUpdate);
+   await service.SubscribeToMarketBookAsync(symbol, OnMarketBookUpdate);
 
    // Monitor for 30 seconds
    await Task.Delay(30000, cts.Token);
@@ -452,7 +452,7 @@ public static class MarketDepthExamples
 
         Console.WriteLine("✅ EXAMPLE CODE:");
         Console.WriteLine(@"
-   var book = await sugar.GetMarketBookSnapshotAsync(symbol);
+   var book = await service.GetMarketBookSnapshotAsync(symbol);
 
    // Get top 5 bids (highest buy prices)
    var topBids = book.Where(b => b.Type == 2)

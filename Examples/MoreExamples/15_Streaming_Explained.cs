@@ -27,7 +27,7 @@ using mt5_term_api;
 namespace MetaRPC.CSharpMT5.Examples.MoreExamples;
 
 // Declare public static class
-public static class StreamingExamples
+public static class StreamingExamplesDetailed
 {
     // Define async method
     public static async Task RunAsync()
@@ -56,7 +56,7 @@ public static class StreamingExamples
         var service = new MT5Service(account);
 
         // Create MT5Sugar convenience API
-        var sugar = new MT5Sugar(service);
+        // MT5Sugar methods are extension methods on MT5Service
 
         // Define symbol for examples
         string symbol = "EURUSD";
@@ -158,7 +158,7 @@ public static class StreamingExamples
                 tickCount++;
 
                 // Calculate spread in points
-                double point = await sugar.GetPointAsync(symbol);
+                double point = await service.GetPointAsync(symbol);
                 double spread = (tick.Ask - tick.Bid) / point;
 
                 // Format time
@@ -269,7 +269,7 @@ public static class StreamingExamples
         Console.WriteLine("   Useful for trailing stops, alerts, etc.\n");
 
         // Check if there are any positions
-        var positions = await service.PositionsAsync();
+        var positions = await service.OpenedOrdersAsync();
 
         if (positions.Count > 0)
         {

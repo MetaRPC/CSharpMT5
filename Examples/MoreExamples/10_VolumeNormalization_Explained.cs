@@ -50,11 +50,8 @@ public static class VolumeNormalizationExamples
         var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
         Console.WriteLine("✓ Connected to MT5 Terminal\n");
 
-        // Create MT5Service wrapper
+        // Create MT5Service wrapper (MT5Sugar methods are extension methods on MT5Service)
         var service = new MT5Service(account);
-
-        // Create MT5Sugar convenience API
-        var sugar = new MT5Sugar(service);
 
         // Define symbol for examples
         string symbol = "EURUSD";
@@ -165,7 +162,7 @@ public static class VolumeNormalizationExamples
 
             // Call NormalizeVolumeAsync() - performs normalization
             // This is THE method to use before every trade!
-            double normalized = await sugar.NormalizeVolumeAsync(symbol, testVol);
+            double normalized = await service.NormalizeVolumeAsync(symbol, testVol);
 
             Console.WriteLine($"   Normalized to: {normalized}");
 
@@ -263,7 +260,7 @@ public static class VolumeNormalizationExamples
 
         // Calculate raw volume based on risk
         Console.WriteLine($"📐 Step 1: Calculate volume from risk");
-        double rawVolume = await sugar.CalcVolumeForRiskAsync(symbol, stopLossPoints, riskAmount);
+        double rawVolume = await service.CalcVolumeForRiskAsync(symbol, stopLossPoints, riskAmount);
         Console.WriteLine($"   Raw calculated volume: {rawVolume:F8} lots\n");
 
         Console.WriteLine($"💡 PROBLEM:");
@@ -273,7 +270,7 @@ public static class VolumeNormalizationExamples
 
         // Normalize the volume
         Console.WriteLine($"🔧 Step 2: Normalize volume");
-        double normalizedVolume = await sugar.NormalizeVolumeAsync(symbol, rawVolume);
+        double normalizedVolume = await service.NormalizeVolumeAsync(symbol, rawVolume);
         Console.WriteLine($"   Normalized volume: {normalizedVolume} lots\n");
 
         Console.WriteLine($"✅ SOLUTION:");
@@ -281,7 +278,7 @@ public static class VolumeNormalizationExamples
         Console.WriteLine($"   This is valid and will be accepted ✓\n");
 
         // Verify the risk with normalized volume
-        var (tickValue, tickSize) = await sugar.GetTickValueAndSizeAsync(symbol, normalizedVolume);
+        var (tickValue, tickSize) = await service.GetTickValueAndSizeAsync(symbol);
         double actualRisk = stopLossPoints * tickValue;
 
         Console.WriteLine($"📊 Risk comparison:");
@@ -307,11 +304,11 @@ public static class VolumeNormalizationExamples
         Console.WriteLine($"   Stop Loss: {wideSL} points\n");
 
         // Calculate volume
-        double tinyVolume = await sugar.CalcVolumeForRiskAsync(symbol, wideSL, tinyRisk);
+        double tinyVolume = await service.CalcVolumeForRiskAsync(symbol, wideSL, tinyRisk);
         Console.WriteLine($"📐 Calculated volume: {tinyVolume:F8} lots\n");
 
         // Normalize
-        double normalizedTiny = await sugar.NormalizeVolumeAsync(symbol, tinyVolume);
+        double normalizedTiny = await service.NormalizeVolumeAsync(symbol, tinyVolume);
         Console.WriteLine($"🔧 Normalized volume: {normalizedTiny} lots\n");
 
         // Check if it was raised to minimum
@@ -323,7 +320,7 @@ public static class VolumeNormalizationExamples
             Console.WriteLine($"   Normalized raised to: {normalizedTiny} lots\n");
 
             // Calculate actual risk with minimum volume
-            var (minTickValue, minTickSize) = await sugar.GetTickValueAndSizeAsync(symbol, normalizedTiny);
+            var (minTickValue, minTickSize) = await service.GetTickValueAndSizeAsync(symbol);
             double actualMinRisk = wideSL * minTickValue;
 
             Console.WriteLine($"💡 CONSEQUENCE:");
@@ -394,19 +391,19 @@ public static class VolumeNormalizationExamples
         Console.WriteLine($"   - SellByRisk() - calculates AND normalizes volume\n");
 
         Console.WriteLine($"💡 EXAMPLE:");
-        Console.WriteLine($"   await sugar.BuyMarket(");
+        Console.WriteLine($"   await service.BuyMarket(");
         Console.WriteLine($"       symbol: \"{symbol}\",");
         Console.WriteLine($"       volume: 0.0234,  ← Invalid volume");
         Console.WriteLine($"       slPoints: 50,");
         Console.WriteLine($"       tpPoints: 100");
         Console.WriteLine($"   );");
         Console.WriteLine($"   ↓");
-        Console.WriteLine($"   Internally normalizes 0.0234 → {await sugar.NormalizeVolumeAsync(symbol, 0.0234)}");
+        Console.WriteLine($"   Internally normalizes 0.0234 → {await service.NormalizeVolumeAsync(symbol, 0.0234)}");
         Console.WriteLine($"   Then sends order with valid volume ✓\n");
 
         Console.WriteLine($"⚠️  EXCEPTION: MT5Service methods DON'T auto-normalize");
         Console.WriteLine($"   If using MT5Service layer, YOU must normalize manually:");
-        Console.WriteLine($"   double vol = await sugar.NormalizeVolumeAsync(symbol, 0.0234);");
+        Console.WriteLine($"   double vol = await service.NormalizeVolumeAsync(symbol, 0.0234);");
         Console.WriteLine($"   await service.BuyMarketAsync(symbol, vol, 0, 0);\n");
 
         // ═══════════════════════════════════════════════════════════════════════

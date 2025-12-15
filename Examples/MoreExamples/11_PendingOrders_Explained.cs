@@ -49,11 +49,8 @@ public static class PendingOrdersExamples
         var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
         Console.WriteLine("✓ Connected to MT5 Terminal\n");
 
-        // Create MT5Service wrapper
+        // Create MT5Service wrapper (MT5Sugar methods are extension methods on MT5Service)
         var service = new MT5Service(account);
-
-        // Create MT5Sugar convenience API
-        var sugar = new MT5Sugar(service);
 
         // Define symbol for examples
         string symbol = "EURUSD";
@@ -96,7 +93,7 @@ public static class PendingOrdersExamples
 
         // Get current price
         var tick = await service.SymbolInfoTickAsync(symbol);
-        double point = await sugar.GetPointAsync(symbol);
+        double point = await service.GetPointAsync(symbol);
 
         Console.WriteLine($"📊 Current Market ({symbol}):");
         Console.WriteLine($"   Ask (Buy price): {tick.Ask:F5}");
@@ -135,7 +132,7 @@ public static class PendingOrdersExamples
         Console.WriteLine($"   Entry price: {tick.Ask:F5} - ({buyLimitOffset} × {point}) = {tick.Ask - buyLimitOffset * point:F5}\n");
 
         Console.WriteLine($"📞 PLACING ORDER (demonstration - won't execute):");
-        Console.WriteLine($"   Method: sugar.BuyLimitPoints()");
+        Console.WriteLine($"   Method: service.BuyLimitPoints()");
         Console.WriteLine($"   Symbol: {symbol}");
         Console.WriteLine($"   Volume: 0.01 lots");
         Console.WriteLine($"   Offset: {buyLimitOffset} points below Ask");
@@ -191,7 +188,7 @@ public static class PendingOrdersExamples
         Console.WriteLine($"   Entry price: {tick.Bid:F5} + ({sellLimitOffset} × {point}) = {tick.Bid + sellLimitOffset * point:F5}\n");
 
         Console.WriteLine($"📞 PLACING ORDER (demonstration):");
-        Console.WriteLine($"   Method: sugar.SellLimitPoints()");
+        Console.WriteLine($"   Method: service.SellLimitPoints()");
         Console.WriteLine($"   Symbol: {symbol}");
         Console.WriteLine($"   Volume: 0.01 lots");
         Console.WriteLine($"   Offset: {sellLimitOffset} points above Bid");
@@ -248,7 +245,7 @@ public static class PendingOrdersExamples
         Console.WriteLine($"   Entry price: {tick.Ask:F5} + ({buyStopOffset} × {point}) = {tick.Ask + buyStopOffset * point:F5}\n");
 
         Console.WriteLine($"📞 PLACING ORDER (demonstration):");
-        Console.WriteLine($"   Method: sugar.BuyStopPoints()");
+        Console.WriteLine($"   Method: service.BuyStopPoints()");
         Console.WriteLine($"   Symbol: {symbol}");
         Console.WriteLine($"   Volume: 0.01 lots");
         Console.WriteLine($"   Offset: {buyStopOffset} points above Ask");
@@ -305,7 +302,7 @@ public static class PendingOrdersExamples
         Console.WriteLine($"   Entry price: {tick.Bid:F5} - ({sellStopOffset} × {point}) = {tick.Bid - sellStopOffset * point:F5}\n");
 
         Console.WriteLine($"📞 PLACING ORDER (demonstration):");
-        Console.WriteLine($"   Method: sugar.SellStopPoints()");
+        Console.WriteLine($"   Method: service.SellStopPoints()");
         Console.WriteLine($"   Symbol: {symbol}");
         Console.WriteLine($"   Volume: 0.01 lots");
         Console.WriteLine($"   Offset: {sellStopOffset} points below Bid");
@@ -374,10 +371,10 @@ public static class PendingOrdersExamples
         Console.WriteLine("═══════════════════════════════════════════════════════════════\n");
 
         Console.WriteLine($"📞 Getting list of pending orders:");
-        Console.WriteLine($"   var orders = await service.OrdersAsync();\n");
+        Console.WriteLine($"   var orders = await service.OpenedOrdersAsync();\n");
 
         // Get current pending orders
-        var orders = await service.OrdersAsync();
+        var orders = await service.OpenedOrdersAsync();
 
         Console.WriteLine($"📊 Current pending orders: {orders.Count}\n");
 
@@ -416,11 +413,11 @@ public static class PendingOrdersExamples
         Console.WriteLine($"   await service.OrderDeleteAsync(ticket);\n");
 
         Console.WriteLine($"2. CANCEL ALL PENDING ORDERS:");
-        Console.WriteLine($"   int canceled = await sugar.CancelAll();");
+        Console.WriteLine($"   int canceled = await service.CancelAll();");
         Console.WriteLine($"   Console.WriteLine($\"Canceled {{canceled}} orders\");\n");
 
         Console.WriteLine($"3. CANCEL ALL FOR SPECIFIC SYMBOL:");
-        Console.WriteLine($"   int canceled = await sugar.CancelAll(\"{symbol}\");");
+        Console.WriteLine($"   int canceled = await service.CancelAll(\"{symbol}\");");
         Console.WriteLine($"   Console.WriteLine($\"Canceled {{canceled}} {symbol} orders\");\n");
 
         Console.WriteLine($"⚠️  IMPORTANT:");

@@ -53,7 +53,7 @@ public static class PriceCalculationExamples
         var service = new MT5Service(account);
 
         // Create MT5Sugar convenience API
-        var sugar = new MT5Sugar(service);
+        // MT5Sugar methods are extension methods on MT5Service
 
         // Define symbol for examples
         string symbol = "EURUSD";
@@ -69,11 +69,11 @@ public static class PriceCalculationExamples
         // Get Point value for the symbol
         // Point = smallest price movement possible for this symbol
         // Type: double
-        double point = await sugar.GetPointAsync(symbol);
+        double point = await service.GetPointAsync(symbol);
 
         // Get Digits - number of decimal places for this symbol
         // Type: int
-        int digits = await sugar.GetDigitsAsync(symbol);
+        int digits = await service.GetDigitsAsync(symbol);
 
         Console.WriteLine($"📊 Symbol: {symbol}");
         Console.WriteLine($"   Point: {point}");
@@ -118,7 +118,7 @@ public static class PriceCalculationExamples
         Console.WriteLine($"   Ask: {tick.Ask:F5} ← Price where you BUY\n");
 
         // Calculate spread in points
-        double spreadPoints = await sugar.GetSpreadPointsAsync(symbol);
+        double spreadPoints = await service.GetSpreadPointsAsync(symbol);
 
         Console.WriteLine($"📏 Spread:");
         Console.WriteLine($"   Spread: {spreadPoints} points");
@@ -288,7 +288,7 @@ public static class PriceCalculationExamples
 
         // Normalize the price
         Console.WriteLine($"🔧 NORMALIZING...");
-        double normalizedPrice = await sugar.NormalizePriceAsync(symbol, invalidPrice);
+        double normalizedPrice = await service.NormalizePriceAsync(symbol, invalidPrice);
 
         Console.WriteLine($"   Original: {invalidPrice:F9}");
         Console.WriteLine($"   Normalized: {normalizedPrice:F5}");

@@ -50,11 +50,8 @@ public static class PositionMonitoringExamples
         var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
         Console.WriteLine("✓ Connected to MT5 Terminal\n");
 
-        // Create MT5Service wrapper
+        // Create MT5Service wrapper (MT5Sugar methods are extension methods on MT5Service)
         var service = new MT5Service(account);
-
-        // Create MT5Sugar convenience API
-        var sugar = new MT5Sugar(service);
 
         // Define symbol for examples
         string symbol = "EURUSD";
@@ -67,12 +64,12 @@ public static class PositionMonitoringExamples
         Console.WriteLine("EXAMPLE 1: How to Get All Open Positions");
         Console.WriteLine("═══════════════════════════════════════════════════════════════\n");
 
-        Console.WriteLine("📞 Calling: service.PositionsAsync()");
+        Console.WriteLine("📞 Calling: service.OpenedOrdersAsync()");
 
         // Get all open positions
         // Returns List<PositionData>
         // Type: List containing all currently open positions
-        var positions = await service.PositionsAsync();
+        var positions = await service.OpenedOrdersAsync();
 
         Console.WriteLine($"\n📊 Total open positions: {positions.Count}\n");
 
@@ -127,15 +124,15 @@ public static class PositionMonitoringExamples
 
         Console.WriteLine("1. BY TICKET (unique ID):");
         Console.WriteLine("   ulong targetTicket = 123456789;");
-        Console.WriteLine("   var positions = await service.PositionsAsync();");
+        Console.WriteLine("   var positions = await service.OpenedOrdersAsync();");
         Console.WriteLine("   var position = positions.FirstOrDefault(p => p.Ticket == targetTicket);\n");
 
         Console.WriteLine("2. BY SYMBOL (all positions for EURUSD):");
-        Console.WriteLine($"   var positions = await service.PositionsAsync();");
+        Console.WriteLine($"   var positions = await service.OpenedOrdersAsync();");
         Console.WriteLine($"   var eurusdPositions = positions.Where(p => p.Symbol == \"EURUSD\").ToList();\n");
 
         Console.WriteLine("3. BY TYPE (all BUY or all SELL):");
-        Console.WriteLine("   var positions = await service.PositionsAsync();");
+        Console.WriteLine("   var positions = await service.OpenedOrdersAsync();");
         Console.WriteLine("   var buyPositions = positions.Where(p => p.Type == 0).ToList();  // BUY");
         Console.WriteLine("   var sellPositions = positions.Where(p => p.Type == 1).ToList(); // SELL\n");
 
@@ -159,7 +156,7 @@ public static class PositionMonitoringExamples
 
         // Get current price and point for calculations
         var tick = await service.SymbolInfoTickAsync(symbol);
-        double point = await sugar.GetPointAsync(symbol);
+        double point = await service.GetPointAsync(symbol);
 
         Console.WriteLine($"💡 PROFIT CALCULATION EXPLAINED:\n");
 
@@ -182,7 +179,7 @@ public static class PositionMonitoringExamples
         Console.WriteLine($"📐 Step 2: Calculate profit in DOLLARS");
         Console.WriteLine($"   Need tick value for {exampleVolume} lots");
 
-        var (tickValue, tickSize) = await sugar.GetTickValueAndSizeAsync(symbol, exampleVolume);
+        var (tickValue, tickSize) = await service.GetTickValueAndSizeAsync(symbol);
         Console.WriteLine($"   Tick value: ${tickValue:F4} per point");
         Console.WriteLine($"   Formula: profit_dollars = profit_points × tick_value");
         Console.WriteLine($"   Calculation: {profitPoints:F1} × ${tickValue:F4}");
@@ -233,7 +230,7 @@ public static class PositionMonitoringExamples
         Console.WriteLine($"   ulong ticket = 123456789;");
         Console.WriteLine($"   double newSL = 1.09500;");
         Console.WriteLine($"   double newTP = 1.10000;");
-        Console.WriteLine($"   await sugar.ModifySlTpAsync(ticket, newSL, newTP);\n");
+        Console.WriteLine($"   await service.ModifySlTpAsync(ticket, newSL, newTP);\n");
 
         if (positions.Count > 0)
         {
@@ -414,11 +411,11 @@ public static class PositionMonitoringExamples
    while (!cts.Token.IsCancellationRequested)
    {
        // Get all positions
-       var positions = await service.PositionsAsync();
+       var positions = await service.OpenedOrdersAsync();
 
        foreach (var pos in positions)
        {
-           double point = await sugar.GetPointAsync(pos.Symbol);
+           double point = await service.GetPointAsync(pos.Symbol);
 
            // Calculate profit in points
            double profitPoints = pos.Type == 0
@@ -489,15 +486,15 @@ public static class PositionMonitoringExamples
         Console.WriteLine($"📐 EXAMPLE USAGE:");
 
         // Get position count
-        int posCount = await sugar.GetPositionCountAsync(symbol);
+        int posCount = await service.GetPositionCountAsync(symbol);
         Console.WriteLine($"   Position count for {symbol}: {posCount}\n");
 
         // Get total P/L
-        double totalPL = await sugar.GetTotalProfitLossAsync(symbol);
+        double totalPL = await service.GetTotalProfitLossAsync(symbol);
         Console.WriteLine($"   Total P/L for {symbol}: ${totalPL:F2}\n");
 
         // Get winning positions
-        var winning = await sugar.GetProfitablePositionsAsync(symbol);
+        var winning = await service.GetProfitablePositionsAsync(symbol);
         Console.WriteLine($"   Profitable positions: {winning.Count}");
         foreach (var w in winning)
         {
@@ -506,7 +503,7 @@ public static class PositionMonitoringExamples
         Console.WriteLine();
 
         // Get losing positions
-        var losing = await sugar.GetLosingPositionsAsync(symbol);
+        var losing = await service.GetLosingPositionsAsync(symbol);
         Console.WriteLine($"   Losing positions: {losing.Count}");
         foreach (var l in losing)
         {

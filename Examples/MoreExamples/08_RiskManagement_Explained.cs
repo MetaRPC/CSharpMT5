@@ -56,7 +56,7 @@ public static class RiskManagementExamples
         var service = new MT5Service(account);
 
         // Create MT5Sugar convenience API (Layer 3)
-        var sugar = new MT5Sugar(service);
+        // MT5Sugar methods are extension methods on MT5Service
 
         // Define symbol for examples
         string symbol = "EURUSD";
@@ -86,7 +86,7 @@ public static class RiskManagementExamples
         // For EURUSD 1.0 lot: 1 point = $10
         // For EURUSD 0.1 lot: 1 point = $1
         // Formula: PointValue = ContractSize × Volume × Point
-        var (tickValue, tickSize) = await sugar.GetTickValueAndSizeAsync(symbol, fixedVolume);
+        var (tickValue, tickSize) = await service.GetTickValueAndSizeAsync(symbol);
 
         // tickValue = value of 1 tick movement (usually 1 point = 1 tick for EURUSD)
         // tickSize = size of 1 tick in price units (0.00001 for EURUSD)
@@ -139,9 +139,9 @@ public static class RiskManagementExamples
         // 4. Normalizes volume to broker's step (0.01, 0.1, etc.)
         //
         // 'await' pauses here until calculation completes
-        Console.WriteLine($"📐 Calling: sugar.CalcVolumeForRiskAsync()");
+        Console.WriteLine($"📐 Calling: service.CalcVolumeForRiskAsync()");
 
-        double calculatedVolume = await sugar.CalcVolumeForRiskAsync(
+        double calculatedVolume = await service.CalcVolumeForRiskAsync(
             symbol,           // "EURUSD"
             stopLossPoints,   // 50 points
             riskAmount        // $10
@@ -150,7 +150,7 @@ public static class RiskManagementExamples
         Console.WriteLine($"   Result: {calculatedVolume} lots\n");
 
         // Verify the calculation
-        var (calcTickValue, calcTickSize) = await sugar.GetTickValueAndSizeAsync(symbol, calculatedVolume);
+        var (calcTickValue, calcTickSize) = await service.GetTickValueAndSizeAsync(symbol);
         double verifyLoss = stopLossPoints * calcTickValue;
 
         Console.WriteLine($"   Verification:");
@@ -187,7 +187,7 @@ public static class RiskManagementExamples
 
         // Scenario 1: Tight stop loss (20 points)
         int tightSL = 20;
-        double volumeTightSL = await sugar.CalcVolumeForRiskAsync(symbol, tightSL, twoPercentRisk);
+        double volumeTightSL = await service.CalcVolumeForRiskAsync(symbol, tightSL, twoPercentRisk);
 
         Console.WriteLine($"   Scenario 1: Tight Stop Loss ({tightSL} points)");
         Console.WriteLine($"   - Risk: ${twoPercentRisk:F2}");
@@ -195,7 +195,7 @@ public static class RiskManagementExamples
 
         // Scenario 2: Wide stop loss (100 points)
         int wideSL = 100;
-        double volumeWideSL = await sugar.CalcVolumeForRiskAsync(symbol, wideSL, twoPercentRisk);
+        double volumeWideSL = await service.CalcVolumeForRiskAsync(symbol, wideSL, twoPercentRisk);
 
         Console.WriteLine($"   Scenario 2: Wide Stop Loss ({wideSL} points)");
         Console.WriteLine($"   - Risk: ${twoPercentRisk:F2}");
@@ -231,9 +231,9 @@ public static class RiskManagementExamples
         // - required: margin required for this trade
         //
         // 'await' pauses here until check completes
-        Console.WriteLine($"🔍 Calling: sugar.CheckMarginAvailabilityAsync()");
+        Console.WriteLine($"🔍 Calling: service.CheckMarginAvailabilityAsync()");
 
-        var (hasEnough, freeMargin, required) = await sugar.CheckMarginAvailabilityAsync(
+        var (hasEnough, freeMargin, required) = await service.CheckMarginAvailabilityAsync(
             symbol,      // "EURUSD"
             testVolume,  // 0.05 lots
             isBuy: true  // BUY position (true) or SELL (false)
@@ -284,12 +284,12 @@ public static class RiskManagementExamples
 
         // STEP 2: Calculate volume based on risk
         Console.WriteLine($"📐 Step 1: Calculate position size");
-        double tradeVolume = await sugar.CalcVolumeForRiskAsync(symbol, mySL, myRiskAmount);
+        double tradeVolume = await service.CalcVolumeForRiskAsync(symbol, mySL, myRiskAmount);
         Console.WriteLine($"   Calculated volume: {tradeVolume} lots\n");
 
         // STEP 3: Check margin availability
         Console.WriteLine($"🔍 Step 2: Check margin availability");
-        var (canTrade, freeMgn, reqMgn) = await sugar.CheckMarginAvailabilityAsync(
+        var (canTrade, freeMgn, reqMgn) = await service.CheckMarginAvailabilityAsync(
             symbol,
             tradeVolume,
             isBuy: true
@@ -303,7 +303,7 @@ public static class RiskManagementExamples
         {
             Console.WriteLine($"✅ ALL CHECKS PASSED - Ready to trade!");
             Console.WriteLine($"\n   Now you would call:");
-            Console.WriteLine($"   await sugar.BuyMarket(");
+            Console.WriteLine($"   await service.BuyMarket(");
             Console.WriteLine($"       symbol: \"{symbol}\",");
             Console.WriteLine($"       volume: {tradeVolume},");
             Console.WriteLine($"       slPoints: {mySL},");
@@ -359,7 +359,7 @@ public static class RiskManagementExamples
         Console.WriteLine("📚 KEY METHODS:");
         Console.WriteLine("   - CalcVolumeForRiskAsync(symbol, slPoints, riskAmount)");
         Console.WriteLine("   - CheckMarginAvailabilityAsync(symbol, volume, isBuy)");
-        Console.WriteLine("   - GetTickValueAndSizeAsync(symbol, volume)\n");
+        Console.WriteLine("   - GetTickValueAndSizeAsync(symbol)\n");
 
         Console.WriteLine("💡 REMEMBER:");
         Console.WriteLine("   'Professional traders don't focus on how much they can MAKE,");
