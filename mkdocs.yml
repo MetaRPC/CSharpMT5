@@ -31,7 +31,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.instant
+    # - navigation.instant  # Disabled: causes 404 on GitHub Pages
     - navigation.tracking
     - navigation.expand
     - navigation.top
