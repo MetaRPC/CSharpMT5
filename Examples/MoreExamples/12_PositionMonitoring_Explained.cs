@@ -71,9 +71,9 @@ public static class PositionMonitoringExamples
         // Type: List containing all currently open positions
         var positions = await service.OpenedOrdersAsync();
 
-        Console.WriteLine($"\n📊 Total open positions: {positions.Count}\n");
+        Console.WriteLine($"\n📊 Total open positions: {positions.PositionInfos.Count}\n");
 
-        if (positions.Count > 0)
+        if (positions.PositionInfos.Count > 0)
         {
             Console.WriteLine("📋 Your open positions:\n");
 
@@ -136,10 +136,10 @@ public static class PositionMonitoringExamples
         Console.WriteLine("   var buyPositions = positions.Where(p => p.Type == 0).ToList();  // BUY");
         Console.WriteLine("   var sellPositions = positions.Where(p => p.Type == 1).ToList(); // SELL\n");
 
-        if (positions.Count > 0)
+        if (positions.PositionInfos.Count > 0)
         {
             // Demonstrate finding first position
-            var firstPos = positions[0];
+            var firstPos = positions.PositionInfos[0];
 
             Console.WriteLine($"📍 EXAMPLE: Finding position #{firstPos.Ticket}");
             Console.WriteLine($"   var target = positions.FirstOrDefault(p => p.Ticket == {firstPos.Ticket});");
@@ -191,9 +191,9 @@ public static class PositionMonitoringExamples
         Console.WriteLine($"   For SELL: profit_points = (entry - current) / point");
         Console.WriteLine($"   (Opposite direction from BUY)\n");
 
-        if (positions.Count > 0 && positions[0].Symbol == symbol)
+        if (positions.PositionInfos.Count > 0 && positions.PositionInfos[0].Symbol == symbol)
         {
-            var pos = positions[0];
+            var pos = positions.PositionInfos[0];
             double actualProfitPoints = pos.Type == 0
                 ? (pos.PriceCurrent - pos.PriceOpen) / point
                 : (pos.PriceOpen - pos.PriceCurrent) / point;
@@ -232,9 +232,9 @@ public static class PositionMonitoringExamples
         Console.WriteLine($"   double newTP = 1.10000;");
         Console.WriteLine($"   await service.ModifySlTpAsync(ticket, newSL, newTP);\n");
 
-        if (positions.Count > 0)
+        if (positions.PositionInfos.Count > 0)
         {
-            var pos = positions[0];
+            var pos = positions.PositionInfos[0];
 
             Console.WriteLine($"📍 EXAMPLE: Modifying position #{pos.Ticket}");
             Console.WriteLine($"   Current SL: {(pos.Sl > 0 ? pos.Sl.ToString("F5") : "None")}");

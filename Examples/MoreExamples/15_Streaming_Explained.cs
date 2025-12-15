@@ -271,9 +271,9 @@ public static class StreamingExamplesDetailed
         // Check if there are any positions
         var positions = await service.OpenedOrdersAsync();
 
-        if (positions.Count > 0)
+        if (positions.PositionInfos.Count > 0)
         {
-            var pos = positions[0];
+            var pos = positions.PositionInfos[0];
 
             Console.WriteLine($"📊 Monitoring position #{pos.Ticket}:");
             Console.WriteLine($"   Symbol: {pos.Symbol}");

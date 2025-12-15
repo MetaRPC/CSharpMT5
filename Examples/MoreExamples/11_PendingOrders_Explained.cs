@@ -374,22 +374,20 @@ public static class PendingOrdersExamples
         Console.WriteLine($"   var orders = await service.OpenedOrdersAsync();\n");
 
         // Get current pending orders
-        var orders = await service.OpenedOrdersAsync();
+        var ordersData = await service.OpenedOrdersAsync();
 
-        Console.WriteLine($"📊 Current pending orders: {orders.Count}\n");
+        Console.WriteLine($"📊 Current pending orders: {ordersData.OpenedOrders.Count}\n");
 
-        if (orders.Count > 0)
+        if (ordersData.OpenedOrders.Count > 0)
         {
             Console.WriteLine($"📋 Your pending orders:");
-            foreach (var order in orders)
+            foreach (var order in ordersData.OpenedOrders)
             {
                 Console.WriteLine($"   Ticket: {order.Ticket}");
                 Console.WriteLine($"   Type: {order.Type}");
                 Console.WriteLine($"   Symbol: {order.Symbol}");
                 Console.WriteLine($"   Volume: {order.VolumeCurrent} lots");
                 Console.WriteLine($"   Price: {order.PriceOpen:F5}");
-                Console.WriteLine($"   SL: {order.Sl:F5}");
-                Console.WriteLine($"   TP: {order.Tp:F5}");
                 Console.WriteLine();
             }
         }

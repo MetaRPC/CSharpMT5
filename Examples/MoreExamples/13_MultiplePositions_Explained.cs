@@ -152,9 +152,9 @@ public static class MultiplePositionsExamples
         // Get all positions
         var positions = await service.OpenedOrdersAsync();
 
-        Console.WriteLine($"📊 Total open positions: {positions.Count}\n");
+        Console.WriteLine($"📊 Total open positions: {positions.PositionInfos.Count}\n");
 
-        if (positions.Count > 0)
+        if (positions.PositionInfos.Count > 0)
         {
             // Group by symbol
             var bySymbol = positions.GroupBy(p => p.Symbol);
@@ -177,7 +177,7 @@ public static class MultiplePositionsExamples
             }
 
             // Show first few positions in detail
-            Console.WriteLine($"📋 Position Details (first {Math.Min(5, positions.Count)}):\n");
+            Console.WriteLine($"📋 Position Details (first {Math.Min(5, positions.PositionInfos.Count)}):\n");
 
             foreach (var pos in positions.Take(5))
             {
@@ -297,7 +297,7 @@ public static class MultiplePositionsExamples
         Console.WriteLine($"   In hedging mode, positions don't cancel each other");
         Console.WriteLine($"   Need to calculate NET exposure manually\n");
 
-        if (positions.Count > 0)
+        if (positions.PositionInfos.Count > 0)
         {
             Console.WriteLine($"📊 ANALYZING {symbol} EXPOSURE:\n");
 

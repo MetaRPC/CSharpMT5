@@ -347,43 +347,25 @@ public static class ErrorHandlingExamples
         Console.WriteLine($"   Required: ${required:F2}");
         Console.WriteLine($"   Status: {(hasEnough ? "Sufficient ✓" : "Insufficient ✗")}\n");
 
-        // STEP 3: Validate order
-        Console.WriteLine($"🔍 Step 3: Validate order with broker");
-
-        // Get current price for the order
-        var tick = await service.SymbolInfoTickAsync(symbol);
-        double buyPrice = tick.Ask;
-
-        // Call ValidateOrderAsync - simulates the order without executing it
-        // Returns same ReturnCode as real order would return
-        var validation = await service.ValidateOrderAsync(
-            symbol,
-            normalizedVolume,
-            buyPrice,
-            isBuy: true
-        );
-
-        Console.WriteLine($"   Validation code: {validation.ReturnedCode}");
-        Console.WriteLine($"   Status: {(validation.ReturnedCode == 10009 ? "Will succeed ✓" : $"Will fail: {validation.Comment} ✗")}\n");
-
         // FINAL DECISION
-        if (hasEnough && validation.ReturnedCode == 10009)
+        if (hasEnough)
         {
-            Console.WriteLine($"✅ ALL VALIDATIONS PASSED:");
+            Console.WriteLine($"✅ VALIDATION PASSED:");
             Console.WriteLine($"   - Volume is normalized ✓");
             Console.WriteLine($"   - Margin is sufficient ✓");
-            Console.WriteLine($"   - Broker will accept order ✓");
             Console.WriteLine($"   → Safe to execute BuyMarketAsync()\n");
         }
         else
         {
             Console.WriteLine($"❌ VALIDATION FAILED:");
-            if (!hasEnough)
-                Console.WriteLine($"   - Insufficient margin ✗");
-            if (validation.ReturnedCode != 10009)
-                Console.WriteLine($"   - Broker will reject: {validation.Comment} ✗");
+            Console.WriteLine($"   - Insufficient margin ✗");
             Console.WriteLine($"   → DO NOT execute trade until issues fixed!\n");
         }
+
+        // NOTE: For advanced pre-trade validation, you can use:
+        // var checkRequest = new OrderCheckRequest { MqlTradeRequest = tradeRequest };
+        // var validation = await service.OrderCheckAsync(checkRequest);
+        // This simulates the order and returns potential errors before execution
 
         // ═══════════════════════════════════════════════════════════════════════
         // SUMMARY
