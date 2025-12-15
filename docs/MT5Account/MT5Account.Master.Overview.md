@@ -61,7 +61,7 @@ var summary = account.AccountSummary();
 var tick = account.SymbolInfoTick("EURUSD");
 ```
 
-**📖 Read:** **[Sync vs Async - When to Use What](./Sync_vs_Async.md)** - Detailed guide with use cases and performance comparisons.
+**📖 Read:** **[Sync vs Async - When to Use What](../Sync_vs_Async.md)** - Detailed guide with use cases and performance comparisons.
 
 ---
 

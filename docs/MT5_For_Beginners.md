@@ -346,7 +346,7 @@ Now that you have a demo account and understand the basics, you're ready to:
 
 Follow our main getting started guide to connect CSharpMT5 to your MT5 account:
 
-👉 **[Getting Started with CSharpMT5](GETTING_STARTED.md)**
+👉 **[Getting Started with CSharpMT5](Getting_Started.md)**
 
 ### 2. Understand the API Architecture
 
@@ -414,4 +414,4 @@ CSharpMT5 is built in **three layers**, from low-level to high-level. You can ch
 ---
 
 
-**Ready to start coding?** Head over to [Getting Started](GETTING_STARTED.md) to connect CSharpMT5 to your MT5 account!
+**Ready to start coding?** Head over to [Getting Started](Getting_Started.md) to connect CSharpMT5 to your MT5 account!

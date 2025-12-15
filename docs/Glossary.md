@@ -420,7 +420,7 @@ var result = account.OrderSend(request);
 - Better performance with multiple operations
 - Scalable for high-frequency trading
 
-**Documentation:** [Sync_vs_Async.md](../Sync_vs_Async.md)
+**Documentation:** [Sync_vs_Async.md](Sync_vs_Async.md)
 
 ---
 
