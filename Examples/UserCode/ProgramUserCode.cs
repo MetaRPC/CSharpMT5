@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════════════════════════════════════
-// FILE: ProgramUserCode.cs — USER SANDBOX FOR CUSTOM TRADING LOGIC
+// FILE: ProgramUserCode.cs - USER SANDBOX FOR CUSTOM TRADING LOGIC
 //
 // HOW TO RUN:
 //   1. First, uncomment the case block in Program.cs (line ~172)

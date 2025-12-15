@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Examples/Sugar/Program.Sugar.cs — HIGH-LEVEL SUGAR API COMPREHENSIVE DEMO
+ FILE: Examples/Sugar/Program.Sugar.cs - HIGH-LEVEL SUGAR API COMPREHENSIVE DEMO
  PURPOSE:
    Complete demonstration of MT5Service.Extensions - the "Sugar" layer providing
    user-friendly trading methods with smart defaults and automatic calculations.

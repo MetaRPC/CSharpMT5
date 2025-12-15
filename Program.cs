@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Program.cs — MAIN ENTRY POINT FOR ALL EXAMPLES
+ FILE: Program.cs - MAIN ENTRY POINT FOR ALL EXAMPLES
 
  ╔═══════════════════════════════════════════════════════════════════════════╗
  ║                           WHAT IS THIS FILE?                              ║

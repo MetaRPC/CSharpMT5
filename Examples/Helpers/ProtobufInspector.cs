@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Examples/Helpers/ProtobufInspector.cs — INTERACTIVE PROTOBUF TYPES INSPECTOR
+ FILE: Examples/Helpers/ProtobufInspector.cs - INTERACTIVE PROTOBUF TYPES INSPECTOR
  PURPOSE:
    Interactive developer utility to explore MetaRPC.MT5 protobuf types, fields,
    enums, and data structures from the MT5 gRPC API.

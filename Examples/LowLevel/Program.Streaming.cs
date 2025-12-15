@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Examples/LowLevel/Program.Streaming.cs — STREAMING SUBSCRIPTIONS DEMO
+ FILE: Examples/LowLevel/Program.Streaming.cs - STREAMING SUBSCRIPTIONS DEMO
  PURPOSE:
    Comprehensive demonstration of ALL real-time streaming capabilities in the
    MT5 gRPC API. Shows how to subscribe to live market data, trade events,
@@ -295,7 +295,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             {
                 if (tradeCount > 0)
                     Console.WriteLine($"[ReadTrades] Completed with {tradeCount} events\n");
-                // If count == 0, it's okay — there simply was no trading
+                // If count == 0, it's okay - there simply was no trading
             }
             catch (Grpc.Core.RpcException rpcEx) when (rpcEx.StatusCode == Grpc.Core.StatusCode.Cancelled)
             {
@@ -531,11 +531,11 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
 
 /*══════════════════════════════════════════════════════════════════════════════
  =============================================================================
-       STREAMING REFERENCE GUIDE — Resource Management & Troubleshooting
+       STREAMING REFERENCE GUIDE - Resource Management & Troubleshooting
  =============================================================================
 
   +-----------------------------------------------------------------------------+
-  |                RESOURCE CLEANUP — How streams are disposed                  |
+  |                RESOURCE CLEANUP - How streams are disposed                  |
   +-----------------------------------------------------------------------------+
 
  Q: Are streaming subscriptions automatically cleaned up?
@@ -569,7 +569,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
 
 
  +-----------------------------------------------------------------------------+
- |              FAST vs SLOW STREAMS — Why you may see 0 events                |
+ |              FAST vs SLOW STREAMS - Why you may see 0 events                |
  +-----------------------------------------------------------------------------+
 
  FAST STREAMS (Market Data):
@@ -603,7 +603,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
 
 
  +-----------------------------------------------------------------------------+
- |            COMMON MISTAKES — Resource leaks and how to avoid them           |
+ |            COMMON MISTAKES - Resource leaks and how to avoid them           |
  +-----------------------------------------------------------------------------+
 
  1. [BAD] MISTAKE: Fire-and-forget stream tasks
@@ -665,7 +665,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
 
 
  +-----------------------------------------------------------------------------+
- |                 TROUBLESHOOTING — Stream errors and solutions               |
+ |                 TROUBLESHOOTING - Stream errors and solutions               |
  +-----------------------------------------------------------------------------+
 
  ERROR: "Grpc.Core.RpcException: Status(StatusCode="Cancelled")"
@@ -696,7 +696,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
 
 
  +-----------------------------------------------------------------------------+
- |                 BEST PRACTICES — Production streaming patterns              |
+ |                 BEST PRACTICES - Production streaming patterns              |
  +-----------------------------------------------------------------------------+
 
  1. Use CancellationTokenSource with timeout

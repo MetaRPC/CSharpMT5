@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Examples/LowLevel/Program.LowLevel.cs — LOW-LEVEL MT5 API INFORMATION DEMO
+ FILE: Examples/LowLevel/Program.LowLevel.cs - LOW-LEVEL MT5 API INFORMATION DEMO
  PURPOSE:
    Comprehensive demonstration of MT5 information retrieval methods via MT5Account class.
    This is a REFERENCE GUIDE for account, symbol, position, and market data queries
@@ -128,7 +128,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             ConsoleHelper.PrintSection("1. ACCOUNT INFORMATION");
 
             // ─────────────────────────────────────────────────────────────
-            // METHOD 1: AccountSummaryAsync() — ONE CALL GETS EVERYTHING
+            // METHOD 1: AccountSummaryAsync() - ONE CALL GETS EVERYTHING
             // ─────────────────────────────────────────────────────────────
             // ✅ RECOMMENDED: This is the most efficient way to get account data.
             //    Single gRPC call returns all account properties at once.
@@ -155,7 +155,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             Console.WriteLine($"        Level:    {marginLevel:F2}%\n");
 
             // ─────────────────────────────────────────────────────────────
-            // METHOD 2: AccountInfoXxxAsync() — INDIVIDUAL PROPERTY CALLS
+            // METHOD 2: AccountInfoXxxAsync() - INDIVIDUAL PROPERTY CALLS
             // ─────────────────────────────────────────────────────────────
             // Alternative approach: Get each property separately
             // Use when you need only specific properties (fewer gRPC calls)
@@ -189,7 +189,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             // ══════════════════════════════════════════════════════════════
 
             // ─────────────────────────────────────────────────────────────
-            // BASIC SYMBOL OPERATIONS — Select, Check Existence, Check Sync
+            // BASIC SYMBOL OPERATIONS - Select, Check Existence, Check Sync
             // ─────────────────────────────────────────────────────────────
             Console.WriteLine($"  [2.1] Symbol: {symbol}\n");
 
@@ -206,7 +206,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             Console.WriteLine($"        ✓ SymbolIsSynchronizedAsync() - Synced: {isSynced.Synchronized}\n");
 
             // ─────────────────────────────────────────────────────────────
-            // SYMBOL PROPERTIES — Get individual Double/Integer/String values
+            // SYMBOL PROPERTIES - Get individual Double/Integer/String values
             // ─────────────────────────────────────────────────────────────
             // Properties are categorized by data type (similar to AccountInfo pattern)
             // Each call is a separate gRPC request to MT5
@@ -271,7 +271,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             Console.WriteLine($"        Symbol[0]: {symbolName.Name}\n");
 
             // ─────────────────────────────────────────────────────────────
-            // ADVANCED SYMBOL INFO — Margin, Sessions, Detailed Parameters
+            // ADVANCED SYMBOL INFO - Margin, Sessions, Detailed Parameters
             // ─────────────────────────────────────────────────────────────
             // ⚠️ Note: Not all brokers support these advanced methods
 
@@ -372,7 +372,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             // ══════════════════════════════════════════════════════════════
 
             // ─────────────────────────────────────────────────────────────
-            // CURRENT POSITIONS & ORDERS — Real-time Open Trades
+            // CURRENT POSITIONS & ORDERS - Real-time Open Trades
             // ─────────────────────────────────────────────────────────────
 
             // Count total open positions (fast, lightweight)
@@ -405,7 +405,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             Console.WriteLine($"        Order tickets:    {tickets.OpenedOrdersTickets.Count}\n");
 
             // ─────────────────────────────────────────────────────────────
-            // HISTORICAL DATA — Past Orders & Closed Positions
+            // HISTORICAL DATA - Past Orders & Closed Positions
             // ─────────────────────────────────────────────────────────────
 
             // Get order history with pagination
@@ -534,7 +534,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
 
 /*
  ═══════════════════════════════════════════════════════════════════════════════
-  REFERENCE GUIDE — Quick lookup for developers
+  REFERENCE GUIDE - Quick lookup for developers
  ═══════════════════════════════════════════════════════════════════════════════
 
  ┌─────────────────────────────────────────────────────────────────────────────┐

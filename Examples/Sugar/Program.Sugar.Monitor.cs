@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Examples/Sugar/Program.Sugar.Monitor.cs — POSITION & HISTORY MONITORING
+ FILE: Examples/Sugar/Program.Sugar.Monitor.cs - POSITION & HISTORY MONITORING
  PURPOSE:
    Demonstrate MT5Sugar API monitoring and history methods through a realistic
    position monitoring scenario with real-time P&L tracking and statistics.

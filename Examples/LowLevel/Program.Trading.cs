@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Examples/LowLevel/Program.Trading.cs — TRADING OPERATIONS DEMO
+ FILE: Examples/LowLevel/Program.Trading.cs - TRADING OPERATIONS DEMO
  PURPOSE:
    Demonstrates MT5 trading operations in isolation with fresh gRPC connection.
    This ensures trading methods work reliably without connection degradation.
@@ -234,7 +234,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
 /*══════════════════════════════════════════════════════════════════════════════
 
  =============================================================================
-       TRADING REFERENCE GUIDE — Order Lifecycle & Best Practices
+       TRADING REFERENCE GUIDE - Order Lifecycle & Best Practices
  =============================================================================
 
   +-----------------------------------------------------------------------------+

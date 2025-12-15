@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Examples/Services/Program.Service.cs — MID-LEVEL MT5Service API DEMO
+ FILE: Examples/Services/Program.Service.cs - MID-LEVEL MT5Service API DEMO
  PURPOSE:
    Comprehensive demonstration of MT5Service - the mid-level wrapper over MT5Account
    that returns unwrapped primitives and provides convenience methods.

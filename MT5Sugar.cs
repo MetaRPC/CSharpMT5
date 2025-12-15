@@ -50,7 +50,7 @@
       • ReadTicks()             - Async enumerable tick stream (bounded)
       • ReadTrades()            - Async enumerable trade event stream (bounded)
 
- [06] TRADING — MARKET & PENDING (5 methods)
+ [06] TRADING - MARKET & PENDING (5 methods)
       • PlaceMarket()           - Open market order (BUY/SELL)
       • PlacePending()          - Place pending order (Limit/Stop)
       • ModifySlTpAsync()       - Modify SL/TP for existing order
@@ -813,7 +813,7 @@ namespace MetaRPC.CSharpMT5
 
         #endregion
         // ─────────────────────────────────────────────────────────────────────
-           #region [06] TRADING — MARKET & PENDING
+           #region [06] TRADING - MARKET & PENDING
         // ─────────────────────────────────────────────────────────────────────
 
 
@@ -1747,7 +1747,7 @@ namespace MetaRPC.CSharpMT5
         #endregion
 
         // ═════════════════════════════════════════════════════════════════════════════
-        #region [11] MARKET DEPTH (DOM) — Order Book Helpers
+        #region [11] MARKET DEPTH (DOM) - Order Book Helpers
         // ═════════════════════════════════════════════════════════════════════════════
 
         /// <summary>
@@ -1865,7 +1865,7 @@ namespace MetaRPC.CSharpMT5
         #endregion
 
         // ═════════════════════════════════════════════════════════════════════════════
-        #region [12] ORDER VALIDATION — Pre-flight Checks
+        #region [12] ORDER VALIDATION - Pre-flight Checks
         // ═════════════════════════════════════════════════════════════════════════════
 
         /// <summary>
@@ -1980,7 +1980,7 @@ namespace MetaRPC.CSharpMT5
         #endregion
 
         // ═════════════════════════════════════════════════════════════════════════════
-        #region [13] SESSION TIME — Trading Session Helpers
+        #region [13] SESSION TIME - Trading Session Helpers
         // ═════════════════════════════════════════════════════════════════════════════
 
         /// <summary>
@@ -2018,7 +2018,7 @@ namespace MetaRPC.CSharpMT5
         #endregion
 
         // ═════════════════════════════════════════════════════════════════════════════
-        #region [14] POSITION MONITORING — Position Filtering & Aggregation
+        #region [14] POSITION MONITORING - Position Filtering & Aggregation
         // ═════════════════════════════════════════════════════════════════════════════
 
         /// <summary>
@@ -2202,7 +2202,7 @@ namespace MetaRPC.CSharpMT5
 
 /*
  ═══════════════════════════════════════════════════════════════════════════
-  USAGE EXAMPLES — MT5Sugar Convenience Methods
+  USAGE EXAMPLES - MT5Sugar Convenience Methods
  ═══════════════════════════════════════════════════════════════════════════
 
  ┌─────────────────────────────────────────────────────────────────────────────┐

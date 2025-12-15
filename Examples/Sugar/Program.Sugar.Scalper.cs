@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Examples/Sugar/Program.Sugar.Scalper.cs — SCALPING STRATEGY WITH RISK MANAGEMENT
+ FILE: Examples/Sugar/Program.Sugar.Scalper.cs - SCALPING STRATEGY WITH RISK MANAGEMENT
  PURPOSE:
    Demonstrates a complete scalping trading strategy using Sugar API with automatic
    risk-based position sizing, margin validation, and real-time P&L monitoring.

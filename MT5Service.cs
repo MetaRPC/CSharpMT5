@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: MT5Service.cs — MID-LEVEL API WRAPPER FOR MT5
+ FILE: MT5Service.cs - MID-LEVEL API WRAPPER FOR MT5
 ══════════════════════════════════════════════════════════════════════════════
 
  PURPOSE:
@@ -27,91 +27,91 @@
 ──────────────────────────────────────────────────────────────────────────────
 
  [01] CONNECTION
-   • ConnectByHostPortAsync     — Thin wrapper (no changes)
-   • ConnectByServerNameAsync   — Thin wrapper (no changes)
+   • ConnectByHostPortAsync     - Thin wrapper (no changes)
+   • ConnectByServerNameAsync   - Thin wrapper (no changes)
 
  [02] ACCOUNT INFORMATION
-   ✓ AccountSummaryAsync        — Thin wrapper (returns rich object)
-   ✓ AccountInfoDoubleAsync     — UNWRAPPED: returns double (was Data.Value)
-   ✓ AccountInfoIntegerAsync    — UNWRAPPED: returns long (was Data.Value)
-   ✓ AccountInfoStringAsync     — UNWRAPPED: returns string (was Data.Value)
+   ✓ AccountSummaryAsync        - Thin wrapper (returns rich object)
+   ✓ AccountInfoDoubleAsync     - UNWRAPPED: returns double (was Data.Value)
+   ✓ AccountInfoIntegerAsync    - UNWRAPPED: returns long (was Data.Value)
+   ✓ AccountInfoStringAsync     - UNWRAPPED: returns string (was Data.Value)
 
    NEW CONVENIENCE METHODS:
-   • GetBalanceAsync            — Shortcut for AccountInfoDouble(Balance)
-   • GetEquityAsync             — Shortcut for AccountInfoDouble(Equity)
-   • GetMarginAsync             — Shortcut for AccountInfoDouble(Margin)
-   • GetFreeMarginAsync         — Shortcut for AccountInfoDouble(MarginFree)
-   • GetProfitAsync             — Shortcut for AccountInfoDouble(Profit)
-   • GetLoginAsync              — Shortcut for AccountInfoInteger(Login)
-   • GetLeverageAsync           — Shortcut for AccountInfoInteger(Leverage)
-   • GetAccountNameAsync        — Shortcut for AccountInfoString(Name)
-   • GetServerNameAsync         — Shortcut for AccountInfoString(Server)
-   • GetCurrencyAsync           — Shortcut for AccountInfoString(Currency)
+   • GetBalanceAsync            - Shortcut for AccountInfoDouble(Balance)
+   • GetEquityAsync             - Shortcut for AccountInfoDouble(Equity)
+   • GetMarginAsync             - Shortcut for AccountInfoDouble(Margin)
+   • GetFreeMarginAsync         - Shortcut for AccountInfoDouble(MarginFree)
+   • GetProfitAsync             - Shortcut for AccountInfoDouble(Profit)
+   • GetLoginAsync              - Shortcut for AccountInfoInteger(Login)
+   • GetLeverageAsync           - Shortcut for AccountInfoInteger(Leverage)
+   • GetAccountNameAsync        - Shortcut for AccountInfoString(Name)
+   • GetServerNameAsync         - Shortcut for AccountInfoString(Server)
+   • GetCurrencyAsync           - Shortcut for AccountInfoString(Currency)
 
  [03] SYMBOL OPERATIONS
-   ✓ SymbolsTotalAsync          — UNWRAPPED: returns int (was Data.Total)
-   ✓ SymbolExistAsync           — UNWRAPPED: returns bool (was Data.Exists)
-   ✓ SymbolNameAsync            — UNWRAPPED: returns string (was Data.Name)
-   ✓ SymbolSelectAsync          — UNWRAPPED: returns bool (was Data.Success)
-   ✓ SymbolIsSynchronizedAsync  — UNWRAPPED: returns bool (was Data.Synchronized)
-   ✓ SymbolInfoDoubleAsync      — UNWRAPPED: returns double (was Data.Value)
-   ✓ SymbolInfoIntegerAsync     — UNWRAPPED: returns long (was Data.Value)
-   ✓ SymbolInfoStringAsync      — UNWRAPPED: returns string (was Data.Value)
-   • SymbolInfoMarginRateAsync  — Thin wrapper (returns rich object)
+   ✓ SymbolsTotalAsync          - UNWRAPPED: returns int (was Data.Total)
+   ✓ SymbolExistAsync           - UNWRAPPED: returns bool (was Data.Exists)
+   ✓ SymbolNameAsync            - UNWRAPPED: returns string (was Data.Name)
+   ✓ SymbolSelectAsync          - UNWRAPPED: returns bool (was Data.Success)
+   ✓ SymbolIsSynchronizedAsync  - UNWRAPPED: returns bool (was Data.Synchronized)
+   ✓ SymbolInfoDoubleAsync      - UNWRAPPED: returns double (was Data.Value)
+   ✓ SymbolInfoIntegerAsync     - UNWRAPPED: returns long (was Data.Value)
+   ✓ SymbolInfoStringAsync      - UNWRAPPED: returns string (was Data.Value)
+   • SymbolInfoMarginRateAsync  - Thin wrapper (returns rich object)
 
    NEW CONVENIENCE METHODS:
-   • GetBidAsync                — Shortcut for SymbolInfoDouble(Bid)
-   • GetAskAsync                — Shortcut for SymbolInfoDouble(Ask)
-   • GetSpreadAsync             — Shortcut for SymbolInfoInteger(Spread)
-   • GetVolumeMinAsync          — Shortcut for SymbolInfoDouble(VolumeMin)
-   • GetVolumeMaxAsync          — Shortcut for SymbolInfoDouble(VolumeMax)
-   • GetVolumeStepAsync         — Shortcut for SymbolInfoDouble(VolumeStep)
-   • IsSymbolAvailableAsync     — Combines Exist + IsSynchronized checks
+   • GetBidAsync                - Shortcut for SymbolInfoDouble(Bid)
+   • GetAskAsync                - Shortcut for SymbolInfoDouble(Ask)
+   • GetSpreadAsync             - Shortcut for SymbolInfoInteger(Spread)
+   • GetVolumeMinAsync          - Shortcut for SymbolInfoDouble(VolumeMin)
+   • GetVolumeMaxAsync          - Shortcut for SymbolInfoDouble(VolumeMax)
+   • GetVolumeStepAsync         - Shortcut for SymbolInfoDouble(VolumeStep)
+   • IsSymbolAvailableAsync     - Combines Exist + IsSynchronized checks
 
  [04] SYMBOL INFO
-   • SymbolInfoTickAsync        — Thin wrapper (returns MrpcMqlTick)
-   • QuoteAsync                 — Alias for SymbolInfoTickAsync
-   • SymbolInfoSessionQuoteAsync — Thin wrapper (returns rich object)
-   • SymbolInfoSessionTradeAsync — Thin wrapper (returns rich object)
-   • TickValueWithSizeAsync     — Thin wrapper (returns rich object)
-   • SymbolParamsManyAsync      — Thin wrapper (returns rich object)
+   • SymbolInfoTickAsync        - Thin wrapper (returns MrpcMqlTick)
+   • QuoteAsync                 - Alias for SymbolInfoTickAsync
+   • SymbolInfoSessionQuoteAsync - Thin wrapper (returns rich object)
+   • SymbolInfoSessionTradeAsync - Thin wrapper (returns rich object)
+   • TickValueWithSizeAsync     - Thin wrapper (returns rich object)
+   • SymbolParamsManyAsync      - Thin wrapper (returns rich object)
 
  [05] MARKET DEPTH (DOM)
-   • MarketBookAddAsync         — Thin wrapper (returns rich object)
-   • MarketBookReleaseAsync     — Thin wrapper (returns rich object)
-   • MarketBookGetAsync         — Thin wrapper (returns rich object)
+   • MarketBookAddAsync         - Thin wrapper (returns rich object)
+   • MarketBookReleaseAsync     - Thin wrapper (returns rich object)
+   • MarketBookGetAsync         - Thin wrapper (returns rich object)
 
  [06] ORDERS / POSITIONS / HISTORY
-   • OpenedOrdersAsync          — Thin wrapper (returns rich object)
-   • OpenedOrdersTicketsAsync   — Thin wrapper (returns rich object)
-   • OrderHistoryAsync          — Thin wrapper (returns rich object)
-   • PositionsHistoryAsync      — Thin wrapper (returns rich object)
-   • PositionsTotalAsync        — Thin wrapper (returns rich object)
+   • OpenedOrdersAsync          - Thin wrapper (returns rich object)
+   • OpenedOrdersTicketsAsync   - Thin wrapper (returns rich object)
+   • OrderHistoryAsync          - Thin wrapper (returns rich object)
+   • PositionsHistoryAsync      - Thin wrapper (returns rich object)
+   • PositionsTotalAsync        - Thin wrapper (returns rich object)
 
  [07] PRE-TRADE & TRADING
-   • OrderCalcMarginAsync       — Thin wrapper (returns rich object)
-   • OrderCheckAsync            — Thin wrapper (returns rich object)
-   • OrderSendAsync             — Thin wrapper (returns rich object)
-   • OrderModifyAsync           — Thin wrapper (returns rich object)
-   • OrderCloseAsync            — Thin wrapper (returns rich object)
+   • OrderCalcMarginAsync       - Thin wrapper (returns rich object)
+   • OrderCheckAsync            - Thin wrapper (returns rich object)
+   • OrderSendAsync             - Thin wrapper (returns rich object)
+   • OrderModifyAsync           - Thin wrapper (returns rich object)
+   • OrderCloseAsync            - Thin wrapper (returns rich object)
 
    NEW CONVENIENCE METHODS:
-   • BuyMarketAsync             — Simplified market BUY (builds OrderSendRequest)
-   • SellMarketAsync            — Simplified market SELL (builds OrderSendRequest)
-   • BuyLimitAsync              — Simplified pending BUY LIMIT
-   • SellLimitAsync             — Simplified pending SELL LIMIT
-   • BuyStopAsync               — Simplified pending BUY STOP
-   • SellStopAsync              — Simplified pending SELL STOP
-   • GetRecentOrdersAsync       — Get history for last N days
-   • GetTodayOrdersAsync        — Get today's order history
-   • IsTradingAllowedAsync      — Check if trading is enabled
+   • BuyMarketAsync             - Simplified market BUY (builds OrderSendRequest)
+   • SellMarketAsync            - Simplified market SELL (builds OrderSendRequest)
+   • BuyLimitAsync              - Simplified pending BUY LIMIT
+   • SellLimitAsync             - Simplified pending SELL LIMIT
+   • BuyStopAsync               - Simplified pending BUY STOP
+   • SellStopAsync              - Simplified pending SELL STOP
+   • GetRecentOrdersAsync       - Get history for last N days
+   • GetTodayOrdersAsync        - Get today's order history
+   • IsTradingAllowedAsync      - Check if trading is enabled
 
  [08] STREAMING
-   • OnSymbolTickAsync          — Thin wrapper (IAsyncEnumerable)
-   • OnTradeAsync               — Thin wrapper (IAsyncEnumerable)
-   • OnPositionProfitAsync      — Thin wrapper (IAsyncEnumerable)
-   • OnPositionsAndPendingOrdersTicketsAsync — Thin wrapper (IAsyncEnumerable)
-   • OnTradeTransactionAsync    — Thin wrapper (IAsyncEnumerable)
+   • OnSymbolTickAsync          - Thin wrapper (IAsyncEnumerable)
+   • OnTradeAsync               - Thin wrapper (IAsyncEnumerable)
+   • OnPositionProfitAsync      - Thin wrapper (IAsyncEnumerable)
+   • OnPositionsAndPendingOrdersTicketsAsync - Thin wrapper (IAsyncEnumerable)
+   • OnTradeTransactionAsync    - Thin wrapper (IAsyncEnumerable)
 
 ──────────────────────────────────────────────────────────────────────────────
  USAGE EXAMPLES:

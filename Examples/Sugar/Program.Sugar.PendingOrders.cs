@@ -1,5 +1,5 @@
 /*══════════════════════════════════════════════════════════════════════════════
- FILE: Examples/Sugar/Program.Sugar.PendingOrders.cs — PENDING ORDERS & GRID TRADING
+ FILE: Examples/Sugar/Program.Sugar.PendingOrders.cs - PENDING ORDERS & GRID TRADING
  PURPOSE:
    Demonstrate pending order placement and grid trading strategy using Sugar API.
    Shows how to place limit/stop orders with point-based offsets and manage them.
