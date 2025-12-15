@@ -5,7 +5,7 @@
 <div class="home-grid">
 
 <!-- Top (1) - Yellow-Orange-Pink -->
-<a href="GETTING_STARTED/" class="card card-1">
+<a href="Getting_Started/" class="card card-1">
   <span class="material-symbols-rounded">bolt</span>
   <h3>Getting Started</h3>
   <p>New here? Start with setup and overview</p>
@@ -18,7 +18,7 @@
   <p>Architecture overview</p>
 </a>
 
-<a href="GLOSSARY/" class="card card-3">
+<a href="Glossary/" class="card card-3">
   <span class="material-symbols-rounded">menu_book</span>
   <h3>Glossary</h3>
   <p>MT5 terms and API concepts</p>
