@@ -556,8 +556,6 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
    10019  TRADE_RETCODE_NO_MONEY       - Not enough money
    10025  TRADE_RETCODE_TOO_MANY_REQUESTS - Too many requests
 
- Full list: https://www.mql5.com/en/docs/constants/errorswarnings/enum_trade_return_codes
-
 
  ┌─────────────────────────────────────────────────────────────────────────────┐
  │  PROPERTY TYPES CHEAT SHEET                                                 │
