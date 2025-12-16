@@ -321,6 +321,48 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/* ===========================
+   13) Contact/Support Button - Floating Button & Side Panel
+   =========================== */
+
+/* Floating Contact Button */
+.contact-float-btn {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-float-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+[data-md-color-scheme="default"] .contact-float-btn {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+}
+
+[data-md-color-scheme="slate"] .contact-float-btn {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+}
+
+.contact-float-btn svg {
+  width: 28px;
+  height: 28px;
+}
+
 .progress-float-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
@@ -614,6 +656,277 @@
   color: #1a1f2e;
 }
 
+/* Contact Panel */
+.contact-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  max-width: 90vw;
+  height: 100vh;
+  z-index: 1001;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+}
+
+.contact-panel.open {
+  right: 0;
+}
+
+[data-md-color-scheme="default"] .contact-panel {
+  background: linear-gradient(180deg, #ffffff, #f8fafb);
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+}
+
+[data-md-color-scheme="slate"] .contact-panel {
+  background: linear-gradient(180deg, #1a1f2e, #151a27);
+  box-shadow: -4px 0 20px rgba(0,0,0,0.5);
+}
+
+/* Contact Panel Header */
+.contact-panel-header {
+  padding: 1.5rem;
+  border-bottom: 2px solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+[data-md-color-scheme="default"] .contact-panel-header {
+  border-color: rgba(37,211,102,0.2);
+}
+
+[data-md-color-scheme="slate"] .contact-panel-header {
+  border-color: rgba(37,211,102,0.2);
+}
+
+.contact-panel-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.contact-panel-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.contact-panel-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+[data-md-color-scheme="default"] .contact-panel-close {
+  color: #25D366;
+}
+
+[data-md-color-scheme="slate"] .contact-panel-close {
+  color: #25D366;
+}
+
+/* Contact Panel Content */
+.contact-panel-content {
+  padding: 1.5rem;
+}
+
+.contact-intro {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid;
+  text-align: center;
+}
+
+[data-md-color-scheme="default"] .contact-intro {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(37,211,102,0.2);
+}
+
+[data-md-color-scheme="slate"] .contact-intro {
+  background: rgba(10,14,23,0.5);
+  border-color: rgba(37,211,102,0.2);
+}
+
+.contact-intro h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.contact-intro p {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* Contact Buttons */
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  border: 2px solid;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.contact-btn-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.contact-btn-content {
+  flex: 1;
+  text-align: left;
+}
+
+.contact-btn-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+}
+
+.contact-btn-desc {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* Telegram Button */
+.contact-btn-telegram {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(0,136,204,0.3);
+  color: #0088cc;
+}
+
+.contact-btn-telegram:hover {
+  transform: translateX(-4px);
+  border-color: #0088cc;
+  box-shadow: 0 4px 12px rgba(0,136,204,0.2);
+}
+
+.contact-btn-telegram .contact-btn-icon {
+  background: linear-gradient(135deg, #0088cc, #039be5);
+  color: white;
+}
+
+[data-md-color-scheme="slate"] .contact-btn-telegram {
+  background: rgba(10,14,23,0.5);
+  border-color: rgba(0,136,204,0.3);
+  color: #0088cc;
+}
+
+[data-md-color-scheme="slate"] .contact-btn-telegram:hover {
+  background: rgba(0,136,204,0.1);
+}
+
+/* WhatsApp Button */
+.contact-btn-whatsapp {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(37,211,102,0.3);
+  color: #25D366;
+}
+
+.contact-btn-whatsapp:hover {
+  transform: translateX(-4px);
+  border-color: #25D366;
+  box-shadow: 0 4px 12px rgba(37,211,102,0.2);
+}
+
+.contact-btn-whatsapp .contact-btn-icon {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+}
+
+[data-md-color-scheme="slate"] .contact-btn-whatsapp {
+  background: rgba(10,14,23,0.5);
+  border-color: rgba(37,211,102,0.3);
+  color: #25D366;
+}
+
+[data-md-color-scheme="slate"] .contact-btn-whatsapp:hover {
+  background: rgba(37,211,102,0.1);
+}
+
+/* GitHub Button */
+.contact-btn-github {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(36,41,47,0.3);
+  color: #24292f;
+}
+
+.contact-btn-github:hover {
+  transform: translateX(-4px);
+  border-color: #24292f;
+  box-shadow: 0 4px 12px rgba(36,41,47,0.2);
+}
+
+.contact-btn-github .contact-btn-icon {
+  background: linear-gradient(135deg, #24292f, #57606a);
+  color: white;
+}
+
+[data-md-color-scheme="slate"] .contact-btn-github {
+  background: rgba(10,14,23,0.5);
+  border-color: rgba(87,96,106,0.3);
+  color: #c9d1d9;
+}
+
+[data-md-color-scheme="slate"] .contact-btn-github:hover {
+  background: rgba(36,41,47,0.1);
+}
+
+/* Email Button */
+.contact-btn-email {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(234,88,12,0.3);
+  color: #ea580c;
+}
+
+.contact-btn-email:hover {
+  transform: translateX(-4px);
+  border-color: #ea580c;
+  box-shadow: 0 4px 12px rgba(234,88,12,0.2);
+}
+
+.contact-btn-email .contact-btn-icon {
+  background: linear-gradient(135deg, #ea580c, #f97316);
+  color: white;
+}
+
+[data-md-color-scheme="slate"] .contact-btn-email {
+  background: rgba(10,14,23,0.5);
+  border-color: rgba(234,88,12,0.3);
+  color: #fb923c;
+}
+
+[data-md-color-scheme="slate"] .contact-btn-email:hover {
+  background: rgba(234,88,12,0.1);
+}
+
 /* Responsive */
 @media (max-width: 620px) {
   .progress-float-btn {
@@ -623,13 +936,26 @@
     height: 50px;
   }
 
+  .contact-float-btn {
+    bottom: 4.5rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .contact-float-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
   .progress-badge {
     font-size: 0.65rem;
     padding: 0.15rem 0.35rem;
     min-width: 28px;
   }
 
-  .progress-panel {
+  .progress-panel,
+  .contact-panel {
     width: 100%;
     max-width: 100%;
   }
@@ -640,5 +966,18 @@
 
   .progress-count {
     font-size: 1.2rem;
+  }
+
+  .contact-btn {
+    padding: 1rem;
+  }
+
+  .contact-btn-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-btn-title {
+    font-size: 1rem;
   }
 }
