@@ -1,11 +1,11 @@
-# ✅ Ensure Symbol Selected and Synchronized (`EnsureSelected`)
+﻿# ✅ Ensure Symbol Selected and Synchronized (`EnsureSelected`)
 
 > **Sugar method:** Ensures a symbol is selected in MarketWatch and synchronized with server before using it. Throws exception if synchronization fails.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.EnsureSelected(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `SymbolSelectAsync()` + `SymbolIsSynchronizedAsync()`
 
 ### Method Signature

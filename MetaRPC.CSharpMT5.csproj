@@ -40,6 +40,8 @@
     <Compile Remove="Controllers\**\*.cs" />
     <Compile Remove="mrpc-proto-main\**\*.cs" />
     <Compile Remove="PROTO_PRIMER\**\*.cs" />
+    <Compile Remove="ReflectTool\**\*.cs" />
+    <Compile Remove="ReflectMT5Account.cs" />
   </ItemGroup>
 
   <!-- We only copy appsettings.json (if it exists) next to the .exe -->

@@ -1,11 +1,11 @@
-# Cancel All Pending Orders (`CancelAll`)
+﻿# Cancel All Pending Orders (`CancelAll`)
 
 > **⚠️ DANGEROUS BULK METHOD:** Cancels all pending orders with optional symbol/direction filtering. USE WITH CAUTION!
 
 **API Information:**
 
 * **Extension method:** `MT5Service.CancelAll(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [11] BULK CONVENIENCE
 * **Underlying calls:** `OpenedOrdersAsync()` + `CloseByTicket()` (in loop)
 

@@ -1,4 +1,4 @@
-# gRPC Stream Management & Subscription Guide
+﻿# gRPC Stream Management & Subscription Guide
 
 > **Complete guide** to working with real-time subscriptions in C# MT5
 
@@ -31,7 +31,7 @@ This document covers:
 **Use MT5Sugar helpers** - automatically stops after N events or timeout:
 
 ```csharp
-using MetaRPC.CSharpMT5;
+using mt5_term_api;
 
 var account = new MT5Account(user, password, grpcServer, null);
 await account.ConnectByServerNameAsync(serverName, "EURUSD", 30);

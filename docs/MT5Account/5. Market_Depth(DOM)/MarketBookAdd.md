@@ -1,4 +1,4 @@
-# ✅ Subscribe to Market Depth (`MarketBookAddAsync`)
+﻿# ✅ Subscribe to Market Depth (`MarketBookAddAsync`)
 
 > **Request:** Subscribe to Depth of Market (DOM) updates for a symbol on **MT5**. Opens access to order book data.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

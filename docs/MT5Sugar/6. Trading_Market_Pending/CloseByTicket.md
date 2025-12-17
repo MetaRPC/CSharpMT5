@@ -1,11 +1,11 @@
-# Close Position by Ticket (`CloseByTicket`)
+﻿# Close Position by Ticket (`CloseByTicket`)
 
 > **Sugar method:** Closes order or position by ticket number with support for partial closure.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.CloseByTicket(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [06] TRADING — MARKET & PENDING
 * **Underlying calls:** `OrderCloseAsync()`
 

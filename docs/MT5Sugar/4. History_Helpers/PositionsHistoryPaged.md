@@ -1,11 +1,11 @@
-# ✅ Get Positions History with Paging (`PositionsHistoryPaged`)
+﻿# ✅ Get Positions History with Paging (`PositionsHistoryPaged`)
 
 > **Sugar method:** Gets closed positions history with optional open date filter and paging. Direct wrapper with default parameters.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.PositionsHistoryPaged(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `PositionsHistoryAsync()`
 
 ### Method Signature

@@ -1,11 +1,11 @@
-# ✅ Get Spread in Points (`GetSpreadPointsAsync`)
+﻿# ✅ Get Spread in Points (`GetSpreadPointsAsync`)
 
 > **Sugar method:** Calculates current spread in points from the last tick. Returns (Ask - Bid) / Point.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.GetSpreadPointsAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `SymbolInfoTickAsync()` + `SymbolInfoDoubleAsync(SymbolPoint)`
 
 ### Method Signature

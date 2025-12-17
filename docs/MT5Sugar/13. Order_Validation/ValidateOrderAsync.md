@@ -1,11 +1,11 @@
-# Validate Order (`ValidateOrderAsync`)
+﻿# Validate Order (`ValidateOrderAsync`)
 
 > **⭐ CRITICAL METHOD:** Pre-flight validation for orders - check BEFORE sending to avoid rejections!
 
 **API Information:**
 
 * **Extension method:** `MT5Service.ValidateOrderAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [13] ORDER VALIDATION ⭐
 * **Underlying calls:** `OrderCheckAsync()`
 

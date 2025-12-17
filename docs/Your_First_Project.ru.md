@@ -206,7 +206,7 @@ dotnet add package Microsoft.Extensions.Configuration.Binder
 using Grpc.Core;
 using Grpc.Net.Client;
 using Microsoft.Extensions.Configuration;
-using MetaRPC.MT5;
+using mt5_term_api;
 
 // ============================================================================
 // КОНФИГУРАЦИЯ - Загружаем настройки из appsettings.json

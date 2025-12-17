@@ -1,11 +1,11 @@
-# Get Tick Value and Size (`GetTickValueAndSizeAsync`)
+﻿# Get Tick Value and Size (`GetTickValueAndSizeAsync`)
 
 > **Sugar method:** Retrieves tick value (monetary value per tick) and tick size (price increment) for risk/P&L calculations.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.GetTickValueAndSizeAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [08] VOLUME & PRICE UTILITIES
 * **Underlying calls:** `SymbolInfoDoubleAsync()` (2 calls)
 

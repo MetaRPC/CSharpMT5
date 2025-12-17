@@ -421,6 +421,8 @@ public static class ProgramSugarMonitor
         Console.WriteLine("╚══════════════════════════════════════════════════════════════╝\n");
 
         Console.WriteLine("Closing all test positions...");
+        Console.WriteLine("⏳ Waiting 5 seconds before cleanup to prevent rate limiting...\n");
+        await Task.Delay(5000);
 
         try
         {

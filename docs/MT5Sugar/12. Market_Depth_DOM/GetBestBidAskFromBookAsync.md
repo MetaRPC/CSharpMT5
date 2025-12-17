@@ -1,11 +1,11 @@
-# Get Best Bid/Ask from Book (`GetBestBidAskFromBookAsync`)
+﻿# Get Best Bid/Ask from Book (`GetBestBidAskFromBookAsync`)
 
 > **Sugar method:** Extracts best bid and best ask prices from order book - no manual LINQ needed!
 
 **API Information:**
 
 * **Extension method:** `MT5Service.GetBestBidAskFromBookAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [12] MARKET DEPTH (DOM)
 * **Underlying calls:** `MarketBookGetAsync()` + LINQ to find best prices
 

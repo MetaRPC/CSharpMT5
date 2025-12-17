@@ -1,4 +1,4 @@
-# ✅ Getting Symbol String Properties
+﻿# ✅ Getting Symbol String Properties
 
 > **Request:** string property of a symbol from **MT5**. Get text-based symbol information like description, currencies, exchange, ISIN, etc.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

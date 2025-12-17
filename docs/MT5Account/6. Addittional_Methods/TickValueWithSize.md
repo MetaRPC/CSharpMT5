@@ -1,4 +1,4 @@
-# ✅ Get Tick Values for Multiple Symbols (`TickValueWithSizeAsync`)
+﻿# ✅ Get Tick Values for Multiple Symbols (`TickValueWithSizeAsync`)
 
 > **Request:** Get tick values and sizes for multiple symbols in a single call on **MT5**. Returns tick value, profit/loss tick values, tick size, and contract size.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

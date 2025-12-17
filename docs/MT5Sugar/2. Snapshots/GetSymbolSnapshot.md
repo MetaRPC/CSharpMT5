@@ -1,11 +1,11 @@
-# ✅ Get Symbol Snapshot (`GetSymbolSnapshot`)
+﻿# ✅ Get Symbol Snapshot (`GetSymbolSnapshot`)
 
 > **Sugar method:** Gets symbol tick, point, digits, and margin rate in one convenient call. Returns all as a single record.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.GetSymbolSnapshot(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `EnsureSelected()` + `SymbolInfoTickAsync()` + `SymbolInfoDoubleAsync()` + `SymbolInfoIntegerAsync()` + `SymbolInfoMarginRateAsync()`
 
 ### Method Signature

@@ -1,11 +1,11 @@
-# Price from Offset Points (`PriceFromOffsetPointsAsync`)
+﻿# Price from Offset Points (`PriceFromOffsetPointsAsync`)
 
 > **Sugar method:** Calculates pending order price by offset in points from current market price - no manual calculation needed!
 
 **API Information:**
 
 * **Extension method:** `MT5Service.PriceFromOffsetPointsAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [08] VOLUME & PRICE UTILITIES
 * **Underlying calls:** `SymbolInfoTickAsync()` + `SymbolInfoDoubleAsync()` + `NormalizePriceAsync()`
 

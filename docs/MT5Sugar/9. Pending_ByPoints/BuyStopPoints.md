@@ -1,11 +1,11 @@
-# Buy Stop by Points (`BuyStopPoints`)
+﻿# Buy Stop by Points (`BuyStopPoints`)
 
 > **Sugar method:** Places Buy Stop pending order using point-based offset from current Ask price - breakout entry made easy!
 
 **API Information:**
 
 * **Extension method:** `MT5Service.BuyStopPoints(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [09] PENDING HELPERS (BY POINTS)
 * **Underlying calls:** `SymbolInfoTickAsync()` + `SymbolInfoDoubleAsync()` + `NormalizePriceAsync()` + `OrderSendAsync()`
 

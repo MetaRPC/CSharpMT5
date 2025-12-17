@@ -425,8 +425,8 @@ namespace MetaRPC.CSharpMT5.Examples.Sugar
                     var point = await svc.GetPointAsync(symbol);
                     var currentSnapshot = await svc.GetSymbolSnapshot(symbol);
 
-                    // Set SL to entry price (breakeven)
-                    var newSl = currentSnapshot.Tick.Ask; // Entry was at Ask
+                    // Set SL 30 points below entry for safety (not exactly at breakeven)
+                    var newSl = currentSnapshot.Tick.Ask - (30 * point); // 30 points below entry
                     var newTp = currentSnapshot.Tick.Ask + (tpPoints * point);
 
                     var modifyResult = await svc.ModifySlTpAsync(
@@ -451,8 +451,8 @@ namespace MetaRPC.CSharpMT5.Examples.Sugar
                     var point = await svc.GetPointAsync(symbol);
                     var currentSnapshot = await svc.GetSymbolSnapshot(symbol);
 
-                    // Set SL to entry price (breakeven)
-                    var newSl = currentSnapshot.Tick.Bid; // Entry was at Bid
+                    // Set SL 30 points above entry for safety (not exactly at breakeven)
+                    var newSl = currentSnapshot.Tick.Bid + (30 * point); // 30 points above entry
                     var newTp = currentSnapshot.Tick.Bid - (tpPoints * point);
 
                     var modifyResult = await svc.ModifySlTpAsync(
@@ -567,8 +567,8 @@ namespace MetaRPC.CSharpMT5.Examples.Sugar
             Console.WriteLine("║   • Position modification (breakeven)                            ║");
             Console.WriteLine("║   • Real-time P&L monitoring                                     ║");
             Console.WriteLine("║                                                                  ║");
-            Console.WriteLine("║  Risk: $5 per trade | Stop: 50 points | TP: 100 points          ║");
-            Console.WriteLine("║  Positions: 2 (BUY + SELL) | Total risk: $10                    ║");
+            Console.WriteLine("║  Risk: $5 per trade | Stop: 50 points | TP: 100 points           ║");
+            Console.WriteLine("║  Positions: 2 (BUY + SELL) | Total risk: $10                     ║");
             Console.WriteLine("║                                                                  ║");
             Console.WriteLine("╚══════════════════════════════════════════════════════════════════╝");
             Console.WriteLine();

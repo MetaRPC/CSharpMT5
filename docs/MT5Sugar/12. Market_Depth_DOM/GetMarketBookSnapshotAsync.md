@@ -1,11 +1,11 @@
-# Get Market Book Snapshot (`GetMarketBookSnapshotAsync`)
+﻿# Get Market Book Snapshot (`GetMarketBookSnapshotAsync`)
 
 > **Sugar method:** Gets current order book (DOM) snapshot - wrapper over `MarketBookGetAsync()` with clearer naming.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.GetMarketBookSnapshotAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [12] MARKET DEPTH (DOM)
 * **Underlying calls:** `MarketBookGetAsync()`
 

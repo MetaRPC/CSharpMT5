@@ -1,4 +1,4 @@
-# ✅ Adding/Removing Symbol from Market Watch
+﻿# ✅ Adding/Removing Symbol from Market Watch
 
 > **Request:** select or deselect symbol in Market Watch from **MT5**. Add a symbol to Market Watch or remove it.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

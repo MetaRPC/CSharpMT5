@@ -1,11 +1,11 @@
-# Buy Limit by Points (`BuyLimitPoints`)
+﻿# Buy Limit by Points (`BuyLimitPoints`)
 
 > **Sugar method:** Places Buy Limit pending order using point-based offset from current Ask price - no manual price calculation!
 
 **API Information:**
 
 * **Extension method:** `MT5Service.BuyLimitPoints(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [09] PENDING HELPERS (BY POINTS)
 * **Underlying calls:** `SymbolInfoTickAsync()` + `SymbolInfoDoubleAsync()` + `NormalizePriceAsync()` + `OrderSendAsync()`
 

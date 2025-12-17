@@ -1,4 +1,4 @@
-# ✅ Getting Positions History
+﻿# ✅ Getting Positions History
 
 > **Request:** historical closed positions from **MT5**. Get aggregated view of closed positions (not individual orders/deals) with P&L summary.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

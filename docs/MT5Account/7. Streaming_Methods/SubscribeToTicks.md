@@ -1,4 +1,4 @@
-# ✅ Subscribe to Real-Time Tick Data (`OnSymbolTickAsync`)
+﻿# ✅ Subscribe to Real-Time Tick Data (`OnSymbolTickAsync`)
 
 > **Stream:** Real-time price tick updates for specified symbols on **MT5**. Returns continuous stream of bid/ask prices as they change.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper:**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Service
     {

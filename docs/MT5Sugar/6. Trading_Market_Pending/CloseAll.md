@@ -1,11 +1,11 @@
-# Close All Positions (`CloseAll`)
+﻿# Close All Positions (`CloseAll`)
 
 > **Sugar method:** Closes all open orders and positions with optional filtering by symbol and direction.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.CloseAll(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [06] TRADING — MARKET & PENDING
 * **Underlying calls:** `OpenedOrdersAsync()` + `CloseByTicket()` for each position
 

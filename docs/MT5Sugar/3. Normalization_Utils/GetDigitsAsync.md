@@ -1,11 +1,11 @@
-# ✅ Get Symbol Digits (`GetDigitsAsync`)
+﻿# ✅ Get Symbol Digits (`GetDigitsAsync`)
 
 > **Sugar method:** Gets number of decimal places for symbol prices. Simple wrapper for `SymbolInfoIntegerAsync(SymbolDigits)` with int conversion.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.GetDigitsAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `SymbolInfoIntegerAsync(SymbolDigits)`
 
 ### Method Signature

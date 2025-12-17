@@ -1,11 +1,11 @@
-# Calculate Volume by Risk (`CalcVolumeForRiskAsync`) ⭐
+﻿# Calculate Volume by Risk (`CalcVolumeForRiskAsync`) ⭐
 
 > **Sugar method:** **CORE RISK MANAGEMENT** - Calculates exact position size (lots) based on risk amount and stop-loss distance.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.CalcVolumeForRiskAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [08] VOLUME & PRICE UTILITIES
 * **Underlying calls:** `SymbolInfoDoubleAsync()` + `GetTickValueAndSizeAsync()` + `NormalizeVolumeAsync()`
 

@@ -1,11 +1,11 @@
-# Calculate Liquidity at Level (`CalculateLiquidityAtLevelAsync`)
+﻿# Calculate Liquidity at Level (`CalculateLiquidityAtLevelAsync`)
 
 > **Sugar method:** Calculates total volume available at specific price level in order book - perfect for large order planning!
 
 **API Information:**
 
 * **Extension method:** `MT5Service.CalculateLiquidityAtLevelAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [12] MARKET DEPTH (DOM)
 * **Underlying calls:** `MarketBookGetAsync()` + LINQ aggregation
 

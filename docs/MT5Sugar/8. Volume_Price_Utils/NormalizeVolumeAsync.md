@@ -1,11 +1,11 @@
-# Normalize Volume (`NormalizeVolumeAsync`)
+﻿# Normalize Volume (`NormalizeVolumeAsync`)
 
 > **Sugar method:** Normalizes volume to comply with broker's step size and min/max limits - auto-fix invalid volumes.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.NormalizeVolumeAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [08] VOLUME & PRICE UTILITIES
 * **Underlying calls:** `GetVolumeLimitsAsync()` + math normalization
 

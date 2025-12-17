@@ -1,100 +1,81 @@
 Parsing MT5Account.cs...
-Found 72 methods
+Found 71 methods
 Generated docs/API_Reference/MT5Account.API.md
 ---
 
 ## Table of Contents
 
-1. [AttachByInstanceId](#attachbyinstanceid)
-2. [ConnectByHostPortAsync](#connectbyhostportasync)
-3. [Connect](#connect)
-4. [ConnectByServerNameAsync](#connectbyservernameasync)
-5. [ConnectByServerName](#connectbyservername)
-6. [AccountSummaryAsync](#accountsummaryasync)
-7. [AccountSummary](#accountsummary)
-8. [AccountInfoDoubleAsync](#accountinfodoubleasync)
-9. [AccountInfoDouble](#accountinfodouble)
-10. [AccountInfoIntegerAsync](#accountinfointegerasync)
-11. [AccountInfoInteger](#accountinfointeger)
-12. [AccountInfoStringAsync](#accountinfostringasync)
-13. [AccountInfoString](#accountinfostring)
-14. [SymbolsTotalAsync](#symbolstotalasync)
-15. [SymbolsTotal](#symbolstotal)
-16. [SymbolExistAsync](#symbolexistasync)
-17. [SymbolExist](#symbolexist)
-18. [SymbolNameAsync](#symbolnameasync)
-19. [SymbolName](#symbolname)
-20. [SymbolSelectAsync](#symbolselectasync)
-21. [SymbolSelect](#symbolselect)
-22. [SymbolIsSynchronizedAsync](#symbolissynchronizedasync)
-23. [SymbolIsSynchronized](#symbolissynchronized)
-24. [SymbolInfoDoubleAsync](#symbolinfodoubleasync)
-25. [SymbolInfoDouble](#symbolinfodouble)
-26. [SymbolInfoIntegerAsync](#symbolinfointegerasync)
-27. [SymbolInfoInteger](#symbolinfointeger)
-28. [SymbolInfoStringAsync](#symbolinfostringasync)
-29. [SymbolInfoString](#symbolinfostring)
-30. [SymbolInfoMarginRateAsync](#symbolinfomarginrateasync)
-31. [SymbolInfoMarginRate](#symbolinfomarginrate)
-32. [SymbolInfoTickAsync](#symbolinfotickasync)
-33. [SymbolInfoTick](#symbolinfotick)
-34. [SymbolInfoSessionQuoteAsync](#symbolinfosessionquoteasync)
-35. [SymbolInfoSessionQuote](#symbolinfosessionquote)
-36. [SymbolInfoSessionTradeAsync](#symbolinfosessiontradeasync)
-37. [SymbolInfoSessionTrade](#symbolinfosessiontrade)
-38. [OpenedOrdersAsync](#openedordersasync)
-39. [OpenedOrders](#openedorders)
-40. [OrderHistoryAsync](#orderhistoryasync)
-41. [OrderHistory](#orderhistory)
-42. [OpenedOrdersTicketsAsync](#openedordersticketsasync)
-43. [OpenedOrdersTickets](#openedorderstickets)
-44. [PositionsHistoryAsync](#positionshistoryasync)
-45. [PositionsHistory](#positionshistory)
-46. [PositionsTotalAsync](#positionstotalasync)
-47. [PositionsTotal](#positionstotal)
-48. [MarketBookAddAsync](#marketbookaddasync)
-49. [MarketBookAdd](#marketbookadd)
-50. [MarketBookGetAsync](#marketbookgetasync)
-51. [MarketBookGet](#marketbookget)
-52. [MarketBookReleaseAsync](#marketbookreleaseasync)
-53. [MarketBookRelease](#marketbookrelease)
-54. [TickValueWithSizeAsync](#tickvaluewithsizeasync)
-55. [TickValueWithSize](#tickvaluewithsize)
-56. [SymbolParamsManyAsync](#symbolparamsmanyasync)
-57. [SymbolParamsMany](#symbolparamsmany)
-58. [OrderSendAsync](#ordersendasync)
-59. [OrderSend](#ordersend)
-60. [OrderModifyAsync](#ordermodifyasync)
-61. [OrderModify](#ordermodify)
-62. [OrderCloseAsync](#ordercloseasync)
-63. [OrderClose](#orderclose)
-64. [OrderCalcMarginAsync](#ordercalcmarginasync)
-65. [OrderCalcMargin](#ordercalcmargin)
-66. [OrderCheckAsync](#ordercheckasync)
-67. [OrderCheck](#ordercheck)
-68. [OnSymbolTickAsync](#onsymboltickasync)
-69. [OnTradeAsync](#ontradeasync)
-70. [OnPositionProfitAsync](#onpositionprofitasync)
-71. [OnPositionsAndPendingOrdersTicketsAsync](#onpositionsandpendingordersticketsasync)
-72. [OnTradeTransactionAsync](#ontradetransactionasync)
-
----
-
-## AttachByInstanceId
-
-Attach to existing terminal instance by ID.
-
-### Signature
-
-```csharp
-public void AttachByInstanceId(Guid instanceId)
-```
-
-### Parameters
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `instanceId` | `Guid` | Terminal instance GUID to attach to. |
+1. [ConnectByHostPortAsync](#connectbyhostportasync)
+2. [Connect](#connect)
+3. [ConnectByServerNameAsync](#connectbyservernameasync)
+4. [ConnectByServerName](#connectbyservername)
+5. [AccountSummaryAsync](#accountsummaryasync)
+6. [AccountSummary](#accountsummary)
+7. [AccountInfoDoubleAsync](#accountinfodoubleasync)
+8. [AccountInfoDouble](#accountinfodouble)
+9. [AccountInfoIntegerAsync](#accountinfointegerasync)
+10. [AccountInfoInteger](#accountinfointeger)
+11. [AccountInfoStringAsync](#accountinfostringasync)
+12. [AccountInfoString](#accountinfostring)
+13. [SymbolsTotalAsync](#symbolstotalasync)
+14. [SymbolsTotal](#symbolstotal)
+15. [SymbolExistAsync](#symbolexistasync)
+16. [SymbolExist](#symbolexist)
+17. [SymbolNameAsync](#symbolnameasync)
+18. [SymbolName](#symbolname)
+19. [SymbolSelectAsync](#symbolselectasync)
+20. [SymbolSelect](#symbolselect)
+21. [SymbolIsSynchronizedAsync](#symbolissynchronizedasync)
+22. [SymbolIsSynchronized](#symbolissynchronized)
+23. [SymbolInfoDoubleAsync](#symbolinfodoubleasync)
+24. [SymbolInfoDouble](#symbolinfodouble)
+25. [SymbolInfoIntegerAsync](#symbolinfointegerasync)
+26. [SymbolInfoInteger](#symbolinfointeger)
+27. [SymbolInfoStringAsync](#symbolinfostringasync)
+28. [SymbolInfoString](#symbolinfostring)
+29. [SymbolInfoMarginRateAsync](#symbolinfomarginrateasync)
+30. [SymbolInfoMarginRate](#symbolinfomarginrate)
+31. [SymbolInfoTickAsync](#symbolinfotickasync)
+32. [SymbolInfoTick](#symbolinfotick)
+33. [SymbolInfoSessionQuoteAsync](#symbolinfosessionquoteasync)
+34. [SymbolInfoSessionQuote](#symbolinfosessionquote)
+35. [SymbolInfoSessionTradeAsync](#symbolinfosessiontradeasync)
+36. [SymbolInfoSessionTrade](#symbolinfosessiontrade)
+37. [OpenedOrdersAsync](#openedordersasync)
+38. [OpenedOrders](#openedorders)
+39. [OrderHistoryAsync](#orderhistoryasync)
+40. [OrderHistory](#orderhistory)
+41. [OpenedOrdersTicketsAsync](#openedordersticketsasync)
+42. [OpenedOrdersTickets](#openedorderstickets)
+43. [PositionsHistoryAsync](#positionshistoryasync)
+44. [PositionsHistory](#positionshistory)
+45. [PositionsTotalAsync](#positionstotalasync)
+46. [PositionsTotal](#positionstotal)
+47. [MarketBookAddAsync](#marketbookaddasync)
+48. [MarketBookAdd](#marketbookadd)
+49. [MarketBookGetAsync](#marketbookgetasync)
+50. [MarketBookGet](#marketbookget)
+51. [MarketBookReleaseAsync](#marketbookreleaseasync)
+52. [MarketBookRelease](#marketbookrelease)
+53. [TickValueWithSizeAsync](#tickvaluewithsizeasync)
+54. [TickValueWithSize](#tickvaluewithsize)
+55. [SymbolParamsManyAsync](#symbolparamsmanyasync)
+56. [SymbolParamsMany](#symbolparamsmany)
+57. [OrderSendAsync](#ordersendasync)
+58. [OrderSend](#ordersend)
+59. [OrderModifyAsync](#ordermodifyasync)
+60. [OrderModify](#ordermodify)
+61. [OrderCloseAsync](#ordercloseasync)
+62. [OrderClose](#orderclose)
+63. [OrderCalcMarginAsync](#ordercalcmarginasync)
+64. [OrderCalcMargin](#ordercalcmargin)
+65. [OrderCheckAsync](#ordercheckasync)
+66. [OrderCheck](#ordercheck)
+67. [OnSymbolTickAsync](#onsymboltickasync)
+68. [OnTradeAsync](#ontradeasync)
+69. [OnPositionProfitAsync](#onpositionprofitasync)
+70. [OnPositionsAndPendingOrdersTicketsAsync](#onpositionsandpendingordersticketsasync)
+71. [OnTradeTransactionAsync](#ontradetransactionasync)
 
 ---
 
@@ -1036,7 +1017,7 @@ Gets the quote (pricing) session schedule for a symbol on a specific day. Return
 public Task<SymbolInfoSessionQuoteData> SymbolInfoSessionQuoteAsync(
     string symbol,
     mt5_term_api.DayOfWeek dayOfWeek,
-    int sessionIndex,
+    uint sessionIndex,
     DateTime? deadline = null,
     CancellationToken cancellationToken = default
 )
@@ -1048,7 +1029,7 @@ public Task<SymbolInfoSessionQuoteData> SymbolInfoSessionQuoteAsync(
 |-----------|------|-------------|
 | `symbol` | `string` | Symbol name (e.g., "EURUSD"). |
 | `dayOfWeek` | `mt5_term_api.DayOfWeek` | Day of the week (SUNDAY=0, MONDAY=1, ..., SATURDAY=6). |
-| `sessionIndex` | `int` | Session index (0 for first session, 1 for second session if multiple sessions exist). |
+| `sessionIndex` | `uint` | Session index (0 for first session, 1 for second session if multiple sessions exist). |
 | `deadline` | `DateTime?` | Optional gRPC deadline. |
 | `cancellationToken` | `CancellationToken` | Optional cancellation token. |
 
@@ -1068,7 +1049,7 @@ Gets the quote (pricing) session schedule for a symbol on a specific day synchro
 public SymbolInfoSessionQuoteData SymbolInfoSessionQuote(
     string symbol,
     mt5_term_api.DayOfWeek dayOfWeek,
-    int sessionIndex,
+    uint sessionIndex,
     DateTime? deadline = null,
     CancellationToken cancellationToken = default
 )
@@ -1080,7 +1061,7 @@ public SymbolInfoSessionQuoteData SymbolInfoSessionQuote(
 |-----------|------|-------------|
 | `symbol` | `string` | Symbol name (e.g., "EURUSD"). |
 | `dayOfWeek` | `mt5_term_api.DayOfWeek` | Day of the week (SUNDAY=0, MONDAY=1, ..., SATURDAY=6). |
-| `sessionIndex` | `int` | Session index (0 for first session, 1 for second session if multiple sessions exist). |
+| `sessionIndex` | `uint` | Session index (0 for first session, 1 for second session if multiple sessions exist). |
 | `deadline` | `DateTime?` | Optional gRPC deadline. |
 | `cancellationToken` | `CancellationToken` | Optional cancellation token. |
 
@@ -1100,7 +1081,7 @@ Gets the trading session schedule for a symbol on a specific day. Returns the st
 public Task<SymbolInfoSessionTradeData> SymbolInfoSessionTradeAsync(
     string symbol,
     mt5_term_api.DayOfWeek dayOfWeek,
-    int sessionIndex,
+    uint sessionIndex,
     DateTime? deadline = null,
     CancellationToken cancellationToken = default
 )
@@ -1112,7 +1093,7 @@ public Task<SymbolInfoSessionTradeData> SymbolInfoSessionTradeAsync(
 |-----------|------|-------------|
 | `symbol` | `string` | Symbol name (e.g., "EURUSD"). |
 | `dayOfWeek` | `mt5_term_api.DayOfWeek` | Day of the week (SUNDAY=0, MONDAY=1, ..., SATURDAY=6). |
-| `sessionIndex` | `int` | Session index (0 for first session, 1 for second session if multiple sessions exist). |
+| `sessionIndex` | `uint` | Session index (0 for first session, 1 for second session if multiple sessions exist). |
 | `deadline` | `DateTime?` | Optional gRPC deadline. |
 | `cancellationToken` | `CancellationToken` | Optional cancellation token. |
 
@@ -1132,7 +1113,7 @@ Gets the trading session schedule for a symbol on a specific day synchronously.
 public SymbolInfoSessionTradeData SymbolInfoSessionTrade(
     string symbol,
     mt5_term_api.DayOfWeek dayOfWeek,
-    int sessionIndex,
+    uint sessionIndex,
     DateTime? deadline = null,
     CancellationToken cancellationToken = default
 )
@@ -1144,7 +1125,7 @@ public SymbolInfoSessionTradeData SymbolInfoSessionTrade(
 |-----------|------|-------------|
 | `symbol` | `string` | Symbol name (e.g., "EURUSD"). |
 | `dayOfWeek` | `mt5_term_api.DayOfWeek` | Day of the week (SUNDAY=0, MONDAY=1, ..., SATURDAY=6). |
-| `sessionIndex` | `int` | Session index (0 for first session, 1 for second session if multiple sessions exist). |
+| `sessionIndex` | `uint` | Session index (0 for first session, 1 for second session if multiple sessions exist). |
 | `deadline` | `DateTime?` | Optional gRPC deadline. |
 | `cancellationToken` | `CancellationToken` | Optional cancellation token. |
 

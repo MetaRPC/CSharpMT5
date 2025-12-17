@@ -1,4 +1,4 @@
-# ✅ Getting Symbol Integer Properties
+﻿# ✅ Getting Symbol Integer Properties
 
 > **Request:** integer (long) property of a symbol from **MT5**. Get digits, spread, execution modes, time parameters, and other integer symbol properties.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

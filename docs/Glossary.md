@@ -1,4 +1,4 @@
-# CSharpMT5 Glossary
+﻿# CSharpMT5 Glossary
 
 > Project-specific terms and concepts. This glossary covers CSharpMT5 architecture, components, and trading automation terminology used throughout the codebase.
 
@@ -713,7 +713,7 @@ C# project file containing build configuration, dependencies, and metadata.
 - `<PackageReference>` - NuGet package dependencies (Grpc.Net.Client, etc.)
 - `<PropertyGroup>` - Compiler settings
 
-**Location:** `MetaRPC.CSharpMT5.csproj`
+**Location:** `mt5_term_api.csproj`
 
 **Build commands:**
 ```bash

@@ -1,4 +1,4 @@
-# ✅ Get Margin Requirements (`SymbolInfoMarginRateAsync`)
+﻿# ✅ Get Margin Requirements (`SymbolInfoMarginRateAsync`)
 
 > **Request:** Get margin rates (initial and maintenance) for a symbol and order type on **MT5**.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

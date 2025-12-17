@@ -1,4 +1,4 @@
-# ✅ Getting an Account Summary
+﻿# ✅ Getting an Account Summary
 
 > **Request:** full account summary (`AccountSummaryData`) from **MT5**. Fetch all core account metrics in a single call.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

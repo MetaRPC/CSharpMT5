@@ -1,11 +1,11 @@
-# ✅ Get Recent Orders History (`OrdersHistoryLast`)
+﻿# ✅ Get Recent Orders History (`OrdersHistoryLast`)
 
 > **Sugar method:** Gets closed orders for the last N days with paging. Simple wrapper that calculates date range automatically.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.OrdersHistoryLast(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `OrderHistoryAsync()`
 
 ### Method Signature

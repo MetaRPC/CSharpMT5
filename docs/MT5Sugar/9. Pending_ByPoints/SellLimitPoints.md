@@ -1,11 +1,11 @@
-# Sell Limit by Points (`SellLimitPoints`)
+﻿# Sell Limit by Points (`SellLimitPoints`)
 
 > **Sugar method:** Places Sell Limit pending order using point-based offset from current Bid price - no manual price calculation!
 
 **API Information:**
 
 * **Extension method:** `MT5Service.SellLimitPoints(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [09] PENDING HELPERS (BY POINTS)
 * **Underlying calls:** `SymbolInfoTickAsync()` + `SymbolInfoDoubleAsync()` + `NormalizePriceAsync()` + `OrderSendAsync()`
 

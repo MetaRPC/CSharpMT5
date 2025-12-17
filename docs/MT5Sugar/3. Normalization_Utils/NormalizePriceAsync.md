@@ -1,11 +1,11 @@
-# ✅ Normalize Price (`NormalizePriceAsync`)
+﻿# ✅ Normalize Price (`NormalizePriceAsync`)
 
 > **Sugar method:** Normalizes price to symbol tick size (strict normalization, not just digits). Ensures price is valid for order placement.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.NormalizePriceAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `SymbolInfoDoubleAsync(SymbolTradeTickSize)`
 
 ### Method Signature

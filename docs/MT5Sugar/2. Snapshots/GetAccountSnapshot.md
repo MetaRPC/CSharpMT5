@@ -1,11 +1,11 @@
-# ✅ Get Account Snapshot (`GetAccountSnapshot`)
+﻿# ✅ Get Account Snapshot (`GetAccountSnapshot`)
 
 > **Sugar method:** Gets account summary and opened orders in one convenient call. Returns both as a single record.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.GetAccountSnapshot(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `AccountSummaryAsync()` + `OpenedOrdersAsync()`
 
 ### Method Signature

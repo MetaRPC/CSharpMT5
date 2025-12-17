@@ -1,11 +1,11 @@
-# Close All Pending Orders (`CloseAllPending`)
+﻿# Close All Pending Orders (`CloseAllPending`)
 
 > **Alias method:** Direct alias for `CancelAll()`. Cancels all pending orders with optional filtering.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.CloseAllPending(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [11] BULK CONVENIENCE
 * **Implementation:** `=> svc.CancelAll(symbol, isBuy, timeoutSec, ct);`
 

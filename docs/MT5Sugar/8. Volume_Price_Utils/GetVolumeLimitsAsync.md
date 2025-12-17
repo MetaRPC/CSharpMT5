@@ -1,11 +1,11 @@
-# Get Volume Limits (`GetVolumeLimitsAsync`)
+﻿# Get Volume Limits (`GetVolumeLimitsAsync`)
 
 > **Sugar method:** Retrieves volume constraints for symbol - minimum, maximum, and step size in one call.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.GetVolumeLimitsAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [08] VOLUME & PRICE UTILITIES
 * **Underlying calls:** `SymbolInfoDoubleAsync()` (3 calls)
 

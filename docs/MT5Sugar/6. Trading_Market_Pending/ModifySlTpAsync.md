@@ -1,11 +1,11 @@
-# Modify Stop-Loss/Take-Profit (`ModifySlTpAsync`)
+﻿# Modify Stop-Loss/Take-Profit (`ModifySlTpAsync`)
 
 > **Sugar method:** Modifies stop-loss and/or take-profit for existing order or position by ticket number.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.ModifySlTpAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [06] TRADING — MARKET & PENDING
 * **Underlying calls:** `OrderModifyAsync()`
 

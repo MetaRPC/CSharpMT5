@@ -782,7 +782,7 @@ namespace MetaRPC.CSharpMT5
             int sessionIndex,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default)
-            => _acc.SymbolInfoSessionQuoteAsync(symbol, dayOfWeek, sessionIndex, deadline, cancellationToken);
+            => _acc.SymbolInfoSessionQuoteAsync(symbol, dayOfWeek, (uint)sessionIndex, deadline, cancellationToken);
 
         /// <summary>Gets trading session trade information for the specified symbol and day.</summary>
         /// <param name="symbol">Target symbol name (e.g., "EURUSD").</param>
@@ -797,7 +797,7 @@ namespace MetaRPC.CSharpMT5
             int sessionIndex,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default)
-            => _acc.SymbolInfoSessionTradeAsync(symbol, dayOfWeek, sessionIndex, deadline, cancellationToken);
+            => _acc.SymbolInfoSessionTradeAsync(symbol, dayOfWeek, (uint)sessionIndex, deadline, cancellationToken);
 
         /// <summary>Calculates tick value and size for one or multiple symbols.</summary>
         /// <param name="symbols">Collection of symbol names (e.g., "EURUSD", "GBPUSD").</param>

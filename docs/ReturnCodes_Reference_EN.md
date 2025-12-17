@@ -1,4 +1,4 @@
-# MT5 Return Codes (RetCodes) Reference
+﻿# MT5 Return Codes (RetCodes) Reference
 
 ## What is RetCode?
 
@@ -145,7 +145,7 @@ if (result.Data.ReturnedCode != 10009) {
 ### Example 1: Checking Order Opening Success
 
 ```csharp
-using MetaRPC.CSharpMT5;
+using mt5_term_api;
 using mt5_term_api;
 
 var config = ConnectionHelper.BuildConfiguration();
@@ -264,7 +264,7 @@ public static async Task<OrderSendData> SendWithRetry(
 ### Example 4: Sugar API with Auto-Check
 
 ```csharp
-using MetaRPC.CSharpMT5;
+using mt5_term_api;
 
 var service = new MT5Service(account);
 

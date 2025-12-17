@@ -1,4 +1,4 @@
-# ✅ Getting Individual Account Integer Properties
+﻿# ✅ Getting Individual Account Integer Properties
 
 > **Request:** single `long` property from **MT5** account. Fetch specific integer properties like login, leverage, trade mode, limits, etc.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

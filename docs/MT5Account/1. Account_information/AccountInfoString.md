@@ -1,4 +1,4 @@
-# ✅ Getting Individual Account String Properties
+﻿# ✅ Getting Individual Account String Properties
 
 > **Request:** single `string` property from **MT5** account. Fetch specific text properties like currency, company name, account name, server name.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

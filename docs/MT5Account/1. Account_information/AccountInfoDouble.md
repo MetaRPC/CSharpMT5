@@ -1,4 +1,4 @@
-# ✅ Getting Individual Account Double Properties
+﻿# ✅ Getting Individual Account Double Properties
 
 > **Request:** single `double` property from **MT5** account. Fetch specific numeric properties like balance, equity, margin, profit, etc.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

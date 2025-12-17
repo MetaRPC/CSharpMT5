@@ -1,4 +1,4 @@
-# ✅ Closing Orders and Positions (`OrderCloseAsync`)
+﻿# ✅ Closing Orders and Positions (`OrderCloseAsync`)
 
 > **Request:** Close an open position or cancel a pending order on **MT5**.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

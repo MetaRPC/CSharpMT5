@@ -1,4 +1,4 @@
-# MT5Service - Mid-Level API Overview
+﻿# MT5Service - Mid-Level API Overview
 
 > **Not just a wrapper!** MT5Service eliminates 50-70% of boilerplate code while maintaining full MT5 functionality.
 
@@ -435,7 +435,7 @@ var lastMonth = await service.GetRecentOrdersAsync(days: 30, limit: 500);
 ## 💡 Complete Example: Trading Bot
 
 ```csharp
-using MetaRPC.CSharpMT5;
+using mt5_term_api;
 
 // Initialize
 var account = new MT5Account();

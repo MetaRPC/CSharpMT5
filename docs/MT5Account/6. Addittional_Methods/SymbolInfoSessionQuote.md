@@ -1,4 +1,4 @@
-# ✅ Get Quote Session Times (`SymbolInfoSessionQuoteAsync`)
+﻿# ✅ Get Quote Session Times (`SymbolInfoSessionQuoteAsync`)
 
 > **Request:** Get beginning and end times for a quoting session of a specified symbol and day of week on **MT5**.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

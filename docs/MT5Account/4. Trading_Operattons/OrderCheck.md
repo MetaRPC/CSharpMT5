@@ -1,4 +1,4 @@
-# ✅ Validating Trade Requests (`OrderCheckAsync`)
+﻿# ✅ Validating Trade Requests (`OrderCheckAsync`)
 
 > **Request:** Run a dry‑run check of a trade request on **MT5**. The server simulates the trade and returns balance / equity / margin impact **without actually placing an order**.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

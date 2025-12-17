@@ -1,4 +1,4 @@
-# ✅ Subscribe to Trade Transaction Events (`OnTradeTransactionAsync`)
+﻿# ✅ Subscribe to Trade Transaction Events (`OnTradeTransactionAsync`)
 
 > **Stream:** Real-time trade transaction notifications on **MT5**. Continuously sends events for all trade operations (orders, deals, position changes).
 
@@ -16,7 +16,7 @@
 * **SDK wrapper:**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Service
     {

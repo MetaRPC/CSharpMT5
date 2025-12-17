@@ -1,4 +1,4 @@
-# ✅ Getting Total Number of Open Positions
+﻿# ✅ Getting Total Number of Open Positions
 
 > **Request:** count of open positions from **MT5**. Get the total number of currently open positions on the account.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

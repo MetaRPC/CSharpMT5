@@ -1,4 +1,4 @@
-# ✅ Checking if Symbol Exists
+﻿# ✅ Checking if Symbol Exists
 
 > **Request:** check symbol existence from **MT5**. Verify if a symbol with a specified name exists (standard or custom).
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

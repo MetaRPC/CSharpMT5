@@ -1,11 +1,11 @@
-# Place Pending Order (`PlacePending`)
+﻿# Place Pending Order (`PlacePending`)
 
 > **Sugar method:** Places a pending order (Buy/Sell Limit or Stop) at specified price with automatic symbol preparation.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.PlacePending(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [06] TRADING — MARKET & PENDING
 * **Underlying calls:** `EnsureSelected()` + `OrderSendAsync()`
 

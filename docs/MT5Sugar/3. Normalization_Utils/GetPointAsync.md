@@ -1,11 +1,11 @@
-# ✅ Get Point Size (`GetPointAsync`)
+﻿# ✅ Get Point Size (`GetPointAsync`)
 
 > **Sugar method:** Gets symbol point size (minimum price change). Simple wrapper for `SymbolInfoDoubleAsync(SymbolPoint)`.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.GetPointAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `SymbolInfoDoubleAsync(SymbolPoint)`
 
 ### Method Signature

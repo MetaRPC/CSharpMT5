@@ -1,4 +1,4 @@
-# ✅ Get Detailed Symbol Parameters (`SymbolParamsManyAsync`)
+﻿# ✅ Get Detailed Symbol Parameters (`SymbolParamsManyAsync`)
 
 > **Request:** Get full information about symbol and its group for one or multiple symbols on **MT5**. Returns comprehensive symbol properties.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

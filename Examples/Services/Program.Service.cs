@@ -605,15 +605,9 @@ namespace MetaRPC.CSharpMT5.Examples.Services
                 Console.WriteLine($"        Error: {ex.Message}\n");
             }
 
-            // OrderCalcProfit - Calculate potential profit
-            // Note: MT5Service doesn't have OrderCalcProfitAsync wrapper,
-            // but it's available in MT5Account (low-level)
-            Console.WriteLine("  [5.3] OrderCalcProfitAsync() - Calculate potential profit:");
-            Console.WriteLine($"        (Available in MT5Account low-level API)\n");
-
             // ⚠️ REAL TRADING with MINIMAL LOT
             // SERVICE: No .Value needed - ask/point are already double!
-            Console.WriteLine("  [5.4] OrderSendAsync() - Send BUY order with minimal lot:");
+            Console.WriteLine("  [5.3] OrderSendAsync() - Send BUY order with minimal lot:");
             var sendRequest = new OrderSendRequest
             {
                 Symbol = symbol,
@@ -635,7 +629,7 @@ namespace MetaRPC.CSharpMT5.Examples.Services
             if (sendResult.ReturnedCode == 10009 && sendResult.Order > 0) // TRADE_RETCODE_DONE
             {
                 var orderTicket = sendResult.Order;
-                Console.WriteLine($"  [5.5] OrderModifyAsync() - Modify position {orderTicket}:");
+                Console.WriteLine($"  [5.4] OrderModifyAsync() - Modify position {orderTicket}:");
                 // SERVICE: No .Value needed - ask/point are already double!
                 var modifyRequest = new OrderModifyRequest
                 {
@@ -649,7 +643,7 @@ namespace MetaRPC.CSharpMT5.Examples.Services
 
                 await Task.Delay(500); // Small delay
 
-                Console.WriteLine($"  [5.6] OrderCloseAsync() - Close position {orderTicket}:");
+                Console.WriteLine($"  [5.5] OrderCloseAsync() - Close position {orderTicket}:");
                 var closeRequest = new OrderCloseRequest
                 {
                     Ticket = orderTicket,

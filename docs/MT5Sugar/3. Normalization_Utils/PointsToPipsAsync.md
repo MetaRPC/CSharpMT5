@@ -1,11 +1,11 @@
-# ✅ Convert Points to Pips (`PointsToPipsAsync`)
+﻿# ✅ Convert Points to Pips (`PointsToPipsAsync`)
 
 > **Sugar method:** Converts points to pips. For 5-digit FX pairs (EURUSD), 10 points = 1 pip. For 3-digit pairs (USDJPY), 1 point = 1 pip.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.PointsToPipsAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Underlying calls:** `GetDigitsAsync()`
 
 ### Method Signature

@@ -1,11 +1,11 @@
-# Subscribe to Market Book (`SubscribeToMarketBookAsync`)
+﻿# Subscribe to Market Book (`SubscribeToMarketBookAsync`)
 
 > **Sugar method:** Subscribes to Market Depth (order book) with automatic cleanup via IDisposable pattern.
 
 **API Information:**
 
 * **Extension method:** `MT5Service.SubscribeToMarketBookAsync(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [12] MARKET DEPTH (DOM)
 * **Underlying calls:** `MarketBookAddAsync()` + custom `MarketBookSubscription` wrapper
 

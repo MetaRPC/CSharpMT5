@@ -1,11 +1,11 @@
-# Close All Market Positions (`CloseAllPositions`)
+﻿# Close All Market Positions (`CloseAllPositions`)
 
 > **⚠️ EXTREMELY DANGEROUS BULK METHOD:** Closes all open market positions with optional symbol/direction filtering. NUCLEAR OPTION!
 
 **API Information:**
 
 * **Extension method:** `MT5Service.CloseAllPositions(...)` (from `MT5ServiceExtensions`)
-* **Package:** Part of `MetaRPC.CSharpMT5` library
+* **Package:** Part of `mt5_term_api` library
 * **Region:** [11] BULK CONVENIENCE
 * **Underlying calls:** `OpenedOrdersAsync()` + `CloseByTicket()` (in loop)
 

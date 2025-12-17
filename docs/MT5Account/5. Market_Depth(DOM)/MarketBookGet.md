@@ -1,4 +1,4 @@
-# ✅ Get Market Depth Data (`MarketBookGetAsync`)
+﻿# ✅ Get Market Depth Data (`MarketBookGetAsync`)
 
 > **Request:** Get current Depth of Market (order book) snapshot for a subscribed symbol on **MT5**.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {

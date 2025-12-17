@@ -1,4 +1,4 @@
-# ✅ Getting Order History
+﻿# ✅ Getting Order History
 
 > **Request:** historical orders and deals from **MT5**. Get detailed history of closed/cancelled orders and executed deals within a time range with pagination support.
 
@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace MetaRPC.CSharpMT5
+namespace mt5_term_api
 {
     public class MT5Account
     {
