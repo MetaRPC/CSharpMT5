@@ -4,8 +4,15 @@
 
 <div class="home-grid">
 
-<!-- Top (1) - Yellow-Orange-Pink -->
-<a href="Getting_Started/" class="card card-1">
+<!-- Top Card (0) - Quick Start - Red-Orange -->
+<a href="Your_First_Project.ru/" class="card card-0">
+  <span class="material-symbols-rounded">rocket_launch</span>
+  <h3>Quick Start</h3>
+  <p>Your first project from scratch in 10 minutes</p>
+</a>
+
+<!-- Wide Card (1) - Getting Started - Yellow-Orange-Pink -->
+<a href="Getting_Started/" class="card card-1 card-wide">
   <span class="material-symbols-rounded">bolt</span>
   <h3>Getting Started</h3>
   <p>New here? Start with setup and overview</p>
