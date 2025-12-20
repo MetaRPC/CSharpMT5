@@ -14,11 +14,11 @@ This document covers:
 
 ## Table of Contents
 
-1. [Quick Start - Simple Subscription](#quick-start---simple-subscription)
+1. [Quick Start - Simple Subscription](#quick-start-simple-subscription)
 2. [Available Streaming Methods](#available-streaming-methods)
-3. [Complete Patterns (Simple → Advanced)](#complete-patterns-simple--advanced)
+3. [Complete Patterns (Simple → Advanced)](#complete-patterns-simple-advanced)
 4. [Problem: Why Streams Need Management](#problem-why-streams-need-management)
-5. [Solutions & Best Practices](#solutions--best-practices)
+5. [Solutions & Best Practices](#solutions-best-practices)
 6. [Architecture & Safety](#architecture-notes)
 7. [Troubleshooting](#testing-for-memory-leaks)
 
