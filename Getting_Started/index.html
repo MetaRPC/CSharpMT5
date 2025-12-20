@@ -1,0 +1,1729 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete C# SDK for MetaTrader 5 trading automation">
+      
+      
+      
+        <link rel="canonical" href="https://metarpc.github.io/CSharpMT5/Getting_Started/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Getting Started with CSharpMT5 - CSharpMT5 SDK Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../styles/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started-with-csharpmt5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CSharpMT5 SDK Documentation" class="md-header__button md-logo" aria-label="CSharpMT5 SDK Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.5 15.97.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96Q2 15.135 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.06-.34c-.4-.1-.86-.15-1.39-.15-1.16-.01-2.12.36-2.87 1.1-.76.73-1.15 1.85-1.18 3.34 0 1.36.37 2.42 1.08 3.2.71.77 1.71 1.17 2.99 1.18l1.33-.12c.43-.08.79-.19 1.1-.32M13.89 19l.61-4H13l.34-2h1.5l.32-2h-1.5L14 9h1.5l.61-4h2l-.61 4h1l.61-4h2l-.61 4H22l-.34 2h-1.5l-.32 2h1.5L21 15h-1.5l-.61 4h-2l.61-4h-1l-.61 4zm2.95-6h1l.32-2h-1z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CSharpMT5 SDK Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Getting Started with CSharpMT5
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MetaRPC/CSharpMT5" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MetaRPC/CSharpMT5
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CSharpMT5 SDK Documentation" class="md-nav__button md-logo" aria-label="CSharpMT5 SDK Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.5 15.97.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96Q2 15.135 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.06-.34c-.4-.1-.86-.15-1.39-.15-1.16-.01-2.12.36-2.87 1.1-.76.73-1.15 1.85-1.18 3.34 0 1.36.37 2.42 1.08 3.2.71.77 1.71 1.17 2.99 1.18l1.33-.12c.43-.08.79-.19 1.1-.32M13.89 19l.61-4H13l.34-2h1.5l.32-2h-1.5L14 9h1.5l.61-4h2l-.61 4h1l.61-4h2l-.61 4H22l-.34 2h-1.5l-.32 2h1.5L21 15h-1.5l-.61 4h-2l.61-4h-1l-.61 4zm2.95-6h1l.32-2h-1z"/></svg>
+
+    </a>
+    CSharpMT5 SDK Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MetaRPC/CSharpMT5" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MetaRPC/CSharpMT5
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Your_First_Project.ru/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your First Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MT5_For_Beginners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MT5 for Beginners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UserCode_Sandbox_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Code Sandbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GRPC_STREAM_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gRPC Streaming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sync_vs_Async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sync vs Async
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ReturnCodes_Reference_EN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Return Codes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ProtobufInspector.README.EN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protobuf Inspector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Reference/MT5Account.API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MT5Account API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Reference/MT5Service.API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MT5Service API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Reference/MT5Sugar.API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MT5Sugar API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategies
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Strategies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Strategies/Strategies.Master.Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orchestrators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Strategies/Presets/AdaptiveMarketModePreset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-and-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Prerequisites and Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Prerequisites and Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-install-net-8-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Install .NET 8 SDK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-install-a-code-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Install a Code Editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Clone the Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-understanding-the-connection-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Understanding the Connection Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-file-appsettingsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration File: appsettings.json
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mt5-account-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 MT5 Account Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about-this-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 About This Project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-architecture-three-layer-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏗️ Project Architecture: Three-Layer System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗️ Project Architecture: Three-Layer System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layer-1-mt5account-low-level-grpc-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 1: MT5Account - Low-Level gRPC Foundation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-2-mt5servicecs-convenient-wrappers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 2: MT5Service.cs - Convenient Wrappers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer-3-mt5sugarcs-high-level-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layer 3: MT5Sugar.cs - High-Level Helpers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 Understanding the Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended-learning-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎓 Recommended Learning Paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demonstration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📂 Demonstration Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📂 Demonstration Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exampleslowlevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples/LowLevel/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examplesservices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples/Services/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examplessugar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples/Sugar/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examplesorchestrators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples/Orchestrators/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examplespresets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples/Presets/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examplesusercode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples/UserCode/
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-examples-with-programcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎮 Running Examples with Program.cs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Learning Advanced Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Learning Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orchestrators-trading-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestrators (Trading Strategies)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#presets-multi-strategy-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Presets (Multi-Strategy Systems)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-your-own-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Building Your Own System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helpful-tools-and-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 Helpful Tools and References
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Helpful Tools and References">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#protobuf-inspector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protobuf Inspector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync-vs-async-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sync vs Async Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grpc-stream-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gRPC Stream Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#return-codes-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return Codes Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support-and-community" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💬 Support and Community
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎓 Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="getting-started-with-csharpmt5">Getting Started with CSharpMT5<a class="headerlink" href="#getting-started-with-csharpmt5" title="Permanent link">¶</a></h1>
+<blockquote>
+<p><strong>Welcome to CSharpMT5</strong> - a comprehensive educational project for learning MT5 trading automation from the ground up using C# and .NET.</p>
+</blockquote>
+<hr />
+<h2 id="prerequisites-and-setup">🚀 Prerequisites and Setup<a class="headerlink" href="#prerequisites-and-setup" title="Permanent link">¶</a></h2>
+<p>Before you start working with CSharpMT5, you need to set up your development environment.</p>
+<h3 id="step-1-install-net-8-sdk">Step 1: Install .NET 8 SDK<a class="headerlink" href="#step-1-install-net-8-sdk" title="Permanent link">¶</a></h3>
+<p>CSharpMT5 requires .NET 8 SDK or higher.</p>
+<p><strong>Download and Install:</strong></p>
+<ul>
+<li><strong>Official:</strong> <a href="https://dotnet.microsoft.com/download/dotnet/8.0">.NET 8 SDK Download</a></li>
+<li>Choose the installer for your platform (Windows, macOS, Linux)</li>
+</ul>
+<p><strong>Verify installation:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>dotnet<span class="w"> </span>--version
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Should show: 8.0.x or higher</span>
+</code></pre></div>
+<hr />
+<h3 id="step-2-install-a-code-editor">Step 2: Install a Code Editor<a class="headerlink" href="#step-2-install-a-code-editor" title="Permanent link">¶</a></h3>
+<p><strong>Visual Studio Code (Recommended):</strong></p>
+<ul>
+<li>
+<p><strong>Download:</strong> <a href="https://code.visualstudio.com/">VS Code</a></p>
+</li>
+<li>
+<p><strong>Extensions to install:</strong></p>
+</li>
+<li>
+<p>C# Dev Kit (official Microsoft extension)</p>
+</li>
+<li>C# (OmniSharp)</li>
+</ul>
+<p><strong>Visual Studio 2022 (Alternative):</strong></p>
+<ul>
+<li>
+<p><strong>Download:</strong> <a href="https://visualstudio.microsoft.com/">Visual Studio 2022</a></p>
+</li>
+<li>
+<p>Choose "Community" edition (free)</p>
+</li>
+<li>
+<p>Select ".NET desktop development" workload during installation</p>
+</li>
+</ul>
+<p><strong>You can also use:</strong></p>
+<ul>
+<li>JetBrains Rider</li>
+<li>Visual Studio for Mac</li>
+<li>Any text editor + command line</li>
+</ul>
+<hr />
+<h3 id="step-3-clone-the-repository">Step 3: Clone the Repository<a class="headerlink" href="#step-3-clone-the-repository" title="Permanent link">¶</a></h3>
+<p>Clone the CSharpMT5 project from GitHub:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/MetaRPC/CSharpMT5.git
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>CSharpMT5
+</code></pre></div>
+<p><strong>If you don't have Git installed:</strong></p>
+<ul>
+<li>Download from <a href="https://git-scm.com/">git-scm.com</a></li>
+<li>Or download the project as ZIP from GitHub and extract it</li>
+</ul>
+<hr />
+<h3 id="step-4-understanding-the-connection-flow">Step 4: Understanding the Connection Flow<a class="headerlink" href="#step-4-understanding-the-connection-flow" title="Permanent link">¶</a></h3>
+<p>CSharpMT5 connects to MT5 terminal via <strong>gRPC gateway</strong>.</p>
+<p><strong>Connection flow:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>CSharpMT5 → gRPC → mt5term Gateway → MT5 Terminal
+</code></pre></div></p>
+<p><strong>What is mt5term Gateway?</strong></p>
+<ul>
+<li>External gateway process that bridges CSharpMT5 to MT5 terminal</li>
+<li>Handles connection pooling and session management</li>
+<li>Gateway must be running before connecting</li>
+<li>You'll configure connection details in <code>Config\appsettings.json</code></li>
+</ul>
+<h3 id="configuration-file-appsettingsjson">Configuration File: appsettings.json<a class="headerlink" href="#configuration-file-appsettingsjson" title="Permanent link">¶</a></h3>
+<p>Before running the project, you need to configure your connection settings in <code>Config\appsettings.json</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;MT5&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&quot;User&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">591129415</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">&quot;Password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;IpoHj17tYu67@&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">&quot;ServerName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FxPro-MT5 Demo&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">&quot;Host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mt5.mrpc.pro&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">&quot;Port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">&quot;GrpcServer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://mt5.mrpc.pro:443&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">&quot;BaseChartSymbol&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EURUSD&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">&quot;InstanceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">&quot;ConnectTimeoutSeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Configuration parameters explained:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>User</strong></td>
+<td>Your MT5 account login number</td>
+<td><code>591129415</code></td>
+</tr>
+<tr>
+<td><strong>Password</strong></td>
+<td>Your MT5 account password (master password)</td>
+<td><code>"IpoHj17tYu67@"</code></td>
+</tr>
+<tr>
+<td><strong>ServerName</strong></td>
+<td>MT5 server name from your broker</td>
+<td><code>"FxPro-MT5 Demo"</code></td>
+</tr>
+<tr>
+<td><strong>Host</strong></td>
+<td>Gateway host address (provided by MetaRPC)</td>
+<td><code>"mt5.mrpc.pro"</code></td>
+</tr>
+<tr>
+<td><strong>Port</strong></td>
+<td>Gateway port number</td>
+<td><code>443</code> (HTTPS) or <code>5555</code></td>
+</tr>
+<tr>
+<td><strong>GrpcServer</strong></td>
+<td>Full gRPC server URL (combines Host + Port)</td>
+<td><code>"https://mt5.mrpc.pro:443"</code></td>
+</tr>
+<tr>
+<td><strong>BaseChartSymbol</strong></td>
+<td>Default trading symbol for examples</td>
+<td><code>"EURUSD"</code></td>
+</tr>
+<tr>
+<td><strong>InstanceId</strong></td>
+<td>Optional instance identifier (leave <code>null</code> for auto)</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><strong>ConnectTimeoutSeconds</strong></td>
+<td>Connection timeout in seconds</td>
+<td><code>120</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important notes:</strong></p>
+<ul>
+<li><strong>User, Password, ServerName</strong> - These are your MT5 account credentials</li>
+<li><strong>Host, Port</strong> - Provided by MetaRPC team (gateway connection details)</li>
+<li><strong>GrpcServer</strong> - Should match <code>https://Host:Port</code> format</li>
+<li><strong>BaseChartSymbol</strong> - Change to your preferred trading symbol</li>
+<li><strong>ConnectTimeoutSeconds</strong> - Increase if you have slow connection</li>
+</ul>
+<hr />
+<h2 id="mt5-account-setup">📋 MT5 Account Setup<a class="headerlink" href="#mt5-account-setup" title="Permanent link">¶</a></h2>
+<p>If you don't have an MT5 demo account yet or need help creating one, please refer to our beginner's guide:</p>
+<p>👉 <strong><a href="../MT5_For_Beginners/">MT5 for Beginners - Creating a Demo Account</a></strong></p>
+<p>This guide covers:</p>
+<ul>
+<li>Downloading and installing MT5 terminal</li>
+<li>Creating a demo account step-by-step</li>
+<li>Understanding master and investor passwords</li>
+<li>Choosing a broker (optional)</li>
+</ul>
+<hr />
+<h2 id="about-this-project">🎯 About This Project<a class="headerlink" href="#about-this-project" title="Permanent link">¶</a></h2>
+<p>This project is a <strong>demonstration of the capabilities</strong> of our team's gateway for reproducing methods and functionalities. It's designed to help you build your own trading logic system in the future.</p>
+<p>We'll walk you through all the major aspects - from basic manual trading to a fully customizable algorithmic trading system. This journey will unlock the full potential of your acquired knowledge and fundamental understanding of trading and markets.</p>
+<p><strong>What you'll learn:</strong></p>
+<ul>
+<li>What gRPC methods do and how to use them directly</li>
+<li>How methods can be modified to fit your needs</li>
+<li>How to optimize your code for performance</li>
+<li>How to create convenient input/output systems</li>
+<li>How to monitor positions by symbols effectively</li>
+<li>How to build intelligent risk management systems</li>
+</ul>
+<p><strong>All we ask from you is:</strong></p>
+<blockquote>
+<p><strong>A desire to learn, learn, and learn some more.</strong> In the end, this will lead to significant results and, most importantly, a solid foundation of knowledge in algorithmic trading.</p>
+</blockquote>
+<hr />
+<h2 id="project-architecture-three-layer-system">🏗️ Project Architecture: Three-Layer System<a class="headerlink" href="#project-architecture-three-layer-system" title="Permanent link">¶</a></h2>
+<p>The project consists of <strong>three interconnected files</strong> in the root directory, each building upon the previous one. Understanding this chain is key to mastering CSharpMT5.</p>
+<h3 id="layer-1-mt5account-low-level-grpc-foundation">Layer 1: MT5Account - Low-Level gRPC Foundation<a class="headerlink" href="#layer-1-mt5account-low-level-grpc-foundation" title="Permanent link">¶</a></h3>
+<p><strong>What it is:</strong> Direct gRPC calls to the MT5 terminal - the absolute foundation of everything.</p>
+<p><strong><a href="../MT5Account/MT5Account.Master.Overview/">📖 MT5Account Overview</a></strong></p>
+<ul>
+<li>Raw protocol buffer messages and gRPC communication</li>
+<li>Maximum control and flexibility over every request/response</li>
+<li><strong>All other layers use this internally</strong></li>
+<li><strong>Best for:</strong> Advanced users who need fine-grained control</li>
+</ul>
+<h3 id="layer-2-mt5servicecs-convenient-wrappers">Layer 2: MT5Service.cs - Convenient Wrappers<a class="headerlink" href="#layer-2-mt5servicecs-convenient-wrappers" title="Permanent link">¶</a></h3>
+<p><strong>What it is:</strong> Wrapper methods that simplify working with MT5Account's gRPC calls.</p>
+<p><strong><a href="../MT5Service/MT5Service.Overview/">📖 MT5Service Overview</a></strong></p>
+<ul>
+<li>Simplified error handling and response parsing</li>
+<li>Pre-configured common operations</li>
+<li>Easier to work with than raw gRPC</li>
+<li><strong>Best for:</strong> Most common trading scenarios</li>
+</ul>
+<h3 id="layer-3-mt5sugarcs-high-level-helpers">Layer 3: MT5Sugar.cs - High-Level Helpers<a class="headerlink" href="#layer-3-mt5sugarcs-high-level-helpers" title="Permanent link">¶</a></h3>
+<p><strong>What it is:</strong> Syntactic sugar and convenience methods for maximum productivity.</p>
+<p><strong><a href="../MT5Sugar/MT5Sugar.API_Overview/">📖 MT5Sugar API Overview</a></strong></p>
+<ul>
+<li>Chainable operations and fluent interfaces</li>
+<li>Smart defaults and parameter inference</li>
+<li>Most intuitive and beginner-friendly</li>
+<li><strong>Best for:</strong> Quick prototyping and simple strategies</li>
+</ul>
+<hr />
+<h3 id="understanding-the-chain">📚 Understanding the Chain<a class="headerlink" href="#understanding-the-chain" title="Permanent link">¶</a></h3>
+<p>This three-file chain represents the evolution from low-level control to high-level convenience:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>MT5Sugar.cs (easiest, highest abstraction)
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    ↓ uses
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>MT5Service.cs (convenient wrappers)
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    ↓ uses
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>MT5Account (raw gRPC, foundation)
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    ↓ communicates with
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>MT5 Terminal (via gateway)
+</code></pre></div>
+<p><strong>Each Overview document includes:</strong></p>
+<ul>
+<li>Detailed method descriptions with parameters</li>
+<li>Return types and error handling</li>
+<li>Usage examples and best practices</li>
+<li>Common patterns and pitfalls to avoid</li>
+</ul>
+<hr />
+<h3 id="recommended-learning-paths">🎓 Recommended Learning Paths<a class="headerlink" href="#recommended-learning-paths" title="Permanent link">¶</a></h3>
+<p><strong>Path A: For Developers (Bottom-Up Approach)</strong></p>
+<p>If you have programming experience and want to understand everything deeply:</p>
+<ol>
+<li><strong>Start with MT5Account</strong> - Learn the gRPC foundation</li>
+<li><strong>Move to MT5Service</strong> - Understand convenient wrappers</li>
+<li><strong>Finish with MT5Sugar</strong> - Appreciate the high-level abstractions</li>
+</ol>
+<p>✅ This path gives you complete control and deep understanding.</p>
+<p><strong>Path B: For Traders (Top-Down Approach)</strong></p>
+<p>If you're new to trading automation and want to get results quickly:</p>
+<ol>
+<li><strong>Start with MT5Sugar</strong> - Easy, intuitive methods to trade fast</li>
+<li><strong>Move to MT5Service</strong> - Learn more advanced patterns when needed</li>
+<li><strong>Deep dive into MT5Account</strong> - Understand the foundation for full control</li>
+</ol>
+<p>✅ This path gets you trading quickly while leaving room to grow.</p>
+<hr />
+<h2 id="demonstration-examples">📂 Demonstration Examples<a class="headerlink" href="#demonstration-examples" title="Permanent link">¶</a></h2>
+<p>You can explore demonstration files that showcase different aspects of the SDK. These files are organized by complexity level and are located in the <code>Examples/</code> folder.</p>
+<p><strong>Each file includes internal code comments explaining what each operation does.</strong></p>
+<h3 id="exampleslowlevel">Examples/LowLevel/<a class="headerlink" href="#exampleslowlevel" title="Permanent link">¶</a></h3>
+<p>Low-level gRPC demonstrations using MT5Account:</p>
+<ul>
+<li>
+<p><strong>Program.LowLevel.cs</strong> - Basic low-level gRPC operations</p>
+</li>
+<li>
+<p><strong>Program.Streaming.cs</strong> - Real-time streaming (ticks, events)</p>
+</li>
+<li>
+<p><strong>Program.Trading.cs</strong> - Trading operations at protocol level</p>
+</li>
+</ul>
+<h3 id="examplesservices">Examples/Services/<a class="headerlink" href="#examplesservices" title="Permanent link">¶</a></h3>
+<p>Wrapper layer demonstrations using MT5Service:</p>
+<ul>
+<li><strong>Program.Service.cs</strong> - Common trading scenarios with wrappers</li>
+</ul>
+<h3 id="examplessugar">Examples/Sugar/<a class="headerlink" href="#examplessugar" title="Permanent link">¶</a></h3>
+<p>High-level convenience methods using MT5Sugar:</p>
+<ul>
+<li><strong>Program.Sugar.cs</strong> - Basic Sugar API usage</li>
+<li><strong>Program.Sugar.Monitor.cs</strong> - Position monitoring and management</li>
+<li><strong>Program.Sugar.PendingOrders.cs</strong> - Pending orders with retry logic</li>
+<li><strong>Program.Sugar.Scalper.cs</strong> - Quick scalping example</li>
+</ul>
+<h3 id="examplesorchestrators">Examples/Orchestrators/<a class="headerlink" href="#examplesorchestrators" title="Permanent link">¶</a></h3>
+<p>Complete trading strategy implementations:</p>
+<ul>
+<li>
+<p><strong>GridTradingOrchestrator.cs</strong> - Grid trading for range-bound markets</p>
+</li>
+<li>
+<p><strong>SimpleScalpingOrchestrator.cs</strong> - Quick scalping with tight stops</p>
+</li>
+<li>
+<p><strong>QuickHedgeOrchestrator.cs</strong> - Hedging strategy for high volatility</p>
+</li>
+<li>
+<p><strong>NewsStraddleOrchestrator.cs</strong> - Breakout trading around news events</p>
+</li>
+<li>
+<p><strong>PendingBreakoutOrchestrator.cs</strong> - Pending orders for breakouts</p>
+</li>
+</ul>
+<h3 id="examplespresets">Examples/Presets/<a class="headerlink" href="#examplespresets" title="Permanent link">¶</a></h3>
+<p>Multi-strategy adaptive systems:</p>
+<ul>
+<li><strong>AdaptiveMarketModePreset.cs</strong> - Intelligent system that analyzes market conditions and selects optimal orchestrator</li>
+</ul>
+<h3 id="examplesusercode">Examples/UserCode/<a class="headerlink" href="#examplesusercode" title="Permanent link">¶</a></h3>
+<p>Sandbox for your custom code:</p>
+<ul>
+<li><strong>ProgramUserCode.cs</strong> - Template file for your own trading logic after learning the basics</li>
+</ul>
+<hr />
+<h2 id="running-examples-with-programcs">🎮 Running Examples with Program.cs<a class="headerlink" href="#running-examples-with-programcs" title="Permanent link">¶</a></h2>
+<p>All demonstration files are launched from <code>Program.cs</code>, which acts as the <strong>heart of the project</strong>. It allows you to run any example or orchestrator with simple commands.</p>
+<p><strong>Program.cs features:</strong></p>
+<ul>
+<li>Launches demonstration files by command</li>
+<li>Manages orchestrator lifecycle and configuration</li>
+<li>Handles user input and strategy parameters</li>
+</ul>
+<p><strong>How to run examples:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Run Sugar API examples</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>dotnet<span class="w"> </span>run<span class="w"> </span>market<span class="w">              </span><span class="c1"># Market orders demonstration</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>dotnet<span class="w"> </span>run<span class="w"> </span>positions<span class="w">           </span><span class="c1"># Position monitoring</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>dotnet<span class="w"> </span>run<span class="w"> </span>pendingorders<span class="w">       </span><span class="c1"># Pending orders with retry</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># Run Orchestrators (strategies)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>dotnet<span class="w"> </span>run<span class="w"> </span>grid<span class="w">                </span><span class="c1"># Grid trading orchestrator</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>dotnet<span class="w"> </span>run<span class="w"> </span>scalping<span class="w">            </span><span class="c1"># Scalping orchestrator</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>dotnet<span class="w"> </span>run<span class="w"> </span>hedge<span class="w">               </span><span class="c1"># Hedge orchestrator</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># Run Presets</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>dotnet<span class="w"> </span>run<span class="w"> </span>preset<span class="w">              </span><span class="c1"># Adaptive market mode preset</span>
+</code></pre></div>
+<p><strong>Note:</strong> You can find the complete list of available commands in the header comments of <code>Program.cs</code>.</p>
+<hr />
+<h2 id="learning-advanced-features">🎯 Learning Advanced Features<a class="headerlink" href="#learning-advanced-features" title="Permanent link">¶</a></h2>
+<p>After you've mastered the three-layer chain (MT5Account → MT5Service → MT5Sugar), you can explore advanced features:</p>
+<h3 id="orchestrators-trading-strategies">Orchestrators (Trading Strategies)<a class="headerlink" href="#orchestrators-trading-strategies" title="Permanent link">¶</a></h3>
+<p>Orchestrators are complete trading strategy implementations that show you how to:</p>
+<ul>
+<li>Structure automated trading logic</li>
+<li>Manage risk and position sizing</li>
+<li>Handle entry and exit automation</li>
+<li>Monitor performance in real-time</li>
+</ul>
+<p><strong><a href="../Strategies/Strategies.Master.Overview/">📖 Orchestrators Overview</a></strong></p>
+<h3 id="presets-multi-strategy-systems">Presets (Multi-Strategy Systems)<a class="headerlink" href="#presets-multi-strategy-systems" title="Permanent link">¶</a></h3>
+<p>Presets combine multiple orchestrators with adaptive logic to create intelligent trading systems:</p>
+<p><strong><a href="../Strategies/Presets/AdaptiveMarketModePreset/">📖 Adaptive Market Mode Preset</a></strong></p>
+<hr />
+<h2 id="building-your-own-system">🛠️ Building Your Own System<a class="headerlink" href="#building-your-own-system" title="Permanent link">¶</a></h2>
+<p>After studying all the examples and understanding the architecture, you can start building your own trading system:</p>
+<p><strong>Sandbox location:</strong> <code>Examples/UserCode/ProgramUserCode.cs</code></p>
+<p>This file is prepared as a starting template for your custom code. Before you start coding here, make sure you've studied:</p>
+<ol>
+<li>The three-layer API (MT5Account → MT5Service → MT5Sugar)</li>
+<li>At least one orchestrator to understand strategy structure</li>
+<li>Risk management patterns from the examples</li>
+</ol>
+<p><strong><a href="../UserCode_Sandbox_Guide/">📖 User Code Sandbox Guide</a></strong></p>
+<hr />
+<h2 id="helpful-tools-and-references">🔍 Helpful Tools and References<a class="headerlink" href="#helpful-tools-and-references" title="Permanent link">¶</a></h2>
+<h3 id="protobuf-inspector">Protobuf Inspector<a class="headerlink" href="#protobuf-inspector" title="Permanent link">¶</a></h3>
+<p>If you're having trouble finding properties or don't want to dig through documentation:</p>
+<p><strong>Tool location:</strong> <code>Examples/Helpers/ProtobufInspector.cs</code></p>
+<p><strong><a href="../ProtobufInspector.README.EN/">📖 Protobuf Inspector Guide</a></strong></p>
+<p>This tool helps you explore protobuf message structures and available properties interactively.</p>
+<h3 id="sync-vs-async-methods">Sync vs Async Methods<a class="headerlink" href="#sync-vs-async-methods" title="Permanent link">¶</a></h3>
+<p>All methods in MT5Account are available in both synchronous and asynchronous versions. Learn when to use each:</p>
+<p><strong><a href="../Sync_vs_Async/">📖 Sync vs Async Guide</a></strong></p>
+<h3 id="grpc-stream-management">gRPC Stream Management<a class="headerlink" href="#grpc-stream-management" title="Permanent link">¶</a></h3>
+<p>If you're working with real-time streaming (ticks, events):</p>
+<p><strong><a href="../GRPC_STREAM_MANAGEMENT/">📖 gRPC Stream Management</a></strong></p>
+<h3 id="return-codes-reference">Return Codes Reference<a class="headerlink" href="#return-codes-reference" title="Permanent link">¶</a></h3>
+<p>Understanding what return codes mean when trading operations execute:</p>
+<p><strong><a href="../ReturnCodes_Reference_EN/">📖 Return Codes Reference</a></strong></p>
+<hr />
+<h2 id="support-and-community">💬 Support and Community<a class="headerlink" href="#support-and-community" title="Permanent link">¶</a></h2>
+<p>If you encounter issues with the code or have questions about the gateway:</p>
+<p><strong>Support Repository:</strong> <a href="https://github.com/Moongoord/MetaRPC-Gateway-Support">https://github.com/Moongoord/MetaRPC-Gateway-Support</a></p>
+<p>This is a discussion repository where you can:</p>
+<ul>
+<li>Ask questions about the gateway</li>
+<li>Report issues</li>
+<li>Share your experiences</li>
+<li>Get help from the community</li>
+</ul>
+<p><strong>Note:</strong> This repository is currently in development and will be available to everyone soon.</p>
+<hr />
+<h2 id="conclusion">🎓 Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>The <strong>MetaRPC team</strong> is committed to creating favorable conditions for learning the fundamental principles of trading and building algorithmic trading systems.</p>
+<p>We believe that with dedication and a desire to learn, you can master everything from low-level protocol communication to sophisticated multi-strategy trading systems.</p>
+<p><strong>Your journey starts here:</strong></p>
+<ol>
+<li>Set up your environment (above)</li>
+<li>Create or configure your MT5 demo account (<a href="../MT5_For_Beginners/">MT5 for Beginners</a>)</li>
+<li>Choose your learning path (bottom-up or top-down)</li>
+<li>Run your first example: <code>dotnet run market</code></li>
+<li>Study the code, experiment, and build</li>
+</ol>
+<p><strong>Good luck on your algorithmic trading journey!</strong></p>
+<blockquote>
+<p>"The foundation of success in algorithmic trading is not just understanding markets, but understanding the code that interacts with them. Master both, and you'll have unlimited possibilities."</p>
+<p>— MetaRPC Team</p>
+</blockquote>
+<hr />
+<p><strong>Next steps:</strong></p>
+<ul>
+<li>
+<p>📖 <a href="../MT5_For_Beginners/">MT5 for Beginners</a> - If you need MT5 account setup.</p>
+</li>
+<li>
+<p>📖 <a href="../MT5Account/MT5Account.Master.Overview/">MT5Account Overview</a> - Start learning the foundation.</p>
+</li>
+<li>
+<p>📖 <a href="../MT5Sugar/MT5Sugar.API_Overview/">MT5Sugar Overview</a> - Start trading quickly.</p>
+</li>
+<li>
+<p>🎯 <a href="../Strategies/Strategies.Master.Overview/">Orchestrators Overview</a> - Learn strategy implementation.</p>
+</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2024–2025 MetaRPC. MT5 is a trademark of MetaQuotes Software Corp. This documentation is community-maintained and not affiliated with MetaQuotes.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/MetaRPC/CSharpMT5" target="_blank" rel="noopener" title="CSharpMT5 on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tracking", "navigation.expand", "navigation.top", "navigation.footer", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/ux.js"></script>
+      
+    
+  </body>
+</html>

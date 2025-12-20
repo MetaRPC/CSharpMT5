@@ -1,0 +1,3453 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Complete C# SDK for MetaTrader 5 trading automation">
+      
+      
+      
+        <link rel="canonical" href="https://metarpc.github.io/CSharpMT5/MT5Account/6.%20Addittional_Methods/SymbolParamsMany/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>✅ Get Detailed Symbol Parameters (SymbolParamsManyAsync) - CSharpMT5 SDK Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../styles/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#get-detailed-symbol-parameters-symbolparamsmanyasync" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="CSharpMT5 SDK Documentation" class="md-header__button md-logo" aria-label="CSharpMT5 SDK Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.5 15.97.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96Q2 15.135 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.06-.34c-.4-.1-.86-.15-1.39-.15-1.16-.01-2.12.36-2.87 1.1-.76.73-1.15 1.85-1.18 3.34 0 1.36.37 2.42 1.08 3.2.71.77 1.71 1.17 2.99 1.18l1.33-.12c.43-.08.79-.19 1.1-.32M13.89 19l.61-4H13l.34-2h1.5l.32-2h-1.5L14 9h1.5l.61-4h2l-.61 4h1l.61-4h2l-.61 4H22l-.34 2h-1.5l-.32 2h1.5L21 15h-1.5l-.61 4h-2l.61-4h-1l-.61 4zm2.95-6h1l.32-2h-1z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CSharpMT5 SDK Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ✅ Get Detailed Symbol Parameters (SymbolParamsManyAsync)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MetaRPC/CSharpMT5" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MetaRPC/CSharpMT5
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="CSharpMT5 SDK Documentation" class="md-nav__button md-logo" aria-label="CSharpMT5 SDK Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.5 15.97.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96Q2 15.135 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.06-.34c-.4-.1-.86-.15-1.39-.15-1.16-.01-2.12.36-2.87 1.1-.76.73-1.15 1.85-1.18 3.34 0 1.36.37 2.42 1.08 3.2.71.77 1.71 1.17 2.99 1.18l1.33-.12c.43-.08.79-.19 1.1-.32M13.89 19l.61-4H13l.34-2h1.5l.32-2h-1.5L14 9h1.5l.61-4h2l-.61 4h1l.61-4h2l-.61 4H22l-.34 2h-1.5l-.32 2h1.5L21 15h-1.5l-.61 4h-2l.61-4h-1l-.61 4zm2.95-6h1l.32-2h-1z"/></svg>
+
+    </a>
+    CSharpMT5 SDK Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MetaRPC/CSharpMT5" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    MetaRPC/CSharpMT5
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Your_First_Project.ru/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your First Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../MT5_For_Beginners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MT5 for Beginners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../UserCode_Sandbox_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Code Sandbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../GRPC_STREAM_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    gRPC Streaming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sync_vs_Async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sync vs Async
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ReturnCodes_Reference_EN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Return Codes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ProtobufInspector.README.EN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protobuf Inspector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API_Reference/MT5Account.API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MT5Account API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API_Reference/MT5Service.API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MT5Service API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API_Reference/MT5Sugar.API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MT5Sugar API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strategies
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Strategies
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Strategies/Strategies.Master.Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orchestrators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Strategies/Presets/AdaptiveMarketModePreset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔽 Input
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔽 Input">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symbolparamsmanyrequest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SymbolParamsManyRequest
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-symbolparamsmanydata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⬆️ Output — SymbolParamsManyData
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⬆️ Output — SymbolParamsManyData">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symbolparameters-detailed-symbol-information-112-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SymbolParameters — Detailed symbol information (112 fields)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-enums-from-proto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧱 Related enums (from proto)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧱 Related enums (from proto)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ah_symbol_params_many_sort_type-sort-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AH_SYMBOL_PARAMS_MANY_SORT_TYPE (Sort Order)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_sector-market-sectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_SECTOR (Market Sectors)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_industry-industry-classifications-152-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_INDUSTRY (Industry Classifications - 152 values)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_chart_mode-chart-display-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_CHART_MODE (Chart Display Mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_calc_mode-profitmargin-calculation-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_CALC_MODE (Profit/Margin Calculation Mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_trade_mode-trading-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_TRADE_MODE (Trading Permissions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_trade_execution-order-execution-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_TRADE_EXECUTION (Order Execution Mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_swap_mode-swap-calculation-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_SWAP_MODE (Swap Calculation Mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_day_of_week-day-of-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_DAY_OF_WEEK (Day of Week)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_order_gtc_mode-order-lifetime-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_ORDER_GTC_MODE (Order Lifetime Mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_option_mode-option-exercise-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_OPTION_MODE (Option Exercise Type)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_symbol_option_right-option-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_SYMBOL_OPTION_RIGHT (Option Type)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_order_type_filling-order-filling-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_ORDER_TYPE_FILLING (Order Filling Policy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmt5_enum_order_type-order-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BMT5_ENUM_ORDER_TYPE (Order Types)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#just-the-essentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💬 Just the essentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧩 Notes &amp; Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔗 Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-get-all-parameters-for-single-symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) Get all parameters for single symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-get-all-available-symbols-paginated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) Get all available symbols (paginated)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-find-symbols-with-lowest-spreads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) Find symbols with lowest spreads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-analyze-swap-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) Analyze swap conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-compare-trading-conditions-across-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) Compare trading conditions across symbols
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-get-session-information-for-symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6) Get session information for symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="get-detailed-symbol-parameters-symbolparamsmanyasync">✅ Get Detailed Symbol Parameters (<code>SymbolParamsManyAsync</code>)<a class="headerlink" href="#get-detailed-symbol-parameters-symbolparamsmanyasync" title="Permanent link">¶</a></h1>
+<blockquote>
+<p><strong>Request:</strong> Get full information about symbol and its group for one or multiple symbols on <strong>MT5</strong>. Returns comprehensive symbol properties.</p>
+</blockquote>
+<p><strong>API Information:</strong></p>
+<ul>
+<li><strong>SDK wrapper:</strong> <code>MT5Account.SymbolParamsManyAsync(...)</code> (from NuGet package <code>MetaRPC.MT5</code>)</li>
+<li><strong>gRPC service:</strong> <code>mt5_term_api.AccountHelper</code></li>
+<li><strong>Proto definition:</strong> <code>SymbolParamsMany</code> (defined in <code>mt5-term-api-account-helper.proto</code>)</li>
+</ul>
+<h3 id="rpc">RPC<a class="headerlink" href="#rpc" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Service:</strong> <code>mt5_term_api.AccountHelper</code></li>
+<li><strong>Method:</strong> <code>SymbolParamsMany(SymbolParamsManyRequest) → SymbolParamsManyReply</code></li>
+<li><strong>Low‑level client (generated):</strong> <code>AccountHelper.AccountHelperClient.SymbolParamsMany(request, headers, deadline, cancellationToken)</code></li>
+<li><strong>SDK wrapper (your class):</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">mt5_term_api</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MT5Account</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="n">Task</span><span class="o">&lt;</span><span class="n">SymbolParamsManyData</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SymbolParamsManyAsync</span><span class="p">(</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="n">SymbolParamsManyRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="n">DateTime</span><span class="o">?</span><span class="w"> </span><span class="n">deadline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="n">CancellationToken</span><span class="w"> </span><span class="n">cancellationToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">);</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Request message:</strong></p>
+<p><code>SymbolParamsManyRequest { symbol_name, sort_type, page_number, items_per_page }</code></p>
+<p><strong>Reply message:</strong></p>
+<p><code>SymbolParamsManyReply { data: SymbolParamsManyData }</code></p>
+<hr />
+<h2 id="input">🔽 Input<a class="headerlink" href="#input" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>request</code></td>
+<td><code>SymbolParamsManyRequest</code></td>
+<td>Protobuf request with filtering and pagination</td>
+</tr>
+<tr>
+<td><code>deadline</code></td>
+<td><code>DateTime?</code></td>
+<td>Absolute per‑call <strong>UTC</strong> deadline → converted to timeout</td>
+</tr>
+<tr>
+<td><code>cancellationToken</code></td>
+<td><code>CancellationToken</code></td>
+<td>Cooperative cancel for the call/retry loop</td>
+</tr>
+</tbody>
+</table>
+<h3 id="symbolparamsmanyrequest"><code>SymbolParamsManyRequest</code><a class="headerlink" href="#symbolparamsmanyrequest" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SymbolName</code></td>
+<td><code>string</code> (optional)</td>
+<td>Filter by symbol name (e.g., <code>"EURUSD"</code>). Omit for all symbols</td>
+</tr>
+<tr>
+<td><code>SortType</code></td>
+<td><code>AH_SYMBOL_PARAMS_MANY_SORT_TYPE</code></td>
+<td>Sort order (optional)</td>
+</tr>
+<tr>
+<td><code>PageNumber</code></td>
+<td><code>int32</code> (optional)</td>
+<td>Page number for pagination (0-based)</td>
+</tr>
+<tr>
+<td><code>ItemsPerPage</code></td>
+<td><code>int32</code> (optional)</td>
+<td>Number of items per page (0 = all items)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="output-symbolparamsmanydata">⬆️ Output — <code>SymbolParamsManyData</code><a class="headerlink" href="#output-symbolparamsmanydata" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SymbolInfos</code></td>
+<td><code>List&lt;SymbolParameters&gt;</code></td>
+<td>Array of detailed symbol parameters</td>
+</tr>
+<tr>
+<td><code>SymbolsTotal</code></td>
+<td><code>int32</code></td>
+<td>Total number of symbols matching filter</td>
+</tr>
+<tr>
+<td><code>PageNumber</code></td>
+<td><code>int32</code> (optional)</td>
+<td>Current page number</td>
+</tr>
+<tr>
+<td><code>ItemsPerPage</code></td>
+<td><code>int32</code> (optional)</td>
+<td>Items per page</td>
+</tr>
+</tbody>
+</table>
+<h3 id="symbolparameters-detailed-symbol-information-112-fields"><code>SymbolParameters</code> — Detailed symbol information (112 fields)<a class="headerlink" href="#symbolparameters-detailed-symbol-information-112-fields" title="Permanent link">¶</a></h3>
+<p><strong>Price fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Name</code></td>
+<td><code>string</code></td>
+<td>Symbol name</td>
+</tr>
+<tr>
+<td><code>Bid</code></td>
+<td><code>double</code></td>
+<td>Current Bid price</td>
+</tr>
+<tr>
+<td><code>BidHigh</code></td>
+<td><code>double</code></td>
+<td>Highest Bid of the day</td>
+</tr>
+<tr>
+<td><code>BidLow</code></td>
+<td><code>double</code></td>
+<td>Lowest Bid of the day</td>
+</tr>
+<tr>
+<td><code>Ask</code></td>
+<td><code>double</code></td>
+<td>Current Ask price</td>
+</tr>
+<tr>
+<td><code>AskHigh</code></td>
+<td><code>double</code></td>
+<td>Highest Ask of the day</td>
+</tr>
+<tr>
+<td><code>AskLow</code></td>
+<td><code>double</code></td>
+<td>Lowest Ask of the day</td>
+</tr>
+<tr>
+<td><code>Last</code></td>
+<td><code>double</code></td>
+<td>Last deal price</td>
+</tr>
+<tr>
+<td><code>LastHigh</code></td>
+<td><code>double</code></td>
+<td>Highest Last price of day</td>
+</tr>
+<tr>
+<td><code>LastLow</code></td>
+<td><code>double</code></td>
+<td>Lowest Last price of day</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Volume fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VolumeReal</code></td>
+<td><code>double</code></td>
+<td>Real volume</td>
+</tr>
+<tr>
+<td><code>VolumeHighReal</code></td>
+<td><code>double</code></td>
+<td>Maximum real volume of the day</td>
+</tr>
+<tr>
+<td><code>VolumeLowReal</code></td>
+<td><code>double</code></td>
+<td>Minimum real volume of the day</td>
+</tr>
+<tr>
+<td><code>Volume</code></td>
+<td><code>int64</code></td>
+<td>Volume (integer)</td>
+</tr>
+<tr>
+<td><code>VolumeHigh</code></td>
+<td><code>int64</code></td>
+<td>Maximum volume of the day</td>
+</tr>
+<tr>
+<td><code>VolumeLow</code></td>
+<td><code>int64</code></td>
+<td>Minimum volume of the day</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trade parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Point</code></td>
+<td><code>double</code></td>
+<td>Point size (minimum price change)</td>
+</tr>
+<tr>
+<td><code>TradeTickValue</code></td>
+<td><code>double</code></td>
+<td>Tick value</td>
+</tr>
+<tr>
+<td><code>TradeTickValueProfit</code></td>
+<td><code>double</code></td>
+<td>Tick value for profit calculation</td>
+</tr>
+<tr>
+<td><code>TradeTickValueLoss</code></td>
+<td><code>double</code></td>
+<td>Tick value for loss calculation</td>
+</tr>
+<tr>
+<td><code>TradeTickSize</code></td>
+<td><code>double</code></td>
+<td>Tick size</td>
+</tr>
+<tr>
+<td><code>TradeContractSize</code></td>
+<td><code>double</code></td>
+<td>Contract size</td>
+</tr>
+<tr>
+<td><code>VolumeMin</code></td>
+<td><code>double</code></td>
+<td>Minimum volume for a deal</td>
+</tr>
+<tr>
+<td><code>VolumeMax</code></td>
+<td><code>double</code></td>
+<td>Maximum volume for a deal</td>
+</tr>
+<tr>
+<td><code>VolumeStep</code></td>
+<td><code>double</code></td>
+<td>Volume step</td>
+</tr>
+<tr>
+<td><code>VolumeLimit</code></td>
+<td><code>double</code></td>
+<td>Maximum allowed aggregate volume</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Swap fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SwapLong</code></td>
+<td><code>double</code></td>
+<td>Long swap value</td>
+</tr>
+<tr>
+<td><code>SwapShort</code></td>
+<td><code>double</code></td>
+<td>Short swap value</td>
+</tr>
+<tr>
+<td><code>SwapSunday</code></td>
+<td><code>double</code></td>
+<td>Sunday swap</td>
+</tr>
+<tr>
+<td><code>SwapMonday</code></td>
+<td><code>double</code></td>
+<td>Monday swap</td>
+</tr>
+<tr>
+<td><code>SwapTuesday</code></td>
+<td><code>double</code></td>
+<td>Tuesday swap</td>
+</tr>
+<tr>
+<td><code>SwapWednesday</code></td>
+<td><code>double</code></td>
+<td>Wednesday swap (often triple)</td>
+</tr>
+<tr>
+<td><code>SwapThursday</code></td>
+<td><code>double</code></td>
+<td>Thursday swap</td>
+</tr>
+<tr>
+<td><code>SwapFriday</code></td>
+<td><code>double</code></td>
+<td>Friday swap</td>
+</tr>
+<tr>
+<td><code>SwapSaturday</code></td>
+<td><code>double</code></td>
+<td>Saturday swap</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Margin fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MarginInitial</code></td>
+<td><code>double</code></td>
+<td>Initial margin</td>
+</tr>
+<tr>
+<td><code>MarginMaintenance</code></td>
+<td><code>double</code></td>
+<td>Maintenance margin</td>
+</tr>
+<tr>
+<td><code>MarginHedged</code></td>
+<td><code>double</code></td>
+<td>Hedged margin</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Session fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SessionVolume</code></td>
+<td><code>double</code></td>
+<td>Total volume for current session</td>
+</tr>
+<tr>
+<td><code>SessionTurnover</code></td>
+<td><code>double</code></td>
+<td>Total turnover for current session</td>
+</tr>
+<tr>
+<td><code>SessionInterest</code></td>
+<td><code>double</code></td>
+<td>Total interest for current session</td>
+</tr>
+<tr>
+<td><code>SessionBuyOrdersVolume</code></td>
+<td><code>double</code></td>
+<td>Buy orders volume in session</td>
+</tr>
+<tr>
+<td><code>SessionSellOrdersVolume</code></td>
+<td><code>double</code></td>
+<td>Sell orders volume in session</td>
+</tr>
+<tr>
+<td><code>SessionOpen</code></td>
+<td><code>double</code></td>
+<td>Session open price</td>
+</tr>
+<tr>
+<td><code>SessionClose</code></td>
+<td><code>double</code></td>
+<td>Session close price</td>
+</tr>
+<tr>
+<td><code>SessionAw</code></td>
+<td><code>double</code></td>
+<td>Average weighted price</td>
+</tr>
+<tr>
+<td><code>SessionPriceSettlement</code></td>
+<td><code>double</code></td>
+<td>Settlement price</td>
+</tr>
+<tr>
+<td><code>SessionPriceLimitMin</code></td>
+<td><code>double</code></td>
+<td>Minimum price limit</td>
+</tr>
+<tr>
+<td><code>SessionPriceLimitMax</code></td>
+<td><code>double</code></td>
+<td>Maximum price limit</td>
+</tr>
+<tr>
+<td><code>SessionDeals</code></td>
+<td><code>int64</code></td>
+<td>Number of deals in session</td>
+</tr>
+<tr>
+<td><code>SessionBuyOrders</code></td>
+<td><code>int64</code></td>
+<td>Number of buy orders in session</td>
+</tr>
+<tr>
+<td><code>SessionSellOrders</code></td>
+<td><code>int64</code></td>
+<td>Number of sell orders in session</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Options/Greeks fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OptionStrike</code></td>
+<td><code>double</code></td>
+<td>Strike price for options</td>
+</tr>
+<tr>
+<td><code>PriceChange</code></td>
+<td><code>double</code></td>
+<td>Price change</td>
+</tr>
+<tr>
+<td><code>PriceVolatility</code></td>
+<td><code>double</code></td>
+<td>Volatility</td>
+</tr>
+<tr>
+<td><code>PriceTheoretical</code></td>
+<td><code>double</code></td>
+<td>Theoretical option price</td>
+</tr>
+<tr>
+<td><code>PriceDelta</code></td>
+<td><code>double</code></td>
+<td>Option Delta</td>
+</tr>
+<tr>
+<td><code>PriceTheta</code></td>
+<td><code>double</code></td>
+<td>Option Theta</td>
+</tr>
+<tr>
+<td><code>PriceGamma</code></td>
+<td><code>double</code></td>
+<td>Option Gamma</td>
+</tr>
+<tr>
+<td><code>PriceVega</code></td>
+<td><code>double</code></td>
+<td>Option Vega</td>
+</tr>
+<tr>
+<td><code>PriceRho</code></td>
+<td><code>double</code></td>
+<td>Option Rho</td>
+</tr>
+<tr>
+<td><code>PriceOmega</code></td>
+<td><code>double</code></td>
+<td>Option Omega</td>
+</tr>
+<tr>
+<td><code>PriceSensitivity</code></td>
+<td><code>double</code></td>
+<td>Price sensitivity</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Symbol properties:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Sector</code></td>
+<td><code>BMT5_ENUM_SYMBOL_SECTOR</code></td>
+<td>Sector (Basic Materials, Energy, etc)</td>
+</tr>
+<tr>
+<td><code>Industry</code></td>
+<td><code>BMT5_ENUM_SYMBOL_INDUSTRY</code></td>
+<td>Industry classification</td>
+</tr>
+<tr>
+<td><code>Custom</code></td>
+<td><code>bool</code></td>
+<td>Is custom symbol</td>
+</tr>
+<tr>
+<td><code>BackgroundColor</code></td>
+<td><code>string</code></td>
+<td>Background color</td>
+</tr>
+<tr>
+<td><code>ChartMode</code></td>
+<td><code>BMT5_ENUM_SYMBOL_CHART_MODE</code></td>
+<td>Chart mode (Bid or Last)</td>
+</tr>
+<tr>
+<td><code>Exist</code></td>
+<td><code>bool</code></td>
+<td>Symbol exists</td>
+</tr>
+<tr>
+<td><code>Select</code></td>
+<td><code>bool</code></td>
+<td>Symbol selected in MarketWatch</td>
+</tr>
+<tr>
+<td><code>SubscriptionDelay</code></td>
+<td><code>int32</code></td>
+<td>Subscription delay in seconds</td>
+</tr>
+<tr>
+<td><code>Visible</code></td>
+<td><code>bool</code></td>
+<td>Symbol visible in MarketWatch</td>
+</tr>
+<tr>
+<td><code>Digits</code></td>
+<td><code>int32</code></td>
+<td>Digits after decimal point</td>
+</tr>
+<tr>
+<td><code>SpreadFloat</code></td>
+<td><code>bool</code></td>
+<td>Floating spread</td>
+</tr>
+<tr>
+<td><code>Spread</code></td>
+<td><code>int32</code></td>
+<td>Current spread in points</td>
+</tr>
+<tr>
+<td><code>TicksBookDepth</code></td>
+<td><code>int32</code></td>
+<td>Market depth</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Time fields:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Time</code></td>
+<td><code>Timestamp</code></td>
+<td>Last quote time</td>
+</tr>
+<tr>
+<td><code>TimeMsc</code></td>
+<td><code>int64</code></td>
+<td>Last quote time in milliseconds</td>
+</tr>
+<tr>
+<td><code>StartTime</code></td>
+<td><code>Timestamp</code></td>
+<td>Symbol start time</td>
+</tr>
+<tr>
+<td><code>ExpirationTime</code></td>
+<td><code>Timestamp</code></td>
+<td>Symbol expiration time</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trading modes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TradeCalcMode</code></td>
+<td><code>BMT5_ENUM_SYMBOL_CALC_MODE</code></td>
+<td>Profit/margin calculation mode</td>
+</tr>
+<tr>
+<td><code>TradeMode</code></td>
+<td><code>BMT5_ENUM_SYMBOL_TRADE_MODE</code></td>
+<td>Trading mode (Full, LongOnly, etc)</td>
+</tr>
+<tr>
+<td><code>TradeStopsLevel</code></td>
+<td><code>int32</code></td>
+<td>Minimum distance for stops (points)</td>
+</tr>
+<tr>
+<td><code>TradeFreezeLevel</code></td>
+<td><code>int32</code></td>
+<td>Freeze level (points)</td>
+</tr>
+<tr>
+<td><code>TradeExeMode</code></td>
+<td><code>BMT5_ENUM_SYMBOL_TRADE_EXECUTION</code></td>
+<td>Execution mode</td>
+</tr>
+<tr>
+<td><code>SwapMode</code></td>
+<td><code>BMT5_ENUM_SYMBOL_SWAP_MODE</code></td>
+<td>Swap calculation mode</td>
+</tr>
+<tr>
+<td><code>SwapRollover3days</code></td>
+<td><code>BMT5_ENUM_DAY_OF_WEEK</code></td>
+<td>Day of triple swap rollover</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Order/Fill modes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MarginHedgedUseLeg</code></td>
+<td><code>bool</code></td>
+<td>Use hedged margin for legs</td>
+</tr>
+<tr>
+<td><code>ExpirationMode</code></td>
+<td><code>int32</code></td>
+<td>Allowed expiration modes (flags)</td>
+</tr>
+<tr>
+<td><code>FillingMode</code></td>
+<td><code>List&lt;BMT5_ENUM_ORDER_TYPE_FILLING&gt;</code></td>
+<td>Allowed filling modes</td>
+</tr>
+<tr>
+<td><code>OrderMode</code></td>
+<td><code>BMT5_ENUM_ORDER_TYPE</code></td>
+<td>Allowed order types</td>
+</tr>
+<tr>
+<td><code>OrderGtcMode</code></td>
+<td><code>BMT5_ENUM_SYMBOL_ORDER_GTC_MODE</code></td>
+<td>GTC mode</td>
+</tr>
+<tr>
+<td><code>OptionMode</code></td>
+<td><code>BMT5_ENUM_SYMBOL_OPTION_MODE</code></td>
+<td>Option type (European/American)</td>
+</tr>
+<tr>
+<td><code>OptionRight</code></td>
+<td><code>BMT5_ENUM_SYMBOL_OPTION_RIGHT</code></td>
+<td>Option right (Call/Put)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>String properties:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Basis</code></td>
+<td><code>string</code></td>
+<td>Underlying asset for derivatives</td>
+</tr>
+<tr>
+<td><code>Category</code></td>
+<td><code>string</code></td>
+<td>Symbol category</td>
+</tr>
+<tr>
+<td><code>Country</code></td>
+<td><code>string</code></td>
+<td>Country</td>
+</tr>
+<tr>
+<td><code>SectorName</code></td>
+<td><code>string</code></td>
+<td>Sector name</td>
+</tr>
+<tr>
+<td><code>IndustryName</code></td>
+<td><code>string</code></td>
+<td>Industry name</td>
+</tr>
+<tr>
+<td><code>CurrencyBase</code></td>
+<td><code>string</code></td>
+<td>Base currency</td>
+</tr>
+<tr>
+<td><code>CurrencyProfit</code></td>
+<td><code>string</code></td>
+<td>Profit currency</td>
+</tr>
+<tr>
+<td><code>CurrencyMargin</code></td>
+<td><code>string</code></td>
+<td>Margin currency</td>
+</tr>
+<tr>
+<td><code>Bank</code></td>
+<td><code>string</code></td>
+<td>Liquidity provider</td>
+</tr>
+<tr>
+<td><code>SymDescription</code></td>
+<td><code>string</code></td>
+<td>Symbol description</td>
+</tr>
+<tr>
+<td><code>Exchange</code></td>
+<td><code>string</code></td>
+<td>Exchange name</td>
+</tr>
+<tr>
+<td><code>Formula</code></td>
+<td><code>string</code></td>
+<td>Custom symbol formula</td>
+</tr>
+<tr>
+<td><code>Isin</code></td>
+<td><code>string</code></td>
+<td>ISIN code</td>
+</tr>
+<tr>
+<td><code>Page</code></td>
+<td><code>string</code></td>
+<td>Web page URL</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>string</code></td>
+<td>Path in symbol tree</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="related-enums-from-proto">🧱 Related enums (from proto)<a class="headerlink" href="#related-enums-from-proto" title="Permanent link">¶</a></h2>
+<h3 id="ah_symbol_params_many_sort_type-sort-order"><code>AH_SYMBOL_PARAMS_MANY_SORT_TYPE</code> (Sort Order)<a class="headerlink" href="#ah_symbol_params_many_sort_type-sort-order" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AhParamsManySortTypeSymbolNameAsc</code></td>
+<td>Sort by symbol name ascending (A-Z)</td>
+</tr>
+<tr>
+<td><code>AhParamsManySortTypeSymbolNameDesc</code></td>
+<td>Sort by symbol name descending (Z-A)</td>
+</tr>
+<tr>
+<td><code>AhParamsManySortTypeMqlIndexAsc</code></td>
+<td>Sort by MQL index ascending</td>
+</tr>
+<tr>
+<td><code>AhParamsManySortTypeMqlIndexDesc</code></td>
+<td>Sort by MQL index descending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_sector-market-sectors"><code>BMT5_ENUM_SYMBOL_SECTOR</code> (Market Sectors)<a class="headerlink" href="#bmt5_enum_symbol_sector-market-sectors" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SECTOR_UNDEFINED</code></td>
+<td>Undefined sector</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_BASIC_MATERIALS</code></td>
+<td>Basic materials</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_COMMUNICATION_SERVICES</code></td>
+<td>Communication services</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_CONSUMER_CYCLICAL</code></td>
+<td>Consumer cyclical</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_CONSUMER_DEFENSIVE</code></td>
+<td>Consumer defensive</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_CURRENCY</code></td>
+<td>Currencies (Forex)</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_CURRENCY_CRYPTO</code></td>
+<td>Cryptocurrencies</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_ENERGY</code></td>
+<td>Energy</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_FINANCIAL</code></td>
+<td>Finance</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_HEALTHCARE</code></td>
+<td>Healthcare</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_INDUSTRIALS</code></td>
+<td>Industrials</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_REAL_ESTATE</code></td>
+<td>Real estate</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_TECHNOLOGY</code></td>
+<td>Technology</td>
+</tr>
+<tr>
+<td><code>BMT5_SECTOR_UTILITIES</code></td>
+<td>Utilities</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_industry-industry-classifications-152-values"><code>BMT5_ENUM_SYMBOL_INDUSTRY</code> (Industry Classifications - 152 values)<a class="headerlink" href="#bmt5_enum_symbol_industry-industry-classifications-152-values" title="Permanent link">¶</a></h3>
+<h4 id="basic-materials-15-values">Basic Materials (15 values)<a class="headerlink" href="#basic-materials-15-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_UNDEFINED</code></td>
+<td>Undefined</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_AGRICULTURAL_INPUTS</code></td>
+<td>Agricultural inputs</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_ALUMINIUM</code></td>
+<td>Aluminium</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_BUILDING_MATERIALS</code></td>
+<td>Building materials</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CHEMICALS</code></td>
+<td>Chemicals</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_COKING_COAL</code></td>
+<td>Coking coal</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_COPPER</code></td>
+<td>Copper</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_GOLD</code></td>
+<td>Gold</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_LUMBER_WOOD</code></td>
+<td>Lumber and wood production</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INDUSTRIAL_METALS</code></td>
+<td>Other industrial metals and mining</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_PRECIOUS_METALS</code></td>
+<td>Other precious metals and mining</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_PAPER</code></td>
+<td>Paper and paper products</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SILVER</code></td>
+<td>Silver</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SPECIALTY_CHEMICALS</code></td>
+<td>Specialty chemicals</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_STEEL</code></td>
+<td>Steel</td>
+</tr>
+</tbody>
+</table>
+<h4 id="communication-services-7-values">Communication Services (7 values)<a class="headerlink" href="#communication-services-7-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_ADVERTISING</code></td>
+<td>Advertising agencies</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_BROADCASTING</code></td>
+<td>Broadcasting</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_GAMING_MULTIMEDIA</code></td>
+<td>Electronic gaming and multimedia</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_ENTERTAINMENT</code></td>
+<td>Entertainment</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INTERNET_CONTENT</code></td>
+<td>Internet content and information</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_PUBLISHING</code></td>
+<td>Publishing</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_TELECOM</code></td>
+<td>Telecom services</td>
+</tr>
+</tbody>
+</table>
+<h4 id="consumer-cyclical-23-values">Consumer Cyclical (23 values)<a class="headerlink" href="#consumer-cyclical-23-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_APPAREL_MANUFACTURING</code></td>
+<td>Apparel manufacturing</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_APPAREL_RETAIL</code></td>
+<td>Apparel retail</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_AUTO_MANUFACTURERS</code></td>
+<td>Auto manufacturers</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_AUTO_PARTS</code></td>
+<td>Auto parts</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_AUTO_DEALERSHIP</code></td>
+<td>Auto and truck dealerships</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_DEPARTMENT_STORES</code></td>
+<td>Department stores</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_FOOTWEAR_ACCESSORIES</code></td>
+<td>Footwear and accessories</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_FURNISHINGS</code></td>
+<td>Furnishing, fixtures and appliances</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_GAMBLING</code></td>
+<td>Gambling</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_HOME_IMPROV_RETAIL</code></td>
+<td>Home improvement retail</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INTERNET_RETAIL</code></td>
+<td>Internet retail</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_LEISURE</code></td>
+<td>Leisure</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_LODGING</code></td>
+<td>Lodging</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_LUXURY_GOODS</code></td>
+<td>Luxury goods</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_PACKAGING_CONTAINERS</code></td>
+<td>Packaging and containers</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_PERSONAL_SERVICES</code></td>
+<td>Personal services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_RECREATIONAL_VEHICLES</code></td>
+<td>Recreational vehicles</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_RESIDENT_CONSTRUCTION</code></td>
+<td>Residential construction</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_RESORTS_CASINOS</code></td>
+<td>Resorts and casinos</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_RESTAURANTS</code></td>
+<td>Restaurants</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SPECIALTY_RETAIL</code></td>
+<td>Specialty retail</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_TEXTILE_MANUFACTURING</code></td>
+<td>Textile manufacturing</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_TRAVEL_SERVICES</code></td>
+<td>Travel services</td>
+</tr>
+</tbody>
+</table>
+<h4 id="consumer-defensive-12-values">Consumer Defensive (12 values)<a class="headerlink" href="#consumer-defensive-12-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_BEVERAGES_BREWERS</code></td>
+<td>Beverages - Brewers</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_BEVERAGES_NON_ALCO</code></td>
+<td>Beverages - Non-alcoholic</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_BEVERAGES_WINERIES</code></td>
+<td>Beverages - Wineries and distilleries</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CONFECTIONERS</code></td>
+<td>Confectioners</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_DISCOUNT_STORES</code></td>
+<td>Discount stores</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_EDUCATION_TRAINIG</code></td>
+<td>Education and training services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_FARM_PRODUCTS</code></td>
+<td>Farm products</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_FOOD_DISTRIBUTION</code></td>
+<td>Food distribution</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_GROCERY_STORES</code></td>
+<td>Grocery stores</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_HOUSEHOLD_PRODUCTS</code></td>
+<td>Household and personal products</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_PACKAGED_FOODS</code></td>
+<td>Packaged foods</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_TOBACCO</code></td>
+<td>Tobacco</td>
+</tr>
+</tbody>
+</table>
+<h4 id="energy-8-values">Energy (8 values)<a class="headerlink" href="#energy-8-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_OIL_GAS_DRILLING</code></td>
+<td>Oil and gas drilling</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_OIL_GAS_EP</code></td>
+<td>Oil and gas extraction and processing</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_OIL_GAS_EQUIPMENT</code></td>
+<td>Oil and gas equipment and services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_OIL_GAS_INTEGRATED</code></td>
+<td>Oil and gas integrated</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_OIL_GAS_MIDSTREAM</code></td>
+<td>Oil and gas midstream</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_OIL_GAS_REFINING</code></td>
+<td>Oil and gas refining and marketing</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_THERMAL_COAL</code></td>
+<td>Thermal coal</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_URANIUM</code></td>
+<td>Uranium</td>
+</tr>
+</tbody>
+</table>
+<h4 id="financial-19-values">Financial (19 values)<a class="headerlink" href="#financial-19-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_EXCHANGE_TRADED_FUND</code></td>
+<td>Exchange traded fund</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_ASSETS_MANAGEMENT</code></td>
+<td>Assets management</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_BANKS_DIVERSIFIED</code></td>
+<td>Banks - Diversified</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_BANKS_REGIONAL</code></td>
+<td>Banks - Regional</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CAPITAL_MARKETS</code></td>
+<td>Capital markets</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CLOSE_END_FUND_DEBT</code></td>
+<td>Closed-End fund - Debt</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CLOSE_END_FUND_EQUITY</code></td>
+<td>Closed-end fund - Equity</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CLOSE_END_FUND_FOREIGN</code></td>
+<td>Closed-end fund - Foreign</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CREDIT_SERVICES</code></td>
+<td>Credit services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_FINANCIAL_CONGLOMERATE</code></td>
+<td>Financial conglomerates</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_FINANCIAL_DATA_EXCHANGE</code></td>
+<td>Financial data and stock exchange</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INSURANCE_BROKERS</code></td>
+<td>Insurance brokers</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INSURANCE_DIVERSIFIED</code></td>
+<td>Insurance - Diversified</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INSURANCE_LIFE</code></td>
+<td>Insurance - Life</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INSURANCE_PROPERTY</code></td>
+<td>Insurance - Property and casualty</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INSURANCE_REINSURANCE</code></td>
+<td>Insurance - Reinsurance</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INSURANCE_SPECIALTY</code></td>
+<td>Insurance - Specialty</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_MORTGAGE_FINANCE</code></td>
+<td>Mortgage finance</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SHELL_COMPANIES</code></td>
+<td>Shell companies</td>
+</tr>
+</tbody>
+</table>
+<h4 id="healthcare-11-values">Healthcare (11 values)<a class="headerlink" href="#healthcare-11-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_BIOTECHNOLOGY</code></td>
+<td>Biotechnology</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_DIAGNOSTICS_RESEARCH</code></td>
+<td>Diagnostics and research</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_DRUGS_MANUFACTURERS</code></td>
+<td>Drugs manufacturers - general</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_DRUGS_MANUFACTURERS_SPEC</code></td>
+<td>Drugs manufacturers - Specialty and generic</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_HEALTHCARE_PLANS</code></td>
+<td>Healthcare plans</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_HEALTH_INFORMATION</code></td>
+<td>Health information services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_MEDICAL_FACILITIES</code></td>
+<td>Medical care facilities</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_MEDICAL_DEVICES</code></td>
+<td>Medical devices</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_MEDICAL_DISTRIBUTION</code></td>
+<td>Medical distribution</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_MEDICAL_INSTRUMENTS</code></td>
+<td>Medical instruments and supplies</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_PHARM_RETAILERS</code></td>
+<td>Pharmaceutical retailers</td>
+</tr>
+</tbody>
+</table>
+<h4 id="industrials-25-values">Industrials (25 values)<a class="headerlink" href="#industrials-25-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_AEROSPACE_DEFENSE</code></td>
+<td>Aerospace and defense</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_AIRLINES</code></td>
+<td>Airlines</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_AIRPORTS_SERVICES</code></td>
+<td>Airports and air services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_BUILDING_PRODUCTS</code></td>
+<td>Building products and equipment</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_BUSINESS_EQUIPMENT</code></td>
+<td>Business equipment and supplies</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CONGLOMERATES</code></td>
+<td>Conglomerates</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CONSULTING_SERVICES</code></td>
+<td>Consulting services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_ELECTRICAL_EQUIPMENT</code></td>
+<td>Electrical equipment and parts</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_ENGINEERING_CONSTRUCTION</code></td>
+<td>Engineering and construction</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_FARM_HEAVY_MACHINERY</code></td>
+<td>Farm and heavy construction machinery</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INDUSTRIAL_DISTRIBUTION</code></td>
+<td>Industrial distribution</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_INFRASTRUCTURE_OPERATIONS</code></td>
+<td>Infrastructure operations</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_FREIGHT_LOGISTICS</code></td>
+<td>Integrated freight and logistics</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_MARINE_SHIPPING</code></td>
+<td>Marine shipping</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_METAL_FABRICATION</code></td>
+<td>Metal fabrication</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_POLLUTION_CONTROL</code></td>
+<td>Pollution and treatment controls</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_RAILROADS</code></td>
+<td>Railroads</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_RENTAL_LEASING</code></td>
+<td>Rental and leasing services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SECURITY_PROTECTION</code></td>
+<td>Security and protection services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SPEALITY_BUSINESS_SERVICES</code></td>
+<td>Specialty business services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SPEALITY_MACHINERY</code></td>
+<td>Specialty industrial machinery</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_STUFFING_EMPLOYMENT</code></td>
+<td>Staffing and employment services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_TOOLS_ACCESSORIES</code></td>
+<td>Tools and accessories</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_TRUCKING</code></td>
+<td>Trucking</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_WASTE_MANAGEMENT</code></td>
+<td>Waste management</td>
+</tr>
+</tbody>
+</table>
+<h4 id="real-estate-12-values">Real Estate (12 values)<a class="headerlink" href="#real-estate-12-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_REAL_ESTATE_DEVELOPMENT</code></td>
+<td>Real estate - Development</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REAL_ESTATE_DIVERSIFIED</code></td>
+<td>Real estate - Diversified</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REAL_ESTATE_SERVICES</code></td>
+<td>Real estate services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REIT_DIVERSIFIED</code></td>
+<td>REIT - Diversified</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REIT_HEALTCARE</code></td>
+<td>REIT - Healthcare facilities</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REIT_HOTEL_MOTEL</code></td>
+<td>REIT - Hotel and motel</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REIT_INDUSTRIAL</code></td>
+<td>REIT - Industrial</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REIT_MORTAGE</code></td>
+<td>REIT - Mortgage</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REIT_OFFICE</code></td>
+<td>REIT - Office</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REIT_RESIDENTAL</code></td>
+<td>REIT - Residential</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REIT_RETAIL</code></td>
+<td>REIT - Retail</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_REIT_SPECIALITY</code></td>
+<td>REIT - Specialty</td>
+</tr>
+</tbody>
+</table>
+<h4 id="technology-12-values">Technology (12 values)<a class="headerlink" href="#technology-12-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_COMMUNICATION_EQUIPMENT</code></td>
+<td>Communication equipment</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_COMPUTER_HARDWARE</code></td>
+<td>Computer hardware</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_CONSUMER_ELECTRONICS</code></td>
+<td>Consumer electronics</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_ELECTRONIC_COMPONENTS</code></td>
+<td>Electronic components</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_ELECTRONIC_DISTRIBUTION</code></td>
+<td>Electronics and computer distribution</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_IT_SERVICES</code></td>
+<td>Information technology services</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SCIENTIFIC_INSTRUMENTS</code></td>
+<td>Scientific and technical instruments</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SEMICONDUCTOR_EQUIPMENT</code></td>
+<td>Semiconductor equipment and materials</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SEMICONDUCTORS</code></td>
+<td>Semiconductors</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SOFTWARE_APPLICATION</code></td>
+<td>Software - Application</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SOFTWARE_INFRASTRUCTURE</code></td>
+<td>Software - Infrastructure</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_SOLAR</code></td>
+<td>Solar</td>
+</tr>
+</tbody>
+</table>
+<h4 id="utilities-6-values">Utilities (6 values)<a class="headerlink" href="#utilities-6-values" title="Permanent link">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_INDUSTRY_UTILITIES_DIVERSIFIED</code></td>
+<td>Utilities - Diversified</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_UTILITIES_POWERPRODUCERS</code></td>
+<td>Utilities - Independent power producers</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_UTILITIES_RENEWABLE</code></td>
+<td>Utilities - Renewable</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_UTILITIES_REGULATED_ELECTRIC</code></td>
+<td>Utilities - Regulated electric</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_UTILITIES_REGULATED_GAS</code></td>
+<td>Utilities - Regulated gas</td>
+</tr>
+<tr>
+<td><code>BMT5_INDUSTRY_UTILITIES_REGULATED_WATER</code></td>
+<td>Utilities - Regulated water</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_chart_mode-chart-display-mode"><code>BMT5_ENUM_SYMBOL_CHART_MODE</code> (Chart Display Mode)<a class="headerlink" href="#bmt5_enum_symbol_chart_mode-chart-display-mode" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SYMBOL_CHART_MODE_BID</code></td>
+<td>Chart based on Bid prices</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CHART_MODE_LAST</code></td>
+<td>Chart based on Last deal prices</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_calc_mode-profitmargin-calculation-mode"><code>BMT5_ENUM_SYMBOL_CALC_MODE</code> (Profit/Margin Calculation Mode)<a class="headerlink" href="#bmt5_enum_symbol_calc_mode-profitmargin-calculation-mode" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_FOREX</code></td>
+<td>Forex mode</td>
+<td>Margin: <code>Lots * Contract_Size / Leverage * Margin_Rate</code><br>Profit: <code>(close_price - open_price) * Contract_Size * Lots</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_FOREX_NO_LEVERAGE</code></td>
+<td>Forex without leverage</td>
+<td>Margin: <code>Lots * Contract_Size * Margin_Rate</code><br>Profit: <code>(close_price - open_price) * Contract_Size * Lots</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_FUTURES</code></td>
+<td>Futures</td>
+<td>Margin: <code>Lots * InitialMargin * Margin_Rate</code><br>Profit: <code>(close_price - open_price) * TickPrice / TickSize * Lots</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_CFD</code></td>
+<td>CFD</td>
+<td>Margin: <code>Lots * ContractSize * MarketPrice * Margin_Rate</code><br>Profit: <code>(close_price - open_price) * Contract_Size * Lots</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_CFDINDEX</code></td>
+<td>CFD index</td>
+<td>Margin: <code>(Lots * ContractSize * MarketPrice) * TickPrice / TickSize * Margin_Rate</code><br>Profit: <code>(close_price - open_price) * Contract_Size * Lots</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_CFDLEVERAGE</code></td>
+<td>CFD with leverage</td>
+<td>Margin: <code>(Lots * ContractSize * MarketPrice) / Leverage * Margin_Rate</code><br>Profit: <code>(close_price - open_price) * Contract_Size * Lots</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_EXCH_STOCKS</code></td>
+<td>Exchange stocks</td>
+<td>Margin: <code>Lots * ContractSize * LastPrice * Margin_Rate</code><br>Profit: <code>(close_price - open_price) * Contract_Size * Lots</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_EXCH_FUTURES</code></td>
+<td>Exchange futures</td>
+<td>Margin: <code>Lots * InitialMargin * Margin_Rate</code> or <code>Lots * MaintenanceMargin * Margin_Rate</code><br>Profit: <code>(close_price - open_price) * Lots * TickPrice / TickSize</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_EXCH_FUTURES_FORTS</code></td>
+<td>FORTS futures</td>
+<td>Complex formula with MarginDiscount</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_EXCH_BONDS</code></td>
+<td>Exchange bonds</td>
+<td>Margin: <code>Lots * ContractSize * FaceValue * open_price / 100</code><br>Profit: <code>Lots * close_price * FaceValue * Contract_Size + AccruedInterest * Lots * ContractSize</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_EXCH_STOCKS_MOEX</code></td>
+<td>MOEX stocks</td>
+<td>Margin: <code>Lots * ContractSize * LastPrice * Margin_Rate</code><br>Profit: <code>(close_price - open_price) * Contract_Size * Lots</code></td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_CALC_MODE_EXCH_BONDS_MOEX</code></td>
+<td>MOEX bonds</td>
+<td>Margin: <code>Lots * ContractSize * FaceValue * open_price / 100</code><br>Profit: <code>Lots * close_price * FaceValue * Contract_Size + AccruedInterest * Lots * ContractSize</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_trade_mode-trading-permissions"><code>BMT5_ENUM_SYMBOL_TRADE_MODE</code> (Trading Permissions)<a class="headerlink" href="#bmt5_enum_symbol_trade_mode-trading-permissions" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SYMBOL_TRADE_MODE_DISABLED</code></td>
+<td>Trade is disabled for the symbol</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_TRADE_MODE_LONGONLY</code></td>
+<td>Allowed only long positions (BUY)</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_TRADE_MODE_SHORTONLY</code></td>
+<td>Allowed only short positions (SELL)</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_TRADE_MODE_CLOSEONLY</code></td>
+<td>Allowed only position close operations</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_TRADE_MODE_FULL</code></td>
+<td>No trade restrictions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_trade_execution-order-execution-mode"><code>BMT5_ENUM_SYMBOL_TRADE_EXECUTION</code> (Order Execution Mode)<a class="headerlink" href="#bmt5_enum_symbol_trade_execution-order-execution-mode" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SYMBOL_TRADE_EXECUTION_REQUEST</code></td>
+<td>Execution by request</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_TRADE_EXECUTION_INSTANT</code></td>
+<td>Instant execution</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_TRADE_EXECUTION_MARKET</code></td>
+<td>Market execution</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_TRADE_EXECUTION_EXCHANGE</code></td>
+<td>Exchange execution</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_swap_mode-swap-calculation-mode"><code>BMT5_ENUM_SYMBOL_SWAP_MODE</code> (Swap Calculation Mode)<a class="headerlink" href="#bmt5_enum_symbol_swap_mode-swap-calculation-mode" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_DISABLED</code></td>
+<td>Swaps disabled (no swaps)</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_POINTS</code></td>
+<td>Swaps charged in points</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_CURRENCY_SYMBOL</code></td>
+<td>Swaps charged in money in base currency of the symbol</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_CURRENCY_MARGIN</code></td>
+<td>Swaps charged in money in margin currency of the symbol</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_CURRENCY_DEPOSIT</code></td>
+<td>Swaps charged in money, in client deposit currency</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_CURRENCY_PROFIT</code></td>
+<td>Swaps charged in money in profit calculation currency</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_INTEREST_CURRENT</code></td>
+<td>Swaps charged as annual interest from current price (360 days)</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_INTEREST_OPEN</code></td>
+<td>Swaps charged as annual interest from open price (360 days)</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_REOPEN_CURRENT</code></td>
+<td>Swaps by reopening positions at close price +/- points</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_SWAP_MODE_REOPEN_BID</code></td>
+<td>Swaps by reopening positions at Bid price +/- points</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_day_of_week-day-of-week"><code>BMT5_ENUM_DAY_OF_WEEK</code> (Day of Week)<a class="headerlink" href="#bmt5_enum_day_of_week-day-of-week" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SUNDAY</code></td>
+<td>Sunday</td>
+</tr>
+<tr>
+<td><code>BMT5_MONDAY</code></td>
+<td>Monday</td>
+</tr>
+<tr>
+<td><code>BMT5_TUESDAY</code></td>
+<td>Tuesday</td>
+</tr>
+<tr>
+<td><code>BMT5_WEDNESDAY</code></td>
+<td>Wednesday (often triple swap day)</td>
+</tr>
+<tr>
+<td><code>BMT5_THURSDAY</code></td>
+<td>Thursday</td>
+</tr>
+<tr>
+<td><code>BMT5_FRIDAY</code></td>
+<td>Friday</td>
+</tr>
+<tr>
+<td><code>BMT5_SATURDAY</code></td>
+<td>Saturday</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_order_gtc_mode-order-lifetime-mode"><code>BMT5_ENUM_SYMBOL_ORDER_GTC_MODE</code> (Order Lifetime Mode)<a class="headerlink" href="#bmt5_enum_symbol_order_gtc_mode-order-lifetime-mode" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SYMBOL_ORDERS_GTC</code></td>
+<td>Pending orders and SL/TP valid until explicit cancellation (Good-Till-Cancelled)</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_ORDERS_DAILY</code></td>
+<td>Orders valid during one trading day. All SL/TP and pending orders deleted at day end</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_ORDERS_DAILY_EXCLUDING_STOPS</code></td>
+<td>Only pending orders deleted at day end. SL/TP levels preserved</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_option_mode-option-exercise-type"><code>BMT5_ENUM_SYMBOL_OPTION_MODE</code> (Option Exercise Type)<a class="headerlink" href="#bmt5_enum_symbol_option_mode-option-exercise-type" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SYMBOL_OPTION_MODE_EUROPEAN</code></td>
+<td>European option - can only be exercised on expiration date</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_OPTION_MODE_AMERICAN</code></td>
+<td>American option - can be exercised any trading day before expiry</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_symbol_option_right-option-type"><code>BMT5_ENUM_SYMBOL_OPTION_RIGHT</code> (Option Type)<a class="headerlink" href="#bmt5_enum_symbol_option_right-option-type" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_SYMBOL_OPTION_RIGHT_CALL</code></td>
+<td>Call option - right to BUY at strike price</td>
+</tr>
+<tr>
+<td><code>BMT5_SYMBOL_OPTION_RIGHT_PUT</code></td>
+<td>Put option - right to SELL at strike price</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_order_type_filling-order-filling-policy"><code>BMT5_ENUM_ORDER_TYPE_FILLING</code> (Order Filling Policy)<a class="headerlink" href="#bmt5_enum_order_type_filling-order-filling-policy" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_ORDER_FILLING_FOK</code></td>
+<td><strong>Fill or Kill</strong> - order must be executed in full or not at all</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_FILLING_IOC</code></td>
+<td><strong>Immediate or Cancel</strong> - execute max available volume, cancel remainder</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_FILLING_BOC</code></td>
+<td><strong>Book or Cancel</strong> - place order in order book (not implemented in most brokers)</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_FILLING_RETURN</code></td>
+<td><strong>Return</strong> - partial fills allowed, remainder stays as pending order</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="bmt5_enum_order_type-order-types"><code>BMT5_ENUM_ORDER_TYPE</code> (Order Types)<a class="headerlink" href="#bmt5_enum_order_type-order-types" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Enum Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BMT5_ORDER_TYPE_BUY</code></td>
+<td>Market Buy order</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_TYPE_SELL</code></td>
+<td>Market Sell order</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_TYPE_BUY_LIMIT</code></td>
+<td>Buy Limit pending order (buy below current price)</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_TYPE_SELL_LIMIT</code></td>
+<td>Sell Limit pending order (sell above current price)</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_TYPE_BUY_STOP</code></td>
+<td>Buy Stop pending order (buy above current price, breakout)</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_TYPE_SELL_STOP</code></td>
+<td>Sell Stop pending order (sell below current price, breakdown)</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_TYPE_BUY_STOP_LIMIT</code></td>
+<td>Buy Stop Limit - at stop price, place Buy Limit at StopLimit price</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_TYPE_SELL_STOP_LIMIT</code></td>
+<td>Sell Stop Limit - at stop price, place Sell Limit at StopLimit price</td>
+</tr>
+<tr>
+<td><code>BMT5_ORDER_TYPE_CLOSE_BY</code></td>
+<td>Close By - close position by opposite position</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="just-the-essentials">💬 Just the essentials<a class="headerlink" href="#just-the-essentials" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>What it is.</strong> Returns comprehensive symbol information (112 fields) for one or multiple symbols. Single endpoint for all symbol properties.</li>
+<li><strong>Why you need it.</strong> Get complete symbol specifications, analyze trading conditions, compare multiple symbols, access all symbol metadata in one call.</li>
+<li><strong>Sanity check.</strong> If <code>SymbolsTotal &gt; 0</code> → data available. Check <code>SymbolInfos.Count</code> for actual returned symbols. Use pagination for large result sets.</li>
+</ul>
+<hr />
+<h2 id="purpose">🎯 Purpose<a class="headerlink" href="#purpose" title="Permanent link">¶</a></h2>
+<p>Use it to get comprehensive symbol data:</p>
+<ul>
+<li>Get all symbol properties in one call.</li>
+<li>Compare trading conditions across symbols.</li>
+<li>Analyze contract specifications.</li>
+<li>Filter and sort symbols by various criteria.</li>
+<li>Access swap schedules, margins, session data.</li>
+</ul>
+<hr />
+<h2 id="notes-tips">🧩 Notes &amp; Tips<a class="headerlink" href="#notes-tips" title="Permanent link">¶</a></h2>
+<ul>
+<li><strong>Comprehensive data:</strong> Returns 112 fields per symbol. Use only what you need to reduce processing overhead.</li>
+<li><strong>Pagination:</strong> Use <code>PageNumber</code> and <code>ItemsPerPage</code> for large symbol lists to reduce memory usage.</li>
+<li><strong>Filtering:</strong> Set <code>SymbolName</code> to get specific symbol. Omit to get all symbols.</li>
+<li><strong>Sorting:</strong> Use <code>SortType</code> to order results by name or MQL index.</li>
+<li><strong>Performance:</strong> Requesting all symbols can be slow. Filter when possible.</li>
+<li><strong>Null values:</strong> Some fields may be 0 or empty if broker doesn't provide that data.</li>
+</ul>
+<hr />
+<h2 id="usage-examples">🔗 Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">¶</a></h2>
+<h3 id="1-get-all-parameters-for-single-symbol">1) Get all parameters for single symbol<a class="headerlink" href="#1-get-all-parameters-for-single-symbol" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// acc — connected MT5Account</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">acc</span><span class="p">.</span><span class="n">SymbolParamsManyAsync</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SymbolParamsManyRequest</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">SymbolName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;EURUSD&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">});</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">SymbolInfos</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">{</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">symbol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">SymbolInfos</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Symbol: {symbol.Name}&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Bid: {symbol.Bid}, Ask: {symbol.Ask}&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Spread: {symbol.Spread} points&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Contract size: {symbol.TradeContractSize}&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Min volume: {symbol.VolumeMin}, Max: {symbol.VolumeMax}, Step: {symbol.VolumeStep}&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Stops level: {symbol.TradeStopsLevel} points&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Swap long: {symbol.SwapLong}, short: {symbol.SwapShort}&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Digits: {symbol.Digits}&quot;</span><span class="p">);</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="2-get-all-available-symbols-paginated">2) Get all available symbols (paginated)<a class="headerlink" href="#2-get-all-available-symbols-paginated" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">pageSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">currentPage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">acc</span><span class="p">.</span><span class="n">SymbolParamsManyAsync</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SymbolParamsManyRequest</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="n">PageNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPage</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="n">ItemsPerPage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pageSize</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="n">SortType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AH_SYMBOL_PARAMS_MANY_SORT_TYPE</span><span class="p">.</span><span class="n">AhParamsManySortTypeSymbolNameAsc</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;\nPage {currentPage + 1} ({result.SymbolInfos.Count} symbols):&quot;</span><span class="p">);</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">symbol</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">SymbolInfos</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;  {symbol.Name,-15} Bid: {symbol.Bid,10:F5}  Ask: {symbol.Ask,10:F5}  Spread: {symbol.Spread,3}&quot;</span><span class="p">);</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="c1">// Check if more pages</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">currentPage</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pageSize</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">SymbolsTotal</span><span class="p">)</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">    </span><span class="n">currentPage</span><span class="o">++</span><span class="p">;</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="p">}</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;\nTotal symbols: {result.SymbolsTotal}&quot;</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h3 id="3-find-symbols-with-lowest-spreads">3) Find symbols with lowest spreads<a class="headerlink" href="#3-find-symbols-with-lowest-spreads" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">acc</span><span class="p">.</span><span class="n">SymbolParamsManyAsync</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SymbolParamsManyRequest</span><span class="p">());</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kt">var</span><span class="w"> </span><span class="n">lowSpreadSymbols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">SymbolInfos</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">Spread</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// Exclude symbols with no spread data</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="p">.</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">Spread</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">.</span><span class="n">Take</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Top 10 symbols with lowest spreads:\n&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">symbol</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">lowSpreadSymbols</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">{</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;{symbol.Name,-15} Spread: {symbol.Spread,3} points ({symbol.Spread * symbol.Point:F5})&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="4-analyze-swap-conditions">4) Analyze swap conditions<a class="headerlink" href="#4-analyze-swap-conditions" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">symbols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;EURUSD&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GBPUSD&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;USDJPY&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;XAUUSD&quot;</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Swap analysis:\n&quot;</span><span class="p">);</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">symbolName</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">symbols</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">{</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">acc</span><span class="p">.</span><span class="n">SymbolParamsManyAsync</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SymbolParamsManyRequest</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="n">SymbolName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">symbolName</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">SymbolInfos</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="kt">var</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">SymbolInfos</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;{s.Name}:&quot;</span><span class="p">);</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">        </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;  Long swap:  {s.SwapLong:F2}&quot;</span><span class="p">);</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;  Short swap: {s.SwapShort:F2}&quot;</span><span class="p">);</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;  Triple swap day: {s.SwapRollover3days}&quot;</span><span class="p">);</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;  Swap mode: {s.SwapMode}&quot;</span><span class="p">);</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">        </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="5-compare-trading-conditions-across-symbols">5) Compare trading conditions across symbols<a class="headerlink" href="#5-compare-trading-conditions-across-symbols" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">acc</span><span class="p">.</span><span class="n">SymbolParamsManyAsync</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SymbolParamsManyRequest</span><span class="p">());</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">// Filter major Forex pairs</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="kt">var</span><span class="w"> </span><span class="n">forexPairs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">SymbolInfos</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;USD&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">Name</span><span class="p">.</span><span class="n">Length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="p">.</span><span class="n">ToList</span><span class="p">();</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Forex pairs trading conditions:\n&quot;</span><span class="p">);</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;{&quot;</span><span class="n">Symbol</span><span class="s">&quot;,-10} {&quot;</span><span class="n">Spread</span><span class="s">&quot;,-8} {&quot;</span><span class="n">Min</span><span class="w"> </span><span class="n">Lot</span><span class="s">&quot;,-10} {&quot;</span><span class="n">Max</span><span class="w"> </span><span class="n">Lot</span><span class="s">&quot;,-10} {&quot;</span><span class="n">Stop</span><span class="w"> </span><span class="n">Level</span><span class="s">&quot;,-12}&quot;</span><span class="p">);</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">(</span><span class="sc">&#39;-&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">));</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">symbol</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">forexPairs</span><span class="p">.</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">Name</span><span class="p">))</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">{</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;{symbol.Name,-10} {symbol.Spread,-8} {symbol.VolumeMin,-10:F2} {symbol.VolumeMax,-10:F2} {symbol.TradeStopsLevel,-12}&quot;</span><span class="p">);</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="6-get-session-information-for-symbol">6) Get session information for symbol<a class="headerlink" href="#6-get-session-information-for-symbol" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">acc</span><span class="p">.</span><span class="n">SymbolParamsManyAsync</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">SymbolParamsManyRequest</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">SymbolName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;BTCUSD&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">});</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">SymbolInfos</span><span class="p">.</span><span class="n">Count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">{</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">SymbolInfos</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Session info for {s.Name}:\n&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Session volume: {s.SessionVolume}&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Session turnover: {s.SessionTurnover}&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Session deals: {s.SessionDeals}&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Session buy orders: {s.SessionBuyOrders}&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Session sell orders: {s.SessionSellOrders}&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Session open: {s.SessionOpen}&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Session close: {s.SessionClose}&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Buy volume: {s.SessionBuyOrdersVolume}&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">    </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Sell volume: {s.SessionSellOrdersVolume}&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2024–2025 MetaRPC. MT5 is a trademark of MetaQuotes Software Corp. This documentation is community-maintained and not affiliated with MetaQuotes.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/MetaRPC/CSharpMT5" target="_blank" rel="noopener" title="CSharpMT5 on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.expand", "navigation.top", "navigation.footer", "content.code.copy", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/ux.js"></script>
+      
+    
+  </body>
+</html>
