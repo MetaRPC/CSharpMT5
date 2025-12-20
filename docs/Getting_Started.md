@@ -169,7 +169,7 @@ We'll walk you through all the major aspects - from basic manual trading to a fu
 
 The project consists of **three interconnected files** in the root directory, each building upon the previous one. Understanding this chain is key to mastering CSharpMT5.
 
-### Layer 1: MT5Account.cs - Low-Level gRPC Foundation
+### Layer 1: MT5Account - Low-Level gRPC Foundation
 
 **What it is:** Direct gRPC calls to the MT5 terminal - the absolute foundation of everything.
 
@@ -213,7 +213,7 @@ MT5Sugar.cs (easiest, highest abstraction)
     ↓ uses
 MT5Service.cs (convenient wrappers)
     ↓ uses
-MT5Account.cs (raw gRPC, foundation)
+MT5Account (raw gRPC, foundation)
     ↓ communicates with
 MT5 Terminal (via gateway)
 ```

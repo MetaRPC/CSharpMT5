@@ -268,7 +268,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 - Complete access to all MT5 functions
 - Highest complexity
 
-**Location:** `MT5Account.cs`
+**Location:** `package/Helpers/MT5Account.cs` (NuGet package source)
 
 **Documentation:** This folder (you are here!)
 

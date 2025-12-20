@@ -33,7 +33,7 @@ The foundational layer providing direct access to MT5 terminal via gRPC protocol
 
 **When to use:** Custom integrations, proto-level control needed, building custom wrappers.
 
-**Location:** `MT5Account.cs`
+**Location:** `package/Helpers/MT5Account.cs` (NuGet package source)
 
 **Documentation:** [MT5Account.Master.Overview.md](./MT5Account/MT5Account.Master.Overview.md)
 

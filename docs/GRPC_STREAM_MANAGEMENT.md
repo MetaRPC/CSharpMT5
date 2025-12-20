@@ -830,7 +830,7 @@ User Code → IAsyncEnumerable → gRPC Call → Network
 The `ExecuteStreamWithReconnect` method ensures proper cleanup:
 
 ```csharp
-// In MT5Account.cs (lines 254-323)
+// In MT5Account class (package/Helpers/MT5Account.cs)
 private async IAsyncEnumerable<TData> ExecuteStreamWithReconnect<TRequest, TReply, TData>(
     TRequest request,
     Func<TRequest, Metadata, CancellationToken, AsyncServerStreamingCall<TReply>> streamInvoker,
