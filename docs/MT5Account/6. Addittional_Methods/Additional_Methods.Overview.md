@@ -57,7 +57,7 @@
 var marginData = await account.SymbolInfoMarginRateAsync(new SymbolInfoMarginRateRequest
 {
     Symbol = "EURUSD",
-    OrderType = ENUM_ORDER_TYPE.ORDER_TYPE_BUY
+    OrderType = ENUM_ORDER_TYPE.OrderTypeBuy
 });
 Console.WriteLine($"Initial Margin Rate: {marginData.InitialMarginRate:F2}");
 Console.WriteLine($"Maintenance Margin Rate: {marginData.MaintenanceMarginRate:F2}");

@@ -55,7 +55,7 @@ Console.WriteLine($"Balance: ${summary.AccountBalance:F2}, Equity: ${summary.Acc
 ```csharp
 // Get single property - account balance
 var balance = await account.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_BALANCE
+    AccountInfoDoublePropertyType.AccountBalance
 );
 Console.WriteLine($"Balance: ${balance:F2}");
 ```
@@ -63,7 +63,7 @@ Console.WriteLine($"Balance: ${balance:F2}");
 ```csharp
 // Get account leverage
 var leverage = await account.AccountInfoIntegerAsync(
-    AccountInfoIntegerPropertyType.ACCOUNT_LEVERAGE
+    AccountInfoIntegerPropertyType.AccountLeverage
 );
 Console.WriteLine($"Leverage: 1:{leverage}");
 ```
@@ -71,7 +71,7 @@ Console.WriteLine($"Leverage: 1:{leverage}");
 ```csharp
 // Get account currency
 var currency = await account.AccountInfoStringAsync(
-    AccountInfoStringPropertyType.ACCOUNT_CURRENCY
+    AccountInfoStringPropertyType.AccountCurrency
 );
 Console.WriteLine($"Currency: {currency}");
 ```

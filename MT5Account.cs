@@ -10,6 +10,9 @@ using mt5_term_api;
 using Mt5TermApi;
 using DayOfWeek = mt5_term_api.DayOfWeek;
 
+#pragma warning disable CS8600 
+#pragma warning disable CS8618 
+
 namespace MetaRPC.CSharpMT5;
 
 /// <summary>

@@ -68,7 +68,7 @@ Console.WriteLine($"EURUSD - Bid: {tick.Bid:F5}, Ask: {tick.Ask:F5}, Spread: {(t
 ```csharp
 // Get symbol spread
 var spread = await account.SymbolInfoIntegerAsync("EURUSD",
-    SymbolInfoIntegerPropertyType.SYMBOL_SPREAD);
+    SymbolInfoIntegerProperty.SymbolSpread);
 Console.WriteLine($"Spread: {spread} points");
 ```
 

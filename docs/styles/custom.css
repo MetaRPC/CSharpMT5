@@ -6,6 +6,18 @@
 /* 1) Material Symbols (Rounded) — icon font */
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght,FILL,GRAD@400..700,0..1,0..200');
 
+/* Smooth Scroll Behavior - CSS only, no JavaScript */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 .material-symbols-rounded{
   font-family: 'Material Symbols Rounded';
   font-weight: 500;
@@ -70,14 +82,14 @@
 .home-grid{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-  margin: 1.2rem 0 2.2rem;
+  gap: 0.75rem;
+  margin: 0.8rem 0 1.5rem;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* First card (Quick Start) - centered square, spans 4 columns (из 12) */
+/* First card (Quick Start) - centered square, spans 4 columns (12) */
 .home-grid .card:nth-child(1) {
   grid-column: 5 / 9;
 }
@@ -85,7 +97,7 @@
 /* Second card (Getting Started) - medium rectangle, centered with visible gaps */
 .home-grid .card:nth-child(2) {
   grid-column: 4 / 10;
-  min-height: 140px; /* Shorter for wide card */
+  min-height: 110px; /* Shorter for wide card */
 }
 
 /* Third row - 2 cards (Project Map, Glossary) - each 4 columns */
@@ -133,7 +145,7 @@
 /* 4) Cards: glass + gradient frame */
 .card{
   position:relative; display:block;
-  padding:1.5rem 1.2rem; min-height:180px;
+  padding:1rem 0.9rem; min-height:140px;
   border-radius:16px; text-decoration:none; color:inherit;
   text-align: center;
   border:2px solid transparent;
@@ -158,14 +170,14 @@
   box-shadow:0 12px 28px rgba(0,0,0,.3);
 }
 
-.card h3{ margin:.6rem 0 .3rem; font-weight:700; font-size:1.15rem; letter-spacing:.3px; }
-.card p{ margin:0; font-size:.88rem; line-height:1.3rem; opacity:.88; }
+.card h3{ margin:.5rem 0 .2rem; font-weight:700; font-size:1rem; letter-spacing:.3px; }
+.card p{ margin:0; font-size:.82rem; line-height:1.2rem; opacity:.88; }
 
 /* 5) Centered icon with gradient fill */
 .card .material-symbols-rounded{
   display: block;
-  font-size: 2.8rem;
-  margin: 0 auto .5rem;
+  font-size: 2.2rem;
+  margin: 0 auto .4rem;
   background: linear-gradient(135deg, rgb(var(--g1)), rgb(var(--g2)));
   -webkit-background-clip: text;
           background-clip: text;
@@ -393,17 +405,22 @@
 
 .progress-badge {
   position: absolute;
-  top: -4px;
-  right: -4px;
-  background: #FF4444;
-  color: white;
-  font-size: 0.7rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.9rem;
   font-weight: 700;
-  padding: 0.2rem 0.4rem;
-  border-radius: 10px;
-  min-width: 32px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  pointer-events: none;
+  z-index: 10;
+}
+
+[data-md-color-scheme="default"] .progress-badge {
+  color: #0078D4;
+}
+
+[data-md-color-scheme="slate"] .progress-badge {
+  color: #00D9C0;
 }
 
 /* Overlay */
@@ -667,6 +684,206 @@
 [data-md-color-scheme="slate"] .progress-reset-btn-panel:hover {
   background: #00D9C0;
   color: #1a1f2e;
+}
+
+/* ============================================================================
+   PROGRESS BAR ENHANCEMENTS - Animations and Visual Improvements
+   ============================================================================ */
+
+/* Header Progress Bar */
+.header-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  z-index: 9999;
+  pointer-events: none;
+  width: 100%;
+}
+
+.header-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0078D4, #00D9C0);
+  width: 0%;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 8px rgba(0, 120, 212, 0.5);
+}
+
+/* Shimmer Effect on Progress Bars */
+.progress-bar-fill {
+  background: linear-gradient(90deg,
+    #0078D4 0%,
+    #00D9C0 25%,
+    #0078D4 50%,
+    #00D9C0 75%,
+    #0078D4 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Circular Progress Ring */
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.progress-ring-circle {
+  fill: none;
+  stroke-width: 3;
+}
+
+.progress-ring-bg {
+  stroke: rgba(0, 120, 212, 0.15);
+}
+
+[data-md-color-scheme="slate"] .progress-ring-bg {
+  stroke: rgba(0, 217, 192, 0.15);
+}
+
+.progress-ring-fill {
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+[data-md-color-scheme="default"] .progress-ring-fill {
+  stroke: url(#progress-gradient-light);
+}
+
+[data-md-color-scheme="slate"] .progress-ring-fill {
+  stroke: url(#progress-gradient-dark);
+}
+
+/* Progress Badge Pulse Animation */
+.progress-badge.pulse {
+  animation: pulse 0.6s ease-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+/* Milestone Modal */
+.milestone-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  z-index: 10001;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  max-width: 400px;
+}
+
+.milestone-modal.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: all;
+}
+
+[data-md-color-scheme="slate"] .milestone-modal {
+  background: linear-gradient(135deg, #1a1f2e, #151a27);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.milestone-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.milestone-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #0078D4, #00D9C0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-md-color-scheme="slate"] .milestone-title {
+  background: linear-gradient(135deg, #00D9C0, #0078D4);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.milestone-message {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.milestone-close {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0078D4, #00D9C0);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.milestone-close:hover {
+  transform: scale(1.05);
+}
+
+/* Confetti Container */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+}
+
+.confetti.active {
+  animation: confetti-fall 3s linear forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
 }
 
 /* Contact Panel */

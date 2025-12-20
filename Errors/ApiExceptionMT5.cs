@@ -1,4 +1,39 @@
-﻿using Mt5TermApi;
+﻿/*══════════════════════════════════════════════════════════════════════════════
+ FILE: Errors/ApiExceptionMT5.cs - MT5 API ERROR EXCEPTION
+ PURPOSE:
+   Exception thrown when MT5 gRPC API returns an error response from the server.
+
+  WHEN THIS EXCEPTION IS THROWN:
+   • MT5 server responds with an error in the reply message
+   • Trade operation fails (e.g., invalid order parameters, insufficient margin)
+   • MQL script execution error on the server side
+   • Invalid request parameters or forbidden operations
+
+  WHAT IT CONTAINS:
+   • ErrorCode - API-level error code (e.g., "INVALID_SYMBOL", "TRADE_DISABLED")
+   • ErrorMessage - Human-readable error description
+   • MqlErrorCode - MQL5 error code (e.g., ERR_TRADE_NOT_ALLOWED)
+   • MqlErrorTradeCode - Trade-specific error code
+   • RemoteStackTrace - Server-side stack trace (if available)
+   • CommandTypeName - Which gRPC method caused the error
+
+  HOW TO HANDLE:
+   try {
+       var result = await account.OrderSend(request);
+   }
+   catch (ApiExceptionMT5 ex) {
+       Console.WriteLine($"Trade failed: {ex.ErrorCode}");
+       Console.WriteLine($"MQL Error: {ex.MqlErrorDescription}");
+   }
+
+ ⚠️ IMPORTANT:
+   This is NOT a connection/network error. This means the server received your
+   request successfully but rejected it due to business logic (invalid parameters,
+   insufficient funds, trade restrictions, etc.)
+
+══════════════════════════════════════════════════════════════════════════════*/
+
+using Mt5TermApi;
 
 namespace MetaRPC.CSharpMT5;
 

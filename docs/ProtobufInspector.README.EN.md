@@ -2,6 +2,36 @@
 
 Interactive utility for exploring MT5 gRPC API protobuf types.
 
+## 📌 Why You Need This Tool
+
+When working with MT5 gRPC API, you constantly face questions like:
+
+- *"What fields does `AccountSummaryData` have?"*
+- *"Where can I find the `Ticket` field?"*
+- *"What values does the `ORDER_TYPE` enum contain?"*
+- *"What types are available for working with orders/positions?"*
+
+**Yes, all this information is already in the documentation**, but without this inspector you would have to:
+
+-  Open multiple documentation files and scroll through pages
+-  Remember which doc file contains which type
+-  Manually search through text (Ctrl+F) in each file
+-  Constantly switch between IDE and documentation browser
+-  Interrupt your coding flow to look up references
+
+**ProtobufInspector solves all these problems in one command!** 🎯
+
+### ✨ Convenience Features:
+
+-  **Instant launch** — just `dotnet run inspect`
+-  **Smart search** — find types by name, field, or keyword
+-  **Clear output** — structured display with emojis and formatting
+-  **Case insensitive** — no need to remember exact casing
+-  **Interactive** — explore API in real-time without recompiling code
+-  **Time saver** — answers in seconds instead of minutes of searching
+
+**Real-world benefit:** Instead of spending 5-10 minutes searching documentation or proto files, you get the answer in 5 seconds. For daily MT5 API development, this tool becomes indispensable.
+
 ## 🚀 Launch
 
 ```bash

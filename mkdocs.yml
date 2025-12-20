@@ -78,7 +78,7 @@ nav:
   - Home: index.md
 
   - Guides:
-    - Your First Project (RU): Your_First_Project.ru.md
+    - Your First Project: Your_First_Project.ru.md
     - MT5 for Beginners: MT5_For_Beginners.md
     - User Code Sandbox: UserCode_Sandbox_Guide.md
     - gRPC Streaming: GRPC_STREAM_MANAGEMENT.md

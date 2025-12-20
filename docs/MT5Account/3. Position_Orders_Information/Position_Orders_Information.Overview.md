@@ -80,7 +80,7 @@ Console.WriteLine($"Order tickets: {string.Join(", ", tickets.OpenedOrdersTicket
 var from = DateTime.Now.AddDays(-7);
 var to = DateTime.Now;
 var history = await account.OrderHistoryAsync(from, to,
-    sortMode: BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.BMT5_SORT_BY_CLOSE_TIME_DESC);
+    sortMode: BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeDesc);
 
 Console.WriteLine($"Total history records: {history.ArrayTotal}");
 foreach (var record in history.HistoryData)

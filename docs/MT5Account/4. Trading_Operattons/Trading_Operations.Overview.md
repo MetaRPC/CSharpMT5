@@ -98,10 +98,10 @@ Console.WriteLine($"Close result: {closeResult.ReturnedCode}");
 // Check order before sending
 var tradeRequest = new MrpcMqlTradeRequest
 {
-    Action = MRPC_ENUM_TRADE_REQUEST_ACTIONS.TRADE_ACTION_DEAL,
+    Action = MRPC_ENUM_TRADE_REQUEST_ACTIONS.TradeActionDeal,
     Symbol = "EURUSD",
     Volume = 1.0,
-    OrderType = ENUM_ORDER_TYPE_TF.ORDER_TYPE_BUY,
+    OrderType = ENUM_ORDER_TYPE_TF.OrderTypeTfBuy,
     Price = 1.09000
 };
 var checkResult = await account.OrderCheckAsync(new OrderCheckRequest
@@ -116,7 +116,7 @@ Console.WriteLine($"Margin needed: ${checkData.Margin:F2}, Free margin after: ${
 // Calculate margin for 1 lot EURUSD
 var marginData = await account.OrderCalcMarginAsync(
     symbol: "EURUSD",
-    orderType: ENUM_ORDER_TYPE_TF.ORDER_TYPE_BUY,
+    orderType: ENUM_ORDER_TYPE_TF.OrderTypeTfBuy,
     volume: 1.0,
     openPrice: 1.09000
 );

@@ -252,15 +252,27 @@ await ProgressBarHelper.ShowProgressBar(
 
 ```
 docs\
+├── index.md                           ← ⭐ Homepage - project introduction
+│
+├── Getting_Started.md                 ← ⭐ Start here! Setup & first steps
+│
 ├── PROJECT_MAP.md                     ← ⭐ This file - complete structure
 │
-├── GLOSSARY.md                        ← ⭐ Terms and definitions
+├── Glossary.md                        ← ⭐ Terms and definitions
 │
-├── ReturnCodes_Reference_EN.md       ← Proto return codes reference
+├── MT5_For_Beginners.md               ← Creating demo account for testing
 │
-├── UserCode_Sandbox_Guide.md         ← How to write custom strategies
+├── Your_First_Project.ru.md           ← Your first project guide
 │
-├── GRPC_STREAM_MANAGEMENT.md         ← Streaming subscriptions guide
+├── ReturnCodes_Reference_EN.md        ← Proto return codes reference
+│
+├── UserCode_Sandbox_Guide.md          ← How to write custom strategies
+│
+├── GRPC_STREAM_MANAGEMENT.md          ← Streaming subscriptions guide
+│
+├── Sync_vs_Async.md                   ← Async/sync patterns explained
+│
+├── ProtobufInspector.README.EN.md     ← Protobuf inspector tool guide
 │
 ├── Strategies\                        ← Strategy documentation
 │   ├── Strategies.Master.Overview.md  ← ⭐ ALL orchestrators & presets
@@ -285,7 +297,6 @@ docs\
 │
 ├── MT5Account\                        ← Low-level proto API docs
 │   ├── MT5Account.Master.Overview.md  ← ⭐ Complete API reference
-│   ├── Sync_vs_Async.md               ← Async/sync patterns explained
 │   ├── 1. Account_information\        ← Account methods
 │   ├── 2. Symbol_information\         ← Symbol/market data methods
 │   ├── 3. Position_Orders_Information\ ← Position/order methods
@@ -295,24 +306,28 @@ docs\
 │   └── 7. Streaming_Methods\          ← Real-time subscriptions
 │
 ├── MT5Service\                        ← Service layer method docs
-│   └── (Individual method files)
+│   ├── MT5Service.Overview.md          ← ⭐ Complete Service API reference
+│   ├── Account_Convenience_Methods.md  ← Account helper methods
+│   ├── Symbol_Convenience_Methods.md   ← Symbol helper methods
+│   ├── Trading_Convenience_Methods.md  ← Trading helper methods
+│   └── History_Convenience_Methods.md  ← History helper methods
 │
 └── MT5Sugar\                          ← Sugar layer method docs
-    ├── 1. Initialization\
-    ├── 2. Account_Information\
-    ├── 3. Normalization_Utils\
-    ├── 4. Symbol_Metadata\
-    ├── 5. Streams_Helpers\
-    ├── 6. Trading_Market_Pending\
-    ├── 7. Modify_Close_Operations\
-    ├── 8. Volume_Price_Utils\
-    ├── 9. Pending_ByPoints\
-    ├── 10. Market_ByRisk\
-    ├── 11. Bulk_Convenience\
-    ├── 12. Market_Depth_DOM\
-    ├── 13. Order_Validation\
-    ├── 14. Session_Time\
-    └── 15. Position_Monitoring\
+    ├── MT5Sugar.API_Overview.md        ← ⭐ Complete Sugar API reference
+    ├── 1. Infrastructure\              ← Core infrastructure methods
+    ├── 2. Snapshots\                   ← Account/Symbol snapshots
+    ├── 3. Normalization_Utils\         ← Price/volume normalization
+    ├── 4. History_Helpers\             ← History retrieval helpers
+    ├── 5. Streams_Helpers\             ← Bounded streaming methods
+    ├── 6. Trading_Market_Pending\      ← Market & pending orders
+    ├── 8. Volume_Price_Utils\          ← Volume calculation & pricing
+    ├── 9. Pending_ByPoints\            ← Pending orders by points
+    ├── 10. Market_ByRisk\              ← Market orders by risk
+    ├── 11. Bulk_Convenience\           ← Bulk operations (close/cancel all)
+    ├── 12. Market_Depth_DOM\           ← Market depth (DOM) methods
+    ├── 13. Order_Validation\           ← Pre-flight order validation
+    ├── 14. Session_Time\               ← Trading session info
+    └── 15. Position_Monitoring\        ← Position monitoring & stats
 ```
 
 **Structure:**

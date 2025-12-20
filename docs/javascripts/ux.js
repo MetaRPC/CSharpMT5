@@ -2,17 +2,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('CSharpMT5 Documentation loaded');
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
   // Initialize Progress Tracker
   initProgressTracker();
 
@@ -26,11 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const PROGRESS_STORAGE_KEY = 'csharpmt5_docs_progress';
 
-// Documentation structure: 119 total files
+// Documentation structure: all pages tracked
 const DOC_STRUCTURE = {
   'guides': {
     name: '📘 Guides',
     pages: [
+      'Your_First_Project.ru',
       'Getting_Started',
       'MT5_For_Beginners',
       'GRPC_STREAM_MANAGEMENT',
@@ -38,6 +28,7 @@ const DOC_STRUCTURE = {
       'ReturnCodes_Reference_EN',
       'ProtobufInspector.README.EN',
       'UserCode_Sandbox_Guide',
+      'PROJECT_MAP',
       'Glossary'
     ]
   },
@@ -188,6 +179,67 @@ function initProgressTracker() {
 
   // Update progress display
   updateProgressDisplay();
+
+  // Track link clicks for navigation
+  trackLinkClicks();
+
+  // Track browser back/forward navigation
+  window.addEventListener('popstate', function() {
+    setTimeout(() => {
+      trackPageVisit();
+      updateProgressDisplay();
+    }, 100);
+  });
+
+  // Track dynamic content changes (for Material for MkDocs instant loading)
+  if (window.MutationObserver) {
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList' && mutation.target.classList.contains('md-content')) {
+          setTimeout(() => {
+            trackPageVisit();
+            updateProgressDisplay();
+          }, 100);
+        }
+      });
+    });
+
+    const contentElement = document.querySelector('.md-content');
+    if (contentElement) {
+      observer.observe(contentElement, { childList: true, subtree: true });
+    }
+  }
+}
+
+function trackLinkClicks() {
+  // Track all internal documentation links
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+
+    // Skip external links, anchors, and non-doc links
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:')) {
+      return;
+    }
+
+    // Wait a bit for navigation to complete, then track
+    setTimeout(() => {
+      const oldProgress = getProgress();
+      const oldCount = oldProgress.visitedPages.length;
+
+      trackPageVisit();
+
+      const newProgress = getProgress();
+      const newCount = newProgress.visitedPages.length;
+
+      // Only update display if progress actually changed
+      if (newCount > oldCount) {
+        updateProgressDisplay();
+      }
+    }, 200);
+  }, true);
 }
 
 function trackPageVisit() {
@@ -204,14 +256,33 @@ function trackPageVisit() {
 
 function getCurrentPagePath() {
   // Get current page path from URL
-  const path = window.location.pathname;
+  let path = window.location.pathname;
 
-  // Extract page identifier from path
-  // Example: /CSharpMT5/MT5Account/MT5Account.Master.Overview/ -> MT5Account/MT5Account.Master.Overview
-  const match = path.match(/\/CSharpMT5\/(.+?)(?:\/|\.html)?$/);
-  if (!match) return null;
+  // Remove .html extension if present
+  path = path.replace(/\.html$/, '');
 
-  return match[1].replace(/\/$/, ''); // Remove trailing slash
+  // Try multiple patterns to extract the page path
+  // Pattern 1: GitHub Pages - /CSharpMT5/path/to/page/
+  let match = path.match(/\/CSharpMT5\/(.+?)(?:\/)?$/);
+  if (match && match[1] !== '') {
+    // Decode URL encoding (e.g., %20 -> space)
+    return decodeURIComponent(match[1].replace(/\/$/, ''));
+  }
+
+  // Pattern 2: Local server - /path/to/page/
+  match = path.match(/^\/(.+?)(?:\/)?$/);
+  if (match && match[1] !== '' && match[1] !== 'index') {
+    // Decode URL encoding (e.g., %20 -> space)
+    return decodeURIComponent(match[1].replace(/\/$/, ''));
+  }
+
+  // Pattern 3: Index page
+  if (path === '/' || path === '/CSharpMT5/' || path === '/index' || path === '/CSharpMT5/index') {
+    return 'index';
+  }
+
+  console.log('Could not extract page path from:', path);
+  return null;
 }
 
 function getProgress() {
@@ -240,14 +311,46 @@ function createProgressBar() {
   if (document.getElementById('progress-float-btn')) return;
 
   const progressHTML = `
-    <!-- Floating Button -->
+    <!-- Mini Header Progress Bar -->
+    <div class="header-progress-bar">
+      <div class="header-progress-fill" id="header-progress-fill" style="width: 0%"></div>
+    </div>
+
+    <!-- Floating Button with Circular Progress -->
     <button id="progress-float-btn" class="progress-float-btn" title="Learning Progress">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10"></circle>
-        <path d="M12 6v6l4 2"></path>
+      <!-- Circular Progress SVG -->
+      <svg class="progress-ring" width="66" height="66">
+        <defs>
+          <linearGradient id="progress-gradient-light" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0078D4"/>
+            <stop offset="100%" stop-color="#00D9C0"/>
+          </linearGradient>
+          <linearGradient id="progress-gradient-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00D9C0"/>
+            <stop offset="100%" stop-color="#0078D4"/>
+          </linearGradient>
+        </defs>
+        <!-- Background circle -->
+        <circle class="progress-ring-circle progress-ring-bg" cx="33" cy="33" r="30"></circle>
+        <!-- Progress circle -->
+        <circle id="progress-ring-fill" class="progress-ring-circle progress-ring-fill"
+                cx="33" cy="33" r="30"
+                stroke-dasharray="188.5"
+                stroke-dashoffset="188.5"></circle>
       </svg>
       <span class="progress-badge" id="progress-badge">0%</span>
     </button>
+
+    <!-- Milestone Celebration Modal -->
+    <div id="milestone-modal" class="milestone-modal">
+      <div class="milestone-icon" id="milestone-icon">🎉</div>
+      <h2 class="milestone-title" id="milestone-title">Milestone Reached!</h2>
+      <p class="milestone-message" id="milestone-message">Great progress!</p>
+      <button class="milestone-close" id="milestone-close">Continue Learning</button>
+    </div>
+
+    <!-- Confetti Container -->
+    <div id="confetti-container" class="confetti-container"></div>
 
     <!-- Side Panel -->
     <div id="progress-panel" class="progress-panel">
@@ -297,6 +400,7 @@ function createProgressBar() {
   document.getElementById('progress-panel-close').addEventListener('click', closeProgressPanel);
   document.getElementById('progress-overlay').addEventListener('click', closeProgressPanel);
   document.getElementById('progress-reset-btn').addEventListener('click', resetProgress);
+  document.getElementById('milestone-close').addEventListener('click', closeMilestoneModal);
 }
 
 function openProgressPanel() {
@@ -317,10 +421,32 @@ function updateProgressDisplay() {
 
   const percentage = Math.round(stats.overall.percentage);
 
-  // Update floating button badge
+  // Get old percentage for milestone checking
+  const oldPercentage = parseFloat(localStorage.getItem('last_percentage') || '0');
+  localStorage.setItem('last_percentage', percentage.toString());
+
+  // Update floating button badge with pulse
   const badge = document.getElementById('progress-badge');
   if (badge) {
     badge.textContent = percentage + '%';
+    // Trigger pulse animation
+    badge.classList.remove('pulse');
+    void badge.offsetWidth; // Force reflow
+    badge.classList.add('pulse');
+  }
+
+  // Update circular progress ring
+  const progressRing = document.getElementById('progress-ring-fill');
+  if (progressRing) {
+    const circumference = 2 * Math.PI * 30; // radius = 30
+    const offset = circumference - (percentage / 100) * circumference;
+    progressRing.style.strokeDashoffset = offset;
+  }
+
+  // Update header progress bar
+  const headerFill = document.getElementById('header-progress-fill');
+  if (headerFill) {
+    headerFill.style.width = percentage + '%';
   }
 
   // Update overall progress in panel
@@ -361,6 +487,9 @@ function updateProgressDisplay() {
       categoriesContainer.insertAdjacentHTML('beforeend', categoryHTML);
     });
   }
+
+  // Check for milestones
+  checkMilestones(oldPercentage, percentage);
 }
 
 function calculateProgress(progress) {
@@ -393,9 +522,97 @@ function calculateProgress(progress) {
   return stats;
 }
 
+function checkMilestones(oldPercentage, newPercentage) {
+  const milestones = [25, 50, 75, 100];
+  const shownMilestones = JSON.parse(localStorage.getItem('shown_milestones') || '[]');
+
+  for (const milestone of milestones) {
+    // Check if we just reached this milestone and haven't shown it yet
+    if (oldPercentage < milestone && newPercentage >= milestone && !shownMilestones.includes(milestone)) {
+      showMilestoneModal(milestone);
+      shownMilestones.push(milestone);
+      localStorage.setItem('shown_milestones', JSON.stringify(shownMilestones));
+      break; // Show only one milestone at a time
+    }
+  }
+}
+
+function showMilestoneModal(percentage) {
+  const milestones = {
+    25: { icon: '🌟', title: 'Quarter Way There!', message: '25% complete!' },
+    50: { icon: '🎯', title: 'Halfway Champion!', message: '50% complete!' },
+    75: { icon: '🚀', title: 'Almost There!', message: '75% complete!' },
+    100: { icon: '🏆', title: 'Documentation Master!', message: '100% complete!' }
+  };
+
+  const milestone = milestones[percentage];
+  if (!milestone) return;
+
+  const modal = document.getElementById('milestone-modal');
+  const icon = document.getElementById('milestone-icon');
+  const title = document.getElementById('milestone-title');
+  const message = document.getElementById('milestone-message');
+
+  if (modal && icon && title && message) {
+    icon.textContent = milestone.icon;
+    title.textContent = milestone.title;
+    message.textContent = milestone.message;
+
+    modal.classList.add('show');
+
+    // Launch confetti for 100%
+    if (percentage === 100) {
+      launchConfetti();
+    }
+
+    // Auto-close after 5 seconds
+    setTimeout(() => {
+      closeMilestoneModal();
+    }, 5000);
+  }
+}
+
+function closeMilestoneModal() {
+  const modal = document.getElementById('milestone-modal');
+  if (modal) {
+    modal.classList.remove('show');
+  }
+}
+
+function launchConfetti() {
+  const container = document.getElementById('confetti-container');
+  if (!container) return;
+
+  const colors = ['#0078D4', '#00D9C0', '#FFD700', '#FF6B9D', '#C471ED', '#12D8FA'];
+  const confettiCount = 150;
+
+  for (let i = 0; i < confettiCount; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random() * 100 + '%';
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+    confetti.style.animationDuration = (Math.random() * 1 + 2) + 's';
+
+    container.appendChild(confetti);
+
+    // Trigger animation
+    setTimeout(() => {
+      confetti.classList.add('active');
+    }, 10);
+
+    // Remove after animation
+    setTimeout(() => {
+      confetti.remove();
+    }, 3500);
+  }
+}
+
 function resetProgress() {
   if (confirm('Are you sure you want to reset all progress?')) {
     localStorage.removeItem(PROGRESS_STORAGE_KEY);
+    localStorage.removeItem('last_percentage');
+    localStorage.removeItem('shown_milestones');
     updateProgressDisplay();
     console.log('Progress reset');
   }

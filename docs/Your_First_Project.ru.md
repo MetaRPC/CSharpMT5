@@ -1,106 +1,130 @@
-# Ваш первый проект с нуля
+# Your First Project From Scratch
 
-> **Быстрый старт** - создайте свой собственный MT5 торговый проект за 10 минут, используя только NuGet пакет MetaRPC.MT5
+> **Quick Start** - Create your own MT5 trading project in 10 minutes using only the MetaRPC.MT5 NuGet package
 
 ---
 
-## Для кого этот гайд?
+## Who Is This Guide For?
 
-Этот документ предназначен для тех, кто хочет:
+This document is designed for those who want to:
 
-- **Быстро начать** писать код для MT5 в своем проекте
-- **Не клонировать** весь репозиторий CSharpMT5
-- **Создать проект с нуля** и подключить минимальные зависимости
-- **Написать первый метод** и увидеть результат немедленно
+- **Get started quickly** writing code for MT5 in their own project
+- **Avoid cloning** the entire CSharpMT5 repository
+- **Create a project from scratch** and connect minimal dependencies
+- **Write their first method** and see results immediately
 
-**Разница между этим гайдом и Getting_Started.md:**
+**Difference between this guide and Getting_Started.md:**
 
-| Getting Started | Your First Project (этот гайд) |
+| Getting Started | Your First Project (this guide) |
 |----------------|--------------------------------|
-| Клонируете готовый репозиторий | Создаете проект с нуля |
-| Изучаете архитектуру и примеры | Сразу пишете работающий код |
-| Долгий путь обучения | Быстрый результат |
-| Для глубокого погружения | Для быстрого старта |
+| Clone a ready-made repository | Create a project from scratch |
+| Study architecture and examples | Write working code immediately |
+| Long learning path | Quick results |
+| For deep dive | For quick start |
 
-> После того как вы пройдете этот гайд и получите первый результат, рекомендуем изучить [Getting Started](Getting_Started.md) для понимания полной архитектуры SDK.
-
----
-
-## Что мы будем делать?
-
-В этом гайде мы создадим минималистичный проект, который:
-
-1. Подключится к MT5 терминалу через gRPC шлюз
-2. Получит баланс счета
-3. Выведет результат в консоль
-
-**Это займет 10 минут и требует минимум кода.**
+> After completing this guide and getting your first results, we recommend studying [Getting Started](Getting_Started.md) to understand the full SDK architecture.
 
 ---
 
-## Шаг 1: Установите .NET 8 SDK
+## What Will We Do?
 
-Если у вас еще не установлен .NET 8 SDK:
+In this guide, we'll create a minimalist project that:
 
-**Скачайте и установите:**
+1. Connects to MT5 terminal through gRPC gateway
+2. Retrieves account balance
+3. Outputs results to console
+
+**This takes 10 minutes and requires minimal code.**
+
+---
+
+## Step 1: Install .NET 8 SDK
+
+If you don't have .NET 8 SDK installed yet:
+
+**Download and install:**
 
 - [.NET 8 SDK Download](https://dotnet.microsoft.com/download/dotnet/8.0)
 
-**Проверьте установку:**
+**Verify installation:**
 
 ```bash
 dotnet --version
-# Должно показать: 8.0.x или выше
+# Should show: 8.0.x or higher
 ```
 
 ---
 
-## Шаг 2: Создайте новый консольный проект
+## Step 2: Create a New Console Project
 
-Откройте терминал (командную строку) и выполните:
+Open terminal (command prompt) and execute:
 
 ```bash
-# Создаем папку для проекта
+# Create project folder and navigate into it
 mkdir MyMT5Project
 cd MyMT5Project
 
-# Создаем новый консольный проект
-dotnet new console -n MyMT5Project
-
-# Переходим в папку проекта
-cd MyMT5Project
+# Create new console project in current folder
+dotnet new console
 ```
 
-**Что произошло:**
+**What happened:**
 
-- Создана папка `MyMT5Project`
-- Внутри создан .NET проект с файлами:
-  - `MyMT5Project.csproj` - файл проекта
-  - `Program.cs` - главный файл кода
+- Created `MyMT5Project` folder
+- Created .NET console project with files:
+  - `MyMT5Project.csproj` - project file
+  - `Program.cs` - main code file
 
 ---
 
-## Шаг 3: Установите NuGet пакет MetaRPC.MT5
+**Opening the Project in VS Code:**
 
-Это самый важный шаг - устанавливаем пакет, который содержит все необходимое:
+If you're working through VS Code, the editor won't automatically open the created directory. To do this:
+
+**Method 1: Via VS Code Menu**
+- File → Open Folder
+- Select `C:\Users\[your_name]\MyMT5Project`
+- Click "Select Folder"
+
+**Method 2: Via Terminal**
+```bash
+# While in the project folder, execute:
+code .
+```
+(the dot means "open current folder in VS Code")
+
+**Method 3: Drag and Drop**
+- Drag the `MyMT5Project` folder onto the VS Code icon
+
+After opening, you'll see the project structure:
+```
+MyMT5Project/
+├── Program.cs
+├── MyMT5Project.csproj
+└── obj/
+```
+
+## Step 3: Install MetaRPC.MT5 NuGet Package
+
+This is the most important step - installing the package that contains everything needed:
 
 ```bash
 dotnet add package MetaRPC.MT5
 ```
 
-**Что включает этот пакет:**
+**What this package includes:**
 
-- Прото-файлы (Protocol Buffers схемы для gRPC)
-- `MT5Account` класс для низкоуровневого взаимодействия с MT5
-- Все необходимые зависимости (Grpc.Net.Client, Grpc.Core и т.д.)
+- Proto files (Protocol Buffers schemas for gRPC)
+- `MT5Account` class for low-level interaction with MT5
+- All necessary dependencies (Grpc.Net.Client, Grpc.Core, etc.)
 
-> **Важно:** Этот пакет - это ВСЁ что вам нужно для работы с MT5. Никаких дополнительных файлов клонировать не требуется.
+> **Important:** This package is ALL you need to work with MT5. No additional files need to be cloned.
 
 ---
 
-## Шаг 4: Установите пакеты для работы с конфигурацией
+## Step 4: Install Packages for Configuration Management
 
-Нам понадобятся пакеты для чтения `appsettings.json`:
+We'll need packages to read `appsettings.json`:
 
 ```bash
 dotnet add package Microsoft.Extensions.Configuration
@@ -110,9 +134,9 @@ dotnet add package Microsoft.Extensions.Configuration.Binder
 
 ---
 
-## Шаг 5: Создайте файл конфигурации appsettings.json
+## Step 5: Create appsettings.json Configuration File
 
-Создайте файл `appsettings.json` в корне проекта (рядом с `Program.cs`):
+Create an `appsettings.json` file in the project root (next to `Program.cs`):
 
 ```json
 {
@@ -130,32 +154,42 @@ dotnet add package Microsoft.Extensions.Configuration.Binder
 }
 ```
 
-**Объяснение параметров:**
+> ⚠️ **IMPORTANT:** The `User`, `Password`, and `ServerName` values in the example above are **placeholders**! You **MUST** replace them with **your** MT5 account credentials, otherwise the connection won't work.
 
-| Параметр | Описание | Пример |
+**Parameter explanation:**
+
+| Parameter | Description | Example |
 |----------|----------|--------|
-| **User** | Номер вашего MT5 счета (логин) | `591129415` |
-| **Password** | Мастер-пароль от MT5 счета | `"IpoHj17tYu67@"` |
-| **ServerName** | Название сервера вашего брокера | `"FxPro-MT5 Demo"` |
-| **Host** | Адрес gRPC шлюза (предоставляется MetaRPC) | `"mt5.mrpc.pro"` |
-| **Port** | Порт шлюза | `443` |
-| **GrpcServer** | Полный URL шлюза | `"https://mt5.mrpc.pro:443"` |
-| **BaseChartSymbol** | Торговый символ по умолчанию | `"EURUSD"` |
-| **InstanceId** | ID инстанса (оставьте `null` для авто) | `null` |
-| **ConnectTimeoutSeconds** | Таймаут подключения в секундах | `120` |
+| **User** | Your MT5 account number (login) | `591129415` |
+| **Password** | Master password for MT5 account | `"IpoHj17tYu67@"` |
+| **ServerName** | Your broker's server name | `"FxPro-MT5 Demo"` |
+| **Host** | gRPC gateway address (provided by MetaRPC) | `"mt5.mrpc.pro"` |
+| **Port** | Gateway port | `443` |
+| **GrpcServer** | Full gateway URL | `"https://mt5.mrpc.pro:443"` |
+| **BaseChartSymbol** | Default trading symbol | `"EURUSD"` |
+| **InstanceId** | Instance ID (leave `null` for auto) | `null` |
+| **ConnectTimeoutSeconds** | Connection timeout in seconds | `120` |
 
-**Замените:**
+**What needs to be replaced:**
 
-- `User`, `Password`, `ServerName` - на данные вашего MT5 демо-счета
-- `Host`, `Port` - оставьте как есть (это адрес публичного шлюза MetaRPC)
+✏️ **MUST replace with YOUR data:**
 
-> **Нет MT5 аккаунта?** Прочитайте [MT5 для начинающих](MT5_For_Beginners.md) - там пошагово показано как создать демо-счет.
+- `User` - your MT5 account login
+- `Password` - your MT5 account password
+- `ServerName` - your broker's server name (shown in MT5 terminal)
+
+✅ **Leave unchanged:**
+
+- `Host`, `Port`, `GrpcServer` - MetaRPC public gateway address
+- `BaseChartSymbol`, `InstanceId`, `ConnectTimeoutSeconds` - standard settings
+
+> **Don't have an MT5 account?** Read [MT5 for Beginners](MT5_For_Beginners.md) - it shows step-by-step how to create a demo account.
 
 ---
 
-## Шаг 6: Настройте копирование appsettings.json в bin
+## Step 6: Configure appsettings.json Copying to bin
 
-Откройте файл `MyMT5Project.csproj` и добавьте эту секцию внутри `<Project>`:
+Open the `MyMT5Project.csproj` file and add this section inside `<Project>`:
 
 ```xml
 <ItemGroup>
@@ -166,7 +200,7 @@ dotnet add package Microsoft.Extensions.Configuration.Binder
 </ItemGroup>
 ```
 
-**Полный пример csproj файла:**
+**Complete csproj file example:**
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -185,7 +219,7 @@ dotnet add package Microsoft.Extensions.Configuration.Binder
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
   </ItemGroup>
 
-  <!-- Копирование appsettings.json в bin -->
+  <!-- Copy appsettings.json to bin -->
   <ItemGroup>
     <None Remove="appsettings.json" />
     <Content Include="appsettings.json">
@@ -198,18 +232,16 @@ dotnet add package Microsoft.Extensions.Configuration.Binder
 
 ---
 
-## Шаг 7: Напишите код для подключения и получения баланса
+## Step 7: Write Code to Connect and Retrieve Balance
 
-Откройте `Program.cs` и замените его содержимое на следующий код:
+Open `Program.cs` and replace its content with the following code:
 
 ```csharp
-using Grpc.Core;
-using Grpc.Net.Client;
 using Microsoft.Extensions.Configuration;
 using mt5_term_api;
 
 // ============================================================================
-// КОНФИГУРАЦИЯ - Загружаем настройки из appsettings.json
+// CONFIGURATION - Load settings from appsettings.json
 // ============================================================================
 
 var configuration = new ConfigurationBuilder()
@@ -219,7 +251,7 @@ var configuration = new ConfigurationBuilder()
 
 var mt5Config = configuration.GetSection("MT5");
 
-int user = mt5Config.GetValue<int>("User");
+ulong user = mt5Config.GetValue<ulong>("User");
 string password = mt5Config.GetValue<string>("Password") ?? "";
 string serverName = mt5Config.GetValue<string>("ServerName") ?? "";
 string grpcServer = mt5Config.GetValue<string>("GrpcServer") ?? "";
@@ -234,99 +266,63 @@ Console.WriteLine($"Symbol: {baseSymbol}");
 Console.WriteLine("====================================\n");
 
 // ============================================================================
-// ПОДКЛЮЧЕНИЕ - Создаем gRPC канал и MT5Account
+// CONNECTION - Create MT5Account (LOW-LEVEL API from NuGet package)
 // ============================================================================
 
 Console.WriteLine("Connecting to MT5 gateway...");
 
-// Создаем gRPC канал
-var channel = GrpcChannel.ForAddress(grpcServer, new GrpcChannelOptions
-{
-    Credentials = ChannelCredentials.SecureSsl,
-    MaxReceiveMessageSize = 100 * 1024 * 1024, // 100 MB
-    MaxSendMessageSize = 100 * 1024 * 1024     // 100 MB
-});
+// Create MT5Account - pass credentials to constructor
+var mt5Account = new MT5Account(user, password, grpcServer, Guid.NewGuid());
 
-// Создаем MT5Account - это главный объект для работы с MT5
-var mt5Account = new MT5Account(channel);
-
-// Подключаемся к MT5 терминалу
-var connectRequest = new ConnectRequest
-{
-    User = user,
-    Password = password,
-    ServerName = serverName,
-    BaseChartSymbol = baseSymbol
-};
-
-var connectResponse = await mt5Account.ConnectAsync(connectRequest, deadline: DateTime.UtcNow.AddSeconds(connectTimeout));
-
-if (connectResponse.RetCode != 0)
-{
-    Console.WriteLine($"ERROR: Connection failed with code {connectResponse.RetCode}");
-    Console.WriteLine($"Message: {connectResponse.RetCodeMessage}");
-    return;
-}
+// Connect to MT5 terminal via ServerName
+await mt5Account.ConnectByServerNameAsync(
+    serverName: serverName,
+    baseChartSymbol: baseSymbol,
+    waitForTerminalIsAlive: true,
+    timeoutSeconds: connectTimeout
+);
 
 Console.WriteLine("✓ Connected successfully!");
-Console.WriteLine($"Instance ID: {connectResponse.InstanceId}\n");
+Console.WriteLine($"Account ID: {mt5Account.Id}\n");
 
 // ============================================================================
-// ПОЛУЧЕНИЕ БАЛАНСА - Вызываем метод GetAccountInfo
+// FETCH BALANCE - Use AccountSummaryAsync (LOW-LEVEL method)
 // ============================================================================
 
-Console.WriteLine("Fetching account balance...");
+Console.WriteLine("Fetching account information...");
 
-var accountInfoRequest = new GetAccountInfoRequest
-{
-    InstanceId = connectResponse.InstanceId
-};
+var accountSummary = await mt5Account.AccountSummaryAsync(
+    deadline: DateTime.UtcNow.AddSeconds(30),
+    cancellationToken: CancellationToken.None
+);
 
-var accountInfoResponse = await mt5Account.GetAccountInfoAsync(accountInfoRequest);
-
-if (accountInfoResponse.RetCode != 0)
-{
-    Console.WriteLine($"ERROR: Failed to get account info with code {accountInfoResponse.RetCode}");
-    Console.WriteLine($"Message: {accountInfoResponse.RetCodeMessage}");
-    return;
-}
-
-// Выводим информацию о счете
+// Output account information using REAL field names from proto
 Console.WriteLine("=== Account Information ===");
-Console.WriteLine($"Balance: {accountInfoResponse.Balance:F2}");
-Console.WriteLine($"Equity: {accountInfoResponse.Equity:F2}");
-Console.WriteLine($"Margin: {accountInfoResponse.Margin:F2}");
-Console.WriteLine($"Free Margin: {accountInfoResponse.FreeMargin:F2}");
-Console.WriteLine($"Currency: {accountInfoResponse.Currency}");
-Console.WriteLine($"Leverage: 1:{accountInfoResponse.Leverage}");
+Console.WriteLine($"Login: {accountSummary.AccountLogin}");
+Console.WriteLine($"Name: {accountSummary.AccountUserName}");
+Console.WriteLine($"Company: {accountSummary.AccountCompanyName}");
+Console.WriteLine($"Currency: {accountSummary.AccountCurrency}");
+Console.WriteLine($"Leverage: 1:{accountSummary.AccountLeverage}");
+Console.WriteLine($"Balance: {accountSummary.AccountBalance:F2}");
+Console.WriteLine($"Credit: {accountSummary.AccountCredit:F2}");
+Console.WriteLine($"Equity: {accountSummary.AccountEquity:F2}");
+Console.WriteLine($"Trade Mode: {accountSummary.AccountTradeMode}");
 Console.WriteLine("===========================\n");
 
-Console.WriteLine("✓ Success! Your first MT5 connection is complete.");
-
-// ============================================================================
-// ОТКЛЮЧЕНИЕ - Закрываем соединение
-// ============================================================================
-
-var disconnectRequest = new DisconnectRequest
-{
-    InstanceId = connectResponse.InstanceId
-};
-
-await mt5Account.DisconnectAsync(disconnectRequest);
-Console.WriteLine("✓ Disconnected from MT5.");
+Console.WriteLine("✓ Success! Your first MT5 connection using LOW-LEVEL API is complete.");
 ```
 
 ---
 
-## Шаг 8: Запустите проект
+## Step 8: Run the Project
 
-Сохраните все файлы и выполните:
+Save all files and execute:
 
 ```bash
 dotnet run
 ```
 
-**Ожидаемый результат:**
+**Expected output:**
 
 ```
 === MT5 Connection Configuration ===
@@ -338,170 +334,168 @@ Symbol: EURUSD
 
 Connecting to MT5 gateway...
 ✓ Connected successfully!
-Instance ID: abc123-def456-...
+Account ID: 9afb34d7-45a3-4433-b6f5-45b32e52e6bd
 
-Fetching account balance...
+Fetching account information...
 === Account Information ===
-Balance: 10000.00
-Equity: 10000.00
-Margin: 0.00
-Free Margin: 10000.00
-Currency: USD
-Leverage: 1:100
+Login: your login
+Name: your name
+Company: FXPRO Financial Services Ltd
+Currency: EUR
+Leverage: 1:30
+Balance: 9519.02
+Credit: 0.00
+Equity: 9519.02
+Trade Mode: MrpcAccountTradeModeDemo
 ===========================
 
-✓ Success! Your first MT5 connection is complete.
-✓ Disconnected from MT5.
+✓ Success! Your first MT5 connection using LOW-LEVEL API is complete.
 ```
 
 ---
 
-## Поздравляем! Вы сделали это!
+## Congratulations! You Did It!
 
-Вы только что:
+You just:
 
-✅ Создали новый .NET проект с нуля
-✅ Подключили NuGet пакет MetaRPC.MT5
-✅ Настроили конфигурацию подключения
-✅ Подключились к MT5 терминалу через gRPC
-✅ Получили баланс счета программно
+✅ Created a new .NET project from scratch
 
-**Это был низкоуровневый (Low-Level) подход** с прямым использованием `MT5Account` и gRPC.
+✅ Connected the MetaRPC.MT5 NuGet package
+
+✅ Configured connection settings
+
+✅ Connected to MT5 terminal via gRPC
+
+✅ Retrieved account balance programmatically
+
+
+**This was a low-level approach** with direct use of `MT5Account` and gRPC.
 
 ---
 
-## Что дальше?
+## What's Next?
 
-Теперь, когда у вас есть рабочий проект, вы можете:
+Now that you have a working project, you can:
 
-### 1. Изучить полную архитектуру SDK
+### 1. Study the Full SDK Architecture
 
-Прочитайте [Getting Started](Getting_Started.md) чтобы узнать о:
+Read [Getting Started](Getting_Started.md) to learn about:
 
-- **MT5Account** (Low-Level) - то что вы только что использовали
-- **MT5Service** (Wrappers) - удобные обертки над MT5Account
-- **MT5Sugar** (High-Level) - синтаксический сахар для быстрой разработки
+- **MT5Account** (Low-Level) - what you just used
+- **MT5Service** (Wrappers) - convenient wrappers over MT5Account
+- **MT5Sugar** (High-Level) - syntactic sugar for rapid development
 
-### 2. Добавить больше функциональности
+### 2. Add More Functionality
 
-**Примеры того что можно сделать:**
+**Examples of what you can do with MT5Account (Low-Level API):**
 
 ```csharp
-// Получить все открытые позиции
-var positionsRequest = new GetPositionsRequest { InstanceId = instanceId };
-var positionsResponse = await mt5Account.GetPositionsAsync(positionsRequest);
+// Get all open positions and orders
+var openedOrders = await mt5Account.OpenedOrdersAsync(
+    sortMode: BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc
+);
 
-// Открыть рыночный ордер
-var orderRequest = new MarketOrderRequest
+// Send a market order
+var orderRequest = new OrderSendRequest
 {
-    InstanceId = instanceId,
     Symbol = "EURUSD",
     Volume = 0.01,
-    OrderType = OrderType.Buy
+    Operation = TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeBuy
 };
-var orderResponse = await mt5Account.MarketOrderAsync(orderRequest);
+var orderResponse = await mt5Account.OrderSendAsync(orderRequest);
+Console.WriteLine($"Order: {orderResponse.Order}, Deal: {orderResponse.Deal}");
 
-// Получить котировки в реальном времени (streaming)
-var tickRequest = new TickRequest { InstanceId = instanceId, Symbol = "EURUSD" };
-var tickStream = mt5Account.SubscribeToTicks(tickRequest);
-await foreach (var tick in tickStream.ResponseStream.ReadAllAsync())
+// Get real-time ticks (streaming)
+var symbols = new[] { "EURUSD", "GBPUSD" };
+using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+try
 {
-    Console.WriteLine($"Bid: {tick.Bid}, Ask: {tick.Ask}");
+    await foreach (var tickData in mt5Account.OnSymbolTickAsync(symbols, cts.Token))
+    {
+        var tick = tickData.SymbolTick;
+        Console.WriteLine($"Symbol: {tick.Symbol}, Bid: {tick.Bid}, Ask: {tick.Ask}");
+        // Use break to exit the loop
+    }
+}
+catch (Grpc.Core.RpcException ex) when (ex.StatusCode == Grpc.Core.StatusCode.Cancelled)
+{
+    Console.WriteLine("Timeout expired");
+}
+
+// Get position history
+var positionsHistory = await mt5Account.PositionsHistoryAsync(
+    sortType: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AhPositionOpenTimeAsc,
+    openFrom: DateTime.UtcNow.AddDays(-7),
+    openTo: DateTime.UtcNow,
+    page: 0,
+    size: 100
+);
+foreach (var position in positionsHistory.HistoryPositions)
+{
+    Console.WriteLine($"Ticket: {position.PositionTicket}, Profit: {position.Profit}");
 }
 ```
 
-### 3. Скопировать готовые классы из репозитория
+### 3. Copy Ready-Made Classes from Repository
 
-Если вы хотите использовать **MT5Service** или **MT5Sugar** в своем проекте:
+If you want to use **MT5Service** or **MT5Sugar** in your project:
 
-1. Склонируйте репозиторий CSharpMT5
-2. Скопируйте файлы `MT5Service.cs` и/или `MT5Sugar.cs` в свой проект
-3. Используйте удобные методы высокого уровня
+1. Clone the CSharpMT5 repository
+2. Copy `MT5Service.cs` and/or `MT5Sugar.cs` files to your project
+3. Use convenient high-level methods
 
-**Пример с MT5Sugar:**
+**Example with MT5Sugar:**
 
 ```csharp
 var sugar = new MT5Sugar(mt5Account, instanceId);
 
-// Открыть Buy позицию
+// Open Buy position
 await sugar.Buy("EURUSD", 0.01);
 
-// Закрыть все позиции по символу
+// Close all positions for a symbol
 await sugar.CloseAllPositions("EURUSD");
 
-// Получить баланс одной строкой
+// Get balance in one line
 var balance = await sugar.GetBalance();
 ```
 
-### 4. Изучить готовые примеры
+### 4. Study Ready-Made Examples
 
-В репозитории CSharpMT5 есть множество примеров:
+The CSharpMT5 repository contains many examples:
 
-- [Orchestrators](Strategies/Strategies.Master.Overview.md) - готовые торговые стратегии
-- [Adaptive Preset](Strategies/Presets/AdaptiveMarketModePreset.md) - умная мультистратегия
-- [User Code Sandbox](UserCode_Sandbox_Guide.md) - шаблон для ваших стратегий
+- [Orchestrators](Strategies/Strategies.Master.Overview.md) - ready-made trading strategies
+- [Adaptive Preset](Strategies/Presets/AdaptiveMarketModePreset.md) - smart multi-strategy
+- [User Code Sandbox](UserCode_Sandbox_Guide.md) - template for your strategies
 
-### 5. Прочитать дополнительные гайды
+### 5. Read Additional Guides
 
-- [Sync vs Async](Sync_vs_Async.md) - когда использовать синхронные/асинхронные методы
-- [gRPC Stream Management](GRPC_STREAM_MANAGEMENT.md) - работа с потоковыми данными
-- [Return Codes Reference](ReturnCodes_Reference_EN.md) - коды возврата операций
-- [Protobuf Inspector](ProtobufInspector.README.EN.md) - инструмент для изучения protobuf структур
-
----
-
-## Частые вопросы (FAQ)
-
-### Где взять доступ к gRPC шлюзу?
-
-В примере используется публичный шлюз MetaRPC:
-
-```
-Host: mt5.mrpc.pro
-Port: 443
-```
-
-Этот шлюз доступен всем для тестирования.
-
-> Если у вас есть вопросы по работе шлюза, используйте кнопку "Contact & Support" на сайте документации или посетите [GitHub Discussions](https://github.com/MetaRPC/CSharpMT5/discussions).
-
-### Могу ли я использовать свой собственный шлюз?
-
-Да! Если у вас есть собственная инстанция шлюза, просто измените параметры `Host`, `Port` и `GrpcServer` в `appsettings.json`.
-
-### Как получить MT5 демо-счет?
-
-Прочитайте [MT5 для начинающих](MT5_For_Beginners.md) - там пошаговая инструкция по установке MT5 и созданию демо-счета.
-
-### Что если я получаю ошибку подключения?
-
-Проверьте:
-
-1. Правильность логина/пароля/сервера в `appsettings.json`
-2. Что MT5 терминал не запущен локально (шлюз сам подключается к MT5)
-3. Интернет-соединение
-4. Таймаут подключения (увеличьте `ConnectTimeoutSeconds` если медленный интернет)
-
-### Нужно ли устанавливать MT5 терминал?
-
-**Нет!** Шлюз MetaRPC сам подключается к серверам MT5. Вам нужны только:
-
-- Логин/пароль от MT5 счета
-- Название сервера брокера
-- Доступ к gRPC шлюзу
+- [Sync vs Async](Sync_vs_Async.md) - when to use synchronous/asynchronous methods
+- [gRPC Stream Management](GRPC_STREAM_MANAGEMENT.md) - working with streaming data
+- [Return Codes Reference](ReturnCodes_Reference_EN.md) - operation return codes
 
 ---
 
-## Структура вашего проекта
 
-После завершения всех шагов ваша структура проекта должна выглядеть так:
+### Do I Need to Install MT5 Terminal?
+
+**No!** The MetaRPC gateway connects to MT5 servers itself. You only need:
+
+- MT5 account login/password
+- Broker server name
+- Access to gRPC gateway
+
+---
+
+## Your Project Structure
+
+After completing all steps, your project structure should look like this:
 
 ```
 MyMT5Project/
-├── appsettings.json          # Конфигурация подключения
-├── MyMT5Project.csproj       # Файл проекта с зависимостями
-├── Program.cs                # Главный код приложения
-└── bin/                      # Собранные файлы (создается автоматически)
+├── appsettings.json          # Connection configuration
+├── MyMT5Project.csproj       # Project file with dependencies
+├── Program.cs                # Main application code
+└── bin/                      # Compiled files (created automatically)
     └── Debug/
         └── net8.0/
             ├── MyMT5Project.exe
@@ -510,34 +504,34 @@ MyMT5Project/
 
 ---
 
-## Резюме: Что мы сделали
+## Summary: What We Did
 
-В этом гайде вы создали минималистичный проект, который:
+In this guide, you created a minimalist project that:
 
-1. **Использует только NuGet пакет** - не требует клонирования репозитория
-2. **Подключается к MT5** через gRPC шлюз
-3. **Читает конфигурацию** из `appsettings.json`
-4. **Выполняет низкоуровневые gRPC вызовы** напрямую через `MT5Account`
-5. **Получает баланс счета** и выводит в консоль
+1. **Uses only NuGet package** - no repository cloning required
+2. **Connects to MT5** through gRPC gateway using `MT5Account` class from package
+3. **Reads configuration** from `appsettings.json`
+4. **Calls real low-level methods** - `ConnectByServerNameAsync()`, `AccountSummaryAsync()`
+5. **Works with proto structures** - `AccountSummaryData` with fields like `AccountBalance`, `AccountEquity`
 
-**Это основа** для любого вашего MT5 проекта на C#.
-
----
-
-## Следующие шаги
-
-Теперь вы готовы к:
-
-- 📖 [Getting Started](Getting_Started.md) - Полное изучение архитектуры SDK
-- 📖 [MT5Account API](API_Reference/MT5Account.API.md) - Низкоуровневый API справочник
-- 📖 [MT5Service API](API_Reference/MT5Service.API.md) - Удобные обертки
-- 📖 [MT5Sugar API](API_Reference/MT5Sugar.API.md) - Высокоуровневый API
-- 🎯 [Orchestrators](Strategies/Strategies.Master.Overview.md) - Готовые торговые стратегии
+**This is the foundation** for any of your MT5 projects in C# using direct low-level API.
 
 ---
 
-**Удачи в разработке ваших торговых систем!**
+## Next Steps
 
-> "Лучший способ изучить что-то - это построить это с нуля. Теперь у вас есть фундамент. Стройте."
+Now you're ready for:
+
+- 📖 [Getting Started](Getting_Started.md) - Complete SDK architecture study
+- 📖 [MT5Account API](API_Reference/MT5Account.API.md) - Low-level API reference
+- 📖 [MT5Service API](API_Reference/MT5Service.API.md) - Convenient wrappers
+- 📖 [MT5Sugar API](API_Reference/MT5Sugar.API.md) - High-level API
+- 🎯 [Orchestrators](Strategies/Strategies.Master.Overview.md) - Ready-made trading strategies
+
+---
+
+**Good luck developing your trading systems!**
+
+> "The best way to learn something is to build it from scratch. Now you have the foundation. Build."
 >
 > — MetaRPC Team

@@ -366,5 +366,10 @@ FodyWeavers.xsd
 # MkDocs build output
 site/
 
-# Local settings
-.claude/settings.local.json
+# Local CLI files
+.claude/
+
+# Temporary report files
+*_link_check_*.md
+*_link_check_*.txt
+check_links.py

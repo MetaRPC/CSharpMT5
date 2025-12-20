@@ -133,7 +133,7 @@ Before running the project, you need to configure your connection settings in `C
 
 If you don't have an MT5 demo account yet or need help creating one, please refer to our beginner's guide:
 
-👉 **[MT5 for Beginners - Creating a Demo Account](MT5_For_Beginners/)**
+👉 **[MT5 for Beginners - Creating a Demo Account](MT5_For_Beginners.md)**
 
 This guide covers:
 
@@ -438,7 +438,7 @@ We believe that with dedication and a desire to learn, you can master everything
 **Your journey starts here:**
 
 1. Set up your environment (above)
-2. Create or configure your MT5 demo account ([MT5 for Beginners](MT5_For_Beginners/))
+2. Create or configure your MT5 demo account ([MT5 for Beginners](MT5_For_Beginners.md))
 3. Choose your learning path (bottom-up or top-down)
 4. Run your first example: `dotnet run market`
 5. Study the code, experiment, and build
@@ -453,7 +453,7 @@ We believe that with dedication and a desire to learn, you can master everything
 
 **Next steps:**
 
-- 📖 [MT5 for Beginners](MT5_For_Beginners/) - If you need MT5 account setup.
+- 📖 [MT5 for Beginners](MT5_For_Beginners.md) - If you need MT5 account setup.
 
 - 📖 [MT5Account Overview](MT5Account/MT5Account.Master.Overview.md) - Start learning the foundation.
 
