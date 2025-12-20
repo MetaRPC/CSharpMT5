@@ -14,7 +14,7 @@
     <!-- XML Documentation Generation -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-    <NoWarn>$(NoWarn);1591</NoWarn> <!-- Suppress missing XML comment warnings for now -->
+    <NoWarn>$(NoWarn);1591;CS8618;CS8600</NoWarn> <!-- Suppress missing XML comments, nullable warnings from package/ -->
   </PropertyGroup>
 
   <ItemGroup>
