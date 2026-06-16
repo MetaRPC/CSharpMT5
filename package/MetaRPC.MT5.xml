@@ -13098,6 +13098,14 @@
             <param name="context">The context of the server-side call handler being invoked.</param>
             <returns>The response to send back to the client (wrapped by a task).</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.SystemUsage(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
         <member name="T:mrpc_admin.AdminApi.AdminApiClient">
             <summary>Client for AdminApi</summary>
         </member>
@@ -13192,6 +13200,42 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.SystemUsage(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.SystemUsage(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.SystemUsageAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.SystemUsageAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mrpc_admin.AdminApi.AdminApiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -13210,6 +13254,33 @@
         </member>
         <member name="P:mrpc_admin.Mt5TermApiAdminReflection.Descriptor">
             <summary>File descriptor for mt5-term-api-admin.proto</summary>
+        </member>
+        <member name="F:mrpc_admin.UsageSample.TimeFieldNumber">
+            <summary>Field number for the "time" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.UsageSample.CpuPercentFieldNumber">
+            <summary>Field number for the "cpu_percent" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.UsageSample.RamUsedMbFieldNumber">
+            <summary>Field number for the "ram_used_mb" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.UsageSample.RamTotalMbFieldNumber">
+            <summary>Field number for the "ram_total_mb" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.SystemUsageReply.CpuPercentFieldNumber">
+            <summary>Field number for the "cpu_percent" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.SystemUsageReply.RamUsedMbFieldNumber">
+            <summary>Field number for the "ram_used_mb" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.SystemUsageReply.RamTotalMbFieldNumber">
+            <summary>Field number for the "ram_total_mb" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.SystemUsageReply.HistoryFieldNumber">
+            <summary>Field number for the "history" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.SystemUsageReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
         </member>
         <member name="F:mrpc_admin.ActiveTerminalsRequest.AdminKeyFieldNumber">
             <summary>Field number for the "admin_key" field.</summary>
@@ -13288,6 +13359,28 @@
         <member name="F:mrpc_admin.ActiveTerminalsReply.ErrorFieldNumber">
             <summary>Field number for the "error" field.</summary>
         </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.CpuPercentFieldNumber">
+            <summary>Field number for the "cpu_percent" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.ActiveTerminalsReply.CpuPercent">
+            <summary>
+            whole-machine CPU % for this pod
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.RamUsedMbFieldNumber">
+            <summary>Field number for the "ram_used_mb" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.RamTotalMbFieldNumber">
+            <summary>Field number for the "ram_total_mb" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.UsageHistoryFieldNumber">
+            <summary>Field number for the "usage_history" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.ActiveTerminalsReply.UsageHistory">
+            <summary>
+            short CPU/RAM history
+            </summary>
+        </member>
         <member name="F:mrpc_admin.PodTerminals.PodFieldNumber">
             <summary>Field number for the "pod" field.</summary>
         </member>
@@ -13318,6 +13411,23 @@
             <summary>
             node IP (for the RDP NodePort target)
             </summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.CpuPercentFieldNumber">
+            <summary>Field number for the "cpu_percent" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.PodTerminals.CpuPercent">
+            <summary>
+            whole-machine CPU % for this pod
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.RamUsedMbFieldNumber">
+            <summary>Field number for the "ram_used_mb" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.RamTotalMbFieldNumber">
+            <summary>Field number for the "ram_total_mb" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.UsageHistoryFieldNumber">
+            <summary>Field number for the "usage_history" field.</summary>
         </member>
         <member name="F:mrpc_admin.ActiveTerminalsClusterReply.PodsFieldNumber">
             <summary>Field number for the "pods" field.</summary>

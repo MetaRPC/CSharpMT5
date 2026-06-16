@@ -26,34 +26,50 @@ namespace mrpc_admin {
           string.Concat(
             "ChhtdDUtdGVybS1hcGktYWRtaW4ucHJvdG8SCm1ycGNfYWRtaW4aHGdvb2ds",
             "ZS9hcGkvYW5ub3RhdGlvbnMucHJvdG8aH2dvb2dsZS9wcm90b2J1Zi90aW1l",
-            "c3RhbXAucHJvdG8iKwoWQWN0aXZlVGVybWluYWxzUmVxdWVzdBIRCglhZG1p",
-            "bl9rZXkYASABKAkivgEKDFRlcm1pbmFsSW5mbxIKCgJpZBgBIAEoCRITCgt1",
-            "c2VyX251bWJlchgCIAEoDRIUCgx3aW5kb3dzX3VzZXIYAyABKAkSDwoHYWNj",
-            "b3VudBgEIAEoBBIOCgZzZXJ2ZXIYBSABKAkSDAoEcG9ydBgGIAEoDRIuCgpj",
-            "cmVhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIY",
-            "ChB3aW5kb3dzX3Bhc3N3b3JkGAggASgJIn0KFEFjdGl2ZVRlcm1pbmFsc1Jl",
-            "cGx5EgsKA3BvZBgBIAEoCRIMCgRub2RlGAIgASgJEg4KBnBvZF9pcBgDIAEo",
-            "CRIrCgl0ZXJtaW5hbHMYBCADKAsyGC5tcnBjX2FkbWluLlRlcm1pbmFsSW5m",
-            "bxINCgVlcnJvchgFIAEoCSKZAQoMUG9kVGVybWluYWxzEgsKA3BvZBgBIAEo",
-            "CRIMCgRub2RlGAIgASgJEg4KBnBvZF9pcBgDIAEoCRIRCglub3ZuY191cmwY",
-            "BCABKAkSKwoJdGVybWluYWxzGAUgAygLMhgubXJwY19hZG1pbi5UZXJtaW5h",
-            "bEluZm8SDQoFZXJyb3IYBiABKAkSDwoHaG9zdF9pcBgHIAEoCSJFChtBY3Rp",
-            "dmVUZXJtaW5hbHNDbHVzdGVyUmVwbHkSJgoEcG9kcxgBIAMoCzIYLm1ycGNf",
-            "YWRtaW4uUG9kVGVybWluYWxzMoYCCghBZG1pbkFwaRJxCg9BY3RpdmVUZXJt",
-            "aW5hbHMSIi5tcnBjX2FkbWluLkFjdGl2ZVRlcm1pbmFsc1JlcXVlc3QaIC5t",
-            "cnBjX2FkbWluLkFjdGl2ZVRlcm1pbmFsc1JlcGx5IhiC0+STAhISEC9BY3Rp",
-            "dmVUZXJtaW5hbHMShgEKFkFjdGl2ZVRlcm1pbmFsc0NsdXN0ZXISIi5tcnBj",
-            "X2FkbWluLkFjdGl2ZVRlcm1pbmFsc1JlcXVlc3QaJy5tcnBjX2FkbWluLkFj",
-            "dGl2ZVRlcm1pbmFsc0NsdXN0ZXJSZXBseSIfgtPkkwIZEhcvQWN0aXZlVGVy",
-            "bWluYWxzQ2x1c3RlckJAWjFnaXQubXRhcGkuaW8vcm9vdC9tcnBjLXByb3Rv",
-            "LmdpdC9tdDUvbGlicmFyaWVzL2dvqgIKbXJwY19hZG1pbmIGcHJvdG8z"));
+            "c3RhbXAucHJvdG8idwoLVXNhZ2VTYW1wbGUSKAoEdGltZRgBIAEoCzIaLmdv",
+            "b2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASEwoLY3B1X3BlcmNlbnQYAiABKAES",
+            "EwoLcmFtX3VzZWRfbWIYAyABKAQSFAoMcmFtX3RvdGFsX21iGAQgASgEIosB",
+            "ChBTeXN0ZW1Vc2FnZVJlcGx5EhMKC2NwdV9wZXJjZW50GAEgASgBEhMKC3Jh",
+            "bV91c2VkX21iGAIgASgEEhQKDHJhbV90b3RhbF9tYhgDIAEoBBIoCgdoaXN0",
+            "b3J5GAQgAygLMhcubXJwY19hZG1pbi5Vc2FnZVNhbXBsZRINCgVlcnJvchgF",
+            "IAEoCSIrChZBY3RpdmVUZXJtaW5hbHNSZXF1ZXN0EhEKCWFkbWluX2tleRgB",
+            "IAEoCSK+AQoMVGVybWluYWxJbmZvEgoKAmlkGAEgASgJEhMKC3VzZXJfbnVt",
+            "YmVyGAIgASgNEhQKDHdpbmRvd3NfdXNlchgDIAEoCRIPCgdhY2NvdW50GAQg",
+            "ASgEEg4KBnNlcnZlchgFIAEoCRIMCgRwb3J0GAYgASgNEi4KCmNyZWF0ZWRf",
+            "YXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhgKEHdpbmRv",
+            "d3NfcGFzc3dvcmQYCCABKAki7QEKFEFjdGl2ZVRlcm1pbmFsc1JlcGx5EgsK",
+            "A3BvZBgBIAEoCRIMCgRub2RlGAIgASgJEg4KBnBvZF9pcBgDIAEoCRIrCgl0",
+            "ZXJtaW5hbHMYBCADKAsyGC5tcnBjX2FkbWluLlRlcm1pbmFsSW5mbxINCgVl",
+            "cnJvchgFIAEoCRITCgtjcHVfcGVyY2VudBgGIAEoARITCgtyYW1fdXNlZF9t",
+            "YhgHIAEoBBIUCgxyYW1fdG90YWxfbWIYCCABKAQSLgoNdXNhZ2VfaGlzdG9y",
+            "eRgJIAMoCzIXLm1ycGNfYWRtaW4uVXNhZ2VTYW1wbGUiiQIKDFBvZFRlcm1p",
+            "bmFscxILCgNwb2QYASABKAkSDAoEbm9kZRgCIAEoCRIOCgZwb2RfaXAYAyAB",
+            "KAkSEQoJbm92bmNfdXJsGAQgASgJEisKCXRlcm1pbmFscxgFIAMoCzIYLm1y",
+            "cGNfYWRtaW4uVGVybWluYWxJbmZvEg0KBWVycm9yGAYgASgJEg8KB2hvc3Rf",
+            "aXAYByABKAkSEwoLY3B1X3BlcmNlbnQYCCABKAESEwoLcmFtX3VzZWRfbWIY",
+            "CSABKAQSFAoMcmFtX3RvdGFsX21iGAogASgEEi4KDXVzYWdlX2hpc3RvcnkY",
+            "CyADKAsyFy5tcnBjX2FkbWluLlVzYWdlU2FtcGxlIkUKG0FjdGl2ZVRlcm1p",
+            "bmFsc0NsdXN0ZXJSZXBseRImCgRwb2RzGAEgAygLMhgubXJwY19hZG1pbi5Q",
+            "b2RUZXJtaW5hbHMy7QIKCEFkbWluQXBpEnEKD0FjdGl2ZVRlcm1pbmFscxIi",
+            "Lm1ycGNfYWRtaW4uQWN0aXZlVGVybWluYWxzUmVxdWVzdBogLm1ycGNfYWRt",
+            "aW4uQWN0aXZlVGVybWluYWxzUmVwbHkiGILT5JMCEhIQL0FjdGl2ZVRlcm1p",
+            "bmFscxKGAQoWQWN0aXZlVGVybWluYWxzQ2x1c3RlchIiLm1ycGNfYWRtaW4u",
+            "QWN0aXZlVGVybWluYWxzUmVxdWVzdBonLm1ycGNfYWRtaW4uQWN0aXZlVGVy",
+            "bWluYWxzQ2x1c3RlclJlcGx5Ih+C0+STAhkSFy9BY3RpdmVUZXJtaW5hbHND",
+            "bHVzdGVyEmUKC1N5c3RlbVVzYWdlEiIubXJwY19hZG1pbi5BY3RpdmVUZXJt",
+            "aW5hbHNSZXF1ZXN0GhwubXJwY19hZG1pbi5TeXN0ZW1Vc2FnZVJlcGx5IhSC",
+            "0+STAg4SDC9TeXN0ZW1Vc2FnZUJAWjFnaXQubXRhcGkuaW8vcm9vdC9tcnBj",
+            "LXByb3RvLmdpdC9tdDUvbGlicmFyaWVzL2dvqgIKbXJwY19hZG1pbmIGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.UsageSample), global::mrpc_admin.UsageSample.Parser, new[]{ "Time", "CpuPercent", "RamUsedMb", "RamTotalMb" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.SystemUsageReply), global::mrpc_admin.SystemUsageReply.Parser, new[]{ "CpuPercent", "RamUsedMb", "RamTotalMb", "History", "Error" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.ActiveTerminalsRequest), global::mrpc_admin.ActiveTerminalsRequest.Parser, new[]{ "AdminKey" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.TerminalInfo), global::mrpc_admin.TerminalInfo.Parser, new[]{ "Id", "UserNumber", "WindowsUser", "Account", "Server", "Port", "CreatedAt", "WindowsPassword" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.ActiveTerminalsReply), global::mrpc_admin.ActiveTerminalsReply.Parser, new[]{ "Pod", "Node", "PodIp", "Terminals", "Error" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.PodTerminals), global::mrpc_admin.PodTerminals.Parser, new[]{ "Pod", "Node", "PodIp", "NovncUrl", "Terminals", "Error", "HostIp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.ActiveTerminalsReply), global::mrpc_admin.ActiveTerminalsReply.Parser, new[]{ "Pod", "Node", "PodIp", "Terminals", "Error", "CpuPercent", "RamUsedMb", "RamTotalMb", "UsageHistory" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.PodTerminals), global::mrpc_admin.PodTerminals.Parser, new[]{ "Pod", "Node", "PodIp", "NovncUrl", "Terminals", "Error", "HostIp", "CpuPercent", "RamUsedMb", "RamTotalMb", "UsageHistory" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.ActiveTerminalsClusterReply), global::mrpc_admin.ActiveTerminalsClusterReply.Parser, new[]{ "Pods" }, null, null, null, null)
           }));
     }
@@ -61,6 +77,641 @@ namespace mrpc_admin {
 
   }
   #region Messages
+  public sealed partial class UsageSample : pb::IMessage<UsageSample>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<UsageSample> _parser = new pb::MessageParser<UsageSample>(() => new UsageSample());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<UsageSample> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[0]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public UsageSample() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public UsageSample(UsageSample other) : this() {
+      time_ = other.time_ != null ? other.time_.Clone() : null;
+      cpuPercent_ = other.cpuPercent_;
+      ramUsedMb_ = other.ramUsedMb_;
+      ramTotalMb_ = other.ramTotalMb_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public UsageSample Clone() {
+      return new UsageSample(this);
+    }
+
+    /// <summary>Field number for the "time" field.</summary>
+    public const int TimeFieldNumber = 1;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp time_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp Time {
+      get { return time_; }
+      set {
+        time_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "cpu_percent" field.</summary>
+    public const int CpuPercentFieldNumber = 2;
+    private double cpuPercent_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double CpuPercent {
+      get { return cpuPercent_; }
+      set {
+        cpuPercent_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ram_used_mb" field.</summary>
+    public const int RamUsedMbFieldNumber = 3;
+    private ulong ramUsedMb_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RamUsedMb {
+      get { return ramUsedMb_; }
+      set {
+        ramUsedMb_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ram_total_mb" field.</summary>
+    public const int RamTotalMbFieldNumber = 4;
+    private ulong ramTotalMb_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RamTotalMb {
+      get { return ramTotalMb_; }
+      set {
+        ramTotalMb_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as UsageSample);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(UsageSample other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Time, other.Time)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(CpuPercent, other.CpuPercent)) return false;
+      if (RamUsedMb != other.RamUsedMb) return false;
+      if (RamTotalMb != other.RamTotalMb) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (time_ != null) hash ^= Time.GetHashCode();
+      if (CpuPercent != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(CpuPercent);
+      if (RamUsedMb != 0UL) hash ^= RamUsedMb.GetHashCode();
+      if (RamTotalMb != 0UL) hash ^= RamTotalMb.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (time_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Time);
+      }
+      if (CpuPercent != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(CpuPercent);
+      }
+      if (RamUsedMb != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(RamTotalMb);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (time_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Time);
+      }
+      if (CpuPercent != 0D) {
+        output.WriteRawTag(17);
+        output.WriteDouble(CpuPercent);
+      }
+      if (RamUsedMb != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(RamTotalMb);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (time_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Time);
+      }
+      if (CpuPercent != 0D) {
+        size += 1 + 8;
+      }
+      if (RamUsedMb != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RamTotalMb);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(UsageSample other) {
+      if (other == null) {
+        return;
+      }
+      if (other.time_ != null) {
+        if (time_ == null) {
+          Time = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        Time.MergeFrom(other.Time);
+      }
+      if (other.CpuPercent != 0D) {
+        CpuPercent = other.CpuPercent;
+      }
+      if (other.RamUsedMb != 0UL) {
+        RamUsedMb = other.RamUsedMb;
+      }
+      if (other.RamTotalMb != 0UL) {
+        RamTotalMb = other.RamTotalMb;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (time_ == null) {
+              Time = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(Time);
+            break;
+          }
+          case 17: {
+            CpuPercent = input.ReadDouble();
+            break;
+          }
+          case 24: {
+            RamUsedMb = input.ReadUInt64();
+            break;
+          }
+          case 32: {
+            RamTotalMb = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (time_ == null) {
+              Time = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(Time);
+            break;
+          }
+          case 17: {
+            CpuPercent = input.ReadDouble();
+            break;
+          }
+          case 24: {
+            RamUsedMb = input.ReadUInt64();
+            break;
+          }
+          case 32: {
+            RamTotalMb = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class SystemUsageReply : pb::IMessage<SystemUsageReply>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SystemUsageReply> _parser = new pb::MessageParser<SystemUsageReply>(() => new SystemUsageReply());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SystemUsageReply> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SystemUsageReply() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SystemUsageReply(SystemUsageReply other) : this() {
+      cpuPercent_ = other.cpuPercent_;
+      ramUsedMb_ = other.ramUsedMb_;
+      ramTotalMb_ = other.ramTotalMb_;
+      history_ = other.history_.Clone();
+      error_ = other.error_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SystemUsageReply Clone() {
+      return new SystemUsageReply(this);
+    }
+
+    /// <summary>Field number for the "cpu_percent" field.</summary>
+    public const int CpuPercentFieldNumber = 1;
+    private double cpuPercent_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double CpuPercent {
+      get { return cpuPercent_; }
+      set {
+        cpuPercent_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ram_used_mb" field.</summary>
+    public const int RamUsedMbFieldNumber = 2;
+    private ulong ramUsedMb_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RamUsedMb {
+      get { return ramUsedMb_; }
+      set {
+        ramUsedMb_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ram_total_mb" field.</summary>
+    public const int RamTotalMbFieldNumber = 3;
+    private ulong ramTotalMb_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RamTotalMb {
+      get { return ramTotalMb_; }
+      set {
+        ramTotalMb_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "history" field.</summary>
+    public const int HistoryFieldNumber = 4;
+    private static readonly pb::FieldCodec<global::mrpc_admin.UsageSample> _repeated_history_codec
+        = pb::FieldCodec.ForMessage(34, global::mrpc_admin.UsageSample.Parser);
+    private readonly pbc::RepeatedField<global::mrpc_admin.UsageSample> history_ = new pbc::RepeatedField<global::mrpc_admin.UsageSample>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::mrpc_admin.UsageSample> History {
+      get { return history_; }
+    }
+
+    /// <summary>Field number for the "error" field.</summary>
+    public const int ErrorFieldNumber = 5;
+    private string error_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Error {
+      get { return error_; }
+      set {
+        error_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SystemUsageReply);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SystemUsageReply other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(CpuPercent, other.CpuPercent)) return false;
+      if (RamUsedMb != other.RamUsedMb) return false;
+      if (RamTotalMb != other.RamTotalMb) return false;
+      if(!history_.Equals(other.history_)) return false;
+      if (Error != other.Error) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (CpuPercent != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(CpuPercent);
+      if (RamUsedMb != 0UL) hash ^= RamUsedMb.GetHashCode();
+      if (RamTotalMb != 0UL) hash ^= RamTotalMb.GetHashCode();
+      hash ^= history_.GetHashCode();
+      if (Error.Length != 0) hash ^= Error.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (CpuPercent != 0D) {
+        output.WriteRawTag(9);
+        output.WriteDouble(CpuPercent);
+      }
+      if (RamUsedMb != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(RamTotalMb);
+      }
+      history_.WriteTo(output, _repeated_history_codec);
+      if (Error.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Error);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (CpuPercent != 0D) {
+        output.WriteRawTag(9);
+        output.WriteDouble(CpuPercent);
+      }
+      if (RamUsedMb != 0UL) {
+        output.WriteRawTag(16);
+        output.WriteUInt64(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(RamTotalMb);
+      }
+      history_.WriteTo(ref output, _repeated_history_codec);
+      if (Error.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(Error);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (CpuPercent != 0D) {
+        size += 1 + 8;
+      }
+      if (RamUsedMb != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RamTotalMb);
+      }
+      size += history_.CalculateSize(_repeated_history_codec);
+      if (Error.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Error);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SystemUsageReply other) {
+      if (other == null) {
+        return;
+      }
+      if (other.CpuPercent != 0D) {
+        CpuPercent = other.CpuPercent;
+      }
+      if (other.RamUsedMb != 0UL) {
+        RamUsedMb = other.RamUsedMb;
+      }
+      if (other.RamTotalMb != 0UL) {
+        RamTotalMb = other.RamTotalMb;
+      }
+      history_.Add(other.history_);
+      if (other.Error.Length != 0) {
+        Error = other.Error;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 9: {
+            CpuPercent = input.ReadDouble();
+            break;
+          }
+          case 16: {
+            RamUsedMb = input.ReadUInt64();
+            break;
+          }
+          case 24: {
+            RamTotalMb = input.ReadUInt64();
+            break;
+          }
+          case 34: {
+            history_.AddEntriesFrom(input, _repeated_history_codec);
+            break;
+          }
+          case 42: {
+            Error = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 9: {
+            CpuPercent = input.ReadDouble();
+            break;
+          }
+          case 16: {
+            RamUsedMb = input.ReadUInt64();
+            break;
+          }
+          case 24: {
+            RamTotalMb = input.ReadUInt64();
+            break;
+          }
+          case 34: {
+            history_.AddEntriesFrom(ref input, _repeated_history_codec);
+            break;
+          }
+          case 42: {
+            Error = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   public sealed partial class ActiveTerminalsRequest : pb::IMessage<ActiveTerminalsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -75,7 +726,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[0]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -264,7 +915,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[1]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -742,7 +1393,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[2]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -767,6 +1418,10 @@ namespace mrpc_admin {
       podIp_ = other.podIp_;
       terminals_ = other.terminals_.Clone();
       error_ = other.error_;
+      cpuPercent_ = other.cpuPercent_;
+      ramUsedMb_ = other.ramUsedMb_;
+      ramTotalMb_ = other.ramTotalMb_;
+      usageHistory_ = other.usageHistory_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -835,6 +1490,59 @@ namespace mrpc_admin {
       }
     }
 
+    /// <summary>Field number for the "cpu_percent" field.</summary>
+    public const int CpuPercentFieldNumber = 6;
+    private double cpuPercent_;
+    /// <summary>
+    /// whole-machine CPU % for this pod
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double CpuPercent {
+      get { return cpuPercent_; }
+      set {
+        cpuPercent_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ram_used_mb" field.</summary>
+    public const int RamUsedMbFieldNumber = 7;
+    private ulong ramUsedMb_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RamUsedMb {
+      get { return ramUsedMb_; }
+      set {
+        ramUsedMb_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ram_total_mb" field.</summary>
+    public const int RamTotalMbFieldNumber = 8;
+    private ulong ramTotalMb_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RamTotalMb {
+      get { return ramTotalMb_; }
+      set {
+        ramTotalMb_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "usage_history" field.</summary>
+    public const int UsageHistoryFieldNumber = 9;
+    private static readonly pb::FieldCodec<global::mrpc_admin.UsageSample> _repeated_usageHistory_codec
+        = pb::FieldCodec.ForMessage(74, global::mrpc_admin.UsageSample.Parser);
+    private readonly pbc::RepeatedField<global::mrpc_admin.UsageSample> usageHistory_ = new pbc::RepeatedField<global::mrpc_admin.UsageSample>();
+    /// <summary>
+    /// short CPU/RAM history
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::mrpc_admin.UsageSample> UsageHistory {
+      get { return usageHistory_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -855,6 +1563,10 @@ namespace mrpc_admin {
       if (PodIp != other.PodIp) return false;
       if(!terminals_.Equals(other.terminals_)) return false;
       if (Error != other.Error) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(CpuPercent, other.CpuPercent)) return false;
+      if (RamUsedMb != other.RamUsedMb) return false;
+      if (RamTotalMb != other.RamTotalMb) return false;
+      if(!usageHistory_.Equals(other.usageHistory_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -867,6 +1579,10 @@ namespace mrpc_admin {
       if (PodIp.Length != 0) hash ^= PodIp.GetHashCode();
       hash ^= terminals_.GetHashCode();
       if (Error.Length != 0) hash ^= Error.GetHashCode();
+      if (CpuPercent != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(CpuPercent);
+      if (RamUsedMb != 0UL) hash ^= RamUsedMb.GetHashCode();
+      if (RamTotalMb != 0UL) hash ^= RamTotalMb.GetHashCode();
+      hash ^= usageHistory_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -902,6 +1618,19 @@ namespace mrpc_admin {
         output.WriteRawTag(42);
         output.WriteString(Error);
       }
+      if (CpuPercent != 0D) {
+        output.WriteRawTag(49);
+        output.WriteDouble(CpuPercent);
+      }
+      if (RamUsedMb != 0UL) {
+        output.WriteRawTag(56);
+        output.WriteUInt64(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        output.WriteRawTag(64);
+        output.WriteUInt64(RamTotalMb);
+      }
+      usageHistory_.WriteTo(output, _repeated_usageHistory_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -929,6 +1658,19 @@ namespace mrpc_admin {
         output.WriteRawTag(42);
         output.WriteString(Error);
       }
+      if (CpuPercent != 0D) {
+        output.WriteRawTag(49);
+        output.WriteDouble(CpuPercent);
+      }
+      if (RamUsedMb != 0UL) {
+        output.WriteRawTag(56);
+        output.WriteUInt64(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        output.WriteRawTag(64);
+        output.WriteUInt64(RamTotalMb);
+      }
+      usageHistory_.WriteTo(ref output, _repeated_usageHistory_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -952,6 +1694,16 @@ namespace mrpc_admin {
       if (Error.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Error);
       }
+      if (CpuPercent != 0D) {
+        size += 1 + 8;
+      }
+      if (RamUsedMb != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RamTotalMb);
+      }
+      size += usageHistory_.CalculateSize(_repeated_usageHistory_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -977,6 +1729,16 @@ namespace mrpc_admin {
       if (other.Error.Length != 0) {
         Error = other.Error;
       }
+      if (other.CpuPercent != 0D) {
+        CpuPercent = other.CpuPercent;
+      }
+      if (other.RamUsedMb != 0UL) {
+        RamUsedMb = other.RamUsedMb;
+      }
+      if (other.RamTotalMb != 0UL) {
+        RamTotalMb = other.RamTotalMb;
+      }
+      usageHistory_.Add(other.usageHistory_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1010,6 +1772,22 @@ namespace mrpc_admin {
           }
           case 42: {
             Error = input.ReadString();
+            break;
+          }
+          case 49: {
+            CpuPercent = input.ReadDouble();
+            break;
+          }
+          case 56: {
+            RamUsedMb = input.ReadUInt64();
+            break;
+          }
+          case 64: {
+            RamTotalMb = input.ReadUInt64();
+            break;
+          }
+          case 74: {
+            usageHistory_.AddEntriesFrom(input, _repeated_usageHistory_codec);
             break;
           }
         }
@@ -1047,6 +1825,22 @@ namespace mrpc_admin {
             Error = input.ReadString();
             break;
           }
+          case 49: {
+            CpuPercent = input.ReadDouble();
+            break;
+          }
+          case 56: {
+            RamUsedMb = input.ReadUInt64();
+            break;
+          }
+          case 64: {
+            RamTotalMb = input.ReadUInt64();
+            break;
+          }
+          case 74: {
+            usageHistory_.AddEntriesFrom(ref input, _repeated_usageHistory_codec);
+            break;
+          }
         }
       }
     }
@@ -1068,7 +1862,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[3]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1095,6 +1889,10 @@ namespace mrpc_admin {
       terminals_ = other.terminals_.Clone();
       error_ = other.error_;
       hostIp_ = other.hostIp_;
+      cpuPercent_ = other.cpuPercent_;
+      ramUsedMb_ = other.ramUsedMb_;
+      ramTotalMb_ = other.ramTotalMb_;
+      usageHistory_ = other.usageHistory_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1193,6 +1991,56 @@ namespace mrpc_admin {
       }
     }
 
+    /// <summary>Field number for the "cpu_percent" field.</summary>
+    public const int CpuPercentFieldNumber = 8;
+    private double cpuPercent_;
+    /// <summary>
+    /// whole-machine CPU % for this pod
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double CpuPercent {
+      get { return cpuPercent_; }
+      set {
+        cpuPercent_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ram_used_mb" field.</summary>
+    public const int RamUsedMbFieldNumber = 9;
+    private ulong ramUsedMb_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RamUsedMb {
+      get { return ramUsedMb_; }
+      set {
+        ramUsedMb_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ram_total_mb" field.</summary>
+    public const int RamTotalMbFieldNumber = 10;
+    private ulong ramTotalMb_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong RamTotalMb {
+      get { return ramTotalMb_; }
+      set {
+        ramTotalMb_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "usage_history" field.</summary>
+    public const int UsageHistoryFieldNumber = 11;
+    private static readonly pb::FieldCodec<global::mrpc_admin.UsageSample> _repeated_usageHistory_codec
+        = pb::FieldCodec.ForMessage(90, global::mrpc_admin.UsageSample.Parser);
+    private readonly pbc::RepeatedField<global::mrpc_admin.UsageSample> usageHistory_ = new pbc::RepeatedField<global::mrpc_admin.UsageSample>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::mrpc_admin.UsageSample> UsageHistory {
+      get { return usageHistory_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1215,6 +2063,10 @@ namespace mrpc_admin {
       if(!terminals_.Equals(other.terminals_)) return false;
       if (Error != other.Error) return false;
       if (HostIp != other.HostIp) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(CpuPercent, other.CpuPercent)) return false;
+      if (RamUsedMb != other.RamUsedMb) return false;
+      if (RamTotalMb != other.RamTotalMb) return false;
+      if(!usageHistory_.Equals(other.usageHistory_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1229,6 +2081,10 @@ namespace mrpc_admin {
       hash ^= terminals_.GetHashCode();
       if (Error.Length != 0) hash ^= Error.GetHashCode();
       if (HostIp.Length != 0) hash ^= HostIp.GetHashCode();
+      if (CpuPercent != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(CpuPercent);
+      if (RamUsedMb != 0UL) hash ^= RamUsedMb.GetHashCode();
+      if (RamTotalMb != 0UL) hash ^= RamTotalMb.GetHashCode();
+      hash ^= usageHistory_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1272,6 +2128,19 @@ namespace mrpc_admin {
         output.WriteRawTag(58);
         output.WriteString(HostIp);
       }
+      if (CpuPercent != 0D) {
+        output.WriteRawTag(65);
+        output.WriteDouble(CpuPercent);
+      }
+      if (RamUsedMb != 0UL) {
+        output.WriteRawTag(72);
+        output.WriteUInt64(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        output.WriteRawTag(80);
+        output.WriteUInt64(RamTotalMb);
+      }
+      usageHistory_.WriteTo(output, _repeated_usageHistory_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1307,6 +2176,19 @@ namespace mrpc_admin {
         output.WriteRawTag(58);
         output.WriteString(HostIp);
       }
+      if (CpuPercent != 0D) {
+        output.WriteRawTag(65);
+        output.WriteDouble(CpuPercent);
+      }
+      if (RamUsedMb != 0UL) {
+        output.WriteRawTag(72);
+        output.WriteUInt64(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        output.WriteRawTag(80);
+        output.WriteUInt64(RamTotalMb);
+      }
+      usageHistory_.WriteTo(ref output, _repeated_usageHistory_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1336,6 +2218,16 @@ namespace mrpc_admin {
       if (HostIp.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(HostIp);
       }
+      if (CpuPercent != 0D) {
+        size += 1 + 8;
+      }
+      if (RamUsedMb != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RamUsedMb);
+      }
+      if (RamTotalMb != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(RamTotalMb);
+      }
+      size += usageHistory_.CalculateSize(_repeated_usageHistory_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1367,6 +2259,16 @@ namespace mrpc_admin {
       if (other.HostIp.Length != 0) {
         HostIp = other.HostIp;
       }
+      if (other.CpuPercent != 0D) {
+        CpuPercent = other.CpuPercent;
+      }
+      if (other.RamUsedMb != 0UL) {
+        RamUsedMb = other.RamUsedMb;
+      }
+      if (other.RamTotalMb != 0UL) {
+        RamTotalMb = other.RamTotalMb;
+      }
+      usageHistory_.Add(other.usageHistory_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -1408,6 +2310,22 @@ namespace mrpc_admin {
           }
           case 58: {
             HostIp = input.ReadString();
+            break;
+          }
+          case 65: {
+            CpuPercent = input.ReadDouble();
+            break;
+          }
+          case 72: {
+            RamUsedMb = input.ReadUInt64();
+            break;
+          }
+          case 80: {
+            RamTotalMb = input.ReadUInt64();
+            break;
+          }
+          case 90: {
+            usageHistory_.AddEntriesFrom(input, _repeated_usageHistory_codec);
             break;
           }
         }
@@ -1453,6 +2371,22 @@ namespace mrpc_admin {
             HostIp = input.ReadString();
             break;
           }
+          case 65: {
+            CpuPercent = input.ReadDouble();
+            break;
+          }
+          case 72: {
+            RamUsedMb = input.ReadUInt64();
+            break;
+          }
+          case 80: {
+            RamTotalMb = input.ReadUInt64();
+            break;
+          }
+          case 90: {
+            usageHistory_.AddEntriesFrom(ref input, _repeated_usageHistory_codec);
+            break;
+          }
         }
       }
     }
@@ -1474,7 +2408,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[4]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

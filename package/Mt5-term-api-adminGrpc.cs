@@ -59,6 +59,8 @@ namespace mrpc_admin {
     static readonly grpc::Marshaller<global::mrpc_admin.ActiveTerminalsReply> __Marshaller_mrpc_admin_ActiveTerminalsReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.ActiveTerminalsReply.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mrpc_admin.ActiveTerminalsClusterReply> __Marshaller_mrpc_admin_ActiveTerminalsClusterReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.ActiveTerminalsClusterReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.SystemUsageReply> __Marshaller_mrpc_admin_SystemUsageReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.SystemUsageReply.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply> __Method_ActiveTerminals = new grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply>(
@@ -75,6 +77,14 @@ namespace mrpc_admin {
         "ActiveTerminalsCluster",
         __Marshaller_mrpc_admin_ActiveTerminalsRequest,
         __Marshaller_mrpc_admin_ActiveTerminalsClusterReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.SystemUsageReply> __Method_SystemUsage = new grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.SystemUsageReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SystemUsage",
+        __Marshaller_mrpc_admin_ActiveTerminalsRequest,
+        __Marshaller_mrpc_admin_SystemUsageReply);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -107,6 +117,18 @@ namespace mrpc_admin {
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.ActiveTerminalsClusterReply> ActiveTerminalsCluster(global::mrpc_admin.ActiveTerminalsRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.SystemUsageReply> SystemUsage(global::mrpc_admin.ActiveTerminalsRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -240,6 +262,54 @@ namespace mrpc_admin {
       {
         return CallInvoker.AsyncUnaryCall(__Method_ActiveTerminalsCluster, null, options, request);
       }
+      /// <summary>
+      /// Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.SystemUsageReply SystemUsage(global::mrpc_admin.ActiveTerminalsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SystemUsage(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.SystemUsageReply SystemUsage(global::mrpc_admin.ActiveTerminalsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SystemUsage, null, options, request);
+      }
+      /// <summary>
+      /// Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.SystemUsageReply> SystemUsageAsync(global::mrpc_admin.ActiveTerminalsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SystemUsageAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Whole-machine CPU % and physical RAM (current + short history) for THIS pod.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.SystemUsageReply> SystemUsageAsync(global::mrpc_admin.ActiveTerminalsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SystemUsage, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override AdminApiClient NewInstance(ClientBaseConfiguration configuration)
@@ -255,7 +325,8 @@ namespace mrpc_admin {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_ActiveTerminals, serviceImpl.ActiveTerminals)
-          .AddMethod(__Method_ActiveTerminalsCluster, serviceImpl.ActiveTerminalsCluster).Build();
+          .AddMethod(__Method_ActiveTerminalsCluster, serviceImpl.ActiveTerminalsCluster)
+          .AddMethod(__Method_SystemUsage, serviceImpl.SystemUsage).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -267,6 +338,7 @@ namespace mrpc_admin {
     {
       serviceBinder.AddMethod(__Method_ActiveTerminals, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply>(serviceImpl.ActiveTerminals));
       serviceBinder.AddMethod(__Method_ActiveTerminalsCluster, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsClusterReply>(serviceImpl.ActiveTerminalsCluster));
+      serviceBinder.AddMethod(__Method_SystemUsage, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.SystemUsageReply>(serviceImpl.SystemUsage));
     }
 
   }
