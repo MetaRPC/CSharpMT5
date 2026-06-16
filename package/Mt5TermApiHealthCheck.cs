@@ -25,17 +25,18 @@ namespace mt5_term_api {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Ch9tdDUtdGVybS1hcGktaGVhbHRoLWNoZWNrLnByb3RvEgxtdDVfdGVybV9h",
-            "cGkiFgoUU3RvcExpc3RlbmluZ1JlcXVlc3QiFAoSU3RvcExpc3RlbmluZ1Jl",
-            "cGx5IhQKEkhlYWx0aENoZWNrUmVxdWVzdCJPChBIZWFsdGhDaGVja1JlcGx5",
-            "Eh4KFmlzX2Nvbm5lY3RlZF90b19zZXJ2ZXIYASABKAgSGwoTc2VydmVyX3Rp",
-            "bWVfc2Vjb25kcxgCIAEoAzKqAQoGSGVhbHRoEkkKBUNoZWNrEiAubXQ1X3Rl",
-            "cm1fYXBpLkhlYWx0aENoZWNrUmVxdWVzdBoeLm10NV90ZXJtX2FwaS5IZWFs",
-            "dGhDaGVja1JlcGx5ElUKDVN0b3BMaXN0ZW5pbmcSIi5tdDVfdGVybV9hcGku",
-            "U3RvcExpc3RlbmluZ1JlcXVlc3QaIC5tdDVfdGVybV9hcGkuU3RvcExpc3Rl",
-            "bmluZ1JlcGx5QkJaMWdpdC5tdGFwaS5pby9yb290L21ycGMtcHJvdG8uZ2l0",
-            "L210NS9saWJyYXJpZXMvZ2+qAgxtdDVfdGVybV9hcGliBnByb3RvMw=="));
+            "cGkaHW10NS10ZXJtLWFwaS1jb25uZWN0aW9uLnByb3RvIhYKFFN0b3BMaXN0",
+            "ZW5pbmdSZXF1ZXN0IhQKElN0b3BMaXN0ZW5pbmdSZXBseSIUChJIZWFsdGhD",
+            "aGVja1JlcXVlc3QiTwoQSGVhbHRoQ2hlY2tSZXBseRIeChZpc19jb25uZWN0",
+            "ZWRfdG9fc2VydmVyGAEgASgIEhsKE3NlcnZlcl90aW1lX3NlY29uZHMYAiAB",
+            "KAMyqgEKBkhlYWx0aBJJCgVDaGVjaxIgLm10NV90ZXJtX2FwaS5IZWFsdGhD",
+            "aGVja1JlcXVlc3QaHi5tdDVfdGVybV9hcGkuSGVhbHRoQ2hlY2tSZXBseRJV",
+            "Cg1TdG9wTGlzdGVuaW5nEiIubXQ1X3Rlcm1fYXBpLlN0b3BMaXN0ZW5pbmdS",
+            "ZXF1ZXN0GiAubXQ1X3Rlcm1fYXBpLlN0b3BMaXN0ZW5pbmdSZXBseUJCWjFn",
+            "aXQubXRhcGkuaW8vcm9vdC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVz",
+            "L2dvqgIMbXQ1X3Rlcm1fYXBpYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
+          new pbr::FileDescriptor[] { global::mt5_term_api.Mt5TermApiConnectionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StopListeningRequest), global::mt5_term_api.StopListeningRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StopListeningReply), global::mt5_term_api.StopListeningReply.Parser, null, null, null, null, null),

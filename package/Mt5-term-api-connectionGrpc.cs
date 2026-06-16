@@ -69,6 +69,20 @@ namespace mt5_term_api {
     static readonly grpc::Marshaller<global::mt5_term_api.ReconnectRequest> __Marshaller_mt5_term_api_ReconnectRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.ReconnectRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.ReconnectReply> __Marshaller_mt5_term_api_ReconnectReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.ReconnectReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.GetBrokerServersByBrokerNameRequest> __Marshaller_mt5_term_api_GetBrokerServersByBrokerNameRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GetBrokerServersByBrokerNameRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.GetBrokerServersByBrokerNameReply> __Marshaller_mt5_term_api_GetBrokerServersByBrokerNameReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GetBrokerServersByBrokerNameReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.ScreenshotRequest> __Marshaller_mt5_term_api_ScreenshotRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.ScreenshotRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.ScreenshotReply> __Marshaller_mt5_term_api_ScreenshotReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.ScreenshotReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.GetIdRequest> __Marshaller_mt5_term_api_GetIdRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GetIdRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.GetIdReply> __Marshaller_mt5_term_api_GetIdReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GetIdReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.ConnectStreamEvent> __Marshaller_mt5_term_api_ConnectStreamEvent = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.ConnectStreamEvent.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.ConnectExRequest, global::mt5_term_api.ConnectExReply> __Method_ConnectEx = new grpc::Method<global::mt5_term_api.ConnectExRequest, global::mt5_term_api.ConnectExReply>(
@@ -118,6 +132,46 @@ namespace mt5_term_api {
         __Marshaller_mt5_term_api_ReconnectRequest,
         __Marshaller_mt5_term_api_ReconnectReply);
 
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.GetBrokerServersByBrokerNameRequest, global::mt5_term_api.GetBrokerServersByBrokerNameReply> __Method_GetBrokerServersByBrokerName = new grpc::Method<global::mt5_term_api.GetBrokerServersByBrokerNameRequest, global::mt5_term_api.GetBrokerServersByBrokerNameReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetBrokerServersByBrokerName",
+        __Marshaller_mt5_term_api_GetBrokerServersByBrokerNameRequest,
+        __Marshaller_mt5_term_api_GetBrokerServersByBrokerNameReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.ScreenshotRequest, global::mt5_term_api.ScreenshotReply> __Method_Screenshot = new grpc::Method<global::mt5_term_api.ScreenshotRequest, global::mt5_term_api.ScreenshotReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Screenshot",
+        __Marshaller_mt5_term_api_ScreenshotRequest,
+        __Marshaller_mt5_term_api_ScreenshotReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.GetIdRequest, global::mt5_term_api.GetIdReply> __Method_GetId = new grpc::Method<global::mt5_term_api.GetIdRequest, global::mt5_term_api.GetIdReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetId",
+        __Marshaller_mt5_term_api_GetIdRequest,
+        __Marshaller_mt5_term_api_GetIdReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.ConnectRequest, global::mt5_term_api.ConnectStreamEvent> __Method_ConnectStream = new grpc::Method<global::mt5_term_api.ConnectRequest, global::mt5_term_api.ConnectStreamEvent>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "ConnectStream",
+        __Marshaller_mt5_term_api_ConnectRequest,
+        __Marshaller_mt5_term_api_ConnectStreamEvent);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.ConnectExRequest, global::mt5_term_api.ConnectStreamEvent> __Method_ConnectExStream = new grpc::Method<global::mt5_term_api.ConnectExRequest, global::mt5_term_api.ConnectStreamEvent>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "ConnectExStream",
+        __Marshaller_mt5_term_api_ConnectExRequest,
+        __Marshaller_mt5_term_api_ConnectStreamEvent);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -130,6 +184,13 @@ namespace mt5_term_api {
     {
       /// <summary>
       /// Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn",
+      ///   "mtClusterName": "OctaFX-Demo",
+      ///   "timeoutSeconds": "120"
+      /// }  
       /// </summary>
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
@@ -148,8 +209,7 @@ namespace mt5_term_api {
       ///   "password": "1nJeS+Ae",
       ///   "host": "95.217.147.61",
       ///   "port": "443",
-      ///   "baseChartSymbol": "EURUSD",  
-      ///   "waitForTerminalIsAlive": "true"
+      ///   "timeoutSeconds": "120"
       /// }  
       /// </summary>
       /// <param name="request">The request received from the client.</param>
@@ -221,6 +281,88 @@ namespace mt5_term_api {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.GetBrokerServersByBrokerNameReply> GetBrokerServersByBrokerName(global::mt5_term_api.GetBrokerServersByBrokerNameRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Captures the Xvfb display screenshot for the terminal instance
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.ScreenshotReply> Screenshot(global::mt5_term_api.ScreenshotRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Generates a deterministic GUID from user and password.
+      /// The same user/password combination always produces the same GUID.
+      /// Use this GUID as the 'id' header for Connect and other endpoints.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn"
+      /// }
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.GetIdReply> GetId(global::mt5_term_api.GetIdRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Same as Connect but streams real-time progress events.
+      /// Requires 'id' header — use GetId to generate.
+      /// Swagger does not support streaming — use /connect-stream interactive viewer.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "21455",
+      ///   "password": "1nJeS+Ae",
+      ///   "host": "95.217.147.61",
+      ///   "port": "443",
+      ///   "timeoutSeconds": "120"
+      /// }
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="responseStream">Used for sending responses back to the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>A task indicating completion of the handler.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task ConnectStream(global::mt5_term_api.ConnectRequest request, grpc::IServerStreamWriter<global::mt5_term_api.ConnectStreamEvent> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Same as ConnectEx but streams real-time progress events.
+      /// Requires 'id' header — use GetId to generate.
+      /// Swagger does not support streaming — use /connect-stream interactive viewer.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn",
+      ///   "mtClusterName": "OctaFX-Demo",
+      ///   "timeoutSeconds": "120"
+      /// }
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="responseStream">Used for sending responses back to the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>A task indicating completion of the handler.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task ConnectExStream(global::mt5_term_api.ConnectExRequest request, grpc::IServerStreamWriter<global::mt5_term_api.ConnectStreamEvent> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
     }
 
     /// <summary>Client for Connection</summary>
@@ -252,6 +394,13 @@ namespace mt5_term_api {
 
       /// <summary>
       /// Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn",
+      ///   "mtClusterName": "OctaFX-Demo",
+      ///   "timeoutSeconds": "120"
+      /// }  
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -265,6 +414,13 @@ namespace mt5_term_api {
       }
       /// <summary>
       /// Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn",
+      ///   "mtClusterName": "OctaFX-Demo",
+      ///   "timeoutSeconds": "120"
+      /// }  
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
@@ -276,6 +432,13 @@ namespace mt5_term_api {
       }
       /// <summary>
       /// Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn",
+      ///   "mtClusterName": "OctaFX-Demo",
+      ///   "timeoutSeconds": "120"
+      /// }  
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -289,6 +452,13 @@ namespace mt5_term_api {
       }
       /// <summary>
       /// Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn",
+      ///   "mtClusterName": "OctaFX-Demo",
+      ///   "timeoutSeconds": "120"
+      /// }  
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
@@ -306,8 +476,7 @@ namespace mt5_term_api {
       ///   "password": "1nJeS+Ae",
       ///   "host": "95.217.147.61",
       ///   "port": "443",
-      ///   "baseChartSymbol": "EURUSD",  
-      ///   "waitForTerminalIsAlive": "true"
+      ///   "timeoutSeconds": "120"
       /// }  
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
@@ -328,8 +497,7 @@ namespace mt5_term_api {
       ///   "password": "1nJeS+Ae",
       ///   "host": "95.217.147.61",
       ///   "port": "443",
-      ///   "baseChartSymbol": "EURUSD",  
-      ///   "waitForTerminalIsAlive": "true"
+      ///   "timeoutSeconds": "120"
       /// }  
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
@@ -348,8 +516,7 @@ namespace mt5_term_api {
       ///   "password": "1nJeS+Ae",
       ///   "host": "95.217.147.61",
       ///   "port": "443",
-      ///   "baseChartSymbol": "EURUSD",  
-      ///   "waitForTerminalIsAlive": "true"
+      ///   "timeoutSeconds": "120"
       /// }  
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
@@ -370,8 +537,7 @@ namespace mt5_term_api {
       ///   "password": "1nJeS+Ae",
       ///   "host": "95.217.147.61",
       ///   "port": "443",
-      ///   "baseChartSymbol": "EURUSD",  
-      ///   "waitForTerminalIsAlive": "true"
+      ///   "timeoutSeconds": "120"
       /// }  
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
@@ -622,6 +788,236 @@ namespace mt5_term_api {
       {
         return CallInvoker.AsyncUnaryCall(__Method_Reconnect, null, options, request);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.GetBrokerServersByBrokerNameReply GetBrokerServersByBrokerName(global::mt5_term_api.GetBrokerServersByBrokerNameRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetBrokerServersByBrokerName(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.GetBrokerServersByBrokerNameReply GetBrokerServersByBrokerName(global::mt5_term_api.GetBrokerServersByBrokerNameRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetBrokerServersByBrokerName, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GetBrokerServersByBrokerNameReply> GetBrokerServersByBrokerNameAsync(global::mt5_term_api.GetBrokerServersByBrokerNameRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetBrokerServersByBrokerNameAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GetBrokerServersByBrokerNameReply> GetBrokerServersByBrokerNameAsync(global::mt5_term_api.GetBrokerServersByBrokerNameRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetBrokerServersByBrokerName, null, options, request);
+      }
+      /// <summary>
+      /// Captures the Xvfb display screenshot for the terminal instance
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.ScreenshotReply Screenshot(global::mt5_term_api.ScreenshotRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Screenshot(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Captures the Xvfb display screenshot for the terminal instance
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.ScreenshotReply Screenshot(global::mt5_term_api.ScreenshotRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Screenshot, null, options, request);
+      }
+      /// <summary>
+      /// Captures the Xvfb display screenshot for the terminal instance
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.ScreenshotReply> ScreenshotAsync(global::mt5_term_api.ScreenshotRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ScreenshotAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Captures the Xvfb display screenshot for the terminal instance
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.ScreenshotReply> ScreenshotAsync(global::mt5_term_api.ScreenshotRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Screenshot, null, options, request);
+      }
+      /// <summary>
+      /// Generates a deterministic GUID from user and password.
+      /// The same user/password combination always produces the same GUID.
+      /// Use this GUID as the 'id' header for Connect and other endpoints.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.GetIdReply GetId(global::mt5_term_api.GetIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetId(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Generates a deterministic GUID from user and password.
+      /// The same user/password combination always produces the same GUID.
+      /// Use this GUID as the 'id' header for Connect and other endpoints.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.GetIdReply GetId(global::mt5_term_api.GetIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetId, null, options, request);
+      }
+      /// <summary>
+      /// Generates a deterministic GUID from user and password.
+      /// The same user/password combination always produces the same GUID.
+      /// Use this GUID as the 'id' header for Connect and other endpoints.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GetIdReply> GetIdAsync(global::mt5_term_api.GetIdRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Generates a deterministic GUID from user and password.
+      /// The same user/password combination always produces the same GUID.
+      /// Use this GUID as the 'id' header for Connect and other endpoints.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GetIdReply> GetIdAsync(global::mt5_term_api.GetIdRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetId, null, options, request);
+      }
+      /// <summary>
+      /// Same as Connect but streams real-time progress events.
+      /// Requires 'id' header — use GetId to generate.
+      /// Swagger does not support streaming — use /connect-stream interactive viewer.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "21455",
+      ///   "password": "1nJeS+Ae",
+      ///   "host": "95.217.147.61",
+      ///   "port": "443",
+      ///   "timeoutSeconds": "120"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::mt5_term_api.ConnectStreamEvent> ConnectStream(global::mt5_term_api.ConnectRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ConnectStream(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Same as Connect but streams real-time progress events.
+      /// Requires 'id' header — use GetId to generate.
+      /// Swagger does not support streaming — use /connect-stream interactive viewer.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "21455",
+      ///   "password": "1nJeS+Ae",
+      ///   "host": "95.217.147.61",
+      ///   "port": "443",
+      ///   "timeoutSeconds": "120"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::mt5_term_api.ConnectStreamEvent> ConnectStream(global::mt5_term_api.ConnectRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_ConnectStream, null, options, request);
+      }
+      /// <summary>
+      /// Same as ConnectEx but streams real-time progress events.
+      /// Requires 'id' header — use GetId to generate.
+      /// Swagger does not support streaming — use /connect-stream interactive viewer.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn",
+      ///   "mtClusterName": "OctaFX-Demo",
+      ///   "timeoutSeconds": "120"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::mt5_term_api.ConnectStreamEvent> ConnectExStream(global::mt5_term_api.ConnectExRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ConnectExStream(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Same as ConnectEx but streams real-time progress events.
+      /// Requires 'id' header — use GetId to generate.
+      /// Swagger does not support streaming — use /connect-stream interactive viewer.
+      /// [DefaultValues]
+      /// {
+      ///   "user": "213827411",
+      ///   "password": "_rVx1tMn",
+      ///   "mtClusterName": "OctaFX-Demo",
+      ///   "timeoutSeconds": "120"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::mt5_term_api.ConnectStreamEvent> ConnectExStream(global::mt5_term_api.ConnectExRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_ConnectExStream, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override ConnectionClient NewInstance(ClientBaseConfiguration configuration)
@@ -641,7 +1037,12 @@ namespace mt5_term_api {
           .AddMethod(__Method_ConnectProxy, serviceImpl.ConnectProxy)
           .AddMethod(__Method_CheckConnect, serviceImpl.CheckConnect)
           .AddMethod(__Method_Disconnect, serviceImpl.Disconnect)
-          .AddMethod(__Method_Reconnect, serviceImpl.Reconnect).Build();
+          .AddMethod(__Method_Reconnect, serviceImpl.Reconnect)
+          .AddMethod(__Method_GetBrokerServersByBrokerName, serviceImpl.GetBrokerServersByBrokerName)
+          .AddMethod(__Method_Screenshot, serviceImpl.Screenshot)
+          .AddMethod(__Method_GetId, serviceImpl.GetId)
+          .AddMethod(__Method_ConnectStream, serviceImpl.ConnectStream)
+          .AddMethod(__Method_ConnectExStream, serviceImpl.ConnectExStream).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -657,6 +1058,372 @@ namespace mt5_term_api {
       serviceBinder.AddMethod(__Method_CheckConnect, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.CheckConnectRequest, global::mt5_term_api.CheckConnectReply>(serviceImpl.CheckConnect));
       serviceBinder.AddMethod(__Method_Disconnect, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.DisconnectRequest, global::mt5_term_api.DisconnectReply>(serviceImpl.Disconnect));
       serviceBinder.AddMethod(__Method_Reconnect, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.ReconnectRequest, global::mt5_term_api.ReconnectReply>(serviceImpl.Reconnect));
+      serviceBinder.AddMethod(__Method_GetBrokerServersByBrokerName, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GetBrokerServersByBrokerNameRequest, global::mt5_term_api.GetBrokerServersByBrokerNameReply>(serviceImpl.GetBrokerServersByBrokerName));
+      serviceBinder.AddMethod(__Method_Screenshot, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.ScreenshotRequest, global::mt5_term_api.ScreenshotReply>(serviceImpl.Screenshot));
+      serviceBinder.AddMethod(__Method_GetId, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GetIdRequest, global::mt5_term_api.GetIdReply>(serviceImpl.GetId));
+      serviceBinder.AddMethod(__Method_ConnectStream, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::mt5_term_api.ConnectRequest, global::mt5_term_api.ConnectStreamEvent>(serviceImpl.ConnectStream));
+      serviceBinder.AddMethod(__Method_ConnectExStream, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::mt5_term_api.ConnectExRequest, global::mt5_term_api.ConnectStreamEvent>(serviceImpl.ConnectExStream));
+    }
+
+  }
+  /// <summary>
+  /// Provides access to terminal log content (Journal and Experts tabs).
+  /// Reads log entries directly from the MT5 terminal GUI.
+  /// Requires 'id' header with the terminal connection GUID returned by Connect.
+  /// </summary>
+  public static partial class Logs
+  {
+    static readonly string __ServiceName = "mt5_term_api.Logs";
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (message is global::Google.Protobuf.IBufferMessage)
+      {
+        context.SetPayloadLength(message.CalculateSize());
+        global::Google.Protobuf.MessageExtensions.WriteTo(message, context.GetBufferWriter());
+        context.Complete();
+        return;
+      }
+      #endif
+      context.Complete(global::Google.Protobuf.MessageExtensions.ToByteArray(message));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static class __Helper_MessageCache<T>
+    {
+      public static readonly bool IsBufferMessage = global::System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(global::Google.Protobuf.IBufferMessage)).IsAssignableFrom(typeof(T));
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static T __Helper_DeserializeMessage<T>(grpc::DeserializationContext context, global::Google.Protobuf.MessageParser<T> parser) where T : global::Google.Protobuf.IMessage<T>
+    {
+      #if !GRPC_DISABLE_PROTOBUF_BUFFER_SERIALIZATION
+      if (__Helper_MessageCache<T>.IsBufferMessage)
+      {
+        return parser.ParseFrom(context.PayloadAsReadOnlySequence());
+      }
+      #endif
+      return parser.ParseFrom(context.PayloadAsNewBuffer());
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.JournalRequest> __Marshaller_mt5_term_api_JournalRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.JournalRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.JournalReply> __Marshaller_mt5_term_api_JournalReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.JournalReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.WarmConnectLogRequest> __Marshaller_mt5_term_api_WarmConnectLogRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.WarmConnectLogRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.WarmConnectLogReply> __Marshaller_mt5_term_api_WarmConnectLogReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.WarmConnectLogReply.Parser));
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.JournalRequest, global::mt5_term_api.JournalReply> __Method_Journal = new grpc::Method<global::mt5_term_api.JournalRequest, global::mt5_term_api.JournalReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Journal",
+        __Marshaller_mt5_term_api_JournalRequest,
+        __Marshaller_mt5_term_api_JournalReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.JournalRequest, global::mt5_term_api.JournalReply> __Method_Experts = new grpc::Method<global::mt5_term_api.JournalRequest, global::mt5_term_api.JournalReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Experts",
+        __Marshaller_mt5_term_api_JournalRequest,
+        __Marshaller_mt5_term_api_JournalReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.WarmConnectLogRequest, global::mt5_term_api.WarmConnectLogReply> __Method_WarmConnect = new grpc::Method<global::mt5_term_api.WarmConnectLogRequest, global::mt5_term_api.WarmConnectLogReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "WarmConnect",
+        __Marshaller_mt5_term_api_WarmConnectLogRequest,
+        __Marshaller_mt5_term_api_WarmConnectLogReply);
+
+    /// <summary>Service descriptor</summary>
+    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+    {
+      get { return global::mt5_term_api.Mt5TermApiConnectionReflection.Descriptor.Services[1]; }
+    }
+
+    /// <summary>Base class for server-side implementations of Logs</summary>
+    [grpc::BindServiceMethod(typeof(Logs), "BindService")]
+    public abstract partial class LogsBase
+    {
+      /// <summary>
+      /// Returns log entries from the terminal Journal tab.
+      /// The Journal tab contains system messages about terminal connection status, 
+      /// network activity, server synchronization and other internal events.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.JournalReply> Journal(global::mt5_term_api.JournalRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Returns log entries from the terminal Experts tab.
+      /// The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+      /// including Print() output, initialization/deinitialization events and runtime errors.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.JournalReply> Experts(global::mt5_term_api.JournalRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Returns warm pool connection logs for diagnostics.
+      /// Handled locally by Terminal Manager (not proxied to the terminal process).
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.WarmConnectLogReply> WarmConnect(global::mt5_term_api.WarmConnectLogRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+    }
+
+    /// <summary>Client for Logs</summary>
+    public partial class LogsClient : grpc::ClientBase<LogsClient>
+    {
+      /// <summary>Creates a new client for Logs</summary>
+      /// <param name="channel">The channel to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public LogsClient(grpc::ChannelBase channel) : base(channel)
+      {
+      }
+      /// <summary>Creates a new client for Logs that uses a custom <c>CallInvoker</c>.</summary>
+      /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public LogsClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      {
+      }
+      /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected LogsClient() : base()
+      {
+      }
+      /// <summary>Protected constructor to allow creation of configured clients.</summary>
+      /// <param name="configuration">The client configuration.</param>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected LogsClient(ClientBaseConfiguration configuration) : base(configuration)
+      {
+      }
+
+      /// <summary>
+      /// Returns log entries from the terminal Journal tab.
+      /// The Journal tab contains system messages about terminal connection status, 
+      /// network activity, server synchronization and other internal events.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.JournalReply Journal(global::mt5_term_api.JournalRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Journal(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Returns log entries from the terminal Journal tab.
+      /// The Journal tab contains system messages about terminal connection status, 
+      /// network activity, server synchronization and other internal events.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.JournalReply Journal(global::mt5_term_api.JournalRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Journal, null, options, request);
+      }
+      /// <summary>
+      /// Returns log entries from the terminal Journal tab.
+      /// The Journal tab contains system messages about terminal connection status, 
+      /// network activity, server synchronization and other internal events.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.JournalReply> JournalAsync(global::mt5_term_api.JournalRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return JournalAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Returns log entries from the terminal Journal tab.
+      /// The Journal tab contains system messages about terminal connection status, 
+      /// network activity, server synchronization and other internal events.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.JournalReply> JournalAsync(global::mt5_term_api.JournalRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Journal, null, options, request);
+      }
+      /// <summary>
+      /// Returns log entries from the terminal Experts tab.
+      /// The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+      /// including Print() output, initialization/deinitialization events and runtime errors.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.JournalReply Experts(global::mt5_term_api.JournalRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Experts(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Returns log entries from the terminal Experts tab.
+      /// The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+      /// including Print() output, initialization/deinitialization events and runtime errors.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.JournalReply Experts(global::mt5_term_api.JournalRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Experts, null, options, request);
+      }
+      /// <summary>
+      /// Returns log entries from the terminal Experts tab.
+      /// The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+      /// including Print() output, initialization/deinitialization events and runtime errors.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.JournalReply> ExpertsAsync(global::mt5_term_api.JournalRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExpertsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Returns log entries from the terminal Experts tab.
+      /// The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+      /// including Print() output, initialization/deinitialization events and runtime errors.
+      /// Works regardless of which tab is currently active in the terminal UI.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.JournalReply> ExpertsAsync(global::mt5_term_api.JournalRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Experts, null, options, request);
+      }
+      /// <summary>
+      /// Returns warm pool connection logs for diagnostics.
+      /// Handled locally by Terminal Manager (not proxied to the terminal process).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.WarmConnectLogReply WarmConnect(global::mt5_term_api.WarmConnectLogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return WarmConnect(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Returns warm pool connection logs for diagnostics.
+      /// Handled locally by Terminal Manager (not proxied to the terminal process).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.WarmConnectLogReply WarmConnect(global::mt5_term_api.WarmConnectLogRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_WarmConnect, null, options, request);
+      }
+      /// <summary>
+      /// Returns warm pool connection logs for diagnostics.
+      /// Handled locally by Terminal Manager (not proxied to the terminal process).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.WarmConnectLogReply> WarmConnectAsync(global::mt5_term_api.WarmConnectLogRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return WarmConnectAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Returns warm pool connection logs for diagnostics.
+      /// Handled locally by Terminal Manager (not proxied to the terminal process).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.WarmConnectLogReply> WarmConnectAsync(global::mt5_term_api.WarmConnectLogRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_WarmConnect, null, options, request);
+      }
+      /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      protected override LogsClient NewInstance(ClientBaseConfiguration configuration)
+      {
+        return new LogsClient(configuration);
+      }
+    }
+
+    /// <summary>Creates service definition that can be registered with a server</summary>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public static grpc::ServerServiceDefinition BindService(LogsBase serviceImpl)
+    {
+      return grpc::ServerServiceDefinition.CreateBuilder()
+          .AddMethod(__Method_Journal, serviceImpl.Journal)
+          .AddMethod(__Method_Experts, serviceImpl.Experts)
+          .AddMethod(__Method_WarmConnect, serviceImpl.WarmConnect).Build();
+    }
+
+    /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, LogsBase serviceImpl)
+    {
+      serviceBinder.AddMethod(__Method_Journal, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.JournalRequest, global::mt5_term_api.JournalReply>(serviceImpl.Journal));
+      serviceBinder.AddMethod(__Method_Experts, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.JournalRequest, global::mt5_term_api.JournalReply>(serviceImpl.Experts));
+      serviceBinder.AddMethod(__Method_WarmConnect, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.WarmConnectLogRequest, global::mt5_term_api.WarmConnectLogReply>(serviceImpl.WarmConnect));
     }
 
   }

@@ -604,6 +604,13 @@
         <member name="M:mt5_term_api.Connection.ConnectionBase.ConnectEx(mt5_term_api.ConnectExRequest,Grpc.Core.ServerCallContext)">
             <summary>
             Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn",
+              "mtClusterName": "OctaFX-Demo",
+              "timeoutSeconds": "120"
+            }  
             </summary>
             <param name="request">The request received from the client.</param>
             <param name="context">The context of the server-side call handler being invoked.</param>
@@ -618,8 +625,7 @@
               "password": "1nJeS+Ae",
               "host": "95.217.147.61",
               "port": "443",
-              "baseChartSymbol": "EURUSD",  
-              "waitForTerminalIsAlive": "true"
+              "timeoutSeconds": "120"
             }  
             </summary>
             <param name="request">The request received from the client.</param>
@@ -670,6 +676,66 @@
             <param name="context">The context of the server-side call handler being invoked.</param>
             <returns>The response to send back to the client (wrapped by a task).</returns>
         </member>
+        <member name="M:mt5_term_api.Connection.ConnectionBase.Screenshot(mt5_term_api.ScreenshotRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Captures the Xvfb display screenshot for the terminal instance
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionBase.GetId(mt5_term_api.GetIdRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Generates a deterministic GUID from user and password.
+            The same user/password combination always produces the same GUID.
+            Use this GUID as the 'id' header for Connect and other endpoints.
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn"
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionBase.ConnectStream(mt5_term_api.ConnectRequest,Grpc.Core.IServerStreamWriter{mt5_term_api.ConnectStreamEvent},Grpc.Core.ServerCallContext)">
+            <summary>
+            Same as Connect but streams real-time progress events.
+            Requires 'id' header — use GetId to generate.
+            Swagger does not support streaming — use /connect-stream interactive viewer.
+            [DefaultValues]
+            {
+              "user": "21455",
+              "password": "1nJeS+Ae",
+              "host": "95.217.147.61",
+              "port": "443",
+              "timeoutSeconds": "120"
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="responseStream">Used for sending responses back to the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>A task indicating completion of the handler.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionBase.ConnectExStream(mt5_term_api.ConnectExRequest,Grpc.Core.IServerStreamWriter{mt5_term_api.ConnectStreamEvent},Grpc.Core.ServerCallContext)">
+            <summary>
+            Same as ConnectEx but streams real-time progress events.
+            Requires 'id' header — use GetId to generate.
+            Swagger does not support streaming — use /connect-stream interactive viewer.
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn",
+              "mtClusterName": "OctaFX-Demo",
+              "timeoutSeconds": "120"
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="responseStream">Used for sending responses back to the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>A task indicating completion of the handler.</returns>
+        </member>
         <member name="T:mt5_term_api.Connection.ConnectionClient">
             <summary>Client for Connection</summary>
         </member>
@@ -691,6 +757,13 @@
         <member name="M:mt5_term_api.Connection.ConnectionClient.ConnectEx(mt5_term_api.ConnectExRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
             <summary>
             Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn",
+              "mtClusterName": "OctaFX-Demo",
+              "timeoutSeconds": "120"
+            }  
             </summary>
             <param name="request">The request to send to the server.</param>
             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -701,6 +774,13 @@
         <member name="M:mt5_term_api.Connection.ConnectionClient.ConnectEx(mt5_term_api.ConnectExRequest,Grpc.Core.CallOptions)">
             <summary>
             Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn",
+              "mtClusterName": "OctaFX-Demo",
+              "timeoutSeconds": "120"
+            }  
             </summary>
             <param name="request">The request to send to the server.</param>
             <param name="options">The options for the call.</param>
@@ -709,6 +789,13 @@
         <member name="M:mt5_term_api.Connection.ConnectionClient.ConnectExAsync(mt5_term_api.ConnectExRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
             <summary>
             Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn",
+              "mtClusterName": "OctaFX-Demo",
+              "timeoutSeconds": "120"
+            }  
             </summary>
             <param name="request">The request to send to the server.</param>
             <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -719,6 +806,13 @@
         <member name="M:mt5_term_api.Connection.ConnectionClient.ConnectExAsync(mt5_term_api.ConnectExRequest,Grpc.Core.CallOptions)">
             <summary>
             Creates terminal connection to the MT5 server by MT cluster name, waits for connection and returns Guid of it 
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn",
+              "mtClusterName": "OctaFX-Demo",
+              "timeoutSeconds": "120"
+            }  
             </summary>
             <param name="request">The request to send to the server.</param>
             <param name="options">The options for the call.</param>
@@ -733,8 +827,7 @@
               "password": "1nJeS+Ae",
               "host": "95.217.147.61",
               "port": "443",
-              "baseChartSymbol": "EURUSD",  
-              "waitForTerminalIsAlive": "true"
+              "timeoutSeconds": "120"
             }  
             </summary>
             <param name="request">The request to send to the server.</param>
@@ -752,8 +845,7 @@
               "password": "1nJeS+Ae",
               "host": "95.217.147.61",
               "port": "443",
-              "baseChartSymbol": "EURUSD",  
-              "waitForTerminalIsAlive": "true"
+              "timeoutSeconds": "120"
             }  
             </summary>
             <param name="request">The request to send to the server.</param>
@@ -769,8 +861,7 @@
               "password": "1nJeS+Ae",
               "host": "95.217.147.61",
               "port": "443",
-              "baseChartSymbol": "EURUSD",  
-              "waitForTerminalIsAlive": "true"
+              "timeoutSeconds": "120"
             }  
             </summary>
             <param name="request">The request to send to the server.</param>
@@ -788,8 +879,7 @@
               "password": "1nJeS+Ae",
               "host": "95.217.147.61",
               "port": "443",
-              "baseChartSymbol": "EURUSD",  
-              "waitForTerminalIsAlive": "true"
+              "timeoutSeconds": "120"
             }  
             </summary>
             <param name="request">The request to send to the server.</param>
@@ -988,6 +1078,180 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.Screenshot(mt5_term_api.ScreenshotRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Captures the Xvfb display screenshot for the terminal instance
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.Screenshot(mt5_term_api.ScreenshotRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Captures the Xvfb display screenshot for the terminal instance
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.ScreenshotAsync(mt5_term_api.ScreenshotRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Captures the Xvfb display screenshot for the terminal instance
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.ScreenshotAsync(mt5_term_api.ScreenshotRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Captures the Xvfb display screenshot for the terminal instance
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.GetId(mt5_term_api.GetIdRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Generates a deterministic GUID from user and password.
+            The same user/password combination always produces the same GUID.
+            Use this GUID as the 'id' header for Connect and other endpoints.
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.GetId(mt5_term_api.GetIdRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Generates a deterministic GUID from user and password.
+            The same user/password combination always produces the same GUID.
+            Use this GUID as the 'id' header for Connect and other endpoints.
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.GetIdAsync(mt5_term_api.GetIdRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Generates a deterministic GUID from user and password.
+            The same user/password combination always produces the same GUID.
+            Use this GUID as the 'id' header for Connect and other endpoints.
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.GetIdAsync(mt5_term_api.GetIdRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Generates a deterministic GUID from user and password.
+            The same user/password combination always produces the same GUID.
+            Use this GUID as the 'id' header for Connect and other endpoints.
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.ConnectStream(mt5_term_api.ConnectRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Same as Connect but streams real-time progress events.
+            Requires 'id' header — use GetId to generate.
+            Swagger does not support streaming — use /connect-stream interactive viewer.
+            [DefaultValues]
+            {
+              "user": "21455",
+              "password": "1nJeS+Ae",
+              "host": "95.217.147.61",
+              "port": "443",
+              "timeoutSeconds": "120"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.ConnectStream(mt5_term_api.ConnectRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Same as Connect but streams real-time progress events.
+            Requires 'id' header — use GetId to generate.
+            Swagger does not support streaming — use /connect-stream interactive viewer.
+            [DefaultValues]
+            {
+              "user": "21455",
+              "password": "1nJeS+Ae",
+              "host": "95.217.147.61",
+              "port": "443",
+              "timeoutSeconds": "120"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.ConnectExStream(mt5_term_api.ConnectExRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Same as ConnectEx but streams real-time progress events.
+            Requires 'id' header — use GetId to generate.
+            Swagger does not support streaming — use /connect-stream interactive viewer.
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn",
+              "mtClusterName": "OctaFX-Demo",
+              "timeoutSeconds": "120"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Connection.ConnectionClient.ConnectExStream(mt5_term_api.ConnectExRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Same as ConnectEx but streams real-time progress events.
+            Requires 'id' header — use GetId to generate.
+            Swagger does not support streaming — use /connect-stream interactive viewer.
+            [DefaultValues]
+            {
+              "user": "213827411",
+              "password": "_rVx1tMn",
+              "mtClusterName": "OctaFX-Demo",
+              "timeoutSeconds": "120"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mt5_term_api.Connection.ConnectionClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -996,6 +1260,590 @@
             <param name="serviceImpl">An object implementing the server-side handling logic.</param>
         </member>
         <member name="M:mt5_term_api.Connection.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.Connection.ConnectionBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="T:mt5_term_api.Logs">
+            <summary>
+            Provides access to terminal log content (Journal and Experts tabs).
+            Reads log entries directly from the MT5 terminal GUI.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.Logs.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mt5_term_api.Logs.LogsBase">
+            <summary>Base class for server-side implementations of Logs</summary>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsBase.Journal(mt5_term_api.JournalRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Returns log entries from the terminal Journal tab.
+            The Journal tab contains system messages about terminal connection status, 
+            network activity, server synchronization and other internal events.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsBase.Experts(mt5_term_api.JournalRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Returns log entries from the terminal Experts tab.
+            The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+            including Print() output, initialization/deinitialization events and runtime errors.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsBase.WarmConnect(mt5_term_api.WarmConnectLogRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Returns warm pool connection logs for diagnostics.
+            Handled locally by Terminal Manager (not proxied to the terminal process).
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="T:mt5_term_api.Logs.LogsClient">
+            <summary>Client for Logs</summary>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for Logs</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for Logs that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.Journal(mt5_term_api.JournalRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns log entries from the terminal Journal tab.
+            The Journal tab contains system messages about terminal connection status, 
+            network activity, server synchronization and other internal events.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.Journal(mt5_term_api.JournalRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Returns log entries from the terminal Journal tab.
+            The Journal tab contains system messages about terminal connection status, 
+            network activity, server synchronization and other internal events.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.JournalAsync(mt5_term_api.JournalRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns log entries from the terminal Journal tab.
+            The Journal tab contains system messages about terminal connection status, 
+            network activity, server synchronization and other internal events.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.JournalAsync(mt5_term_api.JournalRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Returns log entries from the terminal Journal tab.
+            The Journal tab contains system messages about terminal connection status, 
+            network activity, server synchronization and other internal events.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.Experts(mt5_term_api.JournalRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns log entries from the terminal Experts tab.
+            The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+            including Print() output, initialization/deinitialization events and runtime errors.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.Experts(mt5_term_api.JournalRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Returns log entries from the terminal Experts tab.
+            The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+            including Print() output, initialization/deinitialization events and runtime errors.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.ExpertsAsync(mt5_term_api.JournalRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns log entries from the terminal Experts tab.
+            The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+            including Print() output, initialization/deinitialization events and runtime errors.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.ExpertsAsync(mt5_term_api.JournalRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Returns log entries from the terminal Experts tab.
+            The Experts tab contains messages from Expert Advisors (EAs), scripts and indicators
+            including Print() output, initialization/deinitialization events and runtime errors.
+            Works regardless of which tab is currently active in the terminal UI.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.WarmConnect(mt5_term_api.WarmConnectLogRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns warm pool connection logs for diagnostics.
+            Handled locally by Terminal Manager (not proxied to the terminal process).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.WarmConnect(mt5_term_api.WarmConnectLogRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Returns warm pool connection logs for diagnostics.
+            Handled locally by Terminal Manager (not proxied to the terminal process).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.WarmConnectAsync(mt5_term_api.WarmConnectLogRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns warm pool connection logs for diagnostics.
+            Handled locally by Terminal Manager (not proxied to the terminal process).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.WarmConnectAsync(mt5_term_api.WarmConnectLogRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Returns warm pool connection logs for diagnostics.
+            Handled locally by Terminal Manager (not proxied to the terminal process).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Logs.LogsClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mt5_term_api.Logs.BindService(mt5_term_api.Logs.LogsBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mt5_term_api.Logs.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.Logs.LogsBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="T:mt5_term_api.DemoAccount">
+            <summary>
+            Demo account creation service.
+            Automates the MT5 "Open an Account" wizard via Win32 GUI automation.
+            Does NOT require 'id' header — auto-picks any available terminal.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.DemoAccount.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mt5_term_api.DemoAccount.DemoAccountBase">
+            <summary>Base class for server-side implementations of DemoAccount</summary>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountBase.FindCompanies(mt5_term_api.GuiDemoFindCompaniesRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Search for broker companies by name.
+            Returns a list of matching companies from the wizard's ListView.
+            [DefaultValues]
+            {
+              "searchText": "MetaQuotes"
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountBase.ServersAndAccountTypes(mt5_term_api.GuiDemoServersAndTypesRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Get available servers and account types for a company.
+            Navigates: company selection → demo account → reads dropdown options.
+            [DefaultValues]
+            {
+              "companyName": "MetaQuotes Ltd."
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountBase.OpenDemoAccount(mt5_term_api.GuiDemoOpenAccountRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Open a demo account. Full wizard flow: search → select → fill form → register.
+            Returns login, password, and investor password for the new demo account.
+            [DefaultValues]
+            {
+              "company": "MetaQuotes Ltd.",
+              "firstName": "Test",
+              "lastName": "User",
+              "email": "test@test.com",
+              "phone": "+1234567890",
+              "timeoutSeconds": "60"
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountBase.OpenDemoAccountStream(mt5_term_api.GuiDemoOpenAccountRequest,Grpc.Core.IServerStreamWriter{mt5_term_api.DemoAccountStreamEvent},Grpc.Core.ServerCallContext)">
+            <summary>
+            Same as OpenDemoAccount but streams real-time progress events.
+            Does NOT require 'id' header — auto-picks any available terminal.
+            Swagger does not support streaming — use /demo-account-stream interactive viewer.
+            [DefaultValues]
+            {
+              "company": "MetaQuotes Ltd.",
+              "firstName": "Test",
+              "lastName": "User",
+              "email": "test@test.com",
+              "phone": "+1234567890",
+              "timeoutSeconds": "60"
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="responseStream">Used for sending responses back to the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>A task indicating completion of the handler.</returns>
+        </member>
+        <member name="T:mt5_term_api.DemoAccount.DemoAccountClient">
+            <summary>Client for DemoAccount</summary>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for DemoAccount</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for DemoAccount that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.FindCompanies(mt5_term_api.GuiDemoFindCompaniesRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Search for broker companies by name.
+            Returns a list of matching companies from the wizard's ListView.
+            [DefaultValues]
+            {
+              "searchText": "MetaQuotes"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.FindCompanies(mt5_term_api.GuiDemoFindCompaniesRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Search for broker companies by name.
+            Returns a list of matching companies from the wizard's ListView.
+            [DefaultValues]
+            {
+              "searchText": "MetaQuotes"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.FindCompaniesAsync(mt5_term_api.GuiDemoFindCompaniesRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Search for broker companies by name.
+            Returns a list of matching companies from the wizard's ListView.
+            [DefaultValues]
+            {
+              "searchText": "MetaQuotes"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.FindCompaniesAsync(mt5_term_api.GuiDemoFindCompaniesRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Search for broker companies by name.
+            Returns a list of matching companies from the wizard's ListView.
+            [DefaultValues]
+            {
+              "searchText": "MetaQuotes"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.ServersAndAccountTypes(mt5_term_api.GuiDemoServersAndTypesRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Get available servers and account types for a company.
+            Navigates: company selection → demo account → reads dropdown options.
+            [DefaultValues]
+            {
+              "companyName": "MetaQuotes Ltd."
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.ServersAndAccountTypes(mt5_term_api.GuiDemoServersAndTypesRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Get available servers and account types for a company.
+            Navigates: company selection → demo account → reads dropdown options.
+            [DefaultValues]
+            {
+              "companyName": "MetaQuotes Ltd."
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.ServersAndAccountTypesAsync(mt5_term_api.GuiDemoServersAndTypesRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Get available servers and account types for a company.
+            Navigates: company selection → demo account → reads dropdown options.
+            [DefaultValues]
+            {
+              "companyName": "MetaQuotes Ltd."
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.ServersAndAccountTypesAsync(mt5_term_api.GuiDemoServersAndTypesRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Get available servers and account types for a company.
+            Navigates: company selection → demo account → reads dropdown options.
+            [DefaultValues]
+            {
+              "companyName": "MetaQuotes Ltd."
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.OpenDemoAccount(mt5_term_api.GuiDemoOpenAccountRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Open a demo account. Full wizard flow: search → select → fill form → register.
+            Returns login, password, and investor password for the new demo account.
+            [DefaultValues]
+            {
+              "company": "MetaQuotes Ltd.",
+              "firstName": "Test",
+              "lastName": "User",
+              "email": "test@test.com",
+              "phone": "+1234567890",
+              "timeoutSeconds": "60"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.OpenDemoAccount(mt5_term_api.GuiDemoOpenAccountRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Open a demo account. Full wizard flow: search → select → fill form → register.
+            Returns login, password, and investor password for the new demo account.
+            [DefaultValues]
+            {
+              "company": "MetaQuotes Ltd.",
+              "firstName": "Test",
+              "lastName": "User",
+              "email": "test@test.com",
+              "phone": "+1234567890",
+              "timeoutSeconds": "60"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.OpenDemoAccountAsync(mt5_term_api.GuiDemoOpenAccountRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Open a demo account. Full wizard flow: search → select → fill form → register.
+            Returns login, password, and investor password for the new demo account.
+            [DefaultValues]
+            {
+              "company": "MetaQuotes Ltd.",
+              "firstName": "Test",
+              "lastName": "User",
+              "email": "test@test.com",
+              "phone": "+1234567890",
+              "timeoutSeconds": "60"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.OpenDemoAccountAsync(mt5_term_api.GuiDemoOpenAccountRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Open a demo account. Full wizard flow: search → select → fill form → register.
+            Returns login, password, and investor password for the new demo account.
+            [DefaultValues]
+            {
+              "company": "MetaQuotes Ltd.",
+              "firstName": "Test",
+              "lastName": "User",
+              "email": "test@test.com",
+              "phone": "+1234567890",
+              "timeoutSeconds": "60"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.OpenDemoAccountStream(mt5_term_api.GuiDemoOpenAccountRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Same as OpenDemoAccount but streams real-time progress events.
+            Does NOT require 'id' header — auto-picks any available terminal.
+            Swagger does not support streaming — use /demo-account-stream interactive viewer.
+            [DefaultValues]
+            {
+              "company": "MetaQuotes Ltd.",
+              "firstName": "Test",
+              "lastName": "User",
+              "email": "test@test.com",
+              "phone": "+1234567890",
+              "timeoutSeconds": "60"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.OpenDemoAccountStream(mt5_term_api.GuiDemoOpenAccountRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Same as OpenDemoAccount but streams real-time progress events.
+            Does NOT require 'id' header — auto-picks any available terminal.
+            Swagger does not support streaming — use /demo-account-stream interactive viewer.
+            [DefaultValues]
+            {
+              "company": "MetaQuotes Ltd.",
+              "firstName": "Test",
+              "lastName": "User",
+              "email": "test@test.com",
+              "phone": "+1234567890",
+              "timeoutSeconds": "60"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.DemoAccountClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.BindService(mt5_term_api.DemoAccount.DemoAccountBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mt5_term_api.DemoAccount.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.DemoAccount.DemoAccountBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="P:mt5_term_api.Gui.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mt5_term_api.Gui.GuiBase">
+            <summary>Base class for server-side implementations of Gui</summary>
+        </member>
+        <member name="T:mt5_term_api.Gui.GuiClient">
+            <summary>Client for Gui</summary>
+        </member>
+        <member name="M:mt5_term_api.Gui.GuiClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for Gui</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.Gui.GuiClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for Gui that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.Gui.GuiClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mt5_term_api.Gui.GuiClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.Gui.GuiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mt5_term_api.Gui.BindService(mt5_term_api.Gui.GuiBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mt5_term_api.Gui.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.Gui.GuiBase)">
             <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
             Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
             <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
@@ -1216,6 +2064,14 @@
             <summary>
             Returns a structure array MqlBookInfo containing records of the Depth of Market of a specified symbol
             https://www.mql5.com/en/docs/marketinformation/marketbookget
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.MarketInfo.MarketInfoBase.SymbolList(mt5_term_api.SymbolListRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Returns a collection of a broker symbols
             </summary>
             <param name="request">The request received from the client.</param>
             <param name="context">The context of the server-side call handler being invoked.</param>
@@ -1839,6 +2695,42 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mt5_term_api.MarketInfo.MarketInfoClient.SymbolList(mt5_term_api.SymbolListRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns a collection of a broker symbols
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.MarketInfo.MarketInfoClient.SymbolList(mt5_term_api.SymbolListRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Returns a collection of a broker symbols
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.MarketInfo.MarketInfoClient.SymbolListAsync(mt5_term_api.SymbolListRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns a collection of a broker symbols
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.MarketInfo.MarketInfoClient.SymbolListAsync(mt5_term_api.SymbolListRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Returns a collection of a broker symbols
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mt5_term_api.MarketInfo.MarketInfoClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -1858,6 +2750,61 @@
         <member name="T:mt5_term_api.SubscriptionService.SubscriptionServiceBase">
             <summary>Base class for server-side implementations of SubscriptionService</summary>
         </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceBase.OnSymbolTick(mt5_term_api.OnSymbolTickRequest,Grpc.Core.IServerStreamWriter{mt5_term_api.OnSymbolTickReply},Grpc.Core.ServerCallContext)">
+            <summary>
+            Streams real-time symbol tick data for the specified symbols.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="responseStream">Used for sending responses back to the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>A task indicating completion of the handler.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceBase.OnTrade(mt5_term_api.OnTradeRequest,Grpc.Core.IServerStreamWriter{mt5_term_api.OnTradeReply},Grpc.Core.ServerCallContext)">
+            <summary>
+            Streams real-time trade events (orders, positions, deals changes).
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="responseStream">Used for sending responses back to the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>A task indicating completion of the handler.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceBase.OnPositionProfit(mt5_term_api.OnPositionProfitRequest,Grpc.Core.IServerStreamWriter{mt5_term_api.OnPositionProfitReply},Grpc.Core.ServerCallContext)">
+            <summary>
+            Streams real-time position profit updates at the specified timer interval.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="responseStream">Used for sending responses back to the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>A task indicating completion of the handler.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceBase.OnPositionsAndPendingOrdersTickets(mt5_term_api.OnPositionsAndPendingOrdersTicketsRequest,Grpc.Core.IServerStreamWriter{mt5_term_api.OnPositionsAndPendingOrdersTicketsReply},Grpc.Core.ServerCallContext)">
+            <summary>
+            Streams real-time position and pending order ticket changes.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="responseStream">Used for sending responses back to the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>A task indicating completion of the handler.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceBase.OnTradeTransaction(mt5_term_api.OnTradeTransactionRequest,Grpc.Core.IServerStreamWriter{mt5_term_api.OnTradeTransactionReply},Grpc.Core.ServerCallContext)">
+            <summary>
+            Streams real-time trade transaction events (order add/update/delete, deal add, position changes).
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="responseStream">Used for sending responses back to the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>A task indicating completion of the handler.</returns>
+        </member>
         <member name="T:mt5_term_api.SubscriptionService.SubscriptionServiceClient">
             <summary>Client for SubscriptionService</summary>
         </member>
@@ -1875,6 +2822,116 @@
         <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Protected constructor to allow creation of configured clients.</summary>
             <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnSymbolTick(mt5_term_api.OnSymbolTickRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Streams real-time symbol tick data for the specified symbols.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnSymbolTick(mt5_term_api.OnSymbolTickRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Streams real-time symbol tick data for the specified symbols.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnTrade(mt5_term_api.OnTradeRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Streams real-time trade events (orders, positions, deals changes).
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnTrade(mt5_term_api.OnTradeRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Streams real-time trade events (orders, positions, deals changes).
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnPositionProfit(mt5_term_api.OnPositionProfitRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Streams real-time position profit updates at the specified timer interval.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnPositionProfit(mt5_term_api.OnPositionProfitRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Streams real-time position profit updates at the specified timer interval.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnPositionsAndPendingOrdersTickets(mt5_term_api.OnPositionsAndPendingOrdersTicketsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Streams real-time position and pending order ticket changes.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnPositionsAndPendingOrdersTickets(mt5_term_api.OnPositionsAndPendingOrdersTicketsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Streams real-time position and pending order ticket changes.
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnTradeTransaction(mt5_term_api.OnTradeTransactionRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Streams real-time trade transaction events (order add/update/delete, deal add, position changes).
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.OnTradeTransaction(mt5_term_api.OnTradeTransactionRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Streams real-time trade transaction events (order add/update/delete, deal add, position changes).
+            Requires 'id' header with the terminal connection GUID returned by Connect.
+            Swagger does not support streaming — use /subscription-stream interactive viewer.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
         </member>
         <member name="M:mt5_term_api.SubscriptionService.SubscriptionServiceClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
@@ -2286,6 +3343,68 @@
             <param name="serviceImpl">An object implementing the server-side handling logic.</param>
         </member>
         <member name="M:mt5_term_api.TradingHelper.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.TradingHelper.TradingHelperBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="P:mt5_term_api.VncService.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mt5_term_api.VncService.VncServiceBase">
+            <summary>Base class for server-side implementations of VncService</summary>
+        </member>
+        <member name="M:mt5_term_api.VncService.VncServiceBase.VncStream(Grpc.Core.IAsyncStreamReader{mt5_term_api.VncData},Grpc.Core.IServerStreamWriter{mt5_term_api.VncData},Grpc.Core.ServerCallContext)">
+            <summary>
+            Bidirectional stream: raw VNC (RFB) binary data flows in both directions
+            </summary>
+            <param name="requestStream">Used for reading requests from the client.</param>
+            <param name="responseStream">Used for sending responses back to the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>A task indicating completion of the handler.</returns>
+        </member>
+        <member name="T:mt5_term_api.VncService.VncServiceClient">
+            <summary>Client for VncService</summary>
+        </member>
+        <member name="M:mt5_term_api.VncService.VncServiceClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for VncService</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.VncService.VncServiceClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for VncService that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.VncService.VncServiceClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mt5_term_api.VncService.VncServiceClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.VncService.VncServiceClient.VncStream(Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Bidirectional stream: raw VNC (RFB) binary data flows in both directions
+            </summary>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.VncService.VncServiceClient.VncStream(Grpc.Core.CallOptions)">
+            <summary>
+            Bidirectional stream: raw VNC (RFB) binary data flows in both directions
+            </summary>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.VncService.VncServiceClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mt5_term_api.VncService.BindService(mt5_term_api.VncService.VncServiceBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mt5_term_api.VncService.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.VncService.VncServiceBase)">
             <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
             Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
             <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
@@ -3682,6 +4801,125 @@
             End of the utilities services types enumeration. Corresponds to INDUSTRY_UTILITIES_REGULATED_WATER.
             </summary>
         </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersRequest.InputSortModeFieldNumber">
+            <summary>Field number for the "inputSortMode" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AllHistoryOrdersRequest.InputSortMode">
+            <summary>
+            0 - by open time, 1 - by close time, 2 - ticketid
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersRequest.InputFromFieldNumber">
+            <summary>Field number for the "inputFrom" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersRequest.InputToFieldNumber">
+            <summary>Field number for the "inputTo" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersRequest.PageNumberFieldNumber">
+            <summary>Field number for the "pageNumber" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AllHistoryOrdersRequest.HasPageNumber">
+            <summary>Gets whether the "pageNumber" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.AllHistoryOrdersRequest.ClearPageNumber">
+            <summary>Clears the value of the "pageNumber" field</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersRequest.ItemsPerPageFieldNumber">
+            <summary>Field number for the "itemsPerPage" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AllHistoryOrdersRequest.HasItemsPerPage">
+            <summary>Gets whether the "itemsPerPage" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.AllHistoryOrdersRequest.ClearItemsPerPage">
+            <summary>Clears the value of the "itemsPerPage" field</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.AllHistoryOrdersReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersData.ArrayTotalFieldNumber">
+            <summary>Field number for the "arrayTotal" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersData.PageNumberFieldNumber">
+            <summary>Field number for the "pageNumber" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersData.ItemsPerPageFieldNumber">
+            <summary>Field number for the "itemsPerPage" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersData.HistoryOrdersFieldNumber">
+            <summary>Field number for the "history_orders" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.RecordIndexFieldNumber">
+            <summary>Field number for the "record_index" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.TicketFieldNumber">
+            <summary>Field number for the "ticket" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.TimeSetupFieldNumber">
+            <summary>Field number for the "time_setup" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.TypeFieldNumber">
+            <summary>Field number for the "type" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.StateFieldNumber">
+            <summary>Field number for the "state" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.TimeDoneFieldNumber">
+            <summary>Field number for the "time_done" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.ExpirationTimeTypeFieldNumber">
+            <summary>Field number for the "expiration_time_type" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.ExpirationTimeFieldNumber">
+            <summary>Field number for the "expiration_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.FillingTypeFieldNumber">
+            <summary>Field number for the "filling_type" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.MagicFieldNumber">
+            <summary>Field number for the "magic" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.PositionIdFieldNumber">
+            <summary>Field number for the "position_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.PositionByIdFieldNumber">
+            <summary>Field number for the "position_by_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.VolumeInitialFieldNumber">
+            <summary>Field number for the "volume_initial" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.VolumeCurrentFieldNumber">
+            <summary>Field number for the "volume_current" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.PriceOpenFieldNumber">
+            <summary>Field number for the "price_open" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.SlFieldNumber">
+            <summary>Field number for the "sl" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.TpFieldNumber">
+            <summary>Field number for the "tp" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.PriceCurrentFieldNumber">
+            <summary>Field number for the "price_current" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.StopLimitFieldNumber">
+            <summary>Field number for the "stop_limit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.SymbolFieldNumber">
+            <summary>Field number for the "symbol" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.CommentFieldNumber">
+            <summary>Field number for the "comment" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.OrderExternalIdNameFieldNumber">
+            <summary>Field number for the "order_external_id_name" field.</summary>
+        </member>
         <member name="F:mt5_term_api.PositionsHistoryRequest.SortTypeFieldNumber">
             <summary>Field number for the "sort_type" field.</summary>
         </member>
@@ -4950,6 +6188,158 @@
             A SOCKS5 proxy server.
             </summary>
         </member>
+        <member name="F:mt5_term_api.JournalReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.JournalReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.JournalReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetTerminalJournalData.RowsFieldNumber">
+            <summary>Field number for the "rows" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetTerminalJournalData.Rows">
+            <summary>
+            List of log rows from the terminal tab
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.TerminalJournalRow.TimeFieldNumber">
+            <summary>Field number for the "time" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TerminalJournalRow.Time">
+            <summary>
+            Timestamp of the log entry
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.TerminalJournalRow.SourceFieldNumber">
+            <summary>Field number for the "source" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TerminalJournalRow.Source">
+            <summary>
+            Source of the log entry (e.g. "Network", "MQL5", "Tester", EA name)
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.TerminalJournalRow.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TerminalJournalRow.Message">
+            <summary>
+            Log message text
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.WarmConnectLogReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.RealTerminalIdFieldNumber">
+            <summary>Field number for the "real_terminal_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.WarmTerminalIdFieldNumber">
+            <summary>Field number for the "warm_terminal_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.DisplayNumberFieldNumber">
+            <summary>Field number for the "display_number" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.TerminalPortFieldNumber">
+            <summary>Field number for the "terminal_port" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.ConnectionPathFieldNumber">
+            <summary>Field number for the "connection_path" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.ServerFieldNumber">
+            <summary>Field number for the "server" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.LoginFieldNumber">
+            <summary>Field number for the "login" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.StatusFieldNumber">
+            <summary>Field number for the "status" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.FinalErrorFieldNumber">
+            <summary>Field number for the "final_error" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.ElapsedMsFieldNumber">
+            <summary>Field number for the "elapsed_ms" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.CreatedAtFieldNumber">
+            <summary>Field number for the "created_at" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.CompletedAtFieldNumber">
+            <summary>Field number for the "completed_at" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogData.EntriesFieldNumber">
+            <summary>Field number for the "entries" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogRow.TimeFieldNumber">
+            <summary>Field number for the "time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogRow.LevelFieldNumber">
+            <summary>Field number for the "level" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogRow.StageFieldNumber">
+            <summary>Field number for the "stage" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogRow.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WarmConnectLogRow.ScreenshotBase64FieldNumber">
+            <summary>Field number for the "screenshot_base64" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameRequest.BrokerNameFieldNumber">
+            <summary>Field number for the "BrokerName" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GetBrokerServersByBrokerNameReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameData.ResultFieldNumber">
+            <summary>Field number for the "result" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GetBrokerServersByBrokerNameData.Types">
+            <summary>Container for nested types declared in the GetBrokerServersByBrokerNameData message type.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerResult.CompanyFieldNumber">
+            <summary>Field number for the "company" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerResult.ResultsFieldNumber">
+            <summary>Field number for the "results" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer.LogoUrlFieldNumber">
+            <summary>Field number for the "logo_url" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer.HasLogoUrl">
+            <summary>Gets whether the "logo_url" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer.ClearLogoUrl">
+            <summary>Clears the value of the "logo_url" field</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer.SiteFieldNumber">
+            <summary>Field number for the "site" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer.HasSite">
+            <summary>Gets whether the "site" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer.ClearSite">
+            <summary>Clears the value of the "site" field</summary>
+        </member>
+        <member name="F:mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer.AccessFieldNumber">
+            <summary>Field number for the "access" field.</summary>
+        </member>
         <member name="F:mt5_term_api.ConnectExRequest.UserFieldNumber">
             <summary>Field number for the "user" field.</summary>
         </member>
@@ -4988,20 +6378,6 @@
         <member name="M:mt5_term_api.ConnectExRequest.ClearBaseChartSymbol">
             <summary>Clears the value of the "base_chart_symbol" field</summary>
         </member>
-        <member name="F:mt5_term_api.ConnectExRequest.TerminalReadinessWaitingTimeoutSecondsFieldNumber">
-            <summary>Field number for the "terminal_readiness_waiting_timeout_seconds" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectExRequest.TerminalReadinessWaitingTimeoutSeconds">
-            <summary>
-            Readiness timeout seconds. Default = 100 seconds [Optional]
-            </summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectExRequest.HasTerminalReadinessWaitingTimeoutSeconds">
-            <summary>Gets whether the "terminal_readiness_waiting_timeout_seconds" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ConnectExRequest.ClearTerminalReadinessWaitingTimeoutSeconds">
-            <summary>Clears the value of the "terminal_readiness_waiting_timeout_seconds" field</summary>
-        </member>
         <member name="F:mt5_term_api.ConnectExRequest.ExpertsToAddFieldNumber">
             <summary>Field number for the "experts_to_add" field.</summary>
         </member>
@@ -5010,19 +6386,19 @@
             EA files to add to terminal instance [Optional]
             </summary>
         </member>
-        <member name="F:mt5_term_api.ConnectExRequest.CheckBaseChartSymbolFieldNumber">
-            <summary>Field number for the "CheckBaseChartSymbol" field.</summary>
+        <member name="F:mt5_term_api.ConnectExRequest.TimeoutSecondsFieldNumber">
+            <summary>Field number for the "timeout_seconds" field.</summary>
         </member>
-        <member name="P:mt5_term_api.ConnectExRequest.CheckBaseChartSymbol">
+        <member name="P:mt5_term_api.ConnectExRequest.TimeoutSeconds">
             <summary>
-            Check if base chart symbol EURUSD does not exists in broker symbols list. True by default [Optional]
+            Time waiting for terminal being connected (default 120) [Optional]
             </summary>
         </member>
-        <member name="P:mt5_term_api.ConnectExRequest.HasCheckBaseChartSymbol">
-            <summary>Gets whether the "CheckBaseChartSymbol" field is set</summary>
+        <member name="P:mt5_term_api.ConnectExRequest.HasTimeoutSeconds">
+            <summary>Gets whether the "timeout_seconds" field is set</summary>
         </member>
-        <member name="M:mt5_term_api.ConnectExRequest.ClearCheckBaseChartSymbol">
-            <summary>Clears the value of the "CheckBaseChartSymbol" field</summary>
+        <member name="M:mt5_term_api.ConnectExRequest.ClearTimeoutSeconds">
+            <summary>Clears the value of the "timeout_seconds" field</summary>
         </member>
         <member name="F:mt5_term_api.ConnectExReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
@@ -5046,20 +6422,6 @@
         </member>
         <member name="M:mt5_term_api.ReconnectRequest.ClearForceReconnection">
             <summary>Clears the value of the "force_reconnection" field</summary>
-        </member>
-        <member name="F:mt5_term_api.ReconnectRequest.TerminalReadinessWaitingTimeoutSecondsFieldNumber">
-            <summary>Field number for the "terminal_readiness_waiting_timeout_seconds" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ReconnectRequest.TerminalReadinessWaitingTimeoutSeconds">
-            <summary>
-            optional waiting getting alive for terminal
-            </summary>
-        </member>
-        <member name="P:mt5_term_api.ReconnectRequest.HasTerminalReadinessWaitingTimeoutSeconds">
-            <summary>Gets whether the "terminal_readiness_waiting_timeout_seconds" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ReconnectRequest.ClearTerminalReadinessWaitingTimeoutSeconds">
-            <summary>Clears the value of the "terminal_readiness_waiting_timeout_seconds" field</summary>
         </member>
         <member name="F:mt5_term_api.ReconnectReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
@@ -5117,35 +6479,22 @@
             Port. [Required]
             </summary>
         </member>
-        <member name="F:mt5_term_api.ConnectRequest.BaseChartSymbolFieldNumber">
-            <summary>Field number for the "base_chart_symbol" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectRequest.HasBaseChartSymbol">
-            <summary>Gets whether the "base_chart_symbol" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ConnectRequest.ClearBaseChartSymbol">
-            <summary>Clears the value of the "base_chart_symbol" field</summary>
-        </member>
-        <member name="F:mt5_term_api.ConnectRequest.WaitForTerminalIsAliveFieldNumber">
-            <summary>Field number for the "wait_for_terminal_is_alive" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectRequest.HasWaitForTerminalIsAlive">
-            <summary>Gets whether the "wait_for_terminal_is_alive" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ConnectRequest.ClearWaitForTerminalIsAlive">
-            <summary>Clears the value of the "wait_for_terminal_is_alive" field</summary>
-        </member>
-        <member name="F:mt5_term_api.ConnectRequest.TerminalReadinessWaitingTimeoutSecondsFieldNumber">
-            <summary>Field number for the "terminal_readiness_waiting_timeout_seconds" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectRequest.HasTerminalReadinessWaitingTimeoutSeconds">
-            <summary>Gets whether the "terminal_readiness_waiting_timeout_seconds" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ConnectRequest.ClearTerminalReadinessWaitingTimeoutSeconds">
-            <summary>Clears the value of the "terminal_readiness_waiting_timeout_seconds" field</summary>
-        </member>
         <member name="F:mt5_term_api.ConnectRequest.ExpertsToAddFieldNumber">
             <summary>Field number for the "experts_to_add" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectRequest.TimeoutSecondsFieldNumber">
+            <summary>Field number for the "timeout_seconds" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectRequest.TimeoutSeconds">
+            <summary>
+            Time waiting for terminal being connected (default 120) [Optional]
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectRequest.HasTimeoutSeconds">
+            <summary>Gets whether the "timeout_seconds" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.ConnectRequest.ClearTimeoutSeconds">
+            <summary>Clears the value of the "timeout_seconds" field</summary>
         </member>
         <member name="F:mt5_term_api.ExpertAdviser.FileNameFieldNumber">
             <summary>Field number for the "file_name" field.</summary>
@@ -5255,35 +6604,22 @@
             Proxy type. Put 'Socks5' for default parameters [Required]
             </summary>
         </member>
-        <member name="F:mt5_term_api.ConnectProxyRequest.BaseChartSymbolFieldNumber">
-            <summary>Field number for the "base_chart_symbol" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectProxyRequest.HasBaseChartSymbol">
-            <summary>Gets whether the "base_chart_symbol" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ConnectProxyRequest.ClearBaseChartSymbol">
-            <summary>Clears the value of the "base_chart_symbol" field</summary>
-        </member>
-        <member name="F:mt5_term_api.ConnectProxyRequest.WaitForTerminalIsAliveFieldNumber">
-            <summary>Field number for the "wait_for_terminal_is_alive" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectProxyRequest.HasWaitForTerminalIsAlive">
-            <summary>Gets whether the "wait_for_terminal_is_alive" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ConnectProxyRequest.ClearWaitForTerminalIsAlive">
-            <summary>Clears the value of the "wait_for_terminal_is_alive" field</summary>
-        </member>
-        <member name="F:mt5_term_api.ConnectProxyRequest.TerminalReadinessWaitingTimeoutSecondsFieldNumber">
-            <summary>Field number for the "terminal_readiness_waiting_timeout_seconds" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectProxyRequest.HasTerminalReadinessWaitingTimeoutSeconds">
-            <summary>Gets whether the "terminal_readiness_waiting_timeout_seconds" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ConnectProxyRequest.ClearTerminalReadinessWaitingTimeoutSeconds">
-            <summary>Clears the value of the "terminal_readiness_waiting_timeout_seconds" field</summary>
-        </member>
         <member name="F:mt5_term_api.ConnectProxyRequest.ExpertsToAddFieldNumber">
             <summary>Field number for the "experts_to_add" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectProxyRequest.TimeoutSecondsFieldNumber">
+            <summary>Field number for the "timeout_seconds" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectProxyRequest.TimeoutSeconds">
+            <summary>
+            Time waiting for terminal being connected (default 120) [Optional]
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectProxyRequest.HasTimeoutSeconds">
+            <summary>Gets whether the "timeout_seconds" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.ConnectProxyRequest.ClearTimeoutSeconds">
+            <summary>Clears the value of the "timeout_seconds" field</summary>
         </member>
         <member name="F:mt5_term_api.ConnectProxyReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
@@ -5405,6 +6741,416 @@
         </member>
         <member name="F:mt5_term_api.DisconnectData.FullLifeTimeSecondsFieldNumber">
             <summary>Field number for the "full_life_time_seconds" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ScreenshotReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ScreenshotReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.ScreenshotReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.ScreenshotData.ImageDataFieldNumber">
+            <summary>Field number for the "image_data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ScreenshotData.DisplayNumberFieldNumber">
+            <summary>Field number for the "display_number" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ScreenshotData.TerminalIdFieldNumber">
+            <summary>Field number for the "terminal_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ScreenshotData.ContentTypeFieldNumber">
+            <summary>Field number for the "content_type" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetIdRequest.UserFieldNumber">
+            <summary>Field number for the "user" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetIdRequest.User">
+            <summary>
+            Account number [Required]
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.GetIdRequest.PasswordFieldNumber">
+            <summary>Field number for the "password" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetIdRequest.Password">
+            <summary>
+            Account password [Required]
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.GetIdReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetIdReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GetIdReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetIdData.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetIdData.Id">
+            <summary>
+            Deterministic GUID generated from user+password
+            </summary>
+        </member>
+        <member name="T:mt5_term_api.ConnectStreamEvent">
+            <summary>
+            Event message streamed during ConnectStream / ConnectExStream.
+            Each event represents one step in the connection process.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectStreamEvent.StepFieldNumber">
+            <summary>Field number for the "step" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectStreamEvent.Step">
+            <summary>
+            Step name: "Init", "Validation", "WarmPool-Claim", "WarmPool-BrokerSearch",
+            "WarmPool-Login", "WarmPool-ApiReadiness", "WarmPool-AccountReady",
+            "WarmPool-CloseDialogs", "WarmPool-ReRegister",
+            "ColdStart-CreateInstance", "ColdStart-ReadinessCheck",
+            "ColdStart-SaveCache", "Complete", "Error"
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectStreamEvent.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectStreamEvent.Message">
+            <summary>
+            Human-readable message with details
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectStreamEvent.LevelFieldNumber">
+            <summary>Field number for the "level" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectStreamEvent.Level">
+            <summary>
+            Log level: INFO, WARN, ERROR
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectStreamEvent.ElapsedMsFieldNumber">
+            <summary>Field number for the "elapsed_ms" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectStreamEvent.ElapsedMs">
+            <summary>
+            Elapsed milliseconds since start
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectStreamEvent.TimestampFieldNumber">
+            <summary>Field number for the "timestamp" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectStreamEvent.Timestamp">
+            <summary>
+            Timestamp of this event
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectStreamEvent.IsFinalFieldNumber">
+            <summary>Field number for the "is_final" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectStreamEvent.IsFinal">
+            <summary>
+            True only on the final event (success or error)
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectStreamEvent.ConnectDataFieldNumber">
+            <summary>Field number for the "connect_data" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectStreamEvent.ConnectData">
+            <summary>
+            Populated only on the final success event
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectStreamEvent.ErrorDataFieldNumber">
+            <summary>Field number for the "error_data" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectStreamEvent.ErrorData">
+            <summary>
+            Populated only on the final error event
+            </summary>
+        </member>
+        <member name="T:mt5_term_api.Mt5TermApiDemoAccountReflection">
+            <summary>Holder for reflection information generated from mt5-term-api-demo-account.proto</summary>
+        </member>
+        <member name="P:mt5_term_api.Mt5TermApiDemoAccountReflection.Descriptor">
+            <summary>File descriptor for mt5-term-api-demo-account.proto</summary>
+        </member>
+        <member name="T:mt5_term_api.DemoAccountStreamEvent">
+            <summary>
+            Event message streamed during OpenDemoAccountStream.
+            Each event represents one step in the demo account creation process.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.DemoAccountStreamEvent.StepFieldNumber">
+            <summary>Field number for the "step" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DemoAccountStreamEvent.Step">
+            <summary>
+            Step name: "Init", "TerminalSelect", "GrpcCall", "WizardFlow",
+            "RegistrationWait", "CredentialsParse", "Complete", "Error"
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.DemoAccountStreamEvent.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DemoAccountStreamEvent.Message">
+            <summary>
+            Human-readable message with details
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.DemoAccountStreamEvent.LevelFieldNumber">
+            <summary>Field number for the "level" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DemoAccountStreamEvent.Level">
+            <summary>
+            Log level: INFO, WARN, ERROR
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.DemoAccountStreamEvent.ElapsedMsFieldNumber">
+            <summary>Field number for the "elapsed_ms" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DemoAccountStreamEvent.ElapsedMs">
+            <summary>
+            Elapsed milliseconds since start
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.DemoAccountStreamEvent.TimestampFieldNumber">
+            <summary>Field number for the "timestamp" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DemoAccountStreamEvent.Timestamp">
+            <summary>
+            Timestamp of this event
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.DemoAccountStreamEvent.IsFinalFieldNumber">
+            <summary>Field number for the "is_final" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DemoAccountStreamEvent.IsFinal">
+            <summary>
+            True only on the final event (success or error)
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.DemoAccountStreamEvent.AccountDataFieldNumber">
+            <summary>Field number for the "account_data" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DemoAccountStreamEvent.AccountData">
+            <summary>
+            Populated only on the final success event
+            </summary>
+        </member>
+        <member name="T:mt5_term_api.Mt5TermApiGuiReflection">
+            <summary>Holder for reflection information generated from mt5-term-api-gui.proto</summary>
+        </member>
+        <member name="P:mt5_term_api.Mt5TermApiGuiReflection.Descriptor">
+            <summary>File descriptor for mt5-term-api-gui.proto</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginRequest.ServerFieldNumber">
+            <summary>Field number for the "server" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginRequest.LoginFieldNumber">
+            <summary>Field number for the "login" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginRequest.PasswordFieldNumber">
+            <summary>Field number for the "password" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GuiLoginReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginData.SuccessFieldNumber">
+            <summary>Field number for the "success" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginData.ResultCodeFieldNumber">
+            <summary>Field number for the "result_code" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginData.DebugLogFieldNumber">
+            <summary>Field number for the "debug_log" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginError.ErrorMessageFieldNumber">
+            <summary>Field number for the "error_message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiBrokerSearchRequest.SearchTextFieldNumber">
+            <summary>Field number for the "search_text" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiBrokerSearchRequest.TimeoutSecondsFieldNumber">
+            <summary>Field number for the "timeout_seconds" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiBrokerSearchRequest.WaitResultFieldNumber">
+            <summary>Field number for the "wait_result" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiBrokerSearchReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiBrokerSearchReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GuiBrokerSearchReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiBrokerSearchData.ResultCodeFieldNumber">
+            <summary>Field number for the "result_code" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiBrokerSearchData.BrokersFieldNumber">
+            <summary>Field number for the "brokers" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiBrokerSearchData.DebugLogFieldNumber">
+            <summary>Field number for the "debug_log" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiBrokerSearchError.ErrorMessageFieldNumber">
+            <summary>Field number for the "error_message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExRequest.ServerFieldNumber">
+            <summary>Field number for the "server" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExRequest.LoginFieldNumber">
+            <summary>Field number for the "login" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExRequest.PasswordFieldNumber">
+            <summary>Field number for the "password" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GuiLoginExReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExData.SuccessFieldNumber">
+            <summary>Field number for the "success" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExData.ResultCodeFieldNumber">
+            <summary>Field number for the "result_code" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExData.AvailableServersFieldNumber">
+            <summary>Field number for the "available_servers" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExData.DebugLogFieldNumber">
+            <summary>Field number for the "debug_log" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiLoginExError.ErrorMessageFieldNumber">
+            <summary>Field number for the "error_message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiCloseDialogsReply.ClosedCountFieldNumber">
+            <summary>Field number for the "closed_count" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoFindCompaniesRequest.SearchTextFieldNumber">
+            <summary>Field number for the "search_text" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoFindCompaniesRequest.TimeoutSecondsFieldNumber">
+            <summary>Field number for the "timeout_seconds" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoFindCompaniesReply.ResultCodeFieldNumber">
+            <summary>Field number for the "result_code" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoFindCompaniesReply.CompaniesFieldNumber">
+            <summary>Field number for the "companies" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoFindCompaniesReply.DebugLogFieldNumber">
+            <summary>Field number for the "debug_log" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoCompany.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoCompany.ShortNameFieldNumber">
+            <summary>Field number for the "short_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoServersAndTypesRequest.CompanyNameFieldNumber">
+            <summary>Field number for the "company_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoServersAndTypesRequest.TimeoutSecondsFieldNumber">
+            <summary>Field number for the "timeout_seconds" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoServersAndTypesReply.ResultCodeFieldNumber">
+            <summary>Field number for the "result_code" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoServersAndTypesReply.ServersFieldNumber">
+            <summary>Field number for the "servers" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoServersAndTypesReply.AccountTypesFieldNumber">
+            <summary>Field number for the "account_types" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoServersAndTypesReply.DepositsFieldNumber">
+            <summary>Field number for the "deposits" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoServersAndTypesReply.LeveragesFieldNumber">
+            <summary>Field number for the "leverages" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoServersAndTypesReply.DebugLogFieldNumber">
+            <summary>Field number for the "debug_log" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountRequest.CompanyFieldNumber">
+            <summary>Field number for the "company" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountRequest.FirstNameFieldNumber">
+            <summary>Field number for the "first_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountRequest.LastNameFieldNumber">
+            <summary>Field number for the "last_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountRequest.EmailFieldNumber">
+            <summary>Field number for the "email" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountRequest.PhoneFieldNumber">
+            <summary>Field number for the "phone" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountRequest.ServerFieldNumber">
+            <summary>Field number for the "server" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountRequest.AccountTypeFieldNumber">
+            <summary>Field number for the "account_type" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountRequest.TimeoutSecondsFieldNumber">
+            <summary>Field number for the "timeout_seconds" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountReply.ResultCodeFieldNumber">
+            <summary>Field number for the "result_code" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountReply.LoginFieldNumber">
+            <summary>Field number for the "login" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountReply.PasswordFieldNumber">
+            <summary>Field number for the "password" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountReply.InvestorFieldNumber">
+            <summary>Field number for the "investor" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountReply.ServerFieldNumber">
+            <summary>Field number for the "server" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoOpenAccountReply.DebugLogFieldNumber">
+            <summary>Field number for the "debug_log" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoEnumControlsReply.ControlCountFieldNumber">
+            <summary>Field number for the "control_count" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoEnumControlsReply.ControlsDumpFieldNumber">
+            <summary>Field number for the "controls_dump" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoProgressEvent.StepFieldNumber">
+            <summary>Field number for the "step" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoProgressEvent.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoProgressEvent.ElapsedMsFieldNumber">
+            <summary>Field number for the "elapsed_ms" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoProgressEvent.IsFinalFieldNumber">
+            <summary>Field number for the "is_final" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoProgressEvent.AccountDataFieldNumber">
+            <summary>Field number for the "account_data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoProgressEvent.ErrorCodeFieldNumber">
+            <summary>Field number for the "error_code" field.</summary>
         </member>
         <member name="T:mt5_term_api.Mt5TermApiHealthCheckReflection">
             <summary>Holder for reflection information generated from mt5-term-api-health-check.proto</summary>
@@ -6191,6 +7937,18 @@
             <summary>
             Buy order by Market
             </summary>
+        </member>
+        <member name="F:mt5_term_api.SymbolListReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.SymbolListReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.SymbolListReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.SymbolListData.SymbolsFieldNumber">
+            <summary>Field number for the "Symbols" field.</summary>
         </member>
         <member name="T:mt5_term_api.SymbolsTotalRequest">
             <summary>
@@ -8955,6 +10713,15 @@
         <member name="F:mt5_term_api.OrderSendData.ReturnedCodeDescriptionFieldNumber">
             <summary>Field number for the "returned_code_description" field.</summary>
         </member>
+        <member name="T:mt5_term_api.Mt5TermApiVncReflection">
+            <summary>Holder for reflection information generated from mt5-term-api-vnc.proto</summary>
+        </member>
+        <member name="P:mt5_term_api.Mt5TermApiVncReflection.Descriptor">
+            <summary>File descriptor for mt5-term-api-vnc.proto</summary>
+        </member>
+        <member name="F:mt5_term_api.VncData.PayloadFieldNumber">
+            <summary>Field number for the "payload" field.</summary>
+        </member>
         <member name="T:MetaRPC.CSharpMT5.MT5Account">
             <summary>
             Represents an MT5 trading account connected via gRPC.
@@ -11297,6 +13064,263 @@
         </member>
         <member name="F:Mt5TermApi.LogFileInfo.ContentFieldNumber">
             <summary>Field number for the "content" field.</summary>
+        </member>
+        <member name="T:mrpc_admin.AdminApi">
+            <summary>
+            ============================================================
+            Admin / diagnostics service.
+            Auth via admin_key (matched against the ADMIN_KEY env setting).
+            HTTP-transcoded for the /admin HTML page + cross-pod fan-out, but HIDDEN from
+            Swagger (excluded in SwaggerGen DocInclusionPredicate in Program.cs).
+            ============================================================
+            </summary>
+        </member>
+        <member name="P:mrpc_admin.AdminApi.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mrpc_admin.AdminApi.AdminApiBase">
+            <summary>Base class for server-side implementations of AdminApi</summary>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.ActiveTerminals(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Active terminals running on THIS pod.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.ActiveTerminalsCluster(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Active terminals across ALL pods of this StatefulSet/Deployment.
+            Lists peer pods via the Kubernetes API, then calls ActiveTerminals on each.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="T:mrpc_admin.AdminApi.AdminApiClient">
+            <summary>Client for AdminApi</summary>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for AdminApi</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for AdminApi that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ActiveTerminals(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Active terminals running on THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ActiveTerminals(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Active terminals running on THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ActiveTerminalsAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Active terminals running on THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ActiveTerminalsAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Active terminals running on THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ActiveTerminalsCluster(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Active terminals across ALL pods of this StatefulSet/Deployment.
+            Lists peer pods via the Kubernetes API, then calls ActiveTerminals on each.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ActiveTerminalsCluster(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Active terminals across ALL pods of this StatefulSet/Deployment.
+            Lists peer pods via the Kubernetes API, then calls ActiveTerminals on each.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ActiveTerminalsClusterAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Active terminals across ALL pods of this StatefulSet/Deployment.
+            Lists peer pods via the Kubernetes API, then calls ActiveTerminals on each.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ActiveTerminalsClusterAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Active terminals across ALL pods of this StatefulSet/Deployment.
+            Lists peer pods via the Kubernetes API, then calls ActiveTerminals on each.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.BindService(mrpc_admin.AdminApi.AdminApiBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.BindService(Grpc.Core.ServiceBinderBase,mrpc_admin.AdminApi.AdminApiBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="T:mrpc_admin.Mt5TermApiAdminReflection">
+            <summary>Holder for reflection information generated from mt5-term-api-admin.proto</summary>
+        </member>
+        <member name="P:mrpc_admin.Mt5TermApiAdminReflection.Descriptor">
+            <summary>File descriptor for mt5-term-api-admin.proto</summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.Id">
+            <summary>
+            terminal instance GUID (the `id` header)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.UserNumberFieldNumber">
+            <summary>Field number for the "user_number" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.UserNumber">
+            <summary>
+            MrpcTerminalUser&lt;N>
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.WindowsUserFieldNumber">
+            <summary>Field number for the "windows_user" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.WindowsUser">
+            <summary>
+            e.g. "MrpcTerminalUser3"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.AccountFieldNumber">
+            <summary>Field number for the "account" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.Account">
+            <summary>
+            MT login
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.ServerFieldNumber">
+            <summary>Field number for the "server" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.Server">
+            <summary>
+            broker / MT cluster name
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.PortFieldNumber">
+            <summary>Field number for the "port" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.Port">
+            <summary>
+            terminal api port
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.CreatedAtFieldNumber">
+            <summary>Field number for the "created_at" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.WindowsPasswordFieldNumber">
+            <summary>Field number for the "windows_password" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.WindowsPassword">
+            <summary>
+            RDP password for windows_user (admin-only)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.PodFieldNumber">
+            <summary>Field number for the "pod" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.NodeFieldNumber">
+            <summary>Field number for the "node" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.PodIpFieldNumber">
+            <summary>Field number for the "pod_ip" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.TerminalsFieldNumber">
+            <summary>Field number for the "terminals" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.PodFieldNumber">
+            <summary>Field number for the "pod" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.NodeFieldNumber">
+            <summary>Field number for the "node" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.PodIpFieldNumber">
+            <summary>Field number for the "pod_ip" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.NovncUrlFieldNumber">
+            <summary>Field number for the "novnc_url" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.PodTerminals.NovncUrl">
+            <summary>
+            link to the pod's noVNC viewer
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.TerminalsFieldNumber">
+            <summary>Field number for the "terminals" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.HostIpFieldNumber">
+            <summary>Field number for the "host_ip" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.PodTerminals.HostIp">
+            <summary>
+            node IP (for the RDP NodePort target)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.ActiveTerminalsClusterReply.PodsFieldNumber">
+            <summary>Field number for the "pods" field.</summary>
         </member>
     </members>
 </doc>

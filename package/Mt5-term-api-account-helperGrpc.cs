@@ -73,6 +73,10 @@ namespace mt5_term_api {
     static readonly grpc::Marshaller<global::mt5_term_api.PositionsHistoryRequest> __Marshaller_mt5_term_api_PositionsHistoryRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.PositionsHistoryRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.PositionsHistoryReply> __Marshaller_mt5_term_api_PositionsHistoryReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.PositionsHistoryReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.AllHistoryOrdersRequest> __Marshaller_mt5_term_api_AllHistoryOrdersRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.AllHistoryOrdersRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.AllHistoryOrdersReply> __Marshaller_mt5_term_api_AllHistoryOrdersReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.AllHistoryOrdersReply.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.AccountSummaryRequest, global::mt5_term_api.AccountSummaryReply> __Method_AccountSummary = new grpc::Method<global::mt5_term_api.AccountSummaryRequest, global::mt5_term_api.AccountSummaryReply>(
@@ -129,6 +133,14 @@ namespace mt5_term_api {
         "PositionsHistory",
         __Marshaller_mt5_term_api_PositionsHistoryRequest,
         __Marshaller_mt5_term_api_PositionsHistoryReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.AllHistoryOrdersRequest, global::mt5_term_api.AllHistoryOrdersReply> __Method_AllHistoryOrders = new grpc::Method<global::mt5_term_api.AllHistoryOrdersRequest, global::mt5_term_api.AllHistoryOrdersReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AllHistoryOrders",
+        __Marshaller_mt5_term_api_AllHistoryOrdersRequest,
+        __Marshaller_mt5_term_api_AllHistoryOrdersReply);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -225,6 +237,12 @@ namespace mt5_term_api {
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.PositionsHistoryReply> PositionsHistory(global::mt5_term_api.PositionsHistoryRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.AllHistoryOrdersReply> AllHistoryOrders(global::mt5_term_api.AllHistoryOrdersRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -614,6 +632,26 @@ namespace mt5_term_api {
       {
         return CallInvoker.AsyncUnaryCall(__Method_PositionsHistory, null, options, request);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.AllHistoryOrdersReply AllHistoryOrders(global::mt5_term_api.AllHistoryOrdersRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AllHistoryOrders(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.AllHistoryOrdersReply AllHistoryOrders(global::mt5_term_api.AllHistoryOrdersRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AllHistoryOrders, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.AllHistoryOrdersReply> AllHistoryOrdersAsync(global::mt5_term_api.AllHistoryOrdersRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AllHistoryOrdersAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.AllHistoryOrdersReply> AllHistoryOrdersAsync(global::mt5_term_api.AllHistoryOrdersRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AllHistoryOrders, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override AccountHelperClient NewInstance(ClientBaseConfiguration configuration)
@@ -634,7 +672,8 @@ namespace mt5_term_api {
           .AddMethod(__Method_OpenedOrdersTickets, serviceImpl.OpenedOrdersTickets)
           .AddMethod(__Method_SymbolParamsMany, serviceImpl.SymbolParamsMany)
           .AddMethod(__Method_TickValueWithSize, serviceImpl.TickValueWithSize)
-          .AddMethod(__Method_PositionsHistory, serviceImpl.PositionsHistory).Build();
+          .AddMethod(__Method_PositionsHistory, serviceImpl.PositionsHistory)
+          .AddMethod(__Method_AllHistoryOrders, serviceImpl.AllHistoryOrders).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -651,6 +690,7 @@ namespace mt5_term_api {
       serviceBinder.AddMethod(__Method_SymbolParamsMany, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.SymbolParamsManyRequest, global::mt5_term_api.SymbolParamsManyReply>(serviceImpl.SymbolParamsMany));
       serviceBinder.AddMethod(__Method_TickValueWithSize, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.TickValueWithSizeRequest, global::mt5_term_api.TickValueWithSizeReply>(serviceImpl.TickValueWithSize));
       serviceBinder.AddMethod(__Method_PositionsHistory, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.PositionsHistoryRequest, global::mt5_term_api.PositionsHistoryReply>(serviceImpl.PositionsHistory));
+      serviceBinder.AddMethod(__Method_AllHistoryOrders, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.AllHistoryOrdersRequest, global::mt5_term_api.AllHistoryOrdersReply>(serviceImpl.AllHistoryOrders));
     }
 
   }

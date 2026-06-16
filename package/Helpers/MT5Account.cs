@@ -161,15 +161,15 @@ namespace MetaRPC.CSharpMT5
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
 		public async Task ConnectByHostPortAsync(string host, int port = 443, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
+			// The ConnectRequest proto has no base_chart_symbol / wait_for_terminal_is_alive /
+			// terminal_readiness_waiting_timeout_seconds; only the connection timeout maps to a real field.
 			ConnectRequest request = new ConnectRequest
 			{
 				User = User,
 				Password = Password,
 				Host = host,
 				Port = port,
-				BaseChartSymbol = baseChartSymbol,
-				WaitForTerminalIsAlive = waitForTerminalIsAlive,
-				TerminalReadinessWaitingTimeoutSeconds = timeoutSeconds
+				TimeoutSeconds = (uint)timeoutSeconds
 			};
 			Metadata headers = null;
 			if (Id != default(Guid))
@@ -217,13 +217,15 @@ namespace MetaRPC.CSharpMT5
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
 		public async Task ConnectByServerNameAsync(string serverName, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
+			// ConnectExRequest has base_chart_symbol but no terminal_readiness_waiting_timeout_seconds —
+			// map the timeout to timeout_seconds.
 			ConnectExRequest request = new ConnectExRequest
 			{
 				User = User,
 				Password = Password,
 				MtClusterName = serverName,
 				BaseChartSymbol = baseChartSymbol,
-				TerminalReadinessWaitingTimeoutSeconds = timeoutSeconds
+				TimeoutSeconds = (uint)timeoutSeconds
 			};
 			Metadata headers = null;
 			if (Id != default(Guid))
