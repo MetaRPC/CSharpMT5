@@ -61,6 +61,22 @@ namespace mrpc_admin {
     static readonly grpc::Marshaller<global::mrpc_admin.ActiveTerminalsClusterReply> __Marshaller_mrpc_admin_ActiveTerminalsClusterReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.ActiveTerminalsClusterReply.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mrpc_admin.SystemUsageReply> __Marshaller_mrpc_admin_SystemUsageReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.SystemUsageReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.ListLogFilesReply> __Marshaller_mrpc_admin_ListLogFilesReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.ListLogFilesReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetLogFileRequest> __Marshaller_mrpc_admin_GetLogFileRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetLogFileRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetLogFileReply> __Marshaller_mrpc_admin_GetLogFileReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetLogFileReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetEventLogEntriesRequest> __Marshaller_mrpc_admin_GetEventLogEntriesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetEventLogEntriesRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetEventLogEntriesReply> __Marshaller_mrpc_admin_GetEventLogEntriesReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetEventLogEntriesReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.CaptureSessionScreenshotRequest> __Marshaller_mrpc_admin_CaptureSessionScreenshotRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.CaptureSessionScreenshotRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.CaptureSessionScreenshotReply> __Marshaller_mrpc_admin_CaptureSessionScreenshotReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.CaptureSessionScreenshotReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.CaptureSessionScreenshotOnPodRequest> __Marshaller_mrpc_admin_CaptureSessionScreenshotOnPodRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.CaptureSessionScreenshotOnPodRequest.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply> __Method_ActiveTerminals = new grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply>(
@@ -85,6 +101,46 @@ namespace mrpc_admin {
         "SystemUsage",
         __Marshaller_mrpc_admin_ActiveTerminalsRequest,
         __Marshaller_mrpc_admin_SystemUsageReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ListLogFilesReply> __Method_ListLogFiles = new grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ListLogFilesReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ListLogFiles",
+        __Marshaller_mrpc_admin_ActiveTerminalsRequest,
+        __Marshaller_mrpc_admin_ListLogFilesReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.GetLogFileRequest, global::mrpc_admin.GetLogFileReply> __Method_GetLogFile = new grpc::Method<global::mrpc_admin.GetLogFileRequest, global::mrpc_admin.GetLogFileReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetLogFile",
+        __Marshaller_mrpc_admin_GetLogFileRequest,
+        __Marshaller_mrpc_admin_GetLogFileReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.GetEventLogEntriesRequest, global::mrpc_admin.GetEventLogEntriesReply> __Method_GetEventLogEntries = new grpc::Method<global::mrpc_admin.GetEventLogEntriesRequest, global::mrpc_admin.GetEventLogEntriesReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetEventLogEntries",
+        __Marshaller_mrpc_admin_GetEventLogEntriesRequest,
+        __Marshaller_mrpc_admin_GetEventLogEntriesReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.CaptureSessionScreenshotRequest, global::mrpc_admin.CaptureSessionScreenshotReply> __Method_CaptureSessionScreenshot = new grpc::Method<global::mrpc_admin.CaptureSessionScreenshotRequest, global::mrpc_admin.CaptureSessionScreenshotReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CaptureSessionScreenshot",
+        __Marshaller_mrpc_admin_CaptureSessionScreenshotRequest,
+        __Marshaller_mrpc_admin_CaptureSessionScreenshotReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.CaptureSessionScreenshotOnPodRequest, global::mrpc_admin.CaptureSessionScreenshotReply> __Method_CaptureSessionScreenshotOnPod = new grpc::Method<global::mrpc_admin.CaptureSessionScreenshotOnPodRequest, global::mrpc_admin.CaptureSessionScreenshotReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "CaptureSessionScreenshotOnPod",
+        __Marshaller_mrpc_admin_CaptureSessionScreenshotOnPodRequest,
+        __Marshaller_mrpc_admin_CaptureSessionScreenshotReply);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -129,6 +185,76 @@ namespace mrpc_admin {
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.SystemUsageReply> SystemUsage(global::mrpc_admin.ActiveTerminalsRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+      /// install.log, boot-diag.log, and any future additions) - the exact files the container's
+      /// postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.ListLogFilesReply> ListLogFiles(global::mrpc_admin.ActiveTerminalsRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+      /// LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.GetLogFileReply> GetLogFile(global::mrpc_admin.GetLogFileRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+      /// shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+      /// service state change, available here without waiting for that trigger.
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.GetEventLogEntriesReply> GetEventLogEntries(global::mrpc_admin.GetEventLogEntriesRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Screenshot of a Windows interactive session's whole desktop - a specific
+      /// MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+      /// session, the one startup.bat runs in.
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.CaptureSessionScreenshotReply> CaptureSessionScreenshot(global::mrpc_admin.CaptureSessionScreenshotRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+      /// (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+      /// currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+      /// pod it's connected to relay the request.
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.CaptureSessionScreenshotReply> CaptureSessionScreenshotOnPod(global::mrpc_admin.CaptureSessionScreenshotOnPodRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -310,6 +436,286 @@ namespace mrpc_admin {
       {
         return CallInvoker.AsyncUnaryCall(__Method_SystemUsage, null, options, request);
       }
+      /// <summary>
+      /// Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+      /// install.log, boot-diag.log, and any future additions) - the exact files the container's
+      /// postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.ListLogFilesReply ListLogFiles(global::mrpc_admin.ActiveTerminalsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ListLogFiles(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+      /// install.log, boot-diag.log, and any future additions) - the exact files the container's
+      /// postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.ListLogFilesReply ListLogFiles(global::mrpc_admin.ActiveTerminalsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ListLogFiles, null, options, request);
+      }
+      /// <summary>
+      /// Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+      /// install.log, boot-diag.log, and any future additions) - the exact files the container's
+      /// postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.ListLogFilesReply> ListLogFilesAsync(global::mrpc_admin.ActiveTerminalsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ListLogFilesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+      /// install.log, boot-diag.log, and any future additions) - the exact files the container's
+      /// postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.ListLogFilesReply> ListLogFilesAsync(global::mrpc_admin.ActiveTerminalsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ListLogFiles, null, options, request);
+      }
+      /// <summary>
+      /// Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+      /// LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetLogFileReply GetLogFile(global::mrpc_admin.GetLogFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetLogFile(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+      /// LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetLogFileReply GetLogFile(global::mrpc_admin.GetLogFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetLogFile, null, options, request);
+      }
+      /// <summary>
+      /// Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+      /// LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetLogFileReply> GetLogFileAsync(global::mrpc_admin.GetLogFileRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetLogFileAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+      /// LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetLogFileReply> GetLogFileAsync(global::mrpc_admin.GetLogFileRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetLogFile, null, options, request);
+      }
+      /// <summary>
+      /// On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+      /// shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+      /// service state change, available here without waiting for that trigger.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetEventLogEntriesReply GetEventLogEntries(global::mrpc_admin.GetEventLogEntriesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetEventLogEntries(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+      /// shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+      /// service state change, available here without waiting for that trigger.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetEventLogEntriesReply GetEventLogEntries(global::mrpc_admin.GetEventLogEntriesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetEventLogEntries, null, options, request);
+      }
+      /// <summary>
+      /// On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+      /// shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+      /// service state change, available here without waiting for that trigger.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetEventLogEntriesReply> GetEventLogEntriesAsync(global::mrpc_admin.GetEventLogEntriesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetEventLogEntriesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+      /// shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+      /// service state change, available here without waiting for that trigger.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetEventLogEntriesReply> GetEventLogEntriesAsync(global::mrpc_admin.GetEventLogEntriesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetEventLogEntries, null, options, request);
+      }
+      /// <summary>
+      /// Screenshot of a Windows interactive session's whole desktop - a specific
+      /// MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+      /// session, the one startup.bat runs in.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.CaptureSessionScreenshotReply CaptureSessionScreenshot(global::mrpc_admin.CaptureSessionScreenshotRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CaptureSessionScreenshot(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Screenshot of a Windows interactive session's whole desktop - a specific
+      /// MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+      /// session, the one startup.bat runs in.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.CaptureSessionScreenshotReply CaptureSessionScreenshot(global::mrpc_admin.CaptureSessionScreenshotRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CaptureSessionScreenshot, null, options, request);
+      }
+      /// <summary>
+      /// Screenshot of a Windows interactive session's whole desktop - a specific
+      /// MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+      /// session, the one startup.bat runs in.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.CaptureSessionScreenshotReply> CaptureSessionScreenshotAsync(global::mrpc_admin.CaptureSessionScreenshotRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CaptureSessionScreenshotAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Screenshot of a Windows interactive session's whole desktop - a specific
+      /// MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+      /// session, the one startup.bat runs in.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.CaptureSessionScreenshotReply> CaptureSessionScreenshotAsync(global::mrpc_admin.CaptureSessionScreenshotRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CaptureSessionScreenshot, null, options, request);
+      }
+      /// <summary>
+      /// Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+      /// (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+      /// currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+      /// pod it's connected to relay the request.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.CaptureSessionScreenshotReply CaptureSessionScreenshotOnPod(global::mrpc_admin.CaptureSessionScreenshotOnPodRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CaptureSessionScreenshotOnPod(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+      /// (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+      /// currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+      /// pod it's connected to relay the request.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.CaptureSessionScreenshotReply CaptureSessionScreenshotOnPod(global::mrpc_admin.CaptureSessionScreenshotOnPodRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_CaptureSessionScreenshotOnPod, null, options, request);
+      }
+      /// <summary>
+      /// Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+      /// (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+      /// currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+      /// pod it's connected to relay the request.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.CaptureSessionScreenshotReply> CaptureSessionScreenshotOnPodAsync(global::mrpc_admin.CaptureSessionScreenshotOnPodRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CaptureSessionScreenshotOnPodAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+      /// (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+      /// currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+      /// pod it's connected to relay the request.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.CaptureSessionScreenshotReply> CaptureSessionScreenshotOnPodAsync(global::mrpc_admin.CaptureSessionScreenshotOnPodRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_CaptureSessionScreenshotOnPod, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override AdminApiClient NewInstance(ClientBaseConfiguration configuration)
@@ -326,7 +732,12 @@ namespace mrpc_admin {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_ActiveTerminals, serviceImpl.ActiveTerminals)
           .AddMethod(__Method_ActiveTerminalsCluster, serviceImpl.ActiveTerminalsCluster)
-          .AddMethod(__Method_SystemUsage, serviceImpl.SystemUsage).Build();
+          .AddMethod(__Method_SystemUsage, serviceImpl.SystemUsage)
+          .AddMethod(__Method_ListLogFiles, serviceImpl.ListLogFiles)
+          .AddMethod(__Method_GetLogFile, serviceImpl.GetLogFile)
+          .AddMethod(__Method_GetEventLogEntries, serviceImpl.GetEventLogEntries)
+          .AddMethod(__Method_CaptureSessionScreenshot, serviceImpl.CaptureSessionScreenshot)
+          .AddMethod(__Method_CaptureSessionScreenshotOnPod, serviceImpl.CaptureSessionScreenshotOnPod).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -339,6 +750,11 @@ namespace mrpc_admin {
       serviceBinder.AddMethod(__Method_ActiveTerminals, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply>(serviceImpl.ActiveTerminals));
       serviceBinder.AddMethod(__Method_ActiveTerminalsCluster, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsClusterReply>(serviceImpl.ActiveTerminalsCluster));
       serviceBinder.AddMethod(__Method_SystemUsage, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.SystemUsageReply>(serviceImpl.SystemUsage));
+      serviceBinder.AddMethod(__Method_ListLogFiles, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ListLogFilesReply>(serviceImpl.ListLogFiles));
+      serviceBinder.AddMethod(__Method_GetLogFile, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.GetLogFileRequest, global::mrpc_admin.GetLogFileReply>(serviceImpl.GetLogFile));
+      serviceBinder.AddMethod(__Method_GetEventLogEntries, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.GetEventLogEntriesRequest, global::mrpc_admin.GetEventLogEntriesReply>(serviceImpl.GetEventLogEntries));
+      serviceBinder.AddMethod(__Method_CaptureSessionScreenshot, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.CaptureSessionScreenshotRequest, global::mrpc_admin.CaptureSessionScreenshotReply>(serviceImpl.CaptureSessionScreenshot));
+      serviceBinder.AddMethod(__Method_CaptureSessionScreenshotOnPod, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.CaptureSessionScreenshotOnPodRequest, global::mrpc_admin.CaptureSessionScreenshotReply>(serviceImpl.CaptureSessionScreenshotOnPod));
     }
 
   }

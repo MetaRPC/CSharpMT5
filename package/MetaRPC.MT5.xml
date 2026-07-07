@@ -13118,6 +13118,56 @@
             <param name="context">The context of the server-side call handler being invoked.</param>
             <returns>The response to send back to the client (wrapped by a task).</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.ListLogFiles(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+            install.log, boot-diag.log, and any future additions) - the exact files the container's
+            postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.GetLogFile(mrpc_admin.GetLogFileRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+            LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.GetEventLogEntries(mrpc_admin.GetEventLogEntriesRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+            shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+            service state change, available here without waiting for that trigger.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.CaptureSessionScreenshot(mrpc_admin.CaptureSessionScreenshotRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Screenshot of a Windows interactive session's whole desktop - a specific
+            MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+            session, the one startup.bat runs in.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.CaptureSessionScreenshotOnPod(mrpc_admin.CaptureSessionScreenshotOnPodRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+            (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+            currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+            pod it's connected to relay the request.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
         <member name="T:mrpc_admin.AdminApi.AdminApiClient">
             <summary>Client for AdminApi</summary>
         </member>
@@ -13248,6 +13298,226 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ListLogFiles(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+            install.log, boot-diag.log, and any future additions) - the exact files the container's
+            postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ListLogFiles(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+            install.log, boot-diag.log, and any future additions) - the exact files the container's
+            postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ListLogFilesAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+            install.log, boot-diag.log, and any future additions) - the exact files the container's
+            postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.ListLogFilesAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Lists the diagnostic log files on \\host.lan\Data\logs (mrpc.log, startup.log,
+            install.log, boot-diag.log, and any future additions) - the exact files the container's
+            postStart hook tails into "kubectl logs", readable here without cluster/kubectl access.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetLogFile(mrpc_admin.GetLogFileRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+            LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetLogFile(mrpc_admin.GetLogFileRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+            LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetLogFileAsync(mrpc_admin.GetLogFileRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+            LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetLogFileAsync(mrpc_admin.GetLogFileRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Content of one log file from \\host.lan\Data\logs (see ListLogFiles). Truncated to the
+            LAST max_bytes bytes if larger (0 = server default, 256 KiB).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetEventLogEntries(mrpc_admin.GetEventLogEntriesRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+            shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+            service state change, available here without waiting for that trigger.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetEventLogEntries(mrpc_admin.GetEventLogEntriesRequest,Grpc.Core.CallOptions)">
+            <summary>
+            On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+            shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+            service state change, available here without waiting for that trigger.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetEventLogEntriesAsync(mrpc_admin.GetEventLogEntriesRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+            shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+            service state change, available here without waiting for that trigger.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetEventLogEntriesAsync(mrpc_admin.GetEventLogEntriesRequest,Grpc.Core.CallOptions)">
+            <summary>
+            On-demand dump of recent Windows Event Log entries (Service Control Manager events,
+            shutdown/restart events, Application errors) - the same data boot-diag.bat captures on a
+            service state change, available here without waiting for that trigger.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.CaptureSessionScreenshot(mrpc_admin.CaptureSessionScreenshotRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Screenshot of a Windows interactive session's whole desktop - a specific
+            MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+            session, the one startup.bat runs in.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.CaptureSessionScreenshot(mrpc_admin.CaptureSessionScreenshotRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Screenshot of a Windows interactive session's whole desktop - a specific
+            MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+            session, the one startup.bat runs in.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.CaptureSessionScreenshotAsync(mrpc_admin.CaptureSessionScreenshotRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Screenshot of a Windows interactive session's whole desktop - a specific
+            MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+            session, the one startup.bat runs in.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.CaptureSessionScreenshotAsync(mrpc_admin.CaptureSessionScreenshotRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Screenshot of a Windows interactive session's whole desktop - a specific
+            MrpcTerminalUser&lt;N> session, or (if session_user_name is empty) the pod's main/autologon
+            session, the one startup.bat runs in.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.CaptureSessionScreenshotOnPod(mrpc_admin.CaptureSessionScreenshotOnPodRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+            (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+            currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+            pod it's connected to relay the request.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.CaptureSessionScreenshotOnPod(mrpc_admin.CaptureSessionScreenshotOnPodRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+            (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+            currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+            pod it's connected to relay the request.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.CaptureSessionScreenshotOnPodAsync(mrpc_admin.CaptureSessionScreenshotOnPodRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+            (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+            currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+            pod it's connected to relay the request.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.CaptureSessionScreenshotOnPodAsync(mrpc_admin.CaptureSessionScreenshotOnPodRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Same as CaptureSessionScreenshot, but fanned out from THIS pod to a DIFFERENT pod by IP
+            (mirroring the ActiveTerminalsCluster fan-out) - a browser can only reach the pod that is
+            currently serving it, not other pods' ClusterIPs, so the cluster admin view asks whichever
+            pod it's connected to relay the request.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mrpc_admin.AdminApi.AdminApiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -13266,6 +13536,113 @@
         </member>
         <member name="P:mrpc_admin.Mt5TermApiAdminReflection.Descriptor">
             <summary>File descriptor for mt5-term-api-admin.proto</summary>
+        </member>
+        <member name="F:mrpc_admin.ListLogFilesReply.FilesFieldNumber">
+            <summary>Field number for the "files" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.ListLogFilesReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.LogFileEntry.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.LogFileEntry.SizeBytesFieldNumber">
+            <summary>Field number for the "size_bytes" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.LogFileEntry.ModifiedAtFieldNumber">
+            <summary>Field number for the "modified_at" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.GetLogFileRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.GetLogFileRequest.FileNameFieldNumber">
+            <summary>Field number for the "file_name" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.GetLogFileRequest.MaxBytesFieldNumber">
+            <summary>Field number for the "max_bytes" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.GetLogFileRequest.MaxBytes">
+            <summary>
+            0 = server default (last 256 KiB)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.GetLogFileReply.ContentFieldNumber">
+            <summary>Field number for the "content" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.GetLogFileReply.TruncatedFieldNumber">
+            <summary>Field number for the "truncated" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.GetLogFileReply.TotalSizeBytesFieldNumber">
+            <summary>Field number for the "total_size_bytes" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.GetLogFileReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.GetEventLogEntriesRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.GetEventLogEntriesRequest.LogNameFieldNumber">
+            <summary>Field number for the "log_name" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.GetEventLogEntriesRequest.LogName">
+            <summary>
+            "System" or "Application"; default "System"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.GetEventLogEntriesRequest.MaxCountFieldNumber">
+            <summary>Field number for the "max_count" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.GetEventLogEntriesRequest.MaxCount">
+            <summary>
+            0 = server default (30)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.GetEventLogEntriesReply.EntriesFieldNumber">
+            <summary>Field number for the "entries" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.GetEventLogEntriesReply.Entries">
+            <summary>
+            one formatted entry per element (time/level/source/message)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.GetEventLogEntriesReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.CaptureSessionScreenshotRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.CaptureSessionScreenshotRequest.SessionUserNameFieldNumber">
+            <summary>Field number for the "session_user_name" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.CaptureSessionScreenshotRequest.SessionUserName">
+            <summary>
+            empty = the pod's main/autologon session
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.CaptureSessionScreenshotOnPodRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.CaptureSessionScreenshotOnPodRequest.PodIpFieldNumber">
+            <summary>Field number for the "pod_ip" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.CaptureSessionScreenshotOnPodRequest.PodIp">
+            <summary>
+            target pod's ClusterIP (from ActiveTerminalsCluster)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.CaptureSessionScreenshotOnPodRequest.SessionUserNameFieldNumber">
+            <summary>Field number for the "session_user_name" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.CaptureSessionScreenshotOnPodRequest.SessionUserName">
+            <summary>
+            empty = the target pod's main/autologon session
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.CaptureSessionScreenshotReply.ImagePngFieldNumber">
+            <summary>Field number for the "image_png" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.CaptureSessionScreenshotReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
         </member>
         <member name="F:mrpc_admin.UsageSample.TimeFieldNumber">
             <summary>Field number for the "time" field.</summary>
