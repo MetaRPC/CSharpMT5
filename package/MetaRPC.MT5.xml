@@ -13168,6 +13168,19 @@
             <param name="context">The context of the server-side call handler being invoked.</param>
             <returns>The response to send back to the client (wrapped by a task).</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.RefreshMrpcRest(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Runs, in-process (LocalSystem, no guest logon/SSH needed), the same refresh
+            startup.bat performs on a successful ONLOGON boot: robocopy published-app (including
+            mrpc-rest) from the host share, then create/start MrpcRestService. Exists because
+            ONLOGON is unreliable (autologon-dependent) - this lets a stuck deploy be repaired
+            through the Terminal Manager's own already-running gRPC/HTTP API instead of waiting
+            on that trigger or requiring interactive guest access.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
         <member name="T:mrpc_admin.AdminApi.AdminApiClient">
             <summary>Client for AdminApi</summary>
         </member>
@@ -13518,6 +13531,62 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.RefreshMrpcRest(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Runs, in-process (LocalSystem, no guest logon/SSH needed), the same refresh
+            startup.bat performs on a successful ONLOGON boot: robocopy published-app (including
+            mrpc-rest) from the host share, then create/start MrpcRestService. Exists because
+            ONLOGON is unreliable (autologon-dependent) - this lets a stuck deploy be repaired
+            through the Terminal Manager's own already-running gRPC/HTTP API instead of waiting
+            on that trigger or requiring interactive guest access.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.RefreshMrpcRest(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Runs, in-process (LocalSystem, no guest logon/SSH needed), the same refresh
+            startup.bat performs on a successful ONLOGON boot: robocopy published-app (including
+            mrpc-rest) from the host share, then create/start MrpcRestService. Exists because
+            ONLOGON is unreliable (autologon-dependent) - this lets a stuck deploy be repaired
+            through the Terminal Manager's own already-running gRPC/HTTP API instead of waiting
+            on that trigger or requiring interactive guest access.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.RefreshMrpcRestAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Runs, in-process (LocalSystem, no guest logon/SSH needed), the same refresh
+            startup.bat performs on a successful ONLOGON boot: robocopy published-app (including
+            mrpc-rest) from the host share, then create/start MrpcRestService. Exists because
+            ONLOGON is unreliable (autologon-dependent) - this lets a stuck deploy be repaired
+            through the Terminal Manager's own already-running gRPC/HTTP API instead of waiting
+            on that trigger or requiring interactive guest access.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.RefreshMrpcRestAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Runs, in-process (LocalSystem, no guest logon/SSH needed), the same refresh
+            startup.bat performs on a successful ONLOGON boot: robocopy published-app (including
+            mrpc-rest) from the host share, then create/start MrpcRestService. Exists because
+            ONLOGON is unreliable (autologon-dependent) - this lets a stuck deploy be repaired
+            through the Terminal Manager's own already-running gRPC/HTTP API instead of waiting
+            on that trigger or requiring interactive guest access.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mrpc_admin.AdminApi.AdminApiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -13642,6 +13711,15 @@
             <summary>Field number for the "image_png" field.</summary>
         </member>
         <member name="F:mrpc_admin.CaptureSessionScreenshotReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.RefreshMrpcRestReply.SuccessFieldNumber">
+            <summary>Field number for the "success" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.RefreshMrpcRestReply.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.RefreshMrpcRestReply.ErrorFieldNumber">
             <summary>Field number for the "error" field.</summary>
         </member>
         <member name="F:mrpc_admin.UsageSample.TimeFieldNumber">
