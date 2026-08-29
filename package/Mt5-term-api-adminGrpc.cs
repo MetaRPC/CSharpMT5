@@ -79,6 +79,22 @@ namespace mrpc_admin {
     static readonly grpc::Marshaller<global::mrpc_admin.CaptureSessionScreenshotOnPodRequest> __Marshaller_mrpc_admin_CaptureSessionScreenshotOnPodRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.CaptureSessionScreenshotOnPodRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mrpc_admin.RefreshMrpcRestReply> __Marshaller_mrpc_admin_RefreshMrpcRestReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.RefreshMrpcRestReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.VersionRequest> __Marshaller_mrpc_admin_VersionRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.VersionRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.VersionReply> __Marshaller_mrpc_admin_VersionReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.VersionReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetTerminalJournalRequest> __Marshaller_mrpc_admin_GetTerminalJournalRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetTerminalJournalRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetTerminalJournalReply> __Marshaller_mrpc_admin_GetTerminalJournalReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetTerminalJournalReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetAllLogsRequest> __Marshaller_mrpc_admin_GetAllLogsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetAllLogsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetAllLogsReply> __Marshaller_mrpc_admin_GetAllLogsReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetAllLogsReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetSessionRestoreLogsRequest> __Marshaller_mrpc_admin_GetSessionRestoreLogsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetSessionRestoreLogsRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.GetSessionRestoreLogsReply> __Marshaller_mrpc_admin_GetSessionRestoreLogsReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.GetSessionRestoreLogsReply.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply> __Method_ActiveTerminals = new grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply>(
@@ -151,6 +167,38 @@ namespace mrpc_admin {
         "RefreshMrpcRest",
         __Marshaller_mrpc_admin_ActiveTerminalsRequest,
         __Marshaller_mrpc_admin_RefreshMrpcRestReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.VersionRequest, global::mrpc_admin.VersionReply> __Method_GetVersion = new grpc::Method<global::mrpc_admin.VersionRequest, global::mrpc_admin.VersionReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetVersion",
+        __Marshaller_mrpc_admin_VersionRequest,
+        __Marshaller_mrpc_admin_VersionReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.GetTerminalJournalRequest, global::mrpc_admin.GetTerminalJournalReply> __Method_GetTerminalJournal = new grpc::Method<global::mrpc_admin.GetTerminalJournalRequest, global::mrpc_admin.GetTerminalJournalReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetTerminalJournal",
+        __Marshaller_mrpc_admin_GetTerminalJournalRequest,
+        __Marshaller_mrpc_admin_GetTerminalJournalReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.GetAllLogsRequest, global::mrpc_admin.GetAllLogsReply> __Method_GetAllLogs = new grpc::Method<global::mrpc_admin.GetAllLogsRequest, global::mrpc_admin.GetAllLogsReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetAllLogs",
+        __Marshaller_mrpc_admin_GetAllLogsRequest,
+        __Marshaller_mrpc_admin_GetAllLogsReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.GetSessionRestoreLogsRequest, global::mrpc_admin.GetSessionRestoreLogsReply> __Method_GetSessionRestoreLogs = new grpc::Method<global::mrpc_admin.GetSessionRestoreLogsRequest, global::mrpc_admin.GetSessionRestoreLogsReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetSessionRestoreLogs",
+        __Marshaller_mrpc_admin_GetSessionRestoreLogsRequest,
+        __Marshaller_mrpc_admin_GetSessionRestoreLogsReply);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -282,6 +330,64 @@ namespace mrpc_admin {
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.RefreshMrpcRestReply> RefreshMrpcRest(global::mrpc_admin.ActiveTerminalsRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Build/version identity of the Terminal Manager running on THIS pod, so a deploy can be
+      /// VERIFIED rather than guessed. No admin_key required - it exposes no secrets. mrpc-rest
+      /// transcodes GET /version-tm onto this (its own build is at GET /version).
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.VersionReply> GetVersion(global::mrpc_admin.VersionRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Diagnostic MT5/MT4 journal for a SPECIFIC terminal instance on THIS pod: reads the terminal's
+      /// own journal (logs\*.log) and the expert/script journal (MQL5\logs\*.log) straight from the
+      /// terminal's working directory. Lets us see WHY a terminal failed to start / log in to the broker
+      /// without RDP/noVNC access. The terminal must live on the pod serving this request (its record
+      /// must be in the local registry); if it is on another pod or was already cleaned up, `error` says so.
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.GetTerminalJournalReply> GetTerminalJournal(global::mrpc_admin.GetTerminalJournalRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// One-shot bundle of EVERY diagnostic log available on this pod: every *.log file on the
+      /// shared Data folder AND in C:\OEM (mrpc.log, mrpc-rest.log, boot-diag.log, startup.log,
+      /// install.log, ...), plus the Windows Application + System event logs. Each entry carries a
+      /// tail of its content so a single call gives the full diagnostic picture for the pod without
+      /// needing to know file names up front (contrast ListLogFiles + N× GetLogFile).
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.GetAllLogsReply> GetAllLogs(global::mrpc_admin.GetAllLogsRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Session restore logs for the latest startup sequence on a pod (stored in MongoDB session_restore_logs).
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.GetSessionRestoreLogsReply> GetSessionRestoreLogs(global::mrpc_admin.GetSessionRestoreLogsRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -811,6 +917,238 @@ namespace mrpc_admin {
       {
         return CallInvoker.AsyncUnaryCall(__Method_RefreshMrpcRest, null, options, request);
       }
+      /// <summary>
+      /// Build/version identity of the Terminal Manager running on THIS pod, so a deploy can be
+      /// VERIFIED rather than guessed. No admin_key required - it exposes no secrets. mrpc-rest
+      /// transcodes GET /version-tm onto this (its own build is at GET /version).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.VersionReply GetVersion(global::mrpc_admin.VersionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetVersion(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Build/version identity of the Terminal Manager running on THIS pod, so a deploy can be
+      /// VERIFIED rather than guessed. No admin_key required - it exposes no secrets. mrpc-rest
+      /// transcodes GET /version-tm onto this (its own build is at GET /version).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.VersionReply GetVersion(global::mrpc_admin.VersionRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetVersion, null, options, request);
+      }
+      /// <summary>
+      /// Build/version identity of the Terminal Manager running on THIS pod, so a deploy can be
+      /// VERIFIED rather than guessed. No admin_key required - it exposes no secrets. mrpc-rest
+      /// transcodes GET /version-tm onto this (its own build is at GET /version).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.VersionReply> GetVersionAsync(global::mrpc_admin.VersionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetVersionAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Build/version identity of the Terminal Manager running on THIS pod, so a deploy can be
+      /// VERIFIED rather than guessed. No admin_key required - it exposes no secrets. mrpc-rest
+      /// transcodes GET /version-tm onto this (its own build is at GET /version).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.VersionReply> GetVersionAsync(global::mrpc_admin.VersionRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetVersion, null, options, request);
+      }
+      /// <summary>
+      /// Diagnostic MT5/MT4 journal for a SPECIFIC terminal instance on THIS pod: reads the terminal's
+      /// own journal (logs\*.log) and the expert/script journal (MQL5\logs\*.log) straight from the
+      /// terminal's working directory. Lets us see WHY a terminal failed to start / log in to the broker
+      /// without RDP/noVNC access. The terminal must live on the pod serving this request (its record
+      /// must be in the local registry); if it is on another pod or was already cleaned up, `error` says so.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetTerminalJournalReply GetTerminalJournal(global::mrpc_admin.GetTerminalJournalRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetTerminalJournal(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Diagnostic MT5/MT4 journal for a SPECIFIC terminal instance on THIS pod: reads the terminal's
+      /// own journal (logs\*.log) and the expert/script journal (MQL5\logs\*.log) straight from the
+      /// terminal's working directory. Lets us see WHY a terminal failed to start / log in to the broker
+      /// without RDP/noVNC access. The terminal must live on the pod serving this request (its record
+      /// must be in the local registry); if it is on another pod or was already cleaned up, `error` says so.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetTerminalJournalReply GetTerminalJournal(global::mrpc_admin.GetTerminalJournalRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetTerminalJournal, null, options, request);
+      }
+      /// <summary>
+      /// Diagnostic MT5/MT4 journal for a SPECIFIC terminal instance on THIS pod: reads the terminal's
+      /// own journal (logs\*.log) and the expert/script journal (MQL5\logs\*.log) straight from the
+      /// terminal's working directory. Lets us see WHY a terminal failed to start / log in to the broker
+      /// without RDP/noVNC access. The terminal must live on the pod serving this request (its record
+      /// must be in the local registry); if it is on another pod or was already cleaned up, `error` says so.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetTerminalJournalReply> GetTerminalJournalAsync(global::mrpc_admin.GetTerminalJournalRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetTerminalJournalAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Diagnostic MT5/MT4 journal for a SPECIFIC terminal instance on THIS pod: reads the terminal's
+      /// own journal (logs\*.log) and the expert/script journal (MQL5\logs\*.log) straight from the
+      /// terminal's working directory. Lets us see WHY a terminal failed to start / log in to the broker
+      /// without RDP/noVNC access. The terminal must live on the pod serving this request (its record
+      /// must be in the local registry); if it is on another pod or was already cleaned up, `error` says so.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetTerminalJournalReply> GetTerminalJournalAsync(global::mrpc_admin.GetTerminalJournalRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetTerminalJournal, null, options, request);
+      }
+      /// <summary>
+      /// One-shot bundle of EVERY diagnostic log available on this pod: every *.log file on the
+      /// shared Data folder AND in C:\OEM (mrpc.log, mrpc-rest.log, boot-diag.log, startup.log,
+      /// install.log, ...), plus the Windows Application + System event logs. Each entry carries a
+      /// tail of its content so a single call gives the full diagnostic picture for the pod without
+      /// needing to know file names up front (contrast ListLogFiles + N× GetLogFile).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetAllLogsReply GetAllLogs(global::mrpc_admin.GetAllLogsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllLogs(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// One-shot bundle of EVERY diagnostic log available on this pod: every *.log file on the
+      /// shared Data folder AND in C:\OEM (mrpc.log, mrpc-rest.log, boot-diag.log, startup.log,
+      /// install.log, ...), plus the Windows Application + System event logs. Each entry carries a
+      /// tail of its content so a single call gives the full diagnostic picture for the pod without
+      /// needing to know file names up front (contrast ListLogFiles + N× GetLogFile).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetAllLogsReply GetAllLogs(global::mrpc_admin.GetAllLogsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetAllLogs, null, options, request);
+      }
+      /// <summary>
+      /// One-shot bundle of EVERY diagnostic log available on this pod: every *.log file on the
+      /// shared Data folder AND in C:\OEM (mrpc.log, mrpc-rest.log, boot-diag.log, startup.log,
+      /// install.log, ...), plus the Windows Application + System event logs. Each entry carries a
+      /// tail of its content so a single call gives the full diagnostic picture for the pod without
+      /// needing to know file names up front (contrast ListLogFiles + N× GetLogFile).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetAllLogsReply> GetAllLogsAsync(global::mrpc_admin.GetAllLogsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllLogsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// One-shot bundle of EVERY diagnostic log available on this pod: every *.log file on the
+      /// shared Data folder AND in C:\OEM (mrpc.log, mrpc-rest.log, boot-diag.log, startup.log,
+      /// install.log, ...), plus the Windows Application + System event logs. Each entry carries a
+      /// tail of its content so a single call gives the full diagnostic picture for the pod without
+      /// needing to know file names up front (contrast ListLogFiles + N× GetLogFile).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetAllLogsReply> GetAllLogsAsync(global::mrpc_admin.GetAllLogsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetAllLogs, null, options, request);
+      }
+      /// <summary>
+      /// Session restore logs for the latest startup sequence on a pod (stored in MongoDB session_restore_logs).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetSessionRestoreLogsReply GetSessionRestoreLogs(global::mrpc_admin.GetSessionRestoreLogsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetSessionRestoreLogs(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Session restore logs for the latest startup sequence on a pod (stored in MongoDB session_restore_logs).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.GetSessionRestoreLogsReply GetSessionRestoreLogs(global::mrpc_admin.GetSessionRestoreLogsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetSessionRestoreLogs, null, options, request);
+      }
+      /// <summary>
+      /// Session restore logs for the latest startup sequence on a pod (stored in MongoDB session_restore_logs).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetSessionRestoreLogsReply> GetSessionRestoreLogsAsync(global::mrpc_admin.GetSessionRestoreLogsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetSessionRestoreLogsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Session restore logs for the latest startup sequence on a pod (stored in MongoDB session_restore_logs).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.GetSessionRestoreLogsReply> GetSessionRestoreLogsAsync(global::mrpc_admin.GetSessionRestoreLogsRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetSessionRestoreLogs, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override AdminApiClient NewInstance(ClientBaseConfiguration configuration)
@@ -833,7 +1171,11 @@ namespace mrpc_admin {
           .AddMethod(__Method_GetEventLogEntries, serviceImpl.GetEventLogEntries)
           .AddMethod(__Method_CaptureSessionScreenshot, serviceImpl.CaptureSessionScreenshot)
           .AddMethod(__Method_CaptureSessionScreenshotOnPod, serviceImpl.CaptureSessionScreenshotOnPod)
-          .AddMethod(__Method_RefreshMrpcRest, serviceImpl.RefreshMrpcRest).Build();
+          .AddMethod(__Method_RefreshMrpcRest, serviceImpl.RefreshMrpcRest)
+          .AddMethod(__Method_GetVersion, serviceImpl.GetVersion)
+          .AddMethod(__Method_GetTerminalJournal, serviceImpl.GetTerminalJournal)
+          .AddMethod(__Method_GetAllLogs, serviceImpl.GetAllLogs)
+          .AddMethod(__Method_GetSessionRestoreLogs, serviceImpl.GetSessionRestoreLogs).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -852,6 +1194,10 @@ namespace mrpc_admin {
       serviceBinder.AddMethod(__Method_CaptureSessionScreenshot, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.CaptureSessionScreenshotRequest, global::mrpc_admin.CaptureSessionScreenshotReply>(serviceImpl.CaptureSessionScreenshot));
       serviceBinder.AddMethod(__Method_CaptureSessionScreenshotOnPod, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.CaptureSessionScreenshotOnPodRequest, global::mrpc_admin.CaptureSessionScreenshotReply>(serviceImpl.CaptureSessionScreenshotOnPod));
       serviceBinder.AddMethod(__Method_RefreshMrpcRest, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.RefreshMrpcRestReply>(serviceImpl.RefreshMrpcRest));
+      serviceBinder.AddMethod(__Method_GetVersion, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.VersionRequest, global::mrpc_admin.VersionReply>(serviceImpl.GetVersion));
+      serviceBinder.AddMethod(__Method_GetTerminalJournal, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.GetTerminalJournalRequest, global::mrpc_admin.GetTerminalJournalReply>(serviceImpl.GetTerminalJournal));
+      serviceBinder.AddMethod(__Method_GetAllLogs, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.GetAllLogsRequest, global::mrpc_admin.GetAllLogsReply>(serviceImpl.GetAllLogs));
+      serviceBinder.AddMethod(__Method_GetSessionRestoreLogs, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.GetSessionRestoreLogsRequest, global::mrpc_admin.GetSessionRestoreLogsReply>(serviceImpl.GetSessionRestoreLogs));
     }
 
   }

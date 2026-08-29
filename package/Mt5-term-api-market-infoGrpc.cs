@@ -112,6 +112,10 @@ namespace mt5_term_api {
     static readonly grpc::Marshaller<global::mt5_term_api.SymbolListRequest> __Marshaller_mt5_term_api_SymbolListRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.SymbolListRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.SymbolListReply> __Marshaller_mt5_term_api_SymbolListReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.SymbolListReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.PriceHistoryRequest> __Marshaller_mt5_term_api_PriceHistoryRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.PriceHistoryRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.PriceHistoryReply> __Marshaller_mt5_term_api_PriceHistoryReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.PriceHistoryReply.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.SymbolsTotalRequest, global::mt5_term_api.SymbolsTotalReply> __Method_SymbolsTotal = new grpc::Method<global::mt5_term_api.SymbolsTotalRequest, global::mt5_term_api.SymbolsTotalReply>(
@@ -240,6 +244,14 @@ namespace mt5_term_api {
         "SymbolList",
         __Marshaller_mt5_term_api_SymbolListRequest,
         __Marshaller_mt5_term_api_SymbolListReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.PriceHistoryRequest, global::mt5_term_api.PriceHistoryReply> __Method_PriceHistory = new grpc::Method<global::mt5_term_api.PriceHistoryRequest, global::mt5_term_api.PriceHistoryReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "PriceHistory",
+        __Marshaller_mt5_term_api_PriceHistoryRequest,
+        __Marshaller_mt5_term_api_PriceHistoryReply);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -454,6 +466,21 @@ namespace mt5_term_api {
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.SymbolListReply> SymbolList(global::mt5_term_api.SymbolListRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Historical bars for a symbol - what a chart is drawn from.
+      ///
+      /// This API had no such call, so a client holding a terminal id could list symbols, read a live
+      /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.PriceHistoryReply> PriceHistory(global::mt5_term_api.PriceHistoryRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1315,6 +1342,66 @@ namespace mt5_term_api {
       {
         return CallInvoker.AsyncUnaryCall(__Method_SymbolList, null, options, request);
       }
+      /// <summary>
+      /// Historical bars for a symbol - what a chart is drawn from.
+      ///
+      /// This API had no such call, so a client holding a terminal id could list symbols, read a live
+      /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.PriceHistoryReply PriceHistory(global::mt5_term_api.PriceHistoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return PriceHistory(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Historical bars for a symbol - what a chart is drawn from.
+      ///
+      /// This API had no such call, so a client holding a terminal id could list symbols, read a live
+      /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.PriceHistoryReply PriceHistory(global::mt5_term_api.PriceHistoryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_PriceHistory, null, options, request);
+      }
+      /// <summary>
+      /// Historical bars for a symbol - what a chart is drawn from.
+      ///
+      /// This API had no such call, so a client holding a terminal id could list symbols, read a live
+      /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.PriceHistoryReply> PriceHistoryAsync(global::mt5_term_api.PriceHistoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return PriceHistoryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Historical bars for a symbol - what a chart is drawn from.
+      ///
+      /// This API had no such call, so a client holding a terminal id could list symbols, read a live
+      /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.PriceHistoryReply> PriceHistoryAsync(global::mt5_term_api.PriceHistoryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_PriceHistory, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override MarketInfoClient NewInstance(ClientBaseConfiguration configuration)
@@ -1344,7 +1431,8 @@ namespace mt5_term_api {
           .AddMethod(__Method_MarketBookAdd, serviceImpl.MarketBookAdd)
           .AddMethod(__Method_MarketBookRelease, serviceImpl.MarketBookRelease)
           .AddMethod(__Method_MarketBookGet, serviceImpl.MarketBookGet)
-          .AddMethod(__Method_SymbolList, serviceImpl.SymbolList).Build();
+          .AddMethod(__Method_SymbolList, serviceImpl.SymbolList)
+          .AddMethod(__Method_PriceHistory, serviceImpl.PriceHistory).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -1370,6 +1458,7 @@ namespace mt5_term_api {
       serviceBinder.AddMethod(__Method_MarketBookRelease, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.MarketBookReleaseRequest, global::mt5_term_api.MarketBookReleaseReply>(serviceImpl.MarketBookRelease));
       serviceBinder.AddMethod(__Method_MarketBookGet, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.MarketBookGetRequest, global::mt5_term_api.MarketBookGetReply>(serviceImpl.MarketBookGet));
       serviceBinder.AddMethod(__Method_SymbolList, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.SymbolListRequest, global::mt5_term_api.SymbolListReply>(serviceImpl.SymbolList));
+      serviceBinder.AddMethod(__Method_PriceHistory, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.PriceHistoryRequest, global::mt5_term_api.PriceHistoryReply>(serviceImpl.PriceHistory));
     }
 
   }

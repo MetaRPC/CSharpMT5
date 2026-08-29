@@ -67,6 +67,14 @@ namespace mt5_term_api {
         __Marshaller_mt5_term_api_OrderSendReply);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.OrderSendRequest, global::mt5_term_api.OrderSendReply> __Method_OrderSendWithoutChecks = new grpc::Method<global::mt5_term_api.OrderSendRequest, global::mt5_term_api.OrderSendReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "OrderSendWithoutChecks",
+        __Marshaller_mt5_term_api_OrderSendRequest,
+        __Marshaller_mt5_term_api_OrderSendReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.OrderModifyRequest, global::mt5_term_api.OrderModifyReply> __Method_OrderModify = new grpc::Method<global::mt5_term_api.OrderModifyRequest, global::mt5_term_api.OrderModifyReply>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -94,12 +102,39 @@ namespace mt5_term_api {
     {
       /// <summary>
       /// Send market or pending order
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
       /// </summary>
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.OrderSendReply> OrderSend(global::mt5_term_api.OrderSendRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Send market or pending order immediately, with no Market Watch or quotes preparation.
+      /// Same request and reply as OrderSend, but nothing is checked first and quotes_wait_ms is
+      /// ignored. Use only for a symbol already known to be streaming; otherwise the trade server
+      /// rejects the order (ErrMarketLasttimeUnknown 4304 "no ticks" and friends).
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.OrderSendReply> OrderSendWithoutChecks(global::mt5_term_api.OrderSendRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -159,6 +194,12 @@ namespace mt5_term_api {
 
       /// <summary>
       /// Send market or pending order
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -172,6 +213,12 @@ namespace mt5_term_api {
       }
       /// <summary>
       /// Send market or pending order
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
@@ -183,6 +230,12 @@ namespace mt5_term_api {
       }
       /// <summary>
       /// Send market or pending order
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -196,6 +249,12 @@ namespace mt5_term_api {
       }
       /// <summary>
       /// Send market or pending order
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
@@ -204,6 +263,90 @@ namespace mt5_term_api {
       public virtual grpc::AsyncUnaryCall<global::mt5_term_api.OrderSendReply> OrderSendAsync(global::mt5_term_api.OrderSendRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_OrderSend, null, options, request);
+      }
+      /// <summary>
+      /// Send market or pending order immediately, with no Market Watch or quotes preparation.
+      /// Same request and reply as OrderSend, but nothing is checked first and quotes_wait_ms is
+      /// ignored. Use only for a symbol already known to be streaming; otherwise the trade server
+      /// rejects the order (ErrMarketLasttimeUnknown 4304 "no ticks" and friends).
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.OrderSendReply OrderSendWithoutChecks(global::mt5_term_api.OrderSendRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return OrderSendWithoutChecks(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Send market or pending order immediately, with no Market Watch or quotes preparation.
+      /// Same request and reply as OrderSend, but nothing is checked first and quotes_wait_ms is
+      /// ignored. Use only for a symbol already known to be streaming; otherwise the trade server
+      /// rejects the order (ErrMarketLasttimeUnknown 4304 "no ticks" and friends).
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.OrderSendReply OrderSendWithoutChecks(global::mt5_term_api.OrderSendRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_OrderSendWithoutChecks, null, options, request);
+      }
+      /// <summary>
+      /// Send market or pending order immediately, with no Market Watch or quotes preparation.
+      /// Same request and reply as OrderSend, but nothing is checked first and quotes_wait_ms is
+      /// ignored. Use only for a symbol already known to be streaming; otherwise the trade server
+      /// rejects the order (ErrMarketLasttimeUnknown 4304 "no ticks" and friends).
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.OrderSendReply> OrderSendWithoutChecksAsync(global::mt5_term_api.OrderSendRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return OrderSendWithoutChecksAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Send market or pending order immediately, with no Market Watch or quotes preparation.
+      /// Same request and reply as OrderSend, but nothing is checked first and quotes_wait_ms is
+      /// ignored. Use only for a symbol already known to be streaming; otherwise the trade server
+      /// rejects the order (ErrMarketLasttimeUnknown 4304 "no ticks" and friends).
+      /// [DefaultValues]
+      /// {
+      ///   "symbol": "EURUSD",
+      ///   "operation": "TMT5_ORDER_TYPE_BUY",
+      ///   "volume": "0.1"
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.OrderSendReply> OrderSendWithoutChecksAsync(global::mt5_term_api.OrderSendRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_OrderSendWithoutChecks, null, options, request);
       }
       /// <summary>
       /// Modify market or pending order
@@ -316,6 +459,7 @@ namespace mt5_term_api {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_OrderSend, serviceImpl.OrderSend)
+          .AddMethod(__Method_OrderSendWithoutChecks, serviceImpl.OrderSendWithoutChecks)
           .AddMethod(__Method_OrderModify, serviceImpl.OrderModify)
           .AddMethod(__Method_OrderClose, serviceImpl.OrderClose).Build();
     }
@@ -328,6 +472,7 @@ namespace mt5_term_api {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, TradingHelperBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_OrderSend, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.OrderSendRequest, global::mt5_term_api.OrderSendReply>(serviceImpl.OrderSend));
+      serviceBinder.AddMethod(__Method_OrderSendWithoutChecks, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.OrderSendRequest, global::mt5_term_api.OrderSendReply>(serviceImpl.OrderSendWithoutChecks));
       serviceBinder.AddMethod(__Method_OrderModify, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.OrderModifyRequest, global::mt5_term_api.OrderModifyReply>(serviceImpl.OrderModify));
       serviceBinder.AddMethod(__Method_OrderClose, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.OrderCloseRequest, global::mt5_term_api.OrderCloseReply>(serviceImpl.OrderClose));
     }
