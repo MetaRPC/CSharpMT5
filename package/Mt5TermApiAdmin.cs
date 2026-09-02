@@ -86,67 +86,68 @@ namespace mrpc_admin {
             "YW1fdXNlZF9tYhgCIAEoBBIUCgxyYW1fdG90YWxfbWIYAyABKAQSKAoHaGlz",
             "dG9yeRgEIAMoCzIXLm1ycGNfYWRtaW4uVXNhZ2VTYW1wbGUSDQoFZXJyb3IY",
             "BSABKAkiKwoWQWN0aXZlVGVybWluYWxzUmVxdWVzdBIRCglhZG1pbl9rZXkY",
-            "ASABKAki2gEKDFRlcm1pbmFsSW5mbxIKCgJpZBgBIAEoCRITCgt1c2VyX251",
+            "ASABKAkigAIKDFRlcm1pbmFsSW5mbxIKCgJpZBgBIAEoCRITCgt1c2VyX251",
             "bWJlchgCIAEoDRIUCgx3aW5kb3dzX3VzZXIYAyABKAkSDwoHYWNjb3VudBgE",
             "IAEoBBIOCgZzZXJ2ZXIYBSABKAkSDAoEcG9ydBgGIAEoDRIuCgpjcmVhdGVk",
             "X2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIYChB3aW5k",
-            "b3dzX3Bhc3N3b3JkGAggASgJEhEKBG5hbWUYCSABKAlIAIgBAUIHCgVfbmFt",
-            "ZSKuAgoUQWN0aXZlVGVybWluYWxzUmVwbHkSCwoDcG9kGAEgASgJEgwKBG5v",
-            "ZGUYAiABKAkSDgoGcG9kX2lwGAMgASgJEisKCXRlcm1pbmFscxgEIAMoCzIY",
-            "Lm1ycGNfYWRtaW4uVGVybWluYWxJbmZvEg0KBWVycm9yGAUgASgJEhMKC2Nw",
-            "dV9wZXJjZW50GAYgASgBEhMKC3JhbV91c2VkX21iGAcgASgEEhQKDHJhbV90",
-            "b3RhbF9tYhgIIAEoBBIuCg11c2FnZV9oaXN0b3J5GAkgAygLMhcubXJwY19h",
-            "ZG1pbi5Vc2FnZVNhbXBsZRI/Cg5yZXN0b3JlX3N0YXR1cxgKIAEoCzInLm1y",
-            "cGNfYWRtaW4uU2Vzc2lvblJlc3RvcmVXYXRjaGVyU3RhdHVzIsoCCgxQb2RU",
-            "ZXJtaW5hbHMSCwoDcG9kGAEgASgJEgwKBG5vZGUYAiABKAkSDgoGcG9kX2lw",
-            "GAMgASgJEhEKCW5vdm5jX3VybBgEIAEoCRIrCgl0ZXJtaW5hbHMYBSADKAsy",
-            "GC5tcnBjX2FkbWluLlRlcm1pbmFsSW5mbxINCgVlcnJvchgGIAEoCRIPCgdo",
-            "b3N0X2lwGAcgASgJEhMKC2NwdV9wZXJjZW50GAggASgBEhMKC3JhbV91c2Vk",
-            "X21iGAkgASgEEhQKDHJhbV90b3RhbF9tYhgKIAEoBBIuCg11c2FnZV9oaXN0",
-            "b3J5GAsgAygLMhcubXJwY19hZG1pbi5Vc2FnZVNhbXBsZRI/Cg5yZXN0b3Jl",
-            "X3N0YXR1cxgMIAEoCzInLm1ycGNfYWRtaW4uU2Vzc2lvblJlc3RvcmVXYXRj",
-            "aGVyU3RhdHVzIkUKG0FjdGl2ZVRlcm1pbmFsc0NsdXN0ZXJSZXBseRImCgRw",
-            "b2RzGAEgAygLMhgubXJwY19hZG1pbi5Qb2RUZXJtaW5hbHMytg0KCEFkbWlu",
-            "QXBpEnEKD0FjdGl2ZVRlcm1pbmFscxIiLm1ycGNfYWRtaW4uQWN0aXZlVGVy",
-            "bWluYWxzUmVxdWVzdBogLm1ycGNfYWRtaW4uQWN0aXZlVGVybWluYWxzUmVw",
-            "bHkiGILT5JMCEhIQL0FjdGl2ZVRlcm1pbmFscxKGAQoWQWN0aXZlVGVybWlu",
-            "YWxzQ2x1c3RlchIiLm1ycGNfYWRtaW4uQWN0aXZlVGVybWluYWxzUmVxdWVz",
-            "dBonLm1ycGNfYWRtaW4uQWN0aXZlVGVybWluYWxzQ2x1c3RlclJlcGx5Ih+C",
-            "0+STAhkSFy9BY3RpdmVUZXJtaW5hbHNDbHVzdGVyEmUKC1N5c3RlbVVzYWdl",
-            "EiIubXJwY19hZG1pbi5BY3RpdmVUZXJtaW5hbHNSZXF1ZXN0GhwubXJwY19h",
-            "ZG1pbi5TeXN0ZW1Vc2FnZVJlcGx5IhSC0+STAg4SDC9TeXN0ZW1Vc2FnZRJo",
-            "CgxMaXN0TG9nRmlsZXMSIi5tcnBjX2FkbWluLkFjdGl2ZVRlcm1pbmFsc1Jl",
-            "cXVlc3QaHS5tcnBjX2FkbWluLkxpc3RMb2dGaWxlc1JlcGx5IhWC0+STAg8S",
-            "DS9MaXN0TG9nRmlsZXMSXQoKR2V0TG9nRmlsZRIdLm1ycGNfYWRtaW4uR2V0",
-            "TG9nRmlsZVJlcXVlc3QaGy5tcnBjX2FkbWluLkdldExvZ0ZpbGVSZXBseSIT",
-            "gtPkkwINEgsvR2V0TG9nRmlsZRJ9ChJHZXRFdmVudExvZ0VudHJpZXMSJS5t",
-            "cnBjX2FkbWluLkdldEV2ZW50TG9nRW50cmllc1JlcXVlc3QaIy5tcnBjX2Fk",
-            "bWluLkdldEV2ZW50TG9nRW50cmllc1JlcGx5IhuC0+STAhUSEy9HZXRFdmVu",
-            "dExvZ0VudHJpZXMSlQEKGENhcHR1cmVTZXNzaW9uU2NyZWVuc2hvdBIrLm1y",
-            "cGNfYWRtaW4uQ2FwdHVyZVNlc3Npb25TY3JlZW5zaG90UmVxdWVzdBopLm1y",
-            "cGNfYWRtaW4uQ2FwdHVyZVNlc3Npb25TY3JlZW5zaG90UmVwbHkiIYLT5JMC",
-            "GxIZL0NhcHR1cmVTZXNzaW9uU2NyZWVuc2hvdBKkAQodQ2FwdHVyZVNlc3Np",
-            "b25TY3JlZW5zaG90T25Qb2QSMC5tcnBjX2FkbWluLkNhcHR1cmVTZXNzaW9u",
-            "U2NyZWVuc2hvdE9uUG9kUmVxdWVzdBopLm1ycGNfYWRtaW4uQ2FwdHVyZVNl",
-            "c3Npb25TY3JlZW5zaG90UmVwbHkiJoLT5JMCIBIeL0NhcHR1cmVTZXNzaW9u",
-            "U2NyZWVuc2hvdE9uUG9kEnEKD1JlZnJlc2hNcnBjUmVzdBIiLm1ycGNfYWRt",
-            "aW4uQWN0aXZlVGVybWluYWxzUmVxdWVzdBogLm1ycGNfYWRtaW4uUmVmcmVz",
-            "aE1ycGNSZXN0UmVwbHkiGILT5JMCEhIQL1JlZnJlc2hNcnBjUmVzdBJXCgpH",
-            "ZXRWZXJzaW9uEhoubXJwY19hZG1pbi5WZXJzaW9uUmVxdWVzdBoYLm1ycGNf",
-            "YWRtaW4uVmVyc2lvblJlcGx5IhOC0+STAg0SCy92ZXJzaW9uLXRtEn0KEkdl",
-            "dFRlcm1pbmFsSm91cm5hbBIlLm1ycGNfYWRtaW4uR2V0VGVybWluYWxKb3Vy",
-            "bmFsUmVxdWVzdBojLm1ycGNfYWRtaW4uR2V0VGVybWluYWxKb3VybmFsUmVw",
-            "bHkiG4LT5JMCFRITL0dldFRlcm1pbmFsSm91cm5hbBJdCgpHZXRBbGxMb2dz",
-            "Eh0ubXJwY19hZG1pbi5HZXRBbGxMb2dzUmVxdWVzdBobLm1ycGNfYWRtaW4u",
-            "R2V0QWxsTG9nc1JlcGx5IhOC0+STAg0SCy9HZXRBbGxMb2dzEokBChVHZXRT",
-            "ZXNzaW9uUmVzdG9yZUxvZ3MSKC5tcnBjX2FkbWluLkdldFNlc3Npb25SZXN0",
-            "b3JlTG9nc1JlcXVlc3QaJi5tcnBjX2FkbWluLkdldFNlc3Npb25SZXN0b3Jl",
-            "TG9nc1JlcGx5Ih6C0+STAhgSFi9HZXRTZXNzaW9uUmVzdG9yZUxvZ3MSiQEK",
-            "F0dldFNlc3Npb25SZXN0b3JlU3RhdHVzEiIubXJwY19hZG1pbi5BY3RpdmVU",
-            "ZXJtaW5hbHNSZXF1ZXN0GigubXJwY19hZG1pbi5HZXRTZXNzaW9uUmVzdG9y",
-            "ZVN0YXR1c1JlcGx5IiCC0+STAhoSGC9HZXRTZXNzaW9uUmVzdG9yZVN0YXR1",
-            "c0JAWjFnaXQubXRhcGkuaW8vcm9vdC9tcnBjLXByb3RvLmdpdC9tdDUvbGli",
-            "cmFyaWVzL2dvqgIKbXJwY19hZG1pbmIGcHJvdG8z"));
+            "b3dzX3Bhc3N3b3JkGAggASgJEhEKBG5hbWUYCSABKAlIAIgBARINCgVzdGF0",
+            "ZRgKIAEoCRIVCg1lcnJvcl9tZXNzYWdlGAsgASgJQgcKBV9uYW1lIq4CChRB",
+            "Y3RpdmVUZXJtaW5hbHNSZXBseRILCgNwb2QYASABKAkSDAoEbm9kZRgCIAEo",
+            "CRIOCgZwb2RfaXAYAyABKAkSKwoJdGVybWluYWxzGAQgAygLMhgubXJwY19h",
+            "ZG1pbi5UZXJtaW5hbEluZm8SDQoFZXJyb3IYBSABKAkSEwoLY3B1X3BlcmNl",
+            "bnQYBiABKAESEwoLcmFtX3VzZWRfbWIYByABKAQSFAoMcmFtX3RvdGFsX21i",
+            "GAggASgEEi4KDXVzYWdlX2hpc3RvcnkYCSADKAsyFy5tcnBjX2FkbWluLlVz",
+            "YWdlU2FtcGxlEj8KDnJlc3RvcmVfc3RhdHVzGAogASgLMicubXJwY19hZG1p",
+            "bi5TZXNzaW9uUmVzdG9yZVdhdGNoZXJTdGF0dXMiygIKDFBvZFRlcm1pbmFs",
+            "cxILCgNwb2QYASABKAkSDAoEbm9kZRgCIAEoCRIOCgZwb2RfaXAYAyABKAkS",
+            "EQoJbm92bmNfdXJsGAQgASgJEisKCXRlcm1pbmFscxgFIAMoCzIYLm1ycGNf",
+            "YWRtaW4uVGVybWluYWxJbmZvEg0KBWVycm9yGAYgASgJEg8KB2hvc3RfaXAY",
+            "ByABKAkSEwoLY3B1X3BlcmNlbnQYCCABKAESEwoLcmFtX3VzZWRfbWIYCSAB",
+            "KAQSFAoMcmFtX3RvdGFsX21iGAogASgEEi4KDXVzYWdlX2hpc3RvcnkYCyAD",
+            "KAsyFy5tcnBjX2FkbWluLlVzYWdlU2FtcGxlEj8KDnJlc3RvcmVfc3RhdHVz",
+            "GAwgASgLMicubXJwY19hZG1pbi5TZXNzaW9uUmVzdG9yZVdhdGNoZXJTdGF0",
+            "dXMiRQobQWN0aXZlVGVybWluYWxzQ2x1c3RlclJlcGx5EiYKBHBvZHMYASAD",
+            "KAsyGC5tcnBjX2FkbWluLlBvZFRlcm1pbmFsczK2DQoIQWRtaW5BcGkScQoP",
+            "QWN0aXZlVGVybWluYWxzEiIubXJwY19hZG1pbi5BY3RpdmVUZXJtaW5hbHNS",
+            "ZXF1ZXN0GiAubXJwY19hZG1pbi5BY3RpdmVUZXJtaW5hbHNSZXBseSIYgtPk",
+            "kwISEhAvQWN0aXZlVGVybWluYWxzEoYBChZBY3RpdmVUZXJtaW5hbHNDbHVz",
+            "dGVyEiIubXJwY19hZG1pbi5BY3RpdmVUZXJtaW5hbHNSZXF1ZXN0GicubXJw",
+            "Y19hZG1pbi5BY3RpdmVUZXJtaW5hbHNDbHVzdGVyUmVwbHkiH4LT5JMCGRIX",
+            "L0FjdGl2ZVRlcm1pbmFsc0NsdXN0ZXISZQoLU3lzdGVtVXNhZ2USIi5tcnBj",
+            "X2FkbWluLkFjdGl2ZVRlcm1pbmFsc1JlcXVlc3QaHC5tcnBjX2FkbWluLlN5",
+            "c3RlbVVzYWdlUmVwbHkiFILT5JMCDhIML1N5c3RlbVVzYWdlEmgKDExpc3RM",
+            "b2dGaWxlcxIiLm1ycGNfYWRtaW4uQWN0aXZlVGVybWluYWxzUmVxdWVzdBod",
+            "Lm1ycGNfYWRtaW4uTGlzdExvZ0ZpbGVzUmVwbHkiFYLT5JMCDxINL0xpc3RM",
+            "b2dGaWxlcxJdCgpHZXRMb2dGaWxlEh0ubXJwY19hZG1pbi5HZXRMb2dGaWxl",
+            "UmVxdWVzdBobLm1ycGNfYWRtaW4uR2V0TG9nRmlsZVJlcGx5IhOC0+STAg0S",
+            "Cy9HZXRMb2dGaWxlEn0KEkdldEV2ZW50TG9nRW50cmllcxIlLm1ycGNfYWRt",
+            "aW4uR2V0RXZlbnRMb2dFbnRyaWVzUmVxdWVzdBojLm1ycGNfYWRtaW4uR2V0",
+            "RXZlbnRMb2dFbnRyaWVzUmVwbHkiG4LT5JMCFRITL0dldEV2ZW50TG9nRW50",
+            "cmllcxKVAQoYQ2FwdHVyZVNlc3Npb25TY3JlZW5zaG90EisubXJwY19hZG1p",
+            "bi5DYXB0dXJlU2Vzc2lvblNjcmVlbnNob3RSZXF1ZXN0GikubXJwY19hZG1p",
+            "bi5DYXB0dXJlU2Vzc2lvblNjcmVlbnNob3RSZXBseSIhgtPkkwIbEhkvQ2Fw",
+            "dHVyZVNlc3Npb25TY3JlZW5zaG90EqQBCh1DYXB0dXJlU2Vzc2lvblNjcmVl",
+            "bnNob3RPblBvZBIwLm1ycGNfYWRtaW4uQ2FwdHVyZVNlc3Npb25TY3JlZW5z",
+            "aG90T25Qb2RSZXF1ZXN0GikubXJwY19hZG1pbi5DYXB0dXJlU2Vzc2lvblNj",
+            "cmVlbnNob3RSZXBseSImgtPkkwIgEh4vQ2FwdHVyZVNlc3Npb25TY3JlZW5z",
+            "aG90T25Qb2QScQoPUmVmcmVzaE1ycGNSZXN0EiIubXJwY19hZG1pbi5BY3Rp",
+            "dmVUZXJtaW5hbHNSZXF1ZXN0GiAubXJwY19hZG1pbi5SZWZyZXNoTXJwY1Jl",
+            "c3RSZXBseSIYgtPkkwISEhAvUmVmcmVzaE1ycGNSZXN0ElcKCkdldFZlcnNp",
+            "b24SGi5tcnBjX2FkbWluLlZlcnNpb25SZXF1ZXN0GhgubXJwY19hZG1pbi5W",
+            "ZXJzaW9uUmVwbHkiE4LT5JMCDRILL3ZlcnNpb24tdG0SfQoSR2V0VGVybWlu",
+            "YWxKb3VybmFsEiUubXJwY19hZG1pbi5HZXRUZXJtaW5hbEpvdXJuYWxSZXF1",
+            "ZXN0GiMubXJwY19hZG1pbi5HZXRUZXJtaW5hbEpvdXJuYWxSZXBseSIbgtPk",
+            "kwIVEhMvR2V0VGVybWluYWxKb3VybmFsEl0KCkdldEFsbExvZ3MSHS5tcnBj",
+            "X2FkbWluLkdldEFsbExvZ3NSZXF1ZXN0GhsubXJwY19hZG1pbi5HZXRBbGxM",
+            "b2dzUmVwbHkiE4LT5JMCDRILL0dldEFsbExvZ3MSiQEKFUdldFNlc3Npb25S",
+            "ZXN0b3JlTG9ncxIoLm1ycGNfYWRtaW4uR2V0U2Vzc2lvblJlc3RvcmVMb2dz",
+            "UmVxdWVzdBomLm1ycGNfYWRtaW4uR2V0U2Vzc2lvblJlc3RvcmVMb2dzUmVw",
+            "bHkiHoLT5JMCGBIWL0dldFNlc3Npb25SZXN0b3JlTG9ncxKJAQoXR2V0U2Vz",
+            "c2lvblJlc3RvcmVTdGF0dXMSIi5tcnBjX2FkbWluLkFjdGl2ZVRlcm1pbmFs",
+            "c1JlcXVlc3QaKC5tcnBjX2FkbWluLkdldFNlc3Npb25SZXN0b3JlU3RhdHVz",
+            "UmVwbHkiIILT5JMCGhIYL0dldFNlc3Npb25SZXN0b3JlU3RhdHVzQkBaMWdp",
+            "dC5tdGFwaS5pby9yb290L21ycGMtcHJvdG8uZ2l0L210NS9saWJyYXJpZXMv",
+            "Z2+qAgptcnBjX2FkbWluYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -176,7 +177,7 @@ namespace mrpc_admin {
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.UsageSample), global::mrpc_admin.UsageSample.Parser, new[]{ "Time", "CpuPercent", "RamUsedMb", "RamTotalMb" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.SystemUsageReply), global::mrpc_admin.SystemUsageReply.Parser, new[]{ "CpuPercent", "RamUsedMb", "RamTotalMb", "History", "Error" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.ActiveTerminalsRequest), global::mrpc_admin.ActiveTerminalsRequest.Parser, new[]{ "AdminKey" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.TerminalInfo), global::mrpc_admin.TerminalInfo.Parser, new[]{ "Id", "UserNumber", "WindowsUser", "Account", "Server", "Port", "CreatedAt", "WindowsPassword", "Name" }, new[]{ "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.TerminalInfo), global::mrpc_admin.TerminalInfo.Parser, new[]{ "Id", "UserNumber", "WindowsUser", "Account", "Server", "Port", "CreatedAt", "WindowsPassword", "Name", "State", "ErrorMessage" }, new[]{ "Name" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.ActiveTerminalsReply), global::mrpc_admin.ActiveTerminalsReply.Parser, new[]{ "Pod", "Node", "PodIp", "Terminals", "Error", "CpuPercent", "RamUsedMb", "RamTotalMb", "UsageHistory", "RestoreStatus" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.PodTerminals), global::mrpc_admin.PodTerminals.Parser, new[]{ "Pod", "Node", "PodIp", "NovncUrl", "Terminals", "Error", "HostIp", "CpuPercent", "RamUsedMb", "RamTotalMb", "UsageHistory", "RestoreStatus" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.ActiveTerminalsClusterReply), global::mrpc_admin.ActiveTerminalsClusterReply.Parser, new[]{ "Pods" }, null, null, null, null)
@@ -7777,6 +7778,8 @@ namespace mrpc_admin {
       createdAt_ = other.createdAt_ != null ? other.createdAt_.Clone() : null;
       windowsPassword_ = other.windowsPassword_;
       name_ = other.name_;
+      state_ = other.state_;
+      errorMessage_ = other.errorMessage_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -7930,6 +7933,36 @@ namespace mrpc_admin {
       name_ = null;
     }
 
+    /// <summary>Field number for the "state" field.</summary>
+    public const int StateFieldNumber = 10;
+    private string state_ = "";
+    /// <summary>
+    /// terminal state: "Starting" | "Authorizing" | "Syncing" | "Connected" | "InvalidAccount" | "Failed" | "Disconnected"
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string State {
+      get { return state_; }
+      set {
+        state_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "error_message" field.</summary>
+    public const int ErrorMessageFieldNumber = 11;
+    private string errorMessage_ = "";
+    /// <summary>
+    /// error or reason if failed
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ErrorMessage {
+      get { return errorMessage_; }
+      set {
+        errorMessage_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -7954,6 +7987,8 @@ namespace mrpc_admin {
       if (!object.Equals(CreatedAt, other.CreatedAt)) return false;
       if (WindowsPassword != other.WindowsPassword) return false;
       if (Name != other.Name) return false;
+      if (State != other.State) return false;
+      if (ErrorMessage != other.ErrorMessage) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -7970,6 +8005,8 @@ namespace mrpc_admin {
       if (createdAt_ != null) hash ^= CreatedAt.GetHashCode();
       if (WindowsPassword.Length != 0) hash ^= WindowsPassword.GetHashCode();
       if (HasName) hash ^= Name.GetHashCode();
+      if (State.Length != 0) hash ^= State.GetHashCode();
+      if (ErrorMessage.Length != 0) hash ^= ErrorMessage.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -8024,6 +8061,14 @@ namespace mrpc_admin {
         output.WriteRawTag(74);
         output.WriteString(Name);
       }
+      if (State.Length != 0) {
+        output.WriteRawTag(82);
+        output.WriteString(State);
+      }
+      if (ErrorMessage.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(ErrorMessage);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -8070,6 +8115,14 @@ namespace mrpc_admin {
         output.WriteRawTag(74);
         output.WriteString(Name);
       }
+      if (State.Length != 0) {
+        output.WriteRawTag(82);
+        output.WriteString(State);
+      }
+      if (ErrorMessage.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(ErrorMessage);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -8106,6 +8159,12 @@ namespace mrpc_admin {
       }
       if (HasName) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (State.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(State);
+      }
+      if (ErrorMessage.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ErrorMessage);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -8148,6 +8207,12 @@ namespace mrpc_admin {
       }
       if (other.HasName) {
         Name = other.Name;
+      }
+      if (other.State.Length != 0) {
+        State = other.State;
+      }
+      if (other.ErrorMessage.Length != 0) {
+        ErrorMessage = other.ErrorMessage;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -8203,6 +8268,14 @@ namespace mrpc_admin {
             Name = input.ReadString();
             break;
           }
+          case 82: {
+            State = input.ReadString();
+            break;
+          }
+          case 90: {
+            ErrorMessage = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -8255,6 +8328,14 @@ namespace mrpc_admin {
           }
           case 74: {
             Name = input.ReadString();
+            break;
+          }
+          case 82: {
+            State = input.ReadString();
+            break;
+          }
+          case 90: {
+            ErrorMessage = input.ReadString();
             break;
           }
         }

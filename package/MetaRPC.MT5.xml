@@ -15315,6 +15315,22 @@
         <member name="M:mrpc_admin.TerminalInfo.ClearName">
             <summary>Clears the value of the "name" field</summary>
         </member>
+        <member name="F:mrpc_admin.TerminalInfo.StateFieldNumber">
+            <summary>Field number for the "state" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.State">
+            <summary>
+            terminal state: "Starting" | "Authorizing" | "Syncing" | "Connected" | "InvalidAccount" | "Failed" | "Disconnected"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.ErrorMessageFieldNumber">
+            <summary>Field number for the "error_message" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.ErrorMessage">
+            <summary>
+            error or reason if failed
+            </summary>
+        </member>
         <member name="F:mrpc_admin.ActiveTerminalsReply.PodFieldNumber">
             <summary>Field number for the "pod" field.</summary>
         </member>
