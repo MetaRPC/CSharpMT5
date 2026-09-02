@@ -7643,6 +7643,255 @@
         <member name="F:mt5_term_api.GuiDemoProgressEvent.ErrorCodeFieldNumber">
             <summary>Field number for the "error_code" field.</summary>
         </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveClientMessage.SessionIdFieldNumber">
+            <summary>Field number for the "session_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveClientMessage.SearchCompanyFieldNumber">
+            <summary>Field number for the "search_company" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveClientMessage.SelectCompanyFieldNumber">
+            <summary>Field number for the "select_company" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveClientMessage.SubmitFormFieldNumber">
+            <summary>Field number for the "submit_form" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveClientMessage.SubmitTwoFactorFieldNumber">
+            <summary>Field number for the "submit_two_factor" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveClientMessage.CancelSessionFieldNumber">
+            <summary>Field number for the "cancel_session" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveClientMessage.RequestScreenshotFieldNumber">
+            <summary>Field number for the "request_screenshot" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GuiDemoInteractiveClientMessage.PayloadOneofCase">
+            <summary>Enum of possible cases for the "payload" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSearchCompany.SearchQueryFieldNumber">
+            <summary>Field number for the "search_query" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSearchCompany.TimeoutSecondsFieldNumber">
+            <summary>Field number for the "timeout_seconds" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSelectCompany.CompanyIndexFieldNumber">
+            <summary>Field number for the "company_index" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSelectCompany.CompanyNameFieldNumber">
+            <summary>Field number for the "company_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSelectCompany.ServerNameFieldNumber">
+            <summary>Field number for the "server_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSelectCompany.AccountModeFieldNumber">
+            <summary>Field number for the "account_mode" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GuiDemoInteractiveSelectCompany.AccountMode">
+            <summary>
+            0 = Demo (default), 1 = Real, 2 = Existing
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSubmitForm.FieldsFieldNumber">
+            <summary>Field number for the "fields" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GuiDemoInteractiveSubmitForm.Fields">
+            <summary>
+            "first_name", "last_name", "email", "phone", "address", "city", "zip", "country"
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSubmitForm.DropdownSelectionsFieldNumber">
+            <summary>Field number for the "dropdown_selections" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GuiDemoInteractiveSubmitForm.DropdownSelections">
+            <summary>
+            "server", "account_type", "deposit", "currency", "leverage"
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSubmitForm.AgreeToTermsFieldNumber">
+            <summary>Field number for the "agree_to_terms" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveSubmitTwoFactor.CodeFieldNumber">
+            <summary>Field number for the "code" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCancelSession.ReasonFieldNumber">
+            <summary>Field number for the "reason" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveRequestScreenshot.TagFieldNumber">
+            <summary>Field number for the "tag" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveServerMessage.SessionIdFieldNumber">
+            <summary>Field number for the "session_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveServerMessage.TimestampMsFieldNumber">
+            <summary>Field number for the "timestamp_ms" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveServerMessage.CompanyListFieldNumber">
+            <summary>Field number for the "company_list" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveServerMessage.FormSchemaFieldNumber">
+            <summary>Field number for the "form_schema" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveServerMessage.TwoFactorChallengeFieldNumber">
+            <summary>Field number for the "two_factor_challenge" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveServerMessage.CompletedFieldNumber">
+            <summary>Field number for the "completed" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveServerMessage.ProgressFieldNumber">
+            <summary>Field number for the "progress" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveServerMessage.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveServerMessage.ScreenshotFieldNumber">
+            <summary>Field number for the "screenshot" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GuiDemoInteractiveServerMessage.PayloadOneofCase">
+            <summary>Enum of possible cases for the "payload" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompanyItem.IndexFieldNumber">
+            <summary>Field number for the "index" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompanyItem.CompanyNameFieldNumber">
+            <summary>Field number for the "company_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompanyItem.ServerNameFieldNumber">
+            <summary>Field number for the "server_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompanyItem.PingMsFieldNumber">
+            <summary>Field number for the "ping_ms" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompanyList.CompaniesFieldNumber">
+            <summary>Field number for the "companies" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompanyList.CurrentQueryFieldNumber">
+            <summary>Field number for the "current_query" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompanyList.CanProceedFieldNumber">
+            <summary>Field number for the "can_proceed" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormField.ControlIdFieldNumber">
+            <summary>Field number for the "control_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormField.FieldNameFieldNumber">
+            <summary>Field number for the "field_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormField.LabelFieldNumber">
+            <summary>Field number for the "label" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormField.CurrentValueFieldNumber">
+            <summary>Field number for the "current_value" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormField.IsRequiredFieldNumber">
+            <summary>Field number for the "is_required" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormField.FieldTypeFieldNumber">
+            <summary>Field number for the "field_type" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveDropdown.ControlIdFieldNumber">
+            <summary>Field number for the "control_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveDropdown.DropdownNameFieldNumber">
+            <summary>Field number for the "dropdown_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveDropdown.LabelFieldNumber">
+            <summary>Field number for the "label" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveDropdown.SelectedIndexFieldNumber">
+            <summary>Field number for the "selected_index" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveDropdown.SelectedValueFieldNumber">
+            <summary>Field number for the "selected_value" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveDropdown.OptionsFieldNumber">
+            <summary>Field number for the "options" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormSchema.PageTitleFieldNumber">
+            <summary>Field number for the "page_title" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormSchema.PageIndexFieldNumber">
+            <summary>Field number for the "page_index" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormSchema.FieldsFieldNumber">
+            <summary>Field number for the "fields" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormSchema.DropdownsFieldNumber">
+            <summary>Field number for the "dropdowns" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormSchema.HasTermsAgreementFieldNumber">
+            <summary>Field number for the "has_terms_agreement" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormSchema.TermsAgreedFieldNumber">
+            <summary>Field number for the "terms_agreed" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveFormSchema.PromptMessageFieldNumber">
+            <summary>Field number for the "prompt_message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveTwoFactorChallenge.TypeFieldNumber">
+            <summary>Field number for the "type" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveTwoFactorChallenge.PromptTextFieldNumber">
+            <summary>Field number for the "prompt_text" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveTwoFactorChallenge.DestinationMaskedFieldNumber">
+            <summary>Field number for the "destination_masked" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveTwoFactorChallenge.CodeLengthFieldNumber">
+            <summary>Field number for the "code_length" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveTwoFactorChallenge.TimeoutSecondsFieldNumber">
+            <summary>Field number for the "timeout_seconds" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveTwoFactorChallenge.RemainingAttemptsFieldNumber">
+            <summary>Field number for the "remaining_attempts" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompleted.LoginFieldNumber">
+            <summary>Field number for the "login" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompleted.PasswordFieldNumber">
+            <summary>Field number for the "password" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompleted.InvestorPasswordFieldNumber">
+            <summary>Field number for the "investor_password" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompleted.ServerFieldNumber">
+            <summary>Field number for the "server" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompleted.IsLiveVerifiedFieldNumber">
+            <summary>Field number for the "is_live_verified" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveCompleted.TradeServerMessageFieldNumber">
+            <summary>Field number for the "trade_server_message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveProgress.StepNameFieldNumber">
+            <summary>Field number for the "step_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveProgress.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveProgress.ProgressPercentageFieldNumber">
+            <summary>Field number for the "progress_percentage" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveError.ErrorCodeFieldNumber">
+            <summary>Field number for the "error_code" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveError.ErrorMessageFieldNumber">
+            <summary>Field number for the "error_message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveError.CurrentStepFieldNumber">
+            <summary>Field number for the "current_step" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveError.IsRecoverableFieldNumber">
+            <summary>Field number for the "is_recoverable" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveScreenshot.TagFieldNumber">
+            <summary>Field number for the "tag" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveScreenshot.ImageDataFieldNumber">
+            <summary>Field number for the "image_data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GuiDemoInteractiveScreenshot.MimeTypeFieldNumber">
+            <summary>Field number for the "mime_type" field.</summary>
+        </member>
         <member name="T:mt5_term_api.Mt5TermApiHealthCheckReflection">
             <summary>Holder for reflection information generated from mt5-term-api-health-check.proto</summary>
         </member>

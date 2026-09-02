@@ -79,6 +79,10 @@ namespace mt5_term_api {
     static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoEnumControlsReply> __Marshaller_mt5_term_api_GuiDemoEnumControlsReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoEnumControlsReply.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoProgressEvent> __Marshaller_mt5_term_api_GuiDemoProgressEvent = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoProgressEvent.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoInteractiveClientMessage> __Marshaller_mt5_term_api_GuiDemoInteractiveClientMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoInteractiveClientMessage.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoInteractiveServerMessage> __Marshaller_mt5_term_api_GuiDemoInteractiveServerMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoInteractiveServerMessage.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.GuiLoginRequest, global::mt5_term_api.GuiLoginReply> __Method_Login = new grpc::Method<global::mt5_term_api.GuiLoginRequest, global::mt5_term_api.GuiLoginReply>(
@@ -152,6 +156,14 @@ namespace mt5_term_api {
         __Marshaller_mt5_term_api_GuiDemoOpenAccountRequest,
         __Marshaller_mt5_term_api_GuiDemoProgressEvent);
 
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage> __Method_DemoOpenAccountInteractive = new grpc::Method<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage>(
+        grpc::MethodType.DuplexStreaming,
+        __ServiceName,
+        "DemoOpenAccountInteractive",
+        __Marshaller_mt5_term_api_GuiDemoInteractiveClientMessage,
+        __Marshaller_mt5_term_api_GuiDemoInteractiveServerMessage);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -212,6 +224,12 @@ namespace mt5_term_api {
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task DemoOpenAccountWithProgress(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::IServerStreamWriter<global::mt5_term_api.GuiDemoProgressEvent> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task DemoOpenAccountInteractive(grpc::IAsyncStreamReader<global::mt5_term_api.GuiDemoInteractiveClientMessage> requestStream, grpc::IServerStreamWriter<global::mt5_term_api.GuiDemoInteractiveServerMessage> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -415,6 +433,16 @@ namespace mt5_term_api {
       {
         return CallInvoker.AsyncServerStreamingCall(__Method_DemoOpenAccountWithProgress, null, options, request);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncDuplexStreamingCall<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage> DemoOpenAccountInteractive(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DemoOpenAccountInteractive(new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncDuplexStreamingCall<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage> DemoOpenAccountInteractive(grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_DemoOpenAccountInteractive, null, options);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override GuiClient NewInstance(ClientBaseConfiguration configuration)
@@ -437,7 +465,8 @@ namespace mt5_term_api {
           .AddMethod(__Method_DemoServersAndTypes, serviceImpl.DemoServersAndTypes)
           .AddMethod(__Method_DemoOpenAccount, serviceImpl.DemoOpenAccount)
           .AddMethod(__Method_DemoEnumControls, serviceImpl.DemoEnumControls)
-          .AddMethod(__Method_DemoOpenAccountWithProgress, serviceImpl.DemoOpenAccountWithProgress).Build();
+          .AddMethod(__Method_DemoOpenAccountWithProgress, serviceImpl.DemoOpenAccountWithProgress)
+          .AddMethod(__Method_DemoOpenAccountInteractive, serviceImpl.DemoOpenAccountInteractive).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -456,6 +485,7 @@ namespace mt5_term_api {
       serviceBinder.AddMethod(__Method_DemoOpenAccount, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoOpenAccountReply>(serviceImpl.DemoOpenAccount));
       serviceBinder.AddMethod(__Method_DemoEnumControls, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiDemoEnumControlsRequest, global::mt5_term_api.GuiDemoEnumControlsReply>(serviceImpl.DemoEnumControls));
       serviceBinder.AddMethod(__Method_DemoOpenAccountWithProgress, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoProgressEvent>(serviceImpl.DemoOpenAccountWithProgress));
+      serviceBinder.AddMethod(__Method_DemoOpenAccountInteractive, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage>(serviceImpl.DemoOpenAccountInteractive));
     }
 
   }
