@@ -6735,6 +6735,20 @@
         <member name="M:mt5_term_api.ConnectExRequest.ClearName">
             <summary>Clears the value of the "name" field</summary>
         </member>
+        <member name="F:mt5_term_api.ConnectExRequest.ExpirationFieldNumber">
+            <summary>Field number for the "expiration" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectExRequest.Expiration">
+            <summary>
+            Optional terminal lifetime in minutes. 0 (default) = infinite (trial max 15 min). [Optional]
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectExRequest.HasExpiration">
+            <summary>Gets whether the "expiration" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.ConnectExRequest.ClearExpiration">
+            <summary>Clears the value of the "expiration" field</summary>
+        </member>
         <member name="T:mt5_term_api.ConnectByTokenRequest">
             <summary>
             Rebuild a terminal from token_details_mt5. All the credentials (User/Password/Server or
@@ -6770,6 +6784,20 @@
         </member>
         <member name="M:mt5_term_api.ConnectByTokenRequest.ClearTimeoutSeconds">
             <summary>Clears the value of the "timeout_seconds" field</summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectByTokenRequest.ExpirationFieldNumber">
+            <summary>Field number for the "expiration" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectByTokenRequest.Expiration">
+            <summary>
+            Optional terminal lifetime in minutes. 0 (default) = infinite (trial max 15 min). [Optional]
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectByTokenRequest.HasExpiration">
+            <summary>Gets whether the "expiration" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.ConnectByTokenRequest.ClearExpiration">
+            <summary>Clears the value of the "expiration" field</summary>
         </member>
         <member name="F:mt5_term_api.ConnectExReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
@@ -6880,6 +6908,20 @@
         </member>
         <member name="M:mt5_term_api.ConnectRequest.ClearName">
             <summary>Clears the value of the "name" field</summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectRequest.ExpirationFieldNumber">
+            <summary>Field number for the "expiration" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectRequest.Expiration">
+            <summary>
+            Optional terminal lifetime in minutes. 0 (default) = infinite (trial max 15 min). [Optional]
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectRequest.HasExpiration">
+            <summary>Gets whether the "expiration" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.ConnectRequest.ClearExpiration">
+            <summary>Clears the value of the "expiration" field</summary>
         </member>
         <member name="F:mt5_term_api.ExpertAdviser.FileNameFieldNumber">
             <summary>Field number for the "file_name" field.</summary>
@@ -7019,6 +7061,20 @@
         </member>
         <member name="M:mt5_term_api.ConnectProxyRequest.ClearName">
             <summary>Clears the value of the "name" field</summary>
+        </member>
+        <member name="F:mt5_term_api.ConnectProxyRequest.ExpirationFieldNumber">
+            <summary>Field number for the "expiration" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectProxyRequest.Expiration">
+            <summary>
+            Optional terminal lifetime in minutes. 0 (default) = infinite (trial max 15 min). [Optional]
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.ConnectProxyRequest.HasExpiration">
+            <summary>Gets whether the "expiration" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.ConnectProxyRequest.ClearExpiration">
+            <summary>Clears the value of the "expiration" field</summary>
         </member>
         <member name="F:mt5_term_api.ConnectProxyReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
@@ -14048,6 +14104,14 @@
             <param name="context">The context of the server-side call handler being invoked.</param>
             <returns>The response to send back to the client (wrapped by a task).</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.GetSessionRestoreStatus(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Session restore watcher status (terminals loaded, queue count, state, diagnostics) for THIS pod.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
         <member name="T:mrpc_admin.AdminApi.AdminApiClient">
             <summary>Client for AdminApi</summary>
         </member>
@@ -14638,6 +14702,42 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetSessionRestoreStatus(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Session restore watcher status (terminals loaded, queue count, state, diagnostics) for THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetSessionRestoreStatus(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Session restore watcher status (terminals loaded, queue count, state, diagnostics) for THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetSessionRestoreStatusAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Session restore watcher status (terminals loaded, queue count, state, diagnostics) for THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.GetSessionRestoreStatusAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Session restore watcher status (terminals loaded, queue count, state, diagnostics) for THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mrpc_admin.AdminApi.AdminApiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -14656,6 +14756,124 @@
         </member>
         <member name="P:mrpc_admin.Mt5TermApiAdminReflection.Descriptor">
             <summary>File descriptor for mt5-term-api-admin.proto</summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.EnabledFieldNumber">
+            <summary>Field number for the "enabled" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.Enabled">
+            <summary>
+            whether session restore watcher is active
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.StateFieldNumber">
+            <summary>Field number for the "state" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.State">
+            <summary>
+            "idle" | "reconciling" | "watching" | "disabled" | "starting"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.ReasonFieldNumber">
+            <summary>Field number for the "reason" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.Reason">
+            <summary>
+            last reconcile reason: "startup" | "endpoints-change" | "periodic"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.TotalCandidatesFieldNumber">
+            <summary>Field number for the "total_candidates" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.TotalCandidates">
+            <summary>
+            total active tokens found in persistence (Trial + User)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.DistinctTokensFieldNumber">
+            <summary>Field number for the "distinct_tokens" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.DistinctTokens">
+            <summary>
+            distinct tokens after de-duplication
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.AlreadyLoadedFieldNumber">
+            <summary>Field number for the "already_loaded" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.AlreadyLoaded">
+            <summary>
+            terminals already running in memory (loaded)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.InQueueFieldNumber">
+            <summary>Field number for the "in_queue" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.InQueue">
+            <summary>
+            terminals remaining in queue to restore
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.InProgressFieldNumber">
+            <summary>Field number for the "in_progress" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.InProgress">
+            <summary>
+            terminals currently being restored in-flight
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.RestoredSuccessFieldNumber">
+            <summary>Field number for the "restored_success" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.RestoredSuccess">
+            <summary>
+            terminals restored successfully in current/latest run
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.RestoredFailedFieldNumber">
+            <summary>Field number for the "restored_failed" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.RestoredFailed">
+            <summary>
+            terminals failed to restore in current/latest run
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.LastReconcileStartUtcFieldNumber">
+            <summary>Field number for the "last_reconcile_start_utc" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.LastReconcileStartUtc">
+            <summary>
+            ISO timestamp of last reconcile start
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.LastReconcileEndUtcFieldNumber">
+            <summary>Field number for the "last_reconcile_end_utc" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.LastReconcileEndUtc">
+            <summary>
+            ISO timestamp of last reconcile end
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.LastReconcileDurationMsFieldNumber">
+            <summary>Field number for the "last_reconcile_duration_ms" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.LastReconcileDurationMs">
+            <summary>
+            duration in ms
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SessionRestoreWatcherStatus.LastErrorFieldNumber">
+            <summary>Field number for the "last_error" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SessionRestoreWatcherStatus.LastError">
+            <summary>
+            last error message if any
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.GetSessionRestoreStatusReply.StatusFieldNumber">
+            <summary>Field number for the "status" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.GetSessionRestoreStatusReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
         </member>
         <member name="F:mrpc_admin.GetSessionRestoreLogsRequest.AdminKeyFieldNumber">
             <summary>Field number for the "admin_key" field.</summary>
@@ -15134,6 +15352,14 @@
             short CPU/RAM history
             </summary>
         </member>
+        <member name="F:mrpc_admin.ActiveTerminalsReply.RestoreStatusFieldNumber">
+            <summary>Field number for the "restore_status" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.ActiveTerminalsReply.RestoreStatus">
+            <summary>
+            live session restore watcher details on this pod
+            </summary>
+        </member>
         <member name="F:mrpc_admin.PodTerminals.PodFieldNumber">
             <summary>Field number for the "pod" field.</summary>
         </member>
@@ -15181,6 +15407,14 @@
         </member>
         <member name="F:mrpc_admin.PodTerminals.UsageHistoryFieldNumber">
             <summary>Field number for the "usage_history" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.PodTerminals.RestoreStatusFieldNumber">
+            <summary>Field number for the "restore_status" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.PodTerminals.RestoreStatus">
+            <summary>
+            live session restore watcher details on this pod
+            </summary>
         </member>
         <member name="F:mrpc_admin.ActiveTerminalsClusterReply.PodsFieldNumber">
             <summary>Field number for the "pods" field.</summary>

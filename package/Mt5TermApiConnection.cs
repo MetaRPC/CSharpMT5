@@ -49,150 +49,154 @@ namespace mt5_term_api {
             "Lm10NV90ZXJtX2FwaS5HZXRCcm9rZXJTZXJ2ZXJzQnlCcm9rZXJOYW1lRGF0",
             "YS5Ccm9rZXJTZXJ2ZXIabAoMQnJva2VyU2VydmVyEgwKBG5hbWUYASABKAkS",
             "FQoIbG9nb191cmwYAiABKAlIAIgBARIRCgRzaXRlGAMgASgJSAGIAQESDgoG",
-            "YWNjZXNzGAQgAygJQgsKCV9sb2dvX3VybEIHCgVfc2l0ZSKEAgoQQ29ubmVj",
+            "YWNjZXNzGAQgAygJQgsKCV9sb2dvX3VybEIHCgVfc2l0ZSKsAgoQQ29ubmVj",
             "dEV4UmVxdWVzdBIMCgR1c2VyGAEgASgEEhAKCHBhc3N3b3JkGAIgASgJEhcK",
             "D210X2NsdXN0ZXJfbmFtZRgDIAEoCRIeChFiYXNlX2NoYXJ0X3N5bWJvbBgE",
             "IAEoCUgAiAEBEjMKDmV4cGVydHNfdG9fYWRkGAUgAygLMhsubXQ1X3Rlcm1f",
             "YXBpLkV4cGVydEFkdmlzZXISHAoPdGltZW91dF9zZWNvbmRzGAYgASgNSAGI",
-            "AQESEQoEbmFtZRgHIAEoCUgCiAEBQhQKEl9iYXNlX2NoYXJ0X3N5bWJvbEIS",
-            "ChBfdGltZW91dF9zZWNvbmRzQgcKBV9uYW1lIn8KFUNvbm5lY3RCeVRva2Vu",
-            "UmVxdWVzdBIeChFiYXNlX2NoYXJ0X3N5bWJvbBgBIAEoCUgAiAEBEhwKD3Rp",
-            "bWVvdXRfc2Vjb25kcxgCIAEoDUgBiAEBQhQKEl9iYXNlX2NoYXJ0X3N5bWJv",
-            "bEISChBfdGltZW91dF9zZWNvbmRzIm0KDkNvbm5lY3RFeFJlcGx5EikKBGRh",
-            "dGEYASABKAsyGS5tdDVfdGVybV9hcGkuQ29ubmVjdERhdGFIABIkCgVlcnJv",
-            "chgCIAEoCzITLm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJlc3BvbnNlIkoK",
-            "EFJlY29ubmVjdFJlcXVlc3QSHwoSZm9yY2VfcmVjb25uZWN0aW9uGAEgASgI",
-            "SACIAQFCFQoTX2ZvcmNlX3JlY29ubmVjdGlvbiJvCg5SZWNvbm5lY3RSZXBs",
-            "eRIrCgRkYXRhGAEgASgLMhsubXQ1X3Rlcm1fYXBpLlJlY29ubmVjdERhdGFI",
+            "AQESEQoEbmFtZRgHIAEoCUgCiAEBEhcKCmV4cGlyYXRpb24YCCABKA1IA4gB",
+            "AUIUChJfYmFzZV9jaGFydF9zeW1ib2xCEgoQX3RpbWVvdXRfc2Vjb25kc0IH",
+            "CgVfbmFtZUINCgtfZXhwaXJhdGlvbiKnAQoVQ29ubmVjdEJ5VG9rZW5SZXF1",
+            "ZXN0Eh4KEWJhc2VfY2hhcnRfc3ltYm9sGAEgASgJSACIAQESHAoPdGltZW91",
+            "dF9zZWNvbmRzGAIgASgNSAGIAQESFwoKZXhwaXJhdGlvbhgDIAEoDUgCiAEB",
+            "QhQKEl9iYXNlX2NoYXJ0X3N5bWJvbEISChBfdGltZW91dF9zZWNvbmRzQg0K",
+            "C19leHBpcmF0aW9uIm0KDkNvbm5lY3RFeFJlcGx5EikKBGRhdGEYASABKAsy",
+            "GS5tdDVfdGVybV9hcGkuQ29ubmVjdERhdGFIABIkCgVlcnJvchgCIAEoCzIT",
+            "Lm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJlc3BvbnNlIkoKEFJlY29ubmVj",
+            "dFJlcXVlc3QSHwoSZm9yY2VfcmVjb25uZWN0aW9uGAEgASgISACIAQFCFQoT",
+            "X2ZvcmNlX3JlY29ubmVjdGlvbiJvCg5SZWNvbm5lY3RSZXBseRIrCgRkYXRh",
+            "GAEgASgLMhsubXQ1X3Rlcm1fYXBpLlJlY29ubmVjdERhdGFIABIkCgVlcnJv",
+            "chgCIAEoCzITLm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJlc3BvbnNlIuEB",
+            "Cg1SZWNvbm5lY3REYXRhEh4KFnRlcm1pbmFsX3dhc19yZWNyZWF0ZWQYASAB",
+            "KAgSMQoNdGVybWluYWxfdHlwZRgCIAEoDjIaLm10NV90ZXJtX2FwaS5UZXJt",
+            "aW5hbFR5cGUSHgoWdGVybWluYWxfaW5zdGFuY2VfZ3VpZBgDIAEoCRIrCiNv",
+            "bGRfdGVybWluYWxfZnVsbF9saXZlX3RpbWVfc2Vjb25kcxgEIAEoAxIwCg1v",
+            "bGRfbG9nX2ZpbGVzGAUgAygLMhkubXQ1X3Rlcm1fYXBpLkxvZ0ZpbGVJbmZv",
+            "IvcBCg5Db25uZWN0UmVxdWVzdBIMCgR1c2VyGAEgASgEEhAKCHBhc3N3b3Jk",
+            "GAIgASgJEgwKBGhvc3QYAyABKAkSDAoEcG9ydBgEIAEoBRIzCg5leHBlcnRz",
+            "X3RvX2FkZBgFIAMoCzIbLm10NV90ZXJtX2FwaS5FeHBlcnRBZHZpc2VyEhwK",
+            "D3RpbWVvdXRfc2Vjb25kcxgGIAEoDUgAiAEBEhEKBG5hbWUYByABKAlIAYgB",
+            "ARIXCgpleHBpcmF0aW9uGAggASgNSAKIAQFCEgoQX3RpbWVvdXRfc2Vjb25k",
+            "c0IHCgVfbmFtZUINCgtfZXhwaXJhdGlvbiI4Cg1FeHBlcnRBZHZpc2VyEhEK",
+            "CWZpbGVfbmFtZRgBIAEoCRIUCgxmaWxlX2NvbnRlbnQYAiABKAwiawoMQ29u",
+            "bmVjdFJlcGx5EikKBGRhdGEYASABKAsyGS5tdDVfdGVybV9hcGkuQ29ubmVj",
+            "dERhdGFIABIkCgVlcnJvchgCIAEoCzITLm10NV90ZXJtX2FwaS5FcnJvckgA",
+            "QgoKCHJlc3BvbnNlImAKC0Nvbm5lY3REYXRhEh4KFnRlcm1pbmFsX2luc3Rh",
+            "bmNlX2d1aWQYASABKAkSMQoNdGVybWluYWxfdHlwZRgDIAEoDjIaLm10NV90",
+            "ZXJtX2FwaS5UZXJtaW5hbFR5cGUi+QIKE0Nvbm5lY3RQcm94eVJlcXVlc3QS",
+            "DAoEdXNlchgBIAEoBBIQCghwYXNzd29yZBgCIAEoCRIMCgRob3N0GAMgASgJ",
+            "EgwKBHBvcnQYBCABKAUSEQoJcHJveHlVc2VyGAUgASgJEhUKDXByb3h5UGFz",
+            "c3dvcmQYBiABKAkSEQoJcHJveHlIb3N0GAcgASgJEhEKCXByb3h5UG9ydBgI",
+            "IAEoDRIrCglwcm94eVR5cGUYCSABKA4yGC5tdDVfdGVybV9hcGkuUHJveHlU",
+            "eXBlcxIzCg5leHBlcnRzX3RvX2FkZBgKIAMoCzIbLm10NV90ZXJtX2FwaS5F",
+            "eHBlcnRBZHZpc2VyEhwKD3RpbWVvdXRfc2Vjb25kcxgLIAEoDUgAiAEBEhEK",
+            "BG5hbWUYDCABKAlIAYgBARIXCgpleHBpcmF0aW9uGA0gASgNSAKIAQFCEgoQ",
+            "X3RpbWVvdXRfc2Vjb25kc0IHCgVfbmFtZUINCgtfZXhwaXJhdGlvbiJ1ChFD",
+            "b25uZWN0UHJveHlSZXBseRIuCgRkYXRhGAEgASgLMh4ubXQ1X3Rlcm1fYXBp",
+            "LkNvbm5lY3RQcm94eURhdGFIABIkCgVlcnJvchgCIAEoCzITLm10NV90ZXJt",
+            "X2FwaS5FcnJvckgAQgoKCHJlc3BvbnNlImAKEENvbm5lY3RQcm94eURhdGES",
+            "GQoRdW5pcXVlX2lkZW50aWZpZXIYASABKAkSMQoNdGVybWluYWxfdHlwZRgC",
+            "IAEoDjIaLm10NV90ZXJtX2FwaS5UZXJtaW5hbFR5cGUiFQoTQ2hlY2tDb25u",
+            "ZWN0UmVxdWVzdCJ1ChFDaGVja0Nvbm5lY3RSZXBseRIuCgRkYXRhGAEgASgL",
+            "Mh4ubXQ1X3Rlcm1fYXBpLkNoZWNrQ29ubmVjdERhdGFIABIkCgVlcnJvchgC",
+            "IAEoCzITLm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJlc3BvbnNlImYKEENo",
+            "ZWNrQ29ubmVjdERhdGESGQoRdW5pcXVlX2lkZW50aWZpZXIYASABKAkSNwoM",
+            "aGVhbHRoX2NoZWNrGAIgASgLMiEubXQ1X3Rlcm1fYXBpLlRlcm1pbmFsSGVh",
+            "bHRoQ2hlY2sioQIKE1Rlcm1pbmFsSGVhbHRoQ2hlY2sSEAoIaXNfYWxpdmUY",
+            "ASABKAgSMgoMRXJyb3JNZXNzYWdlGAIgASgLMhwuZ29vZ2xlLnByb3RvYnVm",
+            "LlN0cmluZ1ZhbHVlEi8KCUVycm9yQ29kZRgDIAEoCzIcLmdvb2dsZS5wcm90",
+            "b2J1Zi5TdHJpbmdWYWx1ZRIwCgpTdGFja1RyYWNlGAQgASgLMhwuZ29vZ2xl",
+            "LnByb3RvYnVmLlN0cmluZ1ZhbHVlEh8KF2hhc19hdXRob3JpemF0aW9uX2Vy",
+            "cm9yGAUgASgIEhQKDGFwaV9pc19hbGl2ZRgGIAEoCBIqCiJ0ZXJtaW5hbF9p",
+            "c19jb25uZWN0ZWRfdG9fbXRfc2VydmVyGAcgASgIIjMKEURpc2Nvbm5lY3RS",
+            "ZXF1ZXN0EhMKBnJlYXNvbhgBIAEoCUgAiAEBQgkKB19yZWFzb24icQoPRGlz",
+            "Y29ubmVjdFJlcGx5EiwKBGRhdGEYASABKAsyHC5tdDVfdGVybV9hcGkuRGlz",
+            "Y29ubmVjdERhdGFIABIkCgVlcnJvchgCIAEoCzITLm10NV90ZXJtX2FwaS5F",
+            "cnJvckgAQgoKCHJlc3BvbnNlIksKDkRpc2Nvbm5lY3REYXRhEhkKEXVuaXF1",
+            "ZV9pZGVudGlmaWVyGAEgASgJEh4KFmZ1bGxfbGlmZV90aW1lX3NlY29uZHMY",
+            "AiABKAMiEwoRU2NyZWVuc2hvdFJlcXVlc3QicQoPU2NyZWVuc2hvdFJlcGx5",
+            "EiwKBGRhdGEYASABKAsyHC5tdDVfdGVybV9hcGkuU2NyZWVuc2hvdERhdGFI",
             "ABIkCgVlcnJvchgCIAEoCzITLm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJl",
-            "c3BvbnNlIuEBCg1SZWNvbm5lY3REYXRhEh4KFnRlcm1pbmFsX3dhc19yZWNy",
-            "ZWF0ZWQYASABKAgSMQoNdGVybWluYWxfdHlwZRgCIAEoDjIaLm10NV90ZXJt",
-            "X2FwaS5UZXJtaW5hbFR5cGUSHgoWdGVybWluYWxfaW5zdGFuY2VfZ3VpZBgD",
-            "IAEoCRIrCiNvbGRfdGVybWluYWxfZnVsbF9saXZlX3RpbWVfc2Vjb25kcxgE",
-            "IAEoAxIwCg1vbGRfbG9nX2ZpbGVzGAUgAygLMhkubXQ1X3Rlcm1fYXBpLkxv",
-            "Z0ZpbGVJbmZvIs8BCg5Db25uZWN0UmVxdWVzdBIMCgR1c2VyGAEgASgEEhAK",
-            "CHBhc3N3b3JkGAIgASgJEgwKBGhvc3QYAyABKAkSDAoEcG9ydBgEIAEoBRIz",
-            "Cg5leHBlcnRzX3RvX2FkZBgFIAMoCzIbLm10NV90ZXJtX2FwaS5FeHBlcnRB",
-            "ZHZpc2VyEhwKD3RpbWVvdXRfc2Vjb25kcxgGIAEoDUgAiAEBEhEKBG5hbWUY",
-            "ByABKAlIAYgBAUISChBfdGltZW91dF9zZWNvbmRzQgcKBV9uYW1lIjgKDUV4",
-            "cGVydEFkdmlzZXISEQoJZmlsZV9uYW1lGAEgASgJEhQKDGZpbGVfY29udGVu",
-            "dBgCIAEoDCJrCgxDb25uZWN0UmVwbHkSKQoEZGF0YRgBIAEoCzIZLm10NV90",
-            "ZXJtX2FwaS5Db25uZWN0RGF0YUgAEiQKBWVycm9yGAIgASgLMhMubXQ1X3Rl",
-            "cm1fYXBpLkVycm9ySABCCgoIcmVzcG9uc2UiYAoLQ29ubmVjdERhdGESHgoW",
-            "dGVybWluYWxfaW5zdGFuY2VfZ3VpZBgBIAEoCRIxCg10ZXJtaW5hbF90eXBl",
-            "GAMgASgOMhoubXQ1X3Rlcm1fYXBpLlRlcm1pbmFsVHlwZSLRAgoTQ29ubmVj",
-            "dFByb3h5UmVxdWVzdBIMCgR1c2VyGAEgASgEEhAKCHBhc3N3b3JkGAIgASgJ",
-            "EgwKBGhvc3QYAyABKAkSDAoEcG9ydBgEIAEoBRIRCglwcm94eVVzZXIYBSAB",
-            "KAkSFQoNcHJveHlQYXNzd29yZBgGIAEoCRIRCglwcm94eUhvc3QYByABKAkS",
-            "EQoJcHJveHlQb3J0GAggASgNEisKCXByb3h5VHlwZRgJIAEoDjIYLm10NV90",
-            "ZXJtX2FwaS5Qcm94eVR5cGVzEjMKDmV4cGVydHNfdG9fYWRkGAogAygLMhsu",
-            "bXQ1X3Rlcm1fYXBpLkV4cGVydEFkdmlzZXISHAoPdGltZW91dF9zZWNvbmRz",
-            "GAsgASgNSACIAQESEQoEbmFtZRgMIAEoCUgBiAEBQhIKEF90aW1lb3V0X3Nl",
-            "Y29uZHNCBwoFX25hbWUidQoRQ29ubmVjdFByb3h5UmVwbHkSLgoEZGF0YRgB",
-            "IAEoCzIeLm10NV90ZXJtX2FwaS5Db25uZWN0UHJveHlEYXRhSAASJAoFZXJy",
-            "b3IYAiABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3JIAEIKCghyZXNwb25zZSJg",
-            "ChBDb25uZWN0UHJveHlEYXRhEhkKEXVuaXF1ZV9pZGVudGlmaWVyGAEgASgJ",
-            "EjEKDXRlcm1pbmFsX3R5cGUYAiABKA4yGi5tdDVfdGVybV9hcGkuVGVybWlu",
-            "YWxUeXBlIhUKE0NoZWNrQ29ubmVjdFJlcXVlc3QidQoRQ2hlY2tDb25uZWN0",
-            "UmVwbHkSLgoEZGF0YRgBIAEoCzIeLm10NV90ZXJtX2FwaS5DaGVja0Nvbm5l",
-            "Y3REYXRhSAASJAoFZXJyb3IYAiABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3JI",
-            "AEIKCghyZXNwb25zZSJmChBDaGVja0Nvbm5lY3REYXRhEhkKEXVuaXF1ZV9p",
-            "ZGVudGlmaWVyGAEgASgJEjcKDGhlYWx0aF9jaGVjaxgCIAEoCzIhLm10NV90",
-            "ZXJtX2FwaS5UZXJtaW5hbEhlYWx0aENoZWNrIqECChNUZXJtaW5hbEhlYWx0",
-            "aENoZWNrEhAKCGlzX2FsaXZlGAEgASgIEjIKDEVycm9yTWVzc2FnZRgCIAEo",
-            "CzIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRIvCglFcnJvckNvZGUY",
-            "AyABKAsyHC5nb29nbGUucHJvdG9idWYuU3RyaW5nVmFsdWUSMAoKU3RhY2tU",
-            "cmFjZRgEIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZRIfChdo",
-            "YXNfYXV0aG9yaXphdGlvbl9lcnJvchgFIAEoCBIUCgxhcGlfaXNfYWxpdmUY",
-            "BiABKAgSKgoidGVybWluYWxfaXNfY29ubmVjdGVkX3RvX210X3NlcnZlchgH",
-            "IAEoCCIzChFEaXNjb25uZWN0UmVxdWVzdBITCgZyZWFzb24YASABKAlIAIgB",
-            "AUIJCgdfcmVhc29uInEKD0Rpc2Nvbm5lY3RSZXBseRIsCgRkYXRhGAEgASgL",
-            "MhwubXQ1X3Rlcm1fYXBpLkRpc2Nvbm5lY3REYXRhSAASJAoFZXJyb3IYAiAB",
-            "KAsyEy5tdDVfdGVybV9hcGkuRXJyb3JIAEIKCghyZXNwb25zZSJLCg5EaXNj",
-            "b25uZWN0RGF0YRIZChF1bmlxdWVfaWRlbnRpZmllchgBIAEoCRIeChZmdWxs",
-            "X2xpZmVfdGltZV9zZWNvbmRzGAIgASgDIhMKEVNjcmVlbnNob3RSZXF1ZXN0",
-            "InEKD1NjcmVlbnNob3RSZXBseRIsCgRkYXRhGAEgASgLMhwubXQ1X3Rlcm1f",
-            "YXBpLlNjcmVlbnNob3REYXRhSAASJAoFZXJyb3IYAiABKAsyEy5tdDVfdGVy",
-            "bV9hcGkuRXJyb3JIAEIKCghyZXNwb25zZSJnCg5TY3JlZW5zaG90RGF0YRIS",
-            "CgppbWFnZV9kYXRhGAEgASgMEhYKDmRpc3BsYXlfbnVtYmVyGAIgASgFEhMK",
-            "C3Rlcm1pbmFsX2lkGAMgASgJEhQKDGNvbnRlbnRfdHlwZRgEIAEoCSIuCgxH",
-            "ZXRJZFJlcXVlc3QSDAoEdXNlchgBIAEoCRIQCghwYXNzd29yZBgCIAEoCSJn",
-            "CgpHZXRJZFJlcGx5EicKBGRhdGEYASABKAsyFy5tdDVfdGVybV9hcGkuR2V0",
-            "SWREYXRhSAASJAoFZXJyb3IYAiABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3JI",
-            "AEIKCghyZXNwb25zZSIXCglHZXRJZERhdGESCgoCaWQYASABKAki8QEKEkNv",
-            "bm5lY3RTdHJlYW1FdmVudBIMCgRzdGVwGAEgASgJEg8KB21lc3NhZ2UYAiAB",
-            "KAkSDQoFbGV2ZWwYAyABKAkSEgoKZWxhcHNlZF9tcxgEIAEoAxItCgl0aW1l",
-            "c3RhbXAYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhAKCGlz",
-            "X2ZpbmFsGAYgASgIEi8KDGNvbm5lY3RfZGF0YRgHIAEoCzIZLm10NV90ZXJt",
-            "X2FwaS5Db25uZWN0RGF0YRInCgplcnJvcl9kYXRhGAggASgLMhMubXQ1X3Rl",
-            "cm1fYXBpLkVycm9yIhUKE0Nvbm5lY3RTdGF0ZVJlcXVlc3QidQoRQ29ubmVj",
-            "dFN0YXRlUmVwbHkSLgoEZGF0YRgBIAEoCzIeLm10NV90ZXJtX2FwaS5Db25u",
-            "ZWN0U3RhdGVEYXRhSAASJAoFZXJyb3IYAiABKAsyEy5tdDVfdGVybV9hcGku",
-            "RXJyb3JIAEIKCghyZXNwb25zZSItChVPbkNvbm5lY3RTdGF0ZVJlcXVlc3QS",
-            "FAoMdGVybWluYWxfaWRzGAEgAygJIncKE09uQ29ubmVjdFN0YXRlUmVwbHkS",
-            "LgoEZGF0YRgBIAEoCzIeLm10NV90ZXJtX2FwaS5Db25uZWN0U3RhdGVEYXRh",
-            "SAASJAoFZXJyb3IYAiABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3JIAEIKCghy",
-            "ZXNwb25zZSLSAQoQQ29ubmVjdFN0YXRlRGF0YRIKCgJpZBgBIAEoCRINCgVz",
-            "dGF0ZRgCIAEoCRIUCgxpc19jb25uZWN0ZWQYAyABKAgSEAoIaXNfYWxpdmUY",
-            "BCABKAgSFAoMYXBpX2lzX2FsaXZlGAUgASgIEg4KBnNlcnZlchgGIAEoCRIP",
-            "CgdhY2NvdW50GAcgASgEEhUKDWVycm9yX21lc3NhZ2UYCCABKAkSLQoJdGlt",
-            "ZXN0YW1wGAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCIZChdD",
-            "b25uZWN0aW9uU3RhdHVzUmVxdWVzdCJ9ChVDb25uZWN0aW9uU3RhdHVzUmVw",
-            "bHkSMgoEZGF0YRgBIAEoCzIiLm10NV90ZXJtX2FwaS5Db25uZWN0aW9uU3Rh",
-            "dHVzRGF0YUgAEiQKBWVycm9yGAIgASgLMhMubXQ1X3Rlcm1fYXBpLkVycm9y",
-            "SABCCgoIcmVzcG9uc2UipwEKFENvbm5lY3Rpb25TdGF0dXNEYXRhEgoKAmlk",
-            "GAEgASgJEhQKDGlzX2Nvbm5lY3RlZBgCIAEoCBIQCghpc19hbGl2ZRgDIAEo",
-            "CBIUCgxhcGlfaXNfYWxpdmUYBCABKAgSDgoGc2VydmVyGAUgASgJEg8KB2Fj",
-            "Y291bnQYBiABKAQSFQoNZXJyb3JfbWVzc2FnZRgHIAEoCRINCgVzdGF0ZRgI",
-            "IAEoCSo5CgpQcm94eVR5cGVzEggKBE5vbmUQABIJCgVIdHRwcxABEgoKBlNv",
-            "Y2tzNBACEgoKBlNvY2tzNRADKiAKDFRlcm1pbmFsVHlwZRIHCgNNVDQQABIH",
-            "CgNNVDUQATLdDAoKQ29ubmVjdGlvbhJdCglDb25uZWN0RXgSHi5tdDVfdGVy",
-            "bV9hcGkuQ29ubmVjdEV4UmVxdWVzdBocLm10NV90ZXJtX2FwaS5Db25uZWN0",
-            "RXhSZXBseSISgtPkkwIMEgovQ29ubmVjdEV4ElUKB0Nvbm5lY3QSHC5tdDVf",
-            "dGVybV9hcGkuQ29ubmVjdFJlcXVlc3QaGi5tdDVfdGVybV9hcGkuQ29ubmVj",
-            "dFJlcGx5IhCC0+STAgoSCC9Db25uZWN0EmkKDENvbm5lY3RQcm94eRIhLm10",
-            "NV90ZXJtX2FwaS5Db25uZWN0UHJveHlSZXF1ZXN0Gh8ubXQ1X3Rlcm1fYXBp",
-            "LkNvbm5lY3RQcm94eVJlcGx5IhWC0+STAg8SDS9Db25uZWN0UHJveHkSaQoM",
-            "Q2hlY2tDb25uZWN0EiEubXQ1X3Rlcm1fYXBpLkNoZWNrQ29ubmVjdFJlcXVl",
-            "c3QaHy5tdDVfdGVybV9hcGkuQ2hlY2tDb25uZWN0UmVwbHkiFYLT5JMCDxIN",
-            "L0NoZWNrQ29ubmVjdBJpCgxDb25uZWN0U3RhdGUSIS5tdDVfdGVybV9hcGku",
-            "Q29ubmVjdFN0YXRlUmVxdWVzdBofLm10NV90ZXJtX2FwaS5Db25uZWN0U3Rh",
-            "dGVSZXBseSIVgtPkkwIPEg0vQ29ubmVjdFN0YXRlEnMKDk9uQ29ubmVjdFN0",
-            "YXRlEiMubXQ1X3Rlcm1fYXBpLk9uQ29ubmVjdFN0YXRlUmVxdWVzdBohLm10",
-            "NV90ZXJtX2FwaS5PbkNvbm5lY3RTdGF0ZVJlcGx5IheC0+STAhESDy9PbkNv",
-            "bm5lY3RTdGF0ZTABEnkKEENvbm5lY3Rpb25TdGF0dXMSJS5tdDVfdGVybV9h",
-            "cGkuQ29ubmVjdGlvblN0YXR1c1JlcXVlc3QaIy5tdDVfdGVybV9hcGkuQ29u",
-            "bmVjdGlvblN0YXR1c1JlcGx5IhmC0+STAhMSES9Db25uZWN0aW9uU3RhdHVz",
-            "EmEKCkRpc2Nvbm5lY3QSHy5tdDVfdGVybV9hcGkuRGlzY29ubmVjdFJlcXVl",
-            "c3QaHS5tdDVfdGVybV9hcGkuRGlzY29ubmVjdFJlcGx5IhOC0+STAg0SCy9E",
-            "aXNjb25uZWN0El0KCVJlY29ubmVjdBIeLm10NV90ZXJtX2FwaS5SZWNvbm5l",
-            "Y3RSZXF1ZXN0GhwubXQ1X3Rlcm1fYXBpLlJlY29ubmVjdFJlcGx5IhKC0+ST",
-            "AgwSCi9SZWNvbm5lY3QSbAoOQ29ubmVjdEJ5VG9rZW4SIy5tdDVfdGVybV9h",
-            "cGkuQ29ubmVjdEJ5VG9rZW5SZXF1ZXN0GhwubXQ1X3Rlcm1fYXBpLkNvbm5l",
-            "Y3RFeFJlcGx5IheC0+STAhESDy9Db25uZWN0QnlUb2tlbhKpAQocR2V0QnJv",
-            "a2VyU2VydmVyc0J5QnJva2VyTmFtZRIxLm10NV90ZXJtX2FwaS5HZXRCcm9r",
-            "ZXJTZXJ2ZXJzQnlCcm9rZXJOYW1lUmVxdWVzdBovLm10NV90ZXJtX2FwaS5H",
-            "ZXRCcm9rZXJTZXJ2ZXJzQnlCcm9rZXJOYW1lUmVwbHkiJYLT5JMCHxIdL0dl",
-            "dEJyb2tlclNlcnZlcnNCeUJyb2tlck5hbWUSYQoKU2NyZWVuc2hvdBIfLm10",
-            "NV90ZXJtX2FwaS5TY3JlZW5zaG90UmVxdWVzdBodLm10NV90ZXJtX2FwaS5T",
-            "Y3JlZW5zaG90UmVwbHkiE4LT5JMCDRILL1NjcmVlbnNob3QSTQoFR2V0SWQS",
-            "Gi5tdDVfdGVybV9hcGkuR2V0SWRSZXF1ZXN0GhgubXQ1X3Rlcm1fYXBpLkdl",
-            "dElkUmVwbHkiDoLT5JMCCBIGL0dldElkEmkKDUNvbm5lY3RTdHJlYW0SHC5t",
-            "dDVfdGVybV9hcGkuQ29ubmVjdFJlcXVlc3QaIC5tdDVfdGVybV9hcGkuQ29u",
-            "bmVjdFN0cmVhbUV2ZW50IhaC0+STAhASDi9Db25uZWN0U3RyZWFtMAESbwoP",
-            "Q29ubmVjdEV4U3RyZWFtEh4ubXQ1X3Rlcm1fYXBpLkNvbm5lY3RFeFJlcXVl",
-            "c3QaIC5tdDVfdGVybV9hcGkuQ29ubmVjdFN0cmVhbUV2ZW50IhiC0+STAhIS",
-            "EC9Db25uZWN0RXhTdHJlYW0wATKKAwoETG9ncxJaCgdKb3VybmFsEhwubXQ1",
-            "X3Rlcm1fYXBpLkpvdXJuYWxSZXF1ZXN0GhoubXQ1X3Rlcm1fYXBpLkpvdXJu",
-            "YWxSZXBseSIVgtPkkwIPEg0vTG9ncy9Kb3VybmFsEmQKCU9uSm91cm5hbBIe",
-            "Lm10NV90ZXJtX2FwaS5PbkpvdXJuYWxSZXF1ZXN0GhwubXQ1X3Rlcm1fYXBp",
-            "Lk9uSm91cm5hbFJlcGx5IheC0+STAhESDy9Mb2dzL09uSm91cm5hbDABEloK",
-            "B0V4cGVydHMSHC5tdDVfdGVybV9hcGkuSm91cm5hbFJlcXVlc3QaGi5tdDVf",
-            "dGVybV9hcGkuSm91cm5hbFJlcGx5IhWC0+STAg8SDS9Mb2dzL0V4cGVydHMS",
-            "ZAoJT25FeHBlcnRzEh4ubXQ1X3Rlcm1fYXBpLk9uSm91cm5hbFJlcXVlc3Qa",
-            "HC5tdDVfdGVybV9hcGkuT25Kb3VybmFsUmVwbHkiF4LT5JMCERIPL0xvZ3Mv",
-            "T25FeHBlcnRzMAFCQloxZ2l0Lm10YXBpLmlvL3Jvb3QvbXJwYy1wcm90by5n",
-            "aXQvbXQ1L2xpYnJhcmllcy9nb6oCDG10NV90ZXJtX2FwaWIGcHJvdG8z"));
+            "c3BvbnNlImcKDlNjcmVlbnNob3REYXRhEhIKCmltYWdlX2RhdGEYASABKAwS",
+            "FgoOZGlzcGxheV9udW1iZXIYAiABKAUSEwoLdGVybWluYWxfaWQYAyABKAkS",
+            "FAoMY29udGVudF90eXBlGAQgASgJIi4KDEdldElkUmVxdWVzdBIMCgR1c2Vy",
+            "GAEgASgJEhAKCHBhc3N3b3JkGAIgASgJImcKCkdldElkUmVwbHkSJwoEZGF0",
+            "YRgBIAEoCzIXLm10NV90ZXJtX2FwaS5HZXRJZERhdGFIABIkCgVlcnJvchgC",
+            "IAEoCzITLm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJlc3BvbnNlIhcKCUdl",
+            "dElkRGF0YRIKCgJpZBgBIAEoCSLxAQoSQ29ubmVjdFN0cmVhbUV2ZW50EgwK",
+            "BHN0ZXAYASABKAkSDwoHbWVzc2FnZRgCIAEoCRINCgVsZXZlbBgDIAEoCRIS",
+            "CgplbGFwc2VkX21zGAQgASgDEi0KCXRpbWVzdGFtcBgFIAEoCzIaLmdvb2ds",
+            "ZS5wcm90b2J1Zi5UaW1lc3RhbXASEAoIaXNfZmluYWwYBiABKAgSLwoMY29u",
+            "bmVjdF9kYXRhGAcgASgLMhkubXQ1X3Rlcm1fYXBpLkNvbm5lY3REYXRhEicK",
+            "CmVycm9yX2RhdGEYCCABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3IiFQoTQ29u",
+            "bmVjdFN0YXRlUmVxdWVzdCJ1ChFDb25uZWN0U3RhdGVSZXBseRIuCgRkYXRh",
+            "GAEgASgLMh4ubXQ1X3Rlcm1fYXBpLkNvbm5lY3RTdGF0ZURhdGFIABIkCgVl",
+            "cnJvchgCIAEoCzITLm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJlc3BvbnNl",
+            "Ii0KFU9uQ29ubmVjdFN0YXRlUmVxdWVzdBIUCgx0ZXJtaW5hbF9pZHMYASAD",
+            "KAkidwoTT25Db25uZWN0U3RhdGVSZXBseRIuCgRkYXRhGAEgASgLMh4ubXQ1",
+            "X3Rlcm1fYXBpLkNvbm5lY3RTdGF0ZURhdGFIABIkCgVlcnJvchgCIAEoCzIT",
+            "Lm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJlc3BvbnNlItIBChBDb25uZWN0",
+            "U3RhdGVEYXRhEgoKAmlkGAEgASgJEg0KBXN0YXRlGAIgASgJEhQKDGlzX2Nv",
+            "bm5lY3RlZBgDIAEoCBIQCghpc19hbGl2ZRgEIAEoCBIUCgxhcGlfaXNfYWxp",
+            "dmUYBSABKAgSDgoGc2VydmVyGAYgASgJEg8KB2FjY291bnQYByABKAQSFQoN",
+            "ZXJyb3JfbWVzc2FnZRgIIAEoCRItCgl0aW1lc3RhbXAYCSABKAsyGi5nb29n",
+            "bGUucHJvdG9idWYuVGltZXN0YW1wIhkKF0Nvbm5lY3Rpb25TdGF0dXNSZXF1",
+            "ZXN0In0KFUNvbm5lY3Rpb25TdGF0dXNSZXBseRIyCgRkYXRhGAEgASgLMiIu",
+            "bXQ1X3Rlcm1fYXBpLkNvbm5lY3Rpb25TdGF0dXNEYXRhSAASJAoFZXJyb3IY",
+            "AiABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3JIAEIKCghyZXNwb25zZSKnAQoU",
+            "Q29ubmVjdGlvblN0YXR1c0RhdGESCgoCaWQYASABKAkSFAoMaXNfY29ubmVj",
+            "dGVkGAIgASgIEhAKCGlzX2FsaXZlGAMgASgIEhQKDGFwaV9pc19hbGl2ZRgE",
+            "IAEoCBIOCgZzZXJ2ZXIYBSABKAkSDwoHYWNjb3VudBgGIAEoBBIVCg1lcnJv",
+            "cl9tZXNzYWdlGAcgASgJEg0KBXN0YXRlGAggASgJKjkKClByb3h5VHlwZXMS",
+            "CAoETm9uZRAAEgkKBUh0dHBzEAESCgoGU29ja3M0EAISCgoGU29ja3M1EAMq",
+            "IAoMVGVybWluYWxUeXBlEgcKA01UNBAAEgcKA01UNRABMt0MCgpDb25uZWN0",
+            "aW9uEl0KCUNvbm5lY3RFeBIeLm10NV90ZXJtX2FwaS5Db25uZWN0RXhSZXF1",
+            "ZXN0GhwubXQ1X3Rlcm1fYXBpLkNvbm5lY3RFeFJlcGx5IhKC0+STAgwSCi9D",
+            "b25uZWN0RXgSVQoHQ29ubmVjdBIcLm10NV90ZXJtX2FwaS5Db25uZWN0UmVx",
+            "dWVzdBoaLm10NV90ZXJtX2FwaS5Db25uZWN0UmVwbHkiEILT5JMCChIIL0Nv",
+            "bm5lY3QSaQoMQ29ubmVjdFByb3h5EiEubXQ1X3Rlcm1fYXBpLkNvbm5lY3RQ",
+            "cm94eVJlcXVlc3QaHy5tdDVfdGVybV9hcGkuQ29ubmVjdFByb3h5UmVwbHki",
+            "FYLT5JMCDxINL0Nvbm5lY3RQcm94eRJpCgxDaGVja0Nvbm5lY3QSIS5tdDVf",
+            "dGVybV9hcGkuQ2hlY2tDb25uZWN0UmVxdWVzdBofLm10NV90ZXJtX2FwaS5D",
+            "aGVja0Nvbm5lY3RSZXBseSIVgtPkkwIPEg0vQ2hlY2tDb25uZWN0EmkKDENv",
+            "bm5lY3RTdGF0ZRIhLm10NV90ZXJtX2FwaS5Db25uZWN0U3RhdGVSZXF1ZXN0",
+            "Gh8ubXQ1X3Rlcm1fYXBpLkNvbm5lY3RTdGF0ZVJlcGx5IhWC0+STAg8SDS9D",
+            "b25uZWN0U3RhdGUScwoOT25Db25uZWN0U3RhdGUSIy5tdDVfdGVybV9hcGku",
+            "T25Db25uZWN0U3RhdGVSZXF1ZXN0GiEubXQ1X3Rlcm1fYXBpLk9uQ29ubmVj",
+            "dFN0YXRlUmVwbHkiF4LT5JMCERIPL09uQ29ubmVjdFN0YXRlMAESeQoQQ29u",
+            "bmVjdGlvblN0YXR1cxIlLm10NV90ZXJtX2FwaS5Db25uZWN0aW9uU3RhdHVz",
+            "UmVxdWVzdBojLm10NV90ZXJtX2FwaS5Db25uZWN0aW9uU3RhdHVzUmVwbHki",
+            "GYLT5JMCExIRL0Nvbm5lY3Rpb25TdGF0dXMSYQoKRGlzY29ubmVjdBIfLm10",
+            "NV90ZXJtX2FwaS5EaXNjb25uZWN0UmVxdWVzdBodLm10NV90ZXJtX2FwaS5E",
+            "aXNjb25uZWN0UmVwbHkiE4LT5JMCDRILL0Rpc2Nvbm5lY3QSXQoJUmVjb25u",
+            "ZWN0Eh4ubXQ1X3Rlcm1fYXBpLlJlY29ubmVjdFJlcXVlc3QaHC5tdDVfdGVy",
+            "bV9hcGkuUmVjb25uZWN0UmVwbHkiEoLT5JMCDBIKL1JlY29ubmVjdBJsCg5D",
+            "b25uZWN0QnlUb2tlbhIjLm10NV90ZXJtX2FwaS5Db25uZWN0QnlUb2tlblJl",
+            "cXVlc3QaHC5tdDVfdGVybV9hcGkuQ29ubmVjdEV4UmVwbHkiF4LT5JMCERIP",
+            "L0Nvbm5lY3RCeVRva2VuEqkBChxHZXRCcm9rZXJTZXJ2ZXJzQnlCcm9rZXJO",
+            "YW1lEjEubXQ1X3Rlcm1fYXBpLkdldEJyb2tlclNlcnZlcnNCeUJyb2tlck5h",
+            "bWVSZXF1ZXN0Gi8ubXQ1X3Rlcm1fYXBpLkdldEJyb2tlclNlcnZlcnNCeUJy",
+            "b2tlck5hbWVSZXBseSIlgtPkkwIfEh0vR2V0QnJva2VyU2VydmVyc0J5QnJv",
+            "a2VyTmFtZRJhCgpTY3JlZW5zaG90Eh8ubXQ1X3Rlcm1fYXBpLlNjcmVlbnNo",
+            "b3RSZXF1ZXN0Gh0ubXQ1X3Rlcm1fYXBpLlNjcmVlbnNob3RSZXBseSITgtPk",
+            "kwINEgsvU2NyZWVuc2hvdBJNCgVHZXRJZBIaLm10NV90ZXJtX2FwaS5HZXRJ",
+            "ZFJlcXVlc3QaGC5tdDVfdGVybV9hcGkuR2V0SWRSZXBseSIOgtPkkwIIEgYv",
+            "R2V0SWQSaQoNQ29ubmVjdFN0cmVhbRIcLm10NV90ZXJtX2FwaS5Db25uZWN0",
+            "UmVxdWVzdBogLm10NV90ZXJtX2FwaS5Db25uZWN0U3RyZWFtRXZlbnQiFoLT",
+            "5JMCEBIOL0Nvbm5lY3RTdHJlYW0wARJvCg9Db25uZWN0RXhTdHJlYW0SHi5t",
+            "dDVfdGVybV9hcGkuQ29ubmVjdEV4UmVxdWVzdBogLm10NV90ZXJtX2FwaS5D",
+            "b25uZWN0U3RyZWFtRXZlbnQiGILT5JMCEhIQL0Nvbm5lY3RFeFN0cmVhbTAB",
+            "MooDCgRMb2dzEloKB0pvdXJuYWwSHC5tdDVfdGVybV9hcGkuSm91cm5hbFJl",
+            "cXVlc3QaGi5tdDVfdGVybV9hcGkuSm91cm5hbFJlcGx5IhWC0+STAg8SDS9M",
+            "b2dzL0pvdXJuYWwSZAoJT25Kb3VybmFsEh4ubXQ1X3Rlcm1fYXBpLk9uSm91",
+            "cm5hbFJlcXVlc3QaHC5tdDVfdGVybV9hcGkuT25Kb3VybmFsUmVwbHkiF4LT",
+            "5JMCERIPL0xvZ3MvT25Kb3VybmFsMAESWgoHRXhwZXJ0cxIcLm10NV90ZXJt",
+            "X2FwaS5Kb3VybmFsUmVxdWVzdBoaLm10NV90ZXJtX2FwaS5Kb3VybmFsUmVw",
+            "bHkiFYLT5JMCDxINL0xvZ3MvRXhwZXJ0cxJkCglPbkV4cGVydHMSHi5tdDVf",
+            "dGVybV9hcGkuT25Kb3VybmFsUmVxdWVzdBocLm10NV90ZXJtX2FwaS5Pbkpv",
+            "dXJuYWxSZXBseSIXgtPkkwIREg8vTG9ncy9PbkV4cGVydHMwAUJCWjFnaXQu",
+            "bXRhcGkuaW8vcm9vdC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVzL2dv",
+            "qgIMbXQ1X3Rlcm1fYXBpYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.WrappersReflection.Descriptor, global::Mt5TermApi.MrpcMt5ErrorReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::mt5_term_api.ProxyTypes), typeof(global::mt5_term_api.TerminalType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -206,17 +210,17 @@ namespace mt5_term_api {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetBrokerServersByBrokerNameReply), global::mt5_term_api.GetBrokerServersByBrokerNameReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetBrokerServersByBrokerNameData), global::mt5_term_api.GetBrokerServersByBrokerNameData.Parser, new[]{ "Result" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerResult), global::mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerResult.Parser, new[]{ "Company", "Results" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer), global::mt5_term_api.GetBrokerServersByBrokerNameData.Types.BrokerServer.Parser, new[]{ "Name", "LogoUrl", "Site", "Access" }, new[]{ "LogoUrl", "Site" }, null, null, null)}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectExRequest), global::mt5_term_api.ConnectExRequest.Parser, new[]{ "User", "Password", "MtClusterName", "BaseChartSymbol", "ExpertsToAdd", "TimeoutSeconds", "Name" }, new[]{ "BaseChartSymbol", "TimeoutSeconds", "Name" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectByTokenRequest), global::mt5_term_api.ConnectByTokenRequest.Parser, new[]{ "BaseChartSymbol", "TimeoutSeconds" }, new[]{ "BaseChartSymbol", "TimeoutSeconds" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectExRequest), global::mt5_term_api.ConnectExRequest.Parser, new[]{ "User", "Password", "MtClusterName", "BaseChartSymbol", "ExpertsToAdd", "TimeoutSeconds", "Name", "Expiration" }, new[]{ "BaseChartSymbol", "TimeoutSeconds", "Name", "Expiration" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectByTokenRequest), global::mt5_term_api.ConnectByTokenRequest.Parser, new[]{ "BaseChartSymbol", "TimeoutSeconds", "Expiration" }, new[]{ "BaseChartSymbol", "TimeoutSeconds", "Expiration" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectExReply), global::mt5_term_api.ConnectExReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ReconnectRequest), global::mt5_term_api.ReconnectRequest.Parser, new[]{ "ForceReconnection" }, new[]{ "ForceReconnection" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ReconnectReply), global::mt5_term_api.ReconnectReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ReconnectData), global::mt5_term_api.ReconnectData.Parser, new[]{ "TerminalWasRecreated", "TerminalType", "TerminalInstanceGuid", "OldTerminalFullLiveTimeSeconds", "OldLogFiles" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectRequest), global::mt5_term_api.ConnectRequest.Parser, new[]{ "User", "Password", "Host", "Port", "ExpertsToAdd", "TimeoutSeconds", "Name" }, new[]{ "TimeoutSeconds", "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectRequest), global::mt5_term_api.ConnectRequest.Parser, new[]{ "User", "Password", "Host", "Port", "ExpertsToAdd", "TimeoutSeconds", "Name", "Expiration" }, new[]{ "TimeoutSeconds", "Name", "Expiration" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ExpertAdviser), global::mt5_term_api.ExpertAdviser.Parser, new[]{ "FileName", "FileContent" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectReply), global::mt5_term_api.ConnectReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectData), global::mt5_term_api.ConnectData.Parser, new[]{ "TerminalInstanceGuid", "TerminalType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectProxyRequest), global::mt5_term_api.ConnectProxyRequest.Parser, new[]{ "User", "Password", "Host", "Port", "ProxyUser", "ProxyPassword", "ProxyHost", "ProxyPort", "ProxyType", "ExpertsToAdd", "TimeoutSeconds", "Name" }, new[]{ "TimeoutSeconds", "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectProxyRequest), global::mt5_term_api.ConnectProxyRequest.Parser, new[]{ "User", "Password", "Host", "Port", "ProxyUser", "ProxyPassword", "ProxyHost", "ProxyPort", "ProxyType", "ExpertsToAdd", "TimeoutSeconds", "Name", "Expiration" }, new[]{ "TimeoutSeconds", "Name", "Expiration" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectProxyReply), global::mt5_term_api.ConnectProxyReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ConnectProxyData), global::mt5_term_api.ConnectProxyData.Parser, new[]{ "UniqueIdentifier", "TerminalType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.CheckConnectRequest), global::mt5_term_api.CheckConnectRequest.Parser, null, null, null, null, null),
@@ -2844,6 +2848,7 @@ namespace mt5_term_api {
       expertsToAdd_ = other.expertsToAdd_.Clone();
       timeoutSeconds_ = other.timeoutSeconds_;
       name_ = other.name_;
+      expiration_ = other.expiration_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2994,6 +2999,34 @@ namespace mt5_term_api {
       name_ = null;
     }
 
+    /// <summary>Field number for the "expiration" field.</summary>
+    public const int ExpirationFieldNumber = 8;
+    private uint expiration_;
+    /// <summary>
+    /// Optional terminal lifetime in minutes. 0 (default) = infinite (trial max 15 min). [Optional]
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Expiration {
+      get { if ((_hasBits0 & 2) != 0) { return expiration_; } else { return 0; } }
+      set {
+        _hasBits0 |= 2;
+        expiration_ = value;
+      }
+    }
+    /// <summary>Gets whether the "expiration" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasExpiration {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "expiration" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearExpiration() {
+      _hasBits0 &= ~2;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3016,6 +3049,7 @@ namespace mt5_term_api {
       if(!expertsToAdd_.Equals(other.expertsToAdd_)) return false;
       if (TimeoutSeconds != other.TimeoutSeconds) return false;
       if (Name != other.Name) return false;
+      if (Expiration != other.Expiration) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3030,6 +3064,7 @@ namespace mt5_term_api {
       hash ^= expertsToAdd_.GetHashCode();
       if (HasTimeoutSeconds) hash ^= TimeoutSeconds.GetHashCode();
       if (HasName) hash ^= Name.GetHashCode();
+      if (HasExpiration) hash ^= Expiration.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3073,6 +3108,10 @@ namespace mt5_term_api {
         output.WriteRawTag(58);
         output.WriteString(Name);
       }
+      if (HasExpiration) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(Expiration);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3108,6 +3147,10 @@ namespace mt5_term_api {
         output.WriteRawTag(58);
         output.WriteString(Name);
       }
+      if (HasExpiration) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(Expiration);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3136,6 +3179,9 @@ namespace mt5_term_api {
       }
       if (HasName) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (HasExpiration) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Expiration);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3167,6 +3213,9 @@ namespace mt5_term_api {
       }
       if (other.HasName) {
         Name = other.Name;
+      }
+      if (other.HasExpiration) {
+        Expiration = other.Expiration;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3211,6 +3260,10 @@ namespace mt5_term_api {
             Name = input.ReadString();
             break;
           }
+          case 64: {
+            Expiration = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -3252,6 +3305,10 @@ namespace mt5_term_api {
           }
           case 58: {
             Name = input.ReadString();
+            break;
+          }
+          case 64: {
+            Expiration = input.ReadUInt32();
             break;
           }
         }
@@ -3305,6 +3362,7 @@ namespace mt5_term_api {
       _hasBits0 = other._hasBits0;
       baseChartSymbol_ = other.baseChartSymbol_;
       timeoutSeconds_ = other.timeoutSeconds_;
+      expiration_ = other.expiration_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3369,6 +3427,34 @@ namespace mt5_term_api {
       _hasBits0 &= ~1;
     }
 
+    /// <summary>Field number for the "expiration" field.</summary>
+    public const int ExpirationFieldNumber = 3;
+    private uint expiration_;
+    /// <summary>
+    /// Optional terminal lifetime in minutes. 0 (default) = infinite (trial max 15 min). [Optional]
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Expiration {
+      get { if ((_hasBits0 & 2) != 0) { return expiration_; } else { return 0; } }
+      set {
+        _hasBits0 |= 2;
+        expiration_ = value;
+      }
+    }
+    /// <summary>Gets whether the "expiration" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasExpiration {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "expiration" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearExpiration() {
+      _hasBits0 &= ~2;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3386,6 +3472,7 @@ namespace mt5_term_api {
       }
       if (BaseChartSymbol != other.BaseChartSymbol) return false;
       if (TimeoutSeconds != other.TimeoutSeconds) return false;
+      if (Expiration != other.Expiration) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3395,6 +3482,7 @@ namespace mt5_term_api {
       int hash = 1;
       if (HasBaseChartSymbol) hash ^= BaseChartSymbol.GetHashCode();
       if (HasTimeoutSeconds) hash ^= TimeoutSeconds.GetHashCode();
+      if (HasExpiration) hash ^= Expiration.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3421,6 +3509,10 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteUInt32(TimeoutSeconds);
       }
+      if (HasExpiration) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(Expiration);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3439,6 +3531,10 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteUInt32(TimeoutSeconds);
       }
+      if (HasExpiration) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(Expiration);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3454,6 +3550,9 @@ namespace mt5_term_api {
       }
       if (HasTimeoutSeconds) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(TimeoutSeconds);
+      }
+      if (HasExpiration) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Expiration);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3472,6 +3571,9 @@ namespace mt5_term_api {
       }
       if (other.HasTimeoutSeconds) {
         TimeoutSeconds = other.TimeoutSeconds;
+      }
+      if (other.HasExpiration) {
+        Expiration = other.Expiration;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3496,6 +3598,10 @@ namespace mt5_term_api {
             TimeoutSeconds = input.ReadUInt32();
             break;
           }
+          case 24: {
+            Expiration = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -3517,6 +3623,10 @@ namespace mt5_term_api {
           }
           case 16: {
             TimeoutSeconds = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            Expiration = input.ReadUInt32();
             break;
           }
         }
@@ -4672,6 +4782,7 @@ namespace mt5_term_api {
       expertsToAdd_ = other.expertsToAdd_.Clone();
       timeoutSeconds_ = other.timeoutSeconds_;
       name_ = other.name_;
+      expiration_ = other.expiration_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4807,6 +4918,34 @@ namespace mt5_term_api {
       name_ = null;
     }
 
+    /// <summary>Field number for the "expiration" field.</summary>
+    public const int ExpirationFieldNumber = 8;
+    private uint expiration_;
+    /// <summary>
+    /// Optional terminal lifetime in minutes. 0 (default) = infinite (trial max 15 min). [Optional]
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Expiration {
+      get { if ((_hasBits0 & 2) != 0) { return expiration_; } else { return 0; } }
+      set {
+        _hasBits0 |= 2;
+        expiration_ = value;
+      }
+    }
+    /// <summary>Gets whether the "expiration" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasExpiration {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "expiration" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearExpiration() {
+      _hasBits0 &= ~2;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -4829,6 +4968,7 @@ namespace mt5_term_api {
       if(!expertsToAdd_.Equals(other.expertsToAdd_)) return false;
       if (TimeoutSeconds != other.TimeoutSeconds) return false;
       if (Name != other.Name) return false;
+      if (Expiration != other.Expiration) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4843,6 +4983,7 @@ namespace mt5_term_api {
       hash ^= expertsToAdd_.GetHashCode();
       if (HasTimeoutSeconds) hash ^= TimeoutSeconds.GetHashCode();
       if (HasName) hash ^= Name.GetHashCode();
+      if (HasExpiration) hash ^= Expiration.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4886,6 +5027,10 @@ namespace mt5_term_api {
         output.WriteRawTag(58);
         output.WriteString(Name);
       }
+      if (HasExpiration) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(Expiration);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -4921,6 +5066,10 @@ namespace mt5_term_api {
         output.WriteRawTag(58);
         output.WriteString(Name);
       }
+      if (HasExpiration) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(Expiration);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -4949,6 +5098,9 @@ namespace mt5_term_api {
       }
       if (HasName) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (HasExpiration) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Expiration);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4980,6 +5132,9 @@ namespace mt5_term_api {
       }
       if (other.HasName) {
         Name = other.Name;
+      }
+      if (other.HasExpiration) {
+        Expiration = other.Expiration;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -5024,6 +5179,10 @@ namespace mt5_term_api {
             Name = input.ReadString();
             break;
           }
+          case 64: {
+            Expiration = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -5065,6 +5224,10 @@ namespace mt5_term_api {
           }
           case 58: {
             Name = input.ReadString();
+            break;
+          }
+          case 64: {
+            Expiration = input.ReadUInt32();
             break;
           }
         }
@@ -5868,6 +6031,7 @@ namespace mt5_term_api {
       expertsToAdd_ = other.expertsToAdd_.Clone();
       timeoutSeconds_ = other.timeoutSeconds_;
       name_ = other.name_;
+      expiration_ = other.expiration_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -6078,6 +6242,34 @@ namespace mt5_term_api {
       name_ = null;
     }
 
+    /// <summary>Field number for the "expiration" field.</summary>
+    public const int ExpirationFieldNumber = 13;
+    private uint expiration_;
+    /// <summary>
+    /// Optional terminal lifetime in minutes. 0 (default) = infinite (trial max 15 min). [Optional]
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint Expiration {
+      get { if ((_hasBits0 & 2) != 0) { return expiration_; } else { return 0; } }
+      set {
+        _hasBits0 |= 2;
+        expiration_ = value;
+      }
+    }
+    /// <summary>Gets whether the "expiration" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasExpiration {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "expiration" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearExpiration() {
+      _hasBits0 &= ~2;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -6105,6 +6297,7 @@ namespace mt5_term_api {
       if(!expertsToAdd_.Equals(other.expertsToAdd_)) return false;
       if (TimeoutSeconds != other.TimeoutSeconds) return false;
       if (Name != other.Name) return false;
+      if (Expiration != other.Expiration) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -6124,6 +6317,7 @@ namespace mt5_term_api {
       hash ^= expertsToAdd_.GetHashCode();
       if (HasTimeoutSeconds) hash ^= TimeoutSeconds.GetHashCode();
       if (HasName) hash ^= Name.GetHashCode();
+      if (HasExpiration) hash ^= Expiration.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -6187,6 +6381,10 @@ namespace mt5_term_api {
         output.WriteRawTag(98);
         output.WriteString(Name);
       }
+      if (HasExpiration) {
+        output.WriteRawTag(104);
+        output.WriteUInt32(Expiration);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -6242,6 +6440,10 @@ namespace mt5_term_api {
         output.WriteRawTag(98);
         output.WriteString(Name);
       }
+      if (HasExpiration) {
+        output.WriteRawTag(104);
+        output.WriteUInt32(Expiration);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -6285,6 +6487,9 @@ namespace mt5_term_api {
       }
       if (HasName) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (HasExpiration) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Expiration);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -6331,6 +6536,9 @@ namespace mt5_term_api {
       }
       if (other.HasName) {
         Name = other.Name;
+      }
+      if (other.HasExpiration) {
+        Expiration = other.Expiration;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -6395,6 +6603,10 @@ namespace mt5_term_api {
             Name = input.ReadString();
             break;
           }
+          case 104: {
+            Expiration = input.ReadUInt32();
+            break;
+          }
         }
       }
     #endif
@@ -6456,6 +6668,10 @@ namespace mt5_term_api {
           }
           case 98: {
             Name = input.ReadString();
+            break;
+          }
+          case 104: {
+            Expiration = input.ReadUInt32();
             break;
           }
         }
