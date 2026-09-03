@@ -15331,6 +15331,20 @@
             error or reason if failed
             </summary>
         </member>
+        <member name="F:mrpc_admin.TerminalInfo.UserEmailFieldNumber">
+            <summary>Field number for the "user_email" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.UserEmail">
+            <summary>
+            customer email registered to this terminal
+            </summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.HasUserEmail">
+            <summary>Gets whether the "user_email" field is set</summary>
+        </member>
+        <member name="M:mrpc_admin.TerminalInfo.ClearUserEmail">
+            <summary>Clears the value of the "user_email" field</summary>
+        </member>
         <member name="F:mrpc_admin.ActiveTerminalsReply.PodFieldNumber">
             <summary>Field number for the "pod" field.</summary>
         </member>
