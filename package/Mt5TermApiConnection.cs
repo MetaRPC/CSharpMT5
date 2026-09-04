@@ -11962,7 +11962,7 @@ namespace mt5_term_api {
     public const int StateFieldNumber = 2;
     private string state_ = "";
     /// <summary>
-    /// "Started", "Stopped", "CannotConnect", "WrongPassword", "Starting"
+    /// "Queued", "Starting", "Authorizing", "Syncing", "Connected", "WrongPassword", "CannotConnect", "Stopped", "Expired"
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
