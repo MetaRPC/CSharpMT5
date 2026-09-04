@@ -15345,6 +15345,42 @@
         <member name="M:mrpc_admin.TerminalInfo.ClearUserEmail">
             <summary>Clears the value of the "user_email" field</summary>
         </member>
+        <member name="F:mrpc_admin.TerminalInfo.StartupDurationSecondsFieldNumber">
+            <summary>Field number for the "startup_duration_seconds" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.StartupDurationSeconds">
+            <summary>
+            duration in seconds from instantiation to Connected
+            </summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.HasStartupDurationSeconds">
+            <summary>Gets whether the "startup_duration_seconds" field is set</summary>
+        </member>
+        <member name="M:mrpc_admin.TerminalInfo.ClearStartupDurationSeconds">
+            <summary>Clears the value of the "startup_duration_seconds" field</summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.ConnectedAtFieldNumber">
+            <summary>Field number for the "connected_at" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.ConnectedAt">
+            <summary>
+            timestamp when Connected state was reached
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.StartupTimeFieldNumber">
+            <summary>Field number for the "startup_time" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.StartupTime">
+            <summary>
+            formatted startup duration e.g. "14.2s" or "8s (starting)"
+            </summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.HasStartupTime">
+            <summary>Gets whether the "startup_time" field is set</summary>
+        </member>
+        <member name="M:mrpc_admin.TerminalInfo.ClearStartupTime">
+            <summary>Clears the value of the "startup_time" field</summary>
+        </member>
         <member name="F:mrpc_admin.ActiveTerminalsReply.PodFieldNumber">
             <summary>Field number for the "pod" field.</summary>
         </member>
