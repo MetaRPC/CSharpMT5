@@ -3435,6 +3435,309 @@
             <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
             <param name="serviceImpl">An object implementing the server-side handling logic.</param>
         </member>
+        <member name="P:mt5_term_api.TradeStats.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mt5_term_api.TradeStats.TradeStatsBase">
+            <summary>Base class for server-side implementations of TradeStats</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsBase.TradeStats(mt5_term_api.TradeStatsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Trading statistics calculated from order history and open orders
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsBase.TradeStatsEquityHistory(mt5_term_api.TradeStatsEquityHistoryRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Trading statistics with equity history chart points
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsBase.EquityHistory(mt5_term_api.EquityHistoryRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Equity history curve points with drawdown calculation
+            [DefaultValues]
+            {
+              "from": "2024-10-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsBase.TradeUnrealizedPL(mt5_term_api.TradeUnrealizedPLRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Maximum and minimum unrealized profit/loss per trade
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="T:mt5_term_api.TradeStats.TradeStatsClient">
+            <summary>Client for TradeStats</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for TradeStats</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for TradeStats that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeStats(mt5_term_api.TradeStatsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Trading statistics calculated from order history and open orders
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeStats(mt5_term_api.TradeStatsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Trading statistics calculated from order history and open orders
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeStatsAsync(mt5_term_api.TradeStatsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Trading statistics calculated from order history and open orders
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeStatsAsync(mt5_term_api.TradeStatsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Trading statistics calculated from order history and open orders
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeStatsEquityHistory(mt5_term_api.TradeStatsEquityHistoryRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Trading statistics with equity history chart points
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeStatsEquityHistory(mt5_term_api.TradeStatsEquityHistoryRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Trading statistics with equity history chart points
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeStatsEquityHistoryAsync(mt5_term_api.TradeStatsEquityHistoryRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Trading statistics with equity history chart points
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeStatsEquityHistoryAsync(mt5_term_api.TradeStatsEquityHistoryRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Trading statistics with equity history chart points
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.EquityHistory(mt5_term_api.EquityHistoryRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Equity history curve points with drawdown calculation
+            [DefaultValues]
+            {
+              "from": "2024-10-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.EquityHistory(mt5_term_api.EquityHistoryRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Equity history curve points with drawdown calculation
+            [DefaultValues]
+            {
+              "from": "2024-10-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.EquityHistoryAsync(mt5_term_api.EquityHistoryRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Equity history curve points with drawdown calculation
+            [DefaultValues]
+            {
+              "from": "2024-10-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.EquityHistoryAsync(mt5_term_api.EquityHistoryRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Equity history curve points with drawdown calculation
+            [DefaultValues]
+            {
+              "from": "2024-10-01T00:00:00",
+              "excludeSameBars": true
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeUnrealizedPL(mt5_term_api.TradeUnrealizedPLRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Maximum and minimum unrealized profit/loss per trade
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeUnrealizedPL(mt5_term_api.TradeUnrealizedPLRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Maximum and minimum unrealized profit/loss per trade
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeUnrealizedPLAsync(mt5_term_api.TradeUnrealizedPLRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Maximum and minimum unrealized profit/loss per trade
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.TradeUnrealizedPLAsync(mt5_term_api.TradeUnrealizedPLRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Maximum and minimum unrealized profit/loss per trade
+            [DefaultValues]
+            {
+              "from": "2024-01-01T00:00:00"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.TradeStatsClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.BindService(mt5_term_api.TradeStats.TradeStatsBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mt5_term_api.TradeStats.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.TradeStats.TradeStatsBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
         <member name="P:mt5_term_api.TradingHelper.Descriptor">
             <summary>Service descriptor</summary>
         </member>
@@ -11065,6 +11368,339 @@
             <summary>
             Total number of positions
             </summary>
+        </member>
+        <member name="T:mt5_term_api.Mt5TermApiTradeStatsReflection">
+            <summary>Holder for reflection information generated from mt5-term-api-trade-stats.proto</summary>
+        </member>
+        <member name="P:mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor">
+            <summary>File descriptor for mt5-term-api-trade-stats.proto</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeStatsRequest.FromFieldNumber">
+            <summary>Field number for the "from" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsRequest.From">
+            <summary>
+            From datetime in format: yyyy-MM-ddTHH:mm:ss
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsRequest.HasFrom">
+            <summary>Gets whether the "from" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeStatsRequest.ClearFrom">
+            <summary>Clears the value of the "from" field</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeStatsReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeStatsReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.TradeStatsReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeStatsEquityHistoryRequest.FromFieldNumber">
+            <summary>Field number for the "from" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsEquityHistoryRequest.From">
+            <summary>
+            From datetime in format: yyyy-MM-ddTHH:mm:ss
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsEquityHistoryRequest.HasFrom">
+            <summary>Gets whether the "from" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeStatsEquityHistoryRequest.ClearFrom">
+            <summary>Clears the value of the "from" field</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeStatsEquityHistoryRequest.ExcludeSameBarsFieldNumber">
+            <summary>Field number for the "exclude_same_bars" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsEquityHistoryRequest.ExcludeSameBars">
+            <summary>
+            Return short version without equal bars
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsEquityHistoryRequest.HasExcludeSameBars">
+            <summary>Gets whether the "exclude_same_bars" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeStatsEquityHistoryRequest.ClearExcludeSameBars">
+            <summary>Clears the value of the "exclude_same_bars" field</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeStatsEquityHistoryReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeStatsEquityHistoryReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.TradeStatsEquityHistoryReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityHistoryRequest.FromFieldNumber">
+            <summary>Field number for the "from" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.EquityHistoryRequest.From">
+            <summary>
+            From datetime in format: yyyy-MM-ddTHH:mm:ss
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.EquityHistoryRequest.HasFrom">
+            <summary>Gets whether the "from" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.EquityHistoryRequest.ClearFrom">
+            <summary>Clears the value of the "from" field</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityHistoryRequest.ExcludeSameBarsFieldNumber">
+            <summary>Field number for the "exclude_same_bars" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.EquityHistoryRequest.ExcludeSameBars">
+            <summary>
+            Return short version without equal bars
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.EquityHistoryRequest.HasExcludeSameBars">
+            <summary>Gets whether the "exclude_same_bars" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.EquityHistoryRequest.ClearExcludeSameBars">
+            <summary>Clears the value of the "exclude_same_bars" field</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityHistoryReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityHistoryReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.EquityHistoryReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedPLRequest.FromFieldNumber">
+            <summary>Field number for the "from" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeUnrealizedPLRequest.From">
+            <summary>
+            From datetime in format: yyyy-MM-ddTHH:mm:ss
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.TradeUnrealizedPLRequest.HasFrom">
+            <summary>Gets whether the "from" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeUnrealizedPLRequest.ClearFrom">
+            <summary>Clears the value of the "from" field</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedPLReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedPLReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.TradeUnrealizedPLReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.SummaryFieldNumber">
+            <summary>Field number for the "summary" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.MaxBalanceDrawdownRawFieldNumber">
+            <summary>Field number for the "max_balance_drawdown_raw" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.MaxBalanceDrawdownRelativeFieldNumber">
+            <summary>Field number for the "max_balance_drawdown_relative" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.MaxEquityDrawdownRawFieldNumber">
+            <summary>Field number for the "max_equity_drawdown_raw" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.MaxEquityDrawdownRelativeFieldNumber">
+            <summary>Field number for the "max_equity_drawdown_relative" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.MarketsFieldNumber">
+            <summary>Field number for the "markets" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.ProfitabilityFieldNumber">
+            <summary>Field number for the "profitability" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.PipsFieldNumber">
+            <summary>Field number for the "pips" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.LotsFieldNumber">
+            <summary>Field number for the "lots" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.ComissionsFieldNumber">
+            <summary>Field number for the "comissions" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.AverageWinFieldNumber">
+            <summary>Field number for the "average_win" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.AverageLostFieldNumber">
+            <summary>Field number for the "average_lost" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.LongsWonFieldNumber">
+            <summary>Field number for the "longs_won" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.ShortsWonFieldNumber">
+            <summary>Field number for the "shorts_won" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.BestTradeFieldNumber">
+            <summary>Field number for the "best_trade" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.WorstTradeFieldNumber">
+            <summary>Field number for the "worst_trade" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.BestTradePipsFieldNumber">
+            <summary>Field number for the "best_trade_pips" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.WorstTradePipsFieldNumber">
+            <summary>Field number for the "worst_trade_pips" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.AverageTradeLengthFieldNumber">
+            <summary>Field number for the "average_trade_length" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.ProfitFactorFieldNumber">
+            <summary>Field number for the "profit_factor" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.StandardDeviationFieldNumber">
+            <summary>Field number for the "standard_deviation" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.SharpeRatioFieldNumber">
+            <summary>Field number for the "sharpe_ratio" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.ZScoreFieldNumber">
+            <summary>Field number for the "z_score" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.ExpectancyFieldNumber">
+            <summary>Field number for the "expectancy" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.GhprFieldNumber">
+            <summary>Field number for the "ghpr" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.TradesFieldNumber">
+            <summary>Field number for the "trades" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeSummaryData.OpenTradesFieldNumber">
+            <summary>Field number for the "open_trades" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeSummaryData.OpenProfitFieldNumber">
+            <summary>Field number for the "open_profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeSummaryData.DayProfitFieldNumber">
+            <summary>Field number for the "day_profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeSummaryData.WeekProfitFieldNumber">
+            <summary>Field number for the "week_profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeSummaryData.MonthProfitFieldNumber">
+            <summary>Field number for the "month_profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeSummaryData.TotalProfitFieldNumber">
+            <summary>Field number for the "total_profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.MarketNameFieldNumber">
+            <summary>Field number for the "market_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.CountFieldNumber">
+            <summary>Field number for the "count" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ProfitabilityData.WonTradesFieldNumber">
+            <summary>Field number for the "won_trades" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ProfitabilityData.WonTradesPercentFieldNumber">
+            <summary>Field number for the "won_trades_percent" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ProfitabilityData.LostTradesFieldNumber">
+            <summary>Field number for the "lost_trades" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ProfitabilityData.LostTradesPercentFieldNumber">
+            <summary>Field number for the "lost_trades_percent" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AveragePipsUsdData.AveragePipsFieldNumber">
+            <summary>Field number for the "average_pips" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AveragePipsUsdData.AverageUsdFieldNumber">
+            <summary>Field number for the "average_usd" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WonData.WonCountFieldNumber">
+            <summary>Field number for the "won_count" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WonData.AllFieldNumber">
+            <summary>Field number for the "all" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.WonData.WonPersentFieldNumber">
+            <summary>Field number for the "won_persent" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ProfitData.TiketFieldNumber">
+            <summary>Field number for the "tiket" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ProfitData.DateFieldNumber">
+            <summary>Field number for the "date" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ProfitData.ProfitFieldNumber">
+            <summary>Field number for the "profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ZScoreData.ZScoreDecimalFieldNumber">
+            <summary>Field number for the "z_score_decimal" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ZScoreData.ZScoreProbabilityFieldNumber">
+            <summary>Field number for the "z_score_probability" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ExpectancyData.PipsFieldNumber">
+            <summary>Field number for the "pips" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ExpectancyData.DollarFieldNumber">
+            <summary>Field number for the "dollar" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsWithChartsData.StatsFieldNumber">
+            <summary>Field number for the "stats" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsWithChartsData.ChartsFieldNumber">
+            <summary>Field number for the "charts" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityHistoryData.PointsFieldNumber">
+            <summary>Field number for the "points" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.TimeFieldNumber">
+            <summary>Field number for the "time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.BalanceFieldNumber">
+            <summary>Field number for the "balance" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.EquityFieldNumber">
+            <summary>Field number for the "equity" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.BalanceDrawdownRawFieldNumber">
+            <summary>Field number for the "balance_drawdown_raw" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.BalanceDrawdownRelativeFieldNumber">
+            <summary>Field number for the "balance_drawdown_relative" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.EquityDrawdownRawFieldNumber">
+            <summary>Field number for the "equity_drawdown_raw" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.EquityDrawdownRelativeFieldNumber">
+            <summary>Field number for the "equity_drawdown_relative" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.RealizedPlFieldNumber">
+            <summary>Field number for the "realized_pl" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.UnrealizedPlFieldNumber">
+            <summary>Field number for the "unrealized_pl" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedPLData.ExtremaFieldNumber">
+            <summary>Field number for the "extrema" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedExtremaData.TicketFieldNumber">
+            <summary>Field number for the "ticket" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedExtremaData.SymbolFieldNumber">
+            <summary>Field number for the "symbol" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MaxUnrealizedTimeFieldNumber">
+            <summary>Field number for the "max_unrealized_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MaxUnrealizedPlFieldNumber">
+            <summary>Field number for the "max_unrealized_pl" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MinUnrealizedTimeFieldNumber">
+            <summary>Field number for the "min_unrealized_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MinUnrealizedPlFieldNumber">
+            <summary>Field number for the "min_unrealized_pl" field.</summary>
         </member>
         <member name="T:mt5_term_api.Mt5TermApiTradingHelperReflection">
             <summary>Holder for reflection information generated from mt5-term-api-trading-helper.proto</summary>
