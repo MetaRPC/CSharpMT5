@@ -339,7 +339,7 @@ public async Task<bool> IsSymbolAvailableAsync(string symbol)
 * **[MT5Service Overview](./MT5Service.Overview.md)** - Complete MT5Service improvements
 * **[Account Convenience Methods](./Account_Convenience_Methods.md)** - Account shortcuts
 * **[Trading Convenience Methods](./Trading_Convenience_Methods.md)** - Trading shortcuts
-* **[MT5Account Symbol Methods](../MT5Account/2.%20Symbol_information/Symbol_Information.Overview.md)** - Low-level reference
+* **[MT5Account Symbol Methods](../API_Reference/MT5Account.md)** - Low-level reference
 
 ---
 

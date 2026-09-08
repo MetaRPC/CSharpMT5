@@ -408,7 +408,7 @@ public async Task<bool> IsTradingAllowedAsync(
 * **[Account Convenience Methods](./Account_Convenience_Methods.md)** - Account shortcuts
 * **[Symbol Convenience Methods](./Symbol_Convenience_Methods.md)** - Symbol shortcuts
 * **[Trading Convenience Methods](./Trading_Convenience_Methods.md)** - Trading shortcuts
-* **[MT5Account History](../MT5Account/3.%20Position_Orders_Information/Position_Orders_Information.Overview.md)** - Low-level reference
+* **[MT5Account History](../API_Reference/MT5Account.md)** - Low-level reference
 
 ---
 

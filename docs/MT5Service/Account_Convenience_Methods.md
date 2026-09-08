@@ -267,7 +267,7 @@ Console.WriteLine("✅ Account ready for trading!");
 * **[MT5Service Overview](./MT5Service.Overview.md)** - Complete description of MT5Service improvements
 * **[Symbol Convenience Methods](./Symbol_Convenience_Methods.md)** - Convenient methods for symbols
 * **[Trading Convenience Methods](./Trading_Convenience_Methods.md)** - Simplified trading methods
-* **[MT5Account](../MT5Account/MT5Account.Master.Overview.md)** - Low-level API reference
+* **[MT5Account](../API_Reference/MT5Account.md)** - Low-level API reference
 
 ---
 

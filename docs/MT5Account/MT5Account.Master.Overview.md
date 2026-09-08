@@ -26,7 +26,7 @@
 
 * **[Streaming\_Methods - Overview](./7.%20Streaming_Methods/Streaming_Methods.Overview.md)**
   Real-time streams: ticks, trades, profit updates, transaction log.
-  📖 **[Complete Streaming Guide](../GRPC_STREAM_MANAGEMENT.md)** - How to properly work with subscriptions (patterns, best practices, memory management)
+  📖 **[Complete Streaming Guide](../All_Guides/GRPC_STREAM_MANAGEMENT.md)** - How to properly work with subscriptions (patterns, best practices, memory management)
 
 ---
 
@@ -61,7 +61,7 @@ var summary = account.AccountSummary();
 var tick = account.SymbolInfoTick("EURUSD");
 ```
 
-**📖 Read:** **[Sync vs Async - When to Use What](../Sync_vs_Async.md)** - Detailed guide with use cases and performance comparisons.
+**📖 Read:** **[Sync vs Async - When to Use What](../All_Guides/SYNC_VS_ASYNC.md)** - Detailed guide with use cases and performance comparisons.
 
 ---
 
@@ -291,7 +291,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 **Location:** `MT5Service.cs`
 
-**Documentation:** [MT5Service.Overview.md](../MT5Service/MT5Service.Overview.md)
+**Documentation:** [MT5Service.Overview.md](../API_Reference/MT5Service.md)
 
 ---
 
@@ -313,7 +313,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 **Location:** `MT5Sugar.cs`
 
-**Documentation:** [MT5Sugar.API_Overview.md](../MT5Sugar/MT5Sugar.API_Overview.md)
+**Documentation:** [MT5Sugar.API_Overview.md](../API_Reference/MT5Sugar.md)
 
 ---
 
@@ -352,7 +352,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 **Goal:** Learn to build clean API wrappers on top of complex protocols.
 
-**Documentation:** [MT5Service.Overview.md](../MT5Service/MT5Service.Overview.md)
+**Documentation:** [MT5Service.Overview.md](../API_Reference/MT5Service.md)
 
 ---
 
@@ -369,7 +369,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 **Goal:** Rapid strategy development with production-ready convenience methods.
 
-**Documentation:** [MT5Sugar.API_Overview.md](../MT5Sugar/MT5Sugar.API_Overview.md)
+**Documentation:** [MT5Sugar.API_Overview.md](../API_Reference/MT5Sugar.md)
 
 ---
 
@@ -413,7 +413,7 @@ await foreach (var data in account.OnMethodAsync(parameters, cancellationToken))
 }
 ```
 
-**Detailed Guide:** [Sync_vs_Async.md](../Sync_vs_Async.md) - When to use async vs sync, performance comparisons, best practices
+**Detailed Guide:** [Sync_vs_Async.md](../All_Guides/SYNC_VS_ASYNC.md) - When to use async vs sync, performance comparisons, best practices
 
 ---
 

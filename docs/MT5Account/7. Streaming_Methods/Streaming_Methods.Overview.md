@@ -2,7 +2,7 @@
 
 > Real-time continuous data streams: ticks, trade events, position updates, and account changes. Use this page for event-driven applications.
 
-📖 **IMPORTANT:** [Complete Streaming & Subscription Guide](../../GRPC_STREAM_MANAGEMENT.md) - **Read this first!**
+📖 **IMPORTANT:** [Complete Streaming & Subscription Guide](../../All_Guides/GRPC_STREAM_MANAGEMENT.md) - **Read this first!**
 Learn how to properly manage streams, prevent memory leaks, and choose the right pattern (7 complete examples from simple to production-ready).
 
 ---
@@ -51,7 +51,7 @@ Learn how to properly manage streams, prevent memory leaks, and choose the right
 * **Performance:** Ticks for multiple symbols = high volume, ensure fast processing.
 * **Memory safety:** MT5Account has built-in cleanup (`finally { stream?.Dispose() }`), but still use `CancellationToken` for graceful shutdown.
 
-💡 **See [GRPC_STREAM_MANAGEMENT.md](../../GRPC_STREAM_MANAGEMENT.md) for complete guide with 7 patterns, best practices, and production examples!**
+💡 **See [GRPC_STREAM_MANAGEMENT.md](../../All_Guides/GRPC_STREAM_MANAGEMENT.md) for complete guide with 7 patterns, best practices, and production examples!**
 
 ---
 
@@ -223,9 +223,9 @@ catch (OperationCanceledException)
 
 ## See also
 
-* 📖 **[GRPC Stream Management Guide](../../GRPC_STREAM_MANAGEMENT.md)** - Complete guide to streaming (MUST READ!)
+* 📖 **[GRPC Stream Management Guide](../../All_Guides/GRPC_STREAM_MANAGEMENT.md)** - Complete guide to streaming (MUST READ!)
 * **Request/Reply:** [OpenedOrders](../3.%20Position_Orders_Information/OpenedOrders.md) - one-time snapshot vs continuous stream
 * **Request/Reply:** [SymbolInfoTick](../2.%20Symbol_information/SymbolInfoTick.md) - single tick vs tick stream
 * **Account:** [AccountSummary](../1.%20Account_information/AccountSummary.md) - account snapshot
 * **Trading:** [OrderSend](../4.%20Trading_Operattons/OrderSend.md) - place orders based on stream events
-* **MT5Sugar Helpers:** [ReadTicks](../../MT5Sugar/5.%20Streams_Helpers/ReadTicks.md) & [ReadTrades](../../MT5Sugar/5.%20Streams_Helpers/ReadTrades.md) - Bounded streaming (recommended!)
+* **MT5Sugar Helpers:** [ReadTicks](../../API_Reference/MT5Sugar.md) & [ReadTrades](../../API_Reference/MT5Sugar.md) - Bounded streaming (recommended!)

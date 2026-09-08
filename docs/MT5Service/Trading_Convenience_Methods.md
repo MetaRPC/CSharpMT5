@@ -413,7 +413,7 @@ Task<OrderSendData> BuyMarketAsync(
 * **[Account Convenience Methods](./Account_Convenience_Methods.md)** - Account shortcuts
 * **[Symbol Convenience Methods](./Symbol_Convenience_Methods.md)** - Symbol shortcuts
 * **[History Convenience Methods](./History_Convenience_Methods.md)** - History shortcuts
-* **[MT5Account Trading](../MT5Account/4.%20Trading_Operattons/Trading_Operations.Overview.md)** - Low-level reference
+* **[MT5Account Trading](../API_Reference/MT5Account.md)** - Low-level reference
 
 ---
 
