@@ -535,3 +535,19 @@ Now you're ready for:
 > "The best way to learn something is to build it from scratch. Now you have the foundation. Build."
 >
 > — MetaRPC Team
+
+
+---
+
+## Step 1: Generate Account ID (`GetId`)
+
+> ⚠️ **Prerequisite**: You must generate your deterministic account ID with `GetId` **firstly** before connecting or streaming.
+
+MetaRPC endpoints route terminal calls using a deterministic GUID (`id`) derived from your account login number and password:
+
+```bash
+curl -X GET "https://mt5.mrpc.pro/GetId?user=YOUR_LOGIN&password=YOUR_PASSWORD" \
+     -H "APIKey: YOUR_API_KEY"
+```
+
+Save the resulting `data.id` token. This token is passed as the `id` parameter / header in Step 2.
