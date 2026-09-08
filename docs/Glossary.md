@@ -675,7 +675,7 @@ Central configuration file for MT5 connection settings.
 
 **Key settings:**
 
-- `Host` - MT5 terminal/gateway host (usually localhost)
+- `Host` - MT5 terminal/gateway host (e.g., mt5.mrpc.pro)
 - `Port` - gRPC server port (e.g., 5555)
 - `Login` - MT5 account number
 - `Password` - MT5 account password
@@ -691,8 +691,8 @@ Central configuration file for MT5 connection settings.
 ```json
 {
   "MT5Connection": {
-    "Host": "localhost",
-    "Port": 5555,
+    "Host": "mt5.mrpc.pro",
+    "Port": 443,
     "Login": 12345678,
     "Password": "your_password",
     "Symbol": "EURUSD",
