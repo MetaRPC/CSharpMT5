@@ -58,4 +58,23 @@ public class MT5ServiceTests
         var ex = new ConnectExceptionMT5("connection error");
         Assert.Contains("connection error", ex.Message);
     }
+
+    [Fact]
+    public void TestGetIdRequest_ProtoSerialization()
+    {
+        var req = new GetIdRequest
+        {
+            User = "12345678",
+            Password = "demo_password"
+        };
+        Assert.Equal("12345678", req.User);
+        Assert.Equal("demo_password", req.Password);
+
+        var reply = new GetIdReply
+        {
+            Data = new GetIdData { Id = "68c935ee-a2b1-4f3e-bb36-3982845cfa85" }
+        };
+        Assert.NotNull(reply.Data);
+        Assert.Equal("68c935ee-a2b1-4f3e-bb36-3982845cfa85", reply.Data.Id);
+    }
 }
