@@ -1,0 +1,49 @@
+name: Test & Build
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  test-dotnet:
+    name: Build & Unit Tests (.NET)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8.0 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build C# SDK
+        run: dotnet build MetaRPC.CSharpMT5.csproj -c Release
+
+      - name: Run C# Unit Tests
+        run: dotnet test tests/MetaRPC.CSharpMT5.Tests/MetaRPC.CSharpMT5.Tests.csproj -c Release --verbosity normal
+
+  docs-lint:
+    name: Validate Documentation Integrity
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install MkDocs Material
+        run: pip install mkdocs-material
+
+      - name: Verify Documentation Build
+        run: mkdocs build

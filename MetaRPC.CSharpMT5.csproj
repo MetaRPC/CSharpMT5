@@ -35,7 +35,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
   </ItemGroup>
 
-  <!-- Exclude only ConsoleDemo subproject and Controllers -->
+  <!-- Exclude only ConsoleDemo subproject, Controllers, and tests -->
   <ItemGroup>
     <Compile Remove="Examples\ConsoleDemo\**\*.cs" />
     <Compile Remove="Controllers\**\*.cs" />
@@ -43,6 +43,7 @@
     <Compile Remove="PROTO_PRIMER\**\*.cs" />
     <Compile Remove="ReflectTool\**\*.cs" />
     <Compile Remove="ReflectMT5Account.cs" />
+    <Compile Remove="tests\**\*.cs" />
   </ItemGroup>
 
   <!-- We only copy appsettings.json (if it exists) next to the .exe -->
