@@ -151,7 +151,7 @@ namespace MetaRPC.CSharpMT5
 			MarketInfoClient = new MarketInfo.MarketInfoClient((ChannelBase)(object)GrpcChannel);
 			TradeFunctionsClient = new TradeFunctions.TradeFunctionsClient((ChannelBase)(object)GrpcChannel);
 			AccountInformationClient = new AccountInformation.AccountInformationClient((ChannelBase)(object)GrpcChannel);
-			Id = (id != default(Guid)) ? id : ComputeDeterministicTerminalId(user, password);
+			Id = (id != default(Guid)) ? id : GetId();
 		}
 
 		/// <summary>
@@ -171,8 +171,7 @@ namespace MetaRPC.CSharpMT5
 		}
 
 		/// <summary>
-		/// Retrieves the deterministic account ID via the server's GetId endpoint.
-		/// Note: The constructor automatically computes this ID deterministically on initialization.
+		/// Retrieves the deterministic account ID via the server's GetId gRPC endpoint.
 		/// </summary>
 		public async Task<Guid> GetIdAsync(CancellationToken cancellationToken = default(CancellationToken))
 		{
@@ -181,24 +180,70 @@ namespace MetaRPC.CSharpMT5
 				User = User.ToString(),
 				Password = Password
 			};
-			var reply = await ConnectionClient.GetIdAsync(request, GetHeaders(), null, cancellationToken);
-			if (reply.Error != null)
+			var headers = new Metadata();
+			if (!string.IsNullOrEmpty(ApiKey))
 			{
-				throw new ApiExceptionMT5(reply.Error);
+				headers.Add("apikey", ApiKey);
 			}
-			if (reply.Data?.Id != null && Guid.TryParse(reply.Data.Id, out var parsed))
+			try
 			{
-				Id = parsed;
+				var reply = await ConnectionClient.GetIdAsync(request, headers, null, cancellationToken);
+				if (reply.Error != null)
+				{
+					throw new ApiExceptionMT5(reply.Error);
+				}
+				if (reply.Data?.Id != null && Guid.TryParse(reply.Data.Id, out var parsed))
+				{
+					Id = parsed;
+				}
+			}
+			catch (RpcException)
+			{
+				Id = ComputeDeterministicTerminalId(User, Password);
+			}
+			catch (Exception)
+			{
+				Id = ComputeDeterministicTerminalId(User, Password);
 			}
 			return Id;
 		}
 
 		/// <summary>
-		/// Synchronously calls GetIdAsync.
+		/// Calls the gRPC GetId method on the server to retrieve the account ID.
 		/// </summary>
 		public Guid GetId()
 		{
-			return GetIdAsync().GetAwaiter().GetResult();
+			var request = new GetIdRequest
+			{
+				User = User.ToString(),
+				Password = Password
+			};
+			var headers = new Metadata();
+			if (!string.IsNullOrEmpty(ApiKey))
+			{
+				headers.Add("apikey", ApiKey);
+			}
+			try
+			{
+				var reply = ConnectionClient.GetId(request, headers);
+				if (reply.Error != null)
+				{
+					throw new ApiExceptionMT5(reply.Error);
+				}
+				if (reply.Data?.Id != null && Guid.TryParse(reply.Data.Id, out var parsed))
+				{
+					Id = parsed;
+				}
+			}
+			catch (RpcException)
+			{
+				Id = ComputeDeterministicTerminalId(User, Password);
+			}
+			catch (Exception)
+			{
+				Id = ComputeDeterministicTerminalId(User, Password);
+			}
+			return Id;
 		}
 
 		private async Task Reconnect(DateTime? deadline, CancellationToken cancellationToken)

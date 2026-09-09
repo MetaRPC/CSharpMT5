@@ -17,6 +17,14 @@ public class MT5ServiceTests
     }
 
     [Fact]
+    public void TestMT5Account_AutoGetId()
+    {
+        var account = new MT5Account(12345678, "demo_password", "https://mt5.mrpc.pro:443", "test_api_key");
+        Assert.NotEqual(Guid.Empty, account.Id);
+        Assert.Equal("test_api_key", account.ApiKey);
+    }
+
+    [Fact]
     public void TestConnectRequest_ProtoSerialization()
     {
         var req = new ConnectRequest
