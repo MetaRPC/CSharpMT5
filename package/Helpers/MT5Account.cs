@@ -99,6 +99,24 @@ namespace MetaRPC.CSharpMT5
 		/// </summary>
 		public Guid Id { get; private set; }
 
+		/// <summary>
+		/// Gets or sets the MetaRPC API key for authentication.
+		/// </summary>
+		public string? ApiKey { get; set; }
+
+		/// <summary>
+		/// Computes a stable deterministic GUID based on account credentials (user + password).
+		/// Matches the server's GetId algorithm.
+		/// </summary>
+		public static Guid ComputeDeterministicTerminalId(ulong user, string password)
+		{
+			using var sha256 = System.Security.Cryptography.SHA256.Create();
+			var hash = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes($"{user}:{password}"));
+			var guidBytes = new byte[16];
+			Array.Copy(hash, guidBytes, 16);
+			return new Guid(guidBytes);
+		}
+
 		private bool Connected
 		{
 			get
@@ -112,17 +130,19 @@ namespace MetaRPC.CSharpMT5
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="T:mt5_term_api.MT5Account" /> class using credentials.
+		/// Initializes a new instance of the <see cref="T:MetaRPC.CSharpMT5.MT5Account" /> class using credentials.
 		/// </summary>
 		/// <param name="user">The MT5 user account number.</param>
 		/// <param name="password">The password for the user account.</param>
-		/// <param name="grpcServer">The address of the gRPC server (optional).</param>
-		/// <param name="id">An optional unique identifier for the account instance.</param>
-		public MT5Account(ulong user, string password, string? grpcServer = null, Guid id = default(Guid))
+		/// <param name="grpcServer">The address of the gRPC server (optional, default https://mt5.mrpc.pro:443).</param>
+		/// <param name="apiKey">The MetaRPC API key (optional, falls back to MRPC_API_KEY environment variable).</param>
+		/// <param name="id">An optional unique identifier for the account instance (auto-generated if default).</param>
+		public MT5Account(ulong user, string password, string? grpcServer = null, string? apiKey = null, Guid id = default(Guid))
 		{
 			User = user;
 			Password = password;
 			GrpcServer = grpcServer ?? "https://mt5.mrpc.pro:443";
+			ApiKey = apiKey ?? Environment.GetEnvironmentVariable("MRPC_API_KEY");
 			GrpcChannel = GrpcChannel.ForAddress(GrpcServer);
 			ConnectionClient = new Connection.ConnectionClient((ChannelBase)(object)GrpcChannel);
 			SubscriptionClient = new SubscriptionService.SubscriptionServiceClient((ChannelBase)(object)GrpcChannel);
@@ -131,7 +151,54 @@ namespace MetaRPC.CSharpMT5
 			MarketInfoClient = new MarketInfo.MarketInfoClient((ChannelBase)(object)GrpcChannel);
 			TradeFunctionsClient = new TradeFunctions.TradeFunctionsClient((ChannelBase)(object)GrpcChannel);
 			AccountInformationClient = new AccountInformation.AccountInformationClient((ChannelBase)(object)GrpcChannel);
-			Id = id;
+			Id = (id != default(Guid)) ? id : ComputeDeterministicTerminalId(user, password);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:MetaRPC.CSharpMT5.MT5Account" /> class with user, password and API key.
+		/// </summary>
+		public MT5Account(ulong user, string password, string? apiKey)
+			: this(user, password, null, apiKey, default(Guid))
+		{
+		}
+
+		/// <summary>
+		/// Backward-compatible constructor for existing code passing (user, password, grpcServer, id).
+		/// </summary>
+		public MT5Account(ulong user, string password, string? grpcServer, Guid id)
+			: this(user, password, grpcServer, null, id)
+		{
+		}
+
+		/// <summary>
+		/// Retrieves the deterministic account ID via the server's GetId endpoint.
+		/// Note: The constructor automatically computes this ID deterministically on initialization.
+		/// </summary>
+		public async Task<Guid> GetIdAsync(CancellationToken cancellationToken = default(CancellationToken))
+		{
+			var request = new GetIdRequest
+			{
+				User = User.ToString(),
+				Password = Password
+			};
+			var reply = await ConnectionClient.GetIdAsync(request, GetHeaders(), null, cancellationToken);
+			if (reply.Error != null)
+			{
+				throw new ApiExceptionMT5(reply.Error);
+			}
+			if (reply.Data?.Id != null && Guid.TryParse(reply.Data.Id, out var parsed))
+			{
+				Id = parsed;
+			}
+			return Id;
+		}
+
+		/// <summary>
+		/// Synchronously calls GetIdAsync.
+		/// </summary>
+		public Guid GetId()
+		{
+			return GetIdAsync().GetAwaiter().GetResult();
 		}
 
 		private async Task Reconnect(DateTime? deadline, CancellationToken cancellationToken)
@@ -171,13 +238,7 @@ namespace MetaRPC.CSharpMT5
 				Port = port,
 				TimeoutSeconds = (uint)timeoutSeconds
 			};
-			Metadata headers = null;
-			if (Id != default(Guid))
-			{
-				Metadata val = new Metadata();
-				val.Add("id", Id.ToString());
-				headers = val;
-			}
+			Metadata headers = GetHeaders();
 			ConnectReply connectReply = await ConnectionClient.ConnectAsync(request, headers, deadline, cancellationToken);
 			if (connectReply.Error != null)
 			{
@@ -187,7 +248,10 @@ namespace MetaRPC.CSharpMT5
 			Port = port;
 			BaseChartSymbol = baseChartSymbol;
 			ConnectTimeoutSeconds = timeoutSeconds;
-			Id = Guid.Parse(connectReply.Data.TerminalInstanceGuid);
+			if (connectReply.Data?.TerminalInstanceGuid != null && Guid.TryParse(connectReply.Data.TerminalInstanceGuid, out var parsedHostGuid))
+			{
+				Id = parsedHostGuid;
+			}
 		}
 
 		/// <summary>
@@ -227,13 +291,7 @@ namespace MetaRPC.CSharpMT5
 				BaseChartSymbol = baseChartSymbol,
 				TimeoutSeconds = (uint)timeoutSeconds
 			};
-			Metadata headers = null;
-			if (Id != default(Guid))
-			{
-				Metadata val = new Metadata();
-				val.Add("id", Id.ToString());
-				headers = val;
-			}
+			Metadata headers = GetHeaders();
 			ConnectExReply connectExReply = await ConnectionClient.ConnectExAsync(request, headers, deadline, cancellationToken);
 			if (connectExReply.Error != null)
 			{
@@ -242,7 +300,10 @@ namespace MetaRPC.CSharpMT5
 			ServerName = serverName;
 			BaseChartSymbol = baseChartSymbol;
 			ConnectTimeoutSeconds = timeoutSeconds;
-			Id = Guid.Parse(connectExReply.Data.TerminalInstanceGuid);
+			if (connectExReply.Data?.TerminalInstanceGuid != null && Guid.TryParse(connectExReply.Data.TerminalInstanceGuid, out var parsedExGuid))
+			{
+				Id = parsedExGuid;
+			}
 		}
 
 		/// <summary>
@@ -257,13 +318,17 @@ namespace MetaRPC.CSharpMT5
 			ConnectByServerNameAsync(serverName, baseChartSymbol, waitForTerminalIsAlive, timeoutSeconds).GetAwaiter().GetResult();
 		}
 
-		private Metadata GetHeaders()
+		public Metadata GetHeaders()
 		{
-			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0005: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0025: Expected O, but got Unknown
 			Metadata val = new Metadata();
-			val.Add("id", Id.ToString());
+			if (Id != default(Guid))
+			{
+				val.Add("id", Id.ToString());
+			}
+			if (!string.IsNullOrEmpty(ApiKey))
+			{
+				val.Add("apikey", ApiKey);
+			}
 			return val;
 		}
 

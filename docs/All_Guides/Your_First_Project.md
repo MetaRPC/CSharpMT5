@@ -13,23 +13,7 @@ To connect to MetaRPC endpoints (`mt5.mrpc.pro:443`), obtain your API key:
 
 ---
 
-
----
-
-## Step 1: Generate Account ID (`GetId`)
-
-> ⚠️ **Prerequisite**: You must generate your deterministic account ID with `GetId` **firstly** before connecting or streaming.
-
-MetaRPC endpoints route terminal calls using a deterministic GUID (`id`) derived from your account login number and password:
-
-```bash
-curl -X GET "https://mt5.mrpc.pro/GetId?user=YOUR_LOGIN&password=YOUR_PASSWORD" \
-     -H "APIKey: YOUR_API_KEY"
-```
-
-Save the resulting `data.id` token. This token is passed as the `id` parameter / header in Step 2.
-
-## Step 2: Create Your Project
+## Step 1: Create Your Project
 
 Create a new directory for your trading bot:
 
@@ -46,7 +30,7 @@ dotnet add package MetaRPC.MT5
 
 ---
 
-## Step 3: Write Your Trading Code
+## Step 2: Write Your Trading Code
 
 Create your main application file and paste the following snippet:
 
@@ -54,7 +38,8 @@ Create your main application file and paste the following snippet:
 using mt5_term_api;
 using MetaRPC.MT5;
 
-var account = new MT5Account(user, password, grpcServer, null);
+// Account ID generation (GetId) and authentication are handled automatically
+var account = new MT5Account(user, password, grpcServer, apiKey);
 await account.ConnectByServerNameAsync(serverName, "EURUSD", 30);
 var summary = await account.AccountSummaryAsync();
 Console.WriteLine($"Balance: {summary.AccountBalance}, Equity: {summary.AccountEquity}");
@@ -62,7 +47,7 @@ Console.WriteLine($"Balance: {summary.AccountBalance}, Equity: {summary.AccountE
 
 ---
 
-## Step 4: Run the Program
+## Step 3: Run the Program
 
 Run your application:
 
