@@ -6835,6 +6835,216 @@
         <member name="F:mt5_term_api.OpenTerminalChartWithEaData.ChartIdFieldNumber">
             <summary>Field number for the "chart_id" field.</summary>
         </member>
+        <member name="F:mt5_term_api.AttachEaRequest.SessionIdFieldNumber">
+            <summary>Field number for the "session_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaRequest.EaFileNameFieldNumber">
+            <summary>Field number for the "ea_file_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaRequest.SymbolNameFieldNumber">
+            <summary>Field number for the "symbol_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaRequest.ChartPeriodFieldNumber">
+            <summary>Field number for the "chart_period" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaRequest.EaParametersFieldNumber">
+            <summary>Field number for the "ea_parameters" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaRequest.EaFileContentFieldNumber">
+            <summary>Field number for the "ea_file_content" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AttachEaRequest.HasEaFileContent">
+            <summary>Gets whether the "ea_file_content" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.AttachEaRequest.ClearEaFileContent">
+            <summary>Clears the value of the "ea_file_content" field</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaRequest.MaxCpuPercentFieldNumber">
+            <summary>Field number for the "max_cpu_percent" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AttachEaRequest.HasMaxCpuPercent">
+            <summary>Gets whether the "max_cpu_percent" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.AttachEaRequest.ClearMaxCpuPercent">
+            <summary>Clears the value of the "max_cpu_percent" field</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaRequest.MaxRamBytesFieldNumber">
+            <summary>Field number for the "max_ram_bytes" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AttachEaRequest.HasMaxRamBytes">
+            <summary>Gets whether the "max_ram_bytes" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.AttachEaRequest.ClearMaxRamBytes">
+            <summary>Clears the value of the "max_ram_bytes" field</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.AttachEaReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaData.EaIdFieldNumber">
+            <summary>Field number for the "ea_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaData.EaTerminalIdFieldNumber">
+            <summary>Field number for the "ea_terminal_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaData.ParentSessionIdFieldNumber">
+            <summary>Field number for the "parent_session_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaData.EaNameFieldNumber">
+            <summary>Field number for the "ea_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaData.StateFieldNumber">
+            <summary>Field number for the "state" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AttachEaData.ProcessIdFieldNumber">
+            <summary>Field number for the "process_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetRunningEasRequest.SessionIdFieldNumber">
+            <summary>Field number for the "session_id" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetRunningEasRequest.HasSessionId">
+            <summary>Gets whether the "session_id" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.GetRunningEasRequest.ClearSessionId">
+            <summary>Clears the value of the "session_id" field</summary>
+        </member>
+        <member name="F:mt5_term_api.GetRunningEasRequest.EaIdFieldNumber">
+            <summary>Field number for the "ea_id" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetRunningEasRequest.HasEaId">
+            <summary>Gets whether the "ea_id" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.GetRunningEasRequest.ClearEaId">
+            <summary>Clears the value of the "ea_id" field</summary>
+        </member>
+        <member name="F:mt5_term_api.GetRunningEasReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetRunningEasReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GetRunningEasReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetRunningEasData.EasFieldNumber">
+            <summary>Field number for the "eas" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.EaIdFieldNumber">
+            <summary>Field number for the "ea_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.EaNameFieldNumber">
+            <summary>Field number for the "ea_name" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.ParentSessionIdFieldNumber">
+            <summary>Field number for the "parent_session_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.EaTerminalIdFieldNumber">
+            <summary>Field number for the "ea_terminal_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.ProcessIdFieldNumber">
+            <summary>Field number for the "process_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.SymbolFieldNumber">
+            <summary>Field number for the "symbol" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.PeriodFieldNumber">
+            <summary>Field number for the "period" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.StateFieldNumber">
+            <summary>Field number for the "state" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.StartedAtFieldNumber">
+            <summary>Field number for the "started_at" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.EaCpuPercentFieldNumber">
+            <summary>Field number for the "ea_cpu_percent" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.RefCpuPercentFieldNumber">
+            <summary>Field number for the "ref_cpu_percent" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.CpuRatioFieldNumber">
+            <summary>Field number for the "cpu_ratio" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.EaRamBytesFieldNumber">
+            <summary>Field number for the "ea_ram_bytes" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.RefRamBytesFieldNumber">
+            <summary>Field number for the "ref_ram_bytes" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.RamRatioFieldNumber">
+            <summary>Field number for the "ram_ratio" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.ResourceMultiplierFieldNumber">
+            <summary>Field number for the "resource_multiplier" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetEaLogsRequest.EaIdFieldNumber">
+            <summary>Field number for the "ea_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetEaLogsRequest.LogTypeFieldNumber">
+            <summary>Field number for the "log_type" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetEaLogsRequest.HasLogType">
+            <summary>Gets whether the "log_type" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.GetEaLogsRequest.ClearLogType">
+            <summary>Clears the value of the "log_type" field</summary>
+        </member>
+        <member name="F:mt5_term_api.GetEaLogsReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetEaLogsReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.GetEaLogsReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.GetEaLogsData.RowsFieldNumber">
+            <summary>Field number for the "rows" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EaLogRow.TimeFieldNumber">
+            <summary>Field number for the "time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EaLogRow.SourceFieldNumber">
+            <summary>Field number for the "source" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EaLogRow.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StopEaRequest.EaIdFieldNumber">
+            <summary>Field number for the "ea_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StopEaRequest.ReasonFieldNumber">
+            <summary>Field number for the "reason" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.StopEaRequest.HasReason">
+            <summary>Gets whether the "reason" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.StopEaRequest.ClearReason">
+            <summary>Clears the value of the "reason" field</summary>
+        </member>
+        <member name="F:mt5_term_api.StopEaReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StopEaReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.StopEaReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.StopEaData.SuccessFieldNumber">
+            <summary>Field number for the "success" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StopEaData.EaIdFieldNumber">
+            <summary>Field number for the "ea_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StopEaData.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
         <member name="T:mt5_term_api.Mt5TermApiConnectionReflection">
             <summary>Holder for reflection information generated from mt5-term-api-connection.proto</summary>
         </member>
@@ -6988,20 +7198,6 @@
             MT cluster name. [Required]
             </summary>
         </member>
-        <member name="F:mt5_term_api.ConnectExRequest.BaseChartSymbolFieldNumber">
-            <summary>Field number for the "base_chart_symbol" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectExRequest.BaseChartSymbol">
-            <summary>
-            Base chart symbol [Optional]
-            </summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectExRequest.HasBaseChartSymbol">
-            <summary>Gets whether the "base_chart_symbol" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ConnectExRequest.ClearBaseChartSymbol">
-            <summary>Clears the value of the "base_chart_symbol" field</summary>
-        </member>
         <member name="F:mt5_term_api.ConnectExRequest.ExpertsToAddFieldNumber">
             <summary>Field number for the "experts_to_add" field.</summary>
         </member>
@@ -7056,23 +7252,9 @@
             <summary>
             Rebuild a terminal from token_details_mt5. All the credentials (User/Password/Server or
             Host+Port, proxy, servers.dat, PFX, HardwareId, Build) come from the DB row; the request
-            carries only optional wait/base-chart overrides. The terminal id MUST be supplied in the
+            carries only optional wait overrides. The terminal id MUST be supplied in the
             grpc 'id' header (same as every other Connect*/query call). [DefaultValues]
             </summary>
-        </member>
-        <member name="F:mt5_term_api.ConnectByTokenRequest.BaseChartSymbolFieldNumber">
-            <summary>Field number for the "base_chart_symbol" field.</summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectByTokenRequest.BaseChartSymbol">
-            <summary>
-            override the base chart symbol [Optional]
-            </summary>
-        </member>
-        <member name="P:mt5_term_api.ConnectByTokenRequest.HasBaseChartSymbol">
-            <summary>Gets whether the "base_chart_symbol" field is set</summary>
-        </member>
-        <member name="M:mt5_term_api.ConnectByTokenRequest.ClearBaseChartSymbol">
-            <summary>Clears the value of the "base_chart_symbol" field</summary>
         </member>
         <member name="F:mt5_term_api.ConnectByTokenRequest.TimeoutSecondsFieldNumber">
             <summary>Field number for the "timeout_seconds" field.</summary>

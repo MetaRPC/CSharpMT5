@@ -224,7 +224,6 @@ namespace MetaRPC.CSharpMT5
 				User = User,
 				Password = Password,
 				MtClusterName = serverName,
-				BaseChartSymbol = baseChartSymbol,
 				TimeoutSeconds = (uint)timeoutSeconds
 			};
 			Metadata headers = null;
