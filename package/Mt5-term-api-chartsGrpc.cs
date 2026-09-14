@@ -69,6 +69,10 @@ namespace mt5_term_api {
     static readonly grpc::Marshaller<global::mt5_term_api.StopEaRequest> __Marshaller_mt5_term_api_StopEaRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.StopEaRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.StopEaReply> __Marshaller_mt5_term_api_StopEaReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.StopEaReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.StartEaRequest> __Marshaller_mt5_term_api_StartEaRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.StartEaRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.StartEaReply> __Marshaller_mt5_term_api_StartEaReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.StartEaReply.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.OpenTerminalChartWithEaRequest, global::mt5_term_api.OpenTerminalChartWithEaReply> __Method_OpenTerminalChartWithEa = new grpc::Method<global::mt5_term_api.OpenTerminalChartWithEaRequest, global::mt5_term_api.OpenTerminalChartWithEaReply>(
@@ -118,6 +122,14 @@ namespace mt5_term_api {
         __Marshaller_mt5_term_api_StopEaRequest,
         __Marshaller_mt5_term_api_StopEaReply);
 
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.StartEaRequest, global::mt5_term_api.StartEaReply> __Method_StartEa = new grpc::Method<global::mt5_term_api.StartEaRequest, global::mt5_term_api.StartEaReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "StartEa",
+        __Marshaller_mt5_term_api_StartEaRequest,
+        __Marshaller_mt5_term_api_StartEaReply);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -160,6 +172,12 @@ namespace mt5_term_api {
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.StopEaReply> StopEa(global::mt5_term_api.StopEaRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.StartEaReply> StartEa(global::mt5_term_api.StartEaRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -313,6 +331,26 @@ namespace mt5_term_api {
       {
         return CallInvoker.AsyncUnaryCall(__Method_StopEa, null, options, request);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.StartEaReply StartEa(global::mt5_term_api.StartEaRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return StartEa(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.StartEaReply StartEa(global::mt5_term_api.StartEaRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_StartEa, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.StartEaReply> StartEaAsync(global::mt5_term_api.StartEaRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return StartEaAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.StartEaReply> StartEaAsync(global::mt5_term_api.StartEaRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_StartEa, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override ChartsClient NewInstance(ClientBaseConfiguration configuration)
@@ -332,7 +370,8 @@ namespace mt5_term_api {
           .AddMethod(__Method_AttachEa, serviceImpl.AttachEa)
           .AddMethod(__Method_GetRunningEas, serviceImpl.GetRunningEas)
           .AddMethod(__Method_GetEaLogs, serviceImpl.GetEaLogs)
-          .AddMethod(__Method_StopEa, serviceImpl.StopEa).Build();
+          .AddMethod(__Method_StopEa, serviceImpl.StopEa)
+          .AddMethod(__Method_StartEa, serviceImpl.StartEa).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -348,6 +387,7 @@ namespace mt5_term_api {
       serviceBinder.AddMethod(__Method_GetRunningEas, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GetRunningEasRequest, global::mt5_term_api.GetRunningEasReply>(serviceImpl.GetRunningEas));
       serviceBinder.AddMethod(__Method_GetEaLogs, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GetEaLogsRequest, global::mt5_term_api.GetEaLogsReply>(serviceImpl.GetEaLogs));
       serviceBinder.AddMethod(__Method_StopEa, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.StopEaRequest, global::mt5_term_api.StopEaReply>(serviceImpl.StopEa));
+      serviceBinder.AddMethod(__Method_StartEa, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.StartEaRequest, global::mt5_term_api.StartEaReply>(serviceImpl.StartEa));
     }
 
   }

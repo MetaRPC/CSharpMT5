@@ -7045,6 +7045,27 @@
         <member name="F:mt5_term_api.StopEaData.MessageFieldNumber">
             <summary>Field number for the "message" field.</summary>
         </member>
+        <member name="F:mt5_term_api.StartEaRequest.EaIdFieldNumber">
+            <summary>Field number for the "ea_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StartEaReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StartEaReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.StartEaReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.StartEaData.SuccessFieldNumber">
+            <summary>Field number for the "success" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StartEaData.EaIdFieldNumber">
+            <summary>Field number for the "ea_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StartEaData.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
         <member name="T:mt5_term_api.Mt5TermApiConnectionReflection">
             <summary>Holder for reflection information generated from mt5-term-api-connection.proto</summary>
         </member>
