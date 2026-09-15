@@ -6982,6 +6982,15 @@
         <member name="F:mt5_term_api.RunningEaInfo.ResourceMultiplierFieldNumber">
             <summary>Field number for the "resource_multiplier" field.</summary>
         </member>
+        <member name="F:mt5_term_api.RunningEaInfo.MeteredHoursFieldNumber">
+            <summary>Field number for the "metered_hours" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.ChargedAmountFieldNumber">
+            <summary>Field number for the "charged_amount" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.RunningEaInfo.StoppedAtFieldNumber">
+            <summary>Field number for the "stopped_at" field.</summary>
+        </member>
         <member name="F:mt5_term_api.GetEaLogsRequest.EaIdFieldNumber">
             <summary>Field number for the "ea_id" field.</summary>
         </member>

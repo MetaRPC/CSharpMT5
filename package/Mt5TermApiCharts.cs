@@ -72,7 +72,7 @@ namespace mt5_term_api {
             "IAEoCzIfLm10NV90ZXJtX2FwaS5HZXRSdW5uaW5nRWFzRGF0YUgAEiQKBWVy",
             "cm9yGAIgASgLMhMubXQ1X3Rlcm1fYXBpLkVycm9ySABCCgoIcmVzcG9uc2Ui",
             "PQoRR2V0UnVubmluZ0Vhc0RhdGESKAoDZWFzGAEgAygLMhsubXQ1X3Rlcm1f",
-            "YXBpLlJ1bm5pbmdFYUluZm8i9gIKDVJ1bm5pbmdFYUluZm8SDQoFZWFfaWQY",
+            "YXBpLlJ1bm5pbmdFYUluZm8i1QMKDVJ1bm5pbmdFYUluZm8SDQoFZWFfaWQY",
             "ASABKAkSDwoHZWFfbmFtZRgCIAEoCRIZChFwYXJlbnRfc2Vzc2lvbl9pZBgD",
             "IAEoCRIWCg5lYV90ZXJtaW5hbF9pZBgEIAEoCRISCgpwcm9jZXNzX2lkGAUg",
             "ASgFEg4KBnN5bWJvbBgGIAEoCRIOCgZwZXJpb2QYByABKAkSDQoFc3RhdGUY",
@@ -80,66 +80,68 @@ namespace mt5_term_api {
             "aW1lc3RhbXASFgoOZWFfY3B1X3BlcmNlbnQYCiABKAESFwoPcmVmX2NwdV9w",
             "ZXJjZW50GAsgASgBEhEKCWNwdV9yYXRpbxgMIAEoARIUCgxlYV9yYW1fYnl0",
             "ZXMYDSABKAMSFQoNcmVmX3JhbV9ieXRlcxgOIAEoAxIRCglyYW1fcmF0aW8Y",
-            "DyABKAESGwoTcmVzb3VyY2VfbXVsdGlwbGllchgQIAEoASJFChBHZXRFYUxv",
-            "Z3NSZXF1ZXN0Eg0KBWVhX2lkGAEgASgJEhUKCGxvZ190eXBlGAIgASgJSACI",
-            "AQFCCwoJX2xvZ190eXBlIm8KDkdldEVhTG9nc1JlcGx5EisKBGRhdGEYASAB",
-            "KAsyGy5tdDVfdGVybV9hcGkuR2V0RWFMb2dzRGF0YUgAEiQKBWVycm9yGAIg",
-            "ASgLMhMubXQ1X3Rlcm1fYXBpLkVycm9ySABCCgoIcmVzcG9uc2UiNQoNR2V0",
-            "RWFMb2dzRGF0YRIkCgRyb3dzGAEgAygLMhYubXQ1X3Rlcm1fYXBpLkVhTG9n",
-            "Um93IlUKCEVhTG9nUm93EigKBHRpbWUYASABKAsyGi5nb29nbGUucHJvdG9i",
-            "dWYuVGltZXN0YW1wEg4KBnNvdXJjZRgCIAEoCRIPCgdtZXNzYWdlGAMgASgJ",
-            "Ij4KDVN0b3BFYVJlcXVlc3QSDQoFZWFfaWQYASABKAkSEwoGcmVhc29uGAIg",
-            "ASgJSACIAQFCCQoHX3JlYXNvbiJpCgtTdG9wRWFSZXBseRIoCgRkYXRhGAEg",
-            "ASgLMhgubXQ1X3Rlcm1fYXBpLlN0b3BFYURhdGFIABIkCgVlcnJvchgCIAEo",
-            "CzITLm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJlc3BvbnNlIj0KClN0b3BF",
-            "YURhdGESDwoHc3VjY2VzcxgBIAEoCBINCgVlYV9pZBgCIAEoCRIPCgdtZXNz",
-            "YWdlGAMgASgJIh8KDlN0YXJ0RWFSZXF1ZXN0Eg0KBWVhX2lkGAEgASgJImsK",
-            "DFN0YXJ0RWFSZXBseRIpCgRkYXRhGAEgASgLMhkubXQ1X3Rlcm1fYXBpLlN0",
-            "YXJ0RWFEYXRhSAASJAoFZXJyb3IYAiABKAsyEy5tdDVfdGVybV9hcGkuRXJy",
-            "b3JIAEIKCghyZXNwb25zZSI+CgtTdGFydEVhRGF0YRIPCgdzdWNjZXNzGAEg",
-            "ASgIEg0KBWVhX2lkGAIgASgJEg8KB21lc3NhZ2UYAyABKAkqlgEKDUVBX1BB",
-            "UkFNX1RZUEUSGwoXRUFfUEFSQU1fVFlQRV9VTkRFRklORUQQABIYChRFQV9Q",
-            "QVJBTV9UWVBFX1NUUklORxABEhkKFUVBX1BBUkFNX1RZUEVfSU5URUdFUhAC",
-            "EhgKFEVBX1BBUkFNX1RZUEVfRE9VQkxFEAMSGQoVRUFfUEFSQU1fVFlQRV9C",
-            "T09MRUFOEAQqpQEKKEVudW1PcGVuVGVybWluYWxDaGFydFdpdGhFYVBhcmFt",
-            "ZXRlclR5cGUSFQoRTVJQQ19FQV9QQVJBTV9JTlQQABIWChJNUlBDX0VBX1BB",
-            "UkFNX0xPTkcQARIWChJNUlBDX0VBX1BBUkFNX0JPT0wQAhIYChRNUlBDX0VB",
-            "X1BBUkFNX1NUUklORxADEhgKFE1SUENfRUFfUEFSQU1fRE9VQkxFEAQqsQUK",
-            "JUVudW1PcGVuVGVybWluYWxDaGFydFdpdGhFYUNoYXRQZXJpb2QSIAocTVJQ",
-            "Q19FQV9DSEFSVF9QRVJJT0RfQ1VSUkVOVBAAEhsKF01SUENfRUFfQ0hBUlRf",
-            "UEVSSU9EX00xEAESGwoXTVJQQ19FQV9DSEFSVF9QRVJJT0RfTTIQAhIbChdN",
-            "UlBDX0VBX0NIQVJUX1BFUklPRF9NMxADEhsKF01SUENfRUFfQ0hBUlRfUEVS",
-            "SU9EX000EAQSGwoXTVJQQ19FQV9DSEFSVF9QRVJJT0RfTTUQBRIbChdNUlBD",
-            "X0VBX0NIQVJUX1BFUklPRF9NNhAGEhwKGE1SUENfRUFfQ0hBUlRfUEVSSU9E",
-            "X00xMBAHEhwKGE1SUENfRUFfQ0hBUlRfUEVSSU9EX00xMhAIEhwKGE1SUENf",
-            "RUFfQ0hBUlRfUEVSSU9EX00xNRAJEhwKGE1SUENfRUFfQ0hBUlRfUEVSSU9E",
-            "X00yMBAKEhwKGE1SUENfRUFfQ0hBUlRfUEVSSU9EX00zMBALEhsKF01SUENf",
-            "RUFfQ0hBUlRfUEVSSU9EX0gxEAwSGwoXTVJQQ19FQV9DSEFSVF9QRVJJT0Rf",
-            "SDIQDRIbChdNUlBDX0VBX0NIQVJUX1BFUklPRF9IMxAOEhsKF01SUENfRUFf",
-            "Q0hBUlRfUEVSSU9EX0g0EA8SGwoXTVJQQ19FQV9DSEFSVF9QRVJJT0RfSDYQ",
-            "EBIbChdNUlBDX0VBX0NIQVJUX1BFUklPRF9IOBAREhwKGE1SUENfRUFfQ0hB",
-            "UlRfUEVSSU9EX0gxMhASEhsKF01SUENfRUFfQ0hBUlRfUEVSSU9EX0QxEBMS",
-            "GwoXTVJQQ19FQV9DSEFSVF9QRVJJT0RfVzEQFBIcChhNUlBDX0VBX0NIQVJU",
-            "X1BFUklPRF9NTjEQFTKGBgoGQ2hhcnRzEpUBChdPcGVuVGVybWluYWxDaGFy",
-            "dFdpdGhFYRIsLm10NV90ZXJtX2FwaS5PcGVuVGVybWluYWxDaGFydFdpdGhF",
-            "YVJlcXVlc3QaKi5tdDVfdGVybV9hcGkuT3BlblRlcm1pbmFsQ2hhcnRXaXRo",
-            "RWFSZXBseSIggtPkkwIaEhgvT3BlblRlcm1pbmFsQ2hhcnRXaXRoRWESZQoL",
-            "R2V0RWFQYXJhbXMSIC5tdDVfdGVybV9hcGkuR2V0RWFQYXJhbXNSZXF1ZXN0",
-            "Gh4ubXQ1X3Rlcm1fYXBpLkdldEVhUGFyYW1zUmVwbHkiFILT5JMCDhIML0dl",
-            "dEVhUGFyYW1zEmMKCEF0dGFjaEVhEh0ubXQ1X3Rlcm1fYXBpLkF0dGFjaEVh",
-            "UmVxdWVzdBobLm10NV90ZXJtX2FwaS5BdHRhY2hFYVJlcGx5IhuC0+STAhUi",
-            "EC9DaGFydHMvQXR0YWNoRWE6ASoSdAoNR2V0UnVubmluZ0VhcxIiLm10NV90",
-            "ZXJtX2FwaS5HZXRSdW5uaW5nRWFzUmVxdWVzdBogLm10NV90ZXJtX2FwaS5H",
-            "ZXRSdW5uaW5nRWFzUmVwbHkiHYLT5JMCFxIVL0NoYXJ0cy9HZXRSdW5uaW5n",
-            "RWFzEmQKCUdldEVhTG9ncxIeLm10NV90ZXJtX2FwaS5HZXRFYUxvZ3NSZXF1",
-            "ZXN0GhwubXQ1X3Rlcm1fYXBpLkdldEVhTG9nc1JlcGx5IhmC0+STAhMSES9D",
-            "aGFydHMvR2V0RWFMb2dzElsKBlN0b3BFYRIbLm10NV90ZXJtX2FwaS5TdG9w",
-            "RWFSZXF1ZXN0GhkubXQ1X3Rlcm1fYXBpLlN0b3BFYVJlcGx5IhmC0+STAhMi",
-            "Di9DaGFydHMvU3RvcEVhOgEqEl8KB1N0YXJ0RWESHC5tdDVfdGVybV9hcGku",
-            "U3RhcnRFYVJlcXVlc3QaGi5tdDVfdGVybV9hcGkuU3RhcnRFYVJlcGx5IhqC",
-            "0+STAhQiDy9DaGFydHMvU3RhcnRFYToBKkJCWjFnaXQubXRhcGkuaW8vcm9v",
-            "dC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVzL2dvqgIMbXQ1X3Rlcm1f",
-            "YXBpYgZwcm90bzM="));
+            "DyABKAESGwoTcmVzb3VyY2VfbXVsdGlwbGllchgQIAEoARIVCg1tZXRlcmVk",
+            "X2hvdXJzGBEgASgBEhYKDmNoYXJnZWRfYW1vdW50GBIgASgBEi4KCnN0b3Bw",
+            "ZWRfYXQYEyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIkUKEEdl",
+            "dEVhTG9nc1JlcXVlc3QSDQoFZWFfaWQYASABKAkSFQoIbG9nX3R5cGUYAiAB",
+            "KAlIAIgBAUILCglfbG9nX3R5cGUibwoOR2V0RWFMb2dzUmVwbHkSKwoEZGF0",
+            "YRgBIAEoCzIbLm10NV90ZXJtX2FwaS5HZXRFYUxvZ3NEYXRhSAASJAoFZXJy",
+            "b3IYAiABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3JIAEIKCghyZXNwb25zZSI1",
+            "Cg1HZXRFYUxvZ3NEYXRhEiQKBHJvd3MYASADKAsyFi5tdDVfdGVybV9hcGku",
+            "RWFMb2dSb3ciVQoIRWFMb2dSb3cSKAoEdGltZRgBIAEoCzIaLmdvb2dsZS5w",
+            "cm90b2J1Zi5UaW1lc3RhbXASDgoGc291cmNlGAIgASgJEg8KB21lc3NhZ2UY",
+            "AyABKAkiPgoNU3RvcEVhUmVxdWVzdBINCgVlYV9pZBgBIAEoCRITCgZyZWFz",
+            "b24YAiABKAlIAIgBAUIJCgdfcmVhc29uImkKC1N0b3BFYVJlcGx5EigKBGRh",
+            "dGEYASABKAsyGC5tdDVfdGVybV9hcGkuU3RvcEVhRGF0YUgAEiQKBWVycm9y",
+            "GAIgASgLMhMubXQ1X3Rlcm1fYXBpLkVycm9ySABCCgoIcmVzcG9uc2UiPQoK",
+            "U3RvcEVhRGF0YRIPCgdzdWNjZXNzGAEgASgIEg0KBWVhX2lkGAIgASgJEg8K",
+            "B21lc3NhZ2UYAyABKAkiHwoOU3RhcnRFYVJlcXVlc3QSDQoFZWFfaWQYASAB",
+            "KAkiawoMU3RhcnRFYVJlcGx5EikKBGRhdGEYASABKAsyGS5tdDVfdGVybV9h",
+            "cGkuU3RhcnRFYURhdGFIABIkCgVlcnJvchgCIAEoCzITLm10NV90ZXJtX2Fw",
+            "aS5FcnJvckgAQgoKCHJlc3BvbnNlIj4KC1N0YXJ0RWFEYXRhEg8KB3N1Y2Nl",
+            "c3MYASABKAgSDQoFZWFfaWQYAiABKAkSDwoHbWVzc2FnZRgDIAEoCSqWAQoN",
+            "RUFfUEFSQU1fVFlQRRIbChdFQV9QQVJBTV9UWVBFX1VOREVGSU5FRBAAEhgK",
+            "FEVBX1BBUkFNX1RZUEVfU1RSSU5HEAESGQoVRUFfUEFSQU1fVFlQRV9JTlRF",
+            "R0VSEAISGAoURUFfUEFSQU1fVFlQRV9ET1VCTEUQAxIZChVFQV9QQVJBTV9U",
+            "WVBFX0JPT0xFQU4QBCqlAQooRW51bU9wZW5UZXJtaW5hbENoYXJ0V2l0aEVh",
+            "UGFyYW1ldGVyVHlwZRIVChFNUlBDX0VBX1BBUkFNX0lOVBAAEhYKEk1SUENf",
+            "RUFfUEFSQU1fTE9ORxABEhYKEk1SUENfRUFfUEFSQU1fQk9PTBACEhgKFE1S",
+            "UENfRUFfUEFSQU1fU1RSSU5HEAMSGAoUTVJQQ19FQV9QQVJBTV9ET1VCTEUQ",
+            "BCqxBQolRW51bU9wZW5UZXJtaW5hbENoYXJ0V2l0aEVhQ2hhdFBlcmlvZBIg",
+            "ChxNUlBDX0VBX0NIQVJUX1BFUklPRF9DVVJSRU5UEAASGwoXTVJQQ19FQV9D",
+            "SEFSVF9QRVJJT0RfTTEQARIbChdNUlBDX0VBX0NIQVJUX1BFUklPRF9NMhAC",
+            "EhsKF01SUENfRUFfQ0hBUlRfUEVSSU9EX00zEAMSGwoXTVJQQ19FQV9DSEFS",
+            "VF9QRVJJT0RfTTQQBBIbChdNUlBDX0VBX0NIQVJUX1BFUklPRF9NNRAFEhsK",
+            "F01SUENfRUFfQ0hBUlRfUEVSSU9EX002EAYSHAoYTVJQQ19FQV9DSEFSVF9Q",
+            "RVJJT0RfTTEwEAcSHAoYTVJQQ19FQV9DSEFSVF9QRVJJT0RfTTEyEAgSHAoY",
+            "TVJQQ19FQV9DSEFSVF9QRVJJT0RfTTE1EAkSHAoYTVJQQ19FQV9DSEFSVF9Q",
+            "RVJJT0RfTTIwEAoSHAoYTVJQQ19FQV9DSEFSVF9QRVJJT0RfTTMwEAsSGwoX",
+            "TVJQQ19FQV9DSEFSVF9QRVJJT0RfSDEQDBIbChdNUlBDX0VBX0NIQVJUX1BF",
+            "UklPRF9IMhANEhsKF01SUENfRUFfQ0hBUlRfUEVSSU9EX0gzEA4SGwoXTVJQ",
+            "Q19FQV9DSEFSVF9QRVJJT0RfSDQQDxIbChdNUlBDX0VBX0NIQVJUX1BFUklP",
+            "RF9INhAQEhsKF01SUENfRUFfQ0hBUlRfUEVSSU9EX0g4EBESHAoYTVJQQ19F",
+            "QV9DSEFSVF9QRVJJT0RfSDEyEBISGwoXTVJQQ19FQV9DSEFSVF9QRVJJT0Rf",
+            "RDEQExIbChdNUlBDX0VBX0NIQVJUX1BFUklPRF9XMRAUEhwKGE1SUENfRUFf",
+            "Q0hBUlRfUEVSSU9EX01OMRAVMoYGCgZDaGFydHMSlQEKF09wZW5UZXJtaW5h",
+            "bENoYXJ0V2l0aEVhEiwubXQ1X3Rlcm1fYXBpLk9wZW5UZXJtaW5hbENoYXJ0",
+            "V2l0aEVhUmVxdWVzdBoqLm10NV90ZXJtX2FwaS5PcGVuVGVybWluYWxDaGFy",
+            "dFdpdGhFYVJlcGx5IiCC0+STAhoSGC9PcGVuVGVybWluYWxDaGFydFdpdGhF",
+            "YRJlCgtHZXRFYVBhcmFtcxIgLm10NV90ZXJtX2FwaS5HZXRFYVBhcmFtc1Jl",
+            "cXVlc3QaHi5tdDVfdGVybV9hcGkuR2V0RWFQYXJhbXNSZXBseSIUgtPkkwIO",
+            "EgwvR2V0RWFQYXJhbXMSYwoIQXR0YWNoRWESHS5tdDVfdGVybV9hcGkuQXR0",
+            "YWNoRWFSZXF1ZXN0GhsubXQ1X3Rlcm1fYXBpLkF0dGFjaEVhUmVwbHkiG4LT",
+            "5JMCFSIQL0NoYXJ0cy9BdHRhY2hFYToBKhJ0Cg1HZXRSdW5uaW5nRWFzEiIu",
+            "bXQ1X3Rlcm1fYXBpLkdldFJ1bm5pbmdFYXNSZXF1ZXN0GiAubXQ1X3Rlcm1f",
+            "YXBpLkdldFJ1bm5pbmdFYXNSZXBseSIdgtPkkwIXEhUvQ2hhcnRzL0dldFJ1",
+            "bm5pbmdFYXMSZAoJR2V0RWFMb2dzEh4ubXQ1X3Rlcm1fYXBpLkdldEVhTG9n",
+            "c1JlcXVlc3QaHC5tdDVfdGVybV9hcGkuR2V0RWFMb2dzUmVwbHkiGYLT5JMC",
+            "ExIRL0NoYXJ0cy9HZXRFYUxvZ3MSWwoGU3RvcEVhEhsubXQ1X3Rlcm1fYXBp",
+            "LlN0b3BFYVJlcXVlc3QaGS5tdDVfdGVybV9hcGkuU3RvcEVhUmVwbHkiGYLT",
+            "5JMCEyIOL0NoYXJ0cy9TdG9wRWE6ASoSXwoHU3RhcnRFYRIcLm10NV90ZXJt",
+            "X2FwaS5TdGFydEVhUmVxdWVzdBoaLm10NV90ZXJtX2FwaS5TdGFydEVhUmVw",
+            "bHkiGoLT5JMCFCIPL0NoYXJ0cy9TdGFydEVhOgEqQkJaMWdpdC5tdGFwaS5p",
+            "by9yb290L21ycGMtcHJvdG8uZ2l0L210NS9saWJyYXJpZXMvZ2+qAgxtdDVf",
+            "dGVybV9hcGliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Mt5TermApi.MrpcMt5ErrorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::mt5_term_api.EA_PARAM_TYPE), typeof(global::mt5_term_api.EnumOpenTerminalChartWithEaParameterType), typeof(global::mt5_term_api.EnumOpenTerminalChartWithEaChatPeriod), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -157,7 +159,7 @@ namespace mt5_term_api {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetRunningEasRequest), global::mt5_term_api.GetRunningEasRequest.Parser, new[]{ "SessionId", "EaId" }, new[]{ "SessionId", "EaId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetRunningEasReply), global::mt5_term_api.GetRunningEasReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetRunningEasData), global::mt5_term_api.GetRunningEasData.Parser, new[]{ "Eas" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.RunningEaInfo), global::mt5_term_api.RunningEaInfo.Parser, new[]{ "EaId", "EaName", "ParentSessionId", "EaTerminalId", "ProcessId", "Symbol", "Period", "State", "StartedAt", "EaCpuPercent", "RefCpuPercent", "CpuRatio", "EaRamBytes", "RefRamBytes", "RamRatio", "ResourceMultiplier" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.RunningEaInfo), global::mt5_term_api.RunningEaInfo.Parser, new[]{ "EaId", "EaName", "ParentSessionId", "EaTerminalId", "ProcessId", "Symbol", "Period", "State", "StartedAt", "EaCpuPercent", "RefCpuPercent", "CpuRatio", "EaRamBytes", "RefRamBytes", "RamRatio", "ResourceMultiplier", "MeteredHours", "ChargedAmount", "StoppedAt" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetEaLogsRequest), global::mt5_term_api.GetEaLogsRequest.Parser, new[]{ "EaId", "LogType" }, new[]{ "LogType" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetEaLogsReply), global::mt5_term_api.GetEaLogsReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.GetEaLogsData), global::mt5_term_api.GetEaLogsData.Parser, new[]{ "Rows" }, null, null, null, null),
@@ -4346,6 +4348,9 @@ namespace mt5_term_api {
       refRamBytes_ = other.refRamBytes_;
       ramRatio_ = other.ramRatio_;
       resourceMultiplier_ = other.resourceMultiplier_;
+      meteredHours_ = other.meteredHours_;
+      chargedAmount_ = other.chargedAmount_;
+      stoppedAt_ = other.stoppedAt_ != null ? other.stoppedAt_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4547,6 +4552,42 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "metered_hours" field.</summary>
+    public const int MeteredHoursFieldNumber = 17;
+    private double meteredHours_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double MeteredHours {
+      get { return meteredHours_; }
+      set {
+        meteredHours_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "charged_amount" field.</summary>
+    public const int ChargedAmountFieldNumber = 18;
+    private double chargedAmount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double ChargedAmount {
+      get { return chargedAmount_; }
+      set {
+        chargedAmount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "stopped_at" field.</summary>
+    public const int StoppedAtFieldNumber = 19;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp stoppedAt_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp StoppedAt {
+      get { return stoppedAt_; }
+      set {
+        stoppedAt_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -4578,6 +4619,9 @@ namespace mt5_term_api {
       if (RefRamBytes != other.RefRamBytes) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(RamRatio, other.RamRatio)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ResourceMultiplier, other.ResourceMultiplier)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(MeteredHours, other.MeteredHours)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ChargedAmount, other.ChargedAmount)) return false;
+      if (!object.Equals(StoppedAt, other.StoppedAt)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4601,6 +4645,9 @@ namespace mt5_term_api {
       if (RefRamBytes != 0L) hash ^= RefRamBytes.GetHashCode();
       if (RamRatio != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(RamRatio);
       if (ResourceMultiplier != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ResourceMultiplier);
+      if (MeteredHours != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(MeteredHours);
+      if (ChargedAmount != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ChargedAmount);
+      if (stoppedAt_ != null) hash ^= StoppedAt.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4683,6 +4730,18 @@ namespace mt5_term_api {
         output.WriteRawTag(129, 1);
         output.WriteDouble(ResourceMultiplier);
       }
+      if (MeteredHours != 0D) {
+        output.WriteRawTag(137, 1);
+        output.WriteDouble(MeteredHours);
+      }
+      if (ChargedAmount != 0D) {
+        output.WriteRawTag(145, 1);
+        output.WriteDouble(ChargedAmount);
+      }
+      if (stoppedAt_ != null) {
+        output.WriteRawTag(154, 1);
+        output.WriteMessage(StoppedAt);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -4757,6 +4816,18 @@ namespace mt5_term_api {
         output.WriteRawTag(129, 1);
         output.WriteDouble(ResourceMultiplier);
       }
+      if (MeteredHours != 0D) {
+        output.WriteRawTag(137, 1);
+        output.WriteDouble(MeteredHours);
+      }
+      if (ChargedAmount != 0D) {
+        output.WriteRawTag(145, 1);
+        output.WriteDouble(ChargedAmount);
+      }
+      if (stoppedAt_ != null) {
+        output.WriteRawTag(154, 1);
+        output.WriteMessage(StoppedAt);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -4814,6 +4885,15 @@ namespace mt5_term_api {
       }
       if (ResourceMultiplier != 0D) {
         size += 2 + 8;
+      }
+      if (MeteredHours != 0D) {
+        size += 2 + 8;
+      }
+      if (ChargedAmount != 0D) {
+        size += 2 + 8;
+      }
+      if (stoppedAt_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(StoppedAt);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4877,6 +4957,18 @@ namespace mt5_term_api {
       }
       if (other.ResourceMultiplier != 0D) {
         ResourceMultiplier = other.ResourceMultiplier;
+      }
+      if (other.MeteredHours != 0D) {
+        MeteredHours = other.MeteredHours;
+      }
+      if (other.ChargedAmount != 0D) {
+        ChargedAmount = other.ChargedAmount;
+      }
+      if (other.stoppedAt_ != null) {
+        if (stoppedAt_ == null) {
+          StoppedAt = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        StoppedAt.MergeFrom(other.StoppedAt);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4960,6 +5052,21 @@ namespace mt5_term_api {
             ResourceMultiplier = input.ReadDouble();
             break;
           }
+          case 137: {
+            MeteredHours = input.ReadDouble();
+            break;
+          }
+          case 145: {
+            ChargedAmount = input.ReadDouble();
+            break;
+          }
+          case 154: {
+            if (stoppedAt_ == null) {
+              StoppedAt = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(StoppedAt);
+            break;
+          }
         }
       }
     #endif
@@ -5040,6 +5147,21 @@ namespace mt5_term_api {
           }
           case 129: {
             ResourceMultiplier = input.ReadDouble();
+            break;
+          }
+          case 137: {
+            MeteredHours = input.ReadDouble();
+            break;
+          }
+          case 145: {
+            ChargedAmount = input.ReadDouble();
+            break;
+          }
+          case 154: {
+            if (stoppedAt_ == null) {
+              StoppedAt = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(StoppedAt);
             break;
           }
         }
