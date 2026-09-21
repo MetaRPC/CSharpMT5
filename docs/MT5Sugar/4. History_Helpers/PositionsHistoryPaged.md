@@ -1,4 +1,4 @@
-﻿# ✅ Get Positions History with Paging (`PositionsHistoryPaged`)
+# ✅ Get Positions History with Paging (`PositionsHistoryPaged`)
 
 > **Sugar method:** Gets closed positions history with optional open date filter and paging. Direct wrapper with default parameters.
 

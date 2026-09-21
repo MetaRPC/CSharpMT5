@@ -1,4 +1,4 @@
-﻿# ✅ Calculating Required Margin (`OrderCalcMarginAsync`)
+# ✅ Calculating Required Margin (`OrderCalcMarginAsync`)
 
 > **Request:** Calculate the margin required to open a trade with given parameters on **MT5**. Returns required margin in account currency.
 

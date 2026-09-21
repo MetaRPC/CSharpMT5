@@ -1,4 +1,4 @@
-﻿# ✅ Getting Symbol Name by Index
+# ✅ Getting Symbol Name by Index
 
 > **Request:** symbol name by index from **MT5**. Retrieve the name of a symbol from the list (selected in Market Watch or all available).
 

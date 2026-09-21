@@ -1,4 +1,4 @@
-﻿# ✅ Closing Orders and Positions (`OrderCloseAsync`)
+# ✅ Closing Orders and Positions (`OrderCloseAsync`)
 
 > **Request:** Close an open position or cancel a pending order on **MT5**.
 

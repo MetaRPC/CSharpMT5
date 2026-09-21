@@ -1,4 +1,4 @@
-﻿# Get Volume Limits (`GetVolumeLimitsAsync`)
+# Get Volume Limits (`GetVolumeLimitsAsync`)
 
 > **Sugar method:** Retrieves volume constraints for symbol - minimum, maximum, and step size in one call.
 

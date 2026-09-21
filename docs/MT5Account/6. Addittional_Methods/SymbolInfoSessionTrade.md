@@ -1,4 +1,4 @@
-﻿# ✅ Get Trade Session Times (`SymbolInfoSessionTradeAsync`)
+# ✅ Get Trade Session Times (`SymbolInfoSessionTradeAsync`)
 
 > **Request:** Get beginning and end times for a trading session of a specified symbol and day of week on **MT5**.
 

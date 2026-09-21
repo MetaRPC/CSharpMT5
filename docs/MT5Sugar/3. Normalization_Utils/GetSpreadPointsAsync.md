@@ -1,4 +1,4 @@
-﻿# ✅ Get Spread in Points (`GetSpreadPointsAsync`)
+# ✅ Get Spread in Points (`GetSpreadPointsAsync`)
 
 > **Sugar method:** Calculates current spread in points from the last tick. Returns (Ask - Bid) / Point.
 

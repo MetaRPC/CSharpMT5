@@ -1,4 +1,4 @@
-﻿# ✅ Getting Symbol Double Properties
+# ✅ Getting Symbol Double Properties
 
 > **Request:** double (numeric) property of a symbol from **MT5**. Get prices, volumes, swaps, margins, and other numeric symbol parameters.
 

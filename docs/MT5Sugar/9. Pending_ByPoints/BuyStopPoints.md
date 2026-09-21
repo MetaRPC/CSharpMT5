@@ -1,4 +1,4 @@
-﻿# Buy Stop by Points (`BuyStopPoints`)
+# Buy Stop by Points (`BuyStopPoints`)
 
 > **Sugar method:** Places Buy Stop pending order using point-based offset from current Ask price - breakout entry made easy!
 

@@ -1,4 +1,4 @@
-﻿# ✅ Modifying Orders and Positions (`OrderModifyAsync`)
+# ✅ Modifying Orders and Positions (`OrderModifyAsync`)
 
 > **Request:** Modify SL/TP of an open position or modify parameters of a pending order on **MT5**.
 

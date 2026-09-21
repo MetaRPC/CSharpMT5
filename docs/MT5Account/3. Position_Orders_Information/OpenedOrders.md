@@ -1,4 +1,4 @@
-﻿# ✅ Getting All Opened Orders & Positions
+# ✅ Getting All Opened Orders & Positions
 
 > **Request:** detailed information about all opened orders and positions from **MT5**. Get complete data for active orders and positions with sorting options.
 

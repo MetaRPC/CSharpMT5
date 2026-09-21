@@ -1,4 +1,4 @@
-﻿# Calculate Volume by Risk (`CalcVolumeForRiskAsync`) ⭐
+# Calculate Volume by Risk (`CalcVolumeForRiskAsync`) ⭐
 
 > **Sugar method:** **CORE RISK MANAGEMENT** - Calculates exact position size (lots) based on risk amount and stop-loss distance.
 

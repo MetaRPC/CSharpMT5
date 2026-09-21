@@ -1,4 +1,4 @@
-﻿# ✅ Getting Symbol Integer Properties
+# ✅ Getting Symbol Integer Properties
 
 > **Request:** integer (long) property of a symbol from **MT5**. Get digits, spread, execution modes, time parameters, and other integer symbol properties.
 

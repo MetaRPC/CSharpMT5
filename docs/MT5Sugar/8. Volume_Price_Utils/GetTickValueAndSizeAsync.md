@@ -1,4 +1,4 @@
-﻿# Get Tick Value and Size (`GetTickValueAndSizeAsync`)
+# Get Tick Value and Size (`GetTickValueAndSizeAsync`)
 
 > **Sugar method:** Retrieves tick value (monetary value per tick) and tick size (price increment) for risk/P&L calculations.
 

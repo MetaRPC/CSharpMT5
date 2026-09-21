@@ -1,4 +1,4 @@
-﻿# gRPC Stream Management & Subscription Guide
+# gRPC Stream Management & Subscription Guide
 
 > **Complete guide** to working with real-time subscriptions in C# MT5
 

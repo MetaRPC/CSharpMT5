@@ -1,4 +1,4 @@
-﻿# ✅ Get Margin Requirements (`SymbolInfoMarginRateAsync`)
+# ✅ Get Margin Requirements (`SymbolInfoMarginRateAsync`)
 
 > **Request:** Get margin rates (initial and maintenance) for a symbol and order type on **MT5**.
 

@@ -1,4 +1,4 @@
-﻿# ✅ Subscribe to Position Profit Updates (`OnPositionProfitAsync`)
+# ✅ Subscribe to Position Profit Updates (`OnPositionProfitAsync`)
 
 > **Stream:** Periodic snapshots of position profit/loss on **MT5**. Returns profit updates for all open positions at specified interval.
 

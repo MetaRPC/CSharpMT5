@@ -1,4 +1,4 @@
-﻿# ✅ Getting Individual Account Integer Properties
+# ✅ Getting Individual Account Integer Properties
 
 > **Request:** single `long` property from **MT5** account. Fetch specific integer properties like login, leverage, trade mode, limits, etc.
 

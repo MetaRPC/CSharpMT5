@@ -1,4 +1,4 @@
-﻿# Get Market Book Snapshot (`GetMarketBookSnapshotAsync`)
+# Get Market Book Snapshot (`GetMarketBookSnapshotAsync`)
 
 > **Sugar method:** Gets current order book (DOM) snapshot - wrapper over `MarketBookGetAsync()` with clearer naming.
 

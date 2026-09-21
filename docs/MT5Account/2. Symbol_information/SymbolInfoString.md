@@ -1,4 +1,4 @@
-﻿# ✅ Getting Symbol String Properties
+# ✅ Getting Symbol String Properties
 
 > **Request:** string property of a symbol from **MT5**. Get text-based symbol information like description, currencies, exchange, ISIN, etc.
 

@@ -1,4 +1,4 @@
-﻿# Close All Market Positions (`CloseAllPositions`)
+# Close All Market Positions (`CloseAllPositions`)
 
 > **⚠️ EXTREMELY DANGEROUS BULK METHOD:** Closes all open market positions with optional symbol/direction filtering. NUCLEAR OPTION!
 

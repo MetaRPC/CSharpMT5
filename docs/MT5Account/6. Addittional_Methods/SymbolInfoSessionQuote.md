@@ -1,4 +1,4 @@
-﻿# ✅ Get Quote Session Times (`SymbolInfoSessionQuoteAsync`)
+# ✅ Get Quote Session Times (`SymbolInfoSessionQuoteAsync`)
 
 > **Request:** Get beginning and end times for a quoting session of a specified symbol and day of week on **MT5**.
 

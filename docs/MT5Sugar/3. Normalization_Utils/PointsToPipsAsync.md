@@ -1,4 +1,4 @@
-﻿# ✅ Convert Points to Pips (`PointsToPipsAsync`)
+# ✅ Convert Points to Pips (`PointsToPipsAsync`)
 
 > **Sugar method:** Converts points to pips. For 5-digit FX pairs (EURUSD), 10 points = 1 pip. For 3-digit pairs (USDJPY), 1 point = 1 pip.
 

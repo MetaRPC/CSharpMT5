@@ -1,4 +1,4 @@
-﻿# ✅ Get Symbol Snapshot (`GetSymbolSnapshot`)
+# ✅ Get Symbol Snapshot (`GetSymbolSnapshot`)
 
 > **Sugar method:** Gets symbol tick, point, digits, and margin rate in one convenient call. Returns all as a single record.
 

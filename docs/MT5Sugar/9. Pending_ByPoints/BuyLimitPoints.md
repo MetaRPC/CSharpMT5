@@ -1,4 +1,4 @@
-﻿# Buy Limit by Points (`BuyLimitPoints`)
+# Buy Limit by Points (`BuyLimitPoints`)
 
 > **Sugar method:** Places Buy Limit pending order using point-based offset from current Ask price - no manual price calculation!
 

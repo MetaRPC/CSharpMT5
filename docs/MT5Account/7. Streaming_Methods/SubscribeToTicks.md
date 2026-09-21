@@ -1,4 +1,4 @@
-﻿# ✅ Subscribe to Real-Time Tick Data (`OnSymbolTickAsync`)
+# ✅ Subscribe to Real-Time Tick Data (`OnSymbolTickAsync`)
 
 > **Stream:** Real-time price tick updates for specified symbols on **MT5**. Returns continuous stream of bid/ask prices as they change.
 

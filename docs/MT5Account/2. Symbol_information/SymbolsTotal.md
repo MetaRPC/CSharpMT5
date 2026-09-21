@@ -1,4 +1,4 @@
-﻿# ✅ Getting Total Number of Symbols
+# ✅ Getting Total Number of Symbols
 
 > **Request:** count of available symbols from **MT5**. Get the total number of symbols (all available or only selected in Market Watch).
 

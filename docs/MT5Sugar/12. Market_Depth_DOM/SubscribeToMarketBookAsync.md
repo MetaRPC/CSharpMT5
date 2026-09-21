@@ -1,4 +1,4 @@
-﻿# Subscribe to Market Book (`SubscribeToMarketBookAsync`)
+# Subscribe to Market Book (`SubscribeToMarketBookAsync`)
 
 > **Sugar method:** Subscribes to Market Depth (order book) with automatic cleanup via IDisposable pattern.
 

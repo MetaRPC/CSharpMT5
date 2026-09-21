@@ -1,4 +1,4 @@
-﻿# Sell Market by Risk (`SellMarketByRisk`) ⭐
+# Sell Market by Risk (`SellMarketByRisk`) ⭐
 
 > **⭐ CRITICAL PROFESSIONAL METHOD:** Opens Sell market position with auto-calculated volume based on fixed dollar risk. Professional short trading made simple!
 

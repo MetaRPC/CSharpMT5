@@ -1,4 +1,4 @@
-﻿# Modify Stop-Loss/Take-Profit (`ModifySlTpAsync`)
+# Modify Stop-Loss/Take-Profit (`ModifySlTpAsync`)
 
 > **Sugar method:** Modifies stop-loss and/or take-profit for existing order or position by ticket number.
 

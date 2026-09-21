@@ -1,4 +1,4 @@
-﻿# MT5Service - Mid-Level API Overview
+# MT5Service - Mid-Level API Overview
 
 > **Not just a wrapper!** MT5Service eliminates 50-70% of boilerplate code while maintaining full MT5 functionality.
 

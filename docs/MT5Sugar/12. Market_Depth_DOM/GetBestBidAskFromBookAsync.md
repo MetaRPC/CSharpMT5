@@ -1,4 +1,4 @@
-﻿# Get Best Bid/Ask from Book (`GetBestBidAskFromBookAsync`)
+# Get Best Bid/Ask from Book (`GetBestBidAskFromBookAsync`)
 
 > **Sugar method:** Extracts best bid and best ask prices from order book - no manual LINQ needed!
 

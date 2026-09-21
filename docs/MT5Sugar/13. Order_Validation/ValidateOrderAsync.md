@@ -1,4 +1,4 @@
-﻿# Validate Order (`ValidateOrderAsync`)
+# Validate Order (`ValidateOrderAsync`)
 
 > **⭐ CRITICAL METHOD:** Pre-flight validation for orders - check BEFORE sending to avoid rejections!
 

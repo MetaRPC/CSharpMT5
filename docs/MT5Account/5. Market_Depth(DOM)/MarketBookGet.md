@@ -1,4 +1,4 @@
-﻿# ✅ Get Market Depth Data (`MarketBookGetAsync`)
+# ✅ Get Market Depth Data (`MarketBookGetAsync`)
 
 > **Request:** Get current Depth of Market (order book) snapshot for a subscribed symbol on **MT5**.
 

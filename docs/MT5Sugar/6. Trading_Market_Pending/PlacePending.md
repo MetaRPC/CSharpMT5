@@ -1,4 +1,4 @@
-﻿# Place Pending Order (`PlacePending`)
+# Place Pending Order (`PlacePending`)
 
 > **Sugar method:** Places a pending order (Buy/Sell Limit or Stop) at specified price with automatic symbol preparation.
 

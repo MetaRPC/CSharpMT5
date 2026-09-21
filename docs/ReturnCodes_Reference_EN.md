@@ -1,4 +1,4 @@
-﻿# MT5 Return Codes (RetCodes) Reference
+# MT5 Return Codes (RetCodes) Reference
 
 ## What is RetCode?
 

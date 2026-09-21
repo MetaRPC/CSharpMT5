@@ -1,4 +1,4 @@
-﻿# Close All Pending Orders (`CloseAllPending`)
+# Close All Pending Orders (`CloseAllPending`)
 
 > **Alias method:** Direct alias for `CancelAll()`. Cancels all pending orders with optional filtering.
 

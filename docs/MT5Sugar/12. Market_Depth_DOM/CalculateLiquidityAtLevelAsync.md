@@ -1,4 +1,4 @@
-﻿# Calculate Liquidity at Level (`CalculateLiquidityAtLevelAsync`)
+# Calculate Liquidity at Level (`CalculateLiquidityAtLevelAsync`)
 
 > **Sugar method:** Calculates total volume available at specific price level in order book - perfect for large order planning!
 

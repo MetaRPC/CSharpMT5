@@ -1,4 +1,4 @@
-﻿# ✅ Subscribe to Trade Events (`OnTradeAsync`)
+# ✅ Subscribe to Trade Events (`OnTradeAsync`)
 
 > **Stream:** Real-time trade execution and closure events on **MT5**. Continuously sends notifications when orders are filled, positions opened/closed, or orders modified.
 

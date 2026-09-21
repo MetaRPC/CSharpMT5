@@ -1,4 +1,4 @@
-﻿# ✅ Getting Last Tick Data
+# ✅ Getting Last Tick Data
 
 > **Request:** current tick data from **MT5**. Get the latest price information (Bid, Ask, Last, Volume) for a symbol.
 

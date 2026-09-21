@@ -1,4 +1,4 @@
-﻿# Close All Positions (`CloseAll`)
+# Close All Positions (`CloseAll`)
 
 > **Sugar method:** Closes all open orders and positions with optional filtering by symbol and direction.
 

@@ -1,4 +1,4 @@
-﻿# ✅ Get Point Size (`GetPointAsync`)
+# ✅ Get Point Size (`GetPointAsync`)
 
 > **Sugar method:** Gets symbol point size (minimum price change). Simple wrapper for `SymbolInfoDoubleAsync(SymbolPoint)`.
 

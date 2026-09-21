@@ -1,4 +1,4 @@
-﻿# Sell Stop by Points (`SellStopPoints`)
+# Sell Stop by Points (`SellStopPoints`)
 
 > **Sugar method:** Places Sell Stop pending order using point-based offset from current Bid price - downside breakout made easy!
 

@@ -1,4 +1,4 @@
-﻿# ✅ Adding/Removing Symbol from Market Watch
+# ✅ Adding/Removing Symbol from Market Watch
 
 > **Request:** select or deselect symbol in Market Watch from **MT5**. Add a symbol to Market Watch or remove it.
 

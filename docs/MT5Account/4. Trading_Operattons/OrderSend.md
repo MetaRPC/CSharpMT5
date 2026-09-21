@@ -1,4 +1,4 @@
-﻿# ✅ Sending Trade Orders (`OrderSendAsync`)
+# ✅ Sending Trade Orders (`OrderSendAsync`)
 
 > **Request:** Send a market or pending order to **MT5**. Opens positions, places pending orders with specified parameters.
 

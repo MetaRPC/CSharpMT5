@@ -1,4 +1,4 @@
-﻿# ✅ Validating Trade Requests (`OrderCheckAsync`)
+# ✅ Validating Trade Requests (`OrderCheckAsync`)
 
 > **Request:** Run a dry‑run check of a trade request on **MT5**. The server simulates the trade and returns balance / equity / margin impact **without actually placing an order**.
 

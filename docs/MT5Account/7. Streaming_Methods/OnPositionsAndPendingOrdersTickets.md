@@ -1,4 +1,4 @@
-﻿# ✅ Subscribe to Position/Order Tickets Snapshots (`OnPositionsAndPendingOrdersTicketsAsync`)
+# ✅ Subscribe to Position/Order Tickets Snapshots (`OnPositionsAndPendingOrdersTicketsAsync`)
 
 > **Stream:** Periodic snapshots of all position and pending order tickets on **MT5**. Returns list of active tickets at specified interval.
 

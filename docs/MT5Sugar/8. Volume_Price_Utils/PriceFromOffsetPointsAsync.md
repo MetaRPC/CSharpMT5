@@ -1,4 +1,4 @@
-﻿# Price from Offset Points (`PriceFromOffsetPointsAsync`)
+# Price from Offset Points (`PriceFromOffsetPointsAsync`)
 
 > **Sugar method:** Calculates pending order price by offset in points from current market price - no manual calculation needed!
 

@@ -1,4 +1,4 @@
-﻿# Close Position by Ticket (`CloseByTicket`)
+# Close Position by Ticket (`CloseByTicket`)
 
 > **Sugar method:** Closes order or position by ticket number with support for partial closure.
 

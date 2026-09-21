@@ -1,4 +1,4 @@
-﻿# CSharpMT5 Glossary
+# CSharpMT5 Glossary
 
 > Project-specific terms and concepts. This glossary covers CSharpMT5 architecture, components, and trading automation terminology used throughout the codebase.
 

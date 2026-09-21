@@ -1,4 +1,4 @@
-﻿# ✅ Checking if Symbol Exists
+# ✅ Checking if Symbol Exists
 
 > **Request:** check symbol existence from **MT5**. Verify if a symbol with a specified name exists (standard or custom).
 

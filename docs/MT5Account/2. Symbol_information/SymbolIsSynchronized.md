@@ -1,4 +1,4 @@
-﻿# ✅ Checking Symbol Data Synchronization
+# ✅ Checking Symbol Data Synchronization
 
 > **Request:** check if symbol data is synchronized with trade server from **MT5**. Verify that symbol quotes and data are up-to-date.
 

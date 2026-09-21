@@ -1,4 +1,4 @@
-﻿# ✅ Normalize Price (`NormalizePriceAsync`)
+# ✅ Normalize Price (`NormalizePriceAsync`)
 
 > **Sugar method:** Normalizes price to symbol tick size (strict normalization, not just digits). Ensures price is valid for order placement.
 

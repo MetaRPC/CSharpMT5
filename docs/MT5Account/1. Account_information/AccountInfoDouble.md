@@ -1,4 +1,4 @@
-﻿# ✅ Getting Individual Account Double Properties
+# ✅ Getting Individual Account Double Properties
 
 > **Request:** single `double` property from **MT5** account. Fetch specific numeric properties like balance, equity, margin, profit, etc.
 

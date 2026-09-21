@@ -37,6 +37,8 @@
 
   <!-- Exclude only ConsoleDemo subproject, Controllers, and tests -->
   <ItemGroup>
+    <Compile Remove="package\obj\**\*.cs" />
+    <Compile Remove="package\bin\**\*.cs" />
     <Compile Remove="Examples\ConsoleDemo\**\*.cs" />
     <Compile Remove="Controllers\**\*.cs" />
     <Compile Remove="mrpc-proto-main\**\*.cs" />

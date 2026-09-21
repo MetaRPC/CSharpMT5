@@ -1,4 +1,4 @@
-﻿# ✅ Ensure Symbol Selected and Synchronized (`EnsureSelected`)
+# ✅ Ensure Symbol Selected and Synchronized (`EnsureSelected`)
 
 > **Sugar method:** Ensures a symbol is selected in MarketWatch and synchronized with server before using it. Throws exception if synchronization fails.
 

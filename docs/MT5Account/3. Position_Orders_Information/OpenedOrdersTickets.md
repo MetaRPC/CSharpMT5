@@ -1,4 +1,4 @@
-﻿# ✅ Getting Ticket IDs of Opened Orders & Positions
+# ✅ Getting Ticket IDs of Opened Orders & Positions
 
 > **Request:** list of ticket IDs for all opened orders and positions from **MT5**. Get lightweight snapshot with just ticket numbers (no detailed data).
 

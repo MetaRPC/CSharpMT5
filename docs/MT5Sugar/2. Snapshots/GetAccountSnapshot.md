@@ -1,4 +1,4 @@
-﻿# ✅ Get Account Snapshot (`GetAccountSnapshot`)
+# ✅ Get Account Snapshot (`GetAccountSnapshot`)
 
 > **Sugar method:** Gets account summary and opened orders in one convenient call. Returns both as a single record.
 

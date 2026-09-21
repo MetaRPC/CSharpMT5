@@ -1,4 +1,4 @@
-﻿# Buy Market by Risk (`BuyMarketByRisk`) ⭐
+# Buy Market by Risk (`BuyMarketByRisk`) ⭐
 
 > **⭐ CRITICAL PROFESSIONAL METHOD:** Opens Buy market position with auto-calculated volume based on fixed dollar risk. The HOLY GRAIL of risk management!
 

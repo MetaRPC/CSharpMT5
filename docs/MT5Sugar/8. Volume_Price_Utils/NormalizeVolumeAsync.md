@@ -1,4 +1,4 @@
-﻿# Normalize Volume (`NormalizeVolumeAsync`)
+# Normalize Volume (`NormalizeVolumeAsync`)
 
 > **Sugar method:** Normalizes volume to comply with broker's step size and min/max limits - auto-fix invalid volumes.
 

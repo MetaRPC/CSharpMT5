@@ -1,4 +1,4 @@
-﻿# ✅ Unsubscribe from Market Depth (`MarketBookReleaseAsync`)
+# ✅ Unsubscribe from Market Depth (`MarketBookReleaseAsync`)
 
 > **Request:** Unsubscribe from Depth of Market (DOM) updates for a symbol on **MT5**. Closes DOM subscription and frees resources.
 

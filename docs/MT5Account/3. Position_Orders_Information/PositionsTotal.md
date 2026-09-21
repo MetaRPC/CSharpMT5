@@ -1,4 +1,4 @@
-﻿# ✅ Getting Total Number of Open Positions
+# ✅ Getting Total Number of Open Positions
 
 > **Request:** count of open positions from **MT5**. Get the total number of currently open positions on the account.
 

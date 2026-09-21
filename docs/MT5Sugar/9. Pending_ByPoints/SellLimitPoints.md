@@ -1,4 +1,4 @@
-﻿# Sell Limit by Points (`SellLimitPoints`)
+# Sell Limit by Points (`SellLimitPoints`)
 
 > **Sugar method:** Places Sell Limit pending order using point-based offset from current Bid price - no manual price calculation!
 

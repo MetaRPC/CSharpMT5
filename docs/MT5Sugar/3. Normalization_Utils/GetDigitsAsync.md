@@ -1,4 +1,4 @@
-﻿# ✅ Get Symbol Digits (`GetDigitsAsync`)
+# ✅ Get Symbol Digits (`GetDigitsAsync`)
 
 > **Sugar method:** Gets number of decimal places for symbol prices. Simple wrapper for `SymbolInfoIntegerAsync(SymbolDigits)` with int conversion.
 

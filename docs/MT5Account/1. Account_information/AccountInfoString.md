@@ -1,4 +1,4 @@
-﻿# ✅ Getting Individual Account String Properties
+# ✅ Getting Individual Account String Properties
 
 > **Request:** single `string` property from **MT5** account. Fetch specific text properties like currency, company name, account name, server name.
 

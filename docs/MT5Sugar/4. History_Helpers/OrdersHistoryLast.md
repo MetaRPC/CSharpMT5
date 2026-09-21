@@ -1,4 +1,4 @@
-﻿# ✅ Get Recent Orders History (`OrdersHistoryLast`)
+# ✅ Get Recent Orders History (`OrdersHistoryLast`)
 
 > **Sugar method:** Gets closed orders for the last N days with paging. Simple wrapper that calculates date range automatically.
 

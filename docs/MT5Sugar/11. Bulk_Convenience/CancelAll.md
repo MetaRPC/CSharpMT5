@@ -1,4 +1,4 @@
-﻿# Cancel All Pending Orders (`CancelAll`)
+# Cancel All Pending Orders (`CancelAll`)
 
 > **⚠️ DANGEROUS BULK METHOD:** Cancels all pending orders with optional symbol/direction filtering. USE WITH CAUTION!
 
