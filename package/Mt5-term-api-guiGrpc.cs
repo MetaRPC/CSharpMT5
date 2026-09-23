@@ -62,23 +62,9 @@ namespace mt5_term_api {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.GuiCloseDialogsReply> __Marshaller_mt5_term_api_GuiCloseDialogsReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiCloseDialogsReply.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoFindCompaniesRequest> __Marshaller_mt5_term_api_GuiDemoFindCompaniesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoFindCompaniesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoFindCompaniesReply> __Marshaller_mt5_term_api_GuiDemoFindCompaniesReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoFindCompaniesReply.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoServersAndTypesRequest> __Marshaller_mt5_term_api_GuiDemoServersAndTypesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoServersAndTypesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoServersAndTypesReply> __Marshaller_mt5_term_api_GuiDemoServersAndTypesReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoServersAndTypesReply.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoOpenAccountRequest> __Marshaller_mt5_term_api_GuiDemoOpenAccountRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoOpenAccountRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoOpenAccountReply> __Marshaller_mt5_term_api_GuiDemoOpenAccountReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoOpenAccountReply.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoEnumControlsRequest> __Marshaller_mt5_term_api_GuiDemoEnumControlsRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoEnumControlsRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoEnumControlsReply> __Marshaller_mt5_term_api_GuiDemoEnumControlsReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoEnumControlsReply.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoProgressEvent> __Marshaller_mt5_term_api_GuiDemoProgressEvent = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoProgressEvent.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoInteractiveClientMessage> __Marshaller_mt5_term_api_GuiDemoInteractiveClientMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoInteractiveClientMessage.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -117,44 +103,12 @@ namespace mt5_term_api {
         __Marshaller_mt5_term_api_GuiCloseDialogsReply);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::mt5_term_api.GuiDemoFindCompaniesRequest, global::mt5_term_api.GuiDemoFindCompaniesReply> __Method_DemoFindCompanies = new grpc::Method<global::mt5_term_api.GuiDemoFindCompaniesRequest, global::mt5_term_api.GuiDemoFindCompaniesReply>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "DemoFindCompanies",
-        __Marshaller_mt5_term_api_GuiDemoFindCompaniesRequest,
-        __Marshaller_mt5_term_api_GuiDemoFindCompaniesReply);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::mt5_term_api.GuiDemoServersAndTypesRequest, global::mt5_term_api.GuiDemoServersAndTypesReply> __Method_DemoServersAndTypes = new grpc::Method<global::mt5_term_api.GuiDemoServersAndTypesRequest, global::mt5_term_api.GuiDemoServersAndTypesReply>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "DemoServersAndTypes",
-        __Marshaller_mt5_term_api_GuiDemoServersAndTypesRequest,
-        __Marshaller_mt5_term_api_GuiDemoServersAndTypesReply);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoOpenAccountReply> __Method_DemoOpenAccount = new grpc::Method<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoOpenAccountReply>(
         grpc::MethodType.Unary,
         __ServiceName,
         "DemoOpenAccount",
         __Marshaller_mt5_term_api_GuiDemoOpenAccountRequest,
         __Marshaller_mt5_term_api_GuiDemoOpenAccountReply);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::mt5_term_api.GuiDemoEnumControlsRequest, global::mt5_term_api.GuiDemoEnumControlsReply> __Method_DemoEnumControls = new grpc::Method<global::mt5_term_api.GuiDemoEnumControlsRequest, global::mt5_term_api.GuiDemoEnumControlsReply>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "DemoEnumControls",
-        __Marshaller_mt5_term_api_GuiDemoEnumControlsRequest,
-        __Marshaller_mt5_term_api_GuiDemoEnumControlsReply);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoProgressEvent> __Method_DemoOpenAccountWithProgress = new grpc::Method<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoProgressEvent>(
-        grpc::MethodType.ServerStreaming,
-        __ServiceName,
-        "DemoOpenAccountWithProgress",
-        __Marshaller_mt5_term_api_GuiDemoOpenAccountRequest,
-        __Marshaller_mt5_term_api_GuiDemoProgressEvent);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage> __Method_DemoOpenAccountInteractive = new grpc::Method<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage>(
@@ -199,31 +153,7 @@ namespace mt5_term_api {
       }
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.GuiDemoFindCompaniesReply> DemoFindCompanies(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.GuiDemoServersAndTypesReply> DemoServersAndTypes(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.GuiDemoOpenAccountReply> DemoOpenAccount(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.GuiDemoEnumControlsReply> DemoEnumControls(global::mt5_term_api.GuiDemoEnumControlsRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task DemoOpenAccountWithProgress(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::IServerStreamWriter<global::mt5_term_api.GuiDemoProgressEvent> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -344,46 +274,6 @@ namespace mt5_term_api {
         return CallInvoker.AsyncUnaryCall(__Method_CloseDialogs, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoFindCompaniesReply DemoFindCompanies(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DemoFindCompanies(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoFindCompaniesReply DemoFindCompanies(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_DemoFindCompanies, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoFindCompaniesReply> DemoFindCompaniesAsync(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DemoFindCompaniesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoFindCompaniesReply> DemoFindCompaniesAsync(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_DemoFindCompanies, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoServersAndTypesReply DemoServersAndTypes(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DemoServersAndTypes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoServersAndTypesReply DemoServersAndTypes(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_DemoServersAndTypes, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoServersAndTypesReply> DemoServersAndTypesAsync(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DemoServersAndTypesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoServersAndTypesReply> DemoServersAndTypesAsync(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_DemoServersAndTypes, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::mt5_term_api.GuiDemoOpenAccountReply DemoOpenAccount(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return DemoOpenAccount(request, new grpc::CallOptions(headers, deadline, cancellationToken));
@@ -402,36 +292,6 @@ namespace mt5_term_api {
       public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoOpenAccountReply> DemoOpenAccountAsync(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_DemoOpenAccount, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoEnumControlsReply DemoEnumControls(global::mt5_term_api.GuiDemoEnumControlsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DemoEnumControls(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoEnumControlsReply DemoEnumControls(global::mt5_term_api.GuiDemoEnumControlsRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_DemoEnumControls, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoEnumControlsReply> DemoEnumControlsAsync(global::mt5_term_api.GuiDemoEnumControlsRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DemoEnumControlsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoEnumControlsReply> DemoEnumControlsAsync(global::mt5_term_api.GuiDemoEnumControlsRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_DemoEnumControls, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::mt5_term_api.GuiDemoProgressEvent> DemoOpenAccountWithProgress(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return DemoOpenAccountWithProgress(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::mt5_term_api.GuiDemoProgressEvent> DemoOpenAccountWithProgress(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncServerStreamingCall(__Method_DemoOpenAccountWithProgress, null, options, request);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual grpc::AsyncDuplexStreamingCall<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage> DemoOpenAccountInteractive(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
@@ -461,11 +321,7 @@ namespace mt5_term_api {
           .AddMethod(__Method_BrokerSearch, serviceImpl.BrokerSearch)
           .AddMethod(__Method_LoginEx, serviceImpl.LoginEx)
           .AddMethod(__Method_CloseDialogs, serviceImpl.CloseDialogs)
-          .AddMethod(__Method_DemoFindCompanies, serviceImpl.DemoFindCompanies)
-          .AddMethod(__Method_DemoServersAndTypes, serviceImpl.DemoServersAndTypes)
           .AddMethod(__Method_DemoOpenAccount, serviceImpl.DemoOpenAccount)
-          .AddMethod(__Method_DemoEnumControls, serviceImpl.DemoEnumControls)
-          .AddMethod(__Method_DemoOpenAccountWithProgress, serviceImpl.DemoOpenAccountWithProgress)
           .AddMethod(__Method_DemoOpenAccountInteractive, serviceImpl.DemoOpenAccountInteractive).Build();
     }
 
@@ -480,11 +336,7 @@ namespace mt5_term_api {
       serviceBinder.AddMethod(__Method_BrokerSearch, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiBrokerSearchRequest, global::mt5_term_api.GuiBrokerSearchReply>(serviceImpl.BrokerSearch));
       serviceBinder.AddMethod(__Method_LoginEx, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiLoginExRequest, global::mt5_term_api.GuiLoginExReply>(serviceImpl.LoginEx));
       serviceBinder.AddMethod(__Method_CloseDialogs, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiCloseDialogsRequest, global::mt5_term_api.GuiCloseDialogsReply>(serviceImpl.CloseDialogs));
-      serviceBinder.AddMethod(__Method_DemoFindCompanies, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiDemoFindCompaniesRequest, global::mt5_term_api.GuiDemoFindCompaniesReply>(serviceImpl.DemoFindCompanies));
-      serviceBinder.AddMethod(__Method_DemoServersAndTypes, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiDemoServersAndTypesRequest, global::mt5_term_api.GuiDemoServersAndTypesReply>(serviceImpl.DemoServersAndTypes));
       serviceBinder.AddMethod(__Method_DemoOpenAccount, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoOpenAccountReply>(serviceImpl.DemoOpenAccount));
-      serviceBinder.AddMethod(__Method_DemoEnumControls, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiDemoEnumControlsRequest, global::mt5_term_api.GuiDemoEnumControlsReply>(serviceImpl.DemoEnumControls));
-      serviceBinder.AddMethod(__Method_DemoOpenAccountWithProgress, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoProgressEvent>(serviceImpl.DemoOpenAccountWithProgress));
       serviceBinder.AddMethod(__Method_DemoOpenAccountInteractive, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage>(serviceImpl.DemoOpenAccountInteractive));
     }
 

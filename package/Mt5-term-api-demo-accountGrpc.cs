@@ -51,35 +51,13 @@ namespace mt5_term_api {
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoFindCompaniesRequest> __Marshaller_mt5_term_api_GuiDemoFindCompaniesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoFindCompaniesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoFindCompaniesReply> __Marshaller_mt5_term_api_GuiDemoFindCompaniesReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoFindCompaniesReply.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoServersAndTypesRequest> __Marshaller_mt5_term_api_GuiDemoServersAndTypesRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoServersAndTypesRequest.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoServersAndTypesReply> __Marshaller_mt5_term_api_GuiDemoServersAndTypesReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoServersAndTypesReply.Parser));
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoOpenAccountRequest> __Marshaller_mt5_term_api_GuiDemoOpenAccountRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoOpenAccountRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoOpenAccountReply> __Marshaller_mt5_term_api_GuiDemoOpenAccountReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoOpenAccountReply.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::mt5_term_api.DemoAccountStreamEvent> __Marshaller_mt5_term_api_DemoAccountStreamEvent = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.DemoAccountStreamEvent.Parser));
-
+    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoInteractiveClientMessage> __Marshaller_mt5_term_api_GuiDemoInteractiveClientMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoInteractiveClientMessage.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::mt5_term_api.GuiDemoFindCompaniesRequest, global::mt5_term_api.GuiDemoFindCompaniesReply> __Method_FindCompanies = new grpc::Method<global::mt5_term_api.GuiDemoFindCompaniesRequest, global::mt5_term_api.GuiDemoFindCompaniesReply>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "FindCompanies",
-        __Marshaller_mt5_term_api_GuiDemoFindCompaniesRequest,
-        __Marshaller_mt5_term_api_GuiDemoFindCompaniesReply);
-
-    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::mt5_term_api.GuiDemoServersAndTypesRequest, global::mt5_term_api.GuiDemoServersAndTypesReply> __Method_ServersAndAccountTypes = new grpc::Method<global::mt5_term_api.GuiDemoServersAndTypesRequest, global::mt5_term_api.GuiDemoServersAndTypesReply>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "ServersAndAccountTypes",
-        __Marshaller_mt5_term_api_GuiDemoServersAndTypesRequest,
-        __Marshaller_mt5_term_api_GuiDemoServersAndTypesReply);
+    static readonly grpc::Marshaller<global::mt5_term_api.GuiDemoInteractiveServerMessage> __Marshaller_mt5_term_api_GuiDemoInteractiveServerMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.GuiDemoInteractiveServerMessage.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoOpenAccountReply> __Method_OpenDemoAccount = new grpc::Method<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoOpenAccountReply>(
@@ -90,12 +68,12 @@ namespace mt5_term_api {
         __Marshaller_mt5_term_api_GuiDemoOpenAccountReply);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.DemoAccountStreamEvent> __Method_OpenDemoAccountStream = new grpc::Method<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.DemoAccountStreamEvent>(
-        grpc::MethodType.ServerStreaming,
+    static readonly grpc::Method<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage> __Method_DemoOpenAccountInteractive = new grpc::Method<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage>(
+        grpc::MethodType.DuplexStreaming,
         __ServiceName,
-        "OpenDemoAccountStream",
-        __Marshaller_mt5_term_api_GuiDemoOpenAccountRequest,
-        __Marshaller_mt5_term_api_DemoAccountStreamEvent);
+        "DemoOpenAccountInteractive",
+        __Marshaller_mt5_term_api_GuiDemoInteractiveClientMessage,
+        __Marshaller_mt5_term_api_GuiDemoInteractiveServerMessage);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -107,40 +85,6 @@ namespace mt5_term_api {
     [grpc::BindServiceMethod(typeof(DemoAccount), "BindService")]
     public abstract partial class DemoAccountBase
     {
-      /// <summary>
-      /// Search for broker companies by name.
-      /// Returns a list of matching companies from the wizard's ListView.
-      /// [DefaultValues]
-      /// {
-      ///   "searchText": "MetaQuotes"
-      /// }
-      /// </summary>
-      /// <param name="request">The request received from the client.</param>
-      /// <param name="context">The context of the server-side call handler being invoked.</param>
-      /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.GuiDemoFindCompaniesReply> FindCompanies(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      /// <summary>
-      /// Get available servers and account types for a company.
-      /// Navigates: company selection → demo account → reads dropdown options.
-      /// [DefaultValues]
-      /// {
-      ///   "companyName": "MetaQuotes Ltd."
-      /// }
-      /// </summary>
-      /// <param name="request">The request received from the client.</param>
-      /// <param name="context">The context of the server-side call handler being invoked.</param>
-      /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.GuiDemoServersAndTypesReply> ServersAndAccountTypes(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
       /// <summary>
       /// Open a demo account. Full wizard flow: search → select → fill form → register.
       /// Returns login, password, and investor password for the new demo account.
@@ -164,25 +108,15 @@ namespace mt5_term_api {
       }
 
       /// <summary>
-      /// Same as OpenDemoAccount but streams real-time progress events.
-      /// Does NOT require 'id' header — auto-picks any available terminal.
-      /// Swagger does not support streaming — use /demo-account-stream interactive viewer.
-      /// [DefaultValues]
-      /// {
-      ///   "company": "MetaQuotes Ltd.",
-      ///   "firstName": "Test",
-      ///   "lastName": "User",
-      ///   "email": "test@test.com",
-      ///   "phone": "+1234567890",
-      ///   "timeoutSeconds": "60"
-      /// }
+      /// Interactive step-by-step demo account opening wizard.
+      /// Bidirectional streaming session: search company -> select -> form schema -> submit -> 2FA (if any) -> completed.
       /// </summary>
-      /// <param name="request">The request received from the client.</param>
+      /// <param name="requestStream">Used for reading requests from the client.</param>
       /// <param name="responseStream">Used for sending responses back to the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>A task indicating completion of the handler.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::System.Threading.Tasks.Task OpenDemoAccountStream(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::IServerStreamWriter<global::mt5_term_api.DemoAccountStreamEvent> responseStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task DemoOpenAccountInteractive(grpc::IAsyncStreamReader<global::mt5_term_api.GuiDemoInteractiveClientMessage> requestStream, grpc::IServerStreamWriter<global::mt5_term_api.GuiDemoInteractiveServerMessage> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -216,142 +150,6 @@ namespace mt5_term_api {
       {
       }
 
-      /// <summary>
-      /// Search for broker companies by name.
-      /// Returns a list of matching companies from the wizard's ListView.
-      /// [DefaultValues]
-      /// {
-      ///   "searchText": "MetaQuotes"
-      /// }
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The response received from the server.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoFindCompaniesReply FindCompanies(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return FindCompanies(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      /// Search for broker companies by name.
-      /// Returns a list of matching companies from the wizard's ListView.
-      /// [DefaultValues]
-      /// {
-      ///   "searchText": "MetaQuotes"
-      /// }
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The response received from the server.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoFindCompaniesReply FindCompanies(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_FindCompanies, null, options, request);
-      }
-      /// <summary>
-      /// Search for broker companies by name.
-      /// Returns a list of matching companies from the wizard's ListView.
-      /// [DefaultValues]
-      /// {
-      ///   "searchText": "MetaQuotes"
-      /// }
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The call object.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoFindCompaniesReply> FindCompaniesAsync(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return FindCompaniesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      /// Search for broker companies by name.
-      /// Returns a list of matching companies from the wizard's ListView.
-      /// [DefaultValues]
-      /// {
-      ///   "searchText": "MetaQuotes"
-      /// }
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The call object.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoFindCompaniesReply> FindCompaniesAsync(global::mt5_term_api.GuiDemoFindCompaniesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_FindCompanies, null, options, request);
-      }
-      /// <summary>
-      /// Get available servers and account types for a company.
-      /// Navigates: company selection → demo account → reads dropdown options.
-      /// [DefaultValues]
-      /// {
-      ///   "companyName": "MetaQuotes Ltd."
-      /// }
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The response received from the server.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoServersAndTypesReply ServersAndAccountTypes(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return ServersAndAccountTypes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      /// Get available servers and account types for a company.
-      /// Navigates: company selection → demo account → reads dropdown options.
-      /// [DefaultValues]
-      /// {
-      ///   "companyName": "MetaQuotes Ltd."
-      /// }
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The response received from the server.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::mt5_term_api.GuiDemoServersAndTypesReply ServersAndAccountTypes(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_ServersAndAccountTypes, null, options, request);
-      }
-      /// <summary>
-      /// Get available servers and account types for a company.
-      /// Navigates: company selection → demo account → reads dropdown options.
-      /// [DefaultValues]
-      /// {
-      ///   "companyName": "MetaQuotes Ltd."
-      /// }
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The call object.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoServersAndTypesReply> ServersAndAccountTypesAsync(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return ServersAndAccountTypesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      /// <summary>
-      /// Get available servers and account types for a company.
-      /// Navigates: company selection → demo account → reads dropdown options.
-      /// [DefaultValues]
-      /// {
-      ///   "companyName": "MetaQuotes Ltd."
-      /// }
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The call object.</returns>
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.GuiDemoServersAndTypesReply> ServersAndAccountTypesAsync(global::mt5_term_api.GuiDemoServersAndTypesRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_ServersAndAccountTypes, null, options, request);
-      }
       /// <summary>
       /// Open a demo account. Full wizard flow: search → select → fill form → register.
       /// Returns login, password, and investor password for the new demo account.
@@ -441,50 +239,28 @@ namespace mt5_term_api {
         return CallInvoker.AsyncUnaryCall(__Method_OpenDemoAccount, null, options, request);
       }
       /// <summary>
-      /// Same as OpenDemoAccount but streams real-time progress events.
-      /// Does NOT require 'id' header — auto-picks any available terminal.
-      /// Swagger does not support streaming — use /demo-account-stream interactive viewer.
-      /// [DefaultValues]
-      /// {
-      ///   "company": "MetaQuotes Ltd.",
-      ///   "firstName": "Test",
-      ///   "lastName": "User",
-      ///   "email": "test@test.com",
-      ///   "phone": "+1234567890",
-      ///   "timeoutSeconds": "60"
-      /// }
+      /// Interactive step-by-step demo account opening wizard.
+      /// Bidirectional streaming session: search company -> select -> form schema -> submit -> 2FA (if any) -> completed.
       /// </summary>
-      /// <param name="request">The request to send to the server.</param>
       /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::mt5_term_api.DemoAccountStreamEvent> OpenDemoAccountStream(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncDuplexStreamingCall<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage> DemoOpenAccountInteractive(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return OpenDemoAccountStream(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return DemoOpenAccountInteractive(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       /// <summary>
-      /// Same as OpenDemoAccount but streams real-time progress events.
-      /// Does NOT require 'id' header — auto-picks any available terminal.
-      /// Swagger does not support streaming — use /demo-account-stream interactive viewer.
-      /// [DefaultValues]
-      /// {
-      ///   "company": "MetaQuotes Ltd.",
-      ///   "firstName": "Test",
-      ///   "lastName": "User",
-      ///   "email": "test@test.com",
-      ///   "phone": "+1234567890",
-      ///   "timeoutSeconds": "60"
-      /// }
+      /// Interactive step-by-step demo account opening wizard.
+      /// Bidirectional streaming session: search company -> select -> form schema -> submit -> 2FA (if any) -> completed.
       /// </summary>
-      /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::mt5_term_api.DemoAccountStreamEvent> OpenDemoAccountStream(global::mt5_term_api.GuiDemoOpenAccountRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncDuplexStreamingCall<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage> DemoOpenAccountInteractive(grpc::CallOptions options)
       {
-        return CallInvoker.AsyncServerStreamingCall(__Method_OpenDemoAccountStream, null, options, request);
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_DemoOpenAccountInteractive, null, options);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -500,10 +276,8 @@ namespace mt5_term_api {
     public static grpc::ServerServiceDefinition BindService(DemoAccountBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_FindCompanies, serviceImpl.FindCompanies)
-          .AddMethod(__Method_ServersAndAccountTypes, serviceImpl.ServersAndAccountTypes)
           .AddMethod(__Method_OpenDemoAccount, serviceImpl.OpenDemoAccount)
-          .AddMethod(__Method_OpenDemoAccountStream, serviceImpl.OpenDemoAccountStream).Build();
+          .AddMethod(__Method_DemoOpenAccountInteractive, serviceImpl.DemoOpenAccountInteractive).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -513,10 +287,8 @@ namespace mt5_term_api {
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     public static void BindService(grpc::ServiceBinderBase serviceBinder, DemoAccountBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_FindCompanies, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiDemoFindCompaniesRequest, global::mt5_term_api.GuiDemoFindCompaniesReply>(serviceImpl.FindCompanies));
-      serviceBinder.AddMethod(__Method_ServersAndAccountTypes, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiDemoServersAndTypesRequest, global::mt5_term_api.GuiDemoServersAndTypesReply>(serviceImpl.ServersAndAccountTypes));
       serviceBinder.AddMethod(__Method_OpenDemoAccount, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.GuiDemoOpenAccountReply>(serviceImpl.OpenDemoAccount));
-      serviceBinder.AddMethod(__Method_OpenDemoAccountStream, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::mt5_term_api.GuiDemoOpenAccountRequest, global::mt5_term_api.DemoAccountStreamEvent>(serviceImpl.OpenDemoAccountStream));
+      serviceBinder.AddMethod(__Method_DemoOpenAccountInteractive, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::mt5_term_api.GuiDemoInteractiveClientMessage, global::mt5_term_api.GuiDemoInteractiveServerMessage>(serviceImpl.DemoOpenAccountInteractive));
     }
 
   }
