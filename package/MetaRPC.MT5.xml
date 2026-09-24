@@ -14658,6 +14658,23 @@
             <param name="context">The context of the server-side call handler being invoked.</param>
             <returns>The response to send back to the client (wrapped by a task).</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.KillAllTrialTerminals(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Kills all active trial terminals across ALL pods of this StatefulSet/Deployment
+            and marks them stopped in database.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.KillAllTrialTerminalsLocal(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Kills all active trial terminals on THIS pod.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
         <member name="T:mrpc_admin.AdminApi.AdminApiClient">
             <summary>Client for AdminApi</summary>
         </member>
@@ -15284,6 +15301,82 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.KillAllTrialTerminals(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Kills all active trial terminals across ALL pods of this StatefulSet/Deployment
+            and marks them stopped in database.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.KillAllTrialTerminals(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Kills all active trial terminals across ALL pods of this StatefulSet/Deployment
+            and marks them stopped in database.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.KillAllTrialTerminalsAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Kills all active trial terminals across ALL pods of this StatefulSet/Deployment
+            and marks them stopped in database.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.KillAllTrialTerminalsAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Kills all active trial terminals across ALL pods of this StatefulSet/Deployment
+            and marks them stopped in database.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.KillAllTrialTerminalsLocal(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Kills all active trial terminals on THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.KillAllTrialTerminalsLocal(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Kills all active trial terminals on THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.KillAllTrialTerminalsLocalAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Kills all active trial terminals on THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.KillAllTrialTerminalsLocalAsync(mrpc_admin.ActiveTerminalsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Kills all active trial terminals on THIS pod.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mrpc_admin.AdminApi.AdminApiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -15419,6 +15512,18 @@
             <summary>Field number for the "status" field.</summary>
         </member>
         <member name="F:mrpc_admin.GetSessionRestoreStatusReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.KillAllTrialTerminalsReply.KilledCountFieldNumber">
+            <summary>Field number for the "killed_count" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.KillAllTrialTerminalsReply.KilledTerminalIdsFieldNumber">
+            <summary>Field number for the "killed_terminal_ids" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.KillAllTrialTerminalsReply.MessageFieldNumber">
+            <summary>Field number for the "message" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.KillAllTrialTerminalsReply.ErrorFieldNumber">
             <summary>Field number for the "error" field.</summary>
         </member>
         <member name="F:mrpc_admin.GetSessionRestoreLogsRequest.AdminKeyFieldNumber">

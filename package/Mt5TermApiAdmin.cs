@@ -36,128 +36,139 @@ namespace mrpc_admin {
             "YxgMIAEoCRIiChpsYXN0X3JlY29uY2lsZV9kdXJhdGlvbl9tcxgNIAEoARIS",
             "CgpsYXN0X2Vycm9yGA4gASgJImYKHEdldFNlc3Npb25SZXN0b3JlU3RhdHVz",
             "UmVwbHkSNwoGc3RhdHVzGAEgASgLMicubXJwY19hZG1pbi5TZXNzaW9uUmVz",
-            "dG9yZVdhdGNoZXJTdGF0dXMSDQoFZXJyb3IYAiABKAkiUwocR2V0U2Vzc2lv",
-            "blJlc3RvcmVMb2dzUmVxdWVzdBIRCglhZG1pbl9rZXkYASABKAkSCwoDcG9k",
-            "GAIgASgJEhMKC2xhdGVzdF9vbmx5GAMgASgIIsIBChZTZXNzaW9uUmVzdG9y",
-            "ZUxvZ0VudHJ5EhAKCHRva2VuX2lkGAEgASgJEhAKCHBsYXRmb3JtGAIgASgJ",
-            "Eg4KBnJlYXNvbhgDIAEoCRINCgVvd25lchgEIAEoCRIMCgR1c2VyGAUgASgJ",
-            "Eg4KBnRhcmdldBgGIAEoCRIPCgdzdWNjZXNzGAcgASgIEg0KBWVycm9yGAgg",
-            "ASgJEhIKCmVsYXBzZWRfbXMYCSABKAESEwoLY3JlYXRlZF91dGMYCiABKAki",
-            "YAoaR2V0U2Vzc2lvblJlc3RvcmVMb2dzUmVwbHkSMwoHZW50cmllcxgBIAMo",
-            "CzIiLm1ycGNfYWRtaW4uU2Vzc2lvblJlc3RvcmVMb2dFbnRyeRINCgVlcnJv",
-            "chgCIAEoCSJdChFHZXRBbGxMb2dzUmVxdWVzdBIRCglhZG1pbl9rZXkYASAB",
-            "KAkSGQoRbWF4X2J5dGVzX3Blcl9sb2cYAiABKAMSGgoSZXhjbHVkZV9ldmVu",
-            "dF9sb2dzGAMgASgIIpYBCgxBbGxMb2dzRW50cnkSDgoGc291cmNlGAEgASgJ",
-            "EgwKBG5hbWUYAiABKAkSDAoEcGF0aBgDIAEoCRISCgpzaXplX2J5dGVzGAQg",
-            "ASgDEhMKC21vZGlmaWVkX2F0GAUgASgJEg8KB2NvbnRlbnQYBiABKAkSEQoJ",
-            "dHJ1bmNhdGVkGAcgASgIEg0KBWVycm9yGAggASgJIkgKD0dldEFsbExvZ3NS",
-            "ZXBseRImCgRsb2dzGAEgAygLMhgubXJwY19hZG1pbi5BbGxMb2dzRW50cnkS",
-            "DQoFZXJyb3IYAiABKAkiEAoOVmVyc2lvblJlcXVlc3QiVgoMVmVyc2lvblJl",
-            "cGx5Eg8KB3NlcnZpY2UYASABKAkSDwoHdmVyc2lvbhgCIAEoCRIWCg5idWls",
-            "ZF90aW1lX3V0YxgDIAEoCRIMCgRtb2RlGAQgASgJIksKEUxpc3RMb2dGaWxl",
-            "c1JlcGx5EicKBWZpbGVzGAEgAygLMhgubXJwY19hZG1pbi5Mb2dGaWxlRW50",
-            "cnkSDQoFZXJyb3IYAiABKAkiYQoMTG9nRmlsZUVudHJ5EgwKBG5hbWUYASAB",
-            "KAkSEgoKc2l6ZV9ieXRlcxgCIAEoAxIvCgttb2RpZmllZF9hdBgDIAEoCzIa",
-            "Lmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiTAoRR2V0TG9nRmlsZVJlcXVl",
-            "c3QSEQoJYWRtaW5fa2V5GAEgASgJEhEKCWZpbGVfbmFtZRgCIAEoCRIRCglt",
-            "YXhfYnl0ZXMYAyABKAMiXgoPR2V0TG9nRmlsZVJlcGx5Eg8KB2NvbnRlbnQY",
-            "ASABKAkSEQoJdHJ1bmNhdGVkGAIgASgIEhgKEHRvdGFsX3NpemVfYnl0ZXMY",
-            "AyABKAMSDQoFZXJyb3IYBCABKAkiTQoZR2V0VGVybWluYWxKb3VybmFsUmVx",
-            "dWVzdBIRCglhZG1pbl9rZXkYASABKAkSCgoCaWQYAiABKAkSEQoJbWF4X2J5",
-            "dGVzGAMgASgDImEKE1Rlcm1pbmFsSm91cm5hbEZpbGUSDAoEbmFtZRgBIAEo",
-            "CRIPCgdjb250ZW50GAIgASgJEhEKCXRydW5jYXRlZBgDIAEoCBIYChB0b3Rh",
-            "bF9zaXplX2J5dGVzGAQgASgDIm4KF0dldFRlcm1pbmFsSm91cm5hbFJlcGx5",
-            "EhQKDHRlcm1pbmFsX2RpchgBIAEoCRIuCgVmaWxlcxgCIAMoCzIfLm1ycGNf",
-            "YWRtaW4uVGVybWluYWxKb3VybmFsRmlsZRINCgVlcnJvchgDIAEoCSJTChlH",
-            "ZXRFdmVudExvZ0VudHJpZXNSZXF1ZXN0EhEKCWFkbWluX2tleRgBIAEoCRIQ",
-            "Cghsb2dfbmFtZRgCIAEoCRIRCgltYXhfY291bnQYAyABKAUiOQoXR2V0RXZl",
-            "bnRMb2dFbnRyaWVzUmVwbHkSDwoHZW50cmllcxgBIAMoCRINCgVlcnJvchgC",
-            "IAEoCSJPCh9DYXB0dXJlU2Vzc2lvblNjcmVlbnNob3RSZXF1ZXN0EhEKCWFk",
-            "bWluX2tleRgBIAEoCRIZChFzZXNzaW9uX3VzZXJfbmFtZRgCIAEoCSJkCiRD",
-            "YXB0dXJlU2Vzc2lvblNjcmVlbnNob3RPblBvZFJlcXVlc3QSEQoJYWRtaW5f",
-            "a2V5GAEgASgJEg4KBnBvZF9pcBgCIAEoCRIZChFzZXNzaW9uX3VzZXJfbmFt",
-            "ZRgDIAEoCSJBCh1DYXB0dXJlU2Vzc2lvblNjcmVlbnNob3RSZXBseRIRCglp",
-            "bWFnZV9wbmcYASABKAwSDQoFZXJyb3IYAiABKAkiRwoUUmVmcmVzaE1ycGNS",
-            "ZXN0UmVwbHkSDwoHc3VjY2VzcxgBIAEoCBIPCgdtZXNzYWdlGAIgASgJEg0K",
-            "BWVycm9yGAMgASgJIncKC1VzYWdlU2FtcGxlEigKBHRpbWUYASABKAsyGi5n",
-            "b29nbGUucHJvdG9idWYuVGltZXN0YW1wEhMKC2NwdV9wZXJjZW50GAIgASgB",
-            "EhMKC3JhbV91c2VkX21iGAMgASgEEhQKDHJhbV90b3RhbF9tYhgEIAEoBCKL",
-            "AQoQU3lzdGVtVXNhZ2VSZXBseRITCgtjcHVfcGVyY2VudBgBIAEoARITCgty",
-            "YW1fdXNlZF9tYhgCIAEoBBIUCgxyYW1fdG90YWxfbWIYAyABKAQSKAoHaGlz",
-            "dG9yeRgEIAMoCzIXLm1ycGNfYWRtaW4uVXNhZ2VTYW1wbGUSDQoFZXJyb3IY",
-            "BSABKAkiKwoWQWN0aXZlVGVybWluYWxzUmVxdWVzdBIRCglhZG1pbl9rZXkY",
-            "ASABKAki4AMKDFRlcm1pbmFsSW5mbxIKCgJpZBgBIAEoCRITCgt1c2VyX251",
-            "bWJlchgCIAEoDRIUCgx3aW5kb3dzX3VzZXIYAyABKAkSDwoHYWNjb3VudBgE",
-            "IAEoBBIOCgZzZXJ2ZXIYBSABKAkSDAoEcG9ydBgGIAEoDRIuCgpjcmVhdGVk",
-            "X2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIYChB3aW5k",
-            "b3dzX3Bhc3N3b3JkGAggASgJEhEKBG5hbWUYCSABKAlIAIgBARINCgVzdGF0",
-            "ZRgKIAEoCRIVCg1lcnJvcl9tZXNzYWdlGAsgASgJEhcKCnVzZXJfZW1haWwY",
-            "DCABKAlIAYgBARIlChhzdGFydHVwX2R1cmF0aW9uX3NlY29uZHMYDSABKAFI",
-            "AogBARI1Cgxjb25uZWN0ZWRfYXQYDiABKAsyGi5nb29nbGUucHJvdG9idWYu",
-            "VGltZXN0YW1wSAOIAQESGQoMc3RhcnR1cF90aW1lGA8gASgJSASIAQFCBwoF",
-            "X25hbWVCDQoLX3VzZXJfZW1haWxCGwoZX3N0YXJ0dXBfZHVyYXRpb25fc2Vj",
-            "b25kc0IPCg1fY29ubmVjdGVkX2F0Qg8KDV9zdGFydHVwX3RpbWUirgIKFEFj",
-            "dGl2ZVRlcm1pbmFsc1JlcGx5EgsKA3BvZBgBIAEoCRIMCgRub2RlGAIgASgJ",
-            "Eg4KBnBvZF9pcBgDIAEoCRIrCgl0ZXJtaW5hbHMYBCADKAsyGC5tcnBjX2Fk",
-            "bWluLlRlcm1pbmFsSW5mbxINCgVlcnJvchgFIAEoCRITCgtjcHVfcGVyY2Vu",
-            "dBgGIAEoARITCgtyYW1fdXNlZF9tYhgHIAEoBBIUCgxyYW1fdG90YWxfbWIY",
-            "CCABKAQSLgoNdXNhZ2VfaGlzdG9yeRgJIAMoCzIXLm1ycGNfYWRtaW4uVXNh",
-            "Z2VTYW1wbGUSPwoOcmVzdG9yZV9zdGF0dXMYCiABKAsyJy5tcnBjX2FkbWlu",
-            "LlNlc3Npb25SZXN0b3JlV2F0Y2hlclN0YXR1cyLKAgoMUG9kVGVybWluYWxz",
-            "EgsKA3BvZBgBIAEoCRIMCgRub2RlGAIgASgJEg4KBnBvZF9pcBgDIAEoCRIR",
-            "Cglub3ZuY191cmwYBCABKAkSKwoJdGVybWluYWxzGAUgAygLMhgubXJwY19h",
-            "ZG1pbi5UZXJtaW5hbEluZm8SDQoFZXJyb3IYBiABKAkSDwoHaG9zdF9pcBgH",
-            "IAEoCRITCgtjcHVfcGVyY2VudBgIIAEoARITCgtyYW1fdXNlZF9tYhgJIAEo",
-            "BBIUCgxyYW1fdG90YWxfbWIYCiABKAQSLgoNdXNhZ2VfaGlzdG9yeRgLIAMo",
-            "CzIXLm1ycGNfYWRtaW4uVXNhZ2VTYW1wbGUSPwoOcmVzdG9yZV9zdGF0dXMY",
-            "DCABKAsyJy5tcnBjX2FkbWluLlNlc3Npb25SZXN0b3JlV2F0Y2hlclN0YXR1",
-            "cyJFChtBY3RpdmVUZXJtaW5hbHNDbHVzdGVyUmVwbHkSJgoEcG9kcxgBIAMo",
-            "CzIYLm1ycGNfYWRtaW4uUG9kVGVybWluYWxzMrYNCghBZG1pbkFwaRJxCg9B",
-            "Y3RpdmVUZXJtaW5hbHMSIi5tcnBjX2FkbWluLkFjdGl2ZVRlcm1pbmFsc1Jl",
-            "cXVlc3QaIC5tcnBjX2FkbWluLkFjdGl2ZVRlcm1pbmFsc1JlcGx5IhiC0+ST",
-            "AhISEC9BY3RpdmVUZXJtaW5hbHMShgEKFkFjdGl2ZVRlcm1pbmFsc0NsdXN0",
-            "ZXISIi5tcnBjX2FkbWluLkFjdGl2ZVRlcm1pbmFsc1JlcXVlc3QaJy5tcnBj",
-            "X2FkbWluLkFjdGl2ZVRlcm1pbmFsc0NsdXN0ZXJSZXBseSIfgtPkkwIZEhcv",
-            "QWN0aXZlVGVybWluYWxzQ2x1c3RlchJlCgtTeXN0ZW1Vc2FnZRIiLm1ycGNf",
-            "YWRtaW4uQWN0aXZlVGVybWluYWxzUmVxdWVzdBocLm1ycGNfYWRtaW4uU3lz",
-            "dGVtVXNhZ2VSZXBseSIUgtPkkwIOEgwvU3lzdGVtVXNhZ2USaAoMTGlzdExv",
-            "Z0ZpbGVzEiIubXJwY19hZG1pbi5BY3RpdmVUZXJtaW5hbHNSZXF1ZXN0Gh0u",
-            "bXJwY19hZG1pbi5MaXN0TG9nRmlsZXNSZXBseSIVgtPkkwIPEg0vTGlzdExv",
-            "Z0ZpbGVzEl0KCkdldExvZ0ZpbGUSHS5tcnBjX2FkbWluLkdldExvZ0ZpbGVS",
-            "ZXF1ZXN0GhsubXJwY19hZG1pbi5HZXRMb2dGaWxlUmVwbHkiE4LT5JMCDRIL",
-            "L0dldExvZ0ZpbGUSfQoSR2V0RXZlbnRMb2dFbnRyaWVzEiUubXJwY19hZG1p",
-            "bi5HZXRFdmVudExvZ0VudHJpZXNSZXF1ZXN0GiMubXJwY19hZG1pbi5HZXRF",
-            "dmVudExvZ0VudHJpZXNSZXBseSIbgtPkkwIVEhMvR2V0RXZlbnRMb2dFbnRy",
-            "aWVzEpUBChhDYXB0dXJlU2Vzc2lvblNjcmVlbnNob3QSKy5tcnBjX2FkbWlu",
-            "LkNhcHR1cmVTZXNzaW9uU2NyZWVuc2hvdFJlcXVlc3QaKS5tcnBjX2FkbWlu",
-            "LkNhcHR1cmVTZXNzaW9uU2NyZWVuc2hvdFJlcGx5IiGC0+STAhsSGS9DYXB0",
-            "dXJlU2Vzc2lvblNjcmVlbnNob3QSpAEKHUNhcHR1cmVTZXNzaW9uU2NyZWVu",
-            "c2hvdE9uUG9kEjAubXJwY19hZG1pbi5DYXB0dXJlU2Vzc2lvblNjcmVlbnNo",
-            "b3RPblBvZFJlcXVlc3QaKS5tcnBjX2FkbWluLkNhcHR1cmVTZXNzaW9uU2Ny",
-            "ZWVuc2hvdFJlcGx5IiaC0+STAiASHi9DYXB0dXJlU2Vzc2lvblNjcmVlbnNo",
-            "b3RPblBvZBJxCg9SZWZyZXNoTXJwY1Jlc3QSIi5tcnBjX2FkbWluLkFjdGl2",
-            "ZVRlcm1pbmFsc1JlcXVlc3QaIC5tcnBjX2FkbWluLlJlZnJlc2hNcnBjUmVz",
-            "dFJlcGx5IhiC0+STAhISEC9SZWZyZXNoTXJwY1Jlc3QSVwoKR2V0VmVyc2lv",
-            "bhIaLm1ycGNfYWRtaW4uVmVyc2lvblJlcXVlc3QaGC5tcnBjX2FkbWluLlZl",
-            "cnNpb25SZXBseSITgtPkkwINEgsvdmVyc2lvbi10bRJ9ChJHZXRUZXJtaW5h",
-            "bEpvdXJuYWwSJS5tcnBjX2FkbWluLkdldFRlcm1pbmFsSm91cm5hbFJlcXVl",
-            "c3QaIy5tcnBjX2FkbWluLkdldFRlcm1pbmFsSm91cm5hbFJlcGx5IhuC0+ST",
-            "AhUSEy9HZXRUZXJtaW5hbEpvdXJuYWwSXQoKR2V0QWxsTG9ncxIdLm1ycGNf",
-            "YWRtaW4uR2V0QWxsTG9nc1JlcXVlc3QaGy5tcnBjX2FkbWluLkdldEFsbExv",
-            "Z3NSZXBseSITgtPkkwINEgsvR2V0QWxsTG9ncxKJAQoVR2V0U2Vzc2lvblJl",
-            "c3RvcmVMb2dzEigubXJwY19hZG1pbi5HZXRTZXNzaW9uUmVzdG9yZUxvZ3NS",
-            "ZXF1ZXN0GiYubXJwY19hZG1pbi5HZXRTZXNzaW9uUmVzdG9yZUxvZ3NSZXBs",
-            "eSIegtPkkwIYEhYvR2V0U2Vzc2lvblJlc3RvcmVMb2dzEokBChdHZXRTZXNz",
-            "aW9uUmVzdG9yZVN0YXR1cxIiLm1ycGNfYWRtaW4uQWN0aXZlVGVybWluYWxz",
-            "UmVxdWVzdBooLm1ycGNfYWRtaW4uR2V0U2Vzc2lvblJlc3RvcmVTdGF0dXNS",
-            "ZXBseSIggtPkkwIaEhgvR2V0U2Vzc2lvblJlc3RvcmVTdGF0dXNCQFoxZ2l0",
-            "Lm10YXBpLmlvL3Jvb3QvbXJwYy1wcm90by5naXQvbXQ1L2xpYnJhcmllcy9n",
-            "b6oCCm1ycGNfYWRtaW5iBnByb3RvMw=="));
+            "dG9yZVdhdGNoZXJTdGF0dXMSDQoFZXJyb3IYAiABKAkibwoaS2lsbEFsbFRy",
+            "aWFsVGVybWluYWxzUmVwbHkSFAoMa2lsbGVkX2NvdW50GAEgASgFEhsKE2tp",
+            "bGxlZF90ZXJtaW5hbF9pZHMYAiADKAkSDwoHbWVzc2FnZRgDIAEoCRINCgVl",
+            "cnJvchgEIAEoCSJTChxHZXRTZXNzaW9uUmVzdG9yZUxvZ3NSZXF1ZXN0EhEK",
+            "CWFkbWluX2tleRgBIAEoCRILCgNwb2QYAiABKAkSEwoLbGF0ZXN0X29ubHkY",
+            "AyABKAgiwgEKFlNlc3Npb25SZXN0b3JlTG9nRW50cnkSEAoIdG9rZW5faWQY",
+            "ASABKAkSEAoIcGxhdGZvcm0YAiABKAkSDgoGcmVhc29uGAMgASgJEg0KBW93",
+            "bmVyGAQgASgJEgwKBHVzZXIYBSABKAkSDgoGdGFyZ2V0GAYgASgJEg8KB3N1",
+            "Y2Nlc3MYByABKAgSDQoFZXJyb3IYCCABKAkSEgoKZWxhcHNlZF9tcxgJIAEo",
+            "ARITCgtjcmVhdGVkX3V0YxgKIAEoCSJgChpHZXRTZXNzaW9uUmVzdG9yZUxv",
+            "Z3NSZXBseRIzCgdlbnRyaWVzGAEgAygLMiIubXJwY19hZG1pbi5TZXNzaW9u",
+            "UmVzdG9yZUxvZ0VudHJ5Eg0KBWVycm9yGAIgASgJIl0KEUdldEFsbExvZ3NS",
+            "ZXF1ZXN0EhEKCWFkbWluX2tleRgBIAEoCRIZChFtYXhfYnl0ZXNfcGVyX2xv",
+            "ZxgCIAEoAxIaChJleGNsdWRlX2V2ZW50X2xvZ3MYAyABKAgilgEKDEFsbExv",
+            "Z3NFbnRyeRIOCgZzb3VyY2UYASABKAkSDAoEbmFtZRgCIAEoCRIMCgRwYXRo",
+            "GAMgASgJEhIKCnNpemVfYnl0ZXMYBCABKAMSEwoLbW9kaWZpZWRfYXQYBSAB",
+            "KAkSDwoHY29udGVudBgGIAEoCRIRCgl0cnVuY2F0ZWQYByABKAgSDQoFZXJy",
+            "b3IYCCABKAkiSAoPR2V0QWxsTG9nc1JlcGx5EiYKBGxvZ3MYASADKAsyGC5t",
+            "cnBjX2FkbWluLkFsbExvZ3NFbnRyeRINCgVlcnJvchgCIAEoCSIQCg5WZXJz",
+            "aW9uUmVxdWVzdCJWCgxWZXJzaW9uUmVwbHkSDwoHc2VydmljZRgBIAEoCRIP",
+            "Cgd2ZXJzaW9uGAIgASgJEhYKDmJ1aWxkX3RpbWVfdXRjGAMgASgJEgwKBG1v",
+            "ZGUYBCABKAkiSwoRTGlzdExvZ0ZpbGVzUmVwbHkSJwoFZmlsZXMYASADKAsy",
+            "GC5tcnBjX2FkbWluLkxvZ0ZpbGVFbnRyeRINCgVlcnJvchgCIAEoCSJhCgxM",
+            "b2dGaWxlRW50cnkSDAoEbmFtZRgBIAEoCRISCgpzaXplX2J5dGVzGAIgASgD",
+            "Ei8KC21vZGlmaWVkX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVz",
+            "dGFtcCJMChFHZXRMb2dGaWxlUmVxdWVzdBIRCglhZG1pbl9rZXkYASABKAkS",
+            "EQoJZmlsZV9uYW1lGAIgASgJEhEKCW1heF9ieXRlcxgDIAEoAyJeCg9HZXRM",
+            "b2dGaWxlUmVwbHkSDwoHY29udGVudBgBIAEoCRIRCgl0cnVuY2F0ZWQYAiAB",
+            "KAgSGAoQdG90YWxfc2l6ZV9ieXRlcxgDIAEoAxINCgVlcnJvchgEIAEoCSJN",
+            "ChlHZXRUZXJtaW5hbEpvdXJuYWxSZXF1ZXN0EhEKCWFkbWluX2tleRgBIAEo",
+            "CRIKCgJpZBgCIAEoCRIRCgltYXhfYnl0ZXMYAyABKAMiYQoTVGVybWluYWxK",
+            "b3VybmFsRmlsZRIMCgRuYW1lGAEgASgJEg8KB2NvbnRlbnQYAiABKAkSEQoJ",
+            "dHJ1bmNhdGVkGAMgASgIEhgKEHRvdGFsX3NpemVfYnl0ZXMYBCABKAMibgoX",
+            "R2V0VGVybWluYWxKb3VybmFsUmVwbHkSFAoMdGVybWluYWxfZGlyGAEgASgJ",
+            "Ei4KBWZpbGVzGAIgAygLMh8ubXJwY19hZG1pbi5UZXJtaW5hbEpvdXJuYWxG",
+            "aWxlEg0KBWVycm9yGAMgASgJIlMKGUdldEV2ZW50TG9nRW50cmllc1JlcXVl",
+            "c3QSEQoJYWRtaW5fa2V5GAEgASgJEhAKCGxvZ19uYW1lGAIgASgJEhEKCW1h",
+            "eF9jb3VudBgDIAEoBSI5ChdHZXRFdmVudExvZ0VudHJpZXNSZXBseRIPCgdl",
+            "bnRyaWVzGAEgAygJEg0KBWVycm9yGAIgASgJIk8KH0NhcHR1cmVTZXNzaW9u",
+            "U2NyZWVuc2hvdFJlcXVlc3QSEQoJYWRtaW5fa2V5GAEgASgJEhkKEXNlc3Np",
+            "b25fdXNlcl9uYW1lGAIgASgJImQKJENhcHR1cmVTZXNzaW9uU2NyZWVuc2hv",
+            "dE9uUG9kUmVxdWVzdBIRCglhZG1pbl9rZXkYASABKAkSDgoGcG9kX2lwGAIg",
+            "ASgJEhkKEXNlc3Npb25fdXNlcl9uYW1lGAMgASgJIkEKHUNhcHR1cmVTZXNz",
+            "aW9uU2NyZWVuc2hvdFJlcGx5EhEKCWltYWdlX3BuZxgBIAEoDBINCgVlcnJv",
+            "chgCIAEoCSJHChRSZWZyZXNoTXJwY1Jlc3RSZXBseRIPCgdzdWNjZXNzGAEg",
+            "ASgIEg8KB21lc3NhZ2UYAiABKAkSDQoFZXJyb3IYAyABKAkidwoLVXNhZ2VT",
+            "YW1wbGUSKAoEdGltZRgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3Rh",
+            "bXASEwoLY3B1X3BlcmNlbnQYAiABKAESEwoLcmFtX3VzZWRfbWIYAyABKAQS",
+            "FAoMcmFtX3RvdGFsX21iGAQgASgEIosBChBTeXN0ZW1Vc2FnZVJlcGx5EhMK",
+            "C2NwdV9wZXJjZW50GAEgASgBEhMKC3JhbV91c2VkX21iGAIgASgEEhQKDHJh",
+            "bV90b3RhbF9tYhgDIAEoBBIoCgdoaXN0b3J5GAQgAygLMhcubXJwY19hZG1p",
+            "bi5Vc2FnZVNhbXBsZRINCgVlcnJvchgFIAEoCSIrChZBY3RpdmVUZXJtaW5h",
+            "bHNSZXF1ZXN0EhEKCWFkbWluX2tleRgBIAEoCSLgAwoMVGVybWluYWxJbmZv",
+            "EgoKAmlkGAEgASgJEhMKC3VzZXJfbnVtYmVyGAIgASgNEhQKDHdpbmRvd3Nf",
+            "dXNlchgDIAEoCRIPCgdhY2NvdW50GAQgASgEEg4KBnNlcnZlchgFIAEoCRIM",
+            "CgRwb3J0GAYgASgNEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJv",
+            "dG9idWYuVGltZXN0YW1wEhgKEHdpbmRvd3NfcGFzc3dvcmQYCCABKAkSEQoE",
+            "bmFtZRgJIAEoCUgAiAEBEg0KBXN0YXRlGAogASgJEhUKDWVycm9yX21lc3Nh",
+            "Z2UYCyABKAkSFwoKdXNlcl9lbWFpbBgMIAEoCUgBiAEBEiUKGHN0YXJ0dXBf",
+            "ZHVyYXRpb25fc2Vjb25kcxgNIAEoAUgCiAEBEjUKDGNvbm5lY3RlZF9hdBgO",
+            "IAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIA4gBARIZCgxzdGFy",
+            "dHVwX3RpbWUYDyABKAlIBIgBAUIHCgVfbmFtZUINCgtfdXNlcl9lbWFpbEIb",
+            "Chlfc3RhcnR1cF9kdXJhdGlvbl9zZWNvbmRzQg8KDV9jb25uZWN0ZWRfYXRC",
+            "DwoNX3N0YXJ0dXBfdGltZSKuAgoUQWN0aXZlVGVybWluYWxzUmVwbHkSCwoD",
+            "cG9kGAEgASgJEgwKBG5vZGUYAiABKAkSDgoGcG9kX2lwGAMgASgJEisKCXRl",
+            "cm1pbmFscxgEIAMoCzIYLm1ycGNfYWRtaW4uVGVybWluYWxJbmZvEg0KBWVy",
+            "cm9yGAUgASgJEhMKC2NwdV9wZXJjZW50GAYgASgBEhMKC3JhbV91c2VkX21i",
+            "GAcgASgEEhQKDHJhbV90b3RhbF9tYhgIIAEoBBIuCg11c2FnZV9oaXN0b3J5",
+            "GAkgAygLMhcubXJwY19hZG1pbi5Vc2FnZVNhbXBsZRI/Cg5yZXN0b3JlX3N0",
+            "YXR1cxgKIAEoCzInLm1ycGNfYWRtaW4uU2Vzc2lvblJlc3RvcmVXYXRjaGVy",
+            "U3RhdHVzIsoCCgxQb2RUZXJtaW5hbHMSCwoDcG9kGAEgASgJEgwKBG5vZGUY",
+            "AiABKAkSDgoGcG9kX2lwGAMgASgJEhEKCW5vdm5jX3VybBgEIAEoCRIrCgl0",
+            "ZXJtaW5hbHMYBSADKAsyGC5tcnBjX2FkbWluLlRlcm1pbmFsSW5mbxINCgVl",
+            "cnJvchgGIAEoCRIPCgdob3N0X2lwGAcgASgJEhMKC2NwdV9wZXJjZW50GAgg",
+            "ASgBEhMKC3JhbV91c2VkX21iGAkgASgEEhQKDHJhbV90b3RhbF9tYhgKIAEo",
+            "BBIuCg11c2FnZV9oaXN0b3J5GAsgAygLMhcubXJwY19hZG1pbi5Vc2FnZVNh",
+            "bXBsZRI/Cg5yZXN0b3JlX3N0YXR1cxgMIAEoCzInLm1ycGNfYWRtaW4uU2Vz",
+            "c2lvblJlc3RvcmVXYXRjaGVyU3RhdHVzIkUKG0FjdGl2ZVRlcm1pbmFsc0Ns",
+            "dXN0ZXJSZXBseRImCgRwb2RzGAEgAygLMhgubXJwY19hZG1pbi5Qb2RUZXJt",
+            "aW5hbHMyhRAKCEFkbWluQXBpEnEKD0FjdGl2ZVRlcm1pbmFscxIiLm1ycGNf",
+            "YWRtaW4uQWN0aXZlVGVybWluYWxzUmVxdWVzdBogLm1ycGNfYWRtaW4uQWN0",
+            "aXZlVGVybWluYWxzUmVwbHkiGILT5JMCEhIQL0FjdGl2ZVRlcm1pbmFscxKG",
+            "AQoWQWN0aXZlVGVybWluYWxzQ2x1c3RlchIiLm1ycGNfYWRtaW4uQWN0aXZl",
+            "VGVybWluYWxzUmVxdWVzdBonLm1ycGNfYWRtaW4uQWN0aXZlVGVybWluYWxz",
+            "Q2x1c3RlclJlcGx5Ih+C0+STAhkSFy9BY3RpdmVUZXJtaW5hbHNDbHVzdGVy",
+            "EmUKC1N5c3RlbVVzYWdlEiIubXJwY19hZG1pbi5BY3RpdmVUZXJtaW5hbHNS",
+            "ZXF1ZXN0GhwubXJwY19hZG1pbi5TeXN0ZW1Vc2FnZVJlcGx5IhSC0+STAg4S",
+            "DC9TeXN0ZW1Vc2FnZRJoCgxMaXN0TG9nRmlsZXMSIi5tcnBjX2FkbWluLkFj",
+            "dGl2ZVRlcm1pbmFsc1JlcXVlc3QaHS5tcnBjX2FkbWluLkxpc3RMb2dGaWxl",
+            "c1JlcGx5IhWC0+STAg8SDS9MaXN0TG9nRmlsZXMSXQoKR2V0TG9nRmlsZRId",
+            "Lm1ycGNfYWRtaW4uR2V0TG9nRmlsZVJlcXVlc3QaGy5tcnBjX2FkbWluLkdl",
+            "dExvZ0ZpbGVSZXBseSITgtPkkwINEgsvR2V0TG9nRmlsZRJ9ChJHZXRFdmVu",
+            "dExvZ0VudHJpZXMSJS5tcnBjX2FkbWluLkdldEV2ZW50TG9nRW50cmllc1Jl",
+            "cXVlc3QaIy5tcnBjX2FkbWluLkdldEV2ZW50TG9nRW50cmllc1JlcGx5IhuC",
+            "0+STAhUSEy9HZXRFdmVudExvZ0VudHJpZXMSlQEKGENhcHR1cmVTZXNzaW9u",
+            "U2NyZWVuc2hvdBIrLm1ycGNfYWRtaW4uQ2FwdHVyZVNlc3Npb25TY3JlZW5z",
+            "aG90UmVxdWVzdBopLm1ycGNfYWRtaW4uQ2FwdHVyZVNlc3Npb25TY3JlZW5z",
+            "aG90UmVwbHkiIYLT5JMCGxIZL0NhcHR1cmVTZXNzaW9uU2NyZWVuc2hvdBKk",
+            "AQodQ2FwdHVyZVNlc3Npb25TY3JlZW5zaG90T25Qb2QSMC5tcnBjX2FkbWlu",
+            "LkNhcHR1cmVTZXNzaW9uU2NyZWVuc2hvdE9uUG9kUmVxdWVzdBopLm1ycGNf",
+            "YWRtaW4uQ2FwdHVyZVNlc3Npb25TY3JlZW5zaG90UmVwbHkiJoLT5JMCIBIe",
+            "L0NhcHR1cmVTZXNzaW9uU2NyZWVuc2hvdE9uUG9kEnEKD1JlZnJlc2hNcnBj",
+            "UmVzdBIiLm1ycGNfYWRtaW4uQWN0aXZlVGVybWluYWxzUmVxdWVzdBogLm1y",
+            "cGNfYWRtaW4uUmVmcmVzaE1ycGNSZXN0UmVwbHkiGILT5JMCEhIQL1JlZnJl",
+            "c2hNcnBjUmVzdBJXCgpHZXRWZXJzaW9uEhoubXJwY19hZG1pbi5WZXJzaW9u",
+            "UmVxdWVzdBoYLm1ycGNfYWRtaW4uVmVyc2lvblJlcGx5IhOC0+STAg0SCy92",
+            "ZXJzaW9uLXRtEn0KEkdldFRlcm1pbmFsSm91cm5hbBIlLm1ycGNfYWRtaW4u",
+            "R2V0VGVybWluYWxKb3VybmFsUmVxdWVzdBojLm1ycGNfYWRtaW4uR2V0VGVy",
+            "bWluYWxKb3VybmFsUmVwbHkiG4LT5JMCFRITL0dldFRlcm1pbmFsSm91cm5h",
+            "bBJdCgpHZXRBbGxMb2dzEh0ubXJwY19hZG1pbi5HZXRBbGxMb2dzUmVxdWVz",
+            "dBobLm1ycGNfYWRtaW4uR2V0QWxsTG9nc1JlcGx5IhOC0+STAg0SCy9HZXRB",
+            "bGxMb2dzEokBChVHZXRTZXNzaW9uUmVzdG9yZUxvZ3MSKC5tcnBjX2FkbWlu",
+            "LkdldFNlc3Npb25SZXN0b3JlTG9nc1JlcXVlc3QaJi5tcnBjX2FkbWluLkdl",
+            "dFNlc3Npb25SZXN0b3JlTG9nc1JlcGx5Ih6C0+STAhgSFi9HZXRTZXNzaW9u",
+            "UmVzdG9yZUxvZ3MSiQEKF0dldFNlc3Npb25SZXN0b3JlU3RhdHVzEiIubXJw",
+            "Y19hZG1pbi5BY3RpdmVUZXJtaW5hbHNSZXF1ZXN0GigubXJwY19hZG1pbi5H",
+            "ZXRTZXNzaW9uUmVzdG9yZVN0YXR1c1JlcGx5IiCC0+STAhoSGC9HZXRTZXNz",
+            "aW9uUmVzdG9yZVN0YXR1cxKdAQoVS2lsbEFsbFRyaWFsVGVybWluYWxzEiIu",
+            "bXJwY19hZG1pbi5BY3RpdmVUZXJtaW5hbHNSZXF1ZXN0GiYubXJwY19hZG1p",
+            "bi5LaWxsQWxsVHJpYWxUZXJtaW5hbHNSZXBseSI4gtPkkwIyEhYvS2lsbEFs",
+            "bFRyaWFsVGVybWluYWxzWhgiFi9LaWxsQWxsVHJpYWxUZXJtaW5hbHMSrAEK",
+            "GktpbGxBbGxUcmlhbFRlcm1pbmFsc0xvY2FsEiIubXJwY19hZG1pbi5BY3Rp",
+            "dmVUZXJtaW5hbHNSZXF1ZXN0GiYubXJwY19hZG1pbi5LaWxsQWxsVHJpYWxU",
+            "ZXJtaW5hbHNSZXBseSJCgtPkkwI8EhsvS2lsbEFsbFRyaWFsVGVybWluYWxz",
+            "TG9jYWxaHSIbL0tpbGxBbGxUcmlhbFRlcm1pbmFsc0xvY2FsQkBaMWdpdC5t",
+            "dGFwaS5pby9yb290L21ycGMtcHJvdG8uZ2l0L210NS9saWJyYXJpZXMvZ2+q",
+            "AgptcnBjX2FkbWluYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Api.AnnotationsReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.SessionRestoreWatcherStatus), global::mrpc_admin.SessionRestoreWatcherStatus.Parser, new[]{ "Enabled", "State", "Reason", "TotalCandidates", "DistinctTokens", "AlreadyLoaded", "InQueue", "InProgress", "RestoredSuccess", "RestoredFailed", "LastReconcileStartUtc", "LastReconcileEndUtc", "LastReconcileDurationMs", "LastError" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.GetSessionRestoreStatusReply), global::mrpc_admin.GetSessionRestoreStatusReply.Parser, new[]{ "Status", "Error" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.KillAllTrialTerminalsReply), global::mrpc_admin.KillAllTrialTerminalsReply.Parser, new[]{ "KilledCount", "KilledTerminalIds", "Message", "Error" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.GetSessionRestoreLogsRequest), global::mrpc_admin.GetSessionRestoreLogsRequest.Parser, new[]{ "AdminKey", "Pod", "LatestOnly" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.SessionRestoreLogEntry), global::mrpc_admin.SessionRestoreLogEntry.Parser, new[]{ "TokenId", "Platform", "Reason", "Owner", "User", "Target", "Success", "Error", "ElapsedMs", "CreatedUtc" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mrpc_admin.GetSessionRestoreLogsReply), global::mrpc_admin.GetSessionRestoreLogsReply.Parser, new[]{ "Entries", "Error" }, null, null, null, null),
@@ -1139,6 +1150,295 @@ namespace mrpc_admin {
 
   }
 
+  public sealed partial class KillAllTrialTerminalsReply : pb::IMessage<KillAllTrialTerminalsReply>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<KillAllTrialTerminalsReply> _parser = new pb::MessageParser<KillAllTrialTerminalsReply>(() => new KillAllTrialTerminalsReply());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<KillAllTrialTerminalsReply> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public KillAllTrialTerminalsReply() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public KillAllTrialTerminalsReply(KillAllTrialTerminalsReply other) : this() {
+      killedCount_ = other.killedCount_;
+      killedTerminalIds_ = other.killedTerminalIds_.Clone();
+      message_ = other.message_;
+      error_ = other.error_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public KillAllTrialTerminalsReply Clone() {
+      return new KillAllTrialTerminalsReply(this);
+    }
+
+    /// <summary>Field number for the "killed_count" field.</summary>
+    public const int KilledCountFieldNumber = 1;
+    private int killedCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int KilledCount {
+      get { return killedCount_; }
+      set {
+        killedCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "killed_terminal_ids" field.</summary>
+    public const int KilledTerminalIdsFieldNumber = 2;
+    private static readonly pb::FieldCodec<string> _repeated_killedTerminalIds_codec
+        = pb::FieldCodec.ForString(18);
+    private readonly pbc::RepeatedField<string> killedTerminalIds_ = new pbc::RepeatedField<string>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<string> KilledTerminalIds {
+      get { return killedTerminalIds_; }
+    }
+
+    /// <summary>Field number for the "message" field.</summary>
+    public const int MessageFieldNumber = 3;
+    private string message_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Message {
+      get { return message_; }
+      set {
+        message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "error" field.</summary>
+    public const int ErrorFieldNumber = 4;
+    private string error_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Error {
+      get { return error_; }
+      set {
+        error_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as KillAllTrialTerminalsReply);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(KillAllTrialTerminalsReply other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (KilledCount != other.KilledCount) return false;
+      if(!killedTerminalIds_.Equals(other.killedTerminalIds_)) return false;
+      if (Message != other.Message) return false;
+      if (Error != other.Error) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (KilledCount != 0) hash ^= KilledCount.GetHashCode();
+      hash ^= killedTerminalIds_.GetHashCode();
+      if (Message.Length != 0) hash ^= Message.GetHashCode();
+      if (Error.Length != 0) hash ^= Error.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (KilledCount != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(KilledCount);
+      }
+      killedTerminalIds_.WriteTo(output, _repeated_killedTerminalIds_codec);
+      if (Message.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Message);
+      }
+      if (Error.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Error);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (KilledCount != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(KilledCount);
+      }
+      killedTerminalIds_.WriteTo(ref output, _repeated_killedTerminalIds_codec);
+      if (Message.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Message);
+      }
+      if (Error.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Error);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (KilledCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(KilledCount);
+      }
+      size += killedTerminalIds_.CalculateSize(_repeated_killedTerminalIds_codec);
+      if (Message.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
+      }
+      if (Error.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Error);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(KillAllTrialTerminalsReply other) {
+      if (other == null) {
+        return;
+      }
+      if (other.KilledCount != 0) {
+        KilledCount = other.KilledCount;
+      }
+      killedTerminalIds_.Add(other.killedTerminalIds_);
+      if (other.Message.Length != 0) {
+        Message = other.Message;
+      }
+      if (other.Error.Length != 0) {
+        Error = other.Error;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            KilledCount = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            killedTerminalIds_.AddEntriesFrom(input, _repeated_killedTerminalIds_codec);
+            break;
+          }
+          case 26: {
+            Message = input.ReadString();
+            break;
+          }
+          case 34: {
+            Error = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            KilledCount = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            killedTerminalIds_.AddEntriesFrom(ref input, _repeated_killedTerminalIds_codec);
+            break;
+          }
+          case 26: {
+            Message = input.ReadString();
+            break;
+          }
+          case 34: {
+            Error = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   public sealed partial class GetSessionRestoreLogsRequest : pb::IMessage<GetSessionRestoreLogsRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1153,7 +1453,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[2]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1416,7 +1716,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[3]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1938,7 +2238,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[4]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2153,7 +2453,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[5]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2422,7 +2722,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[6]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2894,7 +3194,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[7]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3112,7 +3412,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[8]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3264,7 +3564,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[9]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3576,7 +3876,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[10]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3791,7 +4091,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[11]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4063,7 +4363,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[12]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4329,7 +4629,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[13]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4629,7 +4929,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[14]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4898,7 +5198,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[15]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5201,7 +5501,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[16]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5456,7 +5756,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[17]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5725,7 +6025,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[18]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5943,7 +6243,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[19]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6172,7 +6472,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[20]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6441,7 +6741,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[21]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6667,7 +6967,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[22]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6930,7 +7230,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[23]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7239,7 +7539,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[24]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7565,7 +7865,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[25]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7755,7 +8055,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[26]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[27]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8572,7 +8872,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[27]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[28]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9090,7 +9390,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[28]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[29]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9685,7 +9985,7 @@ namespace mrpc_admin {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[29]; }
+      get { return global::mrpc_admin.Mt5TermApiAdminReflection.Descriptor.MessageTypes[30]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
