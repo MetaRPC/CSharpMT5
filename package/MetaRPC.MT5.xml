@@ -7531,6 +7531,15 @@
         <member name="M:mt5_term_api.DisconnectRequest.ClearReason">
             <summary>Clears the value of the "reason" field</summary>
         </member>
+        <member name="F:mt5_term_api.DisconnectRequest.DeleteFieldNumber">
+            <summary>Field number for the "delete" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DisconnectRequest.HasDelete">
+            <summary>Gets whether the "delete" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.DisconnectRequest.ClearDelete">
+            <summary>Clears the value of the "delete" field</summary>
+        </member>
         <member name="F:mt5_term_api.DisconnectReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
         </member>
@@ -12246,7 +12255,17 @@
             Gets the unique identifier for the account instance.
             </summary>
         </member>
-        <member name="M:MetaRPC.CSharpMT5.MT5Account.#ctor(System.UInt64,System.String,System.String,System.Guid)">
+        <member name="P:MetaRPC.CSharpMT5.MT5Account.TerminalInstanceGuid">
+            <summary>
+            Gets the raw terminal instance GUID string returned by the server (e.g. mt5_live_...).
+            </summary>
+        </member>
+        <member name="P:MetaRPC.CSharpMT5.MT5Account.ApiKey">
+            <summary>
+            Gets or sets the MetaRPC API key for authentication. Defaults to "TRIAL".
+            </summary>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.#ctor(System.UInt64,System.String,System.String,System.Guid,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:mt5_term_api.MT5Account" /> class using credentials.
             </summary>
@@ -12254,6 +12273,18 @@
             <param name="password">The password for the user account.</param>
             <param name="grpcServer">The address of the gRPC server (optional).</param>
             <param name="id">An optional unique identifier for the account instance.</param>
+            <param name="apiKey">An optional API key for authentication (defaults to TRIAL or MRPC_API_KEY env var).</param>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.ComputeDeterministicTerminalId(System.UInt64,System.String)">
+            <summary>
+            Computes a stable deterministic GUID based on account credentials (user + password).
+            Matches the server's GetId algorithm.
+            </summary>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.#ctor(System.UInt64,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:mt5_term_api.MT5Account" /> class with API key.
+            </summary>
         </member>
         <member name="M:MetaRPC.CSharpMT5.MT5Account.ConnectByHostPortAsync(System.String,System.Int32,System.String,System.Boolean,System.Int32,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
             <summary>
@@ -13180,6 +13211,16 @@
             <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the client is not connected.</exception>
             <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns a business error.</exception>
             <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.DisconnectAsync(System.Threading.CancellationToken)">
+            <summary>
+            Disconnects from the MT5 server by sending a Disconnect request and disposing the gRPC channel.
+            </summary>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.Disconnect">
+            <summary>
+            Synchronously disconnects from the MT5 server.
+            </summary>
         </member>
         <member name="T:Mt5TermApi.MrpcMt5ErrorReflection">
             <summary>Holder for reflection information generated from mrpc-mt5-error.proto</summary>

@@ -1768,14 +1768,14 @@ namespace MetaRPC.CSharpMT5
 		/// <summary>
 		/// Disconnects from the MT5 server by sending a Disconnect request and disposing the gRPC channel.
 		/// </summary>
-		public async Task DisconnectAsync(bool delete = false, CancellationToken cancellationToken = default)
+		public async Task DisconnectAsync(CancellationToken cancellationToken = default)
 		{
 			try
 			{
 				if (ConnectionClient != null)
 				{
 					var headers = GetHeaders();
-					await ConnectionClient.DisconnectAsync(new DisconnectRequest { Delete = delete }, headers, null, cancellationToken);
+					await ConnectionClient.DisconnectAsync(new DisconnectRequest(), headers, null, cancellationToken);
 				}
 			}
 			catch
@@ -1791,9 +1791,9 @@ namespace MetaRPC.CSharpMT5
 		/// <summary>
 		/// Synchronously disconnects from the MT5 server.
 		/// </summary>
-		public void Disconnect(bool delete = false)
+		public void Disconnect()
 		{
-			DisconnectAsync(delete).GetAwaiter().GetResult();
+			DisconnectAsync().GetAwaiter().GetResult();
 		}
 	}
 }
