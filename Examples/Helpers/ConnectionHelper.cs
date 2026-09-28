@@ -104,14 +104,14 @@ namespace MetaRPC.CSharpMT5.Examples.Helpers
         // CONNECTION
         public static string? ApiKeyOverride { get; set; }
 
-        public static async Task DisconnectAsync(MT5Account? account)
+        public static async Task DisconnectAsync(MT5Account? account, bool delete = false)
         {
             if (account != null)
             {
                 try
                 {
                     ConsoleHelper.PrintInfo("Disconnecting from MT5 terminal...");
-                    await account.DisconnectAsync();
+                    await account.DisconnectAsync(delete);
                     ConsoleHelper.PrintSuccess("✓ Disconnected successfully.\n");
                 }
                 catch (Exception ex)
@@ -121,14 +121,14 @@ namespace MetaRPC.CSharpMT5.Examples.Helpers
             }
         }
 
-        public static void Disconnect(MT5Account? account)
+        public static void Disconnect(MT5Account? account, bool delete = false)
         {
             if (account != null)
             {
                 try
                 {
                     ConsoleHelper.PrintInfo("Disconnecting from MT5 terminal...");
-                    account.Disconnect();
+                    account.Disconnect(delete);
                     ConsoleHelper.PrintSuccess("✓ Disconnected successfully.\n");
                 }
                 catch (Exception ex)
