@@ -29,6 +29,28 @@ dotnet add package MetaRPC.MT5
 
 ---
 
+## 🏃 How to Run Examples
+
+Clone the repository and run the examples out-of-the-box:
+
+```bash
+git clone https://github.com/MetaRPC/CSharpMT5.git
+cd CSharpMT5
+dotnet restore
+
+# 1. Run with default TRIAL key:
+dotnet run -- 1
+
+# 2. Or pass your MetaRPC API key directly as an argument:
+dotnet run -- 1 your_api_key_here
+
+# 3. Or use the MRPC_API_KEY environment variable:
+export MRPC_API_KEY="your_api_key_here"        # Windows CMD: set MRPC_API_KEY=your_api_key_here
+dotnet run -- 1                                # Windows PowerShell: $env:MRPC_API_KEY="your_api_key_here"
+```
+
+---
+
 ## 🚀 30-Second Quick Start
 
 ```csharp

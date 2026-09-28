@@ -175,11 +175,15 @@ namespace MetaRPC.CSharpMT5.Examples.Helpers
             var port = int.Parse(config["MT5:Port"] ?? "443");
             var baseSymbol = config["MT5:BaseChartSymbol"] ?? "EURUSD";
             var timeout = int.Parse(config["MT5:ConnectTimeoutSeconds"] ?? "60");
+            var envKey = Environment.GetEnvironmentVariable("MRPC_API_KEY");
+            var configKey = config["MT5:ApiKey"] ?? config["MT5:APIKey"];
             var apiKey = !string.IsNullOrEmpty(apiKeyOverride)
                 ? apiKeyOverride
                 : (!string.IsNullOrEmpty(ApiKeyOverride)
                     ? ApiKeyOverride
-                    : (config["MT5:ApiKey"] ?? config["MT5:APIKey"] ?? Environment.GetEnvironmentVariable("MRPC_API_KEY") ?? "TRIAL"));
+                    : (!string.IsNullOrEmpty(envKey)
+                        ? envKey
+                        : (!string.IsNullOrEmpty(configKey) ? configKey : "TRIAL")));
 
             if (user == 0 || user == 591129415 || string.IsNullOrEmpty(password))
             {
