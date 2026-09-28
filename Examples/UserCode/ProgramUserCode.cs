@@ -44,10 +44,12 @@ public static class ProgramUserCode
 
         var config = ConnectionHelper.BuildConfiguration();
         var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
-        var service = new MT5Service(account);
+        try
+        {
+            var service = new MT5Service(account);
 
-        Console.WriteLine("✓ Connected to MT5 Terminal");
-        Console.WriteLine("✓ MT5Service initialized\n");
+            Console.WriteLine("✓ Connected to MT5 Terminal");
+            Console.WriteLine("✓ MT5Service initialized\n");
 
         // ═════════════════════════════════════════════════════════════════
         // YOUR CODE STARTS HERE ↓
@@ -166,6 +168,11 @@ public static class ProgramUserCode
         Console.WriteLine("\n═══════════════════════════════════════════════════════════════════");
         Console.WriteLine("User code execution completed!");
         Console.WriteLine("═══════════════════════════════════════════════════════════════════");
+        }
+        finally
+        {
+            await ConnectionHelper.DisconnectAsync(account);
+        }
     }
 }
 

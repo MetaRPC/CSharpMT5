@@ -148,6 +148,29 @@ internal class Program
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+        var cleanArgs = new List<string>();
+        for (int i = 0; i < args.Length; i++)
+        {
+            if (args[i] == "--api-key" && i + 1 < args.Length)
+            {
+                ConnectionHelper.ApiKeyOverride = args[i + 1];
+                i++;
+            }
+            else if (args[i].StartsWith("--api-key="))
+            {
+                ConnectionHelper.ApiKeyOverride = args[i].Substring("--api-key=".Length);
+            }
+            else
+            {
+                cleanArgs.Add(args[i]);
+            }
+        }
+        if (cleanArgs.Count > 1 && string.IsNullOrEmpty(ConnectionHelper.ApiKeyOverride))
+        {
+            ConnectionHelper.ApiKeyOverride = cleanArgs[1];
+        }
+        args = cleanArgs.ToArray();
+
         // ═════════════════════════════════════════════════════════════════
         // MAIN LOOP
         // ═════════════════════════════════════════════════════════════════
@@ -184,8 +207,11 @@ internal class Program
                 // Command-line mode: exit after one run
                 if (args.Length > 0)
                 {
-                    Console.WriteLine("\n\nPress any key to exit...");
-                    Console.ReadKey();
+                    if (!Console.IsInputRedirected)
+                    {
+                        Console.WriteLine("\n\nPress any key to exit...");
+                        try { Console.ReadKey(); } catch { }
+                    }
                     return 0;
                 }
 
@@ -467,8 +493,8 @@ internal class Program
         }
         finally
         {
-            // Cleanup: properly shutdown gRPC channel to avoid resource leaks
-            await account.GrpcChannel.ShutdownAsync();
+            // Cleanup: disconnect session from MT5 terminal
+            await ConnectionHelper.DisconnectAsync(account);
         }
     }
 
@@ -496,8 +522,8 @@ internal class Program
         }
         finally
         {
-            // Cleanup: properly shutdown gRPC channel to avoid resource leaks
-            await account.GrpcChannel.ShutdownAsync();
+            // Cleanup: disconnect session from MT5 terminal
+            await ConnectionHelper.DisconnectAsync(account);
         }
     }
 
@@ -524,8 +550,8 @@ internal class Program
         }
         finally
         {
-            // Cleanup: properly shutdown gRPC channel to avoid resource leaks
-            await account.GrpcChannel.ShutdownAsync();
+            // Cleanup: disconnect session from MT5 terminal
+            await ConnectionHelper.DisconnectAsync(account);
         }
     }
 
@@ -552,8 +578,8 @@ internal class Program
         }
         finally
         {
-            // Cleanup: properly shutdown gRPC channel to avoid resource leaks
-            await account.GrpcChannel.ShutdownAsync();
+            // Cleanup: disconnect session from MT5 terminal
+            await ConnectionHelper.DisconnectAsync(account);
         }
     }
 
@@ -580,8 +606,8 @@ internal class Program
         }
         finally
         {
-            // Cleanup: properly shutdown gRPC channel to avoid resource leaks
-            await account.GrpcChannel.ShutdownAsync();
+            // Cleanup: disconnect session from MT5 terminal
+            await ConnectionHelper.DisconnectAsync(account);
         }
     }
 
@@ -607,8 +633,8 @@ internal class Program
         }
         finally
         {
-            // Cleanup: properly shutdown gRPC channel to avoid resource leaks
-            await account.GrpcChannel.ShutdownAsync();
+            // Cleanup: disconnect session from MT5 terminal
+            await ConnectionHelper.DisconnectAsync(account);
         }
     }
 }

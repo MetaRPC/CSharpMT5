@@ -99,6 +99,16 @@ namespace MetaRPC.CSharpMT5
 		/// </summary>
 		public Guid Id { get; private set; }
 
+		/// <summary>
+		/// Gets the raw terminal instance GUID string returned by the server (e.g. mt5_live_...).
+		/// </summary>
+		public string TerminalInstanceGuid { get; private set; } = "";
+
+		/// <summary>
+		/// Gets or sets the MetaRPC API key for authentication. Defaults to "TRIAL".
+		/// </summary>
+		public string ApiKey { get; set; } = "TRIAL";
+
 		private bool Connected
 		{
 			get
@@ -118,7 +128,8 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="password">The password for the user account.</param>
 		/// <param name="grpcServer">The address of the gRPC server (optional).</param>
 		/// <param name="id">An optional unique identifier for the account instance.</param>
-		public MT5Account(ulong user, string password, string? grpcServer = null, Guid id = default(Guid))
+		/// <param name="apiKey">An optional API key for authentication (defaults to TRIAL or MRPC_API_KEY env var).</param>
+		public MT5Account(ulong user, string password, string? grpcServer = null, Guid id = default(Guid), string? apiKey = null)
 		{
 			User = user;
 			Password = password;
@@ -131,7 +142,29 @@ namespace MetaRPC.CSharpMT5
 			MarketInfoClient = new MarketInfo.MarketInfoClient((ChannelBase)(object)GrpcChannel);
 			TradeFunctionsClient = new TradeFunctions.TradeFunctionsClient((ChannelBase)(object)GrpcChannel);
 			AccountInformationClient = new AccountInformation.AccountInformationClient((ChannelBase)(object)GrpcChannel);
-			Id = id;
+			Id = id != Guid.Empty ? id : ComputeDeterministicTerminalId(user, password);
+			ApiKey = !string.IsNullOrWhiteSpace(apiKey) ? apiKey : (Environment.GetEnvironmentVariable("MRPC_API_KEY") ?? "TRIAL");
+		}
+
+		/// <summary>
+		/// Computes a stable deterministic GUID based on account credentials (user + password).
+		/// Matches the server's GetId algorithm.
+		/// </summary>
+		public static Guid ComputeDeterministicTerminalId(ulong user, string password)
+		{
+			using var sha256 = System.Security.Cryptography.SHA256.Create();
+			var hash = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes($"{user}:{password}"));
+			var guidBytes = new byte[16];
+			Array.Copy(hash, guidBytes, 16);
+			return new Guid(guidBytes);
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:mt5_term_api.MT5Account" /> class with API key.
+		/// </summary>
+		public MT5Account(ulong user, string password, string? grpcServer, string? apiKey)
+			: this(user, password, grpcServer, default(Guid), apiKey)
+		{
 		}
 
 		private async Task Reconnect(DateTime? deadline, CancellationToken cancellationToken)
@@ -171,23 +204,34 @@ namespace MetaRPC.CSharpMT5
 				Port = port,
 				TimeoutSeconds = (uint)timeoutSeconds
 			};
-			Metadata headers = null;
+			Metadata headers = new Metadata();
 			if (Id != default(Guid))
 			{
-				Metadata val = new Metadata();
-				val.Add("id", Id.ToString());
-				headers = val;
+				headers.Add("id", Id.ToString());
 			}
+			headers.Add("APIKey", !string.IsNullOrWhiteSpace(ApiKey) ? ApiKey : "TRIAL");
 			ConnectReply connectReply = await ConnectionClient.ConnectAsync(request, headers, deadline, cancellationToken);
 			if (connectReply.Error != null)
 			{
 				throw new ApiExceptionMT5(connectReply.Error);
 			}
-			Host = host;
-			Port = port;
+			ServerName = null;
 			BaseChartSymbol = baseChartSymbol;
 			ConnectTimeoutSeconds = timeoutSeconds;
-			Id = Guid.Parse(connectReply.Data.TerminalInstanceGuid);
+			TerminalInstanceGuid = connectReply.Data.TerminalInstanceGuid ?? "";
+			Id = ParseGuidSafe(TerminalInstanceGuid);
+		}
+
+		private static Guid ParseGuidSafe(string? guidStr)
+		{
+			if (string.IsNullOrWhiteSpace(guidStr)) return Guid.NewGuid();
+			if (Guid.TryParse(guidStr, out var g)) return g;
+			var clean = guidStr;
+			if (clean.StartsWith("mt5_live_")) clean = clean.Substring("mt5_live_".Length);
+			else if (clean.StartsWith("mt4_live_")) clean = clean.Substring("mt4_live_".Length);
+			if (Guid.TryParseExact(clean, "N", out var gn)) return gn;
+			if (Guid.TryParse(clean, out var gClean)) return gClean;
+			return Guid.NewGuid();
 		}
 
 		/// <summary>
@@ -226,13 +270,12 @@ namespace MetaRPC.CSharpMT5
 				MtClusterName = serverName,
 				TimeoutSeconds = (uint)timeoutSeconds
 			};
-			Metadata headers = null;
+			Metadata headers = new Metadata();
 			if (Id != default(Guid))
 			{
-				Metadata val = new Metadata();
-				val.Add("id", Id.ToString());
-				headers = val;
+				headers.Add("id", Id.ToString());
 			}
+			headers.Add("APIKey", !string.IsNullOrWhiteSpace(ApiKey) ? ApiKey : "TRIAL");
 			ConnectExReply connectExReply = await ConnectionClient.ConnectExAsync(request, headers, deadline, cancellationToken);
 			if (connectExReply.Error != null)
 			{
@@ -241,7 +284,8 @@ namespace MetaRPC.CSharpMT5
 			ServerName = serverName;
 			BaseChartSymbol = baseChartSymbol;
 			ConnectTimeoutSeconds = timeoutSeconds;
-			Id = Guid.Parse(connectExReply.Data.TerminalInstanceGuid);
+			TerminalInstanceGuid = connectExReply.Data.TerminalInstanceGuid ?? "";
+			Id = ParseGuidSafe(TerminalInstanceGuid);
 		}
 
 		/// <summary>
@@ -258,11 +302,9 @@ namespace MetaRPC.CSharpMT5
 
 		private Metadata GetHeaders()
 		{
-			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0005: Unknown result type (might be due to invalid IL or missing references)
-			//IL_0025: Expected O, but got Unknown
 			Metadata val = new Metadata();
-			val.Add("id", Id.ToString());
+			val.Add("id", !string.IsNullOrEmpty(TerminalInstanceGuid) ? TerminalInstanceGuid : Id.ToString());
+			val.Add("APIKey", !string.IsNullOrWhiteSpace(ApiKey) ? ApiKey : "TRIAL");
 			return val;
 		}
 
@@ -1721,6 +1763,37 @@ namespace MetaRPC.CSharpMT5
 		public string AccountInfoString(AccountInfoStringPropertyType property, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return AccountInfoStringAsync(property, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Disconnects from the MT5 server by sending a Disconnect request and disposing the gRPC channel.
+		/// </summary>
+		public async Task DisconnectAsync(CancellationToken cancellationToken = default)
+		{
+			try
+			{
+				if (ConnectionClient != null)
+				{
+					var headers = GetHeaders();
+					await ConnectionClient.DisconnectAsync(new DisconnectRequest(), headers, null, cancellationToken);
+				}
+			}
+			catch
+			{
+				// Ignore disconnect exceptions
+			}
+			finally
+			{
+				GrpcChannel?.Dispose();
+			}
+		}
+
+		/// <summary>
+		/// Synchronously disconnects from the MT5 server.
+		/// </summary>
+		public void Disconnect()
+		{
+			DisconnectAsync().GetAwaiter().GetResult();
 		}
 	}
 }

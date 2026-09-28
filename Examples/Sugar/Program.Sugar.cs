@@ -222,11 +222,12 @@ namespace MetaRPC.CSharpMT5.Examples.Sugar
         {
             PrintBanner();
 
+            MT5Account? account = null;
             try
             {
                 // ─── [01] SETUP ─────────────────────────────────────────────
                 var config = ConnectionHelper.BuildConfiguration();
-                var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
+                account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
                 var service = new MT5Service(account);
 
                 ConsoleHelper.PrintSuccess("✓ MT5Service ready with Extensions (Sugar layer)!\n");
@@ -242,6 +243,10 @@ namespace MetaRPC.CSharpMT5.Examples.Sugar
             {
                 ConsoleHelper.PrintError($"\n✗ FATAL: {ex.Message}");
                 throw;
+            }
+            finally
+            {
+                await ConnectionHelper.DisconnectAsync(account);
             }
         }
 

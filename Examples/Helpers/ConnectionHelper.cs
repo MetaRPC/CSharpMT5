@@ -102,25 +102,106 @@ namespace MetaRPC.CSharpMT5.Examples.Helpers
 
         // ═════════════════════════════════════════════════════════════════
         // CONNECTION
-        // ═════════════════════════════════════════════════════════════════
+        public static string? ApiKeyOverride { get; set; }
 
-        public static async Task<MT5Account> CreateAndConnectAccountAsync(IConfiguration config)
+        public static async Task DisconnectAsync(MT5Account? account)
+        {
+            if (account != null)
+            {
+                try
+                {
+                    ConsoleHelper.PrintInfo("Disconnecting from MT5 terminal...");
+                    await account.DisconnectAsync();
+                    ConsoleHelper.PrintSuccess("✓ Disconnected successfully.\n");
+                }
+                catch (Exception ex)
+                {
+                    ConsoleHelper.PrintWarning($"Disconnect warning: {ex.Message}");
+                }
+            }
+        }
+
+        public static void Disconnect(MT5Account? account)
+        {
+            if (account != null)
+            {
+                try
+                {
+                    ConsoleHelper.PrintInfo("Disconnecting from MT5 terminal...");
+                    account.Disconnect();
+                    ConsoleHelper.PrintSuccess("✓ Disconnected successfully.\n");
+                }
+                catch (Exception ex)
+                {
+                    ConsoleHelper.PrintWarning($"Disconnect warning: {ex.Message}");
+                }
+            }
+        }
+
+        public static async Task<(ulong login, string password, string server)> OpenDemoAccountAsync(string server = "MetaQuotes-Demo", string apiKey = "TRIAL")
+        {
+            using var http = new System.Net.Http.HttpClient();
+            http.DefaultRequestHeaders.Add("APIKey", apiKey);
+            var url = $"https://mt5.mrpc.pro/DemoAccount/Open?server={Uri.EscapeDataString(server)}";
+            var jsonStr = await http.GetStringAsync(url);
+            using var doc = System.Text.Json.JsonDocument.Parse(jsonStr);
+            var root = doc.RootElement;
+            ulong login = 0;
+            if (root.TryGetProperty("login", out var loginElem))
+            {
+                if (loginElem.ValueKind == System.Text.Json.JsonValueKind.Number)
+                    login = loginElem.GetUInt64();
+                else if (loginElem.ValueKind == System.Text.Json.JsonValueKind.String && ulong.TryParse(loginElem.GetString(), out var parsedLogin))
+                    login = parsedLogin;
+            }
+            var password = root.TryGetProperty("password", out var pwdElem) ? (pwdElem.GetString() ?? "") : "";
+            var srv = root.TryGetProperty("server", out var srvElem) && !string.IsNullOrEmpty(srvElem.GetString())
+                ? srvElem.GetString()!
+                : server;
+            return (login, password, srv);
+        }
+
+        public static async Task<MT5Account> CreateAndConnectAccountAsync(IConfiguration config, string? apiKeyOverride = null)
         {
             ConsoleHelper.PrintSection("CONNECTION");
 
-            var user = ulong.Parse(config["MT5:User"] ?? throw new Exception("MT5:User required"));
+            var userStr = config["MT5:User"];
+            var user = !string.IsNullOrEmpty(userStr) ? ulong.Parse(userStr) : 0UL;
             var password = config["MT5:Password"] ?? "";
             var grpcServer = config["MT5:GrpcServer"];
             var instanceId = config["MT5:InstanceId"];
-            var serverName = config["MT5:ServerName"];
+            var serverName = config["MT5:ServerName"] ?? "MetaQuotes-Demo";
             var host = config["MT5:Host"];
             var port = int.Parse(config["MT5:Port"] ?? "443");
             var baseSymbol = config["MT5:BaseChartSymbol"] ?? "EURUSD";
-            var timeout = int.Parse(config["MT5:ConnectTimeoutSeconds"] ?? "30");
+            var timeout = int.Parse(config["MT5:ConnectTimeoutSeconds"] ?? "60");
+            var apiKey = !string.IsNullOrEmpty(apiKeyOverride)
+                ? apiKeyOverride
+                : (!string.IsNullOrEmpty(ApiKeyOverride)
+                    ? ApiKeyOverride
+                    : (config["MT5:ApiKey"] ?? config["MT5:APIKey"] ?? Environment.GetEnvironmentVariable("MRPC_API_KEY") ?? "TRIAL"));
+
+            if (user == 0 || user == 591129415 || string.IsNullOrEmpty(password))
+            {
+                try
+                {
+                    ConsoleHelper.PrintInfo("Auto-provisioning live demo account on MetaQuotes-Demo...");
+                    var demo = await OpenDemoAccountAsync(serverName, apiKey);
+                    user = demo.login;
+                    password = demo.password;
+                    serverName = demo.server;
+                    ConsoleHelper.PrintSuccess($"✓ Live Demo Account Provisioned: #{user} (Server: {serverName})\n");
+                }
+                catch (Exception ex)
+                {
+                    ConsoleHelper.PrintWarning($"Auto-provision failed: {ex.Message}. Falling back to config credentials.");
+                }
+            }
 
             ConsoleHelper.PrintInfo($"User:          {user}");
             ConsoleHelper.PrintInfo($"gRPC Server:   {grpcServer ?? "default"}");
             ConsoleHelper.PrintInfo($"Base Symbol:   {baseSymbol}");
+            ConsoleHelper.PrintInfo($"API Key:       {(apiKey == "TRIAL" ? "TRIAL" : "***")}");
 
             // CRITICALLY IMPORTANT: for the new grpc.mt5.mrpc.pro infrastructure
             // A GUID is ALWAYS required, even for the first connection!
@@ -140,7 +221,8 @@ namespace MetaRPC.CSharpMT5.Examples.Helpers
                 user: user,
                 password: password,
                 grpcServer: grpcServer,
-                id: accountId
+                id: accountId,
+                apiKey: apiKey
             );
 
             ConsoleHelper.PrintInfo("\n→ Connecting to MT5 terminal...");

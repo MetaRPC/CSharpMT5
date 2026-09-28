@@ -81,12 +81,14 @@ public static class ProgramSugarMonitor
         // ════════════════════════════════════════════════════════════════
         var config = ConnectionHelper.BuildConfiguration();
         var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
-        var svc = new MT5Service(account);
+        try
+        {
+            var svc = new MT5Service(account);
 
-        Console.WriteLine("✓ Connected to MT5 terminal\n");
+            Console.WriteLine("✓ Connected to MT5 terminal\n");
 
-        // ════════════════════════════════════════════════════════════════
-        // STEP 1: SETUP TEST POSITIONS
+            // ════════════════════════════════════════════════════════════════
+            // STEP 1: SETUP TEST POSITIONS
         // ════════════════════════════════════════════════════════════════
         Console.WriteLine("╔══════════════════════════════════════════════════════════════╗");
         Console.WriteLine("║ STEP 1: SETUP TEST POSITIONS FOR MONITORING                 ║");
@@ -455,6 +457,11 @@ public static class ProgramSugarMonitor
 
         Console.WriteLine("This demo showcases all monitoring and history capabilities");
         Console.WriteLine("of the MT5Sugar API for position tracking and analysis.\n");
+        }
+        finally
+        {
+            await ConnectionHelper.DisconnectAsync(account);
+        }
     }
 
     private static void PrintHeader()

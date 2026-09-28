@@ -85,11 +85,12 @@ namespace MetaRPC.CSharpMT5.Examples.Sugar
         {
             PrintBanner();
 
+            MT5Account? account = null;
             try
             {
                 // ─── SETUP ───────────────────────────────────────────────
                 var config = ConnectionHelper.BuildConfiguration();
-                var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
+                account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
                 var svc = new MT5Service(account);
 
                 ConsoleHelper.PrintSuccess("✓ Connected! Sugar API ready for scalping.\n");
@@ -105,6 +106,10 @@ namespace MetaRPC.CSharpMT5.Examples.Sugar
             {
                 ConsoleHelper.PrintError($"\n✗ ERROR: {ex.Message}");
                 throw;
+            }
+            finally
+            {
+                await ConnectionHelper.DisconnectAsync(account);
             }
         }
 

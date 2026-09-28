@@ -122,10 +122,11 @@ namespace MetaRPC.CSharpMT5.Examples.Services
         {
             PrintBanner();
 
+            MT5Account? account = null;
             try
             {
                 var config = ConnectionHelper.BuildConfiguration();
-                var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
+                account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
 
                 ConsoleHelper.PrintInfo("\n→ Creating MT5Service wrapper...");
                 var service = new MT5Service(account);
@@ -141,6 +142,10 @@ namespace MetaRPC.CSharpMT5.Examples.Services
                 ConsoleHelper.PrintError("\nStack trace:");
                 Console.WriteLine(ex.StackTrace);
                 throw;
+            }
+            finally
+            {
+                await ConnectionHelper.DisconnectAsync(account);
             }
         }
 

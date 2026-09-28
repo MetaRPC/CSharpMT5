@@ -60,10 +60,11 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
         {
             PrintBanner();
 
+            MT5Account? account = null;
             try
             {
                 var config = ConnectionHelper.BuildConfiguration();
-                var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
+                account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
                 await RunTradingDemoAsync(account, config);
 
                 ConsoleHelper.PrintSuccess("\n✓ TRADING DEMO COMPLETED");
@@ -72,6 +73,10 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             {
                 ConsoleHelper.PrintError($"\n✗ FATAL: {ex.Message}");
                 throw;
+            }
+            finally
+            {
+                await ConnectionHelper.DisconnectAsync(account);
             }
         }
 

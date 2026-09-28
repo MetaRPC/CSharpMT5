@@ -200,9 +200,6 @@ namespace MetaRPC.CSharpMT5
         public static async Task EnsureSelected(this MT5Service svc, string symbol, int timeoutSec = 10, CancellationToken ct = default)
         {
             await svc.SymbolSelectAsync(symbol, selected: true, Dl(timeoutSec), ct);
-            var sync = await svc.SymbolIsSynchronizedAsync(symbol, Dl(timeoutSec), ct);
-            if (!sync)
-                throw new InvalidOperationException($"Symbol '{symbol}' is not synchronized in terminal.");
         }
 
         #endregion

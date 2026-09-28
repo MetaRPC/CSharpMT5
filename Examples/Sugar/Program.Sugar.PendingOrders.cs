@@ -143,11 +143,12 @@ public static class ProgramSugarPendingOrders
             cts.Cancel();
         };
 
+        MT5Account? account = null;
         try
         {
             // Initialize service
             var config = ConnectionHelper.BuildConfiguration();
-            var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
+            account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
             var svc = new MT5Service(account);
 
             Console.WriteLine("✓ MT5 Service connected\n");
@@ -499,6 +500,10 @@ public static class ProgramSugarPendingOrders
         {
             Console.WriteLine($"\n✗ ERROR: {ex.Message}");
             Console.WriteLine($"\nStack trace:\n{ex.StackTrace}");
+        }
+        finally
+        {
+            await ConnectionHelper.DisconnectAsync(account);
         }
     }
 }

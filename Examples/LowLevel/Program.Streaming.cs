@@ -139,13 +139,14 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
         {
             PrintStreamingBanner();
 
+            MT5Account? account = null;
             try
             {
                 // ─── [01] LOAD CONFIGURATION ─────────────────────────────
                 var config = ConnectionHelper.BuildConfiguration();
 
                 // ─── [02] CREATE & CONNECT ACCOUNT ───────────────────────
-                var account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
+                account = await ConnectionHelper.CreateAndConnectAccountAsync(config);
 
                 // ─── [03] WRAP WITH MT5SERVICE ───────────────────────────
                 ConsoleHelper.PrintInfo("\n→ Creating MT5Service wrapper...");
@@ -159,13 +160,6 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
                 //    3. Task.WhenAll completes (all streams finished)
                 //    → Each stream calls stream?.Dispose() in finally block
                 await RunAllStreamsAsync(service);
-
-                // ─── [05] CLEANUP ─────────────────────────────────────────
-                // Note: MT5Account doesn't implement IDisposable, but gRPC
-                // channels are managed internally. Connection stays open for
-                // potential reuse. If you need explicit cleanup, call Disconnect.
-                // For production: Consider adding explicit Disconnect() or
-                // implementing IDisposable pattern in MT5Account class.
             }
             catch (Exception ex)
             {
@@ -175,6 +169,10 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
                     ConsoleHelper.PrintError($"Inner: {ex.InnerException.Message}");
                 }
                 throw;
+            }
+            finally
+            {
+                await ConnectionHelper.DisconnectAsync(account);
             }
         }
 
