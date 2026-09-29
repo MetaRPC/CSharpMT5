@@ -70,48 +70,59 @@ namespace mt5_term_api {
             "kQEKEFRyYWRlU3VtbWFyeURhdGESEwoLb3Blbl90cmFkZXMYASABKAUSEwoL",
             "b3Blbl9wcm9maXQYAiABKAESEgoKZGF5X3Byb2ZpdBgDIAEoARITCgt3ZWVr",
             "X3Byb2ZpdBgEIAEoARIUCgxtb250aF9wcm9maXQYBSABKAESFAoMdG90YWxf",
-            "cHJvZml0GAYgASgBIjoKFE1hcmtldFRyYWRlQ291bnREYXRhEhMKC21hcmtl",
-            "dF9uYW1lGAEgASgJEg0KBWNvdW50GAIgASgFInUKEVByb2ZpdGFiaWxpdHlE",
-            "YXRhEhIKCndvbl90cmFkZXMYASABKAMSGgoSd29uX3RyYWRlc19wZXJjZW50",
-            "GAIgASgBEhMKC2xvc3RfdHJhZGVzGAMgASgDEhsKE2xvc3RfdHJhZGVzX3Bl",
-            "cmNlbnQYBCABKAEiPwoSQXZlcmFnZVBpcHNVc2REYXRhEhQKDGF2ZXJhZ2Vf",
-            "cGlwcxgBIAEoARITCgthdmVyYWdlX3VzZBgCIAEoASI+CgdXb25EYXRhEhEK",
-            "CXdvbl9jb3VudBgBIAEoBRILCgNhbGwYAiABKAUSEwoLd29uX3BlcnNlbnQY",
-            "AyABKAEiVQoKUHJvZml0RGF0YRINCgV0aWtldBgBIAEoAxIoCgRkYXRlGAIg",
-            "ASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIOCgZwcm9maXQYAyAB",
-            "KAEiQgoKWlNjb3JlRGF0YRIXCg96X3Njb3JlX2RlY2ltYWwYASABKAESGwoT",
-            "el9zY29yZV9wcm9iYWJpbGl0eRgCIAEoASIuCg5FeHBlY3RhbmN5RGF0YRIM",
-            "CgRwaXBzGAEgASgBEg4KBmRvbGxhchgCIAEoASJsChNTdGF0c1dpdGhDaGFy",
-            "dHNEYXRhEiYKBXN0YXRzGAEgASgLMhcubXQ1X3Rlcm1fYXBpLlN0YXRzRGF0",
-            "YRItCgZjaGFydHMYAiADKAsyHS5tdDVfdGVybV9hcGkuRXF1aXR5UG9pbnRE",
-            "YXRhIkIKEUVxdWl0eUhpc3RvcnlEYXRhEi0KBnBvaW50cxgBIAMoCzIdLm10",
-            "NV90ZXJtX2FwaS5FcXVpdHlQb2ludERhdGEiiAIKD0VxdWl0eVBvaW50RGF0",
-            "YRIoCgR0aW1lGAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIP",
-            "CgdiYWxhbmNlGAIgASgBEg4KBmVxdWl0eRgDIAEoARIcChRiYWxhbmNlX2Ry",
-            "YXdkb3duX3JhdxgEIAEoARIhChliYWxhbmNlX2RyYXdkb3duX3JlbGF0aXZl",
-            "GAUgASgBEhsKE2VxdWl0eV9kcmF3ZG93bl9yYXcYBiABKAESIAoYZXF1aXR5",
-            "X2RyYXdkb3duX3JlbGF0aXZlGAcgASgBEhMKC3JlYWxpemVkX3BsGAggASgB",
-            "EhUKDXVucmVhbGl6ZWRfcGwYCSABKAEiUgoVVHJhZGVVbnJlYWxpemVkUExE",
-            "YXRhEjkKB2V4dHJlbWEYASADKAsyKC5tdDVfdGVybV9hcGkuVHJhZGVVbnJl",
-            "YWxpemVkRXh0cmVtYURhdGEi5AEKGlRyYWRlVW5yZWFsaXplZEV4dHJlbWFE",
-            "YXRhEg4KBnRpY2tldBgBIAEoAxIOCgZzeW1ib2wYAiABKAkSNwoTbWF4X3Vu",
-            "cmVhbGl6ZWRfdGltZRgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3Rh",
-            "bXASGQoRbWF4X3VucmVhbGl6ZWRfcGwYBCABKAESNwoTbWluX3VucmVhbGl6",
-            "ZWRfdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASGQoR",
-            "bWluX3VucmVhbGl6ZWRfcGwYBiABKAEy9QMKClRyYWRlU3RhdHMSYQoKVHJh",
-            "ZGVTdGF0cxIfLm10NV90ZXJtX2FwaS5UcmFkZVN0YXRzUmVxdWVzdBodLm10",
-            "NV90ZXJtX2FwaS5UcmFkZVN0YXRzUmVwbHkiE4LT5JMCDRILL1RyYWRlU3Rh",
-            "dHMSlQEKF1RyYWRlU3RhdHNFcXVpdHlIaXN0b3J5EiwubXQ1X3Rlcm1fYXBp",
-            "LlRyYWRlU3RhdHNFcXVpdHlIaXN0b3J5UmVxdWVzdBoqLm10NV90ZXJtX2Fw",
-            "aS5UcmFkZVN0YXRzRXF1aXR5SGlzdG9yeVJlcGx5IiCC0+STAhoSGC9UcmFk",
-            "ZVN0YXRzRXF1aXR5SGlzdG9yeRJtCg1FcXVpdHlIaXN0b3J5EiIubXQ1X3Rl",
-            "cm1fYXBpLkVxdWl0eUhpc3RvcnlSZXF1ZXN0GiAubXQ1X3Rlcm1fYXBpLkVx",
-            "dWl0eUhpc3RvcnlSZXBseSIWgtPkkwIQEg4vRXF1aXR5SGlzdG9yeRJ9ChFU",
-            "cmFkZVVucmVhbGl6ZWRQTBImLm10NV90ZXJtX2FwaS5UcmFkZVVucmVhbGl6",
-            "ZWRQTFJlcXVlc3QaJC5tdDVfdGVybV9hcGkuVHJhZGVVbnJlYWxpemVkUExS",
-            "ZXBseSIagtPkkwIUEhIvVHJhZGVVbnJlYWxpemVkUExCQloxZ2l0Lm10YXBp",
-            "LmlvL3Jvb3QvbXJwYy1wcm90by5naXQvbXQ1L2xpYnJhcmllcy9nb6oCDG10",
-            "NV90ZXJtX2FwaWIGcHJvdG8z"));
+            "cHJvZml0GAYgASgBIpEBChRNYXJrZXRUcmFkZUNvdW50RGF0YRITCgttYXJr",
+            "ZXRfbmFtZRgBIAEoCRINCgVjb3VudBgCIAEoBRIMCgRsb3RzGAMgASgBEg4K",
+            "BnByb2ZpdBgEIAEoARIQCgh3aW5fcmF0ZRgFIAEoARIRCgl3b25fY291bnQY",
+            "BiABKAUSEgoKbG9zdF9jb3VudBgHIAEoBSJ1ChFQcm9maXRhYmlsaXR5RGF0",
+            "YRISCgp3b25fdHJhZGVzGAEgASgDEhoKEndvbl90cmFkZXNfcGVyY2VudBgC",
+            "IAEoARITCgtsb3N0X3RyYWRlcxgDIAEoAxIbChNsb3N0X3RyYWRlc19wZXJj",
+            "ZW50GAQgASgBIj8KEkF2ZXJhZ2VQaXBzVXNkRGF0YRIUCgxhdmVyYWdlX3Bp",
+            "cHMYASABKAESEwoLYXZlcmFnZV91c2QYAiABKAEiPgoHV29uRGF0YRIRCgl3",
+            "b25fY291bnQYASABKAUSCwoDYWxsGAIgASgFEhMKC3dvbl9wZXJzZW50GAMg",
+            "ASgBIlUKClByb2ZpdERhdGESDQoFdGlrZXQYASABKAMSKAoEZGF0ZRgCIAEo",
+            "CzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDgoGcHJvZml0GAMgASgB",
+            "IkIKClpTY29yZURhdGESFwoPel9zY29yZV9kZWNpbWFsGAEgASgBEhsKE3pf",
+            "c2NvcmVfcHJvYmFiaWxpdHkYAiABKAEiLgoORXhwZWN0YW5jeURhdGESDAoE",
+            "cGlwcxgBIAEoARIOCgZkb2xsYXIYAiABKAEi2QEKE1N0YXRzV2l0aENoYXJ0",
+            "c0RhdGESJgoFc3RhdHMYASABKAsyFy5tdDVfdGVybV9hcGkuU3RhdHNEYXRh",
+            "Ei0KBmNoYXJ0cxgCIAMoCzIdLm10NV90ZXJtX2FwaS5FcXVpdHlQb2ludERh",
+            "dGESMgoGdHJhZGVzGAMgAygLMiIubXQ1X3Rlcm1fYXBpLlRyYWRlSGlzdG9y",
+            "eUl0ZW1EYXRhEjcKC29wZW5fdHJhZGVzGAQgAygLMiIubXQ1X3Rlcm1fYXBp",
+            "LlRyYWRlSGlzdG9yeUl0ZW1EYXRhIp8CChRUcmFkZUhpc3RvcnlJdGVtRGF0",
+            "YRIOCgZ0aWNrZXQYASABKAMSDgoGc3ltYm9sGAIgASgJEg4KBmlzX2J1eRgD",
+            "IAEoCBIMCgRsb3RzGAQgASgBEhIKCm9wZW5fcHJpY2UYBSABKAESEwoLY2xv",
+            "c2VfcHJpY2UYBiABKAESLQoJb3Blbl90aW1lGAcgASgLMhouZ29vZ2xlLnBy",
+            "b3RvYnVmLlRpbWVzdGFtcBIuCgpjbG9zZV90aW1lGAggASgLMhouZ29vZ2xl",
+            "LnByb3RvYnVmLlRpbWVzdGFtcBIOCgZwcm9maXQYCSABKAESEgoKY29tbWlz",
+            "c2lvbhgKIAEoARIMCgRzd2FwGAsgASgBEg8KB2NvbW1lbnQYDCABKAkiQgoR",
+            "RXF1aXR5SGlzdG9yeURhdGESLQoGcG9pbnRzGAEgAygLMh0ubXQ1X3Rlcm1f",
+            "YXBpLkVxdWl0eVBvaW50RGF0YSKIAgoPRXF1aXR5UG9pbnREYXRhEigKBHRp",
+            "bWUYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2JhbGFu",
+            "Y2UYAiABKAESDgoGZXF1aXR5GAMgASgBEhwKFGJhbGFuY2VfZHJhd2Rvd25f",
+            "cmF3GAQgASgBEiEKGWJhbGFuY2VfZHJhd2Rvd25fcmVsYXRpdmUYBSABKAES",
+            "GwoTZXF1aXR5X2RyYXdkb3duX3JhdxgGIAEoARIgChhlcXVpdHlfZHJhd2Rv",
+            "d25fcmVsYXRpdmUYByABKAESEwoLcmVhbGl6ZWRfcGwYCCABKAESFQoNdW5y",
+            "ZWFsaXplZF9wbBgJIAEoASJSChVUcmFkZVVucmVhbGl6ZWRQTERhdGESOQoH",
+            "ZXh0cmVtYRgBIAMoCzIoLm10NV90ZXJtX2FwaS5UcmFkZVVucmVhbGl6ZWRF",
+            "eHRyZW1hRGF0YSLkAQoaVHJhZGVVbnJlYWxpemVkRXh0cmVtYURhdGESDgoG",
+            "dGlja2V0GAEgASgDEg4KBnN5bWJvbBgCIAEoCRI3ChNtYXhfdW5yZWFsaXpl",
+            "ZF90aW1lGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIZChFt",
+            "YXhfdW5yZWFsaXplZF9wbBgEIAEoARI3ChNtaW5fdW5yZWFsaXplZF90aW1l",
+            "GAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIZChFtaW5fdW5y",
+            "ZWFsaXplZF9wbBgGIAEoATL1AwoKVHJhZGVTdGF0cxJhCgpUcmFkZVN0YXRz",
+            "Eh8ubXQ1X3Rlcm1fYXBpLlRyYWRlU3RhdHNSZXF1ZXN0Gh0ubXQ1X3Rlcm1f",
+            "YXBpLlRyYWRlU3RhdHNSZXBseSITgtPkkwINEgsvVHJhZGVTdGF0cxKVAQoX",
+            "VHJhZGVTdGF0c0VxdWl0eUhpc3RvcnkSLC5tdDVfdGVybV9hcGkuVHJhZGVT",
+            "dGF0c0VxdWl0eUhpc3RvcnlSZXF1ZXN0GioubXQ1X3Rlcm1fYXBpLlRyYWRl",
+            "U3RhdHNFcXVpdHlIaXN0b3J5UmVwbHkiIILT5JMCGhIYL1RyYWRlU3RhdHNF",
+            "cXVpdHlIaXN0b3J5Em0KDUVxdWl0eUhpc3RvcnkSIi5tdDVfdGVybV9hcGku",
+            "RXF1aXR5SGlzdG9yeVJlcXVlc3QaIC5tdDVfdGVybV9hcGkuRXF1aXR5SGlz",
+            "dG9yeVJlcGx5IhaC0+STAhASDi9FcXVpdHlIaXN0b3J5En0KEVRyYWRlVW5y",
+            "ZWFsaXplZFBMEiYubXQ1X3Rlcm1fYXBpLlRyYWRlVW5yZWFsaXplZFBMUmVx",
+            "dWVzdBokLm10NV90ZXJtX2FwaS5UcmFkZVVucmVhbGl6ZWRQTFJlcGx5IhqC",
+            "0+STAhQSEi9UcmFkZVVucmVhbGl6ZWRQTEJCWjFnaXQubXRhcGkuaW8vcm9v",
+            "dC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVzL2dvqgIMbXQ1X3Rlcm1f",
+            "YXBpYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Api.AnnotationsReflection.Descriptor, global::Mt5TermApi.MrpcMt5ErrorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -125,14 +136,15 @@ namespace mt5_term_api {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedPLReply), global::mt5_term_api.TradeUnrealizedPLReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StatsData), global::mt5_term_api.StatsData.Parser, new[]{ "Summary", "MaxBalanceDrawdownRaw", "MaxBalanceDrawdownRelative", "MaxEquityDrawdownRaw", "MaxEquityDrawdownRelative", "Markets", "Profitability", "Pips", "Lots", "Comissions", "AverageWin", "AverageLost", "LongsWon", "ShortsWon", "BestTrade", "WorstTrade", "BestTradePips", "WorstTradePips", "AverageTradeLength", "ProfitFactor", "StandardDeviation", "SharpeRatio", "ZScore", "Expectancy", "Ghpr", "Trades" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeSummaryData), global::mt5_term_api.TradeSummaryData.Parser, new[]{ "OpenTrades", "OpenProfit", "DayProfit", "WeekProfit", "MonthProfit", "TotalProfit" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.MarketTradeCountData), global::mt5_term_api.MarketTradeCountData.Parser, new[]{ "MarketName", "Count" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.MarketTradeCountData), global::mt5_term_api.MarketTradeCountData.Parser, new[]{ "MarketName", "Count", "Lots", "Profit", "WinRate", "WonCount", "LostCount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ProfitabilityData), global::mt5_term_api.ProfitabilityData.Parser, new[]{ "WonTrades", "WonTradesPercent", "LostTrades", "LostTradesPercent" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.AveragePipsUsdData), global::mt5_term_api.AveragePipsUsdData.Parser, new[]{ "AveragePips", "AverageUsd" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.WonData), global::mt5_term_api.WonData.Parser, new[]{ "WonCount", "All", "WonPersent" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ProfitData), global::mt5_term_api.ProfitData.Parser, new[]{ "Tiket", "Date", "Profit" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ZScoreData), global::mt5_term_api.ZScoreData.Parser, new[]{ "ZScoreDecimal", "ZScoreProbability" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ExpectancyData), global::mt5_term_api.ExpectancyData.Parser, new[]{ "Pips", "Dollar" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StatsWithChartsData), global::mt5_term_api.StatsWithChartsData.Parser, new[]{ "Stats", "Charts" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StatsWithChartsData), global::mt5_term_api.StatsWithChartsData.Parser, new[]{ "Stats", "Charts", "Trades", "OpenTrades" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeHistoryItemData), global::mt5_term_api.TradeHistoryItemData.Parser, new[]{ "Ticket", "Symbol", "IsBuy", "Lots", "OpenPrice", "ClosePrice", "OpenTime", "CloseTime", "Profit", "Commission", "Swap", "Comment" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityHistoryData), global::mt5_term_api.EquityHistoryData.Parser, new[]{ "Points" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityPointData), global::mt5_term_api.EquityPointData.Parser, new[]{ "Time", "Balance", "Equity", "BalanceDrawdownRaw", "BalanceDrawdownRelative", "EquityDrawdownRaw", "EquityDrawdownRelative", "RealizedPl", "UnrealizedPl" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedPLData), global::mt5_term_api.TradeUnrealizedPLData.Parser, new[]{ "Extrema" }, null, null, null, null),
@@ -3830,6 +3842,11 @@ namespace mt5_term_api {
     public MarketTradeCountData(MarketTradeCountData other) : this() {
       marketName_ = other.marketName_;
       count_ = other.count_;
+      lots_ = other.lots_;
+      profit_ = other.profit_;
+      winRate_ = other.winRate_;
+      wonCount_ = other.wonCount_;
+      lostCount_ = other.lostCount_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3863,6 +3880,66 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "lots" field.</summary>
+    public const int LotsFieldNumber = 3;
+    private double lots_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double Lots {
+      get { return lots_; }
+      set {
+        lots_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "profit" field.</summary>
+    public const int ProfitFieldNumber = 4;
+    private double profit_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double Profit {
+      get { return profit_; }
+      set {
+        profit_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "win_rate" field.</summary>
+    public const int WinRateFieldNumber = 5;
+    private double winRate_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double WinRate {
+      get { return winRate_; }
+      set {
+        winRate_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "won_count" field.</summary>
+    public const int WonCountFieldNumber = 6;
+    private int wonCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int WonCount {
+      get { return wonCount_; }
+      set {
+        wonCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "lost_count" field.</summary>
+    public const int LostCountFieldNumber = 7;
+    private int lostCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int LostCount {
+      get { return lostCount_; }
+      set {
+        lostCount_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -3880,6 +3957,11 @@ namespace mt5_term_api {
       }
       if (MarketName != other.MarketName) return false;
       if (Count != other.Count) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Lots, other.Lots)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Profit, other.Profit)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(WinRate, other.WinRate)) return false;
+      if (WonCount != other.WonCount) return false;
+      if (LostCount != other.LostCount) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3889,6 +3971,11 @@ namespace mt5_term_api {
       int hash = 1;
       if (MarketName.Length != 0) hash ^= MarketName.GetHashCode();
       if (Count != 0) hash ^= Count.GetHashCode();
+      if (Lots != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Lots);
+      if (Profit != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Profit);
+      if (WinRate != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(WinRate);
+      if (WonCount != 0) hash ^= WonCount.GetHashCode();
+      if (LostCount != 0) hash ^= LostCount.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3915,6 +4002,26 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteInt32(Count);
       }
+      if (Lots != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Lots);
+      }
+      if (Profit != 0D) {
+        output.WriteRawTag(33);
+        output.WriteDouble(Profit);
+      }
+      if (WinRate != 0D) {
+        output.WriteRawTag(41);
+        output.WriteDouble(WinRate);
+      }
+      if (WonCount != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(WonCount);
+      }
+      if (LostCount != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(LostCount);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3933,6 +4040,26 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteInt32(Count);
       }
+      if (Lots != 0D) {
+        output.WriteRawTag(25);
+        output.WriteDouble(Lots);
+      }
+      if (Profit != 0D) {
+        output.WriteRawTag(33);
+        output.WriteDouble(Profit);
+      }
+      if (WinRate != 0D) {
+        output.WriteRawTag(41);
+        output.WriteDouble(WinRate);
+      }
+      if (WonCount != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(WonCount);
+      }
+      if (LostCount != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(LostCount);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3948,6 +4075,21 @@ namespace mt5_term_api {
       }
       if (Count != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Count);
+      }
+      if (Lots != 0D) {
+        size += 1 + 8;
+      }
+      if (Profit != 0D) {
+        size += 1 + 8;
+      }
+      if (WinRate != 0D) {
+        size += 1 + 8;
+      }
+      if (WonCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(WonCount);
+      }
+      if (LostCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LostCount);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3966,6 +4108,21 @@ namespace mt5_term_api {
       }
       if (other.Count != 0) {
         Count = other.Count;
+      }
+      if (other.Lots != 0D) {
+        Lots = other.Lots;
+      }
+      if (other.Profit != 0D) {
+        Profit = other.Profit;
+      }
+      if (other.WinRate != 0D) {
+        WinRate = other.WinRate;
+      }
+      if (other.WonCount != 0) {
+        WonCount = other.WonCount;
+      }
+      if (other.LostCount != 0) {
+        LostCount = other.LostCount;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3990,6 +4147,26 @@ namespace mt5_term_api {
             Count = input.ReadInt32();
             break;
           }
+          case 25: {
+            Lots = input.ReadDouble();
+            break;
+          }
+          case 33: {
+            Profit = input.ReadDouble();
+            break;
+          }
+          case 41: {
+            WinRate = input.ReadDouble();
+            break;
+          }
+          case 48: {
+            WonCount = input.ReadInt32();
+            break;
+          }
+          case 56: {
+            LostCount = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -4011,6 +4188,26 @@ namespace mt5_term_api {
           }
           case 16: {
             Count = input.ReadInt32();
+            break;
+          }
+          case 25: {
+            Lots = input.ReadDouble();
+            break;
+          }
+          case 33: {
+            Profit = input.ReadDouble();
+            break;
+          }
+          case 41: {
+            WinRate = input.ReadDouble();
+            break;
+          }
+          case 48: {
+            WonCount = input.ReadInt32();
+            break;
+          }
+          case 56: {
+            LostCount = input.ReadInt32();
             break;
           }
         }
@@ -5569,6 +5766,8 @@ namespace mt5_term_api {
     public StatsWithChartsData(StatsWithChartsData other) : this() {
       stats_ = other.stats_ != null ? other.stats_.Clone() : null;
       charts_ = other.charts_.Clone();
+      trades_ = other.trades_.Clone();
+      openTrades_ = other.openTrades_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -5601,6 +5800,28 @@ namespace mt5_term_api {
       get { return charts_; }
     }
 
+    /// <summary>Field number for the "trades" field.</summary>
+    public const int TradesFieldNumber = 3;
+    private static readonly pb::FieldCodec<global::mt5_term_api.TradeHistoryItemData> _repeated_trades_codec
+        = pb::FieldCodec.ForMessage(26, global::mt5_term_api.TradeHistoryItemData.Parser);
+    private readonly pbc::RepeatedField<global::mt5_term_api.TradeHistoryItemData> trades_ = new pbc::RepeatedField<global::mt5_term_api.TradeHistoryItemData>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::mt5_term_api.TradeHistoryItemData> Trades {
+      get { return trades_; }
+    }
+
+    /// <summary>Field number for the "open_trades" field.</summary>
+    public const int OpenTradesFieldNumber = 4;
+    private static readonly pb::FieldCodec<global::mt5_term_api.TradeHistoryItemData> _repeated_openTrades_codec
+        = pb::FieldCodec.ForMessage(34, global::mt5_term_api.TradeHistoryItemData.Parser);
+    private readonly pbc::RepeatedField<global::mt5_term_api.TradeHistoryItemData> openTrades_ = new pbc::RepeatedField<global::mt5_term_api.TradeHistoryItemData>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::mt5_term_api.TradeHistoryItemData> OpenTrades {
+      get { return openTrades_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -5618,6 +5839,8 @@ namespace mt5_term_api {
       }
       if (!object.Equals(Stats, other.Stats)) return false;
       if(!charts_.Equals(other.charts_)) return false;
+      if(!trades_.Equals(other.trades_)) return false;
+      if(!openTrades_.Equals(other.openTrades_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -5627,6 +5850,8 @@ namespace mt5_term_api {
       int hash = 1;
       if (stats_ != null) hash ^= Stats.GetHashCode();
       hash ^= charts_.GetHashCode();
+      hash ^= trades_.GetHashCode();
+      hash ^= openTrades_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5650,6 +5875,8 @@ namespace mt5_term_api {
         output.WriteMessage(Stats);
       }
       charts_.WriteTo(output, _repeated_charts_codec);
+      trades_.WriteTo(output, _repeated_trades_codec);
+      openTrades_.WriteTo(output, _repeated_openTrades_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5665,6 +5892,8 @@ namespace mt5_term_api {
         output.WriteMessage(Stats);
       }
       charts_.WriteTo(ref output, _repeated_charts_codec);
+      trades_.WriteTo(ref output, _repeated_trades_codec);
+      openTrades_.WriteTo(ref output, _repeated_openTrades_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5679,6 +5908,8 @@ namespace mt5_term_api {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Stats);
       }
       size += charts_.CalculateSize(_repeated_charts_codec);
+      size += trades_.CalculateSize(_repeated_trades_codec);
+      size += openTrades_.CalculateSize(_repeated_openTrades_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -5698,6 +5929,8 @@ namespace mt5_term_api {
         Stats.MergeFrom(other.Stats);
       }
       charts_.Add(other.charts_);
+      trades_.Add(other.trades_);
+      openTrades_.Add(other.openTrades_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -5722,6 +5955,14 @@ namespace mt5_term_api {
           }
           case 18: {
             charts_.AddEntriesFrom(input, _repeated_charts_codec);
+            break;
+          }
+          case 26: {
+            trades_.AddEntriesFrom(input, _repeated_trades_codec);
+            break;
+          }
+          case 34: {
+            openTrades_.AddEntriesFrom(input, _repeated_openTrades_codec);
             break;
           }
         }
@@ -5750,6 +5991,628 @@ namespace mt5_term_api {
             charts_.AddEntriesFrom(ref input, _repeated_charts_codec);
             break;
           }
+          case 26: {
+            trades_.AddEntriesFrom(ref input, _repeated_trades_codec);
+            break;
+          }
+          case 34: {
+            openTrades_.AddEntriesFrom(ref input, _repeated_openTrades_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class TradeHistoryItemData : pb::IMessage<TradeHistoryItemData>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<TradeHistoryItemData> _parser = new pb::MessageParser<TradeHistoryItemData>(() => new TradeHistoryItemData());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<TradeHistoryItemData> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor.MessageTypes[18]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TradeHistoryItemData() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TradeHistoryItemData(TradeHistoryItemData other) : this() {
+      ticket_ = other.ticket_;
+      symbol_ = other.symbol_;
+      isBuy_ = other.isBuy_;
+      lots_ = other.lots_;
+      openPrice_ = other.openPrice_;
+      closePrice_ = other.closePrice_;
+      openTime_ = other.openTime_ != null ? other.openTime_.Clone() : null;
+      closeTime_ = other.closeTime_ != null ? other.closeTime_.Clone() : null;
+      profit_ = other.profit_;
+      commission_ = other.commission_;
+      swap_ = other.swap_;
+      comment_ = other.comment_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TradeHistoryItemData Clone() {
+      return new TradeHistoryItemData(this);
+    }
+
+    /// <summary>Field number for the "ticket" field.</summary>
+    public const int TicketFieldNumber = 1;
+    private long ticket_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Ticket {
+      get { return ticket_; }
+      set {
+        ticket_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "symbol" field.</summary>
+    public const int SymbolFieldNumber = 2;
+    private string symbol_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Symbol {
+      get { return symbol_; }
+      set {
+        symbol_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "is_buy" field.</summary>
+    public const int IsBuyFieldNumber = 3;
+    private bool isBuy_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IsBuy {
+      get { return isBuy_; }
+      set {
+        isBuy_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "lots" field.</summary>
+    public const int LotsFieldNumber = 4;
+    private double lots_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double Lots {
+      get { return lots_; }
+      set {
+        lots_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "open_price" field.</summary>
+    public const int OpenPriceFieldNumber = 5;
+    private double openPrice_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double OpenPrice {
+      get { return openPrice_; }
+      set {
+        openPrice_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "close_price" field.</summary>
+    public const int ClosePriceFieldNumber = 6;
+    private double closePrice_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double ClosePrice {
+      get { return closePrice_; }
+      set {
+        closePrice_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "open_time" field.</summary>
+    public const int OpenTimeFieldNumber = 7;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp openTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp OpenTime {
+      get { return openTime_; }
+      set {
+        openTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "close_time" field.</summary>
+    public const int CloseTimeFieldNumber = 8;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp closeTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp CloseTime {
+      get { return closeTime_; }
+      set {
+        closeTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "profit" field.</summary>
+    public const int ProfitFieldNumber = 9;
+    private double profit_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double Profit {
+      get { return profit_; }
+      set {
+        profit_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "commission" field.</summary>
+    public const int CommissionFieldNumber = 10;
+    private double commission_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double Commission {
+      get { return commission_; }
+      set {
+        commission_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "swap" field.</summary>
+    public const int SwapFieldNumber = 11;
+    private double swap_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double Swap {
+      get { return swap_; }
+      set {
+        swap_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "comment" field.</summary>
+    public const int CommentFieldNumber = 12;
+    private string comment_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Comment {
+      get { return comment_; }
+      set {
+        comment_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as TradeHistoryItemData);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(TradeHistoryItemData other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Ticket != other.Ticket) return false;
+      if (Symbol != other.Symbol) return false;
+      if (IsBuy != other.IsBuy) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Lots, other.Lots)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(OpenPrice, other.OpenPrice)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ClosePrice, other.ClosePrice)) return false;
+      if (!object.Equals(OpenTime, other.OpenTime)) return false;
+      if (!object.Equals(CloseTime, other.CloseTime)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Profit, other.Profit)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Commission, other.Commission)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Swap, other.Swap)) return false;
+      if (Comment != other.Comment) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Ticket != 0L) hash ^= Ticket.GetHashCode();
+      if (Symbol.Length != 0) hash ^= Symbol.GetHashCode();
+      if (IsBuy != false) hash ^= IsBuy.GetHashCode();
+      if (Lots != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Lots);
+      if (OpenPrice != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(OpenPrice);
+      if (ClosePrice != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ClosePrice);
+      if (openTime_ != null) hash ^= OpenTime.GetHashCode();
+      if (closeTime_ != null) hash ^= CloseTime.GetHashCode();
+      if (Profit != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Profit);
+      if (Commission != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Commission);
+      if (Swap != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Swap);
+      if (Comment.Length != 0) hash ^= Comment.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Ticket != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(Ticket);
+      }
+      if (Symbol.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Symbol);
+      }
+      if (IsBuy != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(IsBuy);
+      }
+      if (Lots != 0D) {
+        output.WriteRawTag(33);
+        output.WriteDouble(Lots);
+      }
+      if (OpenPrice != 0D) {
+        output.WriteRawTag(41);
+        output.WriteDouble(OpenPrice);
+      }
+      if (ClosePrice != 0D) {
+        output.WriteRawTag(49);
+        output.WriteDouble(ClosePrice);
+      }
+      if (openTime_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(OpenTime);
+      }
+      if (closeTime_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(CloseTime);
+      }
+      if (Profit != 0D) {
+        output.WriteRawTag(73);
+        output.WriteDouble(Profit);
+      }
+      if (Commission != 0D) {
+        output.WriteRawTag(81);
+        output.WriteDouble(Commission);
+      }
+      if (Swap != 0D) {
+        output.WriteRawTag(89);
+        output.WriteDouble(Swap);
+      }
+      if (Comment.Length != 0) {
+        output.WriteRawTag(98);
+        output.WriteString(Comment);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Ticket != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(Ticket);
+      }
+      if (Symbol.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Symbol);
+      }
+      if (IsBuy != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(IsBuy);
+      }
+      if (Lots != 0D) {
+        output.WriteRawTag(33);
+        output.WriteDouble(Lots);
+      }
+      if (OpenPrice != 0D) {
+        output.WriteRawTag(41);
+        output.WriteDouble(OpenPrice);
+      }
+      if (ClosePrice != 0D) {
+        output.WriteRawTag(49);
+        output.WriteDouble(ClosePrice);
+      }
+      if (openTime_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(OpenTime);
+      }
+      if (closeTime_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(CloseTime);
+      }
+      if (Profit != 0D) {
+        output.WriteRawTag(73);
+        output.WriteDouble(Profit);
+      }
+      if (Commission != 0D) {
+        output.WriteRawTag(81);
+        output.WriteDouble(Commission);
+      }
+      if (Swap != 0D) {
+        output.WriteRawTag(89);
+        output.WriteDouble(Swap);
+      }
+      if (Comment.Length != 0) {
+        output.WriteRawTag(98);
+        output.WriteString(Comment);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Ticket != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Ticket);
+      }
+      if (Symbol.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Symbol);
+      }
+      if (IsBuy != false) {
+        size += 1 + 1;
+      }
+      if (Lots != 0D) {
+        size += 1 + 8;
+      }
+      if (OpenPrice != 0D) {
+        size += 1 + 8;
+      }
+      if (ClosePrice != 0D) {
+        size += 1 + 8;
+      }
+      if (openTime_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(OpenTime);
+      }
+      if (closeTime_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(CloseTime);
+      }
+      if (Profit != 0D) {
+        size += 1 + 8;
+      }
+      if (Commission != 0D) {
+        size += 1 + 8;
+      }
+      if (Swap != 0D) {
+        size += 1 + 8;
+      }
+      if (Comment.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Comment);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(TradeHistoryItemData other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Ticket != 0L) {
+        Ticket = other.Ticket;
+      }
+      if (other.Symbol.Length != 0) {
+        Symbol = other.Symbol;
+      }
+      if (other.IsBuy != false) {
+        IsBuy = other.IsBuy;
+      }
+      if (other.Lots != 0D) {
+        Lots = other.Lots;
+      }
+      if (other.OpenPrice != 0D) {
+        OpenPrice = other.OpenPrice;
+      }
+      if (other.ClosePrice != 0D) {
+        ClosePrice = other.ClosePrice;
+      }
+      if (other.openTime_ != null) {
+        if (openTime_ == null) {
+          OpenTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        OpenTime.MergeFrom(other.OpenTime);
+      }
+      if (other.closeTime_ != null) {
+        if (closeTime_ == null) {
+          CloseTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        CloseTime.MergeFrom(other.CloseTime);
+      }
+      if (other.Profit != 0D) {
+        Profit = other.Profit;
+      }
+      if (other.Commission != 0D) {
+        Commission = other.Commission;
+      }
+      if (other.Swap != 0D) {
+        Swap = other.Swap;
+      }
+      if (other.Comment.Length != 0) {
+        Comment = other.Comment;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Ticket = input.ReadInt64();
+            break;
+          }
+          case 18: {
+            Symbol = input.ReadString();
+            break;
+          }
+          case 24: {
+            IsBuy = input.ReadBool();
+            break;
+          }
+          case 33: {
+            Lots = input.ReadDouble();
+            break;
+          }
+          case 41: {
+            OpenPrice = input.ReadDouble();
+            break;
+          }
+          case 49: {
+            ClosePrice = input.ReadDouble();
+            break;
+          }
+          case 58: {
+            if (openTime_ == null) {
+              OpenTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(OpenTime);
+            break;
+          }
+          case 66: {
+            if (closeTime_ == null) {
+              CloseTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(CloseTime);
+            break;
+          }
+          case 73: {
+            Profit = input.ReadDouble();
+            break;
+          }
+          case 81: {
+            Commission = input.ReadDouble();
+            break;
+          }
+          case 89: {
+            Swap = input.ReadDouble();
+            break;
+          }
+          case 98: {
+            Comment = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Ticket = input.ReadInt64();
+            break;
+          }
+          case 18: {
+            Symbol = input.ReadString();
+            break;
+          }
+          case 24: {
+            IsBuy = input.ReadBool();
+            break;
+          }
+          case 33: {
+            Lots = input.ReadDouble();
+            break;
+          }
+          case 41: {
+            OpenPrice = input.ReadDouble();
+            break;
+          }
+          case 49: {
+            ClosePrice = input.ReadDouble();
+            break;
+          }
+          case 58: {
+            if (openTime_ == null) {
+              OpenTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(OpenTime);
+            break;
+          }
+          case 66: {
+            if (closeTime_ == null) {
+              CloseTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(CloseTime);
+            break;
+          }
+          case 73: {
+            Profit = input.ReadDouble();
+            break;
+          }
+          case 81: {
+            Commission = input.ReadDouble();
+            break;
+          }
+          case 89: {
+            Swap = input.ReadDouble();
+            break;
+          }
+          case 98: {
+            Comment = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -5771,7 +6634,7 @@ namespace mt5_term_api {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor.MessageTypes[18]; }
+      get { return global::mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5949,7 +6812,7 @@ namespace mt5_term_api {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor.MessageTypes[19]; }
+      get { return global::mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6443,7 +7306,7 @@ namespace mt5_term_api {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor.MessageTypes[20]; }
+      get { return global::mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6621,7 +7484,7 @@ namespace mt5_term_api {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor.MessageTypes[21]; }
+      get { return global::mt5_term_api.Mt5TermApiTradeStatsReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

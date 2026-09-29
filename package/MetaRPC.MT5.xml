@@ -11516,6 +11516,21 @@
         <member name="F:mt5_term_api.MarketTradeCountData.CountFieldNumber">
             <summary>Field number for the "count" field.</summary>
         </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.LotsFieldNumber">
+            <summary>Field number for the "lots" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.ProfitFieldNumber">
+            <summary>Field number for the "profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.WinRateFieldNumber">
+            <summary>Field number for the "win_rate" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.WonCountFieldNumber">
+            <summary>Field number for the "won_count" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.LostCountFieldNumber">
+            <summary>Field number for the "lost_count" field.</summary>
+        </member>
         <member name="F:mt5_term_api.ProfitabilityData.WonTradesFieldNumber">
             <summary>Field number for the "won_trades" field.</summary>
         </member>
@@ -11569,6 +11584,48 @@
         </member>
         <member name="F:mt5_term_api.StatsWithChartsData.ChartsFieldNumber">
             <summary>Field number for the "charts" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsWithChartsData.TradesFieldNumber">
+            <summary>Field number for the "trades" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsWithChartsData.OpenTradesFieldNumber">
+            <summary>Field number for the "open_trades" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.TicketFieldNumber">
+            <summary>Field number for the "ticket" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.SymbolFieldNumber">
+            <summary>Field number for the "symbol" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.IsBuyFieldNumber">
+            <summary>Field number for the "is_buy" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.LotsFieldNumber">
+            <summary>Field number for the "lots" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.OpenPriceFieldNumber">
+            <summary>Field number for the "open_price" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.ClosePriceFieldNumber">
+            <summary>Field number for the "close_price" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.OpenTimeFieldNumber">
+            <summary>Field number for the "open_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.CloseTimeFieldNumber">
+            <summary>Field number for the "close_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.ProfitFieldNumber">
+            <summary>Field number for the "profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.CommissionFieldNumber">
+            <summary>Field number for the "commission" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.SwapFieldNumber">
+            <summary>Field number for the "swap" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.CommentFieldNumber">
+            <summary>Field number for the "comment" field.</summary>
         </member>
         <member name="F:mt5_term_api.EquityHistoryData.PointsFieldNumber">
             <summary>Field number for the "points" field.</summary>
