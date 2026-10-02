@@ -14773,6 +14773,28 @@
             <param name="context">The context of the server-side call handler being invoked.</param>
             <returns>The response to send back to the client (wrapped by a task).</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.Drain(mrpc_admin.DrainRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.StopTerminalLocal(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
         <member name="T:mrpc_admin.AdminApi.AdminApiClient">
             <summary>Client for AdminApi</summary>
         </member>
@@ -15475,6 +15497,102 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.Drain(mrpc_admin.DrainRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.Drain(mrpc_admin.DrainRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.DrainAsync(mrpc_admin.DrainRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.DrainAsync(mrpc_admin.DrainRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.StopTerminalLocal(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.StopTerminalLocal(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.StopTerminalLocalAsync(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.StopTerminalLocalAsync(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mrpc_admin.AdminApi.AdminApiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -15623,6 +15741,143 @@
         </member>
         <member name="F:mrpc_admin.KillAllTrialTerminalsReply.ErrorFieldNumber">
             <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.DrainRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.DrainRequest.ReasonFieldNumber">
+            <summary>Field number for the "reason" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainRequest.Reason">
+            <summary>
+            why the pod drains (e.g. "preStop"); default "AdminDrain"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.DrainingFieldNumber">
+            <summary>Field number for the "draining" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.Draining">
+            <summary>
+            the pod is draining (always true on success)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.AlreadyDrainingFieldNumber">
+            <summary>Field number for the "already_draining" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.AlreadyDraining">
+            <summary>
+            it was already draining before this call
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.PodFieldNumber">
+            <summary>Field number for the "pod" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.Pod">
+            <summary>
+            pod name
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.ReasonFieldNumber">
+            <summary>Field number for the "reason" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.Reason">
+            <summary>
+            reason of the drain in effect (the first one)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.StartedAtFieldNumber">
+            <summary>Field number for the "started_at" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.StartedAt">
+            <summary>
+            ISO-8601 UTC when draining started
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalRequest.Id">
+            <summary>
+            terminal id (any GUID format)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.CauseFieldNumber">
+            <summary>Field number for the "cause" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalRequest.Cause">
+            <summary>
+            StopCause name, e.g. "UserPortal", "UserApi", "InternalReap"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.DetailFieldNumber">
+            <summary>Field number for the "detail" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalRequest.Detail">
+            <summary>
+            reason recorded with the stop (e.g. "DuplicatePrune", "RebalanceMigrate")
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.IntentUtcFieldNumber">
+            <summary>Field number for the "intent_utc" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalRequest.IntentUtc">
+            <summary>
+            optional ISO-8601 UTC time the stop intent was recorded: a local copy whose
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.StoppedFieldNumber">
+            <summary>Field number for the "stopped" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Stopped">
+            <summary>
+            the local copy was stopped by this call
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.PresentFieldNumber">
+            <summary>Field number for the "present" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Present">
+            <summary>
+            this pod had a copy of the terminal (a record owning a process)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.PodFieldNumber">
+            <summary>Field number for the "pod" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Pod">
+            <summary>
+            pod that handled the call
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Error">
+            <summary>
+            non-empty when the request was invalid or the stop failed
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.FullLifeTimeSecondsFieldNumber">
+            <summary>Field number for the "full_life_time_seconds" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.FullLifeTimeSeconds">
+            <summary>
+            lifetime of the stopped copy (0 when nothing was stopped)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.SkippedFieldNumber">
+            <summary>Field number for the "skipped" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Skipped">
+            <summary>
+            why a present copy was left running (e.g. it was started after the intent)
+            </summary>
         </member>
         <member name="F:mrpc_admin.GetSessionRestoreLogsRequest.AdminKeyFieldNumber">
             <summary>Field number for the "admin_key" field.</summary>
