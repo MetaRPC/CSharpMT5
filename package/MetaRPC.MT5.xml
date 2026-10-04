@@ -6962,6 +6962,15 @@
             List of log rows from the terminal tab
             </summary>
         </member>
+        <member name="F:mt5_term_api.GetTerminalJournalData.DiagnosticsFieldNumber">
+            <summary>Field number for the "diagnostics" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetTerminalJournalData.Diagnostics">
+            <summary>
+            Reader diagnostics for this capture: which Journal/Experts list it found, how the rows
+            were captured, counts and a short trace. Empty when the terminal API does not report it.
+            </summary>
+        </member>
         <member name="F:mt5_term_api.TerminalJournalRow.TimeFieldNumber">
             <summary>Field number for the "time" field.</summary>
         </member>
@@ -16049,6 +16058,37 @@
             <summary>
             MT4 / MT5 as this process resolved it
             </summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationFieldNumber">
+            <summary>Field number for the "session_creation" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.VersionReply.SessionCreation">
+            <summary>
+            Windows session creation on this pod (SessionCreationHealth): "healthy", "unhealthy" (its last
+            consecutive creations all failed - restore placement skips it) or "disabled" (no on-demand sessions).
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationConsecutiveFailuresFieldNumber">
+            <summary>Field number for the "session_creation_consecutive_failures" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationLastErrorFieldNumber">
+            <summary>Field number for the "session_creation_last_error" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.VersionReply.SessionCreationLastError">
+            <summary>
+            "MrpcTerminalUserN: &lt;launcher error>"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationLastSuccessUtcFieldNumber">
+            <summary>Field number for the "session_creation_last_success_utc" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.VersionReply.SessionCreationLastSuccessUtc">
+            <summary>
+            ISO-8601, empty when none yet
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationUnhealthySinceUtcFieldNumber">
+            <summary>Field number for the "session_creation_unhealthy_since_utc" field.</summary>
         </member>
         <member name="F:mrpc_admin.ListLogFilesReply.FilesFieldNumber">
             <summary>Field number for the "files" field.</summary>
