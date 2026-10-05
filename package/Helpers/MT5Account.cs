@@ -109,6 +109,12 @@ namespace MetaRPC.CSharpMT5
 		/// </summary>
 		public string ApiKey { get; set; } = "TRIAL";
 
+		/// <summary>
+		/// Gets or sets the optional terminal name or creator identifier sent with every connect request.
+		/// It labels the terminal instance on the server (for example with the name of the application using it).
+		/// </summary>
+		public string? Name { get; set; }
+
 		private bool Connected
 		{
 			get
@@ -129,8 +135,10 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="grpcServer">The address of the gRPC server (optional).</param>
 		/// <param name="id">An optional unique identifier for the account instance.</param>
 		/// <param name="apiKey">An optional API key for authentication (defaults to TRIAL or MRPC_API_KEY env var).</param>
-		public MT5Account(ulong user, string password, string? grpcServer = null, Guid id = default(Guid), string? apiKey = null)
+		/// <param name="name">An optional terminal name or creator identifier, sent with every connect request.</param>
+		public MT5Account(ulong user, string password, string? grpcServer = null, Guid id = default(Guid), string? apiKey = null, string? name = null)
 		{
+			Name = name;
 			User = user;
 			Password = password;
 			GrpcServer = grpcServer ?? "https://mt5.mrpc.pro:443";
@@ -189,11 +197,13 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="timeoutSeconds">How long to wait for terminal readiness before timing out.</param>
 		/// <param name="deadline">Optional gRPC deadline for the operation.</param>
 		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <param name="name">Optional terminal name or creator identifier. When given it replaces <see cref="P:mt5_term_api.MT5Account.Name" /> for this and later connects.</param>
 		/// <returns>A task representing the asynchronous connection operation.</returns>
 		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error response.</exception>
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
-		public async Task ConnectByHostPortAsync(string host, int port = 443, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		public async Task ConnectByHostPortAsync(string host, int port = 443, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken), string? name = null)
 		{
+			if (!string.IsNullOrWhiteSpace(name)) Name = name;
 			// The ConnectRequest proto has no base_chart_symbol / wait_for_terminal_is_alive /
 			// terminal_readiness_waiting_timeout_seconds; only the connection timeout maps to a real field.
 			ConnectRequest request = new ConnectRequest
@@ -204,6 +214,7 @@ namespace MetaRPC.CSharpMT5
 				Port = port,
 				TimeoutSeconds = (uint)timeoutSeconds
 			};
+			if (!string.IsNullOrWhiteSpace(Name)) request.Name = Name;
 			Metadata headers = new Metadata();
 			if (Id != default(Guid))
 			{
@@ -256,11 +267,13 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="timeoutSeconds">How long to wait for terminal readiness before timing out.</param>
 		/// <param name="deadline">Optional gRPC deadline for the operation.</param>
 		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <param name="name">Optional terminal name or creator identifier. When given it replaces <see cref="P:mt5_term_api.MT5Account.Name" /> for this and later connects.</param>
 		/// <returns>A task representing the asynchronous connection operation.</returns>
 		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error response.</exception>
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
-		public async Task ConnectByServerNameAsync(string serverName, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		public async Task ConnectByServerNameAsync(string serverName, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken), string? name = null)
 		{
+			if (!string.IsNullOrWhiteSpace(name)) Name = name;
 			// ConnectExRequest has base_chart_symbol but no terminal_readiness_waiting_timeout_seconds —
 			// map the timeout to timeout_seconds.
 			ConnectExRequest request = new ConnectExRequest
@@ -270,6 +283,7 @@ namespace MetaRPC.CSharpMT5
 				MtClusterName = serverName,
 				TimeoutSeconds = (uint)timeoutSeconds
 			};
+			if (!string.IsNullOrWhiteSpace(Name)) request.Name = Name;
 			Metadata headers = new Metadata();
 			if (Id != default(Guid))
 			{
