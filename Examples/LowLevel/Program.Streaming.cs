@@ -310,16 +310,16 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
         // ═════════════════════════════════════════════════════════════════
         // STREAM 1: TICK DATA (FAST STREAM)
         // ═════════════════════════════════════════════════════════════════
-        // 📊 OnSymbolTickAsync() - Real-time price tick stream
+        //  OnSymbolTickAsync() - Real-time price tick stream
         //
         // TYPE: FAST STREAM (high-frequency market data)
         // TRIGGERS: Continuously as market prices change (10+ ticks/second)
         // STOPS: When event limit reached (MAX_TICK_EVENTS) or timeout
         //
         // RESOURCE CLEANUP:
-        // ✅ Stream automatically disposed in finally block (MT5Account.cs:918)
-        // ✅ break statement triggers IAsyncEnumerable cleanup
-        // ✅ CancellationToken propagates to gRPC layer
+        //  Stream automatically disposed in finally block (MT5Account.cs:918)
+        //  break statement triggers IAsyncEnumerable cleanup
+        //  CancellationToken propagates to gRPC layer
 
         private static async Task RunTickStream(MT5Service svc, CancellationToken ct)
         {

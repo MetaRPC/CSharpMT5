@@ -266,8 +266,8 @@ using (await svc.SubscribeToMarketBookAsync("EURUSD"))
 
 ## 🔗 Related Documentation
 
-- **[MT5Account Documentation](../API_Reference/MT5Account.md)** - Low-level RPC methods
-- **[MT5Service Documentation](../API_Reference/MT5Service.md)** - Mid-level service layer
+- **[MT5Account Documentation](../MT5Account/MT5Account.Master.Overview.md)** - Low-level RPC methods
+- **[MT5Service Documentation](../MT5Service/MT5Service.Overview.md)** - Mid-level service layer
 - **MT5Sugar** (this document) - High-level convenience methods
 
 ---

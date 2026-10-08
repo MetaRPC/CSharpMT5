@@ -167,6 +167,9 @@ namespace mt5_term_api
 | `BMT5_POSITION_REASON_MOBILE`  | 1     | Opened from mobile app             |
 | `BMT5_POSITION_REASON_WEB`     | 2     | Opened from web platform           |
 | `BMT5_POSITION_REASON_EXPERT`  | 3     | Opened by EA/script                |
+| `ORDER_REASON_SL`              | 4     | Position closed/opened by Stop Loss |
+| `ORDER_REASON_TP`              | 5     | Position closed/opened by Take Profit |
+| `ORDER_REASON_SO`              | 6     | Position closed/opened by Stop Out (margin call) |
 
 ### `BMT5_ENUM_ORDER_TYPE_FILLING`
 

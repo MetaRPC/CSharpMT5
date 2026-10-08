@@ -1105,8 +1105,10 @@ namespace MetaRPC.CSharpMT5
                     {
                         if (p.GetValue(openedOrdersData) is System.Collections.IEnumerable seq)
                         {
+                            // Yield positions, then CONTINUE to also enumerate pending orders below.
+                            // (Do NOT yield break here: a single OpenedOrders reply can contain BOTH
+                            //  open positions and pending orders. Callers filter by type themselves.)
                             foreach (var item in seq) yield return item!;
-                            yield break;
                         }
                     }
                 }

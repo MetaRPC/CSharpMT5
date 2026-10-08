@@ -122,7 +122,7 @@ Tested and verified with over 500+ MetaTrader server environments:
 - 📖 [Comprehensive Documentation](https://metarpc.github.io/CSharpMT5/)
 - 🚀 [Quick Start & First Project](https://metarpc.github.io/CSharpMT5/All_Guides/Your_First_Project/)
 - 📡 [Live Market Data & gRPC Streaming](https://metarpc.github.io/CSharpMT5/All_Guides/GRPC_STREAM_MANAGEMENT/)
-- 💼 [Account Management & Order Execution](https://metarpc.github.io/CSharpMT5/API_Reference/MT5Account/)
+- 💼 [Account Management & Order Execution](https://metarpc.github.io/CSharpMT5/MT5Account/MT5Account.Master.Overview/)
 - 📊 [Return Codes & Error Handling](https://metarpc.github.io/CSharpMT5/All_Guides/RETURN_CODES_REFERENCE/)
 
 ---

@@ -155,6 +155,9 @@ namespace mt5_term_api
 | `BMT5_DEAL_TYPE_INTEREST`               | 12    | Interest rate                   |
 | `BMT5_DEAL_TYPE_BUY_CANCELED`           | 13    | Canceled buy deal               |
 | `BMT5_DEAL_TYPE_SELL_CANCELED`          | 14    | Canceled sell deal              |
+| `BMT5_DEAL_DIVIDEND`                    | 15    | Dividend operation              |
+| `BMT5_DEAL_DIVIDEND_FRANKED`            | 16    | Franked (tax-adjusted) dividend |
+| `BMT5_DEAL_TAX`                         | 17    | Tax charge                      |
 
 ### `BMT5_ENUM_DEAL_ENTRY_TYPE`
 

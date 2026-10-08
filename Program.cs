@@ -486,7 +486,7 @@ internal class Program
                 VolumePerLevel = 0.01,
                 StopLossPoints = 50,
                 TakeProfitPoints = 30,
-                MaxRunMinutes = 15
+                MaxRunMinutes = 1
             };
 
             await orchestrator.ExecuteAsync();
@@ -515,7 +515,7 @@ internal class Program
                 StopLossPoints = 20,
                 TakeProfitPoints = 40,
                 SecondsBeforeNews = 60,
-                MaxWaitAfterNewsSeconds = 180
+                MaxWaitAfterNewsSeconds = 60
             };
 
             await orchestrator.ExecuteAsync();
@@ -543,7 +543,7 @@ internal class Program
                 Volume = 0.01,
                 StopLossPoints = 15,
                 TakeProfitPoints = 30,
-                MaxWaitMinutes = 30
+                MaxWaitMinutes = 1
             };
 
             await orchestrator.ExecuteAsync();

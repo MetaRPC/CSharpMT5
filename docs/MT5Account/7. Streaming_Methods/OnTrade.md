@@ -281,6 +281,9 @@ namespace mt5_term_api
 | `SUB_DEAL_TYPE_INTEREST` | Interest rate |
 | `SUB_DEAL_TYPE_BUY_CANCELED` | Canceled buy deal |
 | `SUB_DEAL_TYPE_SELL_CANCELED` | Canceled sell deal |
+| `SUB_DEAL_DIVIDEND` | Dividend operation |
+| `SUB_DEAL_DIVIDEND_FRANKED` | Franked (tax-adjusted) dividend operation |
+| `SUB_DEAL_TAX` | Tax charge |
 
 ---
 
