@@ -26,113 +26,123 @@ namespace mt5_term_api {
           string.Concat(
             "Ch5tdDUtdGVybS1hcGktdHJhZGUtc3RhdHMucHJvdG8SDG10NV90ZXJtX2Fw",
             "aRofZ29vZ2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90bxocZ29vZ2xlL2Fw",
-            "aS9hbm5vdGF0aW9ucy5wcm90bxoUbXJwYy1tdDUtZXJyb3IucHJvdG8iLwoR",
-            "VHJhZGVTdGF0c1JlcXVlc3QSEQoEZnJvbRgBIAEoCUgAiAEBQgcKBV9mcm9t",
-            "ImwKD1RyYWRlU3RhdHNSZXBseRInCgRkYXRhGAEgASgLMhcubXQ1X3Rlcm1f",
-            "YXBpLlN0YXRzRGF0YUgAEiQKBWVycm9yGAIgASgLMhMubXQ1X3Rlcm1fYXBp",
-            "LkVycm9ySABCCgoIcmVzcG9uc2UicgoeVHJhZGVTdGF0c0VxdWl0eUhpc3Rv",
-            "cnlSZXF1ZXN0EhEKBGZyb20YASABKAlIAIgBARIeChFleGNsdWRlX3NhbWVf",
-            "YmFycxgCIAEoCEgBiAEBQgcKBV9mcm9tQhQKEl9leGNsdWRlX3NhbWVfYmFy",
-            "cyKDAQocVHJhZGVTdGF0c0VxdWl0eUhpc3RvcnlSZXBseRIxCgRkYXRhGAEg",
-            "ASgLMiEubXQ1X3Rlcm1fYXBpLlN0YXRzV2l0aENoYXJ0c0RhdGFIABIkCgVl",
-            "cnJvchgCIAEoCzITLm10NV90ZXJtX2FwaS5FcnJvckgAQgoKCHJlc3BvbnNl",
-            "ImgKFEVxdWl0eUhpc3RvcnlSZXF1ZXN0EhEKBGZyb20YASABKAlIAIgBARIe",
-            "ChFleGNsdWRlX3NhbWVfYmFycxgCIAEoCEgBiAEBQgcKBV9mcm9tQhQKEl9l",
-            "eGNsdWRlX3NhbWVfYmFycyJ3ChJFcXVpdHlIaXN0b3J5UmVwbHkSLwoEZGF0",
-            "YRgBIAEoCzIfLm10NV90ZXJtX2FwaS5FcXVpdHlIaXN0b3J5RGF0YUgAEiQK",
-            "BWVycm9yGAIgASgLMhMubXQ1X3Rlcm1fYXBpLkVycm9ySABCCgoIcmVzcG9u",
-            "c2UiNgoYVHJhZGVVbnJlYWxpemVkUExSZXF1ZXN0EhEKBGZyb20YASABKAlI",
-            "AIgBAUIHCgVfZnJvbSJ/ChZUcmFkZVVucmVhbGl6ZWRQTFJlcGx5EjMKBGRh",
-            "dGEYASABKAsyIy5tdDVfdGVybV9hcGkuVHJhZGVVbnJlYWxpemVkUExEYXRh",
-            "SAASJAoFZXJyb3IYAiABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3JIAEIKCghy",
-            "ZXNwb25zZSLTBwoJU3RhdHNEYXRhEi8KB3N1bW1hcnkYASABKAsyHi5tdDVf",
-            "dGVybV9hcGkuVHJhZGVTdW1tYXJ5RGF0YRIgChhtYXhfYmFsYW5jZV9kcmF3",
-            "ZG93bl9yYXcYAiABKAESJQodbWF4X2JhbGFuY2VfZHJhd2Rvd25fcmVsYXRp",
-            "dmUYAyABKAESHwoXbWF4X2VxdWl0eV9kcmF3ZG93bl9yYXcYBCABKAESJAoc",
-            "bWF4X2VxdWl0eV9kcmF3ZG93bl9yZWxhdGl2ZRgFIAEoARIzCgdtYXJrZXRz",
-            "GAYgAygLMiIubXQ1X3Rlcm1fYXBpLk1hcmtldFRyYWRlQ291bnREYXRhEjYK",
-            "DXByb2ZpdGFiaWxpdHkYByABKAsyHy5tdDVfdGVybV9hcGkuUHJvZml0YWJp",
-            "bGl0eURhdGESDAoEcGlwcxgIIAEoARIMCgRsb3RzGAkgASgBEhIKCmNvbWlz",
-            "c2lvbnMYCiABKAESNQoLYXZlcmFnZV93aW4YCyABKAsyIC5tdDVfdGVybV9h",
-            "cGkuQXZlcmFnZVBpcHNVc2REYXRhEjYKDGF2ZXJhZ2VfbG9zdBgMIAEoCzIg",
-            "Lm10NV90ZXJtX2FwaS5BdmVyYWdlUGlwc1VzZERhdGESKAoJbG9uZ3Nfd29u",
-            "GA0gASgLMhUubXQ1X3Rlcm1fYXBpLldvbkRhdGESKQoKc2hvcnRzX3dvbhgO",
-            "IAEoCzIVLm10NV90ZXJtX2FwaS5Xb25EYXRhEiwKCmJlc3RfdHJhZGUYDyAB",
-            "KAsyGC5tdDVfdGVybV9hcGkuUHJvZml0RGF0YRItCgt3b3JzdF90cmFkZRgQ",
-            "IAEoCzIYLm10NV90ZXJtX2FwaS5Qcm9maXREYXRhEjEKD2Jlc3RfdHJhZGVf",
-            "cGlwcxgRIAEoCzIYLm10NV90ZXJtX2FwaS5Qcm9maXREYXRhEjIKEHdvcnN0",
-            "X3RyYWRlX3BpcHMYEiABKAsyGC5tdDVfdGVybV9hcGkuUHJvZml0RGF0YRIc",
-            "ChRhdmVyYWdlX3RyYWRlX2xlbmd0aBgTIAEoCRIVCg1wcm9maXRfZmFjdG9y",
-            "GBQgASgBEhoKEnN0YW5kYXJkX2RldmlhdGlvbhgVIAEoARIUCgxzaGFycGVf",
-            "cmF0aW8YFiABKAESKQoHel9zY29yZRgXIAEoCzIYLm10NV90ZXJtX2FwaS5a",
-            "U2NvcmVEYXRhEjAKCmV4cGVjdGFuY3kYGCABKAsyHC5tdDVfdGVybV9hcGku",
-            "RXhwZWN0YW5jeURhdGESDAoEZ2hwchgZIAEoARIOCgZ0cmFkZXMYGiABKAMi",
-            "kQEKEFRyYWRlU3VtbWFyeURhdGESEwoLb3Blbl90cmFkZXMYASABKAUSEwoL",
-            "b3Blbl9wcm9maXQYAiABKAESEgoKZGF5X3Byb2ZpdBgDIAEoARITCgt3ZWVr",
-            "X3Byb2ZpdBgEIAEoARIUCgxtb250aF9wcm9maXQYBSABKAESFAoMdG90YWxf",
-            "cHJvZml0GAYgASgBIpEBChRNYXJrZXRUcmFkZUNvdW50RGF0YRITCgttYXJr",
-            "ZXRfbmFtZRgBIAEoCRINCgVjb3VudBgCIAEoBRIMCgRsb3RzGAMgASgBEg4K",
-            "BnByb2ZpdBgEIAEoARIQCgh3aW5fcmF0ZRgFIAEoARIRCgl3b25fY291bnQY",
-            "BiABKAUSEgoKbG9zdF9jb3VudBgHIAEoBSJ1ChFQcm9maXRhYmlsaXR5RGF0",
-            "YRISCgp3b25fdHJhZGVzGAEgASgDEhoKEndvbl90cmFkZXNfcGVyY2VudBgC",
-            "IAEoARITCgtsb3N0X3RyYWRlcxgDIAEoAxIbChNsb3N0X3RyYWRlc19wZXJj",
-            "ZW50GAQgASgBIj8KEkF2ZXJhZ2VQaXBzVXNkRGF0YRIUCgxhdmVyYWdlX3Bp",
-            "cHMYASABKAESEwoLYXZlcmFnZV91c2QYAiABKAEiPgoHV29uRGF0YRIRCgl3",
-            "b25fY291bnQYASABKAUSCwoDYWxsGAIgASgFEhMKC3dvbl9wZXJzZW50GAMg",
-            "ASgBIlUKClByb2ZpdERhdGESDQoFdGlrZXQYASABKAMSKAoEZGF0ZRgCIAEo",
-            "CzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDgoGcHJvZml0GAMgASgB",
-            "IkIKClpTY29yZURhdGESFwoPel9zY29yZV9kZWNpbWFsGAEgASgBEhsKE3pf",
-            "c2NvcmVfcHJvYmFiaWxpdHkYAiABKAEiLgoORXhwZWN0YW5jeURhdGESDAoE",
-            "cGlwcxgBIAEoARIOCgZkb2xsYXIYAiABKAEi2QEKE1N0YXRzV2l0aENoYXJ0",
-            "c0RhdGESJgoFc3RhdHMYASABKAsyFy5tdDVfdGVybV9hcGkuU3RhdHNEYXRh",
-            "Ei0KBmNoYXJ0cxgCIAMoCzIdLm10NV90ZXJtX2FwaS5FcXVpdHlQb2ludERh",
-            "dGESMgoGdHJhZGVzGAMgAygLMiIubXQ1X3Rlcm1fYXBpLlRyYWRlSGlzdG9y",
-            "eUl0ZW1EYXRhEjcKC29wZW5fdHJhZGVzGAQgAygLMiIubXQ1X3Rlcm1fYXBp",
-            "LlRyYWRlSGlzdG9yeUl0ZW1EYXRhIp8CChRUcmFkZUhpc3RvcnlJdGVtRGF0",
-            "YRIOCgZ0aWNrZXQYASABKAMSDgoGc3ltYm9sGAIgASgJEg4KBmlzX2J1eRgD",
-            "IAEoCBIMCgRsb3RzGAQgASgBEhIKCm9wZW5fcHJpY2UYBSABKAESEwoLY2xv",
-            "c2VfcHJpY2UYBiABKAESLQoJb3Blbl90aW1lGAcgASgLMhouZ29vZ2xlLnBy",
-            "b3RvYnVmLlRpbWVzdGFtcBIuCgpjbG9zZV90aW1lGAggASgLMhouZ29vZ2xl",
-            "LnByb3RvYnVmLlRpbWVzdGFtcBIOCgZwcm9maXQYCSABKAESEgoKY29tbWlz",
-            "c2lvbhgKIAEoARIMCgRzd2FwGAsgASgBEg8KB2NvbW1lbnQYDCABKAkiQgoR",
-            "RXF1aXR5SGlzdG9yeURhdGESLQoGcG9pbnRzGAEgAygLMh0ubXQ1X3Rlcm1f",
-            "YXBpLkVxdWl0eVBvaW50RGF0YSKIAgoPRXF1aXR5UG9pbnREYXRhEigKBHRp",
-            "bWUYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2JhbGFu",
-            "Y2UYAiABKAESDgoGZXF1aXR5GAMgASgBEhwKFGJhbGFuY2VfZHJhd2Rvd25f",
-            "cmF3GAQgASgBEiEKGWJhbGFuY2VfZHJhd2Rvd25fcmVsYXRpdmUYBSABKAES",
-            "GwoTZXF1aXR5X2RyYXdkb3duX3JhdxgGIAEoARIgChhlcXVpdHlfZHJhd2Rv",
-            "d25fcmVsYXRpdmUYByABKAESEwoLcmVhbGl6ZWRfcGwYCCABKAESFQoNdW5y",
-            "ZWFsaXplZF9wbBgJIAEoASJSChVUcmFkZVVucmVhbGl6ZWRQTERhdGESOQoH",
-            "ZXh0cmVtYRgBIAMoCzIoLm10NV90ZXJtX2FwaS5UcmFkZVVucmVhbGl6ZWRF",
-            "eHRyZW1hRGF0YSLkAQoaVHJhZGVVbnJlYWxpemVkRXh0cmVtYURhdGESDgoG",
-            "dGlja2V0GAEgASgDEg4KBnN5bWJvbBgCIAEoCRI3ChNtYXhfdW5yZWFsaXpl",
-            "ZF90aW1lGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIZChFt",
-            "YXhfdW5yZWFsaXplZF9wbBgEIAEoARI3ChNtaW5fdW5yZWFsaXplZF90aW1l",
-            "GAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIZChFtaW5fdW5y",
-            "ZWFsaXplZF9wbBgGIAEoATL1AwoKVHJhZGVTdGF0cxJhCgpUcmFkZVN0YXRz",
-            "Eh8ubXQ1X3Rlcm1fYXBpLlRyYWRlU3RhdHNSZXF1ZXN0Gh0ubXQ1X3Rlcm1f",
-            "YXBpLlRyYWRlU3RhdHNSZXBseSITgtPkkwINEgsvVHJhZGVTdGF0cxKVAQoX",
-            "VHJhZGVTdGF0c0VxdWl0eUhpc3RvcnkSLC5tdDVfdGVybV9hcGkuVHJhZGVT",
-            "dGF0c0VxdWl0eUhpc3RvcnlSZXF1ZXN0GioubXQ1X3Rlcm1fYXBpLlRyYWRl",
-            "U3RhdHNFcXVpdHlIaXN0b3J5UmVwbHkiIILT5JMCGhIYL1RyYWRlU3RhdHNF",
-            "cXVpdHlIaXN0b3J5Em0KDUVxdWl0eUhpc3RvcnkSIi5tdDVfdGVybV9hcGku",
-            "RXF1aXR5SGlzdG9yeVJlcXVlc3QaIC5tdDVfdGVybV9hcGkuRXF1aXR5SGlz",
-            "dG9yeVJlcGx5IhaC0+STAhASDi9FcXVpdHlIaXN0b3J5En0KEVRyYWRlVW5y",
-            "ZWFsaXplZFBMEiYubXQ1X3Rlcm1fYXBpLlRyYWRlVW5yZWFsaXplZFBMUmVx",
-            "dWVzdBokLm10NV90ZXJtX2FwaS5UcmFkZVVucmVhbGl6ZWRQTFJlcGx5IhqC",
-            "0+STAhQSEi9UcmFkZVVucmVhbGl6ZWRQTEJCWjFnaXQubXRhcGkuaW8vcm9v",
-            "dC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVzL2dvqgIMbXQ1X3Rlcm1f",
-            "YXBpYgZwcm90bzM="));
+            "aS9hbm5vdGF0aW9ucy5wcm90bxoUbXJwYy1tdDUtZXJyb3IucHJvdG8iUwoR",
+            "VHJhZGVTdGF0c1JlcXVlc3QSEQoEZnJvbRgBIAEoCUgAiAEBEhUKCGZyb21f",
+            "dXRjGAIgASgJSAGIAQFCBwoFX2Zyb21CCwoJX2Zyb21fdXRjImwKD1RyYWRl",
+            "U3RhdHNSZXBseRInCgRkYXRhGAEgASgLMhcubXQ1X3Rlcm1fYXBpLlN0YXRz",
+            "RGF0YUgAEiQKBWVycm9yGAIgASgLMhMubXQ1X3Rlcm1fYXBpLkVycm9ySABC",
+            "CgoIcmVzcG9uc2UilgEKHlRyYWRlU3RhdHNFcXVpdHlIaXN0b3J5UmVxdWVz",
+            "dBIRCgRmcm9tGAEgASgJSACIAQESFQoIZnJvbV91dGMYAyABKAlIAYgBARIe",
+            "ChFleGNsdWRlX3NhbWVfYmFycxgCIAEoCEgCiAEBQgcKBV9mcm9tQgsKCV9m",
+            "cm9tX3V0Y0IUChJfZXhjbHVkZV9zYW1lX2JhcnMigwEKHFRyYWRlU3RhdHNF",
+            "cXVpdHlIaXN0b3J5UmVwbHkSMQoEZGF0YRgBIAEoCzIhLm10NV90ZXJtX2Fw",
+            "aS5TdGF0c1dpdGhDaGFydHNEYXRhSAASJAoFZXJyb3IYAiABKAsyEy5tdDVf",
+            "dGVybV9hcGkuRXJyb3JIAEIKCghyZXNwb25zZSKMAQoURXF1aXR5SGlzdG9y",
+            "eVJlcXVlc3QSEQoEZnJvbRgBIAEoCUgAiAEBEhUKCGZyb21fdXRjGAMgASgJ",
+            "SAGIAQESHgoRZXhjbHVkZV9zYW1lX2JhcnMYAiABKAhIAogBAUIHCgVfZnJv",
+            "bUILCglfZnJvbV91dGNCFAoSX2V4Y2x1ZGVfc2FtZV9iYXJzIncKEkVxdWl0",
+            "eUhpc3RvcnlSZXBseRIvCgRkYXRhGAEgASgLMh8ubXQ1X3Rlcm1fYXBpLkVx",
+            "dWl0eUhpc3RvcnlEYXRhSAASJAoFZXJyb3IYAiABKAsyEy5tdDVfdGVybV9h",
+            "cGkuRXJyb3JIAEIKCghyZXNwb25zZSJaChhUcmFkZVVucmVhbGl6ZWRQTFJl",
+            "cXVlc3QSEQoEZnJvbRgBIAEoCUgAiAEBEhUKCGZyb21fdXRjGAIgASgJSAGI",
+            "AQFCBwoFX2Zyb21CCwoJX2Zyb21fdXRjIn8KFlRyYWRlVW5yZWFsaXplZFBM",
+            "UmVwbHkSMwoEZGF0YRgBIAEoCzIjLm10NV90ZXJtX2FwaS5UcmFkZVVucmVh",
+            "bGl6ZWRQTERhdGFIABIkCgVlcnJvchgCIAEoCzITLm10NV90ZXJtX2FwaS5F",
+            "cnJvckgAQgoKCHJlc3BvbnNlItMHCglTdGF0c0RhdGESLwoHc3VtbWFyeRgB",
+            "IAEoCzIeLm10NV90ZXJtX2FwaS5UcmFkZVN1bW1hcnlEYXRhEiAKGG1heF9i",
+            "YWxhbmNlX2RyYXdkb3duX3JhdxgCIAEoARIlCh1tYXhfYmFsYW5jZV9kcmF3",
+            "ZG93bl9yZWxhdGl2ZRgDIAEoARIfChdtYXhfZXF1aXR5X2RyYXdkb3duX3Jh",
+            "dxgEIAEoARIkChxtYXhfZXF1aXR5X2RyYXdkb3duX3JlbGF0aXZlGAUgASgB",
+            "EjMKB21hcmtldHMYBiADKAsyIi5tdDVfdGVybV9hcGkuTWFya2V0VHJhZGVD",
+            "b3VudERhdGESNgoNcHJvZml0YWJpbGl0eRgHIAEoCzIfLm10NV90ZXJtX2Fw",
+            "aS5Qcm9maXRhYmlsaXR5RGF0YRIMCgRwaXBzGAggASgBEgwKBGxvdHMYCSAB",
+            "KAESEgoKY29taXNzaW9ucxgKIAEoARI1CgthdmVyYWdlX3dpbhgLIAEoCzIg",
+            "Lm10NV90ZXJtX2FwaS5BdmVyYWdlUGlwc1VzZERhdGESNgoMYXZlcmFnZV9s",
+            "b3N0GAwgASgLMiAubXQ1X3Rlcm1fYXBpLkF2ZXJhZ2VQaXBzVXNkRGF0YRIo",
+            "Cglsb25nc193b24YDSABKAsyFS5tdDVfdGVybV9hcGkuV29uRGF0YRIpCgpz",
+            "aG9ydHNfd29uGA4gASgLMhUubXQ1X3Rlcm1fYXBpLldvbkRhdGESLAoKYmVz",
+            "dF90cmFkZRgPIAEoCzIYLm10NV90ZXJtX2FwaS5Qcm9maXREYXRhEi0KC3dv",
+            "cnN0X3RyYWRlGBAgASgLMhgubXQ1X3Rlcm1fYXBpLlByb2ZpdERhdGESMQoP",
+            "YmVzdF90cmFkZV9waXBzGBEgASgLMhgubXQ1X3Rlcm1fYXBpLlByb2ZpdERh",
+            "dGESMgoQd29yc3RfdHJhZGVfcGlwcxgSIAEoCzIYLm10NV90ZXJtX2FwaS5Q",
+            "cm9maXREYXRhEhwKFGF2ZXJhZ2VfdHJhZGVfbGVuZ3RoGBMgASgJEhUKDXBy",
+            "b2ZpdF9mYWN0b3IYFCABKAESGgoSc3RhbmRhcmRfZGV2aWF0aW9uGBUgASgB",
+            "EhQKDHNoYXJwZV9yYXRpbxgWIAEoARIpCgd6X3Njb3JlGBcgASgLMhgubXQ1",
+            "X3Rlcm1fYXBpLlpTY29yZURhdGESMAoKZXhwZWN0YW5jeRgYIAEoCzIcLm10",
+            "NV90ZXJtX2FwaS5FeHBlY3RhbmN5RGF0YRIMCgRnaHByGBkgASgBEg4KBnRy",
+            "YWRlcxgaIAEoAyKRAQoQVHJhZGVTdW1tYXJ5RGF0YRITCgtvcGVuX3RyYWRl",
+            "cxgBIAEoBRITCgtvcGVuX3Byb2ZpdBgCIAEoARISCgpkYXlfcHJvZml0GAMg",
+            "ASgBEhMKC3dlZWtfcHJvZml0GAQgASgBEhQKDG1vbnRoX3Byb2ZpdBgFIAEo",
+            "ARIUCgx0b3RhbF9wcm9maXQYBiABKAEikQEKFE1hcmtldFRyYWRlQ291bnRE",
+            "YXRhEhMKC21hcmtldF9uYW1lGAEgASgJEg0KBWNvdW50GAIgASgFEgwKBGxv",
+            "dHMYAyABKAESDgoGcHJvZml0GAQgASgBEhAKCHdpbl9yYXRlGAUgASgBEhEK",
+            "CXdvbl9jb3VudBgGIAEoBRISCgpsb3N0X2NvdW50GAcgASgFInUKEVByb2Zp",
+            "dGFiaWxpdHlEYXRhEhIKCndvbl90cmFkZXMYASABKAMSGgoSd29uX3RyYWRl",
+            "c19wZXJjZW50GAIgASgBEhMKC2xvc3RfdHJhZGVzGAMgASgDEhsKE2xvc3Rf",
+            "dHJhZGVzX3BlcmNlbnQYBCABKAEiPwoSQXZlcmFnZVBpcHNVc2REYXRhEhQK",
+            "DGF2ZXJhZ2VfcGlwcxgBIAEoARITCgthdmVyYWdlX3VzZBgCIAEoASI+CgdX",
+            "b25EYXRhEhEKCXdvbl9jb3VudBgBIAEoBRILCgNhbGwYAiABKAUSEwoLd29u",
+            "X3BlcnNlbnQYAyABKAEigwEKClByb2ZpdERhdGESDQoFdGlrZXQYASABKAMS",
+            "KAoEZGF0ZRgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoI",
+            "ZGF0ZV91dGMYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg4K",
+            "BnByb2ZpdBgDIAEoASJCCgpaU2NvcmVEYXRhEhcKD3pfc2NvcmVfZGVjaW1h",
+            "bBgBIAEoARIbChN6X3Njb3JlX3Byb2JhYmlsaXR5GAIgASgBIi4KDkV4cGVj",
+            "dGFuY3lEYXRhEgwKBHBpcHMYASABKAESDgoGZG9sbGFyGAIgASgBItkBChNT",
+            "dGF0c1dpdGhDaGFydHNEYXRhEiYKBXN0YXRzGAEgASgLMhcubXQ1X3Rlcm1f",
+            "YXBpLlN0YXRzRGF0YRItCgZjaGFydHMYAiADKAsyHS5tdDVfdGVybV9hcGku",
+            "RXF1aXR5UG9pbnREYXRhEjIKBnRyYWRlcxgDIAMoCzIiLm10NV90ZXJtX2Fw",
+            "aS5UcmFkZUhpc3RvcnlJdGVtRGF0YRI3CgtvcGVuX3RyYWRlcxgEIAMoCzIi",
+            "Lm10NV90ZXJtX2FwaS5UcmFkZUhpc3RvcnlJdGVtRGF0YSKGAwoUVHJhZGVI",
+            "aXN0b3J5SXRlbURhdGESDgoGdGlja2V0GAEgASgDEg4KBnN5bWJvbBgCIAEo",
+            "CRIOCgZpc19idXkYAyABKAgSDAoEbG90cxgEIAEoARISCgpvcGVuX3ByaWNl",
+            "GAUgASgBEhMKC2Nsb3NlX3ByaWNlGAYgASgBEi0KCW9wZW5fdGltZRgHIAEo",
+            "CzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMQoNb3Blbl90aW1lX3V0",
+            "YxgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKY2xvc2Vf",
+            "dGltZRgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMgoOY2xv",
+            "c2VfdGltZV91dGMYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1w",
+            "Eg4KBnByb2ZpdBgJIAEoARISCgpjb21taXNzaW9uGAogASgBEgwKBHN3YXAY",
+            "CyABKAESDwoHY29tbWVudBgMIAEoCSJCChFFcXVpdHlIaXN0b3J5RGF0YRIt",
+            "CgZwb2ludHMYASADKAsyHS5tdDVfdGVybV9hcGkuRXF1aXR5UG9pbnREYXRh",
+            "IrYCCg9FcXVpdHlQb2ludERhdGESKAoEdGltZRgBIAEoCzIaLmdvb2dsZS5w",
+            "cm90b2J1Zi5UaW1lc3RhbXASLAoIdGltZV91dGMYCiABKAsyGi5nb29nbGUu",
+            "cHJvdG9idWYuVGltZXN0YW1wEg8KB2JhbGFuY2UYAiABKAESDgoGZXF1aXR5",
+            "GAMgASgBEhwKFGJhbGFuY2VfZHJhd2Rvd25fcmF3GAQgASgBEiEKGWJhbGFu",
+            "Y2VfZHJhd2Rvd25fcmVsYXRpdmUYBSABKAESGwoTZXF1aXR5X2RyYXdkb3du",
+            "X3JhdxgGIAEoARIgChhlcXVpdHlfZHJhd2Rvd25fcmVsYXRpdmUYByABKAES",
+            "EwoLcmVhbGl6ZWRfcGwYCCABKAESFQoNdW5yZWFsaXplZF9wbBgJIAEoASJS",
+            "ChVUcmFkZVVucmVhbGl6ZWRQTERhdGESOQoHZXh0cmVtYRgBIAMoCzIoLm10",
+            "NV90ZXJtX2FwaS5UcmFkZVVucmVhbGl6ZWRFeHRyZW1hRGF0YSLeAgoaVHJh",
+            "ZGVVbnJlYWxpemVkRXh0cmVtYURhdGESDgoGdGlja2V0GAEgASgDEg4KBnN5",
+            "bWJvbBgCIAEoCRI3ChNtYXhfdW5yZWFsaXplZF90aW1lGAMgASgLMhouZ29v",
+            "Z2xlLnByb3RvYnVmLlRpbWVzdGFtcBI7ChdtYXhfdW5yZWFsaXplZF90aW1l",
+            "X3V0YxgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASGQoRbWF4",
+            "X3VucmVhbGl6ZWRfcGwYBCABKAESNwoTbWluX3VucmVhbGl6ZWRfdGltZRgF",
+            "IAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASOwoXbWluX3VucmVh",
+            "bGl6ZWRfdGltZV91dGMYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0",
+            "YW1wEhkKEW1pbl91bnJlYWxpemVkX3BsGAYgASgBMvUDCgpUcmFkZVN0YXRz",
+            "EmEKClRyYWRlU3RhdHMSHy5tdDVfdGVybV9hcGkuVHJhZGVTdGF0c1JlcXVl",
+            "c3QaHS5tdDVfdGVybV9hcGkuVHJhZGVTdGF0c1JlcGx5IhOC0+STAg0SCy9U",
+            "cmFkZVN0YXRzEpUBChdUcmFkZVN0YXRzRXF1aXR5SGlzdG9yeRIsLm10NV90",
+            "ZXJtX2FwaS5UcmFkZVN0YXRzRXF1aXR5SGlzdG9yeVJlcXVlc3QaKi5tdDVf",
+            "dGVybV9hcGkuVHJhZGVTdGF0c0VxdWl0eUhpc3RvcnlSZXBseSIggtPkkwIa",
+            "EhgvVHJhZGVTdGF0c0VxdWl0eUhpc3RvcnkSbQoNRXF1aXR5SGlzdG9yeRIi",
+            "Lm10NV90ZXJtX2FwaS5FcXVpdHlIaXN0b3J5UmVxdWVzdBogLm10NV90ZXJt",
+            "X2FwaS5FcXVpdHlIaXN0b3J5UmVwbHkiFoLT5JMCEBIOL0VxdWl0eUhpc3Rv",
+            "cnkSfQoRVHJhZGVVbnJlYWxpemVkUEwSJi5tdDVfdGVybV9hcGkuVHJhZGVV",
+            "bnJlYWxpemVkUExSZXF1ZXN0GiQubXQ1X3Rlcm1fYXBpLlRyYWRlVW5yZWFs",
+            "aXplZFBMUmVwbHkiGoLT5JMCFBISL1RyYWRlVW5yZWFsaXplZFBMQkJaMWdp",
+            "dC5tdGFwaS5pby9yb290L21ycGMtcHJvdG8uZ2l0L210NS9saWJyYXJpZXMv",
+            "Z2+qAgxtdDVfdGVybV9hcGliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Api.AnnotationsReflection.Descriptor, global::Mt5TermApi.MrpcMt5ErrorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeStatsRequest), global::mt5_term_api.TradeStatsRequest.Parser, new[]{ "From" }, new[]{ "From" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeStatsRequest), global::mt5_term_api.TradeStatsRequest.Parser, new[]{ "From", "FromUtc" }, new[]{ "From", "FromUtc" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeStatsReply), global::mt5_term_api.TradeStatsReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeStatsEquityHistoryRequest), global::mt5_term_api.TradeStatsEquityHistoryRequest.Parser, new[]{ "From", "ExcludeSameBars" }, new[]{ "From", "ExcludeSameBars" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeStatsEquityHistoryRequest), global::mt5_term_api.TradeStatsEquityHistoryRequest.Parser, new[]{ "From", "FromUtc", "ExcludeSameBars" }, new[]{ "From", "FromUtc", "ExcludeSameBars" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeStatsEquityHistoryReply), global::mt5_term_api.TradeStatsEquityHistoryReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityHistoryRequest), global::mt5_term_api.EquityHistoryRequest.Parser, new[]{ "From", "ExcludeSameBars" }, new[]{ "From", "ExcludeSameBars" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityHistoryRequest), global::mt5_term_api.EquityHistoryRequest.Parser, new[]{ "From", "FromUtc", "ExcludeSameBars" }, new[]{ "From", "FromUtc", "ExcludeSameBars" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityHistoryReply), global::mt5_term_api.EquityHistoryReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedPLRequest), global::mt5_term_api.TradeUnrealizedPLRequest.Parser, new[]{ "From" }, new[]{ "From" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedPLRequest), global::mt5_term_api.TradeUnrealizedPLRequest.Parser, new[]{ "From", "FromUtc" }, new[]{ "From", "FromUtc" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedPLReply), global::mt5_term_api.TradeUnrealizedPLReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StatsData), global::mt5_term_api.StatsData.Parser, new[]{ "Summary", "MaxBalanceDrawdownRaw", "MaxBalanceDrawdownRelative", "MaxEquityDrawdownRaw", "MaxEquityDrawdownRelative", "Markets", "Profitability", "Pips", "Lots", "Comissions", "AverageWin", "AverageLost", "LongsWon", "ShortsWon", "BestTrade", "WorstTrade", "BestTradePips", "WorstTradePips", "AverageTradeLength", "ProfitFactor", "StandardDeviation", "SharpeRatio", "ZScore", "Expectancy", "Ghpr", "Trades" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeSummaryData), global::mt5_term_api.TradeSummaryData.Parser, new[]{ "OpenTrades", "OpenProfit", "DayProfit", "WeekProfit", "MonthProfit", "TotalProfit" }, null, null, null, null),
@@ -140,15 +150,15 @@ namespace mt5_term_api {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ProfitabilityData), global::mt5_term_api.ProfitabilityData.Parser, new[]{ "WonTrades", "WonTradesPercent", "LostTrades", "LostTradesPercent" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.AveragePipsUsdData), global::mt5_term_api.AveragePipsUsdData.Parser, new[]{ "AveragePips", "AverageUsd" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.WonData), global::mt5_term_api.WonData.Parser, new[]{ "WonCount", "All", "WonPersent" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ProfitData), global::mt5_term_api.ProfitData.Parser, new[]{ "Tiket", "Date", "Profit" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ProfitData), global::mt5_term_api.ProfitData.Parser, new[]{ "Tiket", "Date", "DateUtc", "Profit" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ZScoreData), global::mt5_term_api.ZScoreData.Parser, new[]{ "ZScoreDecimal", "ZScoreProbability" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ExpectancyData), global::mt5_term_api.ExpectancyData.Parser, new[]{ "Pips", "Dollar" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StatsWithChartsData), global::mt5_term_api.StatsWithChartsData.Parser, new[]{ "Stats", "Charts", "Trades", "OpenTrades" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeHistoryItemData), global::mt5_term_api.TradeHistoryItemData.Parser, new[]{ "Ticket", "Symbol", "IsBuy", "Lots", "OpenPrice", "ClosePrice", "OpenTime", "CloseTime", "Profit", "Commission", "Swap", "Comment" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeHistoryItemData), global::mt5_term_api.TradeHistoryItemData.Parser, new[]{ "Ticket", "Symbol", "IsBuy", "Lots", "OpenPrice", "ClosePrice", "OpenTime", "OpenTimeUtc", "CloseTime", "CloseTimeUtc", "Profit", "Commission", "Swap", "Comment" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityHistoryData), global::mt5_term_api.EquityHistoryData.Parser, new[]{ "Points" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityPointData), global::mt5_term_api.EquityPointData.Parser, new[]{ "Time", "Balance", "Equity", "BalanceDrawdownRaw", "BalanceDrawdownRelative", "EquityDrawdownRaw", "EquityDrawdownRelative", "RealizedPl", "UnrealizedPl" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityPointData), global::mt5_term_api.EquityPointData.Parser, new[]{ "Time", "TimeUtc", "Balance", "Equity", "BalanceDrawdownRaw", "BalanceDrawdownRelative", "EquityDrawdownRaw", "EquityDrawdownRelative", "RealizedPl", "UnrealizedPl" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedPLData), global::mt5_term_api.TradeUnrealizedPLData.Parser, new[]{ "Extrema" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedExtremaData), global::mt5_term_api.TradeUnrealizedExtremaData.Parser, new[]{ "Ticket", "Symbol", "MaxUnrealizedTime", "MaxUnrealizedPl", "MinUnrealizedTime", "MinUnrealizedPl" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedExtremaData), global::mt5_term_api.TradeUnrealizedExtremaData.Parser, new[]{ "Ticket", "Symbol", "MaxUnrealizedTime", "MaxUnrealizedTimeUtc", "MaxUnrealizedPl", "MinUnrealizedTime", "MinUnrealizedTimeUtc", "MinUnrealizedPl" }, null, null, null, null)
           }));
     }
     #endregion
@@ -190,6 +200,7 @@ namespace mt5_term_api {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public TradeStatsRequest(TradeStatsRequest other) : this() {
       from_ = other.from_;
+      fromUtc_ = other.fromUtc_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -226,6 +237,33 @@ namespace mt5_term_api {
       from_ = null;
     }
 
+    /// <summary>Field number for the "from_utc" field.</summary>
+    public const int FromUtcFieldNumber = 2;
+    private string fromUtc_;
+    /// <summary>
+    /// from in UTC: send either from or from_utc, not both.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string FromUtc {
+      get { return fromUtc_ ?? ""; }
+      set {
+        fromUtc_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "from_utc" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFromUtc {
+      get { return fromUtc_ != null; }
+    }
+    /// <summary>Clears the value of the "from_utc" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFromUtc() {
+      fromUtc_ = null;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -242,6 +280,7 @@ namespace mt5_term_api {
         return true;
       }
       if (From != other.From) return false;
+      if (FromUtc != other.FromUtc) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -250,6 +289,7 @@ namespace mt5_term_api {
     public override int GetHashCode() {
       int hash = 1;
       if (HasFrom) hash ^= From.GetHashCode();
+      if (HasFromUtc) hash ^= FromUtc.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -272,6 +312,10 @@ namespace mt5_term_api {
         output.WriteRawTag(10);
         output.WriteString(From);
       }
+      if (HasFromUtc) {
+        output.WriteRawTag(18);
+        output.WriteString(FromUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -286,6 +330,10 @@ namespace mt5_term_api {
         output.WriteRawTag(10);
         output.WriteString(From);
       }
+      if (HasFromUtc) {
+        output.WriteRawTag(18);
+        output.WriteString(FromUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -298,6 +346,9 @@ namespace mt5_term_api {
       int size = 0;
       if (HasFrom) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(From);
+      }
+      if (HasFromUtc) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FromUtc);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -313,6 +364,9 @@ namespace mt5_term_api {
       }
       if (other.HasFrom) {
         From = other.From;
+      }
+      if (other.HasFromUtc) {
+        FromUtc = other.FromUtc;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -333,6 +387,10 @@ namespace mt5_term_api {
             From = input.ReadString();
             break;
           }
+          case 18: {
+            FromUtc = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -350,6 +408,10 @@ namespace mt5_term_api {
             break;
           case 10: {
             From = input.ReadString();
+            break;
+          }
+          case 18: {
+            FromUtc = input.ReadString();
             break;
           }
         }
@@ -681,6 +743,7 @@ namespace mt5_term_api {
     public TradeStatsEquityHistoryRequest(TradeStatsEquityHistoryRequest other) : this() {
       _hasBits0 = other._hasBits0;
       from_ = other.from_;
+      fromUtc_ = other.fromUtc_;
       excludeSameBars_ = other.excludeSameBars_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -716,6 +779,33 @@ namespace mt5_term_api {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearFrom() {
       from_ = null;
+    }
+
+    /// <summary>Field number for the "from_utc" field.</summary>
+    public const int FromUtcFieldNumber = 3;
+    private string fromUtc_;
+    /// <summary>
+    /// from in UTC: send either from or from_utc, not both.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string FromUtc {
+      get { return fromUtc_ ?? ""; }
+      set {
+        fromUtc_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "from_utc" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFromUtc {
+      get { return fromUtc_ != null; }
+    }
+    /// <summary>Clears the value of the "from_utc" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFromUtc() {
+      fromUtc_ = null;
     }
 
     /// <summary>Field number for the "exclude_same_bars" field.</summary>
@@ -762,6 +852,7 @@ namespace mt5_term_api {
         return true;
       }
       if (From != other.From) return false;
+      if (FromUtc != other.FromUtc) return false;
       if (ExcludeSameBars != other.ExcludeSameBars) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -771,6 +862,7 @@ namespace mt5_term_api {
     public override int GetHashCode() {
       int hash = 1;
       if (HasFrom) hash ^= From.GetHashCode();
+      if (HasFromUtc) hash ^= FromUtc.GetHashCode();
       if (HasExcludeSameBars) hash ^= ExcludeSameBars.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -798,6 +890,10 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteBool(ExcludeSameBars);
       }
+      if (HasFromUtc) {
+        output.WriteRawTag(26);
+        output.WriteString(FromUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -816,6 +912,10 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteBool(ExcludeSameBars);
       }
+      if (HasFromUtc) {
+        output.WriteRawTag(26);
+        output.WriteString(FromUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -828,6 +928,9 @@ namespace mt5_term_api {
       int size = 0;
       if (HasFrom) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(From);
+      }
+      if (HasFromUtc) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FromUtc);
       }
       if (HasExcludeSameBars) {
         size += 1 + 1;
@@ -846,6 +949,9 @@ namespace mt5_term_api {
       }
       if (other.HasFrom) {
         From = other.From;
+      }
+      if (other.HasFromUtc) {
+        FromUtc = other.FromUtc;
       }
       if (other.HasExcludeSameBars) {
         ExcludeSameBars = other.ExcludeSameBars;
@@ -873,6 +979,10 @@ namespace mt5_term_api {
             ExcludeSameBars = input.ReadBool();
             break;
           }
+          case 26: {
+            FromUtc = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -894,6 +1004,10 @@ namespace mt5_term_api {
           }
           case 16: {
             ExcludeSameBars = input.ReadBool();
+            break;
+          }
+          case 26: {
+            FromUtc = input.ReadString();
             break;
           }
         }
@@ -1225,6 +1339,7 @@ namespace mt5_term_api {
     public EquityHistoryRequest(EquityHistoryRequest other) : this() {
       _hasBits0 = other._hasBits0;
       from_ = other.from_;
+      fromUtc_ = other.fromUtc_;
       excludeSameBars_ = other.excludeSameBars_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -1260,6 +1375,33 @@ namespace mt5_term_api {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearFrom() {
       from_ = null;
+    }
+
+    /// <summary>Field number for the "from_utc" field.</summary>
+    public const int FromUtcFieldNumber = 3;
+    private string fromUtc_;
+    /// <summary>
+    /// from in UTC: send either from or from_utc, not both.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string FromUtc {
+      get { return fromUtc_ ?? ""; }
+      set {
+        fromUtc_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "from_utc" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFromUtc {
+      get { return fromUtc_ != null; }
+    }
+    /// <summary>Clears the value of the "from_utc" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFromUtc() {
+      fromUtc_ = null;
     }
 
     /// <summary>Field number for the "exclude_same_bars" field.</summary>
@@ -1306,6 +1448,7 @@ namespace mt5_term_api {
         return true;
       }
       if (From != other.From) return false;
+      if (FromUtc != other.FromUtc) return false;
       if (ExcludeSameBars != other.ExcludeSameBars) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1315,6 +1458,7 @@ namespace mt5_term_api {
     public override int GetHashCode() {
       int hash = 1;
       if (HasFrom) hash ^= From.GetHashCode();
+      if (HasFromUtc) hash ^= FromUtc.GetHashCode();
       if (HasExcludeSameBars) hash ^= ExcludeSameBars.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1342,6 +1486,10 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteBool(ExcludeSameBars);
       }
+      if (HasFromUtc) {
+        output.WriteRawTag(26);
+        output.WriteString(FromUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1360,6 +1508,10 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteBool(ExcludeSameBars);
       }
+      if (HasFromUtc) {
+        output.WriteRawTag(26);
+        output.WriteString(FromUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1372,6 +1524,9 @@ namespace mt5_term_api {
       int size = 0;
       if (HasFrom) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(From);
+      }
+      if (HasFromUtc) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FromUtc);
       }
       if (HasExcludeSameBars) {
         size += 1 + 1;
@@ -1390,6 +1545,9 @@ namespace mt5_term_api {
       }
       if (other.HasFrom) {
         From = other.From;
+      }
+      if (other.HasFromUtc) {
+        FromUtc = other.FromUtc;
       }
       if (other.HasExcludeSameBars) {
         ExcludeSameBars = other.ExcludeSameBars;
@@ -1417,6 +1575,10 @@ namespace mt5_term_api {
             ExcludeSameBars = input.ReadBool();
             break;
           }
+          case 26: {
+            FromUtc = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1438,6 +1600,10 @@ namespace mt5_term_api {
           }
           case 16: {
             ExcludeSameBars = input.ReadBool();
+            break;
+          }
+          case 26: {
+            FromUtc = input.ReadString();
             break;
           }
         }
@@ -1767,6 +1933,7 @@ namespace mt5_term_api {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public TradeUnrealizedPLRequest(TradeUnrealizedPLRequest other) : this() {
       from_ = other.from_;
+      fromUtc_ = other.fromUtc_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1803,6 +1970,33 @@ namespace mt5_term_api {
       from_ = null;
     }
 
+    /// <summary>Field number for the "from_utc" field.</summary>
+    public const int FromUtcFieldNumber = 2;
+    private string fromUtc_;
+    /// <summary>
+    /// from in UTC: send either from or from_utc, not both.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string FromUtc {
+      get { return fromUtc_ ?? ""; }
+      set {
+        fromUtc_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "from_utc" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasFromUtc {
+      get { return fromUtc_ != null; }
+    }
+    /// <summary>Clears the value of the "from_utc" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearFromUtc() {
+      fromUtc_ = null;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1819,6 +2013,7 @@ namespace mt5_term_api {
         return true;
       }
       if (From != other.From) return false;
+      if (FromUtc != other.FromUtc) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1827,6 +2022,7 @@ namespace mt5_term_api {
     public override int GetHashCode() {
       int hash = 1;
       if (HasFrom) hash ^= From.GetHashCode();
+      if (HasFromUtc) hash ^= FromUtc.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1849,6 +2045,10 @@ namespace mt5_term_api {
         output.WriteRawTag(10);
         output.WriteString(From);
       }
+      if (HasFromUtc) {
+        output.WriteRawTag(18);
+        output.WriteString(FromUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1863,6 +2063,10 @@ namespace mt5_term_api {
         output.WriteRawTag(10);
         output.WriteString(From);
       }
+      if (HasFromUtc) {
+        output.WriteRawTag(18);
+        output.WriteString(FromUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1875,6 +2079,9 @@ namespace mt5_term_api {
       int size = 0;
       if (HasFrom) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(From);
+      }
+      if (HasFromUtc) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FromUtc);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1890,6 +2097,9 @@ namespace mt5_term_api {
       }
       if (other.HasFrom) {
         From = other.From;
+      }
+      if (other.HasFromUtc) {
+        FromUtc = other.FromUtc;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1910,6 +2120,10 @@ namespace mt5_term_api {
             From = input.ReadString();
             break;
           }
+          case 18: {
+            FromUtc = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1927,6 +2141,10 @@ namespace mt5_term_api {
             break;
           case 10: {
             From = input.ReadString();
+            break;
+          }
+          case 18: {
+            FromUtc = input.ReadString();
             break;
           }
         }
@@ -5042,6 +5260,7 @@ namespace mt5_term_api {
     public ProfitData(ProfitData other) : this() {
       tiket_ = other.tiket_;
       date_ = other.date_ != null ? other.date_.Clone() : null;
+      dateUtc_ = other.dateUtc_ != null ? other.dateUtc_.Clone() : null;
       profit_ = other.profit_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -5076,6 +5295,21 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "date_utc" field.</summary>
+    public const int DateUtcFieldNumber = 4;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp dateUtc_;
+    /// <summary>
+    /// date in UTC (the same moment; date is in the broker server's time zone).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp DateUtc {
+      get { return dateUtc_; }
+      set {
+        dateUtc_ = value;
+      }
+    }
+
     /// <summary>Field number for the "profit" field.</summary>
     public const int ProfitFieldNumber = 3;
     private double profit_;
@@ -5105,6 +5339,7 @@ namespace mt5_term_api {
       }
       if (Tiket != other.Tiket) return false;
       if (!object.Equals(Date, other.Date)) return false;
+      if (!object.Equals(DateUtc, other.DateUtc)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Profit, other.Profit)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -5115,6 +5350,7 @@ namespace mt5_term_api {
       int hash = 1;
       if (Tiket != 0L) hash ^= Tiket.GetHashCode();
       if (date_ != null) hash ^= Date.GetHashCode();
+      if (dateUtc_ != null) hash ^= DateUtc.GetHashCode();
       if (Profit != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Profit);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -5146,6 +5382,10 @@ namespace mt5_term_api {
         output.WriteRawTag(25);
         output.WriteDouble(Profit);
       }
+      if (dateUtc_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(DateUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -5168,6 +5408,10 @@ namespace mt5_term_api {
         output.WriteRawTag(25);
         output.WriteDouble(Profit);
       }
+      if (dateUtc_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(DateUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -5183,6 +5427,9 @@ namespace mt5_term_api {
       }
       if (date_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Date);
+      }
+      if (dateUtc_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(DateUtc);
       }
       if (Profit != 0D) {
         size += 1 + 8;
@@ -5207,6 +5454,12 @@ namespace mt5_term_api {
           Date = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         Date.MergeFrom(other.Date);
+      }
+      if (other.dateUtc_ != null) {
+        if (dateUtc_ == null) {
+          DateUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        DateUtc.MergeFrom(other.DateUtc);
       }
       if (other.Profit != 0D) {
         Profit = other.Profit;
@@ -5241,6 +5494,13 @@ namespace mt5_term_api {
             Profit = input.ReadDouble();
             break;
           }
+          case 34: {
+            if (dateUtc_ == null) {
+              DateUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(DateUtc);
+            break;
+          }
         }
       }
     #endif
@@ -5269,6 +5529,13 @@ namespace mt5_term_api {
           }
           case 25: {
             Profit = input.ReadDouble();
+            break;
+          }
+          case 34: {
+            if (dateUtc_ == null) {
+              DateUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(DateUtc);
             break;
           }
         }
@@ -6047,7 +6314,9 @@ namespace mt5_term_api {
       openPrice_ = other.openPrice_;
       closePrice_ = other.closePrice_;
       openTime_ = other.openTime_ != null ? other.openTime_.Clone() : null;
+      openTimeUtc_ = other.openTimeUtc_ != null ? other.openTimeUtc_.Clone() : null;
       closeTime_ = other.closeTime_ != null ? other.closeTime_.Clone() : null;
+      closeTimeUtc_ = other.closeTimeUtc_ != null ? other.closeTimeUtc_.Clone() : null;
       profit_ = other.profit_;
       commission_ = other.commission_;
       swap_ = other.swap_;
@@ -6145,6 +6414,21 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "open_time_utc" field.</summary>
+    public const int OpenTimeUtcFieldNumber = 13;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp openTimeUtc_;
+    /// <summary>
+    /// open_time in UTC (the same moment; open_time is in the broker server's time zone).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp OpenTimeUtc {
+      get { return openTimeUtc_; }
+      set {
+        openTimeUtc_ = value;
+      }
+    }
+
     /// <summary>Field number for the "close_time" field.</summary>
     public const int CloseTimeFieldNumber = 8;
     private global::Google.Protobuf.WellKnownTypes.Timestamp closeTime_;
@@ -6154,6 +6438,21 @@ namespace mt5_term_api {
       get { return closeTime_; }
       set {
         closeTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "close_time_utc" field.</summary>
+    public const int CloseTimeUtcFieldNumber = 14;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp closeTimeUtc_;
+    /// <summary>
+    /// close_time in UTC (the same moment; close_time is in the broker server's time zone).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp CloseTimeUtc {
+      get { return closeTimeUtc_; }
+      set {
+        closeTimeUtc_ = value;
       }
     }
 
@@ -6227,7 +6526,9 @@ namespace mt5_term_api {
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(OpenPrice, other.OpenPrice)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(ClosePrice, other.ClosePrice)) return false;
       if (!object.Equals(OpenTime, other.OpenTime)) return false;
+      if (!object.Equals(OpenTimeUtc, other.OpenTimeUtc)) return false;
       if (!object.Equals(CloseTime, other.CloseTime)) return false;
+      if (!object.Equals(CloseTimeUtc, other.CloseTimeUtc)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Profit, other.Profit)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Commission, other.Commission)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Swap, other.Swap)) return false;
@@ -6246,7 +6547,9 @@ namespace mt5_term_api {
       if (OpenPrice != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(OpenPrice);
       if (ClosePrice != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(ClosePrice);
       if (openTime_ != null) hash ^= OpenTime.GetHashCode();
+      if (openTimeUtc_ != null) hash ^= OpenTimeUtc.GetHashCode();
       if (closeTime_ != null) hash ^= CloseTime.GetHashCode();
+      if (closeTimeUtc_ != null) hash ^= CloseTimeUtc.GetHashCode();
       if (Profit != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Profit);
       if (Commission != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Commission);
       if (Swap != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Swap);
@@ -6317,6 +6620,14 @@ namespace mt5_term_api {
         output.WriteRawTag(98);
         output.WriteString(Comment);
       }
+      if (openTimeUtc_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(OpenTimeUtc);
+      }
+      if (closeTimeUtc_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(CloseTimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -6375,6 +6686,14 @@ namespace mt5_term_api {
         output.WriteRawTag(98);
         output.WriteString(Comment);
       }
+      if (openTimeUtc_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(OpenTimeUtc);
+      }
+      if (closeTimeUtc_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(CloseTimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -6406,8 +6725,14 @@ namespace mt5_term_api {
       if (openTime_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(OpenTime);
       }
+      if (openTimeUtc_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(OpenTimeUtc);
+      }
       if (closeTime_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(CloseTime);
+      }
+      if (closeTimeUtc_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(CloseTimeUtc);
       }
       if (Profit != 0D) {
         size += 1 + 8;
@@ -6457,11 +6782,23 @@ namespace mt5_term_api {
         }
         OpenTime.MergeFrom(other.OpenTime);
       }
+      if (other.openTimeUtc_ != null) {
+        if (openTimeUtc_ == null) {
+          OpenTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        OpenTimeUtc.MergeFrom(other.OpenTimeUtc);
+      }
       if (other.closeTime_ != null) {
         if (closeTime_ == null) {
           CloseTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         CloseTime.MergeFrom(other.CloseTime);
+      }
+      if (other.closeTimeUtc_ != null) {
+        if (closeTimeUtc_ == null) {
+          CloseTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        CloseTimeUtc.MergeFrom(other.CloseTimeUtc);
       }
       if (other.Profit != 0D) {
         Profit = other.Profit;
@@ -6544,6 +6881,20 @@ namespace mt5_term_api {
             Comment = input.ReadString();
             break;
           }
+          case 106: {
+            if (openTimeUtc_ == null) {
+              OpenTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(OpenTimeUtc);
+            break;
+          }
+          case 114: {
+            if (closeTimeUtc_ == null) {
+              CloseTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(CloseTimeUtc);
+            break;
+          }
         }
       }
     #endif
@@ -6611,6 +6962,20 @@ namespace mt5_term_api {
           }
           case 98: {
             Comment = input.ReadString();
+            break;
+          }
+          case 106: {
+            if (openTimeUtc_ == null) {
+              OpenTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(OpenTimeUtc);
+            break;
+          }
+          case 114: {
+            if (closeTimeUtc_ == null) {
+              CloseTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(CloseTimeUtc);
             break;
           }
         }
@@ -6833,6 +7198,7 @@ namespace mt5_term_api {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public EquityPointData(EquityPointData other) : this() {
       time_ = other.time_ != null ? other.time_.Clone() : null;
+      timeUtc_ = other.timeUtc_ != null ? other.timeUtc_.Clone() : null;
       balance_ = other.balance_;
       equity_ = other.equity_;
       balanceDrawdownRaw_ = other.balanceDrawdownRaw_;
@@ -6859,6 +7225,21 @@ namespace mt5_term_api {
       get { return time_; }
       set {
         time_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "time_utc" field.</summary>
+    public const int TimeUtcFieldNumber = 10;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp timeUtc_;
+    /// <summary>
+    /// time in UTC (the same moment; time is in the broker server's time zone).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp TimeUtc {
+      get { return timeUtc_; }
+      set {
+        timeUtc_ = value;
       }
     }
 
@@ -6974,6 +7355,7 @@ namespace mt5_term_api {
         return true;
       }
       if (!object.Equals(Time, other.Time)) return false;
+      if (!object.Equals(TimeUtc, other.TimeUtc)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Balance, other.Balance)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Equity, other.Equity)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(BalanceDrawdownRaw, other.BalanceDrawdownRaw)) return false;
@@ -6990,6 +7372,7 @@ namespace mt5_term_api {
     public override int GetHashCode() {
       int hash = 1;
       if (time_ != null) hash ^= Time.GetHashCode();
+      if (timeUtc_ != null) hash ^= TimeUtc.GetHashCode();
       if (Balance != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Balance);
       if (Equity != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Equity);
       if (BalanceDrawdownRaw != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(BalanceDrawdownRaw);
@@ -7052,6 +7435,10 @@ namespace mt5_term_api {
         output.WriteRawTag(73);
         output.WriteDouble(UnrealizedPl);
       }
+      if (timeUtc_ != null) {
+        output.WriteRawTag(82);
+        output.WriteMessage(TimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -7098,6 +7485,10 @@ namespace mt5_term_api {
         output.WriteRawTag(73);
         output.WriteDouble(UnrealizedPl);
       }
+      if (timeUtc_ != null) {
+        output.WriteRawTag(82);
+        output.WriteMessage(TimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -7110,6 +7501,9 @@ namespace mt5_term_api {
       int size = 0;
       if (time_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Time);
+      }
+      if (timeUtc_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(TimeUtc);
       }
       if (Balance != 0D) {
         size += 1 + 8;
@@ -7152,6 +7546,12 @@ namespace mt5_term_api {
           Time = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         Time.MergeFrom(other.Time);
+      }
+      if (other.timeUtc_ != null) {
+        if (timeUtc_ == null) {
+          TimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        TimeUtc.MergeFrom(other.TimeUtc);
       }
       if (other.Balance != 0D) {
         Balance = other.Balance;
@@ -7231,6 +7631,13 @@ namespace mt5_term_api {
             UnrealizedPl = input.ReadDouble();
             break;
           }
+          case 82: {
+            if (timeUtc_ == null) {
+              TimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(TimeUtc);
+            break;
+          }
         }
       }
     #endif
@@ -7283,6 +7690,13 @@ namespace mt5_term_api {
           }
           case 73: {
             UnrealizedPl = input.ReadDouble();
+            break;
+          }
+          case 82: {
+            if (timeUtc_ == null) {
+              TimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(TimeUtc);
             break;
           }
         }
@@ -7507,8 +7921,10 @@ namespace mt5_term_api {
       ticket_ = other.ticket_;
       symbol_ = other.symbol_;
       maxUnrealizedTime_ = other.maxUnrealizedTime_ != null ? other.maxUnrealizedTime_.Clone() : null;
+      maxUnrealizedTimeUtc_ = other.maxUnrealizedTimeUtc_ != null ? other.maxUnrealizedTimeUtc_.Clone() : null;
       maxUnrealizedPl_ = other.maxUnrealizedPl_;
       minUnrealizedTime_ = other.minUnrealizedTime_ != null ? other.minUnrealizedTime_.Clone() : null;
+      minUnrealizedTimeUtc_ = other.minUnrealizedTimeUtc_ != null ? other.minUnrealizedTimeUtc_.Clone() : null;
       minUnrealizedPl_ = other.minUnrealizedPl_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -7555,6 +7971,21 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "max_unrealized_time_utc" field.</summary>
+    public const int MaxUnrealizedTimeUtcFieldNumber = 7;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp maxUnrealizedTimeUtc_;
+    /// <summary>
+    /// max_unrealized_time in UTC (the same moment; max_unrealized_time is in the broker server's time zone).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp MaxUnrealizedTimeUtc {
+      get { return maxUnrealizedTimeUtc_; }
+      set {
+        maxUnrealizedTimeUtc_ = value;
+      }
+    }
+
     /// <summary>Field number for the "max_unrealized_pl" field.</summary>
     public const int MaxUnrealizedPlFieldNumber = 4;
     private double maxUnrealizedPl_;
@@ -7576,6 +8007,21 @@ namespace mt5_term_api {
       get { return minUnrealizedTime_; }
       set {
         minUnrealizedTime_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "min_unrealized_time_utc" field.</summary>
+    public const int MinUnrealizedTimeUtcFieldNumber = 8;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp minUnrealizedTimeUtc_;
+    /// <summary>
+    /// min_unrealized_time in UTC (the same moment; min_unrealized_time is in the broker server's time zone).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp MinUnrealizedTimeUtc {
+      get { return minUnrealizedTimeUtc_; }
+      set {
+        minUnrealizedTimeUtc_ = value;
       }
     }
 
@@ -7609,8 +8055,10 @@ namespace mt5_term_api {
       if (Ticket != other.Ticket) return false;
       if (Symbol != other.Symbol) return false;
       if (!object.Equals(MaxUnrealizedTime, other.MaxUnrealizedTime)) return false;
+      if (!object.Equals(MaxUnrealizedTimeUtc, other.MaxUnrealizedTimeUtc)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(MaxUnrealizedPl, other.MaxUnrealizedPl)) return false;
       if (!object.Equals(MinUnrealizedTime, other.MinUnrealizedTime)) return false;
+      if (!object.Equals(MinUnrealizedTimeUtc, other.MinUnrealizedTimeUtc)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(MinUnrealizedPl, other.MinUnrealizedPl)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -7622,8 +8070,10 @@ namespace mt5_term_api {
       if (Ticket != 0L) hash ^= Ticket.GetHashCode();
       if (Symbol.Length != 0) hash ^= Symbol.GetHashCode();
       if (maxUnrealizedTime_ != null) hash ^= MaxUnrealizedTime.GetHashCode();
+      if (maxUnrealizedTimeUtc_ != null) hash ^= MaxUnrealizedTimeUtc.GetHashCode();
       if (MaxUnrealizedPl != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(MaxUnrealizedPl);
       if (minUnrealizedTime_ != null) hash ^= MinUnrealizedTime.GetHashCode();
+      if (minUnrealizedTimeUtc_ != null) hash ^= MinUnrealizedTimeUtc.GetHashCode();
       if (MinUnrealizedPl != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(MinUnrealizedPl);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -7667,6 +8117,14 @@ namespace mt5_term_api {
         output.WriteRawTag(49);
         output.WriteDouble(MinUnrealizedPl);
       }
+      if (maxUnrealizedTimeUtc_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(MaxUnrealizedTimeUtc);
+      }
+      if (minUnrealizedTimeUtc_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(MinUnrealizedTimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -7701,6 +8159,14 @@ namespace mt5_term_api {
         output.WriteRawTag(49);
         output.WriteDouble(MinUnrealizedPl);
       }
+      if (maxUnrealizedTimeUtc_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(MaxUnrealizedTimeUtc);
+      }
+      if (minUnrealizedTimeUtc_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(MinUnrealizedTimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -7720,11 +8186,17 @@ namespace mt5_term_api {
       if (maxUnrealizedTime_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(MaxUnrealizedTime);
       }
+      if (maxUnrealizedTimeUtc_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MaxUnrealizedTimeUtc);
+      }
       if (MaxUnrealizedPl != 0D) {
         size += 1 + 8;
       }
       if (minUnrealizedTime_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(MinUnrealizedTime);
+      }
+      if (minUnrealizedTimeUtc_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MinUnrealizedTimeUtc);
       }
       if (MinUnrealizedPl != 0D) {
         size += 1 + 8;
@@ -7753,6 +8225,12 @@ namespace mt5_term_api {
         }
         MaxUnrealizedTime.MergeFrom(other.MaxUnrealizedTime);
       }
+      if (other.maxUnrealizedTimeUtc_ != null) {
+        if (maxUnrealizedTimeUtc_ == null) {
+          MaxUnrealizedTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        MaxUnrealizedTimeUtc.MergeFrom(other.MaxUnrealizedTimeUtc);
+      }
       if (other.MaxUnrealizedPl != 0D) {
         MaxUnrealizedPl = other.MaxUnrealizedPl;
       }
@@ -7761,6 +8239,12 @@ namespace mt5_term_api {
           MinUnrealizedTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         MinUnrealizedTime.MergeFrom(other.MinUnrealizedTime);
+      }
+      if (other.minUnrealizedTimeUtc_ != null) {
+        if (minUnrealizedTimeUtc_ == null) {
+          MinUnrealizedTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        MinUnrealizedTimeUtc.MergeFrom(other.MinUnrealizedTimeUtc);
       }
       if (other.MinUnrealizedPl != 0D) {
         MinUnrealizedPl = other.MinUnrealizedPl;
@@ -7810,6 +8294,20 @@ namespace mt5_term_api {
             MinUnrealizedPl = input.ReadDouble();
             break;
           }
+          case 58: {
+            if (maxUnrealizedTimeUtc_ == null) {
+              MaxUnrealizedTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(MaxUnrealizedTimeUtc);
+            break;
+          }
+          case 66: {
+            if (minUnrealizedTimeUtc_ == null) {
+              MinUnrealizedTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(MinUnrealizedTimeUtc);
+            break;
+          }
         }
       }
     #endif
@@ -7853,6 +8351,20 @@ namespace mt5_term_api {
           }
           case 49: {
             MinUnrealizedPl = input.ReadDouble();
+            break;
+          }
+          case 58: {
+            if (maxUnrealizedTimeUtc_ == null) {
+              MaxUnrealizedTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(MaxUnrealizedTimeUtc);
+            break;
+          }
+          case 66: {
+            if (minUnrealizedTimeUtc_ == null) {
+              MinUnrealizedTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(MinUnrealizedTimeUtc);
             break;
           }
         }
