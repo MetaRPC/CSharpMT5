@@ -21,6 +21,7 @@ All I/O, gRPC queries, and streaming in C# use async/await with `Task` and `IAsy
 ## 🚀 When to Use Asynchronous Methods (Recommended)
 
 ### 1. Market Data Streaming
+
 Market ticks arrive at microsecond intervals during peak sessions. Asynchronous handlers ensure zero tick drops without freezing your execution thread:
 
 ```
@@ -31,6 +32,7 @@ Console.WriteLine($"Balance: {summary.AccountBalance}, Equity: {summary.AccountE
 ```
 
 ### 2. High-Frequency Order Execution
+
 When operating across multiple currency pairs simultaneously, asynchronous dispatch allows your bot to send orders concurrently rather than sequentially.
 
 ---

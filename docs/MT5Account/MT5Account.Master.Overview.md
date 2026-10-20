@@ -291,7 +291,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 **Location:** `MT5Service.cs`
 
-**Documentation:** [MT5Service.Overview.md](../API_Reference/MT5Service.md)
+**Documentation:** [MT5Service.Overview.md](../MT5Service/MT5Service.Overview.md)
 
 ---
 
@@ -313,7 +313,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 **Location:** `MT5Sugar.cs`
 
-**Documentation:** [MT5Sugar.API_Overview.md](../API_Reference/MT5Sugar.md)
+**Documentation:** [MT5Sugar.API_Overview.md](../MT5Sugar/MT5Sugar.API_Overview.md)
 
 ---
 
@@ -352,7 +352,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 **Goal:** Learn to build clean API wrappers on top of complex protocols.
 
-**Documentation:** [MT5Service.Overview.md](../API_Reference/MT5Service.md)
+**Documentation:** [MT5Service.Overview.md](../MT5Service/MT5Service.Overview.md)
 
 ---
 
@@ -369,7 +369,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 **Goal:** Rapid strategy development with production-ready convenience methods.
 
-**Documentation:** [MT5Sugar.API_Overview.md](../API_Reference/MT5Sugar.md)
+**Documentation:** [MT5Sugar.API_Overview.md](../MT5Sugar/MT5Sugar.API_Overview.md)
 
 ---
 

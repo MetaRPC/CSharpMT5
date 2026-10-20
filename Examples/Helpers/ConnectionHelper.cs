@@ -111,7 +111,7 @@ namespace MetaRPC.CSharpMT5.Examples.Helpers
                 try
                 {
                     ConsoleHelper.PrintInfo("Disconnecting from MT5 terminal...");
-                    await account.DisconnectAsync(delete);
+                    await account.DisconnectAsync();
                     ConsoleHelper.PrintSuccess("✓ Disconnected successfully.\n");
                 }
                 catch (Exception ex)
@@ -128,7 +128,7 @@ namespace MetaRPC.CSharpMT5.Examples.Helpers
                 try
                 {
                     ConsoleHelper.PrintInfo("Disconnecting from MT5 terminal...");
-                    account.Disconnect(delete);
+                    account.Disconnect();
                     ConsoleHelper.PrintSuccess("✓ Disconnected successfully.\n");
                 }
                 catch (Exception ex)

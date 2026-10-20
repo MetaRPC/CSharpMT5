@@ -228,4 +228,4 @@ catch (OperationCanceledException)
 * **Request/Reply:** [SymbolInfoTick](../2.%20Symbol_information/SymbolInfoTick.md) - single tick vs tick stream
 * **Account:** [AccountSummary](../1.%20Account_information/AccountSummary.md) - account snapshot
 * **Trading:** [OrderSend](../4.%20Trading_Operattons/OrderSend.md) - place orders based on stream events
-* **MT5Sugar Helpers:** [ReadTicks](../../API_Reference/MT5Sugar.md) & [ReadTrades](../../API_Reference/MT5Sugar.md) - Bounded streaming (recommended!)
+* **MT5Sugar Helpers:** [ReadTicks](../../MT5Sugar/MT5Sugar.API_Overview.md) & [ReadTrades](../../MT5Sugar/MT5Sugar.API_Overview.md) - Bounded streaming (recommended!)

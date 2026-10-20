@@ -63,21 +63,21 @@ namespace mt5_term_api {
             "SDMQDhIWChJFQV9DSEFSVF9QRVJJT0RfSDQQDxIWChJFQV9DSEFSVF9QRVJJ",
             "T0RfSDYQEBIWChJFQV9DSEFSVF9QRVJJT0RfSDgQERIXChNFQV9DSEFSVF9Q",
             "RVJJT0RfSDEyEBISFgoSRUFfQ0hBUlRfUEVSSU9EX0QxEBMSFgoSRUFfQ0hB",
-            "UlRfUEVSSU9EX1cxEBQSFwoTRUFfQ0hBUlRfUEVSSU9EX01OMRAVKnkKD0No",
-            "YXJ0RXhwZXJ0TW9kZRILCgdPTl9USUNLEAASDAoIT05fVFJBREUQARITCg9P",
-            "Tl9PUkRFUl9QUk9GSVQQAhIcChhPTl9PUEVORURfT1JERVJTX1RJQ0tFVFMQ",
-            "AxIYChRPTl9UUkFERV9UUkFOU0FDVElPThAEMp8DCg5JbnRlcm5hbENoYXJ0",
-            "cxJkChJPcGVuQ2hhcnRGb3JTeW1ib2wSJy5tdDVfdGVybV9hcGkuT3BlbkNo",
-            "YXJ0Rm9yU3ltYm9sUmVxdWVzdBolLm10NV90ZXJtX2FwaS5PcGVuQ2hhcnRG",
-            "b3JTeW1ib2xSZXBseRJnChNDbG9zZUNoYXJ0Rm9yU3ltYm9sEigubXQ1X3Rl",
-            "cm1fYXBpLkNsb3NlQ2hhcnRGb3JTeW1ib2xSZXF1ZXN0GiYubXQ1X3Rlcm1f",
-            "YXBpLkNsb3NlQ2hhcnRGb3JTeW1ib2xSZXBseRJbCg9PcGVuQ2hhcnRXaXRo",
-            "RWESJC5tdDVfdGVybV9hcGkuT3BlbkNoYXJ0V2l0aEVhUmVxdWVzdBoiLm10",
-            "NV90ZXJtX2FwaS5PcGVuQ2hhcnRXaXRoRWFSZXBseRJhChFTYXZlQ2hhcnRU",
-            "ZW1wbGF0ZRImLm10NV90ZXJtX2FwaS5TYXZlQ2hhcnRUZW1wbGF0ZVJlcXVl",
-            "c3QaJC5tdDVfdGVybV9hcGkuU2F2ZUNoYXJ0VGVtcGxhdGVSZXBseUJCWjFn",
-            "aXQubXRhcGkuaW8vcm9vdC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVz",
-            "L2dvqgIMbXQ1X3Rlcm1fYXBpYgZwcm90bzM="));
+            "UlRfUEVSSU9EX1cxEBQSFwoTRUFfQ0hBUlRfUEVSSU9EX01OMRAVKoUBCg9D",
+            "aGFydEV4cGVydE1vZGUSCwoHT05fVElDSxAAEgwKCE9OX1RSQURFEAESEwoP",
+            "T05fT1JERVJfUFJPRklUEAISHAoYT05fT1BFTkVEX09SREVSU19USUNLRVRT",
+            "EAMSGAoUT05fVFJBREVfVFJBTlNBQ1RJT04QBBIKCgZFVkVOVFMQBTKfAwoO",
+            "SW50ZXJuYWxDaGFydHMSZAoST3BlbkNoYXJ0Rm9yU3ltYm9sEicubXQ1X3Rl",
+            "cm1fYXBpLk9wZW5DaGFydEZvclN5bWJvbFJlcXVlc3QaJS5tdDVfdGVybV9h",
+            "cGkuT3BlbkNoYXJ0Rm9yU3ltYm9sUmVwbHkSZwoTQ2xvc2VDaGFydEZvclN5",
+            "bWJvbBIoLm10NV90ZXJtX2FwaS5DbG9zZUNoYXJ0Rm9yU3ltYm9sUmVxdWVz",
+            "dBomLm10NV90ZXJtX2FwaS5DbG9zZUNoYXJ0Rm9yU3ltYm9sUmVwbHkSWwoP",
+            "T3BlbkNoYXJ0V2l0aEVhEiQubXQ1X3Rlcm1fYXBpLk9wZW5DaGFydFdpdGhF",
+            "YVJlcXVlc3QaIi5tdDVfdGVybV9hcGkuT3BlbkNoYXJ0V2l0aEVhUmVwbHkS",
+            "YQoRU2F2ZUNoYXJ0VGVtcGxhdGUSJi5tdDVfdGVybV9hcGkuU2F2ZUNoYXJ0",
+            "VGVtcGxhdGVSZXF1ZXN0GiQubXQ1X3Rlcm1fYXBpLlNhdmVDaGFydFRlbXBs",
+            "YXRlUmVwbHlCQloxZ2l0Lm10YXBpLmlvL3Jvb3QvbXJwYy1wcm90by5naXQv",
+            "bXQ1L2xpYnJhcmllcy9nb6oCDG10NV90ZXJtX2FwaWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::mt5_term_api.EnumOpenChartWithEaParemeterType), typeof(global::mt5_term_api.EnumOpenChartWithEaChatPeriod), typeof(global::mt5_term_api.ChartExpertMode), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -135,6 +135,10 @@ namespace mt5_term_api {
     [pbr::OriginalName("ON_ORDER_PROFIT")] OnOrderProfit = 2,
     [pbr::OriginalName("ON_OPENED_ORDERS_TICKETS")] OnOpenedOrdersTickets = 3,
     [pbr::OriginalName("ON_TRADE_TRANSACTION")] OnTradeTransaction = 4,
+    /// <summary>
+    /// every trade stream of the terminal on one chart (mt5-term-ea-events)
+    /// </summary>
+    [pbr::OriginalName("EVENTS")] Events = 5,
   }
 
   #endregion

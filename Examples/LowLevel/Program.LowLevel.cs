@@ -452,7 +452,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             try
             {
                 // Subscribe to market depth updates
-                Console.WriteLine($"  [5.1] MarketBookAddAsync() - Subscribe to DOM:");
+                Console.WriteLine($"  [4.1] MarketBookAddAsync() - Subscribe to DOM:");
                 var deadline5sec = DateTime.UtcNow.AddSeconds(5);
                 var domAdd = await acc.MarketBookAddAsync(symbol, deadline5sec);
                 Console.WriteLine($"        Subscription opened: {domAdd.OpenedSuccessfully}");
@@ -460,7 +460,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
                 if (domAdd.OpenedSuccessfully)
                 {
                     // Get current market depth snapshot
-                    Console.WriteLine($"  [5.2] MarketBookGetAsync() - Get market depth:");
+                    Console.WriteLine($"  [4.2] MarketBookGetAsync() - Get market depth:");
                     var deadline15sec = DateTime.UtcNow.AddSeconds(15);
                     var domData = await acc.MarketBookGetAsync(symbol, deadline15sec);
                     Console.WriteLine($"        DOM entries: {domData.MqlBookInfos.Count}");
@@ -475,7 +475,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
                     }
 
                     // Unsubscribe to clean up resources
-                    Console.WriteLine($"\n  [5.3] MarketBookReleaseAsync() - Unsubscribe:");
+                    Console.WriteLine($"\n  [4.3] MarketBookReleaseAsync() - Unsubscribe:");
                     var deadline15sec2 = DateTime.UtcNow.AddSeconds(15);
                     var domRelease = await acc.MarketBookReleaseAsync(symbol, deadline15sec2);
                     Console.WriteLine($"        Subscription closed: {domRelease.ClosedSuccessfully}\n");

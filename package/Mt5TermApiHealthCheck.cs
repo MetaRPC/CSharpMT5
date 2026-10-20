@@ -27,21 +27,22 @@ namespace mt5_term_api {
             "Ch9tdDUtdGVybS1hcGktaGVhbHRoLWNoZWNrLnByb3RvEgxtdDVfdGVybV9h",
             "cGkaHW10NS10ZXJtLWFwaS1jb25uZWN0aW9uLnByb3RvIhYKFFN0b3BMaXN0",
             "ZW5pbmdSZXF1ZXN0IhQKElN0b3BMaXN0ZW5pbmdSZXBseSIUChJIZWFsdGhD",
-            "aGVja1JlcXVlc3QiTwoQSGVhbHRoQ2hlY2tSZXBseRIeChZpc19jb25uZWN0",
+            "aGVja1JlcXVlc3QicAoQSGVhbHRoQ2hlY2tSZXBseRIeChZpc19jb25uZWN0",
             "ZWRfdG9fc2VydmVyGAEgASgIEhsKE3NlcnZlcl90aW1lX3NlY29uZHMYAiAB",
-            "KAMyqgEKBkhlYWx0aBJJCgVDaGVjaxIgLm10NV90ZXJtX2FwaS5IZWFsdGhD",
-            "aGVja1JlcXVlc3QaHi5tdDVfdGVybV9hcGkuSGVhbHRoQ2hlY2tSZXBseRJV",
-            "Cg1TdG9wTGlzdGVuaW5nEiIubXQ1X3Rlcm1fYXBpLlN0b3BMaXN0ZW5pbmdS",
-            "ZXF1ZXN0GiAubXQ1X3Rlcm1fYXBpLlN0b3BMaXN0ZW5pbmdSZXBseUJCWjFn",
-            "aXQubXRhcGkuaW8vcm9vdC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVz",
-            "L2dvqgIMbXQ1X3Rlcm1fYXBpYgZwcm90bzM="));
+            "KAMSHwoXc2VydmVyX3RpbWVfc2Vjb25kc191dGMYAyABKAMyqgEKBkhlYWx0",
+            "aBJJCgVDaGVjaxIgLm10NV90ZXJtX2FwaS5IZWFsdGhDaGVja1JlcXVlc3Qa",
+            "Hi5tdDVfdGVybV9hcGkuSGVhbHRoQ2hlY2tSZXBseRJVCg1TdG9wTGlzdGVu",
+            "aW5nEiIubXQ1X3Rlcm1fYXBpLlN0b3BMaXN0ZW5pbmdSZXF1ZXN0GiAubXQ1",
+            "X3Rlcm1fYXBpLlN0b3BMaXN0ZW5pbmdSZXBseUJCWjFnaXQubXRhcGkuaW8v",
+            "cm9vdC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVzL2dvqgIMbXQ1X3Rl",
+            "cm1fYXBpYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::mt5_term_api.Mt5TermApiConnectionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StopListeningRequest), global::mt5_term_api.StopListeningRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StopListeningReply), global::mt5_term_api.StopListeningReply.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.HealthCheckRequest), global::mt5_term_api.HealthCheckRequest.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.HealthCheckReply), global::mt5_term_api.HealthCheckReply.Parser, new[]{ "IsConnectedToServer", "ServerTimeSeconds" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.HealthCheckReply), global::mt5_term_api.HealthCheckReply.Parser, new[]{ "IsConnectedToServer", "ServerTimeSeconds", "ServerTimeSecondsUtc" }, null, null, null, null)
           }));
     }
     #endregion
@@ -540,6 +541,7 @@ namespace mt5_term_api {
     public HealthCheckReply(HealthCheckReply other) : this() {
       isConnectedToServer_ = other.isConnectedToServer_;
       serverTimeSeconds_ = other.serverTimeSeconds_;
+      serverTimeSecondsUtc_ = other.serverTimeSecondsUtc_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -573,6 +575,21 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "server_time_seconds_utc" field.</summary>
+    public const int ServerTimeSecondsUtcFieldNumber = 3;
+    private long serverTimeSecondsUtc_;
+    /// <summary>
+    /// server_time_seconds in UTC (the same moment; server_time_seconds is in the broker server's time zone).
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long ServerTimeSecondsUtc {
+      get { return serverTimeSecondsUtc_; }
+      set {
+        serverTimeSecondsUtc_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -590,6 +607,7 @@ namespace mt5_term_api {
       }
       if (IsConnectedToServer != other.IsConnectedToServer) return false;
       if (ServerTimeSeconds != other.ServerTimeSeconds) return false;
+      if (ServerTimeSecondsUtc != other.ServerTimeSecondsUtc) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -599,6 +617,7 @@ namespace mt5_term_api {
       int hash = 1;
       if (IsConnectedToServer != false) hash ^= IsConnectedToServer.GetHashCode();
       if (ServerTimeSeconds != 0L) hash ^= ServerTimeSeconds.GetHashCode();
+      if (ServerTimeSecondsUtc != 0L) hash ^= ServerTimeSecondsUtc.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -625,6 +644,10 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteInt64(ServerTimeSeconds);
       }
+      if (ServerTimeSecondsUtc != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(ServerTimeSecondsUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -643,6 +666,10 @@ namespace mt5_term_api {
         output.WriteRawTag(16);
         output.WriteInt64(ServerTimeSeconds);
       }
+      if (ServerTimeSecondsUtc != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(ServerTimeSecondsUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -658,6 +685,9 @@ namespace mt5_term_api {
       }
       if (ServerTimeSeconds != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(ServerTimeSeconds);
+      }
+      if (ServerTimeSecondsUtc != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(ServerTimeSecondsUtc);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -676,6 +706,9 @@ namespace mt5_term_api {
       }
       if (other.ServerTimeSeconds != 0L) {
         ServerTimeSeconds = other.ServerTimeSeconds;
+      }
+      if (other.ServerTimeSecondsUtc != 0L) {
+        ServerTimeSecondsUtc = other.ServerTimeSecondsUtc;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -700,6 +733,10 @@ namespace mt5_term_api {
             ServerTimeSeconds = input.ReadInt64();
             break;
           }
+          case 24: {
+            ServerTimeSecondsUtc = input.ReadInt64();
+            break;
+          }
         }
       }
     #endif
@@ -721,6 +758,10 @@ namespace mt5_term_api {
           }
           case 16: {
             ServerTimeSeconds = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            ServerTimeSecondsUtc = input.ReadInt64();
             break;
           }
         }

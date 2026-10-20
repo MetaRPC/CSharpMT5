@@ -508,6 +508,7 @@ namespace mt5_term_api
 | `BMT5_SYMBOL_CALC_MODE_EXCH_BONDS` | Exchange bonds | Margin: `Lots * ContractSize * FaceValue * open_price / 100`<br>Profit: `Lots * close_price * FaceValue * Contract_Size + AccruedInterest * Lots * ContractSize` |
 | `BMT5_SYMBOL_CALC_MODE_EXCH_STOCKS_MOEX` | MOEX stocks | Margin: `Lots * ContractSize * LastPrice * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
 | `BMT5_SYMBOL_CALC_MODE_EXCH_BONDS_MOEX` | MOEX bonds | Margin: `Lots * ContractSize * FaceValue * open_price / 100`<br>Profit: `Lots * close_price * FaceValue * Contract_Size + AccruedInterest * Lots * ContractSize` |
+| `BMT5_SYMBOL_CALC_MODE_SERV_COLLATERAL` | Collateral | Instrument used as collateral; no margin charged and no profit/loss calculated for the position |
 
 ---
 

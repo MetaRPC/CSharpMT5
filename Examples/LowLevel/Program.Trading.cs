@@ -12,10 +12,10 @@
 
  📚 WHAT THIS DEMO COVERS:
 
-   1. ORDER VALIDATION (OrderCheckAsync)
-      • Validate trade request before sending
-      • Check margin requirements
-      • Verify broker accepts the order parameters
+   1. ORDER VALIDATION (OrderCheckAsync) - SKIPPED on DEMO accounts
+      • Would validate trade request before sending
+      • NOTE: OrderCheck is not available on demo accounts, so this step is skipped
+      • See step [1] in code — it is intentionally bypassed
 
    2. MARGIN CALCULATION (OrderCalcMarginAsync)
       • Calculate required margin for a trade
@@ -204,7 +204,7 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
 
                 ConsoleHelper.PrintSuccess("═══════════════════════════════════════════");
                 ConsoleHelper.PrintSuccess("  COMPLETE TRADE LIFECYCLE EXECUTED:");
-                ConsoleHelper.PrintSuccess("  ✓ Order validated (OrderCheckAsync)");
+                ConsoleHelper.PrintSuccess("  - Order validation (OrderCheckAsync) SKIPPED on demo");
                 ConsoleHelper.PrintSuccess("  ✓ Margin calculated (OrderCalcMarginAsync)");
                 ConsoleHelper.PrintSuccess("  ✓ Position opened (OrderSendAsync)");
                 ConsoleHelper.PrintSuccess("  ✓ Position modified (OrderModifyAsync)");

@@ -475,6 +475,7 @@ namespace mt5_term_api {
       ///
       /// This API had no such call, so a client holding a terminal id could list symbols, read a live
       /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
       /// </summary>
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
@@ -1347,6 +1348,7 @@ namespace mt5_term_api {
       ///
       /// This API had no such call, so a client holding a terminal id could list symbols, read a live
       /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -1363,6 +1365,7 @@ namespace mt5_term_api {
       ///
       /// This API had no such call, so a client holding a terminal id could list symbols, read a live
       /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
@@ -1377,6 +1380,7 @@ namespace mt5_term_api {
       ///
       /// This API had no such call, so a client holding a terminal id could list symbols, read a live
       /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -1393,6 +1397,7 @@ namespace mt5_term_api {
       ///
       /// This API had no such call, so a client holding a terminal id could list symbols, read a live
       /// price and trade, and still not draw a chart. Ticks are not candles.
+      /// DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
       /// </summary>
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>

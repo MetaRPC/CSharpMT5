@@ -558,6 +558,139 @@
             <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
             <param name="serviceImpl">An object implementing the server-side handling logic.</param>
         </member>
+        <member name="T:mt5_term_api.Accounts">
+             <summary>
+             ============================================================================
+             Accounts: the MT5 accounts (terminals) that belong to your API key.
+            
+             This is the call to make when you need the terminal ids of accounts that already exist - started
+             from the dashboard or by an earlier ConnectEx - so that you can send them as the "id" header of
+             every other call. Unlike the terminal calls it needs NO "id" header: it is answered from the
+             platform's records of the API key sent in the "APIKey" header, and it never starts, wakes or bills
+             a terminal.
+            
+             Accounts are listed newest first (by started_utc, then terminal_id) and returned by page. Only
+             accounts of THIS platform's endpoint are listed (mt5.mrpc.pro lists MT5 accounts, mt4.mrpc.pro lists
+             MT4 accounts).
+             ============================================================================
+             </summary>
+        </member>
+        <member name="P:mt5_term_api.Accounts.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mt5_term_api.Accounts.AccountsBase">
+            <summary>Base class for server-side implementations of Accounts</summary>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsBase.List(mt5_term_api.AccountsListRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Lists the accounts of the API key sent in the APIKey header, one page per call. Pass the
+            next_page_token of a page back as page_token to continue; an empty next_page_token means that was
+            the last page.
+            [DefaultValues]
+            {
+              "includeStopped": "false",
+              "pageSize": "200"
+            }
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="T:mt5_term_api.Accounts.AccountsClient">
+            <summary>Client for Accounts</summary>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for Accounts</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for Accounts that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsClient.List(mt5_term_api.AccountsListRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Lists the accounts of the API key sent in the APIKey header, one page per call. Pass the
+            next_page_token of a page back as page_token to continue; an empty next_page_token means that was
+            the last page.
+            [DefaultValues]
+            {
+              "includeStopped": "false",
+              "pageSize": "200"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsClient.List(mt5_term_api.AccountsListRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Lists the accounts of the API key sent in the APIKey header, one page per call. Pass the
+            next_page_token of a page back as page_token to continue; an empty next_page_token means that was
+            the last page.
+            [DefaultValues]
+            {
+              "includeStopped": "false",
+              "pageSize": "200"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsClient.ListAsync(mt5_term_api.AccountsListRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Lists the accounts of the API key sent in the APIKey header, one page per call. Pass the
+            next_page_token of a page back as page_token to continue; an empty next_page_token means that was
+            the last page.
+            [DefaultValues]
+            {
+              "includeStopped": "false",
+              "pageSize": "200"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsClient.ListAsync(mt5_term_api.AccountsListRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Lists the accounts of the API key sent in the APIKey header, one page per call. Pass the
+            next_page_token of a page back as page_token to continue; an empty next_page_token means that was
+            the last page.
+            [DefaultValues]
+            {
+              "includeStopped": "false",
+              "pageSize": "200"
+            }
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.Accounts.AccountsClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mt5_term_api.Accounts.BindService(mt5_term_api.Accounts.AccountsBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mt5_term_api.Accounts.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.Accounts.AccountsBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
         <member name="P:mt5_term_api.Charts.Descriptor">
             <summary>Service descriptor</summary>
         </member>
@@ -641,9 +774,9 @@
              "password": "7dPjA*Jm", 
              "host": "d51a1.octanetwork.net", 
              "port": "443", 
-             "proxyUser": "ProxyUser123", 
-             "proxyPassword": "qwerty123", 
-             "proxyHost": "65.108.126.217", 
+             "proxyUser": "proxy-user", 
+             "proxyPassword": "proxy-password", 
+             "proxyHost": "proxy.example.com", 
              "proxyPort": "1080", 
              "proxyType": "Socks5" 
             }
@@ -931,9 +1064,9 @@
              "password": "7dPjA*Jm", 
              "host": "d51a1.octanetwork.net", 
              "port": "443", 
-             "proxyUser": "ProxyUser123", 
-             "proxyPassword": "qwerty123", 
-             "proxyHost": "65.108.126.217", 
+             "proxyUser": "proxy-user", 
+             "proxyPassword": "proxy-password", 
+             "proxyHost": "proxy.example.com", 
              "proxyPort": "1080", 
              "proxyType": "Socks5" 
             }
@@ -953,9 +1086,9 @@
              "password": "7dPjA*Jm", 
              "host": "d51a1.octanetwork.net", 
              "port": "443", 
-             "proxyUser": "ProxyUser123", 
-             "proxyPassword": "qwerty123", 
-             "proxyHost": "65.108.126.217", 
+             "proxyUser": "proxy-user", 
+             "proxyPassword": "proxy-password", 
+             "proxyHost": "proxy.example.com", 
              "proxyPort": "1080", 
              "proxyType": "Socks5" 
             }
@@ -973,9 +1106,9 @@
              "password": "7dPjA*Jm", 
              "host": "d51a1.octanetwork.net", 
              "port": "443", 
-             "proxyUser": "ProxyUser123", 
-             "proxyPassword": "qwerty123", 
-             "proxyHost": "65.108.126.217", 
+             "proxyUser": "proxy-user", 
+             "proxyPassword": "proxy-password", 
+             "proxyHost": "proxy.example.com", 
              "proxyPort": "1080", 
              "proxyType": "Socks5" 
             }
@@ -995,9 +1128,9 @@
              "password": "7dPjA*Jm", 
              "host": "d51a1.octanetwork.net", 
              "port": "443", 
-             "proxyUser": "ProxyUser123", 
-             "proxyPassword": "qwerty123", 
-             "proxyHost": "65.108.126.217", 
+             "proxyUser": "proxy-user", 
+             "proxyPassword": "proxy-password", 
+             "proxyHost": "proxy.example.com", 
              "proxyPort": "1080", 
              "proxyType": "Socks5" 
             }
@@ -2098,6 +2231,7 @@
             
              This API had no such call, so a client holding a terminal id could list symbols, read a live
              price and trade, and still not draw a chart. Ticks are not candles.
+             DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
              </summary>
              <param name="request">The request received from the client.</param>
              <param name="context">The context of the server-side call handler being invoked.</param>
@@ -2763,6 +2897,7 @@
             
              This API had no such call, so a client holding a terminal id could list symbols, read a live
              price and trade, and still not draw a chart. Ticks are not candles.
+             DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
              </summary>
              <param name="request">The request to send to the server.</param>
              <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -2776,6 +2911,7 @@
             
              This API had no such call, so a client holding a terminal id could list symbols, read a live
              price and trade, and still not draw a chart. Ticks are not candles.
+             DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
              </summary>
              <param name="request">The request to send to the server.</param>
              <param name="options">The options for the call.</param>
@@ -2787,6 +2923,7 @@
             
              This API had no such call, so a client holding a terminal id could list symbols, read a live
              price and trade, and still not draw a chart. Ticks are not candles.
+             DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
              </summary>
              <param name="request">The request to send to the server.</param>
              <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
@@ -2800,6 +2937,7 @@
             
              This API had no such call, so a client holding a terminal id could list symbols, read a live
              price and trade, and still not draw a chart. Ticks are not candles.
+             DEPRECATED: use QuoteHistory.Bars (mt5-term-api-quote-history.proto): paged, bounded, oldest first.
              </summary>
              <param name="request">The request to send to the server.</param>
              <param name="options">The options for the call.</param>
@@ -2813,6 +2951,260 @@
             <param name="serviceImpl">An object implementing the server-side handling logic.</param>
         </member>
         <member name="M:mt5_term_api.MarketInfo.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.MarketInfo.MarketInfoBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="T:mt5_term_api.QuoteHistory">
+             <summary>
+             ============================================================================
+             Quote history: the bars a chart is drawn from, and the ticks those bars are
+             built from, for one symbol - returned by PAGE, oldest first.
+            
+             Both calls walk a time range forward. A page carries at most page_size items
+             and, when the range holds more, a next_page_token; passing that token back
+             (same symbol, timeframe/flags and range) returns the next page. An empty
+             next_page_token means the range is exhausted. Tokens are opaque: a client
+             stores and returns them, nothing else.
+            
+             History lives in the terminal and is fetched from the broker on demand. The
+             first request for a symbol or a period the terminal has not loaded yet can
+             take a few seconds, and when the broker has not delivered it within that
+             time the call answers with an error whose error_code is
+             QUOTE_HISTORY_NOT_READY - ask again a moment later. Nothing is served from
+             a cache outside the terminal.
+            
+             Every call needs the terminal id header ("id"), like every other call.
+             ============================================================================
+             </summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistory.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mt5_term_api.QuoteHistory.QuoteHistoryBase">
+            <summary>Base class for server-side implementations of QuoteHistory</summary>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryBase.Bars(mt5_term_api.QuoteHistoryBarsRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            OHLC bars (candles) of one symbol and timeframe, oldest first, by page.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryBase.Ticks(mt5_term_api.QuoteHistoryTicksRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Ticks of one symbol, oldest first, by page. MT5 keeps real tick history
+            (bid/ask/last with flags) for as far back as the broker provides it.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="T:mt5_term_api.QuoteHistory.QuoteHistoryClient">
+            <summary>Client for QuoteHistory</summary>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for QuoteHistory</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for QuoteHistory that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.Bars(mt5_term_api.QuoteHistoryBarsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            OHLC bars (candles) of one symbol and timeframe, oldest first, by page.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.Bars(mt5_term_api.QuoteHistoryBarsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            OHLC bars (candles) of one symbol and timeframe, oldest first, by page.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.BarsAsync(mt5_term_api.QuoteHistoryBarsRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            OHLC bars (candles) of one symbol and timeframe, oldest first, by page.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.BarsAsync(mt5_term_api.QuoteHistoryBarsRequest,Grpc.Core.CallOptions)">
+            <summary>
+            OHLC bars (candles) of one symbol and timeframe, oldest first, by page.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.Ticks(mt5_term_api.QuoteHistoryTicksRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Ticks of one symbol, oldest first, by page. MT5 keeps real tick history
+            (bid/ask/last with flags) for as far back as the broker provides it.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.Ticks(mt5_term_api.QuoteHistoryTicksRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Ticks of one symbol, oldest first, by page. MT5 keeps real tick history
+            (bid/ask/last with flags) for as far back as the broker provides it.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.TicksAsync(mt5_term_api.QuoteHistoryTicksRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Ticks of one symbol, oldest first, by page. MT5 keeps real tick history
+            (bid/ask/last with flags) for as far back as the broker provides it.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.TicksAsync(mt5_term_api.QuoteHistoryTicksRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Ticks of one symbol, oldest first, by page. MT5 keeps real tick history
+            (bid/ask/last with flags) for as far back as the broker provides it.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.QuoteHistoryClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.BindService(mt5_term_api.QuoteHistory.QuoteHistoryBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mt5_term_api.QuoteHistory.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.QuoteHistory.QuoteHistoryBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="T:mt5_term_api.ServerTimezone">
+             <summary>
+             ============================================================================
+             ServerTimezone: the broker server's time zone the platform uses for this account, and where it came from.
+            
+             Every *_utc field of the API is the broker server time minus this offset. Answered by the platform itself from what it
+             knows (the terminal is not asked unless nothing is known yet), so it is cheap to call.
+             ============================================================================
+             </summary>
+        </member>
+        <member name="P:mt5_term_api.ServerTimezone.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mt5_term_api.ServerTimezone.ServerTimezoneBase">
+            <summary>Base class for server-side implementations of ServerTimezone</summary>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneBase.ServerTimezone(mt5_term_api.ServerTimezoneRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            The broker server's UTC offset of the terminal in the "id" header: live (read by this terminal from a fresh quote) or the
+            last one validated for the same broker server (an account whose market is closed has no quote to read it from - MT4 only;
+            MT5 reads its server clock directly and is always live).
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="T:mt5_term_api.ServerTimezone.ServerTimezoneClient">
+            <summary>Client for ServerTimezone</summary>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for ServerTimezone</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for ServerTimezone that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneClient.ServerTimezone(mt5_term_api.ServerTimezoneRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            The broker server's UTC offset of the terminal in the "id" header: live (read by this terminal from a fresh quote) or the
+            last one validated for the same broker server (an account whose market is closed has no quote to read it from - MT4 only;
+            MT5 reads its server clock directly and is always live).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneClient.ServerTimezone(mt5_term_api.ServerTimezoneRequest,Grpc.Core.CallOptions)">
+            <summary>
+            The broker server's UTC offset of the terminal in the "id" header: live (read by this terminal from a fresh quote) or the
+            last one validated for the same broker server (an account whose market is closed has no quote to read it from - MT4 only;
+            MT5 reads its server clock directly and is always live).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneClient.ServerTimezoneAsync(mt5_term_api.ServerTimezoneRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            The broker server's UTC offset of the terminal in the "id" header: live (read by this terminal from a fresh quote) or the
+            last one validated for the same broker server (an account whose market is closed has no quote to read it from - MT4 only;
+            MT5 reads its server clock directly and is always live).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneClient.ServerTimezoneAsync(mt5_term_api.ServerTimezoneRequest,Grpc.Core.CallOptions)">
+            <summary>
+            The broker server's UTC offset of the terminal in the "id" header: live (read by this terminal from a fresh quote) or the
+            last one validated for the same broker server (an account whose market is closed has no quote to read it from - MT4 only;
+            MT5 reads its server clock directly and is always live).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.ServerTimezoneClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.BindService(mt5_term_api.ServerTimezone.ServerTimezoneBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezone.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.ServerTimezone.ServerTimezoneBase)">
             <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
             Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
             <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
@@ -5320,8 +5712,24 @@
         <member name="F:mt5_term_api.AllHistoryOrdersRequest.InputFromFieldNumber">
             <summary>Field number for the "inputFrom" field.</summary>
         </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersRequest.InputFromUtcFieldNumber">
+            <summary>Field number for the "inputFromUtc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AllHistoryOrdersRequest.InputFromUtc">
+            <summary>
+            inputFrom in UTC: send either inputFrom or inputFromUtc, not both.
+            </summary>
+        </member>
         <member name="F:mt5_term_api.AllHistoryOrdersRequest.InputToFieldNumber">
             <summary>Field number for the "inputTo" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersRequest.InputToUtcFieldNumber">
+            <summary>Field number for the "inputToUtc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AllHistoryOrdersRequest.InputToUtc">
+            <summary>
+            inputTo in UTC: send either inputTo or inputToUtc, not both.
+            </summary>
         </member>
         <member name="F:mt5_term_api.AllHistoryOrdersRequest.PageNumberFieldNumber">
             <summary>Field number for the "pageNumber" field.</summary>
@@ -5340,6 +5748,24 @@
         </member>
         <member name="M:mt5_term_api.AllHistoryOrdersRequest.ClearItemsPerPage">
             <summary>Clears the value of the "itemsPerPage" field</summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersRequest.PageTokenFieldNumber">
+            <summary>Field number for the "page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AllHistoryOrdersRequest.PageToken">
+            <summary>
+            Cursor paging (preferred, stable): the next_page_token of the previous page; empty for the first page. Send it back
+            with the same inputFrom, inputTo and inputSortMode. Cursor paging is on when page_token or page_size is set; it cannot be
+            combined with pageNumber/itemsPerPage (ALL_HISTORY_ORDERS_PAGING_INVALID).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersRequest.PageSizeFieldNumber">
+            <summary>Field number for the "page_size" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AllHistoryOrdersRequest.PageSize">
+            <summary>
+            Cursor paging: orders per page, 1..5000. 0 = 1000 when page_token is set.
+            </summary>
         </member>
         <member name="F:mt5_term_api.AllHistoryOrdersReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
@@ -5362,6 +5788,14 @@
         <member name="F:mt5_term_api.AllHistoryOrdersData.HistoryOrdersFieldNumber">
             <summary>Field number for the "history_orders" field.</summary>
         </member>
+        <member name="F:mt5_term_api.AllHistoryOrdersData.NextPageTokenFieldNumber">
+            <summary>Field number for the "next_page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AllHistoryOrdersData.NextPageToken">
+            <summary>
+            Cursor paging: pass back as page_token for the next page; empty when this was the last page (end of history for the range).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.HistoryOrderInfo.RecordIndexFieldNumber">
             <summary>Field number for the "record_index" field.</summary>
         </member>
@@ -5370,6 +5804,14 @@
         </member>
         <member name="F:mt5_term_api.HistoryOrderInfo.TimeSetupFieldNumber">
             <summary>Field number for the "time_setup" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.TimeSetupUtcFieldNumber">
+            <summary>Field number for the "time_setup_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.HistoryOrderInfo.TimeSetupUtc">
+            <summary>
+            time_setup in UTC (the same moment; time_setup is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.HistoryOrderInfo.TypeFieldNumber">
             <summary>Field number for the "type" field.</summary>
@@ -5380,11 +5822,27 @@
         <member name="F:mt5_term_api.HistoryOrderInfo.TimeDoneFieldNumber">
             <summary>Field number for the "time_done" field.</summary>
         </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.TimeDoneUtcFieldNumber">
+            <summary>Field number for the "time_done_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.HistoryOrderInfo.TimeDoneUtc">
+            <summary>
+            time_done in UTC (the same moment; time_done is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.HistoryOrderInfo.ExpirationTimeTypeFieldNumber">
             <summary>Field number for the "expiration_time_type" field.</summary>
         </member>
         <member name="F:mt5_term_api.HistoryOrderInfo.ExpirationTimeFieldNumber">
             <summary>Field number for the "expiration_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.HistoryOrderInfo.ExpirationTimeUtcFieldNumber">
+            <summary>Field number for the "expiration_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.HistoryOrderInfo.ExpirationTimeUtc">
+            <summary>
+            expiration_time in UTC (the same moment; expiration_time is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.HistoryOrderInfo.FillingTypeFieldNumber">
             <summary>Field number for the "filling_type" field.</summary>
@@ -5434,8 +5892,24 @@
         <member name="F:mt5_term_api.PositionsHistoryRequest.PositionOpenTimeFromFieldNumber">
             <summary>Field number for the "position_open_time_from" field.</summary>
         </member>
+        <member name="F:mt5_term_api.PositionsHistoryRequest.PositionOpenTimeFromUtcFieldNumber">
+            <summary>Field number for the "position_open_time_from_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionsHistoryRequest.PositionOpenTimeFromUtc">
+            <summary>
+            position_open_time_from in UTC: send either position_open_time_from or position_open_time_from_utc, not both.
+            </summary>
+        </member>
         <member name="F:mt5_term_api.PositionsHistoryRequest.PositionOpenTimeToFieldNumber">
             <summary>Field number for the "position_open_time_to" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.PositionsHistoryRequest.PositionOpenTimeToUtcFieldNumber">
+            <summary>Field number for the "position_open_time_to_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionsHistoryRequest.PositionOpenTimeToUtc">
+            <summary>
+            position_open_time_to in UTC: send either position_open_time_to or position_open_time_to_utc, not both.
+            </summary>
         </member>
         <member name="F:mt5_term_api.PositionsHistoryRequest.PageNumberFieldNumber">
             <summary>Field number for the "page_number" field.</summary>
@@ -5455,6 +5929,24 @@
         <member name="M:mt5_term_api.PositionsHistoryRequest.ClearItemsPerPage">
             <summary>Clears the value of the "items_per_page" field</summary>
         </member>
+        <member name="F:mt5_term_api.PositionsHistoryRequest.PageTokenFieldNumber">
+            <summary>Field number for the "page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionsHistoryRequest.PageToken">
+            <summary>
+            Cursor paging (preferred, stable): the next_page_token of the previous page; empty for the first page. Send it back
+            with the same sort_type and position_open_time_from/to. Cursor paging is on when page_token or page_size is set; it cannot be
+            combined with page_number/items_per_page (POSITIONS_HISTORY_PAGING_INVALID).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PositionsHistoryRequest.PageSizeFieldNumber">
+            <summary>Field number for the "page_size" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionsHistoryRequest.PageSize">
+            <summary>
+            Cursor paging: positions per page, 1..5000. 0 = 1000 when page_token is set.
+            </summary>
+        </member>
         <member name="F:mt5_term_api.PositionsHistoryReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
         </member>
@@ -5466,6 +5958,22 @@
         </member>
         <member name="F:mt5_term_api.PositionsHistoryData.HistoryPositionsFieldNumber">
             <summary>Field number for the "history_positions" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.PositionsHistoryData.TotalCountFieldNumber">
+            <summary>Field number for the "total_count" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionsHistoryData.TotalCount">
+            <summary>
+            Number of positions in the selected range, over all pages (at the moment of the call).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PositionsHistoryData.NextPageTokenFieldNumber">
+            <summary>Field number for the "next_page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionsHistoryData.NextPageToken">
+            <summary>
+            Cursor paging: pass back as page_token for the next page; empty when this was the last page (end of history for the range).
+            </summary>
         </member>
         <member name="F:mt5_term_api.PositionHistoryInfo.IndexFieldNumber">
             <summary>Field number for the "index" field.</summary>
@@ -5479,8 +5987,24 @@
         <member name="F:mt5_term_api.PositionHistoryInfo.OpenTimeFieldNumber">
             <summary>Field number for the "open_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.PositionHistoryInfo.OpenTimeUtcFieldNumber">
+            <summary>Field number for the "open_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionHistoryInfo.OpenTimeUtc">
+            <summary>
+            open_time in UTC (the same moment; open_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.PositionHistoryInfo.CloseTimeFieldNumber">
             <summary>Field number for the "close_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.PositionHistoryInfo.CloseTimeUtcFieldNumber">
+            <summary>Field number for the "close_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionHistoryInfo.CloseTimeUtc">
+            <summary>
+            close_time in UTC (the same moment; close_time is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.PositionHistoryInfo.VolumeFieldNumber">
             <summary>Field number for the "volume" field.</summary>
@@ -5523,6 +6047,17 @@
         </member>
         <member name="F:mt5_term_api.TickValueWithSizeRequest.SymbolNamesFieldNumber">
             <summary>Field number for the "symbol_names" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TickValueWithSizeRequest.SymbolNames">
+            <summary>
+            Symbols to read, by exact name (REST: repeated query parameter symbolNames).
+            Each named symbol is added to Market Watch when it is not there yet, then read.
+            At most 1000 names per request; a longer list is answered with an error.
+            EMPTY list = every symbol currently in Market Watch. It is NOT "all symbols of the
+            server": the terminal's Market Watch holds at most ~1000 symbols, so serving the
+            server's list (12,000+ at some brokers) would mean adding all of them to Market Watch
+            and changing the user's selection. Name the symbols you need.
+            </summary>
         </member>
         <member name="F:mt5_term_api.TickValueWithSizeReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
@@ -5601,6 +6136,14 @@
         <member name="F:mt5_term_api.PositionInfo.OpenTimeFieldNumber">
             <summary>Field number for the "open_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.PositionInfo.OpenTimeUtcFieldNumber">
+            <summary>Field number for the "open_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionInfo.OpenTimeUtc">
+            <summary>
+            open_time in UTC (the same moment; open_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.PositionInfo.VolumeFieldNumber">
             <summary>Field number for the "volume" field.</summary>
         </member>
@@ -5624,6 +6167,14 @@
         </member>
         <member name="F:mt5_term_api.PositionInfo.LastUpdateTimeFieldNumber">
             <summary>Field number for the "last_update_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.PositionInfo.LastUpdateTimeUtcFieldNumber">
+            <summary>Field number for the "last_update_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PositionInfo.LastUpdateTimeUtc">
+            <summary>
+            last_update_time in UTC (the same moment; last_update_time is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.PositionInfo.TypeFieldNumber">
             <summary>Field number for the "type" field.</summary>
@@ -5694,11 +6245,35 @@
         <member name="F:mt5_term_api.OpenedOrderInfo.TimeExpirationFieldNumber">
             <summary>Field number for the "time_expiration" field.</summary>
         </member>
+        <member name="F:mt5_term_api.OpenedOrderInfo.TimeExpirationUtcFieldNumber">
+            <summary>Field number for the "time_expiration_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OpenedOrderInfo.TimeExpirationUtc">
+            <summary>
+            time_expiration in UTC (the same moment; time_expiration is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OpenedOrderInfo.TimeSetupFieldNumber">
             <summary>Field number for the "time_setup" field.</summary>
         </member>
+        <member name="F:mt5_term_api.OpenedOrderInfo.TimeSetupUtcFieldNumber">
+            <summary>Field number for the "time_setup_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OpenedOrderInfo.TimeSetupUtc">
+            <summary>
+            time_setup in UTC (the same moment; time_setup is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OpenedOrderInfo.TimeDoneFieldNumber">
             <summary>Field number for the "time_done" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OpenedOrderInfo.TimeDoneUtcFieldNumber">
+            <summary>Field number for the "time_done_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OpenedOrderInfo.TimeDoneUtc">
+            <summary>
+            time_done in UTC (the same moment; time_done is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.OpenedOrderInfo.TypeFillingFieldNumber">
             <summary>Field number for the "type_filling" field.</summary>
@@ -5732,12 +6307,28 @@
             required (server time)
             </summary>
         </member>
+        <member name="F:mt5_term_api.OrderHistoryRequest.InputFromUtcFieldNumber">
+            <summary>Field number for the "inputFromUtc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrderHistoryRequest.InputFromUtc">
+            <summary>
+            inputFrom in UTC: send either inputFrom or inputFromUtc, not both.
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OrderHistoryRequest.InputToFieldNumber">
             <summary>Field number for the "inputTo" field.</summary>
         </member>
         <member name="P:mt5_term_api.OrderHistoryRequest.InputTo">
             <summary>
             required (server time)
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.OrderHistoryRequest.InputToUtcFieldNumber">
+            <summary>Field number for the "inputToUtc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrderHistoryRequest.InputToUtc">
+            <summary>
+            inputTo in UTC: send either inputTo or inputToUtc, not both.
             </summary>
         </member>
         <member name="F:mt5_term_api.OrderHistoryRequest.InputSortModeFieldNumber">
@@ -5753,7 +6344,7 @@
         </member>
         <member name="P:mt5_term_api.OrderHistoryRequest.PageNumber">
             <summary>
-            default 0
+            Page-number paging (legacy): 1-based, needs itemsPerPage too. 0 = not used
             </summary>
         </member>
         <member name="F:mt5_term_api.OrderHistoryRequest.ItemsPerPageFieldNumber">
@@ -5761,7 +6352,25 @@
         </member>
         <member name="P:mt5_term_api.OrderHistoryRequest.ItemsPerPage">
             <summary>
-            default 0
+            Page-number paging (legacy): rows per page, needs pageNumber too. 0 = not used
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.OrderHistoryRequest.PageTokenFieldNumber">
+            <summary>Field number for the "page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrderHistoryRequest.PageToken">
+            <summary>
+            Cursor paging (preferred, stable): the next_page_token of the previous page; empty for the first page. Send it back
+            with the same inputFrom, inputTo and inputSortMode. Cursor paging is on when page_token or page_size is set; it cannot be
+            combined with pageNumber/itemsPerPage (ORDER_HISTORY_PAGING_INVALID).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.OrderHistoryRequest.PageSizeFieldNumber">
+            <summary>Field number for the "page_size" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrderHistoryRequest.PageSize">
+            <summary>
+            Cursor paging: rows (deals) per page, 1..5000. 0 = 1000 when page_token is set.
             </summary>
         </member>
         <member name="F:mt5_term_api.OrderHistoryReply.DataFieldNumber">
@@ -5784,6 +6393,14 @@
         </member>
         <member name="F:mt5_term_api.OrdersHistoryData.HistoryDataFieldNumber">
             <summary>Field number for the "history_data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OrdersHistoryData.NextPageTokenFieldNumber">
+            <summary>Field number for the "next_page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrdersHistoryData.NextPageToken">
+            <summary>
+            Cursor paging: pass back as page_token for the next page; empty when this was the last page (end of history for the range).
+            </summary>
         </member>
         <member name="F:mt5_term_api.HistoryData.IndexFieldNumber">
             <summary>Field number for the "index" field.</summary>
@@ -5827,6 +6444,14 @@
         <member name="F:mt5_term_api.DealHistoryData.TimeFieldNumber">
             <summary>Field number for the "time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.DealHistoryData.TimeUtcFieldNumber">
+            <summary>Field number for the "time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DealHistoryData.TimeUtc">
+            <summary>
+            time in UTC (the same moment; time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.DealHistoryData.TypeFieldNumber">
             <summary>Field number for the "type" field.</summary>
         </member>
@@ -5854,8 +6479,24 @@
         <member name="F:mt5_term_api.OrderHistoryData.SetupTimeFieldNumber">
             <summary>Field number for the "setup_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.OrderHistoryData.SetupTimeUtcFieldNumber">
+            <summary>Field number for the "setup_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrderHistoryData.SetupTimeUtc">
+            <summary>
+            setup_time in UTC (the same moment; setup_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OrderHistoryData.DoneTimeFieldNumber">
             <summary>Field number for the "done_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OrderHistoryData.DoneTimeUtcFieldNumber">
+            <summary>Field number for the "done_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrderHistoryData.DoneTimeUtc">
+            <summary>
+            done_time in UTC (the same moment; done_time is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.OrderHistoryData.StateFieldNumber">
             <summary>Field number for the "state" field.</summary>
@@ -5889,6 +6530,14 @@
         </member>
         <member name="F:mt5_term_api.OrderHistoryData.TimeExpirationFieldNumber">
             <summary>Field number for the "time_expiration" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OrderHistoryData.TimeExpirationUtcFieldNumber">
+            <summary>Field number for the "time_expiration_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrderHistoryData.TimeExpirationUtc">
+            <summary>
+            time_expiration in UTC (the same moment; time_expiration is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.OrderHistoryData.TypeFillingFieldNumber">
             <summary>Field number for the "type_filling" field.</summary>
@@ -5947,11 +6596,33 @@
         <member name="F:mt5_term_api.AccountSummaryData.ServerTimeFieldNumber">
             <summary>Field number for the "server_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.AccountSummaryData.ServerTimeUtcFieldNumber">
+            <summary>Field number for the "server_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountSummaryData.ServerTimeUtc">
+            <summary>
+            server_time in UTC (the same moment; server_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.AccountSummaryData.UtcTimezoneServerTimeShiftMinutesFieldNumber">
             <summary>Field number for the "utc_timezone_server_time_shift_minutes" field.</summary>
         </member>
         <member name="F:mt5_term_api.AccountSummaryData.AccountCreditFieldNumber">
             <summary>Field number for the "account_credit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AccountSummaryData.ServerUtcOffsetSecondsFieldNumber">
+            <summary>Field number for the "server_utc_offset_seconds" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountSummaryData.ServerUtcOffsetSeconds">
+            <summary>
+            The broker server's offset from UTC in seconds, positive = ahead of UTC: validated by the terminal (a multiple of 15
+            minutes). Information, never converted; it is the offset behind every *_utc field of this API. Valid when
+            account_leverage > 0 (data with account_leverage above 0 always carries a valid offset); 0 while the account is not
+            connected yet (not UTC+0). A connected terminal whose offset cannot be determined answers SERVER_TIMEZONE_UNDETERMINED
+            instead of data and cannot start (MT4: typically a closed market with no quote). The current offset is applied to every
+            value, so history from before the broker's last daylight-saving change is off by the daylight-saving step (usually 3600
+            s).
+            </summary>
         </member>
         <member name="F:mt5_term_api.SymbolParamsManyRequest.SymbolNameFieldNumber">
             <summary>Field number for the "symbol_name" field.</summary>
@@ -6250,8 +6921,24 @@
         <member name="F:mt5_term_api.SymbolParameters.TimeFieldNumber">
             <summary>Field number for the "time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.SymbolParameters.TimeUtcFieldNumber">
+            <summary>Field number for the "time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.SymbolParameters.TimeUtc">
+            <summary>
+            time in UTC (the same moment; time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.SymbolParameters.TimeMscFieldNumber">
             <summary>Field number for the "time_msc" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.SymbolParameters.TimeMscUtcFieldNumber">
+            <summary>Field number for the "time_msc_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.SymbolParameters.TimeMscUtc">
+            <summary>
+            time_msc in UTC (the same moment; time_msc is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.SymbolParameters.DigitsFieldNumber">
             <summary>Field number for the "digits" field.</summary>
@@ -6274,8 +6961,24 @@
         <member name="F:mt5_term_api.SymbolParameters.StartTimeFieldNumber">
             <summary>Field number for the "start_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.SymbolParameters.StartTimeUtcFieldNumber">
+            <summary>Field number for the "start_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.SymbolParameters.StartTimeUtc">
+            <summary>
+            start_time in UTC (the same moment; start_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.SymbolParameters.ExpirationTimeFieldNumber">
             <summary>Field number for the "expiration_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.SymbolParameters.ExpirationTimeUtcFieldNumber">
+            <summary>Field number for the "expiration_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.SymbolParameters.ExpirationTimeUtc">
+            <summary>
+            expiration_time in UTC (the same moment; expiration_time is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.SymbolParameters.TradeStopsLevelFieldNumber">
             <summary>Field number for the "trade_stops_level" field.</summary>
@@ -6553,6 +7256,197 @@
         </member>
         <member name="F:mt5_term_api.AccountInfoStringData.RequestedValueFieldNumber">
             <summary>Field number for the "requested_value" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.Mt5TermApiAccountsReflection">
+            <summary>Holder for reflection information generated from mt5-term-api-accounts.proto</summary>
+        </member>
+        <member name="P:mt5_term_api.Mt5TermApiAccountsReflection.Descriptor">
+            <summary>File descriptor for mt5-term-api-accounts.proto</summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListRequest.StateFieldNumber">
+            <summary>Field number for the "state" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListRequest.State">
+            <summary>
+            Only accounts in this state, e.g. "Connected", "Syncing", "Unreachable", "WrongPassword", "Suspended"
+            (the vocabulary of ConnectState.state, compared without regard to case). Empty = every state.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListRequest.LoginFieldNumber">
+            <summary>Field number for the "login" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListRequest.Login">
+            <summary>
+            Only the account with this login number. 0 = every login.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListRequest.IncludeStoppedFieldNumber">
+            <summary>Field number for the "include_stopped" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListRequest.IncludeStopped">
+            <summary>
+            false (default): only accounts that are queued, starting or running, or that stopped on their own
+            (Unreachable, WrongPassword, Suspended, Expired) and can be started again. true: also accounts that
+            were stopped by the user, by an API call or by an administrator. Deleted accounts are never listed.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListRequest.PageSizeFieldNumber">
+            <summary>Field number for the "page_size" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListRequest.PageSize">
+            <summary>
+            Accounts per page, 1..1000. 0 = 200. A larger value is clamped, a negative one is rejected with
+            ACCOUNTS_PAGE_SIZE_INVALID.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListRequest.PageTokenFieldNumber">
+            <summary>Field number for the "page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListRequest.PageToken">
+            <summary>
+            The next_page_token of the previous page; empty for the first page. Must be sent with the same
+            state, login and include_stopped. Undecodable -> ACCOUNTS_PAGE_TOKEN_INVALID.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.AccountsListReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListData.AccountsFieldNumber">
+            <summary>Field number for the "accounts" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListData.NextPageTokenFieldNumber">
+            <summary>Field number for the "next_page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListData.NextPageToken">
+            <summary>
+            Pass back as page_token for the next page; empty when this was the last page.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListData.TotalCountFieldNumber">
+            <summary>Field number for the "total_count" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListData.TotalCount">
+            <summary>
+            Accounts matching the filters over all pages, at the moment of the call.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.TerminalIdFieldNumber">
+            <summary>Field number for the "terminal_id" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.TerminalId">
+            <summary>
+            The terminal id to send as the "id" header of every other call, in the form the API itself
+            returns it: mt5_live_&lt;32 hex>.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.TerminalGuidFieldNumber">
+            <summary>Field number for the "terminal_guid" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.TerminalGuid">
+            <summary>
+            The same identity as a hyphenated GUID. The API accepts either form in the "id" header.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.PlatformFieldNumber">
+            <summary>Field number for the "platform" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.Platform">
+            <summary>
+            "MT5".
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.LoginFieldNumber">
+            <summary>Field number for the "login" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.Login">
+            <summary>
+            Account (login) number.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.ServerFieldNumber">
+            <summary>Field number for the "server" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.Server">
+            <summary>
+            Broker server name, as given to ConnectEx.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.NameFieldNumber">
+            <summary>Field number for the "name" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.Name">
+            <summary>
+            Name given to the terminal when it was started; may be empty.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.StateFieldNumber">
+            <summary>Field number for the "state" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.State">
+            <summary>
+            Current state of the account's terminal: Queued, Starting, Authorizing, Syncing, Connected,
+            WrongPassword, Unreachable, Suspended, Expired or Stopped (see ConnectState). It is the state the
+            cluster publishes for the terminal right now; a running terminal whose published state has not been
+            refreshed for over a minute reads Unreachable. Only when nothing is published is the last stored
+            state returned. "Unknown" appears for a record that has never had a state.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.IsConnectedFieldNumber">
+            <summary>Field number for the "is_connected" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.IsConnected">
+            <summary>
+            state == "Connected".
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.StartedUtcFieldNumber">
+            <summary>Field number for the "started_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.StartedUtc">
+            <summary>
+            When the account was first started (UTC; a platform time, not a broker time); a restart does not change it. Unset
+            when the record has no start time.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.StoppedUtcFieldNumber">
+            <summary>Field number for the "stopped_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.StoppedUtc">
+            <summary>
+            When it last stopped (UTC; a platform time, not a broker time). Unset while it is running.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.StopReasonFieldNumber">
+            <summary>Field number for the "stop_reason" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.StopReason">
+            <summary>
+            Why it stopped or is not running (for example "ByApi", "InvalidLogin", "Unreachable:StartupTimeout");
+            may be empty. Empty while the account is queued, starting or running.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.ErrorMessageFieldNumber">
+            <summary>Field number for the "error_message" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.ErrorMessage">
+            <summary>
+            The last error recorded for the account, when its state is a failure; may be empty.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.ExpiresUtcFieldNumber">
+            <summary>Field number for the "expires_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.ExpiresUtc">
+            <summary>
+            When the terminal is set to expire (UTC; a platform time, not a broker time). Unset when no expiry is recorded for the
+            account, which is the case for every account today.
+            </summary>
         </member>
         <member name="T:mt5_term_api.Mt5TermApiChartsReflection">
             <summary>Holder for reflection information generated from mt5-term-api-charts.proto</summary>
@@ -6960,6 +7854,15 @@
         <member name="P:mt5_term_api.GetTerminalJournalData.Rows">
             <summary>
             List of log rows from the terminal tab
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.GetTerminalJournalData.DiagnosticsFieldNumber">
+            <summary>Field number for the "diagnostics" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.GetTerminalJournalData.Diagnostics">
+            <summary>
+            Reader diagnostics for this capture: which Journal/Experts list it found, how the rows
+            were captured, counts and a short trace. Empty when the terminal API does not report it.
             </summary>
         </member>
         <member name="F:mt5_term_api.TerminalJournalRow.TimeFieldNumber">
@@ -7530,6 +8433,15 @@
         </member>
         <member name="M:mt5_term_api.DisconnectRequest.ClearReason">
             <summary>Clears the value of the "reason" field</summary>
+        </member>
+        <member name="F:mt5_term_api.DisconnectRequest.DeleteFieldNumber">
+            <summary>Field number for the "delete" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.DisconnectRequest.HasDelete">
+            <summary>Gets whether the "delete" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.DisconnectRequest.ClearDelete">
+            <summary>Clears the value of the "delete" field</summary>
         </member>
         <member name="F:mt5_term_api.DisconnectReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
@@ -8173,11 +9085,24 @@
         <member name="F:mt5_term_api.HealthCheckReply.ServerTimeSecondsFieldNumber">
             <summary>Field number for the "server_time_seconds" field.</summary>
         </member>
+        <member name="F:mt5_term_api.HealthCheckReply.ServerTimeSecondsUtcFieldNumber">
+            <summary>Field number for the "server_time_seconds_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.HealthCheckReply.ServerTimeSecondsUtc">
+            <summary>
+            server_time_seconds in UTC (the same moment; server_time_seconds is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="T:mt5_term_api.Mt5TermApiInternalChartsReflection">
             <summary>Holder for reflection information generated from mt5-term-api-internal-charts.proto</summary>
         </member>
         <member name="P:mt5_term_api.Mt5TermApiInternalChartsReflection.Descriptor">
             <summary>File descriptor for mt5-term-api-internal-charts.proto</summary>
+        </member>
+        <member name="F:mt5_term_api.ChartExpertMode.Events">
+            <summary>
+            every trade stream of the terminal on one chart (mt5-term-ea-events)
+            </summary>
         </member>
         <member name="F:mt5_term_api.SaveChartTemplateRequest.ChartIdFieldNumber">
             <summary>Field number for the "chart_id" field.</summary>
@@ -9205,6 +10130,14 @@
             Variable of the long type receiving the value of the requested property
             </summary>
         </member>
+        <member name="F:mt5_term_api.SymbolInfoIntegerData.ValueUtcFieldNumber">
+            <summary>Field number for the "value_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.SymbolInfoIntegerData.ValueUtc">
+            <summary>
+            UTC of value when the requested property is a time (SYMBOL_TIME, SYMBOL_TIME_MSC, SYMBOL_START_TIME, SYMBOL_EXPIRATION_TIME); 0 for any other property.
+            </summary>
+        </member>
         <member name="T:mt5_term_api.SymbolInfoStringRequest">
             <summary>
             8. GetSymbolInfoString
@@ -9319,6 +10252,14 @@
             Time of the last prices update (Unix timestamp)
             </summary>
         </member>
+        <member name="F:mt5_term_api.MrpcMqlTick.TimeUtcFieldNumber">
+            <summary>Field number for the "time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MrpcMqlTick.TimeUtc">
+            <summary>
+            time in UTC (the same moment; time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.MrpcMqlTick.BidFieldNumber">
             <summary>Field number for the "bid" field.</summary>
         </member>
@@ -9357,6 +10298,14 @@
         <member name="P:mt5_term_api.MrpcMqlTick.TimeMsc">
             <summary>
             Time of a price last update in milliseconds
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.MrpcMqlTick.TimeMscUtcFieldNumber">
+            <summary>Field number for the "time_msc_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MrpcMqlTick.TimeMscUtc">
+            <summary>
+            time_msc in UTC (the same moment; time_msc is in the broker server's time zone).
             </summary>
         </member>
         <member name="F:mt5_term_api.MrpcMqlTick.FlagsFieldNumber">
@@ -9610,8 +10559,24 @@
             opening on a symbol actually wants.
             </summary>
         </member>
+        <member name="F:mt5_term_api.PriceHistoryRequest.FromTimeUtcFieldNumber">
+            <summary>Field number for the "from_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PriceHistoryRequest.FromTimeUtc">
+            <summary>
+            from_time in UTC: send either from_time or from_time_utc, not both.
+            </summary>
+        </member>
         <member name="F:mt5_term_api.PriceHistoryRequest.ToTimeFieldNumber">
             <summary>Field number for the "to_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.PriceHistoryRequest.ToTimeUtcFieldNumber">
+            <summary>Field number for the "to_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PriceHistoryRequest.ToTimeUtc">
+            <summary>
+            to_time in UTC: send either to_time or to_time_utc, not both.
+            </summary>
         </member>
         <member name="F:mt5_term_api.PriceHistoryRequest.MaxBarsFieldNumber">
             <summary>Field number for the "max_bars" field.</summary>
@@ -9647,6 +10612,14 @@
             Unix seconds, bar open
             </summary>
         </member>
+        <member name="F:mt5_term_api.PriceBar.TimeUtcFieldNumber">
+            <summary>Field number for the "time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PriceBar.TimeUtc">
+            <summary>
+            time in UTC (the same moment; time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.PriceBar.OpenFieldNumber">
             <summary>Field number for the "open" field.</summary>
         </member>
@@ -9667,6 +10640,431 @@
         </member>
         <member name="F:mt5_term_api.PriceBar.RealVolumeFieldNumber">
             <summary>Field number for the "real_volume" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.Mt5TermApiQuoteHistoryReflection">
+            <summary>Holder for reflection information generated from mt5-term-api-quote-history.proto</summary>
+        </member>
+        <member name="P:mt5_term_api.Mt5TermApiQuoteHistoryReflection.Descriptor">
+            <summary>File descriptor for mt5-term-api-quote-history.proto</summary>
+        </member>
+        <member name="T:mt5_term_api.QUOTE_HISTORY_TIMEFRAME">
+            <summary>
+            Timeframe of a bar. The value is the bar length in MINUTES, which is also
+            what MT4 calls these periods; the terminal maps it to MQL5's ENUM_TIMEFRAMES.
+            </summary>
+        </member>
+        <member name="T:mt5_term_api.QUOTE_HISTORY_TICK_FLAGS">
+            <summary>
+            Which ticks to return - MQL5's COPY_TICKS_* modes.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QUOTE_HISTORY_TICK_FLAGS.QhTicksAll">
+            <summary>
+            every tick
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QUOTE_HISTORY_TICK_FLAGS.QhTicksInfo">
+            <summary>
+            ticks with bid and/or ask changes
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QUOTE_HISTORY_TICK_FLAGS.QhTicksTrade">
+            <summary>
+            ticks with last and/or volume changes
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsRequest.SymbolFieldNumber">
+            <summary>Field number for the "symbol" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsRequest.Symbol">
+            <summary>
+            Required. Broker symbol name, e.g. "EURUSD".
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsRequest.TimeframeFieldNumber">
+            <summary>Field number for the "timeframe" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsRequest.Timeframe">
+            <summary>
+            Required.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsRequest.FromTimeFieldNumber">
+            <summary>Field number for the "from_time" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsRequest.FromTime">
+            <summary>
+            Required. Unix seconds (UTC) of the oldest bar wanted, inclusive. A time
+            before the broker's first bar is clamped to that first bar.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsRequest.FromTimeUtcFieldNumber">
+            <summary>Field number for the "from_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsRequest.FromTimeUtc">
+            <summary>
+            from_time in UTC: send either from_time or from_time_utc, not both.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsRequest.ToTimeFieldNumber">
+            <summary>Field number for the "to_time" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsRequest.ToTime">
+            <summary>
+            Unix seconds (UTC) of the newest bar wanted, inclusive. 0 = now.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsRequest.ToTimeUtcFieldNumber">
+            <summary>Field number for the "to_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsRequest.ToTimeUtc">
+            <summary>
+            to_time in UTC: send either to_time or to_time_utc, not both.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsRequest.PageSizeFieldNumber">
+            <summary>Field number for the "page_size" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsRequest.PageSize">
+            <summary>
+            Bars per page, 1..5000. 0 = 1000.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsRequest.PageTokenFieldNumber">
+            <summary>Field number for the "page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsRequest.PageToken">
+            <summary>
+            The next_page_token of the previous page, to continue; empty for the
+            first page. Must be used with the same symbol, timeframe and range.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.QuoteHistoryBarsReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsData.SymbolFieldNumber">
+            <summary>Field number for the "symbol" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsData.TimeframeFieldNumber">
+            <summary>Field number for the "timeframe" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsData.BarsFieldNumber">
+            <summary>Field number for the "bars" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsData.Bars">
+            <summary>
+            Oldest first. Empty when the range holds no bars.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsData.NextPageTokenFieldNumber">
+            <summary>Field number for the "next_page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsData.NextPageToken">
+            <summary>
+            Pass back as page_token for the next page; empty when this was the last.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsData.ServerFirstTimeFieldNumber">
+            <summary>Field number for the "server_first_time" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsData.ServerFirstTime">
+            <summary>
+            Unix seconds of the oldest bar the broker has for this symbol and
+            timeframe (0 when the terminal does not know yet).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBarsData.ServerFirstTimeUtcFieldNumber">
+            <summary>Field number for the "server_first_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBarsData.ServerFirstTimeUtc">
+            <summary>
+            server_first_time in UTC (the same moment; server_first_time is in the broker server's time zone).
+            </summary>
+        </member>
+        <member name="T:mt5_term_api.QuoteHistoryBar">
+            <summary>
+            One bar (candle), named as MQL5 names the fields of MqlRates.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBar.TimeFieldNumber">
+            <summary>Field number for the "time" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBar.Time">
+            <summary>
+            Unix seconds (UTC), bar open
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBar.TimeUtcFieldNumber">
+            <summary>Field number for the "time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBar.TimeUtc">
+            <summary>
+            time in UTC (the same moment; time is in the broker server's time zone).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBar.OpenFieldNumber">
+            <summary>Field number for the "open" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBar.HighFieldNumber">
+            <summary>Field number for the "high" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBar.LowFieldNumber">
+            <summary>Field number for the "low" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBar.CloseFieldNumber">
+            <summary>Field number for the "close" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBar.TickVolumeFieldNumber">
+            <summary>Field number for the "tick_volume" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBar.TickVolume">
+            <summary>
+            ticks in the bar
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBar.SpreadFieldNumber">
+            <summary>Field number for the "spread" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBar.Spread">
+            <summary>
+            points
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryBar.RealVolumeFieldNumber">
+            <summary>Field number for the "real_volume" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryBar.RealVolume">
+            <summary>
+            exchange volume, 0 where the broker has none
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksRequest.SymbolFieldNumber">
+            <summary>Field number for the "symbol" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksRequest.Symbol">
+            <summary>
+            Required. Broker symbol name.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksRequest.FromTimeMscFieldNumber">
+            <summary>Field number for the "from_time_msc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksRequest.FromTimeMsc">
+            <summary>
+            Required. Unix MILLISECONDS (UTC) of the oldest tick wanted, inclusive.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksRequest.FromTimeMscUtcFieldNumber">
+            <summary>Field number for the "from_time_msc_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksRequest.FromTimeMscUtc">
+            <summary>
+            from_time_msc in UTC: send either from_time_msc or from_time_msc_utc, not both.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksRequest.ToTimeMscFieldNumber">
+            <summary>Field number for the "to_time_msc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksRequest.ToTimeMsc">
+            <summary>
+            Unix milliseconds (UTC) of the newest tick wanted, inclusive. 0 = now.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksRequest.ToTimeMscUtcFieldNumber">
+            <summary>Field number for the "to_time_msc_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksRequest.ToTimeMscUtc">
+            <summary>
+            to_time_msc in UTC: send either to_time_msc or to_time_msc_utc, not both.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksRequest.FlagsFieldNumber">
+            <summary>Field number for the "flags" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksRequest.Flags">
+            <summary>
+            Which ticks. Default: all.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksRequest.PageSizeFieldNumber">
+            <summary>Field number for the "page_size" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksRequest.PageSize">
+            <summary>
+            Ticks per page, 1..20000. 0 = 5000.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksRequest.PageTokenFieldNumber">
+            <summary>Field number for the "page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksRequest.PageToken">
+            <summary>
+            The next_page_token of the previous page; empty for the first page.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.QuoteHistoryTicksReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksData.SymbolFieldNumber">
+            <summary>Field number for the "symbol" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksData.TicksFieldNumber">
+            <summary>Field number for the "ticks" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksData.Ticks">
+            <summary>
+            Oldest first. Several ticks can share one millisecond; the order within
+            a millisecond is the terminal's.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTicksData.NextPageTokenFieldNumber">
+            <summary>Field number for the "next_page_token" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTicksData.NextPageToken">
+            <summary>
+            Pass back as page_token for the next page; empty when this was the last.
+            </summary>
+        </member>
+        <member name="T:mt5_term_api.QuoteHistoryTick">
+            <summary>
+            One tick, named as MQL5 names the fields of MqlTick.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTick.TimeMscFieldNumber">
+            <summary>Field number for the "time_msc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTick.TimeMsc">
+            <summary>
+            Unix milliseconds (UTC)
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTick.TimeMscUtcFieldNumber">
+            <summary>Field number for the "time_msc_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTick.TimeMscUtc">
+            <summary>
+            time_msc in UTC (the same moment; time_msc is in the broker server's time zone).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTick.BidFieldNumber">
+            <summary>Field number for the "bid" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTick.AskFieldNumber">
+            <summary>Field number for the "ask" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTick.LastFieldNumber">
+            <summary>Field number for the "last" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTick.Last">
+            <summary>
+            last deal price, 0 where the broker has none
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTick.VolumeFieldNumber">
+            <summary>Field number for the "volume" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTick.Volume">
+            <summary>
+            last deal volume, 0 where the broker has none
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTick.VolumeRealFieldNumber">
+            <summary>Field number for the "volume_real" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTick.VolumeReal">
+            <summary>
+            last deal volume with greater accuracy
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.QuoteHistoryTick.FlagsFieldNumber">
+            <summary>Field number for the "flags" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.QuoteHistoryTick.Flags">
+            <summary>
+            MQL5 TICK_FLAG_* bits: what changed in this tick
+            </summary>
+        </member>
+        <member name="T:mt5_term_api.Mt5TermApiServerTimezoneReflection">
+            <summary>Holder for reflection information generated from mt5-term-api-server-timezone.proto</summary>
+        </member>
+        <member name="P:mt5_term_api.Mt5TermApiServerTimezoneReflection.Descriptor">
+            <summary>File descriptor for mt5-term-api-server-timezone.proto</summary>
+        </member>
+        <member name="F:mt5_term_api.SERVER_TIMEZONE_SOURCE.Unknown">
+            <summary>
+            No terminal of this broker server has read the offset yet (MT4 with the market closed); the *_utc fields stay unset.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.SERVER_TIMEZONE_SOURCE.Live">
+            <summary>
+            Read by this terminal itself.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.SERVER_TIMEZONE_SOURCE.LastValidated">
+            <summary>
+            The last offset validated for this broker server, used until this terminal reads its own (MT4 with the market closed).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ServerTimezoneReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.ServerTimezoneReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.ServerTimezoneReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.ServerTimezoneData.ServerFieldNumber">
+            <summary>Field number for the "server" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ServerTimezoneData.Server">
+            <summary>
+            The broker server name of the account.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ServerTimezoneData.UtcOffsetSecondsFieldNumber">
+            <summary>Field number for the "utc_offset_seconds" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ServerTimezoneData.UtcOffsetSeconds">
+            <summary>
+            Seconds east of UTC (broker server time = UTC + utc_offset_seconds), a multiple of 15 minutes. Absent when not known
+            (source SERVER_TIMEZONE_SOURCE_UNKNOWN); a present 0 is a UTC+0 broker.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.ServerTimezoneData.HasUtcOffsetSeconds">
+            <summary>Gets whether the "utc_offset_seconds" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.ServerTimezoneData.ClearUtcOffsetSeconds">
+            <summary>Clears the value of the "utc_offset_seconds" field</summary>
+        </member>
+        <member name="F:mt5_term_api.ServerTimezoneData.SourceFieldNumber">
+            <summary>Field number for the "source" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ServerTimezoneData.Source">
+            <summary>
+            Where utc_offset_seconds came from.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.ServerTimezoneData.ValidatedUtcFieldNumber">
+            <summary>Field number for the "validated_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ServerTimezoneData.ValidatedUtc">
+            <summary>
+            When the offset was last validated from a fresh quote: for LIVE the latest reading of this terminal (refreshed every few
+            seconds), for LAST_VALIDATED the latest reading of any terminal of the same broker server. Unset when UNKNOWN.
+            </summary>
         </member>
         <member name="T:mt5_term_api.Mt5TermApiSubscriptionsReflection">
             <summary>Holder for reflection information generated from mt5-term-api-subscriptions.proto</summary>
@@ -10003,6 +11401,14 @@
         <member name="F:mt5_term_api.MqlTradeTransaction.OrderExpirationTimeFieldNumber">
             <summary>Field number for the "order_expiration_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.MqlTradeTransaction.OrderExpirationTimeUtcFieldNumber">
+            <summary>Field number for the "order_expiration_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MqlTradeTransaction.OrderExpirationTimeUtc">
+            <summary>
+            order_expiration_time in UTC (the same moment; order_expiration_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.MqlTradeTransaction.PriceFieldNumber">
             <summary>Field number for the "price" field.</summary>
         </member>
@@ -10166,6 +11572,14 @@
             Order expiration time (for the orders of ORDER_TIME_SPECIFIED type)
             </summary>
         </member>
+        <member name="F:mt5_term_api.MqlTradeRequest.OrderExpirationTimeUtcFieldNumber">
+            <summary>Field number for the "order_expiration_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MqlTradeRequest.OrderExpirationTimeUtc">
+            <summary>
+            order_expiration_time in UTC (the same moment; order_expiration_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.MqlTradeRequest.OrderCommentFieldNumber">
             <summary>Field number for the "order_comment" field.</summary>
         </member>
@@ -10294,6 +11708,14 @@
         <member name="F:mt5_term_api.OnPositionsAndPendingOrdersTicketsData.ServerTimeFieldNumber">
             <summary>Field number for the "server_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.OnPositionsAndPendingOrdersTicketsData.ServerTimeUtcFieldNumber">
+            <summary>Field number for the "server_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnPositionsAndPendingOrdersTicketsData.ServerTimeUtc">
+            <summary>
+            server_time in UTC (the same moment; server_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OnPositionsAndPendingOrdersTicketsData.TerminalInstanceGuidIdFieldNumber">
             <summary>Field number for the "terminal_instance_guid_id" field.</summary>
         </member>
@@ -10399,6 +11821,14 @@
         <member name="F:mt5_term_api.OnTradeOrderInfo.SetupTimeMscFieldNumber">
             <summary>Field number for the "setup_time_msc" field.</summary>
         </member>
+        <member name="F:mt5_term_api.OnTradeOrderInfo.SetupTimeMscUtcFieldNumber">
+            <summary>Field number for the "setup_time_msc_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradeOrderInfo.SetupTimeMscUtc">
+            <summary>
+            setup_time_msc in UTC (the same moment; setup_time_msc is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OnTradeOrderInfo.StopLossFieldNumber">
             <summary>Field number for the "stop_loss" field.</summary>
         </member>
@@ -10413,6 +11843,14 @@
         </member>
         <member name="F:mt5_term_api.OnTradeOrderInfo.TimeExpirationFieldNumber">
             <summary>Field number for the "time_expiration" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OnTradeOrderInfo.TimeExpirationUtcFieldNumber">
+            <summary>Field number for the "time_expiration_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradeOrderInfo.TimeExpirationUtc">
+            <summary>
+            time_expiration in UTC (the same moment; time_expiration is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.OnTradeOrderInfo.TimeTypeFieldNumber">
             <summary>Field number for the "time_type" field.</summary>
@@ -10432,8 +11870,24 @@
         <member name="F:mt5_term_api.OnTradeOrderInfo.SetupTimeFieldNumber">
             <summary>Field number for the "setup_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.OnTradeOrderInfo.SetupTimeUtcFieldNumber">
+            <summary>Field number for the "setup_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradeOrderInfo.SetupTimeUtc">
+            <summary>
+            setup_time in UTC (the same moment; setup_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OnTradeOrderInfo.TimeExpirationSecondsFieldNumber">
             <summary>Field number for the "time_expiration_seconds" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OnTradeOrderInfo.TimeExpirationSecondsUtcFieldNumber">
+            <summary>Field number for the "time_expiration_seconds_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradeOrderInfo.TimeExpirationSecondsUtc">
+            <summary>
+            time_expiration_seconds in UTC (the same moment; time_expiration_seconds is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.OnTradeOrderInfo.VolumeCurrentFieldNumber">
             <summary>Field number for the "volume_current" field.</summary>
@@ -10471,8 +11925,24 @@
         <member name="F:mt5_term_api.OnTradePositionInfo.PositionTimeFieldNumber">
             <summary>Field number for the "position_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.OnTradePositionInfo.PositionTimeUtcFieldNumber">
+            <summary>Field number for the "position_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradePositionInfo.PositionTimeUtc">
+            <summary>
+            position_time in UTC (the same moment; position_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OnTradePositionInfo.LastUpdateTimeFieldNumber">
             <summary>Field number for the "last_update_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OnTradePositionInfo.LastUpdateTimeUtcFieldNumber">
+            <summary>Field number for the "last_update_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradePositionInfo.LastUpdateTimeUtc">
+            <summary>
+            last_update_time in UTC (the same moment; last_update_time is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.OnTradePositionInfo.PriceOpenFieldNumber">
             <summary>Field number for the "price_open" field.</summary>
@@ -10527,6 +11997,14 @@
         </member>
         <member name="F:mt5_term_api.OnTradeHistoryDealInfo.DealTimeFieldNumber">
             <summary>Field number for the "deal_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OnTradeHistoryDealInfo.DealTimeUtcFieldNumber">
+            <summary>Field number for the "deal_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradeHistoryDealInfo.DealTimeUtc">
+            <summary>
+            deal_time in UTC (the same moment; deal_time is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.OnTradeHistoryDealInfo.EntryFieldNumber">
             <summary>Field number for the "entry" field.</summary>
@@ -10585,11 +12063,35 @@
         <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.SetupTimeFieldNumber">
             <summary>Field number for the "setup_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.SetupTimeUtcFieldNumber">
+            <summary>Field number for the "setup_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradeHistoryOrderInfo.SetupTimeUtc">
+            <summary>
+            setup_time in UTC (the same moment; setup_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.DoneTimeFieldNumber">
             <summary>Field number for the "done_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.DoneTimeUtcFieldNumber">
+            <summary>Field number for the "done_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradeHistoryOrderInfo.DoneTimeUtc">
+            <summary>
+            done_time in UTC (the same moment; done_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.TimeExpirationFieldNumber">
             <summary>Field number for the "time_expiration" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.TimeExpirationUtcFieldNumber">
+            <summary>Field number for the "time_expiration_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradeHistoryOrderInfo.TimeExpirationUtc">
+            <summary>
+            time_expiration in UTC (the same moment; time_expiration is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.PositionIdFieldNumber">
             <summary>Field number for the "position_id" field.</summary>
@@ -10635,6 +12137,14 @@
         </member>
         <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.TimeExpirationSecondsFieldNumber">
             <summary>Field number for the "time_expiration_seconds" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.TimeExpirationSecondsUtcFieldNumber">
+            <summary>Field number for the "time_expiration_seconds_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OnTradeHistoryOrderInfo.TimeExpirationSecondsUtc">
+            <summary>
+            time_expiration_seconds in UTC (the same moment; time_expiration_seconds is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.OnTradeHistoryOrderInfo.AccountLoginFieldNumber">
             <summary>Field number for the "account_login" field.</summary>
@@ -10731,6 +12241,14 @@
             Time of the last prices update (Unix timestamp)
             </summary>
         </member>
+        <member name="F:mt5_term_api.MrpcSubscriptionMqlTick.TimeUtcFieldNumber">
+            <summary>Field number for the "time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MrpcSubscriptionMqlTick.TimeUtc">
+            <summary>
+            time in UTC (the same moment; time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.MrpcSubscriptionMqlTick.BidFieldNumber">
             <summary>Field number for the "bid" field.</summary>
         </member>
@@ -10769,6 +12287,14 @@
         <member name="P:mt5_term_api.MrpcSubscriptionMqlTick.TimeMsc">
             <summary>
             Time of a price last update in milliseconds
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.MrpcSubscriptionMqlTick.TimeMscUtcFieldNumber">
+            <summary>Field number for the "time_msc_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MrpcSubscriptionMqlTick.TimeMscUtc">
+            <summary>
+            time_msc in UTC (the same moment; time_msc is in the broker server's time zone).
             </summary>
         </member>
         <member name="F:mt5_term_api.MrpcSubscriptionMqlTick.FlagsFieldNumber">
@@ -11164,6 +12690,14 @@
             Order expiration time (for the orders of ORDER_TIME_SPECIFIED type)
             </summary>
         </member>
+        <member name="F:mt5_term_api.MrpcMqlTradeRequest.ExpirationUtcFieldNumber">
+            <summary>Field number for the "expiration_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MrpcMqlTradeRequest.ExpirationUtc">
+            <summary>
+            expiration in UTC: send either expiration or expiration_utc, not both.
+            </summary>
+        </member>
         <member name="F:mt5_term_api.MrpcMqlTradeRequest.CommentFieldNumber">
             <summary>Field number for the "comment" field.</summary>
         </member>
@@ -11299,6 +12833,20 @@
         <member name="M:mt5_term_api.TradeStatsRequest.ClearFrom">
             <summary>Clears the value of the "from" field</summary>
         </member>
+        <member name="F:mt5_term_api.TradeStatsRequest.FromUtcFieldNumber">
+            <summary>Field number for the "from_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsRequest.FromUtc">
+            <summary>
+            from in UTC: send either from or from_utc, not both.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsRequest.HasFromUtc">
+            <summary>Gets whether the "from_utc" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeStatsRequest.ClearFromUtc">
+            <summary>Clears the value of the "from_utc" field</summary>
+        </member>
         <member name="F:mt5_term_api.TradeStatsReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
         </member>
@@ -11321,6 +12869,20 @@
         </member>
         <member name="M:mt5_term_api.TradeStatsEquityHistoryRequest.ClearFrom">
             <summary>Clears the value of the "from" field</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeStatsEquityHistoryRequest.FromUtcFieldNumber">
+            <summary>Field number for the "from_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsEquityHistoryRequest.FromUtc">
+            <summary>
+            from in UTC: send either from or from_utc, not both.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.TradeStatsEquityHistoryRequest.HasFromUtc">
+            <summary>Gets whether the "from_utc" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeStatsEquityHistoryRequest.ClearFromUtc">
+            <summary>Clears the value of the "from_utc" field</summary>
         </member>
         <member name="F:mt5_term_api.TradeStatsEquityHistoryRequest.ExcludeSameBarsFieldNumber">
             <summary>Field number for the "exclude_same_bars" field.</summary>
@@ -11359,6 +12921,20 @@
         <member name="M:mt5_term_api.EquityHistoryRequest.ClearFrom">
             <summary>Clears the value of the "from" field</summary>
         </member>
+        <member name="F:mt5_term_api.EquityHistoryRequest.FromUtcFieldNumber">
+            <summary>Field number for the "from_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.EquityHistoryRequest.FromUtc">
+            <summary>
+            from in UTC: send either from or from_utc, not both.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.EquityHistoryRequest.HasFromUtc">
+            <summary>Gets whether the "from_utc" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.EquityHistoryRequest.ClearFromUtc">
+            <summary>Clears the value of the "from_utc" field</summary>
+        </member>
         <member name="F:mt5_term_api.EquityHistoryRequest.ExcludeSameBarsFieldNumber">
             <summary>Field number for the "exclude_same_bars" field.</summary>
         </member>
@@ -11395,6 +12971,20 @@
         </member>
         <member name="M:mt5_term_api.TradeUnrealizedPLRequest.ClearFrom">
             <summary>Clears the value of the "from" field</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedPLRequest.FromUtcFieldNumber">
+            <summary>Field number for the "from_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeUnrealizedPLRequest.FromUtc">
+            <summary>
+            from in UTC: send either from or from_utc, not both.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.TradeUnrealizedPLRequest.HasFromUtc">
+            <summary>Gets whether the "from_utc" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.TradeUnrealizedPLRequest.ClearFromUtc">
+            <summary>Clears the value of the "from_utc" field</summary>
         </member>
         <member name="F:mt5_term_api.TradeUnrealizedPLReply.DataFieldNumber">
             <summary>Field number for the "data" field.</summary>
@@ -11507,6 +13097,21 @@
         <member name="F:mt5_term_api.MarketTradeCountData.CountFieldNumber">
             <summary>Field number for the "count" field.</summary>
         </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.LotsFieldNumber">
+            <summary>Field number for the "lots" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.ProfitFieldNumber">
+            <summary>Field number for the "profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.WinRateFieldNumber">
+            <summary>Field number for the "win_rate" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.WonCountFieldNumber">
+            <summary>Field number for the "won_count" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MarketTradeCountData.LostCountFieldNumber">
+            <summary>Field number for the "lost_count" field.</summary>
+        </member>
         <member name="F:mt5_term_api.ProfitabilityData.WonTradesFieldNumber">
             <summary>Field number for the "won_trades" field.</summary>
         </member>
@@ -11540,6 +13145,14 @@
         <member name="F:mt5_term_api.ProfitData.DateFieldNumber">
             <summary>Field number for the "date" field.</summary>
         </member>
+        <member name="F:mt5_term_api.ProfitData.DateUtcFieldNumber">
+            <summary>Field number for the "date_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.ProfitData.DateUtc">
+            <summary>
+            date in UTC (the same moment; date is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.ProfitData.ProfitFieldNumber">
             <summary>Field number for the "profit" field.</summary>
         </member>
@@ -11561,11 +13174,77 @@
         <member name="F:mt5_term_api.StatsWithChartsData.ChartsFieldNumber">
             <summary>Field number for the "charts" field.</summary>
         </member>
+        <member name="F:mt5_term_api.StatsWithChartsData.TradesFieldNumber">
+            <summary>Field number for the "trades" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.StatsWithChartsData.OpenTradesFieldNumber">
+            <summary>Field number for the "open_trades" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.TicketFieldNumber">
+            <summary>Field number for the "ticket" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.SymbolFieldNumber">
+            <summary>Field number for the "symbol" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.IsBuyFieldNumber">
+            <summary>Field number for the "is_buy" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.LotsFieldNumber">
+            <summary>Field number for the "lots" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.OpenPriceFieldNumber">
+            <summary>Field number for the "open_price" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.ClosePriceFieldNumber">
+            <summary>Field number for the "close_price" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.OpenTimeFieldNumber">
+            <summary>Field number for the "open_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.OpenTimeUtcFieldNumber">
+            <summary>Field number for the "open_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeHistoryItemData.OpenTimeUtc">
+            <summary>
+            open_time in UTC (the same moment; open_time is in the broker server's time zone).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.CloseTimeFieldNumber">
+            <summary>Field number for the "close_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.CloseTimeUtcFieldNumber">
+            <summary>Field number for the "close_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeHistoryItemData.CloseTimeUtc">
+            <summary>
+            close_time in UTC (the same moment; close_time is in the broker server's time zone).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.ProfitFieldNumber">
+            <summary>Field number for the "profit" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.CommissionFieldNumber">
+            <summary>Field number for the "commission" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.SwapFieldNumber">
+            <summary>Field number for the "swap" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeHistoryItemData.CommentFieldNumber">
+            <summary>Field number for the "comment" field.</summary>
+        </member>
         <member name="F:mt5_term_api.EquityHistoryData.PointsFieldNumber">
             <summary>Field number for the "points" field.</summary>
         </member>
         <member name="F:mt5_term_api.EquityPointData.TimeFieldNumber">
             <summary>Field number for the "time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.TimeUtcFieldNumber">
+            <summary>Field number for the "time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.EquityPointData.TimeUtc">
+            <summary>
+            time in UTC (the same moment; time is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.EquityPointData.BalanceFieldNumber">
             <summary>Field number for the "balance" field.</summary>
@@ -11603,11 +13282,27 @@
         <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MaxUnrealizedTimeFieldNumber">
             <summary>Field number for the "max_unrealized_time" field.</summary>
         </member>
+        <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MaxUnrealizedTimeUtcFieldNumber">
+            <summary>Field number for the "max_unrealized_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeUnrealizedExtremaData.MaxUnrealizedTimeUtc">
+            <summary>
+            max_unrealized_time in UTC (the same moment; max_unrealized_time is in the broker server's time zone).
+            </summary>
+        </member>
         <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MaxUnrealizedPlFieldNumber">
             <summary>Field number for the "max_unrealized_pl" field.</summary>
         </member>
         <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MinUnrealizedTimeFieldNumber">
             <summary>Field number for the "min_unrealized_time" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MinUnrealizedTimeUtcFieldNumber">
+            <summary>Field number for the "min_unrealized_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.TradeUnrealizedExtremaData.MinUnrealizedTimeUtc">
+            <summary>
+            min_unrealized_time in UTC (the same moment; min_unrealized_time is in the broker server's time zone).
+            </summary>
         </member>
         <member name="F:mt5_term_api.TradeUnrealizedExtremaData.MinUnrealizedPlFieldNumber">
             <summary>Field number for the "min_unrealized_pl" field.</summary>
@@ -11788,6 +13483,14 @@
         <member name="P:mt5_term_api.OrderModifyRequest.ExpirationTime">
             <summary>
             Order expiration time (for the orders of expiration_time_type == ORDER_TIME_SPECIFIED OR ORDER_TIME_SPECIFIED_DAY)
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.OrderModifyRequest.ExpirationTimeUtcFieldNumber">
+            <summary>Field number for the "expiration_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrderModifyRequest.ExpirationTimeUtc">
+            <summary>
+            expiration_time in UTC: send either expiration_time or expiration_time_utc, not both.
             </summary>
         </member>
         <member name="F:mt5_term_api.OrderModifyRequest.StopLimitFieldNumber">
@@ -12043,6 +13746,14 @@
             Order expiration time (for the orders of expiration_time_type == ORDER_TIME_SPECIFIED type)
             </summary>
         </member>
+        <member name="F:mt5_term_api.OrderSendRequest.ExpirationTimeUtcFieldNumber">
+            <summary>Field number for the "expiration_time_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.OrderSendRequest.ExpirationTimeUtc">
+            <summary>
+            expiration_time in UTC: send either expiration_time or expiration_time_utc, not both.
+            </summary>
+        </member>
         <member name="F:mt5_term_api.OrderSendRequest.QuotesWaitMsFieldNumber">
             <summary>Field number for the "quotes_wait_ms" field.</summary>
         </member>
@@ -12246,7 +13957,23 @@
             Gets the unique identifier for the account instance.
             </summary>
         </member>
-        <member name="M:MetaRPC.CSharpMT5.MT5Account.#ctor(System.UInt64,System.String,System.String,System.Guid)">
+        <member name="P:MetaRPC.CSharpMT5.MT5Account.TerminalInstanceGuid">
+            <summary>
+            Gets the raw terminal instance GUID string returned by the server (e.g. mt5_live_...).
+            </summary>
+        </member>
+        <member name="P:MetaRPC.CSharpMT5.MT5Account.ApiKey">
+            <summary>
+            Gets or sets the MetaRPC API key for authentication. Defaults to "TRIAL".
+            </summary>
+        </member>
+        <member name="P:MetaRPC.CSharpMT5.MT5Account.Name">
+            <summary>
+            Gets or sets the optional terminal name or creator identifier sent with every connect request.
+            It labels the terminal instance on the server (for example with the name of the application using it).
+            </summary>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.#ctor(System.UInt64,System.String,System.String,System.Guid,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:mt5_term_api.MT5Account" /> class using credentials.
             </summary>
@@ -12254,8 +13981,34 @@
             <param name="password">The password for the user account.</param>
             <param name="grpcServer">The address of the gRPC server (optional).</param>
             <param name="id">An optional unique identifier for the account instance.</param>
+            <param name="apiKey">An optional API key for authentication (defaults to TRIAL or MRPC_API_KEY env var).</param>
+            <param name="name">An optional terminal name or creator identifier, sent with every connect request.</param>
         </member>
-        <member name="M:MetaRPC.CSharpMT5.MT5Account.ConnectByHostPortAsync(System.String,System.Int32,System.String,System.Boolean,System.Int32,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.ComputeDeterministicTerminalId(System.UInt64,System.String)">
+            <summary>
+            Computes a stable deterministic GUID based on account credentials (user + password).
+            Matches the server's GetId algorithm.
+            </summary>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.#ctor(System.UInt64,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:mt5_term_api.MT5Account" /> class with API key.
+            </summary>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.#ctor(System.UInt64,System.String,System.String,System.String,System.Guid,System.String)">
+            <summary>
+            Initializes a new instance with an explicit API key, a stable terminal id and a terminal name.
+            </summary>
+            <param name="user">The MT5 user account number.</param>
+            <param name="password">The password for the user account.</param>
+            <param name="grpcServer">The address of the gRPC server (optional, default https://mt5.mrpc.pro:443).</param>
+            <param name="apiKey">The MetaRPC API key (optional, falls back to MRPC_API_KEY environment variable).</param>
+            <param name="id">A stable terminal id; the gateway keeps one terminal per id, so pass the same id on every run.</param>
+            <param name="terminalName">Optional terminal name / strategy identifier sent with Connect / ConnectEx (same as <see cref="P:MetaRPC.CSharpMT5.MT5Account.Name"/>).
+            The parameter is deliberately not called <c>name</c>: with named arguments a call that spells out all six parameters
+            would otherwise be ambiguous between this overload and the (grpcServer, id, apiKey, name) one.</param>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.ConnectByHostPortAsync(System.String,System.Int32,System.String,System.Boolean,System.Int32,System.Nullable{System.DateTime},System.Threading.CancellationToken,System.String)">
             <summary>
             Connects to the MT5 terminal using credentials provided in the constructor.
             </summary>
@@ -12266,11 +14019,12 @@
             <param name="timeoutSeconds">How long to wait for terminal readiness before timing out.</param>
             <param name="deadline">Optional gRPC deadline for the operation.</param>
             <param name="cancellationToken">Optional cancellation token.</param>
+            <param name="name">Optional terminal name or creator identifier. When given it replaces <see cref="P:mt5_term_api.MT5Account.Name" /> for this and later connects.</param>
             <returns>A task representing the asynchronous connection operation.</returns>
             <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error response.</exception>
             <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
         </member>
-        <member name="M:MetaRPC.CSharpMT5.MT5Account.Connect(System.String,System.Int32,System.String,System.Boolean,System.Int32)">
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.Connect(System.String,System.Int32,System.String,System.Boolean,System.Int32,System.String)">
             <summary>
             Synchronously connects to the MT5 terminal.
             </summary>
@@ -12279,8 +14033,9 @@
             <param name="baseChartSymbol">Chart symbol to initialize the session.</param>
             <param name="waitForTerminalIsAlive">Wait for terminal readiness flag.</param>
             <param name="timeoutSeconds">Timeout duration in seconds.</param>
+            <param name="name">Optional terminal name or creator identifier. When given it replaces <see cref="P:MetaRPC.CSharpMT5.MT5Account.Name"/> for this and later connects.</param>
         </member>
-        <member name="M:MetaRPC.CSharpMT5.MT5Account.ConnectByServerNameAsync(System.String,System.String,System.Boolean,System.Int32,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.ConnectByServerNameAsync(System.String,System.String,System.Boolean,System.Int32,System.Nullable{System.DateTime},System.Threading.CancellationToken,System.String)">
             <summary>
             Connects to the MT5 terminal using credentials provided in the constructor.
             </summary>
@@ -12290,11 +14045,12 @@
             <param name="timeoutSeconds">How long to wait for terminal readiness before timing out.</param>
             <param name="deadline">Optional gRPC deadline for the operation.</param>
             <param name="cancellationToken">Optional cancellation token.</param>
+            <param name="name">Optional terminal name or creator identifier. When given it replaces <see cref="P:mt5_term_api.MT5Account.Name" /> for this and later connects.</param>
             <returns>A task representing the asynchronous connection operation.</returns>
             <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error response.</exception>
             <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
         </member>
-        <member name="M:MetaRPC.CSharpMT5.MT5Account.ConnectByServerName(System.String,System.String,System.Boolean,System.Int32)">
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.ConnectByServerName(System.String,System.String,System.Boolean,System.Int32,System.String)">
             <summary>
             Synchronously connects to the MT5 terminal.
             </summary>
@@ -12302,6 +14058,7 @@
             <param name="baseChartSymbol">Chart symbol to initialize the session.</param>
             <param name="waitForTerminalIsAlive">Wait for terminal readiness flag.</param>
             <param name="timeoutSeconds">Timeout duration in seconds.</param>
+            <param name="name">Optional terminal name or creator identifier. When given it replaces <see cref="P:MetaRPC.CSharpMT5.MT5Account.Name"/> for this and later connects.</param>
         </member>
         <member name="M:MetaRPC.CSharpMT5.MT5Account.ExecuteWithReconnect``1(System.Func{Grpc.Core.Metadata,``0},System.Func{``0,Mt5TermApi.Error},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
             <summary>
@@ -12981,6 +14738,29 @@
             <exception cref="T:mt5_term_api.ApiExceptionMT5" />
             <exception cref="T:Grpc.Core.RpcException" />
         </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.PriceHistoryAsync(System.String,System.Int32,System.DateTime,System.DateTime,System.Int32,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns historical OHLC bars (MarketInfo.PriceHistory) for a symbol.
+            Times are UTC; bar <c>Time</c> values are UTC unix seconds. With <paramref name="maxBars"/> &gt; 0
+            the server returns the most recent <paramref name="maxBars"/> bars inside the window.
+            </summary>
+            <param name="symbol">Symbol name.</param>
+            <param name="timeframe">MQL5 ENUM_TIMEFRAMES value: M1=1, M5=5, M15=15, M30=30, H1=16385, H4=16388, D1=16408, W1=32769, MN1=49153.</param>
+            <param name="from">Window start (UTC).</param>
+            <param name="to">Window end (UTC).</param>
+            <param name="maxBars">Maximum number of bars (0 = all bars in the window).</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>Bars, oldest first.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.PriceHistory(System.String,System.Int32,System.DateTime,System.DateTime,System.Int32,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns historical OHLC bars synchronously. See <see cref="M:MetaRPC.CSharpMT5.MT5Account.PriceHistoryAsync(System.String,System.Int32,System.DateTime,System.DateTime,System.Int32,System.Nullable{System.DateTime},System.Threading.CancellationToken)"/>.
+            </summary>
+        </member>
         <member name="M:MetaRPC.CSharpMT5.MT5Account.SymbolInfoSessionQuoteAsync(System.String,mt5_term_api.DayOfWeek,System.UInt32,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
             <summary>
             Gets the quoting session start and end time for a symbol on a specific day and session index.
@@ -13180,6 +14960,16 @@
             <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the client is not connected.</exception>
             <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns a business error.</exception>
             <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.DisconnectAsync(System.Threading.CancellationToken)">
+            <summary>
+            Disconnects from the MT5 server by sending a Disconnect request and disposing the gRPC channel.
+            </summary>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.Disconnect">
+            <summary>
+            Synchronously disconnects from the MT5 server.
+            </summary>
         </member>
         <member name="T:Mt5TermApi.MrpcMt5ErrorReflection">
             <summary>Holder for reflection information generated from mrpc-mt5-error.proto</summary>
@@ -14675,6 +16465,28 @@
             <param name="context">The context of the server-side call handler being invoked.</param>
             <returns>The response to send back to the client (wrapped by a task).</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.Drain(mrpc_admin.DrainRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.StopTerminalLocal(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
         <member name="T:mrpc_admin.AdminApi.AdminApiClient">
             <summary>Client for AdminApi</summary>
         </member>
@@ -15377,6 +17189,102 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.Drain(mrpc_admin.DrainRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.Drain(mrpc_admin.DrainRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.DrainAsync(mrpc_admin.DrainRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.DrainAsync(mrpc_admin.DrainRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Puts THIS pod into the draining state ahead of shutdown (StatefulSet preStop hook). While draining the
+            pod stops renewing its terminal ownership leases, suppresses crash persistence for terminals ending with
+            the VM, and starts no new work; peers restore its terminals once the leases expire. One-way for the
+            lifetime of the process; calling it again reports already_draining.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.StopTerminalLocal(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.StopTerminalLocal(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.StopTerminalLocalAsync(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.StopTerminalLocalAsync(mrpc_admin.StopTerminalLocalRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Stops THIS pod's local copy of one terminal (pod-to-pod: user-stop fan-out, duplicate prune, rebalance
+            migration). Local only: never forwarded to another pod and never persisted to UserTerminals (the caller
+            records any stop intent). cause is a StopCause name; only customer/API/admin/delete/test stops and
+            InternalReap are accepted. Callers must check reply.error.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mrpc_admin.AdminApi.AdminApiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -15525,6 +17433,143 @@
         </member>
         <member name="F:mrpc_admin.KillAllTrialTerminalsReply.ErrorFieldNumber">
             <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.DrainRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.DrainRequest.ReasonFieldNumber">
+            <summary>Field number for the "reason" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainRequest.Reason">
+            <summary>
+            why the pod drains (e.g. "preStop"); default "AdminDrain"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.DrainingFieldNumber">
+            <summary>Field number for the "draining" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.Draining">
+            <summary>
+            the pod is draining (always true on success)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.AlreadyDrainingFieldNumber">
+            <summary>Field number for the "already_draining" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.AlreadyDraining">
+            <summary>
+            it was already draining before this call
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.PodFieldNumber">
+            <summary>Field number for the "pod" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.Pod">
+            <summary>
+            pod name
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.ReasonFieldNumber">
+            <summary>Field number for the "reason" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.Reason">
+            <summary>
+            reason of the drain in effect (the first one)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.StartedAtFieldNumber">
+            <summary>Field number for the "started_at" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.DrainReply.StartedAt">
+            <summary>
+            ISO-8601 UTC when draining started
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.DrainReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalRequest.Id">
+            <summary>
+            terminal id (any GUID format)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.CauseFieldNumber">
+            <summary>Field number for the "cause" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalRequest.Cause">
+            <summary>
+            StopCause name, e.g. "UserPortal", "UserApi", "InternalReap"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.DetailFieldNumber">
+            <summary>Field number for the "detail" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalRequest.Detail">
+            <summary>
+            reason recorded with the stop (e.g. "DuplicatePrune", "RebalanceMigrate")
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalRequest.IntentUtcFieldNumber">
+            <summary>Field number for the "intent_utc" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalRequest.IntentUtc">
+            <summary>
+            optional ISO-8601 UTC time the stop intent was recorded: a local copy whose
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.StoppedFieldNumber">
+            <summary>Field number for the "stopped" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Stopped">
+            <summary>
+            the local copy was stopped by this call
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.PresentFieldNumber">
+            <summary>Field number for the "present" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Present">
+            <summary>
+            this pod had a copy of the terminal (a record owning a process)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.PodFieldNumber">
+            <summary>Field number for the "pod" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Pod">
+            <summary>
+            pod that handled the call
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Error">
+            <summary>
+            non-empty when the request was invalid or the stop failed
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.FullLifeTimeSecondsFieldNumber">
+            <summary>Field number for the "full_life_time_seconds" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.FullLifeTimeSeconds">
+            <summary>
+            lifetime of the stopped copy (0 when nothing was stopped)
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.StopTerminalLocalReply.SkippedFieldNumber">
+            <summary>Field number for the "skipped" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.StopTerminalLocalReply.Skipped">
+            <summary>
+            why a present copy was left running (e.g. it was started after the intent)
+            </summary>
         </member>
         <member name="F:mrpc_admin.GetSessionRestoreLogsRequest.AdminKeyFieldNumber">
             <summary>Field number for the "admin_key" field.</summary>
@@ -15696,6 +17741,37 @@
             <summary>
             MT4 / MT5 as this process resolved it
             </summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationFieldNumber">
+            <summary>Field number for the "session_creation" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.VersionReply.SessionCreation">
+            <summary>
+            Windows session creation on this pod (SessionCreationHealth): "healthy", "unhealthy" (its last
+            consecutive creations all failed - restore placement skips it) or "disabled" (no on-demand sessions).
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationConsecutiveFailuresFieldNumber">
+            <summary>Field number for the "session_creation_consecutive_failures" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationLastErrorFieldNumber">
+            <summary>Field number for the "session_creation_last_error" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.VersionReply.SessionCreationLastError">
+            <summary>
+            "MrpcTerminalUserN: &lt;launcher error>"
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationLastSuccessUtcFieldNumber">
+            <summary>Field number for the "session_creation_last_success_utc" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.VersionReply.SessionCreationLastSuccessUtc">
+            <summary>
+            ISO-8601, empty when none yet
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.VersionReply.SessionCreationUnhealthySinceUtcFieldNumber">
+            <summary>Field number for the "session_creation_unhealthy_since_utc" field.</summary>
         </member>
         <member name="F:mrpc_admin.ListLogFilesReply.FilesFieldNumber">
             <summary>Field number for the "files" field.</summary>

@@ -34,79 +34,83 @@ namespace mt5_term_api {
             "cG9uc2UioQEKDk9yZGVyQ2xvc2VEYXRhEhUKDXJldHVybmVkX2NvZGUYASAB",
             "KA0SHAoUcmV0dXJuZWRfc3RyaW5nX2NvZGUYAiABKAkSIQoZcmV0dXJuZWRf",
             "Y29kZV9kZXNjcmlwdGlvbhgDIAEoCRI3CgpjbG9zZV9tb2RlGAQgASgOMiMu",
-            "bXQ1X3Rlcm1fYXBpLk1SUENfT1JERVJfQ0xPU0VfTU9ERSLtAgoST3JkZXJN",
+            "bXQ1X3Rlcm1fYXBpLk1SUENfT1JERVJfQ0xPU0VfTU9ERSLDAwoST3JkZXJN",
             "b2RpZnlSZXF1ZXN0Eg4KBnRpY2tldBgBIAEoBBIWCglzdG9wX2xvc3MYAiAB",
             "KAFIAIgBARIYCgt0YWtlX3Byb2ZpdBgDIAEoAUgBiAEBEhIKBXByaWNlGAQg",
             "ASgBSAKIAQESSgoUZXhwaXJhdGlvbl90aW1lX3R5cGUYBSABKA4yJy5tdDVf",
             "dGVybV9hcGkuVE1UNV9FTlVNX09SREVSX1RZUEVfVElNRUgDiAEBEjgKD2V4",
             "cGlyYXRpb25fdGltZRgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3Rh",
-            "bXBIBIgBARIXCgpzdG9wX2xpbWl0GAggASgBSAWIAQFCDAoKX3N0b3BfbG9z",
-            "c0IOCgxfdGFrZV9wcm9maXRCCAoGX3ByaWNlQhcKFV9leHBpcmF0aW9uX3Rp",
-            "bWVfdHlwZUISChBfZXhwaXJhdGlvbl90aW1lQg0KC19zdG9wX2xpbWl0InMK",
-            "EE9yZGVyTW9kaWZ5UmVwbHkSLQoEZGF0YRgBIAEoCzIdLm10NV90ZXJtX2Fw",
-            "aS5PcmRlck1vZGlmeURhdGFIABIkCgVlcnJvchgCIAEoCzITLm10NV90ZXJt",
-            "X2FwaS5FcnJvckgAQgoKCHJlc3BvbnNlIv8BCg9PcmRlck1vZGlmeURhdGES",
-            "FQoNcmV0dXJuZWRfY29kZRgBIAEoDRIMCgRkZWFsGAIgASgEEg0KBW9yZGVy",
-            "GAMgASgEEg4KBnZvbHVtZRgEIAEoARINCgVwcmljZRgFIAEoARILCgNiaWQY",
-            "BiABKAESCwoDYXNrGAcgASgBEg8KB2NvbW1lbnQYCCABKAkSEgoKcmVxdWVz",
-            "dF9pZBgJIAEoDRIZChFyZXRfY29kZV9leHRlcm5hbBgKIAEoBRIcChRyZXR1",
-            "cm5lZF9zdHJpbmdfY29kZRgLIAEoCRIhChlyZXR1cm5lZF9jb2RlX2Rlc2Ny",
-            "aXB0aW9uGAwgASgJItoEChBPcmRlclNlbmRSZXF1ZXN0Eg4KBnN5bWJvbBgB",
-            "IAEoCRI1CglvcGVyYXRpb24YAiABKA4yIi5tdDVfdGVybV9hcGkuVE1UNV9F",
-            "TlVNX09SREVSX1RZUEUSDgoGdm9sdW1lGAMgASgBEhIKBXByaWNlGAQgASgB",
-            "SACIAQESFQoIc2xpcHBhZ2UYBSABKARIAYgBARIWCglzdG9wX2xvc3MYBiAB",
-            "KAFIAogBARIYCgt0YWtlX3Byb2ZpdBgHIAEoAUgDiAEBEhQKB2NvbW1lbnQY",
-            "CCABKAlIBIgBARIWCglleHBlcnRfaWQYCSABKARIBYgBARIdChBzdG9wX2xp",
-            "bWl0X3ByaWNlGAogASgBSAaIAQESSgoUZXhwaXJhdGlvbl90aW1lX3R5cGUY",
-            "CyABKA4yJy5tdDVfdGVybV9hcGkuVE1UNV9FTlVNX09SREVSX1RZUEVfVElN",
-            "RUgHiAEBEjgKD2V4cGlyYXRpb25fdGltZRgMIAEoCzIaLmdvb2dsZS5wcm90",
-            "b2J1Zi5UaW1lc3RhbXBICIgBARIbCg5xdW90ZXNfd2FpdF9tcxgNIAEoBUgJ",
-            "iAEBQggKBl9wcmljZUILCglfc2xpcHBhZ2VCDAoKX3N0b3BfbG9zc0IOCgxf",
-            "dGFrZV9wcm9maXRCCgoIX2NvbW1lbnRCDAoKX2V4cGVydF9pZEITChFfc3Rv",
-            "cF9saW1pdF9wcmljZUIXChVfZXhwaXJhdGlvbl90aW1lX3R5cGVCEgoQX2V4",
-            "cGlyYXRpb25fdGltZUIRCg9fcXVvdGVzX3dhaXRfbXMibwoOT3JkZXJTZW5k",
-            "UmVwbHkSKwoEZGF0YRgBIAEoCzIbLm10NV90ZXJtX2FwaS5PcmRlclNlbmRE",
-            "YXRhSAASJAoFZXJyb3IYAiABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3JIAEIK",
-            "CghyZXNwb25zZSL9AQoNT3JkZXJTZW5kRGF0YRIVCg1yZXR1cm5lZF9jb2Rl",
-            "GAEgASgNEgwKBGRlYWwYAiABKAQSDQoFb3JkZXIYAyABKAQSDgoGdm9sdW1l",
-            "GAQgASgBEg0KBXByaWNlGAUgASgBEgsKA2JpZBgGIAEoARILCgNhc2sYByAB",
-            "KAESDwoHY29tbWVudBgIIAEoCRISCgpyZXF1ZXN0X2lkGAkgASgNEhkKEXJl",
-            "dF9jb2RlX2V4dGVybmFsGAogASgFEhwKFHJldHVybmVkX3N0cmluZ19jb2Rl",
-            "GAsgASgJEiEKGXJldHVybmVkX2NvZGVfZGVzY3JpcHRpb24YDCABKAkqeAoV",
-            "TVJQQ19PUkRFUl9DTE9TRV9NT0RFEhsKF01SUENfTUFSS0VUX09SREVSX0NM",
-            "T1NFEAASIwofTVJQQ19NQVJLRVRfT1JERVJfUEFSVElBTF9DTE9TRRABEh0K",
-            "GU1SUENfUEVORElOR19PUkRFUl9SRU1PVkUQAiqsAgoUVE1UNV9FTlVNX09S",
-            "REVSX1RZUEUSFwoTVE1UNV9PUkRFUl9UWVBFX0JVWRAAEhgKFFRNVDVfT1JE",
-            "RVJfVFlQRV9TRUxMEAESHQoZVE1UNV9PUkRFUl9UWVBFX0JVWV9MSU1JVBAC",
-            "Eh4KGlRNVDVfT1JERVJfVFlQRV9TRUxMX0xJTUlUEAMSHAoYVE1UNV9PUkRF",
-            "Ul9UWVBFX0JVWV9TVE9QEAQSHQoZVE1UNV9PUkRFUl9UWVBFX1NFTExfU1RP",
-            "UBAFEiIKHlRNVDVfT1JERVJfVFlQRV9CVVlfU1RPUF9MSU1JVBAGEiMKH1RN",
-            "VDVfT1JERVJfVFlQRV9TRUxMX1NUT1BfTElNSVQQBxIcChhUTVQ1X09SREVS",
-            "X1RZUEVfQ0xPU0VfQlkQCCqPAQoZVE1UNV9FTlVNX09SREVSX1RZUEVfVElN",
-            "RRIXChNUTVQ1X09SREVSX1RJTUVfR1RDEAASFwoTVE1UNV9PUkRFUl9USU1F",
-            "X0RBWRABEh0KGVRNVDVfT1JERVJfVElNRV9TUEVDSUZJRUQQAhIhCh1UTVQ1",
-            "X09SREVSX1RJTUVfU1BFQ0lGSUVEX0RBWRADMrEDCg1UcmFkaW5nSGVscGVy",
-            "El0KCU9yZGVyU2VuZBIeLm10NV90ZXJtX2FwaS5PcmRlclNlbmRSZXF1ZXN0",
-            "GhwubXQ1X3Rlcm1fYXBpLk9yZGVyU2VuZFJlcGx5IhKC0+STAgwSCi9PcmRl",
-            "clNlbmQSdwoWT3JkZXJTZW5kV2l0aG91dENoZWNrcxIeLm10NV90ZXJtX2Fw",
-            "aS5PcmRlclNlbmRSZXF1ZXN0GhwubXQ1X3Rlcm1fYXBpLk9yZGVyU2VuZFJl",
-            "cGx5Ih+C0+STAhkSFy9PcmRlclNlbmRXaXRob3V0Q2hlY2tzEmUKC09yZGVy",
-            "TW9kaWZ5EiAubXQ1X3Rlcm1fYXBpLk9yZGVyTW9kaWZ5UmVxdWVzdBoeLm10",
-            "NV90ZXJtX2FwaS5PcmRlck1vZGlmeVJlcGx5IhSC0+STAg4SDC9PcmRlck1v",
-            "ZGlmeRJhCgpPcmRlckNsb3NlEh8ubXQ1X3Rlcm1fYXBpLk9yZGVyQ2xvc2VS",
-            "ZXF1ZXN0Gh0ubXQ1X3Rlcm1fYXBpLk9yZGVyQ2xvc2VSZXBseSITgtPkkwIN",
-            "EgsvT3JkZXJDbG9zZUJCWjFnaXQubXRhcGkuaW8vcm9vdC9tcnBjLXByb3Rv",
-            "LmdpdC9tdDUvbGlicmFyaWVzL2dvqgIMbXQ1X3Rlcm1fYXBpYgZwcm90bzM="));
+            "bXBIBIgBARI8ChNleHBpcmF0aW9uX3RpbWVfdXRjGAkgASgLMhouZ29vZ2xl",
+            "LnByb3RvYnVmLlRpbWVzdGFtcEgFiAEBEhcKCnN0b3BfbGltaXQYCCABKAFI",
+            "BogBAUIMCgpfc3RvcF9sb3NzQg4KDF90YWtlX3Byb2ZpdEIICgZfcHJpY2VC",
+            "FwoVX2V4cGlyYXRpb25fdGltZV90eXBlQhIKEF9leHBpcmF0aW9uX3RpbWVC",
+            "FgoUX2V4cGlyYXRpb25fdGltZV91dGNCDQoLX3N0b3BfbGltaXQicwoQT3Jk",
+            "ZXJNb2RpZnlSZXBseRItCgRkYXRhGAEgASgLMh0ubXQ1X3Rlcm1fYXBpLk9y",
+            "ZGVyTW9kaWZ5RGF0YUgAEiQKBWVycm9yGAIgASgLMhMubXQ1X3Rlcm1fYXBp",
+            "LkVycm9ySABCCgoIcmVzcG9uc2Ui/wEKD09yZGVyTW9kaWZ5RGF0YRIVCg1y",
+            "ZXR1cm5lZF9jb2RlGAEgASgNEgwKBGRlYWwYAiABKAQSDQoFb3JkZXIYAyAB",
+            "KAQSDgoGdm9sdW1lGAQgASgBEg0KBXByaWNlGAUgASgBEgsKA2JpZBgGIAEo",
+            "ARILCgNhc2sYByABKAESDwoHY29tbWVudBgIIAEoCRISCgpyZXF1ZXN0X2lk",
+            "GAkgASgNEhkKEXJldF9jb2RlX2V4dGVybmFsGAogASgFEhwKFHJldHVybmVk",
+            "X3N0cmluZ19jb2RlGAsgASgJEiEKGXJldHVybmVkX2NvZGVfZGVzY3JpcHRp",
+            "b24YDCABKAkisAUKEE9yZGVyU2VuZFJlcXVlc3QSDgoGc3ltYm9sGAEgASgJ",
+            "EjUKCW9wZXJhdGlvbhgCIAEoDjIiLm10NV90ZXJtX2FwaS5UTVQ1X0VOVU1f",
+            "T1JERVJfVFlQRRIOCgZ2b2x1bWUYAyABKAESEgoFcHJpY2UYBCABKAFIAIgB",
+            "ARIVCghzbGlwcGFnZRgFIAEoBEgBiAEBEhYKCXN0b3BfbG9zcxgGIAEoAUgC",
+            "iAEBEhgKC3Rha2VfcHJvZml0GAcgASgBSAOIAQESFAoHY29tbWVudBgIIAEo",
+            "CUgEiAEBEhYKCWV4cGVydF9pZBgJIAEoBEgFiAEBEh0KEHN0b3BfbGltaXRf",
+            "cHJpY2UYCiABKAFIBogBARJKChRleHBpcmF0aW9uX3RpbWVfdHlwZRgLIAEo",
+            "DjInLm10NV90ZXJtX2FwaS5UTVQ1X0VOVU1fT1JERVJfVFlQRV9USU1FSAeI",
+            "AQESOAoPZXhwaXJhdGlvbl90aW1lGAwgASgLMhouZ29vZ2xlLnByb3RvYnVm",
+            "LlRpbWVzdGFtcEgIiAEBEjwKE2V4cGlyYXRpb25fdGltZV91dGMYDiABKAsy",
+            "Gi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAmIAQESGwoOcXVvdGVzX3dh",
+            "aXRfbXMYDSABKAVICogBAUIICgZfcHJpY2VCCwoJX3NsaXBwYWdlQgwKCl9z",
+            "dG9wX2xvc3NCDgoMX3Rha2VfcHJvZml0QgoKCF9jb21tZW50QgwKCl9leHBl",
+            "cnRfaWRCEwoRX3N0b3BfbGltaXRfcHJpY2VCFwoVX2V4cGlyYXRpb25fdGlt",
+            "ZV90eXBlQhIKEF9leHBpcmF0aW9uX3RpbWVCFgoUX2V4cGlyYXRpb25fdGlt",
+            "ZV91dGNCEQoPX3F1b3Rlc193YWl0X21zIm8KDk9yZGVyU2VuZFJlcGx5EisK",
+            "BGRhdGEYASABKAsyGy5tdDVfdGVybV9hcGkuT3JkZXJTZW5kRGF0YUgAEiQK",
+            "BWVycm9yGAIgASgLMhMubXQ1X3Rlcm1fYXBpLkVycm9ySABCCgoIcmVzcG9u",
+            "c2Ui/QEKDU9yZGVyU2VuZERhdGESFQoNcmV0dXJuZWRfY29kZRgBIAEoDRIM",
+            "CgRkZWFsGAIgASgEEg0KBW9yZGVyGAMgASgEEg4KBnZvbHVtZRgEIAEoARIN",
+            "CgVwcmljZRgFIAEoARILCgNiaWQYBiABKAESCwoDYXNrGAcgASgBEg8KB2Nv",
+            "bW1lbnQYCCABKAkSEgoKcmVxdWVzdF9pZBgJIAEoDRIZChFyZXRfY29kZV9l",
+            "eHRlcm5hbBgKIAEoBRIcChRyZXR1cm5lZF9zdHJpbmdfY29kZRgLIAEoCRIh",
+            "ChlyZXR1cm5lZF9jb2RlX2Rlc2NyaXB0aW9uGAwgASgJKngKFU1SUENfT1JE",
+            "RVJfQ0xPU0VfTU9ERRIbChdNUlBDX01BUktFVF9PUkRFUl9DTE9TRRAAEiMK",
+            "H01SUENfTUFSS0VUX09SREVSX1BBUlRJQUxfQ0xPU0UQARIdChlNUlBDX1BF",
+            "TkRJTkdfT1JERVJfUkVNT1ZFEAIqrAIKFFRNVDVfRU5VTV9PUkRFUl9UWVBF",
+            "EhcKE1RNVDVfT1JERVJfVFlQRV9CVVkQABIYChRUTVQ1X09SREVSX1RZUEVf",
+            "U0VMTBABEh0KGVRNVDVfT1JERVJfVFlQRV9CVVlfTElNSVQQAhIeChpUTVQ1",
+            "X09SREVSX1RZUEVfU0VMTF9MSU1JVBADEhwKGFRNVDVfT1JERVJfVFlQRV9C",
+            "VVlfU1RPUBAEEh0KGVRNVDVfT1JERVJfVFlQRV9TRUxMX1NUT1AQBRIiCh5U",
+            "TVQ1X09SREVSX1RZUEVfQlVZX1NUT1BfTElNSVQQBhIjCh9UTVQ1X09SREVS",
+            "X1RZUEVfU0VMTF9TVE9QX0xJTUlUEAcSHAoYVE1UNV9PUkRFUl9UWVBFX0NM",
+            "T1NFX0JZEAgqjwEKGVRNVDVfRU5VTV9PUkRFUl9UWVBFX1RJTUUSFwoTVE1U",
+            "NV9PUkRFUl9USU1FX0dUQxAAEhcKE1RNVDVfT1JERVJfVElNRV9EQVkQARId",
+            "ChlUTVQ1X09SREVSX1RJTUVfU1BFQ0lGSUVEEAISIQodVE1UNV9PUkRFUl9U",
+            "SU1FX1NQRUNJRklFRF9EQVkQAzKxAwoNVHJhZGluZ0hlbHBlchJdCglPcmRl",
+            "clNlbmQSHi5tdDVfdGVybV9hcGkuT3JkZXJTZW5kUmVxdWVzdBocLm10NV90",
+            "ZXJtX2FwaS5PcmRlclNlbmRSZXBseSISgtPkkwIMEgovT3JkZXJTZW5kEncK",
+            "Fk9yZGVyU2VuZFdpdGhvdXRDaGVja3MSHi5tdDVfdGVybV9hcGkuT3JkZXJT",
+            "ZW5kUmVxdWVzdBocLm10NV90ZXJtX2FwaS5PcmRlclNlbmRSZXBseSIfgtPk",
+            "kwIZEhcvT3JkZXJTZW5kV2l0aG91dENoZWNrcxJlCgtPcmRlck1vZGlmeRIg",
+            "Lm10NV90ZXJtX2FwaS5PcmRlck1vZGlmeVJlcXVlc3QaHi5tdDVfdGVybV9h",
+            "cGkuT3JkZXJNb2RpZnlSZXBseSIUgtPkkwIOEgwvT3JkZXJNb2RpZnkSYQoK",
+            "T3JkZXJDbG9zZRIfLm10NV90ZXJtX2FwaS5PcmRlckNsb3NlUmVxdWVzdBod",
+            "Lm10NV90ZXJtX2FwaS5PcmRlckNsb3NlUmVwbHkiE4LT5JMCDRILL09yZGVy",
+            "Q2xvc2VCQloxZ2l0Lm10YXBpLmlvL3Jvb3QvbXJwYy1wcm90by5naXQvbXQ1",
+            "L2xpYnJhcmllcy9nb6oCDG10NV90ZXJtX2FwaWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Api.AnnotationsReflection.Descriptor, global::Mt5TermApi.MrpcMt5ErrorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::mt5_term_api.MRPC_ORDER_CLOSE_MODE), typeof(global::mt5_term_api.TMT5_ENUM_ORDER_TYPE), typeof(global::mt5_term_api.TMT5_ENUM_ORDER_TYPE_TIME), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderCloseRequest), global::mt5_term_api.OrderCloseRequest.Parser, new[]{ "Ticket", "Volume", "Slippage" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderCloseReply), global::mt5_term_api.OrderCloseReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderCloseData), global::mt5_term_api.OrderCloseData.Parser, new[]{ "ReturnedCode", "ReturnedStringCode", "ReturnedCodeDescription", "CloseMode" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderModifyRequest), global::mt5_term_api.OrderModifyRequest.Parser, new[]{ "Ticket", "StopLoss", "TakeProfit", "Price", "ExpirationTimeType", "ExpirationTime", "StopLimit" }, new[]{ "StopLoss", "TakeProfit", "Price", "ExpirationTimeType", "ExpirationTime", "StopLimit" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderModifyRequest), global::mt5_term_api.OrderModifyRequest.Parser, new[]{ "Ticket", "StopLoss", "TakeProfit", "Price", "ExpirationTimeType", "ExpirationTime", "ExpirationTimeUtc", "StopLimit" }, new[]{ "StopLoss", "TakeProfit", "Price", "ExpirationTimeType", "ExpirationTime", "ExpirationTimeUtc", "StopLimit" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderModifyReply), global::mt5_term_api.OrderModifyReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderModifyData), global::mt5_term_api.OrderModifyData.Parser, new[]{ "ReturnedCode", "Deal", "Order", "Volume", "Price", "Bid", "Ask", "Comment", "RequestId", "RetCodeExternal", "ReturnedStringCode", "ReturnedCodeDescription" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderSendRequest), global::mt5_term_api.OrderSendRequest.Parser, new[]{ "Symbol", "Operation", "Volume", "Price", "Slippage", "StopLoss", "TakeProfit", "Comment", "ExpertId", "StopLimitPrice", "ExpirationTimeType", "ExpirationTime", "QuotesWaitMs" }, new[]{ "Price", "Slippage", "StopLoss", "TakeProfit", "Comment", "ExpertId", "StopLimitPrice", "ExpirationTimeType", "ExpirationTime", "QuotesWaitMs" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderSendRequest), global::mt5_term_api.OrderSendRequest.Parser, new[]{ "Symbol", "Operation", "Volume", "Price", "Slippage", "StopLoss", "TakeProfit", "Comment", "ExpertId", "StopLimitPrice", "ExpirationTimeType", "ExpirationTime", "ExpirationTimeUtc", "QuotesWaitMs" }, new[]{ "Price", "Slippage", "StopLoss", "TakeProfit", "Comment", "ExpertId", "StopLimitPrice", "ExpirationTimeType", "ExpirationTime", "ExpirationTimeUtc", "QuotesWaitMs" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderSendReply), global::mt5_term_api.OrderSendReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.OrderSendData), global::mt5_term_api.OrderSendData.Parser, new[]{ "ReturnedCode", "Deal", "Order", "Volume", "Price", "Bid", "Ask", "Comment", "RequestId", "RetCodeExternal", "ReturnedStringCode", "ReturnedCodeDescription" }, null, null, null, null)
           }));
@@ -1075,6 +1079,7 @@ namespace mt5_term_api {
       price_ = other.price_;
       expirationTimeType_ = other.expirationTimeType_;
       expirationTime_ = other.expirationTime_ != null ? other.expirationTime_.Clone() : null;
+      expirationTimeUtc_ = other.expirationTimeUtc_ != null ? other.expirationTimeUtc_.Clone() : null;
       stopLimit_ = other.stopLimit_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -1227,6 +1232,21 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "expiration_time_utc" field.</summary>
+    public const int ExpirationTimeUtcFieldNumber = 9;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp expirationTimeUtc_;
+    /// <summary>
+    /// expiration_time in UTC: send either expiration_time or expiration_time_utc, not both.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp ExpirationTimeUtc {
+      get { return expirationTimeUtc_; }
+      set {
+        expirationTimeUtc_ = value;
+      }
+    }
+
     /// <summary>Field number for the "stop_limit" field.</summary>
     public const int StopLimitFieldNumber = 8;
     private double stopLimit_;
@@ -1276,6 +1296,7 @@ namespace mt5_term_api {
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Price, other.Price)) return false;
       if (ExpirationTimeType != other.ExpirationTimeType) return false;
       if (!object.Equals(ExpirationTime, other.ExpirationTime)) return false;
+      if (!object.Equals(ExpirationTimeUtc, other.ExpirationTimeUtc)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(StopLimit, other.StopLimit)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1290,6 +1311,7 @@ namespace mt5_term_api {
       if (HasPrice) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Price);
       if (HasExpirationTimeType) hash ^= ExpirationTimeType.GetHashCode();
       if (expirationTime_ != null) hash ^= ExpirationTime.GetHashCode();
+      if (expirationTimeUtc_ != null) hash ^= ExpirationTimeUtc.GetHashCode();
       if (HasStopLimit) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(StopLimit);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1337,6 +1359,10 @@ namespace mt5_term_api {
         output.WriteRawTag(65);
         output.WriteDouble(StopLimit);
       }
+      if (expirationTimeUtc_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(ExpirationTimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1375,6 +1401,10 @@ namespace mt5_term_api {
         output.WriteRawTag(65);
         output.WriteDouble(StopLimit);
       }
+      if (expirationTimeUtc_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(ExpirationTimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1402,6 +1432,9 @@ namespace mt5_term_api {
       }
       if (expirationTime_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ExpirationTime);
+      }
+      if (expirationTimeUtc_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ExpirationTimeUtc);
       }
       if (HasStopLimit) {
         size += 1 + 8;
@@ -1438,6 +1471,12 @@ namespace mt5_term_api {
           ExpirationTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         ExpirationTime.MergeFrom(other.ExpirationTime);
+      }
+      if (other.expirationTimeUtc_ != null) {
+        if (expirationTimeUtc_ == null) {
+          ExpirationTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        ExpirationTimeUtc.MergeFrom(other.ExpirationTimeUtc);
       }
       if (other.HasStopLimit) {
         StopLimit = other.StopLimit;
@@ -1488,6 +1527,13 @@ namespace mt5_term_api {
             StopLimit = input.ReadDouble();
             break;
           }
+          case 74: {
+            if (expirationTimeUtc_ == null) {
+              ExpirationTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(ExpirationTimeUtc);
+            break;
+          }
         }
       }
     #endif
@@ -1532,6 +1578,13 @@ namespace mt5_term_api {
           }
           case 65: {
             StopLimit = input.ReadDouble();
+            break;
+          }
+          case 74: {
+            if (expirationTimeUtc_ == null) {
+              ExpirationTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(ExpirationTimeUtc);
             break;
           }
         }
@@ -2500,6 +2553,7 @@ namespace mt5_term_api {
       stopLimitPrice_ = other.stopLimitPrice_;
       expirationTimeType_ = other.expirationTimeType_;
       expirationTime_ = other.expirationTime_ != null ? other.expirationTime_.Clone() : null;
+      expirationTimeUtc_ = other.expirationTimeUtc_ != null ? other.expirationTimeUtc_.Clone() : null;
       quotesWaitMs_ = other.quotesWaitMs_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -2793,6 +2847,21 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "expiration_time_utc" field.</summary>
+    public const int ExpirationTimeUtcFieldNumber = 14;
+    private global::Google.Protobuf.WellKnownTypes.Timestamp expirationTimeUtc_;
+    /// <summary>
+    /// expiration_time in UTC: send either expiration_time or expiration_time_utc, not both.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Google.Protobuf.WellKnownTypes.Timestamp ExpirationTimeUtc {
+      get { return expirationTimeUtc_; }
+      set {
+        expirationTimeUtc_ = value;
+      }
+    }
+
     /// <summary>Field number for the "quotes_wait_ms" field.</summary>
     public const int QuotesWaitMsFieldNumber = 13;
     private int quotesWaitMs_;
@@ -2848,6 +2917,7 @@ namespace mt5_term_api {
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(StopLimitPrice, other.StopLimitPrice)) return false;
       if (ExpirationTimeType != other.ExpirationTimeType) return false;
       if (!object.Equals(ExpirationTime, other.ExpirationTime)) return false;
+      if (!object.Equals(ExpirationTimeUtc, other.ExpirationTimeUtc)) return false;
       if (QuotesWaitMs != other.QuotesWaitMs) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -2868,6 +2938,7 @@ namespace mt5_term_api {
       if (HasStopLimitPrice) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(StopLimitPrice);
       if (HasExpirationTimeType) hash ^= ExpirationTimeType.GetHashCode();
       if (expirationTime_ != null) hash ^= ExpirationTime.GetHashCode();
+      if (expirationTimeUtc_ != null) hash ^= ExpirationTimeUtc.GetHashCode();
       if (HasQuotesWaitMs) hash ^= QuotesWaitMs.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -2939,6 +3010,10 @@ namespace mt5_term_api {
         output.WriteRawTag(104);
         output.WriteInt32(QuotesWaitMs);
       }
+      if (expirationTimeUtc_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(ExpirationTimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3001,6 +3076,10 @@ namespace mt5_term_api {
         output.WriteRawTag(104);
         output.WriteInt32(QuotesWaitMs);
       }
+      if (expirationTimeUtc_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(ExpirationTimeUtc);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3046,6 +3125,9 @@ namespace mt5_term_api {
       }
       if (expirationTime_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ExpirationTime);
+      }
+      if (expirationTimeUtc_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ExpirationTimeUtc);
       }
       if (HasQuotesWaitMs) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(QuotesWaitMs);
@@ -3100,6 +3182,12 @@ namespace mt5_term_api {
           ExpirationTime = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         ExpirationTime.MergeFrom(other.ExpirationTime);
+      }
+      if (other.expirationTimeUtc_ != null) {
+        if (expirationTimeUtc_ == null) {
+          ExpirationTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+        }
+        ExpirationTimeUtc.MergeFrom(other.ExpirationTimeUtc);
       }
       if (other.HasQuotesWaitMs) {
         QuotesWaitMs = other.QuotesWaitMs;
@@ -3174,6 +3262,13 @@ namespace mt5_term_api {
             QuotesWaitMs = input.ReadInt32();
             break;
           }
+          case 114: {
+            if (expirationTimeUtc_ == null) {
+              ExpirationTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(ExpirationTimeUtc);
+            break;
+          }
         }
       }
     #endif
@@ -3242,6 +3337,13 @@ namespace mt5_term_api {
           }
           case 104: {
             QuotesWaitMs = input.ReadInt32();
+            break;
+          }
+          case 114: {
+            if (expirationTimeUtc_ == null) {
+              ExpirationTimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+            }
+            input.ReadMessage(ExpirationTimeUtc);
             break;
           }
         }
