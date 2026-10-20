@@ -77,6 +77,10 @@ namespace mt5_term_api {
     static readonly grpc::Marshaller<global::mt5_term_api.AllHistoryOrdersRequest> __Marshaller_mt5_term_api_AllHistoryOrdersRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.AllHistoryOrdersRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mt5_term_api.AllHistoryOrdersReply> __Marshaller_mt5_term_api_AllHistoryOrdersReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.AllHistoryOrdersReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.DealsHistoryRequest> __Marshaller_mt5_term_api_DealsHistoryRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.DealsHistoryRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mt5_term_api.DealsHistoryReply> __Marshaller_mt5_term_api_DealsHistoryReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mt5_term_api.DealsHistoryReply.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mt5_term_api.AccountSummaryRequest, global::mt5_term_api.AccountSummaryReply> __Method_AccountSummary = new grpc::Method<global::mt5_term_api.AccountSummaryRequest, global::mt5_term_api.AccountSummaryReply>(
@@ -141,6 +145,14 @@ namespace mt5_term_api {
         "AllHistoryOrders",
         __Marshaller_mt5_term_api_AllHistoryOrdersRequest,
         __Marshaller_mt5_term_api_AllHistoryOrdersReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mt5_term_api.DealsHistoryRequest, global::mt5_term_api.DealsHistoryReply> __Method_DealsHistory = new grpc::Method<global::mt5_term_api.DealsHistoryRequest, global::mt5_term_api.DealsHistoryReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DealsHistory",
+        __Marshaller_mt5_term_api_DealsHistoryRequest,
+        __Marshaller_mt5_term_api_DealsHistoryReply);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -243,6 +255,26 @@ namespace mt5_term_api {
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.AllHistoryOrdersReply> AllHistoryOrders(global::mt5_term_api.AllHistoryOrdersRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Every deal of the account in a time range: trades and also the deals without an order - deposits, withdrawals, credit,
+      /// charges, corrections, bonuses, commissions, interest, dividends, taxes - which OrderHistory and PositionsHistory leave out.
+      /// A balance operation has type BMT5_DEAL_TYPE_BALANCE (CREDIT, BONUS...), order 0 and position_id 0; profit is its amount.
+      /// [DefaultValues]
+      /// {
+      ///   "inputFromUtc": "2026-10-01T00:00:00Z",
+      ///   "inputToUtc": "2026-10-31T00:00:00Z",
+      ///   "pageSize": 1000
+      /// }
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mt5_term_api.DealsHistoryReply> DealsHistory(global::mt5_term_api.DealsHistoryRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -652,6 +684,86 @@ namespace mt5_term_api {
       {
         return CallInvoker.AsyncUnaryCall(__Method_AllHistoryOrders, null, options, request);
       }
+      /// <summary>
+      /// Every deal of the account in a time range: trades and also the deals without an order - deposits, withdrawals, credit,
+      /// charges, corrections, bonuses, commissions, interest, dividends, taxes - which OrderHistory and PositionsHistory leave out.
+      /// A balance operation has type BMT5_DEAL_TYPE_BALANCE (CREDIT, BONUS...), order 0 and position_id 0; profit is its amount.
+      /// [DefaultValues]
+      /// {
+      ///   "inputFromUtc": "2026-10-01T00:00:00Z",
+      ///   "inputToUtc": "2026-10-31T00:00:00Z",
+      ///   "pageSize": 1000
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.DealsHistoryReply DealsHistory(global::mt5_term_api.DealsHistoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DealsHistory(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Every deal of the account in a time range: trades and also the deals without an order - deposits, withdrawals, credit,
+      /// charges, corrections, bonuses, commissions, interest, dividends, taxes - which OrderHistory and PositionsHistory leave out.
+      /// A balance operation has type BMT5_DEAL_TYPE_BALANCE (CREDIT, BONUS...), order 0 and position_id 0; profit is its amount.
+      /// [DefaultValues]
+      /// {
+      ///   "inputFromUtc": "2026-10-01T00:00:00Z",
+      ///   "inputToUtc": "2026-10-31T00:00:00Z",
+      ///   "pageSize": 1000
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mt5_term_api.DealsHistoryReply DealsHistory(global::mt5_term_api.DealsHistoryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DealsHistory, null, options, request);
+      }
+      /// <summary>
+      /// Every deal of the account in a time range: trades and also the deals without an order - deposits, withdrawals, credit,
+      /// charges, corrections, bonuses, commissions, interest, dividends, taxes - which OrderHistory and PositionsHistory leave out.
+      /// A balance operation has type BMT5_DEAL_TYPE_BALANCE (CREDIT, BONUS...), order 0 and position_id 0; profit is its amount.
+      /// [DefaultValues]
+      /// {
+      ///   "inputFromUtc": "2026-10-01T00:00:00Z",
+      ///   "inputToUtc": "2026-10-31T00:00:00Z",
+      ///   "pageSize": 1000
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.DealsHistoryReply> DealsHistoryAsync(global::mt5_term_api.DealsHistoryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DealsHistoryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Every deal of the account in a time range: trades and also the deals without an order - deposits, withdrawals, credit,
+      /// charges, corrections, bonuses, commissions, interest, dividends, taxes - which OrderHistory and PositionsHistory leave out.
+      /// A balance operation has type BMT5_DEAL_TYPE_BALANCE (CREDIT, BONUS...), order 0 and position_id 0; profit is its amount.
+      /// [DefaultValues]
+      /// {
+      ///   "inputFromUtc": "2026-10-01T00:00:00Z",
+      ///   "inputToUtc": "2026-10-31T00:00:00Z",
+      ///   "pageSize": 1000
+      /// }
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mt5_term_api.DealsHistoryReply> DealsHistoryAsync(global::mt5_term_api.DealsHistoryRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DealsHistory, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override AccountHelperClient NewInstance(ClientBaseConfiguration configuration)
@@ -673,7 +785,8 @@ namespace mt5_term_api {
           .AddMethod(__Method_SymbolParamsMany, serviceImpl.SymbolParamsMany)
           .AddMethod(__Method_TickValueWithSize, serviceImpl.TickValueWithSize)
           .AddMethod(__Method_PositionsHistory, serviceImpl.PositionsHistory)
-          .AddMethod(__Method_AllHistoryOrders, serviceImpl.AllHistoryOrders).Build();
+          .AddMethod(__Method_AllHistoryOrders, serviceImpl.AllHistoryOrders)
+          .AddMethod(__Method_DealsHistory, serviceImpl.DealsHistory).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -691,6 +804,7 @@ namespace mt5_term_api {
       serviceBinder.AddMethod(__Method_TickValueWithSize, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.TickValueWithSizeRequest, global::mt5_term_api.TickValueWithSizeReply>(serviceImpl.TickValueWithSize));
       serviceBinder.AddMethod(__Method_PositionsHistory, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.PositionsHistoryRequest, global::mt5_term_api.PositionsHistoryReply>(serviceImpl.PositionsHistory));
       serviceBinder.AddMethod(__Method_AllHistoryOrders, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.AllHistoryOrdersRequest, global::mt5_term_api.AllHistoryOrdersReply>(serviceImpl.AllHistoryOrders));
+      serviceBinder.AddMethod(__Method_DealsHistory, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mt5_term_api.DealsHistoryRequest, global::mt5_term_api.DealsHistoryReply>(serviceImpl.DealsHistory));
     }
 
   }
