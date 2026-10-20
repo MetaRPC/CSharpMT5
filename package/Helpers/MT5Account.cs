@@ -109,6 +109,12 @@ namespace MetaRPC.CSharpMT5
 		/// </summary>
 		public string ApiKey { get; set; } = "TRIAL";
 
+		/// <summary>
+		/// Gets or sets the terminal name / strategy identifier sent with Connect and ConnectEx
+		/// (shown as "name" in the gateway's Accounts list). Optional.
+		/// </summary>
+		public string Name { get; set; } = "";
+
 		private bool Connected
 		{
 			get
@@ -167,6 +173,21 @@ namespace MetaRPC.CSharpMT5
 		{
 		}
 
+		/// <summary>
+		/// Initializes a new instance with an explicit API key, a stable terminal id and a terminal name.
+		/// </summary>
+		/// <param name="user">The MT5 user account number.</param>
+		/// <param name="password">The password for the user account.</param>
+		/// <param name="grpcServer">The address of the gRPC server (optional, default https://mt5.mrpc.pro:443).</param>
+		/// <param name="apiKey">The MetaRPC API key (optional, falls back to MRPC_API_KEY environment variable).</param>
+		/// <param name="id">A stable terminal id; the gateway keeps one terminal per id, so pass the same id on every run.</param>
+		/// <param name="name">Optional terminal name / strategy identifier sent with Connect / ConnectEx.</param>
+		public MT5Account(ulong user, string password, string? grpcServer, string? apiKey, Guid id, string? name)
+			: this(user, password, grpcServer, id, apiKey)
+		{
+			Name = name ?? "";
+		}
+
 		private async Task Reconnect(DateTime? deadline, CancellationToken cancellationToken)
 		{
 			if (ServerName == null)
@@ -189,10 +210,11 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="timeoutSeconds">How long to wait for terminal readiness before timing out.</param>
 		/// <param name="deadline">Optional gRPC deadline for the operation.</param>
 		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <param name="name">Optional terminal name / strategy identifier (overrides <see cref="Name"/>).</param>
 		/// <returns>A task representing the asynchronous connection operation.</returns>
 		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error response.</exception>
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
-		public async Task ConnectByHostPortAsync(string host, int port = 443, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		public async Task ConnectByHostPortAsync(string host, int port = 443, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken), string? name = null)
 		{
 			// The ConnectRequest proto has no base_chart_symbol / wait_for_terminal_is_alive /
 			// terminal_readiness_waiting_timeout_seconds; only the connection timeout maps to a real field.
@@ -204,6 +226,8 @@ namespace MetaRPC.CSharpMT5
 				Port = port,
 				TimeoutSeconds = (uint)timeoutSeconds
 			};
+			if (!string.IsNullOrWhiteSpace(name)) Name = name;
+			if (!string.IsNullOrWhiteSpace(Name)) request.Name = Name;
 			Metadata headers = new Metadata();
 			if (Id != default(Guid))
 			{
@@ -242,9 +266,9 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="baseChartSymbol">Chart symbol to initialize the session.</param>
 		/// <param name="waitForTerminalIsAlive">Wait for terminal readiness flag.</param>
 		/// <param name="timeoutSeconds">Timeout duration in seconds.</param>
-		public void Connect(string host, int port = 443, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30)
+		public void Connect(string host, int port = 443, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, string? name = null)
 		{
-			ConnectByHostPortAsync(host, port, baseChartSymbol, waitForTerminalIsAlive, timeoutSeconds).GetAwaiter().GetResult();
+			ConnectByHostPortAsync(host, port, baseChartSymbol, waitForTerminalIsAlive, timeoutSeconds, null, default(CancellationToken), name).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -256,13 +280,13 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="timeoutSeconds">How long to wait for terminal readiness before timing out.</param>
 		/// <param name="deadline">Optional gRPC deadline for the operation.</param>
 		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <param name="name">Optional terminal name / strategy identifier (overrides <see cref="Name"/>).</param>
 		/// <returns>A task representing the asynchronous connection operation.</returns>
 		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error response.</exception>
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC connection fails.</exception>
-		public async Task ConnectByServerNameAsync(string serverName, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		public async Task ConnectByServerNameAsync(string serverName, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken), string? name = null)
 		{
-			// ConnectExRequest has base_chart_symbol but no terminal_readiness_waiting_timeout_seconds —
-			// map the timeout to timeout_seconds.
+			// ConnectExRequest has no terminal_readiness_waiting_timeout_seconds — map the timeout to timeout_seconds.
 			ConnectExRequest request = new ConnectExRequest
 			{
 				User = User,
@@ -270,6 +294,8 @@ namespace MetaRPC.CSharpMT5
 				MtClusterName = serverName,
 				TimeoutSeconds = (uint)timeoutSeconds
 			};
+			if (!string.IsNullOrWhiteSpace(name)) Name = name;
+			if (!string.IsNullOrWhiteSpace(Name)) request.Name = Name;
 			Metadata headers = new Metadata();
 			if (Id != default(Guid))
 			{
@@ -295,9 +321,9 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="baseChartSymbol">Chart symbol to initialize the session.</param>
 		/// <param name="waitForTerminalIsAlive">Wait for terminal readiness flag.</param>
 		/// <param name="timeoutSeconds">Timeout duration in seconds.</param>
-		public void ConnectByServerName(string serverName, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30)
+		public void ConnectByServerName(string serverName, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, string? name = null)
 		{
-			ConnectByServerNameAsync(serverName, baseChartSymbol, waitForTerminalIsAlive, timeoutSeconds).GetAwaiter().GetResult();
+			ConnectByServerNameAsync(serverName, baseChartSymbol, waitForTerminalIsAlive, timeoutSeconds, null, default(CancellationToken), name).GetAwaiter().GetResult();
 		}
 
 		private Metadata GetHeaders()
@@ -1447,6 +1473,47 @@ namespace MetaRPC.CSharpMT5
 		public MrpcMqlTick SymbolInfoTick(string symbol, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return SymbolInfoTickAsync(symbol, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Returns historical OHLC bars (MarketInfo.PriceHistory) for a symbol.
+		/// Times are UTC; bar <c>Time</c> values are UTC unix seconds. With <paramref name="maxBars"/> &gt; 0
+		/// the server returns the most recent <paramref name="maxBars"/> bars inside the window.
+		/// </summary>
+		/// <param name="symbol">Symbol name.</param>
+		/// <param name="timeframe">MQL5 ENUM_TIMEFRAMES value: M1=1, M5=5, M15=15, M30=30, H1=16385, H4=16388, D1=16408, W1=32769, MN1=49153.</param>
+		/// <param name="from">Window start (UTC).</param>
+		/// <param name="to">Window end (UTC).</param>
+		/// <param name="maxBars">Maximum number of bars (0 = all bars in the window).</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>Bars, oldest first.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public async Task<PriceHistoryData> PriceHistoryAsync(string symbol, int timeframe, DateTime from, DateTime to, int maxBars = 0, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			PriceHistoryRequest request = new PriceHistoryRequest
+			{
+				Symbol = symbol,
+				Timeframe = timeframe,
+				FromTime = new DateTimeOffset(from.ToUniversalTime()).ToUnixTimeSeconds(),
+				ToTime = new DateTimeOffset(to.ToUniversalTime()).ToUnixTimeSeconds(),
+				MaxBars = maxBars
+			};
+			return (await ExecuteWithReconnect((Metadata headers) => MarketInfoClient.PriceHistory(request, headers, deadline, cancellationToken), (PriceHistoryReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Returns historical OHLC bars synchronously. See <see cref="PriceHistoryAsync"/>.
+		/// </summary>
+		public PriceHistoryData PriceHistory(string symbol, int timeframe, DateTime from, DateTime to, int maxBars = 0, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return PriceHistoryAsync(symbol, timeframe, from, to, maxBars, deadline, cancellationToken).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
