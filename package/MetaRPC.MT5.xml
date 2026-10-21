@@ -3259,6 +3259,206 @@
             <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
             <param name="serviceImpl">An object implementing the server-side handling logic.</param>
         </member>
+        <member name="T:mt5_term_api.PublicAccount">
+             <summary>
+             ============================================================================
+             PublicAccount: publish the MT5 account in the "id" header as a public master account for copy trading on mrpc.pro,
+             change its public name and profit share, unpublish it, and read its public status.
+            
+             The call needs only the "APIKey" header (your mrpc_live_ key) and the "id" header (the terminal), like every other
+             terminal call: no user key, no session, no admin key. The account must belong to the API key's user and be an MT5
+             account (mt5.mrpc.pro); any other id - another user's account, a deleted one, an MT4 one, an unknown one - is answered
+             PUBLIC_ACCOUNT_TERMINAL_NOT_FOUND. The rules are the control panel's (mrpc.pro/my, "Public profile"): a public name of
+             2-32 letters, digits, spaces, "." "_" "-", and a profit share of 0-50 % (one decimal) charged to followers on winning
+             copied trades. The terminal does not have to be running; the leaderboard lists the account once its first figures have
+             been read from it (listed), which needs it connected.
+             ============================================================================
+             </summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccount.Descriptor">
+            <summary>Service descriptor</summary>
+        </member>
+        <member name="T:mt5_term_api.PublicAccount.PublicAccountBase">
+            <summary>Base class for server-side implementations of PublicAccount</summary>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountBase.Publish(mt5_term_api.PublicAccountPublishRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Publishes the account, or changes the name or share of an account already public. A field left out keeps its current
+            value; on a first publish the name defaults to the terminal's name (else "MT5 " and the masked login) and the share to 0.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountBase.Unpublish(mt5_term_api.PublicAccountUnpublishRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Unpublishes the account: it leaves the leaderboard and its page at once, and nobody can start following it. Copiers
+            already following it are not stopped by this call. The public id (slug), name and share are kept for a later Publish.
+            Unpublishing an account that is not public changes nothing.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountBase.Status(mt5_term_api.PublicAccountStatusRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            The account's public status. Changes nothing.
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
+        <member name="T:mt5_term_api.PublicAccount.PublicAccountClient">
+            <summary>Client for PublicAccount</summary>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.#ctor(Grpc.Core.ChannelBase)">
+            <summary>Creates a new client for PublicAccount</summary>
+            <param name="channel">The channel to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.#ctor(Grpc.Core.CallInvoker)">
+            <summary>Creates a new client for PublicAccount that uses a custom <c>CallInvoker</c>.</summary>
+            <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.#ctor">
+            <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.#ctor(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Protected constructor to allow creation of configured clients.</summary>
+            <param name="configuration">The client configuration.</param>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.Publish(mt5_term_api.PublicAccountPublishRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Publishes the account, or changes the name or share of an account already public. A field left out keeps its current
+            value; on a first publish the name defaults to the terminal's name (else "MT5 " and the masked login) and the share to 0.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.Publish(mt5_term_api.PublicAccountPublishRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Publishes the account, or changes the name or share of an account already public. A field left out keeps its current
+            value; on a first publish the name defaults to the terminal's name (else "MT5 " and the masked login) and the share to 0.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.PublishAsync(mt5_term_api.PublicAccountPublishRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Publishes the account, or changes the name or share of an account already public. A field left out keeps its current
+            value; on a first publish the name defaults to the terminal's name (else "MT5 " and the masked login) and the share to 0.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.PublishAsync(mt5_term_api.PublicAccountPublishRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Publishes the account, or changes the name or share of an account already public. A field left out keeps its current
+            value; on a first publish the name defaults to the terminal's name (else "MT5 " and the masked login) and the share to 0.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.Unpublish(mt5_term_api.PublicAccountUnpublishRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Unpublishes the account: it leaves the leaderboard and its page at once, and nobody can start following it. Copiers
+            already following it are not stopped by this call. The public id (slug), name and share are kept for a later Publish.
+            Unpublishing an account that is not public changes nothing.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.Unpublish(mt5_term_api.PublicAccountUnpublishRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Unpublishes the account: it leaves the leaderboard and its page at once, and nobody can start following it. Copiers
+            already following it are not stopped by this call. The public id (slug), name and share are kept for a later Publish.
+            Unpublishing an account that is not public changes nothing.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.UnpublishAsync(mt5_term_api.PublicAccountUnpublishRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Unpublishes the account: it leaves the leaderboard and its page at once, and nobody can start following it. Copiers
+            already following it are not stopped by this call. The public id (slug), name and share are kept for a later Publish.
+            Unpublishing an account that is not public changes nothing.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.UnpublishAsync(mt5_term_api.PublicAccountUnpublishRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Unpublishes the account: it leaves the leaderboard and its page at once, and nobody can start following it. Copiers
+            already following it are not stopped by this call. The public id (slug), name and share are kept for a later Publish.
+            Unpublishing an account that is not public changes nothing.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.Status(mt5_term_api.PublicAccountStatusRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            The account's public status. Changes nothing.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.Status(mt5_term_api.PublicAccountStatusRequest,Grpc.Core.CallOptions)">
+            <summary>
+            The account's public status. Changes nothing.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.StatusAsync(mt5_term_api.PublicAccountStatusRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            The account's public status. Changes nothing.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.StatusAsync(mt5_term_api.PublicAccountStatusRequest,Grpc.Core.CallOptions)">
+            <summary>
+            The account's public status. Changes nothing.
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.PublicAccountClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
+            <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.BindService(mt5_term_api.PublicAccount.PublicAccountBase)">
+            <summary>Creates service definition that can be registered with a server</summary>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
+        <member name="M:mt5_term_api.PublicAccount.BindService(Grpc.Core.ServiceBinderBase,mt5_term_api.PublicAccount.PublicAccountBase)">
+            <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
+            Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+            <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+            <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+        </member>
         <member name="T:mt5_term_api.QuoteHistory">
              <summary>
              ============================================================================
@@ -10816,6 +11016,148 @@
         </member>
         <member name="F:mt5_term_api.PriceBar.RealVolumeFieldNumber">
             <summary>Field number for the "real_volume" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.Mt5TermApiPublicAccountReflection">
+            <summary>Holder for reflection information generated from mt5-term-api-public-account.proto</summary>
+        </member>
+        <member name="P:mt5_term_api.Mt5TermApiPublicAccountReflection.Descriptor">
+            <summary>File descriptor for mt5-term-api-public-account.proto</summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountPublishRequest.NicknameFieldNumber">
+            <summary>Field number for the "nickname" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountPublishRequest.Nickname">
+            <summary>
+            The public name shown on the leaderboard: 2-32 letters, digits, spaces, "." "_" "-" (spaces are collapsed). Left out or
+            empty: keep the current name; on a first publish, the terminal's name, else "MT5 " and the masked login.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountPublishRequest.HasNickname">
+            <summary>Gets whether the "nickname" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.PublicAccountPublishRequest.ClearNickname">
+            <summary>Clears the value of the "nickname" field</summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountPublishRequest.SharePercentFieldNumber">
+            <summary>Field number for the "share_percent" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountPublishRequest.SharePercent">
+            <summary>
+            The profit share, in percent, 0-50 with one decimal. Left out: keep the current share; 0 on a first publish. A new share
+            applies to followers who start following after the change.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountPublishRequest.HasSharePercent">
+            <summary>Gets whether the "share_percent" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.PublicAccountPublishRequest.ClearSharePercent">
+            <summary>Clears the value of the "share_percent" field</summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountReply.DataFieldNumber">
+            <summary>Field number for the "data" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="T:mt5_term_api.PublicAccountReply.ResponseOneofCase">
+            <summary>Enum of possible cases for the "response" oneof.</summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.TerminalIdFieldNumber">
+            <summary>Field number for the "terminal_id" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.TerminalId">
+            <summary>
+            The terminal id, in the form the platform stores it.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.PlatformFieldNumber">
+            <summary>Field number for the "platform" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.Platform">
+            <summary>
+            "MT5".
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.IsPublicFieldNumber">
+            <summary>Field number for the "is_public" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.IsPublic">
+            <summary>
+            The account is published.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.ListedFieldNumber">
+            <summary>Field number for the "listed" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.Listed">
+            <summary>
+            Published and its first figures have been read, so the leaderboard (mrpc.pro/copy-trading) shows it. Right after a first
+            Publish this is false for a few seconds, or until the terminal is connected.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.SlugFieldNumber">
+            <summary>Field number for the "slug" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.Slug">
+            <summary>
+            The account's public id; empty when it was never published. Kept when the account is unpublished.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.PublicUrlFieldNumber">
+            <summary>Field number for the "public_url" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.PublicUrl">
+            <summary>
+            The account's public page, https://mrpc.pro/copy-trading/&lt;slug>; empty without a slug.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.NicknameFieldNumber">
+            <summary>Field number for the "nickname" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.Nickname">
+            <summary>
+            The public name. For an account never published, the name a Publish without a nickname would give it.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.SharePercentFieldNumber">
+            <summary>Field number for the "share_percent" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.SharePercent">
+            <summary>
+            The profit share, in percent.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.FollowersFieldNumber">
+            <summary>Field number for the "followers" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.Followers">
+            <summary>
+            Accounts copying it now.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.EarnedUsdFieldNumber">
+            <summary>Field number for the "earned_usd" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.EarnedUsd">
+            <summary>
+            Profit share earned from followers so far, in USD.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.RefreshedUtcFieldNumber">
+            <summary>Field number for the "refreshed_utc" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.RefreshedUtc">
+            <summary>
+            When the leaderboard figures were last read (UTC; a platform time, not a broker time); unset before the first read.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.PublicAccountData.FiguresErrorFieldNumber">
+            <summary>Field number for the "figures_error" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.PublicAccountData.FiguresError">
+            <summary>
+            Why the figures could not be read the last time they were tried, if they could not; empty otherwise.
+            </summary>
         </member>
         <member name="T:mt5_term_api.Mt5TermApiQuoteHistoryReflection">
             <summary>Holder for reflection information generated from mt5-term-api-quote-history.proto</summary>
