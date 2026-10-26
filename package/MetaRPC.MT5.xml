@@ -13591,6 +13591,35 @@
         <member name="F:mt5_term_api.StatsData.TradesFieldNumber">
             <summary>Field number for the "trades" field.</summary>
         </member>
+        <member name="P:mt5_term_api.StatsData.Trades">
+            <summary>
+            Closed trades (deposits, withdrawals and other balance operations are not trades)
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.GrowthPercentFieldNumber">
+            <summary>Field number for the "growth_percent" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.StatsData.GrowthPercent">
+            <summary>
+            Time-weighted growth of the equity in percent: deposits and withdrawals are neither growth nor loss
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.DepositsFieldNumber">
+            <summary>Field number for the "deposits" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.StatsData.Deposits">
+            <summary>
+            Money deposited in the range (deposits and bonuses)
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.StatsData.WithdrawalsFieldNumber">
+            <summary>Field number for the "withdrawals" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.StatsData.Withdrawals">
+            <summary>
+            Money withdrawn in the range, as a positive amount
+            </summary>
+        </member>
         <member name="F:mt5_term_api.TradeSummaryData.OpenTradesFieldNumber">
             <summary>Field number for the "open_trades" field.</summary>
         </member>
@@ -13787,6 +13816,14 @@
         </member>
         <member name="F:mt5_term_api.EquityPointData.UnrealizedPlFieldNumber">
             <summary>Field number for the "unrealized_pl" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.EquityPointData.CashFlowFieldNumber">
+            <summary>Field number for the "cash_flow" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.EquityPointData.CashFlow">
+            <summary>
+            Deposits minus withdrawals since the previous point (in balance and equity; drawdowns leave them out)
+            </summary>
         </member>
         <member name="F:mt5_term_api.TradeUnrealizedPLData.ExtremaFieldNumber">
             <summary>Field number for the "extrema" field.</summary>

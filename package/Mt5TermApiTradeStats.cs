@@ -48,7 +48,7 @@ namespace mt5_term_api {
             "AQFCBwoFX2Zyb21CCwoJX2Zyb21fdXRjIn8KFlRyYWRlVW5yZWFsaXplZFBM",
             "UmVwbHkSMwoEZGF0YRgBIAEoCzIjLm10NV90ZXJtX2FwaS5UcmFkZVVucmVh",
             "bGl6ZWRQTERhdGFIABIkCgVlcnJvchgCIAEoCzITLm10NV90ZXJtX2FwaS5F",
-            "cnJvckgAQgoKCHJlc3BvbnNlItMHCglTdGF0c0RhdGESLwoHc3VtbWFyeRgB",
+            "cnJvckgAQgoKCHJlc3BvbnNlIpIICglTdGF0c0RhdGESLwoHc3VtbWFyeRgB",
             "IAEoCzIeLm10NV90ZXJtX2FwaS5UcmFkZVN1bW1hcnlEYXRhEiAKGG1heF9i",
             "YWxhbmNlX2RyYXdkb3duX3JhdxgCIAEoARIlCh1tYXhfYmFsYW5jZV9kcmF3",
             "ZG93bl9yZWxhdGl2ZRgDIAEoARIfChdtYXhfZXF1aXR5X2RyYXdkb3duX3Jh",
@@ -70,69 +70,71 @@ namespace mt5_term_api {
             "EhQKDHNoYXJwZV9yYXRpbxgWIAEoARIpCgd6X3Njb3JlGBcgASgLMhgubXQ1",
             "X3Rlcm1fYXBpLlpTY29yZURhdGESMAoKZXhwZWN0YW5jeRgYIAEoCzIcLm10",
             "NV90ZXJtX2FwaS5FeHBlY3RhbmN5RGF0YRIMCgRnaHByGBkgASgBEg4KBnRy",
-            "YWRlcxgaIAEoAyKRAQoQVHJhZGVTdW1tYXJ5RGF0YRITCgtvcGVuX3RyYWRl",
-            "cxgBIAEoBRITCgtvcGVuX3Byb2ZpdBgCIAEoARISCgpkYXlfcHJvZml0GAMg",
-            "ASgBEhMKC3dlZWtfcHJvZml0GAQgASgBEhQKDG1vbnRoX3Byb2ZpdBgFIAEo",
-            "ARIUCgx0b3RhbF9wcm9maXQYBiABKAEikQEKFE1hcmtldFRyYWRlQ291bnRE",
-            "YXRhEhMKC21hcmtldF9uYW1lGAEgASgJEg0KBWNvdW50GAIgASgFEgwKBGxv",
-            "dHMYAyABKAESDgoGcHJvZml0GAQgASgBEhAKCHdpbl9yYXRlGAUgASgBEhEK",
-            "CXdvbl9jb3VudBgGIAEoBRISCgpsb3N0X2NvdW50GAcgASgFInUKEVByb2Zp",
-            "dGFiaWxpdHlEYXRhEhIKCndvbl90cmFkZXMYASABKAMSGgoSd29uX3RyYWRl",
-            "c19wZXJjZW50GAIgASgBEhMKC2xvc3RfdHJhZGVzGAMgASgDEhsKE2xvc3Rf",
-            "dHJhZGVzX3BlcmNlbnQYBCABKAEiPwoSQXZlcmFnZVBpcHNVc2REYXRhEhQK",
-            "DGF2ZXJhZ2VfcGlwcxgBIAEoARITCgthdmVyYWdlX3VzZBgCIAEoASI+CgdX",
-            "b25EYXRhEhEKCXdvbl9jb3VudBgBIAEoBRILCgNhbGwYAiABKAUSEwoLd29u",
-            "X3BlcnNlbnQYAyABKAEigwEKClByb2ZpdERhdGESDQoFdGlrZXQYASABKAMS",
-            "KAoEZGF0ZRgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoI",
-            "ZGF0ZV91dGMYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg4K",
-            "BnByb2ZpdBgDIAEoASJCCgpaU2NvcmVEYXRhEhcKD3pfc2NvcmVfZGVjaW1h",
-            "bBgBIAEoARIbChN6X3Njb3JlX3Byb2JhYmlsaXR5GAIgASgBIi4KDkV4cGVj",
-            "dGFuY3lEYXRhEgwKBHBpcHMYASABKAESDgoGZG9sbGFyGAIgASgBItkBChNT",
-            "dGF0c1dpdGhDaGFydHNEYXRhEiYKBXN0YXRzGAEgASgLMhcubXQ1X3Rlcm1f",
-            "YXBpLlN0YXRzRGF0YRItCgZjaGFydHMYAiADKAsyHS5tdDVfdGVybV9hcGku",
-            "RXF1aXR5UG9pbnREYXRhEjIKBnRyYWRlcxgDIAMoCzIiLm10NV90ZXJtX2Fw",
-            "aS5UcmFkZUhpc3RvcnlJdGVtRGF0YRI3CgtvcGVuX3RyYWRlcxgEIAMoCzIi",
-            "Lm10NV90ZXJtX2FwaS5UcmFkZUhpc3RvcnlJdGVtRGF0YSKGAwoUVHJhZGVI",
-            "aXN0b3J5SXRlbURhdGESDgoGdGlja2V0GAEgASgDEg4KBnN5bWJvbBgCIAEo",
-            "CRIOCgZpc19idXkYAyABKAgSDAoEbG90cxgEIAEoARISCgpvcGVuX3ByaWNl",
-            "GAUgASgBEhMKC2Nsb3NlX3ByaWNlGAYgASgBEi0KCW9wZW5fdGltZRgHIAEo",
-            "CzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMQoNb3Blbl90aW1lX3V0",
-            "YxgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKY2xvc2Vf",
-            "dGltZRgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMgoOY2xv",
-            "c2VfdGltZV91dGMYDiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1w",
-            "Eg4KBnByb2ZpdBgJIAEoARISCgpjb21taXNzaW9uGAogASgBEgwKBHN3YXAY",
-            "CyABKAESDwoHY29tbWVudBgMIAEoCSJCChFFcXVpdHlIaXN0b3J5RGF0YRIt",
-            "CgZwb2ludHMYASADKAsyHS5tdDVfdGVybV9hcGkuRXF1aXR5UG9pbnREYXRh",
-            "IrYCCg9FcXVpdHlQb2ludERhdGESKAoEdGltZRgBIAEoCzIaLmdvb2dsZS5w",
-            "cm90b2J1Zi5UaW1lc3RhbXASLAoIdGltZV91dGMYCiABKAsyGi5nb29nbGUu",
-            "cHJvdG9idWYuVGltZXN0YW1wEg8KB2JhbGFuY2UYAiABKAESDgoGZXF1aXR5",
-            "GAMgASgBEhwKFGJhbGFuY2VfZHJhd2Rvd25fcmF3GAQgASgBEiEKGWJhbGFu",
-            "Y2VfZHJhd2Rvd25fcmVsYXRpdmUYBSABKAESGwoTZXF1aXR5X2RyYXdkb3du",
-            "X3JhdxgGIAEoARIgChhlcXVpdHlfZHJhd2Rvd25fcmVsYXRpdmUYByABKAES",
-            "EwoLcmVhbGl6ZWRfcGwYCCABKAESFQoNdW5yZWFsaXplZF9wbBgJIAEoASJS",
-            "ChVUcmFkZVVucmVhbGl6ZWRQTERhdGESOQoHZXh0cmVtYRgBIAMoCzIoLm10",
-            "NV90ZXJtX2FwaS5UcmFkZVVucmVhbGl6ZWRFeHRyZW1hRGF0YSLeAgoaVHJh",
-            "ZGVVbnJlYWxpemVkRXh0cmVtYURhdGESDgoGdGlja2V0GAEgASgDEg4KBnN5",
-            "bWJvbBgCIAEoCRI3ChNtYXhfdW5yZWFsaXplZF90aW1lGAMgASgLMhouZ29v",
-            "Z2xlLnByb3RvYnVmLlRpbWVzdGFtcBI7ChdtYXhfdW5yZWFsaXplZF90aW1l",
-            "X3V0YxgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASGQoRbWF4",
-            "X3VucmVhbGl6ZWRfcGwYBCABKAESNwoTbWluX3VucmVhbGl6ZWRfdGltZRgF",
-            "IAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASOwoXbWluX3VucmVh",
-            "bGl6ZWRfdGltZV91dGMYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0",
-            "YW1wEhkKEW1pbl91bnJlYWxpemVkX3BsGAYgASgBMvUDCgpUcmFkZVN0YXRz",
-            "EmEKClRyYWRlU3RhdHMSHy5tdDVfdGVybV9hcGkuVHJhZGVTdGF0c1JlcXVl",
-            "c3QaHS5tdDVfdGVybV9hcGkuVHJhZGVTdGF0c1JlcGx5IhOC0+STAg0SCy9U",
-            "cmFkZVN0YXRzEpUBChdUcmFkZVN0YXRzRXF1aXR5SGlzdG9yeRIsLm10NV90",
-            "ZXJtX2FwaS5UcmFkZVN0YXRzRXF1aXR5SGlzdG9yeVJlcXVlc3QaKi5tdDVf",
-            "dGVybV9hcGkuVHJhZGVTdGF0c0VxdWl0eUhpc3RvcnlSZXBseSIggtPkkwIa",
-            "EhgvVHJhZGVTdGF0c0VxdWl0eUhpc3RvcnkSbQoNRXF1aXR5SGlzdG9yeRIi",
-            "Lm10NV90ZXJtX2FwaS5FcXVpdHlIaXN0b3J5UmVxdWVzdBogLm10NV90ZXJt",
-            "X2FwaS5FcXVpdHlIaXN0b3J5UmVwbHkiFoLT5JMCEBIOL0VxdWl0eUhpc3Rv",
-            "cnkSfQoRVHJhZGVVbnJlYWxpemVkUEwSJi5tdDVfdGVybV9hcGkuVHJhZGVV",
-            "bnJlYWxpemVkUExSZXF1ZXN0GiQubXQ1X3Rlcm1fYXBpLlRyYWRlVW5yZWFs",
-            "aXplZFBMUmVwbHkiGoLT5JMCFBISL1RyYWRlVW5yZWFsaXplZFBMQkJaMWdp",
-            "dC5tdGFwaS5pby9yb290L21ycGMtcHJvdG8uZ2l0L210NS9saWJyYXJpZXMv",
-            "Z2+qAgxtdDVfdGVybV9hcGliBnByb3RvMw=="));
+            "YWRlcxgaIAEoAxIWCg5ncm93dGhfcGVyY2VudBgbIAEoARIQCghkZXBvc2l0",
+            "cxgcIAEoARITCgt3aXRoZHJhd2FscxgdIAEoASKRAQoQVHJhZGVTdW1tYXJ5",
+            "RGF0YRITCgtvcGVuX3RyYWRlcxgBIAEoBRITCgtvcGVuX3Byb2ZpdBgCIAEo",
+            "ARISCgpkYXlfcHJvZml0GAMgASgBEhMKC3dlZWtfcHJvZml0GAQgASgBEhQK",
+            "DG1vbnRoX3Byb2ZpdBgFIAEoARIUCgx0b3RhbF9wcm9maXQYBiABKAEikQEK",
+            "FE1hcmtldFRyYWRlQ291bnREYXRhEhMKC21hcmtldF9uYW1lGAEgASgJEg0K",
+            "BWNvdW50GAIgASgFEgwKBGxvdHMYAyABKAESDgoGcHJvZml0GAQgASgBEhAK",
+            "CHdpbl9yYXRlGAUgASgBEhEKCXdvbl9jb3VudBgGIAEoBRISCgpsb3N0X2Nv",
+            "dW50GAcgASgFInUKEVByb2ZpdGFiaWxpdHlEYXRhEhIKCndvbl90cmFkZXMY",
+            "ASABKAMSGgoSd29uX3RyYWRlc19wZXJjZW50GAIgASgBEhMKC2xvc3RfdHJh",
+            "ZGVzGAMgASgDEhsKE2xvc3RfdHJhZGVzX3BlcmNlbnQYBCABKAEiPwoSQXZl",
+            "cmFnZVBpcHNVc2REYXRhEhQKDGF2ZXJhZ2VfcGlwcxgBIAEoARITCgthdmVy",
+            "YWdlX3VzZBgCIAEoASI+CgdXb25EYXRhEhEKCXdvbl9jb3VudBgBIAEoBRIL",
+            "CgNhbGwYAiABKAUSEwoLd29uX3BlcnNlbnQYAyABKAEigwEKClByb2ZpdERh",
+            "dGESDQoFdGlrZXQYASABKAMSKAoEZGF0ZRgCIAEoCzIaLmdvb2dsZS5wcm90",
+            "b2J1Zi5UaW1lc3RhbXASLAoIZGF0ZV91dGMYBCABKAsyGi5nb29nbGUucHJv",
+            "dG9idWYuVGltZXN0YW1wEg4KBnByb2ZpdBgDIAEoASJCCgpaU2NvcmVEYXRh",
+            "EhcKD3pfc2NvcmVfZGVjaW1hbBgBIAEoARIbChN6X3Njb3JlX3Byb2JhYmls",
+            "aXR5GAIgASgBIi4KDkV4cGVjdGFuY3lEYXRhEgwKBHBpcHMYASABKAESDgoG",
+            "ZG9sbGFyGAIgASgBItkBChNTdGF0c1dpdGhDaGFydHNEYXRhEiYKBXN0YXRz",
+            "GAEgASgLMhcubXQ1X3Rlcm1fYXBpLlN0YXRzRGF0YRItCgZjaGFydHMYAiAD",
+            "KAsyHS5tdDVfdGVybV9hcGkuRXF1aXR5UG9pbnREYXRhEjIKBnRyYWRlcxgD",
+            "IAMoCzIiLm10NV90ZXJtX2FwaS5UcmFkZUhpc3RvcnlJdGVtRGF0YRI3Cgtv",
+            "cGVuX3RyYWRlcxgEIAMoCzIiLm10NV90ZXJtX2FwaS5UcmFkZUhpc3RvcnlJ",
+            "dGVtRGF0YSKGAwoUVHJhZGVIaXN0b3J5SXRlbURhdGESDgoGdGlja2V0GAEg",
+            "ASgDEg4KBnN5bWJvbBgCIAEoCRIOCgZpc19idXkYAyABKAgSDAoEbG90cxgE",
+            "IAEoARISCgpvcGVuX3ByaWNlGAUgASgBEhMKC2Nsb3NlX3ByaWNlGAYgASgB",
+            "Ei0KCW9wZW5fdGltZRgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3Rh",
+            "bXASMQoNb3Blbl90aW1lX3V0YxgNIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5U",
+            "aW1lc3RhbXASLgoKY2xvc2VfdGltZRgIIAEoCzIaLmdvb2dsZS5wcm90b2J1",
+            "Zi5UaW1lc3RhbXASMgoOY2xvc2VfdGltZV91dGMYDiABKAsyGi5nb29nbGUu",
+            "cHJvdG9idWYuVGltZXN0YW1wEg4KBnByb2ZpdBgJIAEoARISCgpjb21taXNz",
+            "aW9uGAogASgBEgwKBHN3YXAYCyABKAESDwoHY29tbWVudBgMIAEoCSJCChFF",
+            "cXVpdHlIaXN0b3J5RGF0YRItCgZwb2ludHMYASADKAsyHS5tdDVfdGVybV9h",
+            "cGkuRXF1aXR5UG9pbnREYXRhIskCCg9FcXVpdHlQb2ludERhdGESKAoEdGlt",
+            "ZRgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoIdGltZV91",
+            "dGMYCiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB2JhbGFu",
+            "Y2UYAiABKAESDgoGZXF1aXR5GAMgASgBEhwKFGJhbGFuY2VfZHJhd2Rvd25f",
+            "cmF3GAQgASgBEiEKGWJhbGFuY2VfZHJhd2Rvd25fcmVsYXRpdmUYBSABKAES",
+            "GwoTZXF1aXR5X2RyYXdkb3duX3JhdxgGIAEoARIgChhlcXVpdHlfZHJhd2Rv",
+            "d25fcmVsYXRpdmUYByABKAESEwoLcmVhbGl6ZWRfcGwYCCABKAESFQoNdW5y",
+            "ZWFsaXplZF9wbBgJIAEoARIRCgljYXNoX2Zsb3cYCyABKAEiUgoVVHJhZGVV",
+            "bnJlYWxpemVkUExEYXRhEjkKB2V4dHJlbWEYASADKAsyKC5tdDVfdGVybV9h",
+            "cGkuVHJhZGVVbnJlYWxpemVkRXh0cmVtYURhdGEi3gIKGlRyYWRlVW5yZWFs",
+            "aXplZEV4dHJlbWFEYXRhEg4KBnRpY2tldBgBIAEoAxIOCgZzeW1ib2wYAiAB",
+            "KAkSNwoTbWF4X3VucmVhbGl6ZWRfdGltZRgDIAEoCzIaLmdvb2dsZS5wcm90",
+            "b2J1Zi5UaW1lc3RhbXASOwoXbWF4X3VucmVhbGl6ZWRfdGltZV91dGMYByAB",
+            "KAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhkKEW1heF91bnJlYWxp",
+            "emVkX3BsGAQgASgBEjcKE21pbl91bnJlYWxpemVkX3RpbWUYBSABKAsyGi5n",
+            "b29nbGUucHJvdG9idWYuVGltZXN0YW1wEjsKF21pbl91bnJlYWxpemVkX3Rp",
+            "bWVfdXRjGAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIZChFt",
+            "aW5fdW5yZWFsaXplZF9wbBgGIAEoATL1AwoKVHJhZGVTdGF0cxJhCgpUcmFk",
+            "ZVN0YXRzEh8ubXQ1X3Rlcm1fYXBpLlRyYWRlU3RhdHNSZXF1ZXN0Gh0ubXQ1",
+            "X3Rlcm1fYXBpLlRyYWRlU3RhdHNSZXBseSITgtPkkwINEgsvVHJhZGVTdGF0",
+            "cxKVAQoXVHJhZGVTdGF0c0VxdWl0eUhpc3RvcnkSLC5tdDVfdGVybV9hcGku",
+            "VHJhZGVTdGF0c0VxdWl0eUhpc3RvcnlSZXF1ZXN0GioubXQ1X3Rlcm1fYXBp",
+            "LlRyYWRlU3RhdHNFcXVpdHlIaXN0b3J5UmVwbHkiIILT5JMCGhIYL1RyYWRl",
+            "U3RhdHNFcXVpdHlIaXN0b3J5Em0KDUVxdWl0eUhpc3RvcnkSIi5tdDVfdGVy",
+            "bV9hcGkuRXF1aXR5SGlzdG9yeVJlcXVlc3QaIC5tdDVfdGVybV9hcGkuRXF1",
+            "aXR5SGlzdG9yeVJlcGx5IhaC0+STAhASDi9FcXVpdHlIaXN0b3J5En0KEVRy",
+            "YWRlVW5yZWFsaXplZFBMEiYubXQ1X3Rlcm1fYXBpLlRyYWRlVW5yZWFsaXpl",
+            "ZFBMUmVxdWVzdBokLm10NV90ZXJtX2FwaS5UcmFkZVVucmVhbGl6ZWRQTFJl",
+            "cGx5IhqC0+STAhQSEi9UcmFkZVVucmVhbGl6ZWRQTEJCWjFnaXQubXRhcGku",
+            "aW8vcm9vdC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVzL2dvqgIMbXQ1",
+            "X3Rlcm1fYXBpYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Api.AnnotationsReflection.Descriptor, global::Mt5TermApi.MrpcMt5ErrorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -144,7 +146,7 @@ namespace mt5_term_api {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityHistoryReply), global::mt5_term_api.EquityHistoryReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedPLRequest), global::mt5_term_api.TradeUnrealizedPLRequest.Parser, new[]{ "From", "FromUtc" }, new[]{ "From", "FromUtc" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedPLReply), global::mt5_term_api.TradeUnrealizedPLReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StatsData), global::mt5_term_api.StatsData.Parser, new[]{ "Summary", "MaxBalanceDrawdownRaw", "MaxBalanceDrawdownRelative", "MaxEquityDrawdownRaw", "MaxEquityDrawdownRelative", "Markets", "Profitability", "Pips", "Lots", "Comissions", "AverageWin", "AverageLost", "LongsWon", "ShortsWon", "BestTrade", "WorstTrade", "BestTradePips", "WorstTradePips", "AverageTradeLength", "ProfitFactor", "StandardDeviation", "SharpeRatio", "ZScore", "Expectancy", "Ghpr", "Trades" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StatsData), global::mt5_term_api.StatsData.Parser, new[]{ "Summary", "MaxBalanceDrawdownRaw", "MaxBalanceDrawdownRelative", "MaxEquityDrawdownRaw", "MaxEquityDrawdownRelative", "Markets", "Profitability", "Pips", "Lots", "Comissions", "AverageWin", "AverageLost", "LongsWon", "ShortsWon", "BestTrade", "WorstTrade", "BestTradePips", "WorstTradePips", "AverageTradeLength", "ProfitFactor", "StandardDeviation", "SharpeRatio", "ZScore", "Expectancy", "Ghpr", "Trades", "GrowthPercent", "Deposits", "Withdrawals" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeSummaryData), global::mt5_term_api.TradeSummaryData.Parser, new[]{ "OpenTrades", "OpenProfit", "DayProfit", "WeekProfit", "MonthProfit", "TotalProfit" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.MarketTradeCountData), global::mt5_term_api.MarketTradeCountData.Parser, new[]{ "MarketName", "Count", "Lots", "Profit", "WinRate", "WonCount", "LostCount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.ProfitabilityData), global::mt5_term_api.ProfitabilityData.Parser, new[]{ "WonTrades", "WonTradesPercent", "LostTrades", "LostTradesPercent" }, null, null, null, null),
@@ -156,7 +158,7 @@ namespace mt5_term_api {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StatsWithChartsData), global::mt5_term_api.StatsWithChartsData.Parser, new[]{ "Stats", "Charts", "Trades", "OpenTrades" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeHistoryItemData), global::mt5_term_api.TradeHistoryItemData.Parser, new[]{ "Ticket", "Symbol", "IsBuy", "Lots", "OpenPrice", "ClosePrice", "OpenTime", "OpenTimeUtc", "CloseTime", "CloseTimeUtc", "Profit", "Commission", "Swap", "Comment" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityHistoryData), global::mt5_term_api.EquityHistoryData.Parser, new[]{ "Points" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityPointData), global::mt5_term_api.EquityPointData.Parser, new[]{ "Time", "TimeUtc", "Balance", "Equity", "BalanceDrawdownRaw", "BalanceDrawdownRelative", "EquityDrawdownRaw", "EquityDrawdownRelative", "RealizedPl", "UnrealizedPl" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.EquityPointData), global::mt5_term_api.EquityPointData.Parser, new[]{ "Time", "TimeUtc", "Balance", "Equity", "BalanceDrawdownRaw", "BalanceDrawdownRelative", "EquityDrawdownRaw", "EquityDrawdownRelative", "RealizedPl", "UnrealizedPl", "CashFlow" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedPLData), global::mt5_term_api.TradeUnrealizedPLData.Parser, new[]{ "Extrema" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.TradeUnrealizedExtremaData), global::mt5_term_api.TradeUnrealizedExtremaData.Parser, new[]{ "Ticket", "Symbol", "MaxUnrealizedTime", "MaxUnrealizedTimeUtc", "MaxUnrealizedPl", "MinUnrealizedTime", "MinUnrealizedTimeUtc", "MinUnrealizedPl" }, null, null, null, null)
           }));
@@ -2499,6 +2501,9 @@ namespace mt5_term_api {
       expectancy_ = other.expectancy_ != null ? other.expectancy_.Clone() : null;
       ghpr_ = other.ghpr_;
       trades_ = other.trades_;
+      growthPercent_ = other.growthPercent_;
+      deposits_ = other.deposits_;
+      withdrawals_ = other.withdrawals_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2810,12 +2815,60 @@ namespace mt5_term_api {
     /// <summary>Field number for the "trades" field.</summary>
     public const int TradesFieldNumber = 26;
     private long trades_;
+    /// <summary>
+    /// Closed trades (deposits, withdrawals and other balance operations are not trades)
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public long Trades {
       get { return trades_; }
       set {
         trades_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "growth_percent" field.</summary>
+    public const int GrowthPercentFieldNumber = 27;
+    private double growthPercent_;
+    /// <summary>
+    /// Time-weighted growth of the equity in percent: deposits and withdrawals are neither growth nor loss
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double GrowthPercent {
+      get { return growthPercent_; }
+      set {
+        growthPercent_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "deposits" field.</summary>
+    public const int DepositsFieldNumber = 28;
+    private double deposits_;
+    /// <summary>
+    /// Money deposited in the range (deposits and bonuses)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double Deposits {
+      get { return deposits_; }
+      set {
+        deposits_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "withdrawals" field.</summary>
+    public const int WithdrawalsFieldNumber = 29;
+    private double withdrawals_;
+    /// <summary>
+    /// Money withdrawn in the range, as a positive amount
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double Withdrawals {
+      get { return withdrawals_; }
+      set {
+        withdrawals_ = value;
       }
     }
 
@@ -2860,6 +2913,9 @@ namespace mt5_term_api {
       if (!object.Equals(Expectancy, other.Expectancy)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Ghpr, other.Ghpr)) return false;
       if (Trades != other.Trades) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(GrowthPercent, other.GrowthPercent)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Deposits, other.Deposits)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(Withdrawals, other.Withdrawals)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2893,6 +2949,9 @@ namespace mt5_term_api {
       if (expectancy_ != null) hash ^= Expectancy.GetHashCode();
       if (Ghpr != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Ghpr);
       if (Trades != 0L) hash ^= Trades.GetHashCode();
+      if (GrowthPercent != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(GrowthPercent);
+      if (Deposits != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Deposits);
+      if (Withdrawals != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(Withdrawals);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3012,6 +3071,18 @@ namespace mt5_term_api {
         output.WriteRawTag(208, 1);
         output.WriteInt64(Trades);
       }
+      if (GrowthPercent != 0D) {
+        output.WriteRawTag(217, 1);
+        output.WriteDouble(GrowthPercent);
+      }
+      if (Deposits != 0D) {
+        output.WriteRawTag(225, 1);
+        output.WriteDouble(Deposits);
+      }
+      if (Withdrawals != 0D) {
+        output.WriteRawTag(233, 1);
+        output.WriteDouble(Withdrawals);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3123,6 +3194,18 @@ namespace mt5_term_api {
         output.WriteRawTag(208, 1);
         output.WriteInt64(Trades);
       }
+      if (GrowthPercent != 0D) {
+        output.WriteRawTag(217, 1);
+        output.WriteDouble(GrowthPercent);
+      }
+      if (Deposits != 0D) {
+        output.WriteRawTag(225, 1);
+        output.WriteDouble(Deposits);
+      }
+      if (Withdrawals != 0D) {
+        output.WriteRawTag(233, 1);
+        output.WriteDouble(Withdrawals);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3208,6 +3291,15 @@ namespace mt5_term_api {
       }
       if (Trades != 0L) {
         size += 2 + pb::CodedOutputStream.ComputeInt64Size(Trades);
+      }
+      if (GrowthPercent != 0D) {
+        size += 2 + 8;
+      }
+      if (Deposits != 0D) {
+        size += 2 + 8;
+      }
+      if (Withdrawals != 0D) {
+        size += 2 + 8;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3332,6 +3424,15 @@ namespace mt5_term_api {
       }
       if (other.Trades != 0L) {
         Trades = other.Trades;
+      }
+      if (other.GrowthPercent != 0D) {
+        GrowthPercent = other.GrowthPercent;
+      }
+      if (other.Deposits != 0D) {
+        Deposits = other.Deposits;
+      }
+      if (other.Withdrawals != 0D) {
+        Withdrawals = other.Withdrawals;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3488,6 +3589,18 @@ namespace mt5_term_api {
             Trades = input.ReadInt64();
             break;
           }
+          case 217: {
+            GrowthPercent = input.ReadDouble();
+            break;
+          }
+          case 225: {
+            Deposits = input.ReadDouble();
+            break;
+          }
+          case 233: {
+            Withdrawals = input.ReadDouble();
+            break;
+          }
         }
       }
     #endif
@@ -3641,6 +3754,18 @@ namespace mt5_term_api {
           }
           case 208: {
             Trades = input.ReadInt64();
+            break;
+          }
+          case 217: {
+            GrowthPercent = input.ReadDouble();
+            break;
+          }
+          case 225: {
+            Deposits = input.ReadDouble();
+            break;
+          }
+          case 233: {
+            Withdrawals = input.ReadDouble();
             break;
           }
         }
@@ -7207,6 +7332,7 @@ namespace mt5_term_api {
       equityDrawdownRelative_ = other.equityDrawdownRelative_;
       realizedPl_ = other.realizedPl_;
       unrealizedPl_ = other.unrealizedPl_;
+      cashFlow_ = other.cashFlow_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -7339,6 +7465,21 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "cash_flow" field.</summary>
+    public const int CashFlowFieldNumber = 11;
+    private double cashFlow_;
+    /// <summary>
+    /// Deposits minus withdrawals since the previous point (in balance and equity; drawdowns leave them out)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public double CashFlow {
+      get { return cashFlow_; }
+      set {
+        cashFlow_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -7364,6 +7505,7 @@ namespace mt5_term_api {
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(EquityDrawdownRelative, other.EquityDrawdownRelative)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(RealizedPl, other.RealizedPl)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(UnrealizedPl, other.UnrealizedPl)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.Equals(CashFlow, other.CashFlow)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -7381,6 +7523,7 @@ namespace mt5_term_api {
       if (EquityDrawdownRelative != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(EquityDrawdownRelative);
       if (RealizedPl != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(RealizedPl);
       if (UnrealizedPl != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(UnrealizedPl);
+      if (CashFlow != 0D) hash ^= pbc::ProtobufEqualityComparers.BitwiseDoubleEqualityComparer.GetHashCode(CashFlow);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -7439,6 +7582,10 @@ namespace mt5_term_api {
         output.WriteRawTag(82);
         output.WriteMessage(TimeUtc);
       }
+      if (CashFlow != 0D) {
+        output.WriteRawTag(89);
+        output.WriteDouble(CashFlow);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -7489,6 +7636,10 @@ namespace mt5_term_api {
         output.WriteRawTag(82);
         output.WriteMessage(TimeUtc);
       }
+      if (CashFlow != 0D) {
+        output.WriteRawTag(89);
+        output.WriteDouble(CashFlow);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -7527,6 +7678,9 @@ namespace mt5_term_api {
         size += 1 + 8;
       }
       if (UnrealizedPl != 0D) {
+        size += 1 + 8;
+      }
+      if (CashFlow != 0D) {
         size += 1 + 8;
       }
       if (_unknownFields != null) {
@@ -7576,6 +7730,9 @@ namespace mt5_term_api {
       }
       if (other.UnrealizedPl != 0D) {
         UnrealizedPl = other.UnrealizedPl;
+      }
+      if (other.CashFlow != 0D) {
+        CashFlow = other.CashFlow;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -7638,6 +7795,10 @@ namespace mt5_term_api {
             input.ReadMessage(TimeUtc);
             break;
           }
+          case 89: {
+            CashFlow = input.ReadDouble();
+            break;
+          }
         }
       }
     #endif
@@ -7697,6 +7858,10 @@ namespace mt5_term_api {
               TimeUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
             }
             input.ReadMessage(TimeUtc);
+            break;
+          }
+          case 89: {
+            CashFlow = input.ReadDouble();
             break;
           }
         }
