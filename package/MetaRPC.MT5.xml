@@ -7295,6 +7295,35 @@
             Automated (Expert Advisor / API) trading is allowed for the account (ACCOUNT_TRADE_EXPERT).
             </summary>
         </member>
+        <member name="F:mt5_term_api.AccountSummaryData.TerminalConnectedFieldNumber">
+            <summary>Field number for the "terminal_connected" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountSummaryData.TerminalConnected">
+            <summary>
+            The terminal's live connection. MT5 keeps the account data (account_leverage too) after the broker connection drops, so only
+            terminal_connected tells a disconnected terminal from a connected one. Unset from a terminal that does not report it yet.
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.AccountSummaryData.HasTerminalConnected">
+            <summary>Gets whether the "terminal_connected" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.AccountSummaryData.ClearTerminalConnected">
+            <summary>Clears the value of the "terminal_connected" field</summary>
+        </member>
+        <member name="F:mt5_term_api.AccountSummaryData.TerminalTradeAllowedFieldNumber">
+            <summary>Field number for the "terminal_trade_allowed" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountSummaryData.TerminalTradeAllowed">
+            <summary>
+            Algo trading is on in the terminal (TERMINAL_TRADE_ALLOWED and MQL_TRADE_ALLOWED).
+            </summary>
+        </member>
+        <member name="P:mt5_term_api.AccountSummaryData.HasTerminalTradeAllowed">
+            <summary>Gets whether the "terminal_trade_allowed" field is set</summary>
+        </member>
+        <member name="M:mt5_term_api.AccountSummaryData.ClearTerminalTradeAllowed">
+            <summary>Clears the value of the "terminal_trade_allowed" field</summary>
+        </member>
         <member name="F:mt5_term_api.SymbolParamsManyRequest.SymbolNameFieldNumber">
             <summary>Field number for the "symbol_name" field.</summary>
         </member>
@@ -8117,6 +8146,15 @@
             <summary>
             When the terminal is set to expire (UTC; a platform time, not a broker time). Unset when no expiry is recorded for the
             account, which is the case for every account today.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.AccountsListItem.DedicatedIpFieldNumber">
+            <summary>Field number for the "dedicated_ip" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.AccountsListItem.DedicatedIp">
+            <summary>
+            The dedicated (reserved) egress IP assigned to this terminal (the dedicated-IP add-on), to whitelist with the broker;
+            empty when the terminal has no dedicated IP.
             </summary>
         </member>
         <member name="T:mt5_term_api.Mt5TermApiConnectionReflection">
@@ -9467,6 +9505,65 @@
         <member name="P:mt5_term_api.HealthCheckReply.ServerTimeSecondsUtc">
             <summary>
             server_time_seconds in UTC (the same moment; server_time_seconds is in the broker server's time zone).
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.HealthCheckReply.WorkersFieldNumber">
+            <summary>Field number for the "workers" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.HealthCheckReply.Workers">
+            <summary>
+            the terminal's MQL workers that ever asked for a command (0 = the API script, 1 = the API worker EA)
+            </summary>
+        </member>
+        <member name="T:mt5_term_api.MqlWorkerState">
+            <summary>
+            One MQL worker of the terminal as its command dispatcher sees it.
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.MqlWorkerState.WorkerFieldNumber">
+            <summary>Field number for the "worker" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MqlWorkerState.CanTradeFieldNumber">
+            <summary>Field number for the "can_trade" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MqlWorkerState.CanTrade">
+            <summary>
+            its last poll said it may trade
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.MqlWorkerState.WaitingFieldNumber">
+            <summary>Field number for the "waiting" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MqlWorkerState.Waiting">
+            <summary>
+            waiting for a command now
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.MqlWorkerState.MsSinceLastPollFieldNumber">
+            <summary>Field number for the "ms_since_last_poll" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MqlWorkerState.MsSinceLastPoll">
+            <summary>
+            since it last asked for a command
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.MqlWorkerState.RunningCommandFieldNumber">
+            <summary>Field number for the "running_command" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MqlWorkerState.RunningCommand">
+            <summary>
+            the command it is executing (empty while it waits)
+            </summary>
+        </member>
+        <member name="F:mt5_term_api.MqlWorkerState.RunningCommandIdFieldNumber">
+            <summary>Field number for the "running_command_id" field.</summary>
+        </member>
+        <member name="F:mt5_term_api.MqlWorkerState.RunningMsFieldNumber">
+            <summary>Field number for the "running_ms" field.</summary>
+        </member>
+        <member name="P:mt5_term_api.MqlWorkerState.RunningMs">
+            <summary>
+            how long it has been executing running_command
             </summary>
         </member>
         <member name="T:mt5_term_api.Mt5TermApiInternalChartsReflection">
@@ -18624,6 +18721,38 @@
         </member>
         <member name="M:mrpc_admin.TerminalInfo.ClearStartupTime">
             <summary>Clears the value of the "startup_time" field</summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.BrokerDisconnectedSinceUtcFieldNumber">
+            <summary>Field number for the "broker_disconnected_since_utc" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.BrokerDisconnectedSinceUtc">
+            <summary>
+            the terminal answers but is not connected to its broker since then
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.TradeFailuresRecentFieldNumber">
+            <summary>Field number for the "trade_failures_recent" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.TradeFailuresRecent">
+            <summary>
+            trades that failed for the connection/worker reasons within the last 5 minutes
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.TradeFailuresTotalFieldNumber">
+            <summary>Field number for the "trade_failures_total" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.TradeFailuresTotal">
+            <summary>
+            the same since this copy started
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.TerminalInfo.LastTradeFailureFieldNumber">
+            <summary>Field number for the "last_trade_failure" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.TerminalInfo.LastTradeFailure">
+            <summary>
+            the last one: "&lt;code> &lt;method> &lt;utc>"
+            </summary>
         </member>
         <member name="F:mrpc_admin.ActiveTerminalsReply.PodFieldNumber">
             <summary>Field number for the "pod" field.</summary>

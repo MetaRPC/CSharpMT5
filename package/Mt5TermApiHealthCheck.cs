@@ -27,22 +27,28 @@ namespace mt5_term_api {
             "Ch9tdDUtdGVybS1hcGktaGVhbHRoLWNoZWNrLnByb3RvEgxtdDVfdGVybV9h",
             "cGkaHW10NS10ZXJtLWFwaS1jb25uZWN0aW9uLnByb3RvIhYKFFN0b3BMaXN0",
             "ZW5pbmdSZXF1ZXN0IhQKElN0b3BMaXN0ZW5pbmdSZXBseSIUChJIZWFsdGhD",
-            "aGVja1JlcXVlc3QicAoQSGVhbHRoQ2hlY2tSZXBseRIeChZpc19jb25uZWN0",
-            "ZWRfdG9fc2VydmVyGAEgASgIEhsKE3NlcnZlcl90aW1lX3NlY29uZHMYAiAB",
-            "KAMSHwoXc2VydmVyX3RpbWVfc2Vjb25kc191dGMYAyABKAMyqgEKBkhlYWx0",
-            "aBJJCgVDaGVjaxIgLm10NV90ZXJtX2FwaS5IZWFsdGhDaGVja1JlcXVlc3Qa",
-            "Hi5tdDVfdGVybV9hcGkuSGVhbHRoQ2hlY2tSZXBseRJVCg1TdG9wTGlzdGVu",
-            "aW5nEiIubXQ1X3Rlcm1fYXBpLlN0b3BMaXN0ZW5pbmdSZXF1ZXN0GiAubXQ1",
-            "X3Rlcm1fYXBpLlN0b3BMaXN0ZW5pbmdSZXBseUJCWjFnaXQubXRhcGkuaW8v",
-            "cm9vdC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFyaWVzL2dvqgIMbXQ1X3Rl",
-            "cm1fYXBpYgZwcm90bzM="));
+            "aGVja1JlcXVlc3QinwEKEEhlYWx0aENoZWNrUmVwbHkSHgoWaXNfY29ubmVj",
+            "dGVkX3RvX3NlcnZlchgBIAEoCBIbChNzZXJ2ZXJfdGltZV9zZWNvbmRzGAIg",
+            "ASgDEh8KF3NlcnZlcl90aW1lX3NlY29uZHNfdXRjGAMgASgDEi0KB3dvcmtl",
+            "cnMYBCADKAsyHC5tdDVfdGVybV9hcGkuTXFsV29ya2VyU3RhdGUiqQEKDk1x",
+            "bFdvcmtlclN0YXRlEg4KBndvcmtlchgBIAEoBRIRCgljYW5fdHJhZGUYAiAB",
+            "KAgSDwoHd2FpdGluZxgDIAEoCBIaChJtc19zaW5jZV9sYXN0X3BvbGwYBCAB",
+            "KAMSFwoPcnVubmluZ19jb21tYW5kGAUgASgJEhoKEnJ1bm5pbmdfY29tbWFu",
+            "ZF9pZBgGIAEoAxISCgpydW5uaW5nX21zGAcgASgDMqoBCgZIZWFsdGgSSQoF",
+            "Q2hlY2sSIC5tdDVfdGVybV9hcGkuSGVhbHRoQ2hlY2tSZXF1ZXN0Gh4ubXQ1",
+            "X3Rlcm1fYXBpLkhlYWx0aENoZWNrUmVwbHkSVQoNU3RvcExpc3RlbmluZxIi",
+            "Lm10NV90ZXJtX2FwaS5TdG9wTGlzdGVuaW5nUmVxdWVzdBogLm10NV90ZXJt",
+            "X2FwaS5TdG9wTGlzdGVuaW5nUmVwbHlCQloxZ2l0Lm10YXBpLmlvL3Jvb3Qv",
+            "bXJwYy1wcm90by5naXQvbXQ1L2xpYnJhcmllcy9nb6oCDG10NV90ZXJtX2Fw",
+            "aWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::mt5_term_api.Mt5TermApiConnectionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StopListeningRequest), global::mt5_term_api.StopListeningRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.StopListeningReply), global::mt5_term_api.StopListeningReply.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.HealthCheckRequest), global::mt5_term_api.HealthCheckRequest.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.HealthCheckReply), global::mt5_term_api.HealthCheckReply.Parser, new[]{ "IsConnectedToServer", "ServerTimeSeconds", "ServerTimeSecondsUtc" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.HealthCheckReply), global::mt5_term_api.HealthCheckReply.Parser, new[]{ "IsConnectedToServer", "ServerTimeSeconds", "ServerTimeSecondsUtc", "Workers" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.MqlWorkerState), global::mt5_term_api.MqlWorkerState.Parser, new[]{ "Worker", "CanTrade", "Waiting", "MsSinceLastPoll", "RunningCommand", "RunningCommandId", "RunningMs" }, null, null, null, null)
           }));
     }
     #endregion
@@ -542,6 +548,7 @@ namespace mt5_term_api {
       isConnectedToServer_ = other.isConnectedToServer_;
       serverTimeSeconds_ = other.serverTimeSeconds_;
       serverTimeSecondsUtc_ = other.serverTimeSecondsUtc_;
+      workers_ = other.workers_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -590,6 +597,20 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "workers" field.</summary>
+    public const int WorkersFieldNumber = 4;
+    private static readonly pb::FieldCodec<global::mt5_term_api.MqlWorkerState> _repeated_workers_codec
+        = pb::FieldCodec.ForMessage(34, global::mt5_term_api.MqlWorkerState.Parser);
+    private readonly pbc::RepeatedField<global::mt5_term_api.MqlWorkerState> workers_ = new pbc::RepeatedField<global::mt5_term_api.MqlWorkerState>();
+    /// <summary>
+    /// the terminal's MQL workers that ever asked for a command (0 = the API script, 1 = the API worker EA)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::mt5_term_api.MqlWorkerState> Workers {
+      get { return workers_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -608,6 +629,7 @@ namespace mt5_term_api {
       if (IsConnectedToServer != other.IsConnectedToServer) return false;
       if (ServerTimeSeconds != other.ServerTimeSeconds) return false;
       if (ServerTimeSecondsUtc != other.ServerTimeSecondsUtc) return false;
+      if(!workers_.Equals(other.workers_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -618,6 +640,7 @@ namespace mt5_term_api {
       if (IsConnectedToServer != false) hash ^= IsConnectedToServer.GetHashCode();
       if (ServerTimeSeconds != 0L) hash ^= ServerTimeSeconds.GetHashCode();
       if (ServerTimeSecondsUtc != 0L) hash ^= ServerTimeSecondsUtc.GetHashCode();
+      hash ^= workers_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -648,6 +671,7 @@ namespace mt5_term_api {
         output.WriteRawTag(24);
         output.WriteInt64(ServerTimeSecondsUtc);
       }
+      workers_.WriteTo(output, _repeated_workers_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -670,6 +694,7 @@ namespace mt5_term_api {
         output.WriteRawTag(24);
         output.WriteInt64(ServerTimeSecondsUtc);
       }
+      workers_.WriteTo(ref output, _repeated_workers_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -689,6 +714,7 @@ namespace mt5_term_api {
       if (ServerTimeSecondsUtc != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(ServerTimeSecondsUtc);
       }
+      size += workers_.CalculateSize(_repeated_workers_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -710,6 +736,7 @@ namespace mt5_term_api {
       if (other.ServerTimeSecondsUtc != 0L) {
         ServerTimeSecondsUtc = other.ServerTimeSecondsUtc;
       }
+      workers_.Add(other.workers_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -737,6 +764,10 @@ namespace mt5_term_api {
             ServerTimeSecondsUtc = input.ReadInt64();
             break;
           }
+          case 34: {
+            workers_.AddEntriesFrom(input, _repeated_workers_codec);
+            break;
+          }
         }
       }
     #endif
@@ -762,6 +793,439 @@ namespace mt5_term_api {
           }
           case 24: {
             ServerTimeSecondsUtc = input.ReadInt64();
+            break;
+          }
+          case 34: {
+            workers_.AddEntriesFrom(ref input, _repeated_workers_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// One MQL worker of the terminal as its command dispatcher sees it.
+  /// </summary>
+  public sealed partial class MqlWorkerState : pb::IMessage<MqlWorkerState>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MqlWorkerState> _parser = new pb::MessageParser<MqlWorkerState>(() => new MqlWorkerState());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MqlWorkerState> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::mt5_term_api.Mt5TermApiHealthCheckReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MqlWorkerState() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MqlWorkerState(MqlWorkerState other) : this() {
+      worker_ = other.worker_;
+      canTrade_ = other.canTrade_;
+      waiting_ = other.waiting_;
+      msSinceLastPoll_ = other.msSinceLastPoll_;
+      runningCommand_ = other.runningCommand_;
+      runningCommandId_ = other.runningCommandId_;
+      runningMs_ = other.runningMs_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MqlWorkerState Clone() {
+      return new MqlWorkerState(this);
+    }
+
+    /// <summary>Field number for the "worker" field.</summary>
+    public const int WorkerFieldNumber = 1;
+    private int worker_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Worker {
+      get { return worker_; }
+      set {
+        worker_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "can_trade" field.</summary>
+    public const int CanTradeFieldNumber = 2;
+    private bool canTrade_;
+    /// <summary>
+    /// its last poll said it may trade
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool CanTrade {
+      get { return canTrade_; }
+      set {
+        canTrade_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "waiting" field.</summary>
+    public const int WaitingFieldNumber = 3;
+    private bool waiting_;
+    /// <summary>
+    /// waiting for a command now
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Waiting {
+      get { return waiting_; }
+      set {
+        waiting_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ms_since_last_poll" field.</summary>
+    public const int MsSinceLastPollFieldNumber = 4;
+    private long msSinceLastPoll_;
+    /// <summary>
+    /// since it last asked for a command
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long MsSinceLastPoll {
+      get { return msSinceLastPoll_; }
+      set {
+        msSinceLastPoll_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "running_command" field.</summary>
+    public const int RunningCommandFieldNumber = 5;
+    private string runningCommand_ = "";
+    /// <summary>
+    /// the command it is executing (empty while it waits)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RunningCommand {
+      get { return runningCommand_; }
+      set {
+        runningCommand_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "running_command_id" field.</summary>
+    public const int RunningCommandIdFieldNumber = 6;
+    private long runningCommandId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long RunningCommandId {
+      get { return runningCommandId_; }
+      set {
+        runningCommandId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "running_ms" field.</summary>
+    public const int RunningMsFieldNumber = 7;
+    private long runningMs_;
+    /// <summary>
+    /// how long it has been executing running_command
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long RunningMs {
+      get { return runningMs_; }
+      set {
+        runningMs_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MqlWorkerState);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MqlWorkerState other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Worker != other.Worker) return false;
+      if (CanTrade != other.CanTrade) return false;
+      if (Waiting != other.Waiting) return false;
+      if (MsSinceLastPoll != other.MsSinceLastPoll) return false;
+      if (RunningCommand != other.RunningCommand) return false;
+      if (RunningCommandId != other.RunningCommandId) return false;
+      if (RunningMs != other.RunningMs) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Worker != 0) hash ^= Worker.GetHashCode();
+      if (CanTrade != false) hash ^= CanTrade.GetHashCode();
+      if (Waiting != false) hash ^= Waiting.GetHashCode();
+      if (MsSinceLastPoll != 0L) hash ^= MsSinceLastPoll.GetHashCode();
+      if (RunningCommand.Length != 0) hash ^= RunningCommand.GetHashCode();
+      if (RunningCommandId != 0L) hash ^= RunningCommandId.GetHashCode();
+      if (RunningMs != 0L) hash ^= RunningMs.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Worker != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Worker);
+      }
+      if (CanTrade != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(CanTrade);
+      }
+      if (Waiting != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Waiting);
+      }
+      if (MsSinceLastPoll != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(MsSinceLastPoll);
+      }
+      if (RunningCommand.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(RunningCommand);
+      }
+      if (RunningCommandId != 0L) {
+        output.WriteRawTag(48);
+        output.WriteInt64(RunningCommandId);
+      }
+      if (RunningMs != 0L) {
+        output.WriteRawTag(56);
+        output.WriteInt64(RunningMs);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Worker != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Worker);
+      }
+      if (CanTrade != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(CanTrade);
+      }
+      if (Waiting != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Waiting);
+      }
+      if (MsSinceLastPoll != 0L) {
+        output.WriteRawTag(32);
+        output.WriteInt64(MsSinceLastPoll);
+      }
+      if (RunningCommand.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(RunningCommand);
+      }
+      if (RunningCommandId != 0L) {
+        output.WriteRawTag(48);
+        output.WriteInt64(RunningCommandId);
+      }
+      if (RunningMs != 0L) {
+        output.WriteRawTag(56);
+        output.WriteInt64(RunningMs);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Worker != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Worker);
+      }
+      if (CanTrade != false) {
+        size += 1 + 1;
+      }
+      if (Waiting != false) {
+        size += 1 + 1;
+      }
+      if (MsSinceLastPoll != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(MsSinceLastPoll);
+      }
+      if (RunningCommand.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RunningCommand);
+      }
+      if (RunningCommandId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(RunningCommandId);
+      }
+      if (RunningMs != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(RunningMs);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MqlWorkerState other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Worker != 0) {
+        Worker = other.Worker;
+      }
+      if (other.CanTrade != false) {
+        CanTrade = other.CanTrade;
+      }
+      if (other.Waiting != false) {
+        Waiting = other.Waiting;
+      }
+      if (other.MsSinceLastPoll != 0L) {
+        MsSinceLastPoll = other.MsSinceLastPoll;
+      }
+      if (other.RunningCommand.Length != 0) {
+        RunningCommand = other.RunningCommand;
+      }
+      if (other.RunningCommandId != 0L) {
+        RunningCommandId = other.RunningCommandId;
+      }
+      if (other.RunningMs != 0L) {
+        RunningMs = other.RunningMs;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Worker = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            CanTrade = input.ReadBool();
+            break;
+          }
+          case 24: {
+            Waiting = input.ReadBool();
+            break;
+          }
+          case 32: {
+            MsSinceLastPoll = input.ReadInt64();
+            break;
+          }
+          case 42: {
+            RunningCommand = input.ReadString();
+            break;
+          }
+          case 48: {
+            RunningCommandId = input.ReadInt64();
+            break;
+          }
+          case 56: {
+            RunningMs = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Worker = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            CanTrade = input.ReadBool();
+            break;
+          }
+          case 24: {
+            Waiting = input.ReadBool();
+            break;
+          }
+          case 32: {
+            MsSinceLastPoll = input.ReadInt64();
+            break;
+          }
+          case 42: {
+            RunningCommand = input.ReadString();
+            break;
+          }
+          case 48: {
+            RunningCommandId = input.ReadInt64();
+            break;
+          }
+          case 56: {
+            RunningMs = input.ReadInt64();
             break;
           }
         }

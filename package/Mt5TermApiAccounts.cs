@@ -34,7 +34,7 @@ namespace mt5_term_api {
             "JAoFZXJyb3IYAiABKAsyEy5tdDVfdGVybV9hcGkuRXJyb3JIAEIKCghyZXNw",
             "b25zZSJyChBBY2NvdW50c0xpc3REYXRhEjAKCGFjY291bnRzGAEgAygLMh4u",
             "bXQ1X3Rlcm1fYXBpLkFjY291bnRzTGlzdEl0ZW0SFwoPbmV4dF9wYWdlX3Rv",
-            "a2VuGAIgASgJEhMKC3RvdGFsX2NvdW50GAMgASgFIuECChBBY2NvdW50c0xp",
+            "a2VuGAIgASgJEhMKC3RvdGFsX2NvdW50GAMgASgFIvcCChBBY2NvdW50c0xp",
             "c3RJdGVtEhMKC3Rlcm1pbmFsX2lkGAEgASgJEhUKDXRlcm1pbmFsX2d1aWQY",
             "AiABKAkSEAoIcGxhdGZvcm0YAyABKAkSDQoFbG9naW4YBCABKAQSDgoGc2Vy",
             "dmVyGAUgASgJEgwKBG5hbWUYBiABKAkSDQoFc3RhdGUYByABKAkSFAoMaXNf",
@@ -42,18 +42,19 @@ namespace mt5_term_api {
             "LnByb3RvYnVmLlRpbWVzdGFtcBIvCgtzdG9wcGVkX3V0YxgKIAEoCzIaLmdv",
             "b2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASEwoLc3RvcF9yZWFzb24YCyABKAkS",
             "FQoNZXJyb3JfbWVzc2FnZRgMIAEoCRIvCgtleHBpcmVzX3V0YxgNIAEoCzIa",
-            "Lmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAyaQoIQWNjb3VudHMSXQoETGlz",
-            "dBIhLm10NV90ZXJtX2FwaS5BY2NvdW50c0xpc3RSZXF1ZXN0Gh8ubXQ1X3Rl",
-            "cm1fYXBpLkFjY291bnRzTGlzdFJlcGx5IhGC0+STAgsSCS9BY2NvdW50c0JC",
-            "WjFnaXQubXRhcGkuaW8vcm9vdC9tcnBjLXByb3RvLmdpdC9tdDUvbGlicmFy",
-            "aWVzL2dvqgIMbXQ1X3Rlcm1fYXBpYgZwcm90bzM="));
+            "Lmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFAoMZGVkaWNhdGVkX2lwGA4g",
+            "ASgJMmkKCEFjY291bnRzEl0KBExpc3QSIS5tdDVfdGVybV9hcGkuQWNjb3Vu",
+            "dHNMaXN0UmVxdWVzdBofLm10NV90ZXJtX2FwaS5BY2NvdW50c0xpc3RSZXBs",
+            "eSIRgtPkkwILEgkvQWNjb3VudHNCQloxZ2l0Lm10YXBpLmlvL3Jvb3QvbXJw",
+            "Yy1wcm90by5naXQvbXQ1L2xpYnJhcmllcy9nb6oCDG10NV90ZXJtX2FwaWIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Api.AnnotationsReflection.Descriptor, global::Mt5TermApi.MrpcMt5ErrorReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.AccountsListRequest), global::mt5_term_api.AccountsListRequest.Parser, new[]{ "State", "Login", "IncludeStopped", "PageSize", "PageToken" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.AccountsListReply), global::mt5_term_api.AccountsListReply.Parser, new[]{ "Data", "Error" }, new[]{ "Response" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.AccountsListData), global::mt5_term_api.AccountsListData.Parser, new[]{ "Accounts", "NextPageToken", "TotalCount" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.AccountsListItem), global::mt5_term_api.AccountsListItem.Parser, new[]{ "TerminalId", "TerminalGuid", "Platform", "Login", "Server", "Name", "State", "IsConnected", "StartedUtc", "StoppedUtc", "StopReason", "ErrorMessage", "ExpiresUtc" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::mt5_term_api.AccountsListItem), global::mt5_term_api.AccountsListItem.Parser, new[]{ "TerminalId", "TerminalGuid", "Platform", "Login", "Server", "Name", "State", "IsConnected", "StartedUtc", "StoppedUtc", "StopReason", "ErrorMessage", "ExpiresUtc", "DedicatedIp" }, null, null, null, null)
           }));
     }
     #endregion
@@ -1007,6 +1008,7 @@ namespace mt5_term_api {
       stopReason_ = other.stopReason_;
       errorMessage_ = other.errorMessage_;
       expiresUtc_ = other.expiresUtc_ != null ? other.expiresUtc_.Clone() : null;
+      dedicatedIp_ = other.dedicatedIp_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1219,6 +1221,22 @@ namespace mt5_term_api {
       }
     }
 
+    /// <summary>Field number for the "dedicated_ip" field.</summary>
+    public const int DedicatedIpFieldNumber = 14;
+    private string dedicatedIp_ = "";
+    /// <summary>
+    /// The dedicated (reserved) egress IP assigned to this terminal (the dedicated-IP add-on), to whitelist with the broker;
+    /// empty when the terminal has no dedicated IP.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string DedicatedIp {
+      get { return dedicatedIp_; }
+      set {
+        dedicatedIp_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1247,6 +1265,7 @@ namespace mt5_term_api {
       if (StopReason != other.StopReason) return false;
       if (ErrorMessage != other.ErrorMessage) return false;
       if (!object.Equals(ExpiresUtc, other.ExpiresUtc)) return false;
+      if (DedicatedIp != other.DedicatedIp) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1267,6 +1286,7 @@ namespace mt5_term_api {
       if (StopReason.Length != 0) hash ^= StopReason.GetHashCode();
       if (ErrorMessage.Length != 0) hash ^= ErrorMessage.GetHashCode();
       if (expiresUtc_ != null) hash ^= ExpiresUtc.GetHashCode();
+      if (DedicatedIp.Length != 0) hash ^= DedicatedIp.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1337,6 +1357,10 @@ namespace mt5_term_api {
         output.WriteRawTag(106);
         output.WriteMessage(ExpiresUtc);
       }
+      if (DedicatedIp.Length != 0) {
+        output.WriteRawTag(114);
+        output.WriteString(DedicatedIp);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1399,6 +1423,10 @@ namespace mt5_term_api {
         output.WriteRawTag(106);
         output.WriteMessage(ExpiresUtc);
       }
+      if (DedicatedIp.Length != 0) {
+        output.WriteRawTag(114);
+        output.WriteString(DedicatedIp);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1447,6 +1475,9 @@ namespace mt5_term_api {
       }
       if (expiresUtc_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ExpiresUtc);
+      }
+      if (DedicatedIp.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(DedicatedIp);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -1507,6 +1538,9 @@ namespace mt5_term_api {
           ExpiresUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         ExpiresUtc.MergeFrom(other.ExpiresUtc);
+      }
+      if (other.DedicatedIp.Length != 0) {
+        DedicatedIp = other.DedicatedIp;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1584,6 +1618,10 @@ namespace mt5_term_api {
             input.ReadMessage(ExpiresUtc);
             break;
           }
+          case 114: {
+            DedicatedIp = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -1658,6 +1696,10 @@ namespace mt5_term_api {
               ExpiresUtc = new global::Google.Protobuf.WellKnownTypes.Timestamp();
             }
             input.ReadMessage(ExpiresUtc);
+            break;
+          }
+          case 114: {
+            DedicatedIp = input.ReadString();
             break;
           }
         }
