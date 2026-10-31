@@ -17101,6 +17101,19 @@
             <param name="context">The context of the server-side call handler being invoked.</param>
             <returns>The response to send back to the client (wrapped by a task).</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiBase.SetDedicatedIpEntitlement(mrpc_admin.SetDedicatedIpEntitlementRequest,Grpc.Core.ServerCallContext)">
+            <summary>
+            Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+            The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+            when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+            mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+            Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+            until it is stopped/released).
+            </summary>
+            <param name="request">The request received from the client.</param>
+            <param name="context">The context of the server-side call handler being invoked.</param>
+            <returns>The response to send back to the client (wrapped by a task).</returns>
+        </member>
         <member name="T:mrpc_admin.AdminApi.AdminApiClient">
             <summary>Client for AdminApi</summary>
         </member>
@@ -17899,6 +17912,62 @@
             <param name="options">The options for the call.</param>
             <returns>The call object.</returns>
         </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.SetDedicatedIpEntitlement(mrpc_admin.SetDedicatedIpEntitlementRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+            The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+            when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+            mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+            Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+            until it is stopped/released).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.SetDedicatedIpEntitlement(mrpc_admin.SetDedicatedIpEntitlementRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+            The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+            when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+            mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+            Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+            until it is stopped/released).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The response received from the server.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.SetDedicatedIpEntitlementAsync(mrpc_admin.SetDedicatedIpEntitlementRequest,Grpc.Core.Metadata,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+            The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+            when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+            mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+            Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+            until it is stopped/released).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+            <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+            <param name="cancellationToken">An optional token for canceling the call.</param>
+            <returns>The call object.</returns>
+        </member>
+        <member name="M:mrpc_admin.AdminApi.AdminApiClient.SetDedicatedIpEntitlementAsync(mrpc_admin.SetDedicatedIpEntitlementRequest,Grpc.Core.CallOptions)">
+            <summary>
+            Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+            The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+            when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+            mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+            Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+            until it is stopped/released).
+            </summary>
+            <param name="request">The request to send to the server.</param>
+            <param name="options">The options for the call.</param>
+            <returns>The call object.</returns>
+        </member>
         <member name="M:mrpc_admin.AdminApi.AdminApiClient.NewInstance(Grpc.Core.ClientBase.ClientBaseConfiguration)">
             <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
         </member>
@@ -17917,6 +17986,49 @@
         </member>
         <member name="P:mrpc_admin.Mt5TermApiAdminReflection.Descriptor">
             <summary>File descriptor for mt5-term-api-admin.proto</summary>
+        </member>
+        <member name="F:mrpc_admin.SetDedicatedIpEntitlementRequest.AdminKeyFieldNumber">
+            <summary>Field number for the "admin_key" field.</summary>
+        </member>
+        <member name="F:mrpc_admin.SetDedicatedIpEntitlementRequest.IdFieldNumber">
+            <summary>Field number for the "id" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SetDedicatedIpEntitlementRequest.Id">
+            <summary>
+            terminal id (any GUID format); UserTerminals.DedicatedIpEntitled is set across every id format
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SetDedicatedIpEntitlementRequest.EntitledFieldNumber">
+            <summary>Field number for the "entitled" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SetDedicatedIpEntitlementRequest.Entitled">
+            <summary>
+            true grants the add-on, false revokes it
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SetDedicatedIpEntitlementReply.ChangedFieldNumber">
+            <summary>Field number for the "changed" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SetDedicatedIpEntitlementReply.Changed">
+            <summary>
+            a UserTerminals row was updated
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SetDedicatedIpEntitlementReply.EntitledFieldNumber">
+            <summary>Field number for the "entitled" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SetDedicatedIpEntitlementReply.Entitled">
+            <summary>
+            the entitlement value now in effect for the terminal
+            </summary>
+        </member>
+        <member name="F:mrpc_admin.SetDedicatedIpEntitlementReply.ErrorFieldNumber">
+            <summary>Field number for the "error" field.</summary>
+        </member>
+        <member name="P:mrpc_admin.SetDedicatedIpEntitlementReply.Error">
+            <summary>
+            non-empty when the request was invalid or persistence is off
+            </summary>
         </member>
         <member name="F:mrpc_admin.SessionRestoreWatcherStatus.EnabledFieldNumber">
             <summary>Field number for the "enabled" field.</summary>

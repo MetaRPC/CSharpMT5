@@ -107,6 +107,10 @@ namespace mrpc_admin {
     static readonly grpc::Marshaller<global::mrpc_admin.StopTerminalLocalRequest> __Marshaller_mrpc_admin_StopTerminalLocalRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.StopTerminalLocalRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::mrpc_admin.StopTerminalLocalReply> __Marshaller_mrpc_admin_StopTerminalLocalReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.StopTerminalLocalReply.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.SetDedicatedIpEntitlementRequest> __Marshaller_mrpc_admin_SetDedicatedIpEntitlementRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.SetDedicatedIpEntitlementRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::mrpc_admin.SetDedicatedIpEntitlementReply> __Marshaller_mrpc_admin_SetDedicatedIpEntitlementReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::mrpc_admin.SetDedicatedIpEntitlementReply.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply> __Method_ActiveTerminals = new grpc::Method<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.ActiveTerminalsReply>(
@@ -251,6 +255,14 @@ namespace mrpc_admin {
         "StopTerminalLocal",
         __Marshaller_mrpc_admin_StopTerminalLocalRequest,
         __Marshaller_mrpc_admin_StopTerminalLocalReply);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::mrpc_admin.SetDedicatedIpEntitlementRequest, global::mrpc_admin.SetDedicatedIpEntitlementReply> __Method_SetDedicatedIpEntitlement = new grpc::Method<global::mrpc_admin.SetDedicatedIpEntitlementRequest, global::mrpc_admin.SetDedicatedIpEntitlementReply>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetDedicatedIpEntitlement",
+        __Marshaller_mrpc_admin_SetDedicatedIpEntitlementRequest,
+        __Marshaller_mrpc_admin_SetDedicatedIpEntitlementReply);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -507,6 +519,23 @@ namespace mrpc_admin {
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.StopTerminalLocalReply> StopTerminalLocal(global::mrpc_admin.StopTerminalLocalRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      /// Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+      /// The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+      /// when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+      /// mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+      /// Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+      /// until it is stopped/released).
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::mrpc_admin.SetDedicatedIpEntitlementReply> SetDedicatedIpEntitlement(global::mrpc_admin.SetDedicatedIpEntitlementRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -1536,6 +1565,74 @@ namespace mrpc_admin {
       {
         return CallInvoker.AsyncUnaryCall(__Method_StopTerminalLocal, null, options, request);
       }
+      /// <summary>
+      /// Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+      /// The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+      /// when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+      /// mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+      /// Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+      /// until it is stopped/released).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.SetDedicatedIpEntitlementReply SetDedicatedIpEntitlement(global::mrpc_admin.SetDedicatedIpEntitlementRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetDedicatedIpEntitlement(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+      /// The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+      /// when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+      /// mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+      /// Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+      /// until it is stopped/released).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::mrpc_admin.SetDedicatedIpEntitlementReply SetDedicatedIpEntitlement(global::mrpc_admin.SetDedicatedIpEntitlementRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetDedicatedIpEntitlement, null, options, request);
+      }
+      /// <summary>
+      /// Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+      /// The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+      /// when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+      /// mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+      /// Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+      /// until it is stopped/released).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.SetDedicatedIpEntitlementReply> SetDedicatedIpEntitlementAsync(global::mrpc_admin.SetDedicatedIpEntitlementRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return SetDedicatedIpEntitlementAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      /// Grants or revokes the dedicated-IP add-on entitlement for ONE terminal (UserTerminals.DedicatedIpEntitled).
+      /// The trusted write path for the add-on: the dedicated-IP connect header assigns an IP and bills the 6 USD per 720 h only
+      /// when the terminal is entitled (default deny), so this gate must be set first. Called with the ADMIN_KEY (the
+      /// mrpc-rest gateway maps its X-Admin-Key header onto admin_key), or by mrpc-back after a confirmed purchase.
+      /// Persisted in Mongo; any pod honours it. Set entitled=false to revoke (a running terminal keeps its current IP
+      /// until it is stopped/released).
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::mrpc_admin.SetDedicatedIpEntitlementReply> SetDedicatedIpEntitlementAsync(global::mrpc_admin.SetDedicatedIpEntitlementRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetDedicatedIpEntitlement, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override AdminApiClient NewInstance(ClientBaseConfiguration configuration)
@@ -1567,7 +1664,8 @@ namespace mrpc_admin {
           .AddMethod(__Method_KillAllTrialTerminals, serviceImpl.KillAllTrialTerminals)
           .AddMethod(__Method_KillAllTrialTerminalsLocal, serviceImpl.KillAllTrialTerminalsLocal)
           .AddMethod(__Method_Drain, serviceImpl.Drain)
-          .AddMethod(__Method_StopTerminalLocal, serviceImpl.StopTerminalLocal).Build();
+          .AddMethod(__Method_StopTerminalLocal, serviceImpl.StopTerminalLocal)
+          .AddMethod(__Method_SetDedicatedIpEntitlement, serviceImpl.SetDedicatedIpEntitlement).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -1595,6 +1693,7 @@ namespace mrpc_admin {
       serviceBinder.AddMethod(__Method_KillAllTrialTerminalsLocal, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.ActiveTerminalsRequest, global::mrpc_admin.KillAllTrialTerminalsReply>(serviceImpl.KillAllTrialTerminalsLocal));
       serviceBinder.AddMethod(__Method_Drain, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.DrainRequest, global::mrpc_admin.DrainReply>(serviceImpl.Drain));
       serviceBinder.AddMethod(__Method_StopTerminalLocal, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.StopTerminalLocalRequest, global::mrpc_admin.StopTerminalLocalReply>(serviceImpl.StopTerminalLocal));
+      serviceBinder.AddMethod(__Method_SetDedicatedIpEntitlement, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::mrpc_admin.SetDedicatedIpEntitlementRequest, global::mrpc_admin.SetDedicatedIpEntitlementReply>(serviceImpl.SetDedicatedIpEntitlement));
     }
 
   }
