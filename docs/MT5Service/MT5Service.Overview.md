@@ -490,7 +490,7 @@ var result = await service.BuyMarketAsync(symbol, volume,
     takeProfit: bid + 0.0100,
     comment: "Bot trade");
 
-if (result.RetCode == 10009)
+if (result.ReturnedCode == 10009)
 {
     Console.WriteLine($"✅ Order opened: #{result.Order}");
 }
@@ -501,8 +501,10 @@ else
 
 // 7. Check today's performance
 var today = await service.GetTodayOrdersAsync();
-double todayProfit = today.ClosedOrders.Sum(o => o.Profit);
-Console.WriteLine($"Today's P/L: ${todayProfit:F2} ({today.ClosedOrders.Count} trades)");
+double todayProfit = today.HistoryData
+    .Where(x => x.HistoryDeal != null)
+    .Sum(x => x.HistoryDeal.Profit);
+Console.WriteLine($"Today's P/L: ${todayProfit:F2} ({today.HistoryData.Count} entries)");
 ```
 
 **Clean, readable, maintainable!** 🚀

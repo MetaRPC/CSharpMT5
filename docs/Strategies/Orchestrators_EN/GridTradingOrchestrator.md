@@ -28,7 +28,7 @@ Points   Points   (emergency)
 
 - **MT5Service**: Service layer for MT5
 - **MT5Sugar Extension Methods**: `BuyLimitPoints`, `SellLimitPoints`, `CloseAll`
-- **mt5_term_api**: gRPC types (`OrderSendData`, `SymbolInfoTickData`)
+- **mt5_term_api**: gRPC types (`OrderSendData`; `SymbolInfoTickAsync` returns `MrpcMqlTick`)
 
 ---
 
@@ -141,12 +141,10 @@ for (int i = 1; i <= GridLevels; i++)
 }
 ```
 
-**Critically important**:
+**Note on the sign**:
 
-- `pointsBelow` has **NEGATIVE** value (`-20`, `-40`, `-60`)
-- `BuyLimitPoints` uses `priceOffsetPoints` parameter which:
-  - With negative value → places order **BELOW** current price
-  - With positive value → places order **ABOVE** current price
+- The orchestrator passes `pointsBelow` as a **negative** value (`-20`, `-40`, `-60`) purely as a readable convention.
+- `BuyLimitPoints` itself uses the **absolute value** of `priceOffsetPoints`: a Buy Limit is always placed **below** the Ask (`Ask − |offset| × point`). So the sign does not change the direction here — `-20` and `+20` place the order at the same level. (Likewise `SellLimitPoints` always places **above** the Bid.)
 
 **Example with GridLevels=3, GridSpacingPoints=20**:
 ```
@@ -285,17 +283,19 @@ await _service.CloseAll(Symbol);
 
 ```csharp
 public static async Task<OrderSendData> BuyLimitPoints(
-    this MT5Service service,
+    this MT5Service svc,
     string symbol,
     double volume,
-    int priceOffsetPoints,  // NEGATIVE for below, POSITIVE for above
-    int slPoints = 0,
-    int tpPoints = 0,
-    string comment = ""
-)
+    double priceOffsetPoints,     // distance below Ask (absolute value is used)
+    double? slPoints = null,
+    double? tpPoints = null,
+    string? comment = null,
+    int deviationPoints = 0,
+    int timeoutSec = 15,
+    CancellationToken ct = default)
 ```
 
-**Purpose**: Places pending Buy Limit order with offset in points.
+**Purpose**: Places pending Buy Limit order below the Ask (the offset's absolute value is taken — Buy Limit is always below).
 
 **Parameters in GridTradingOrchestrator**:
 
@@ -315,32 +315,36 @@ public static async Task<OrderSendData> BuyLimitPoints(
 
 ```csharp
 public static async Task<OrderSendData> SellLimitPoints(
-    this MT5Service service,
+    this MT5Service svc,
     string symbol,
     double volume,
-    int priceOffsetPoints,  // POSITIVE for above, NEGATIVE for below
-    int slPoints = 0,
-    int tpPoints = 0,
-    string comment = ""
-)
+    double priceOffsetPoints,     // distance above Bid (absolute value is used)
+    double? slPoints = null,
+    double? tpPoints = null,
+    string? comment = null,
+    int deviationPoints = 0,
+    int timeoutSec = 15,
+    CancellationToken ct = default)
 ```
 
-**Purpose**: Places pending Sell Limit order with offset in points.
+**Purpose**: Places pending Sell Limit order above the Bid (the offset's absolute value is taken — Sell Limit is always above).
 
 **Parameters in GridTradingOrchestrator**:
 
-- `priceOffsetPoints`: **POSITIVE** value (e.g., +20, +40)
+- `priceOffsetPoints`: the orchestrator passes a positive value (e.g., +20, +40) by convention
 
 ### 3. CloseAll
 
 ```csharp
-public static async Task CloseAll(
-    this MT5Service service,
-    string symbol
-)
+public static async Task<int> CloseAll(
+    this MT5Service svc,
+    string? symbol = null,   // null = all symbols
+    bool? isBuy = null,      // null = both directions
+    int timeoutSec = 30,
+    CancellationToken ct = default)
 ```
 
-**Purpose**: Closes all open positions and cancels all pending orders for symbol.
+**Purpose**: Closes all open positions and cancels all pending orders (optionally filtered by symbol / direction). Returns the number of items closed.
 
 **Usage**:
 

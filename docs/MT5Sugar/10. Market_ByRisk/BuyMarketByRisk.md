@@ -330,11 +330,11 @@ var result = await OpenBuyWithKelly(svc, "EURUSD", slPoints: 40, tpPoints: 120);
 
 ```csharp
 // Check current portfolio risk before opening new trade
-var positions = await svc.OpenedOrdersAllAsync();
+var positions = await svc.OpenedOrdersAsync();
 double totalRisk = 0;
 
 // Calculate total risk from existing positions
-foreach (var pos in positions.Orders)
+foreach (var pos in positions.PositionInfos)
 {
     // Simplified: assume $50 risk per position
     totalRisk += 50.0;

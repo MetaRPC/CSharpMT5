@@ -1,84 +1,69 @@
-# CSharpMT5 Project Map
+# 🗺️ CSharpMT5 Project Map
 
-> Complete architecture guide. Shows the three-tier system, component interactions, and file organization.
-
----
-
-## 🗺️ Project Architecture Overview
-
-CSharpMT5 is structured into three clean, decoupled layers designed to satisfy both low-level quantitative control and high-level strategy convenience:
-
-```
-CSharpMT5/
-├── 📦 Layer 1: MT5Account (Low-level gRPC)
-├── 🔧 Layer 2: MT5Service (Typed wrapper methods)
-└── ⭐ Layer 3: MT5Sugar (High-level convenience API)
-```
+> The whole project as one annotated tree, with links. **Links point to section *overviews*, never to individual method pages** — open an overview to drill down into its methods.
 
 ---
 
-## 📊 Component Interaction Diagram
+## 🧱 The three layers
+
+CSharpMT5 is built in three decoupled layers. Your code can enter at any level.
+
+| Layer | Source | What it does | Overview |
+| ----- | ------ | ------------ | -------- |
+| **3 · MT5Sugar** | `MT5Sugar.cs` | Convenience on top of Service (extension methods): points-based SL/TP, risk-based sizing, price/volume normalization, snapshots, batch close/cancel, market-data & stats helpers. | [MT5Sugar overview](../MT5Sugar/MT5Sugar.API_Overview.md) |
+| **2 · MT5Service** | `MT5Service.cs` | Typed facade: friendly signatures, unwrapped C# primitives (no raw proto), convenience shortcuts (`GetBidAsync`, `BuyMarketAsync`). What most code uses. | [MT5Service overview](../MT5Service/MT5Service.Overview.md) |
+| **1 · MT5Account** | `package/Helpers/MT5Account.cs` | Low-level gRPC: proto request/reply, connect/session, auto-reconnect, streaming. Everything else builds on it. | [MT5Account overview](../MT5Account/MT5Account.Master.Overview.md) |
 
 ```
-YOUR CODE (User-facing)
-  ├─ Orchestrators (strategy implementations)
-  ├─ Presets (multi-strategy combinations)
-  └─ Examples (learning materials)
-                  │
-                  │ uses
-                  ↓
-MT5Sugar (Layer 3 - Convenience)
-  ├─ Auto-normalization (volumes, prices)
-  ├─ Risk management (CalculateVolume, BuyByRisk)
-  ├─ Points-based methods (BuyLimitPoints, etc.)
-  └─ Batch operations (CloseAll, CancelAll)
-                  │
-                  │ uses
-                  ↓
-MT5Service (Layer 2 - Wrappers)
-  ├─ Direct data returns
-  ├─ Type conversions (proto → native primitives)
-  └─ Simplified signatures (no raw proto required)
-                  │
-                  │ uses
-                  ↓
-MT5Account (Layer 1 - Low-level)
-  ├─ Proto Request/Response handling
-  ├─ gRPC communication & channel management
-  ├─ Auto-reconnection on transient faults
-  └─ Real-time streaming subscriptions
-                  │
-                  │ gRPC
-                  ↓
-MT5 Gateway (mt5term) or MT5 Terminal
-  └─ MetaTrader 5 with gRPC server
+Your code  →  MT5Sugar  →  MT5Service  →  MT5Account  →  gRPC  →  MetaRPC gateway → MT5 terminal
 ```
 
 ---
 
-## 🔍 Layer Breakdown
+## 🌳 Repository tree
 
-### Layer 1: `MT5Account` (Low-Level gRPC)
-- Direct gRPC stubs communicating with the terminal.
-- Handles protobuf message serialization/deserialization.
-- Responsible for connection recovery, channel state monitoring, and raw streaming calls.
-- Ideal when you need complete control over protobuf payload fields.
-
-### Layer 2: `MT5Service` (Wrappers)
-- Translates protobuf messages into native C# primitives and data models.
-- Removes boilerplate request/response wrapper instantiation.
-- Simplifies method signatures for common terminal actions (Positions, Orders, and Deals).
-
-### Layer 3: `MT5Sugar` (Convenience Layer)
-- Automates lot size calculation and margin checks based on risk percentages.
-- Automatically normalizes prices and volumes to broker specifications (step size, digits, minimum lot).
-- Provides one-line batch operations: close all profitable positions, cancel pending orders.
-- Point-offset helpers (`BuyLimitPoints`, `SellStopPoints`).
+- **`CSharpMT5/`** — repo root (SDK layers + runnable demo app)
+  - `MT5Service.cs` — **Layer 2** source → [MT5Service overview](../MT5Service/MT5Service.Overview.md)
+  - `MT5Sugar.cs` — **Layer 3** source (extension methods on `MT5Service`) → [MT5Sugar overview](../MT5Sugar/MT5Sugar.API_Overview.md)
+  - `Program.cs` — CLI entry / command dispatcher (`lowlevel`, `service`, `sugar`, `trading`, `inspect`, `usercode`, …) → [Getting Started](./GETTING_STARTED.md)
+  - **`package/`** — low-level gRPC layer (the publishable NuGet package `MetaRPC.MT5`)
+    - `Helpers/MT5Account.cs` — **Layer 1** source → [MT5Account overview](../MT5Account/MT5Account.Master.Overview.md)
+    - `*Grpc.cs` · `Mt5TermApi*.cs` · `MrpcMt5Error.cs` — generated gRPC / protobuf stubs (the raw contract)
+    - `MetaRPC.MT5.csproj` — the publishable package project
+  - **`Errors/`** — domain exceptions: `ApiExceptionMT5.cs`, `ConnectExceptionMT5.cs`
+  - **`Examples/`** — runnable demos (dispatched by `Program.cs`)
+    - **`Helpers/`** — shared helpers (`ConnectionHelper`, `ConsoleHelper`, `ProgressBarHelper`) + `ProtobufInspector` → [Protobuf Inspector](./PROTOBUF_INSPECTOR_GUIDE.md)
+    - **`LowLevel/`** — `Program.LowLevel` / `.Trading` / `.Streaming` → [MT5Account overview](../MT5Account/MT5Account.Master.Overview.md)
+    - **`Services/`** — `Program.Service` → [MT5Service overview](../MT5Service/MT5Service.Overview.md)
+    - **`Sugar/`** — `Program.Sugar` (+ Monitor / PendingOrders / Scalper) → [MT5Sugar overview](../MT5Sugar/MT5Sugar.API_Overview.md)
+    - **`Orchestrators/`** + **`Presets/`** — the strategy library → [Strategies overview](../Strategies/Strategies.Master.Overview.md)
+    - **`MoreExamples/`** — explained walkthroughs (`01`–`10`)
+    - **`UserCode/`** — `ProgramUserCode` sandbox → [UserCode Sandbox](./USERCODE_SANDBOX_GUIDE.md)
+  - **`Config/`** — `appsettings.json` (your MT5 credentials + API key) → [Getting Started](./GETTING_STARTED.md)
+  - **`tests/`** — test project
+  - **`docs/`** — this documentation site (see the map below)
+  - `mkdocs.yml` — docs site config
+  - `MetaRPC.CSharpMT5.csproj` · `MetaRPC.CSharpMT5.sln` — the demo app project / solution
 
 ---
 
-## 🎯 Which Layer Should You Use?
+## 📚 Documentation tree
 
-- **90% of trading applications**: Start with **`MT5Sugar`**. It protects you from off-quote rejections and invalid volume errors.
-- **Custom algorithmic execution**: Use **`MT5Service`** when you manage your own volume normalization logic.
-- **Protocol engineering**: Drop to **`MT5Account`** when you need raw protobuf structures.
+- **`docs/`**
+  - [Home](../index.md) — landing page
+  - **`All_Guides/`** — the guides (Getting Started, Your First Project, Glossary, MT5 for Beginners, Sync vs Async, gRPC Streaming, ENUMs, Return Codes, Protobuf Inspector, UserCode Sandbox); browse them in the left nav
+  - **`MT5Account/`** — low-level gRPC docs → [overview](../MT5Account/MT5Account.Master.Overview.md) *(per-method pages inside)*
+  - **`MT5Service/`** — typed facade docs → [overview](../MT5Service/MT5Service.Overview.md) *(per-group pages inside)*
+  - **`MT5Sugar/`** — convenience API docs → [overview](../MT5Sugar/MT5Sugar.API_Overview.md) *(per-group pages inside)*
+  - **`Strategies/`** — the orchestrators & presets → [overview](../Strategies/Strategies.Master.Overview.md) *(per-strategy pages inside)*
+  - `Guide_Images/` · `styles/` · `javascripts/` · `includes/` — assets & theme
+
+> The `MT5Account/`, `MT5Service/`, `MT5Sugar/` and `Strategies/` folders hold the detail pages. By design this map links only their **overviews** — each overview is the index into its own pages.
+
+---
+
+## 🎯 Which layer should you use?
+
+- **Most trading apps → [MT5Sugar](../MT5Sugar/MT5Sugar.API_Overview.md).** Points-based SL/TP, risk sizing and auto-normalization protect you from off-quote and invalid-volume rejections.
+- **Custom execution → [MT5Service](../MT5Service/MT5Service.Overview.md).** Typed calls when you manage your own sizing/normalization.
+- **Protocol-level control → [MT5Account](../MT5Account/MT5Account.Master.Overview.md).** Raw proto structures and streams.

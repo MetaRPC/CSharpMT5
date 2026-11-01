@@ -16,7 +16,7 @@
 * **SDK wrapper:**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Service
     {
@@ -186,10 +186,10 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `SUB_POSITION_REASON_CLIENT` | Position opened from desktop terminal |
-| `SUB_POSITION_REASON_MOBILE` | Position opened from mobile app |
-| `SUB_POSITION_REASON_WEB` | Position opened from web platform |
-| `SUB_POSITION_REASON_EXPERT` | Position opened by Expert Advisor |
+| `SubPositionReasonClient` | Position opened from desktop terminal |
+| `SubPositionReasonMobile` | Position opened from mobile app |
+| `SubPositionReasonWeb` | Position opened from web platform |
+| `SubPositionReasonExpert` | Position opened by Expert Advisor |
 
 ---
 
@@ -214,10 +214,10 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `SUB_ORDER_TIME_GTC` | Good till cancel order |
-| `SUB_ORDER_TIME_DAY` | Good till current trade day order |
-| `SUB_ORDER_TIME_SPECIFIED` | Good till expired order |
-| `SUB_ORDER_TIME_SPECIFIED_DAY` | The order will be effective till 23:59:59 of the specified day |
+| `SubOrderTimeGtc` | Good till cancel order |
+| `SubOrderTimeDay` | Good till current trade day order |
+| `SubOrderTimeSpecified` | Good till expired order |
+| `SubOrderTimeSpecifiedDay` | The order will be effective till 23:59:59 of the specified day |
 
 ---
 
@@ -225,15 +225,15 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `SUB_ORDER_TYPE_BUY` | Market buy order |
-| `SUB_ORDER_TYPE_SELL` | Market sell order |
-| `SUB_ORDER_TYPE_BUY_LIMIT` | Buy Limit pending order |
-| `SUB_ORDER_TYPE_SELL_LIMIT` | Sell Limit pending order |
-| `SUB_ORDER_TYPE_BUY_STOP` | Buy Stop pending order |
-| `SUB_ORDER_TYPE_SELL_STOP` | Sell Stop pending order |
-| `SUB_ORDER_TYPE_BUY_STOP_LIMIT` | Buy Stop Limit pending order |
-| `SUB_ORDER_TYPE_SELL_STOP_LIMIT` | Sell Stop Limit pending order |
-| `SUB_ORDER_TYPE_CLOSE_BY` | Close by opposite position order |
+| `SubOrderTypeBuy` | Market buy order |
+| `SubOrderTypeSell` | Market sell order |
+| `SubOrderTypeBuyLimit` | Buy Limit pending order |
+| `SubOrderTypeSellLimit` | Sell Limit pending order |
+| `SubOrderTypeBuyStop` | Buy Stop pending order |
+| `SubOrderTypeSellStop` | Sell Stop pending order |
+| `SubOrderTypeBuyStopLimit` | Buy Stop Limit pending order |
+| `SubOrderTypeSellStopLimit` | Sell Stop Limit pending order |
+| `SubOrderTypeCloseBy` | Close by opposite position order |
 
 ---
 
@@ -241,10 +241,10 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `SUB_ORDER_FILLING_FOK` | Fill or Kill - order must be filled completely or canceled |
-| `SUB_ORDER_FILLING_IOC` | Immediate or Cancel - partial fills allowed, remainder canceled |
-| `SUB_ORDER_FILLING_BOC` | Book or Cancel - order can only be placed in the order book |
-| `SUB_ORDER_FILLING_RETURN` | Return - used for market orders on exchange |
+| `SubOrderFillingFok` | Fill or Kill - order must be filled completely or canceled |
+| `SubOrderFillingIoc` | Immediate or Cancel - partial fills allowed, remainder canceled |
+| `SubOrderFillingBoc` | Book or Cancel - order can only be placed in the order book |
+| `SubOrderFillingReturn` | Return - used for market orders on exchange |
 
 ---
 
@@ -252,13 +252,13 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `SUB_ORDER_REASON_CLIENT` | Order placed from desktop terminal |
-| `SUB_ORDER_REASON_MOBILE` | Order placed from mobile app |
-| `SUB_ORDER_REASON_WEB` | Order placed from web platform |
-| `SUB_ORDER_REASON_EXPERT` | Order placed by Expert Advisor |
-| `SUB_ORDER_REASON_SL` | Order triggered by Stop Loss |
-| `SUB_ORDER_REASON_TP` | Order triggered by Take Profit |
-| `SUB_ORDER_REASON_SO` | Order triggered by Stop Out |
+| `SubOrderReasonClient` | Order placed from desktop terminal |
+| `SubOrderReasonMobile` | Order placed from mobile app |
+| `SubOrderReasonWeb` | Order placed from web platform |
+| `SubOrderReasonExpert` | Order placed by Expert Advisor |
+| `SubOrderReasonSl` | Order triggered by Stop Loss |
+| `SubOrderReasonTp` | Order triggered by Take Profit |
+| `SubOrderReasonSo` | Order triggered by Stop Out |
 
 ---
 
@@ -270,20 +270,20 @@ namespace mt5_term_api
 | `SubDealTypeSell` | Sell deal |
 | `SubDealTypeBalance` | Balance operation |
 | `SubDealTypeCredit` | Credit operation |
-| `SUB_DEAL_TYPE_CHARGE` | Additional charge |
-| `SUB_DEAL_TYPE_CORRECTION` | Correction |
-| `SUB_DEAL_TYPE_BONUS` | Bonus |
-| `SUB_DEAL_TYPE_COMMISSION` | Additional commission |
-| `SUB_DEAL_TYPE_COMMISSION_DAILY` | Daily commission |
-| `SUB_DEAL_TYPE_COMMISSION_MONTHLY` | Monthly commission |
-| `SUB_DEAL_TYPE_COMMISSION_AGENT_DAILY` | Daily agent commission |
-| `SUB_DEAL_TYPE_COMMISSION_AGENT_MONTHLY` | Monthly agent commission |
-| `SUB_DEAL_TYPE_INTEREST` | Interest rate |
-| `SUB_DEAL_TYPE_BUY_CANCELED` | Canceled buy deal |
-| `SUB_DEAL_TYPE_SELL_CANCELED` | Canceled sell deal |
-| `SUB_DEAL_DIVIDEND` | Dividend operation |
-| `SUB_DEAL_DIVIDEND_FRANKED` | Franked (tax-adjusted) dividend operation |
-| `SUB_DEAL_TAX` | Tax charge |
+| `SubDealTypeCharge` | Additional charge |
+| `SubDealTypeCorrection` | Correction |
+| `SubDealTypeBonus` | Bonus |
+| `SubDealTypeCommission` | Additional commission |
+| `SubDealTypeCommissionDaily` | Daily commission |
+| `SubDealTypeCommissionMonthly` | Monthly commission |
+| `SubDealTypeCommissionAgentDaily` | Daily agent commission |
+| `SubDealTypeCommissionAgentMonthly` | Monthly agent commission |
+| `SubDealTypeInterest` | Interest rate |
+| `SubDealTypeBuyCanceled` | Canceled buy deal |
+| `SubDealTypeSellCanceled` | Canceled sell deal |
+| `SubDealDividend` | Dividend operation |
+| `SubDealDividendFranked` | Franked (tax-adjusted) dividend operation |
+| `SubDealTax` | Tax charge |
 
 ---
 
@@ -302,17 +302,17 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `SUB_DEAL_REASON_CLIENT` | Deal executed from desktop terminal |
-| `SUB_DEAL_REASON_MOBILE` | Deal executed from mobile app |
-| `SUB_DEAL_REASON_WEB` | Deal executed from web platform |
-| `SUB_DEAL_REASON_EXPERT` | Deal executed by Expert Advisor |
-| `SUB_DEAL_REASON_SL` | Deal executed by Stop Loss |
-| `SUB_DEAL_REASON_TP` | Deal executed by Take Profit |
-| `SUB_DEAL_REASON_SO` | Deal executed by Stop Out |
-| `SUB_DEAL_REASON_ROLLOVER` | Deal executed due to rollover |
-| `SUB_DEAL_REASON_VMARGIN` | Deal executed due to variation margin |
-| `SUB_DEAL_REASON_SPLIT` | Deal executed due to split |
-| `SUB_DEAL_REASON_CORPORATE_ACTION` | Deal executed due to corporate action |
+| `SubDealReasonClient` | Deal executed from desktop terminal |
+| `SubDealReasonMobile` | Deal executed from mobile app |
+| `SubDealReasonWeb` | Deal executed from web platform |
+| `SubDealReasonExpert` | Deal executed by Expert Advisor |
+| `SubDealReasonSl` | Deal executed by Stop Loss |
+| `SubDealReasonTp` | Deal executed by Take Profit |
+| `SubDealReasonSo` | Deal executed by Stop Out |
+| `SubDealReasonRollover` | Deal executed due to rollover |
+| `SubDealReasonVmargin` | Deal executed due to variation margin |
+| `SubDealReasonSplit` | Deal executed due to split |
+| `SubDealReasonCorporateAction` | Deal executed due to corporate action |
 
 ---
 

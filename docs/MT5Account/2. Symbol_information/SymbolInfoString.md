@@ -16,13 +16,13 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<SymbolInfoStringData> SymbolInfoStringAsync(
-            string symbolName,
-            SymbolInfoStringProperty propertyType,
+            string symbol,
+            SymbolInfoStringProperty property,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
@@ -44,8 +44,8 @@ namespace mt5_term_api
 
 | Parameter           | Type                         | Required | Description                                               |
 | ------------------- | ---------------------------- | -------- | --------------------------------------------------------- |
-| `symbolName`        | `string`                     | ✅       | Symbol name (e.g., `"EURUSD"`)                            |
-| `propertyType`      | `SymbolInfoStringProperty`   | ✅       | Property to retrieve (see enum below)                     |
+| `symbol`        | `string`                     | ✅       | Symbol name (e.g., `"EURUSD"`)                            |
+| `property`      | `SymbolInfoStringProperty`   | ✅       | Property to retrieve (see enum below)                     |
 | `deadline`          | `DateTime?`                  | ❌       | Absolute per‑call **UTC** deadline → converted to timeout |
 | `cancellationToken` | `CancellationToken`          | ❌       | Cooperative cancel for the call/retry loop                |
 
@@ -65,21 +65,21 @@ namespace mt5_term_api
 
 | Enum Value                | Value | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | MQL5 Docs                                                          |
 | ------------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| `SYMBOL_BASIS`            | 0     | The underlying asset of a derivative                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [SymbolInfoString](https://www.mql5.com/en/docs/marketinformation/symbolinfostring) |
-| `SYMBOL_CATEGORY`         | 1     | The name of the sector or category to which the financial symbol belongs                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                                                                    |
-| `SYMBOL_COUNTRY`          | 2     | The country to which the financial symbol belongs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |                                                                    |
-| `SYMBOL_SECTOR_NAME`      | 3     | The sector of the economy to which the financial symbol belongs                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                                                                    |
-| `SYMBOL_INDUSTRY_NAME`    | 4     | The industry branch or the industry to which the financial symbol belongs                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                    |
-| `SYMBOL_CURRENCY_BASE`    | 5     | Basic currency of a symbol (e.g., for `EURUSD` this is `EUR`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |                                                                    |
-| `SYMBOL_CURRENCY_PROFIT`  | 6     | Profit currency (currency in which profit/loss is calculated, e.g., for `EURUSD` this is `USD`)                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                    |
-| `SYMBOL_CURRENCY_MARGIN`  | 7     | Margin currency (currency used for margin calculations)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                    |
-| `SYMBOL_BANK`             | 8     | Feeder of the current quote (data provider)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                    |
-| `SYMBOL_DESCRIPTION`      | 9     | Symbol description (full name, e.g., `"Euro vs US Dollar"`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                    |
-| `SYMBOL_EXCHANGE`         | 10    | The name of the exchange in which the financial symbol is traded                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                    |
-| `SYMBOL_FORMULA`          | 11    | The formula used for custom symbol pricing. If the name starts with a digit or contains special characters (">", ".", "-", "&", "#"), use quotation marks. Examples: Synthetic: `"@ESU19"/EURCAD`, Calendar spread: `"Si-9.13"-"Si-6.13"`, Euro index: `34.38805726 * pow(EURUSD,0.3155) * pow(EURGBP,0.3056) * pow(EURJPY,0.1891) * pow(EURCHF,0.1113) * pow(EURSEK,0.0785)`                                                                                                                                                            |                                                                    |
-| `SYMBOL_ISIN`             | 12    | ISIN (International Securities Identification Number) - a 12-digit alphanumeric code that uniquely identifies a security. Presence depends on trade server.                                                                                                                                                                                                                                                                                                                                                                               |                                                                    |
-| `SYMBOL_PAGE`             | 13    | The address of the web page containing symbol information. Displayed as a link in terminal symbol properties.                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                    |
-| `SYMBOL_PATH`             | 14    | Path in the symbol tree (folder structure in Market Watch)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                                                                    |
+| `SymbolBasis`            | 0     | The underlying asset of a derivative                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [SymbolInfoString](https://www.mql5.com/en/docs/marketinformation/symbolinfostring) |
+| `SymbolCategory`         | 1     | The name of the sector or category to which the financial symbol belongs                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                                                                    |
+| `SymbolCountry`          | 2     | The country to which the financial symbol belongs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |                                                                    |
+| `SymbolSectorName`      | 3     | The sector of the economy to which the financial symbol belongs                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                                                                    |
+| `SymbolIndustryName`    | 4     | The industry branch or the industry to which the financial symbol belongs                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                    |
+| `SymbolCurrencyBase`    | 5     | Basic currency of a symbol (e.g., for `EURUSD` this is `EUR`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |                                                                    |
+| `SymbolCurrencyProfit`  | 6     | Profit currency (currency in which profit/loss is calculated, e.g., for `EURUSD` this is `USD`)                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                    |
+| `SymbolCurrencyMargin`  | 7     | Margin currency (currency used for margin calculations)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                    |
+| `SymbolBank`             | 8     | Feeder of the current quote (data provider)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                                                                    |
+| `SymbolDescription`      | 9     | Symbol description (full name, e.g., `"Euro vs US Dollar"`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                    |
+| `SymbolExchange`         | 10    | The name of the exchange in which the financial symbol is traded                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                    |
+| `SymbolFormula`          | 11    | The formula used for custom symbol pricing. If the name starts with a digit or contains special characters (">", ".", "-", "&", "#"), use quotation marks. Examples: Synthetic: `"@ESU19"/EURCAD`, Calendar spread: `"Si-9.13"-"Si-6.13"`, Euro index: `34.38805726 * pow(EURUSD,0.3155) * pow(EURGBP,0.3056) * pow(EURJPY,0.1891) * pow(EURCHF,0.1113) * pow(EURSEK,0.0785)`                                                                                                                                                            |                                                                    |
+| `SymbolIsin`             | 12    | ISIN (International Securities Identification Number) - a 12-digit alphanumeric code that uniquely identifies a security. Presence depends on trade server.                                                                                                                                                                                                                                                                                                                                                                               |                                                                    |
+| `SymbolPage`             | 13    | The address of the web page containing symbol information. Displayed as a link in terminal symbol properties.                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                    |
+| `SymbolPath`             | 14    | Path in the symbol tree (folder structure in Market Watch)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                                                                    |
 
 ---
 
@@ -87,7 +87,7 @@ namespace mt5_term_api
 
 * **What it is.** Single RPC returning one string property of a symbol.
 * **Why you need it.** Get symbol description, currencies, metadata for display, logging, or trading logic.
-* **Most common.** `SYMBOL_DESCRIPTION` (full name), `SYMBOL_CURRENCY_BASE` (base currency), `SYMBOL_CURRENCY_PROFIT` (profit currency).
+* **Most common.** `SymbolDescription` (full name), `SymbolCurrencyBase` (base currency), `SymbolCurrencyProfit` (profit currency).
 
 ---
 
@@ -106,14 +106,14 @@ Use this method when you need to:
 
 ## 🧩 Notes & Tips
 
-* **SYMBOL_CURRENCY_BASE** - the first currency in a pair (for `EURUSD` = `EUR`).
-* **SYMBOL_CURRENCY_PROFIT** - currency of profit/loss (for `EURUSD` = `USD`).
-* **SYMBOL_CURRENCY_MARGIN** - currency used for margin (usually same as profit).
+* **SymbolCurrencyBase** - the first currency in a pair (for `EURUSD` = `EUR`).
+* **SymbolCurrencyProfit** - currency of profit/loss (for `EURUSD` = `USD`).
+* **SymbolCurrencyMargin** - currency used for margin (usually same as profit).
 * For Forex pairs: `Base/Profit` (e.g., `EUR/USD` means EUR is base, USD is profit).
 * Some properties may return empty strings if not available from broker.
 * Use short timeout (3-5s) as this is metadata (cached).
-* **SYMBOL_FORMULA** is for custom symbols only - synthetic instruments.
-* **SYMBOL_ISIN** availability depends on broker/instrument type.
+* **SymbolFormula** is for custom symbols only - synthetic instruments.
+* **SymbolIsin** availability depends on broker/instrument type.
 
 ---
 
@@ -125,7 +125,7 @@ Use this method when you need to:
 // Get human-readable description
 var desc = await acc.SymbolInfoStringAsync(
     "EURUSD",
-    SymbolInfoStringProperty.SYMBOL_DESCRIPTION,
+    SymbolInfoStringProperty.SymbolDescription,
     deadline: DateTime.UtcNow.AddSeconds(3));
 Console.WriteLine($"Description: {desc.Value}");
 // Output: "Euro vs US Dollar" or similar
@@ -137,10 +137,10 @@ Console.WriteLine($"Description: {desc.Value}");
 // Retrieve currency pair components
 var baseCurr = await acc.SymbolInfoStringAsync(
     "GBPUSD",
-    SymbolInfoStringProperty.SYMBOL_CURRENCY_BASE);
+    SymbolInfoStringProperty.SymbolCurrencyBase);
 var profitCurr = await acc.SymbolInfoStringAsync(
     "GBPUSD",
-    SymbolInfoStringProperty.SYMBOL_CURRENCY_PROFIT);
+    SymbolInfoStringProperty.SymbolCurrencyProfit);
 
 Console.WriteLine($"GBPUSD:");
 Console.WriteLine($"  Base currency:   {baseCurr.Value}");   // GBP
@@ -153,10 +153,10 @@ Console.WriteLine($"  Profit currency: {profitCurr.Value}"); // USD
 // Show detailed symbol information
 var symbol = "EURUSD";
 
-var description = await acc.SymbolInfoStringAsync(symbol, SymbolInfoStringProperty.SYMBOL_DESCRIPTION);
-var baseCurr = await acc.SymbolInfoStringAsync(symbol, SymbolInfoStringProperty.SYMBOL_CURRENCY_BASE);
-var profitCurr = await acc.SymbolInfoStringAsync(symbol, SymbolInfoStringProperty.SYMBOL_CURRENCY_PROFIT);
-var exchange = await acc.SymbolInfoStringAsync(symbol, SymbolInfoStringProperty.SYMBOL_EXCHANGE);
+var description = await acc.SymbolInfoStringAsync(symbol, SymbolInfoStringProperty.SymbolDescription);
+var baseCurr = await acc.SymbolInfoStringAsync(symbol, SymbolInfoStringProperty.SymbolCurrencyBase);
+var profitCurr = await acc.SymbolInfoStringAsync(symbol, SymbolInfoStringProperty.SymbolCurrencyProfit);
+var exchange = await acc.SymbolInfoStringAsync(symbol, SymbolInfoStringProperty.SymbolExchange);
 
 Console.WriteLine($"Symbol: {symbol}");
 Console.WriteLine($"  Description: {description.Value}");
@@ -171,7 +171,7 @@ Console.WriteLine($"  Exchange:    {exchange.Value}");
 // Retrieve ISIN (if available)
 var isin = await acc.SymbolInfoStringAsync(
     "AAPL", // Apple stock
-    SymbolInfoStringProperty.SYMBOL_ISIN);
+    SymbolInfoStringProperty.SymbolIsin);
 
 if (!string.IsNullOrEmpty(isin.Value))
 {
@@ -194,14 +194,14 @@ Console.WriteLine($"=== Symbol Info: {symbol} ===");
 // Get all string properties
 var props = new[]
 {
-    (SymbolInfoStringProperty.SYMBOL_DESCRIPTION, "Description"),
-    (SymbolInfoStringProperty.SYMBOL_CURRENCY_BASE, "Base Currency"),
-    (SymbolInfoStringProperty.SYMBOL_CURRENCY_PROFIT, "Profit Currency"),
-    (SymbolInfoStringProperty.SYMBOL_CURRENCY_MARGIN, "Margin Currency"),
-    (SymbolInfoStringProperty.SYMBOL_EXCHANGE, "Exchange"),
-    (SymbolInfoStringProperty.SYMBOL_CATEGORY, "Category"),
-    (SymbolInfoStringProperty.SYMBOL_SECTOR_NAME, "Sector"),
-    (SymbolInfoStringProperty.SYMBOL_PATH, "Path")
+    (SymbolInfoStringProperty.SymbolDescription, "Description"),
+    (SymbolInfoStringProperty.SymbolCurrencyBase, "Base Currency"),
+    (SymbolInfoStringProperty.SymbolCurrencyProfit, "Profit Currency"),
+    (SymbolInfoStringProperty.SymbolCurrencyMargin, "Margin Currency"),
+    (SymbolInfoStringProperty.SymbolExchange, "Exchange"),
+    (SymbolInfoStringProperty.SymbolCategory, "Category"),
+    (SymbolInfoStringProperty.SymbolSectorName, "Sector"),
+    (SymbolInfoStringProperty.SymbolPath, "Path")
 };
 
 foreach (var (prop, label) in props)

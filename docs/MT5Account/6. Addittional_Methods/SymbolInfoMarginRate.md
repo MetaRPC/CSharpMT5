@@ -16,43 +16,38 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<SymbolInfoMarginRateData> SymbolInfoMarginRateAsync(
-            SymbolInfoMarginRateRequest request,
+            string symbol,
+            ENUM_ORDER_TYPE orderType,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
 }
 ```
 
-**Request message:**
+> The wrapper takes `symbol` and `orderType` directly and builds the underlying `SymbolInfoMarginRateRequest { symbol, order_type }` for you.
 
-`SymbolInfoMarginRateRequest { symbol, order_type }`
+**Reply message (underlying proto):**
+
+`SymbolInfoMarginRateReply { data: SymbolInfoMarginRateData }`
 
 
 **Reply message:**
-
-`SymbolInfoMarginRateReply { data: SymbolInfoMarginRateData }`
 
 ---
 
 ## 🔽 Input
 
-| Parameter           | Type                           | Description                                               |
-| ------------------- | ------------------------------ | --------------------------------------------------------- |
-| `request`           | `SymbolInfoMarginRateRequest`  | Protobuf request with symbol and order type              |
-| `deadline`          | `DateTime?`                    | Absolute per‑call **UTC** deadline → converted to timeout |
-| `cancellationToken` | `CancellationToken`            | Cooperative cancel for the call/retry loop                |
-
-### `SymbolInfoMarginRateRequest`
-
-| Field        | Type              | Description                                              |
-| ------------ | ----------------- | -------------------------------------------------------- |
-| `Symbol`     | `string`          | Symbol name (e.g., `"EURUSD"`, `"XAUUSD"`) **REQUIRED**  |
-| `OrderType`  | `ENUM_ORDER_TYPE` | Order type (Buy, Sell, BuyLimit, etc.) **REQUIRED**       |
+| Parameter           | Type              | Description                                                |
+| ------------------- | ----------------- | --------------------------------------------------------- |
+| `symbol`            | `string`          | Symbol name (e.g., `"EURUSD"`, `"XAUUSD"`)                 |
+| `orderType`         | `ENUM_ORDER_TYPE` | Order type (Buy, Sell, BuyLimit, etc.)                    |
+| `deadline`          | `DateTime?`       | Absolute per‑call **UTC** deadline → converted to timeout |
+| `cancellationToken` | `CancellationToken`| Cooperative cancel for the call/retry loop               |
 
 ---
 
@@ -117,11 +112,7 @@ Use it to calculate margin requirements:
 ```csharp
 // acc — connected MT5Account
 
-var result = await acc.SymbolInfoMarginRateAsync(new SymbolInfoMarginRateRequest
-{
-    Symbol = "EURUSD",
-    OrderType = ENUM_ORDER_TYPE.OrderTypeBuy
-});
+var result = await acc.SymbolInfoMarginRateAsync("EURUSD", ENUM_ORDER_TYPE.OrderTypeBuy);
 
 Console.WriteLine($"Initial margin rate: {result.InitialMarginRate}");
 Console.WriteLine($"Maintenance margin rate: {result.MaintenanceMarginRate}");
@@ -136,14 +127,10 @@ var symbol = "XAUUSD";
 var lots = 0.10;
 
 // Get margin rates
-var marginRates = await acc.SymbolInfoMarginRateAsync(new SymbolInfoMarginRateRequest
-{
-    Symbol = symbol,
-    OrderType = ENUM_ORDER_TYPE.OrderTypeBuy
-});
+var marginRates = await acc.SymbolInfoMarginRateAsync(symbol, ENUM_ORDER_TYPE.OrderTypeBuy);
 
 // Get symbol margin info (using SymbolInfoDouble)
-// Assuming you have method to get SYMBOL_MARGIN_INITIAL
+// Assuming you have method to get SymbolMarginInitial
 var baseMargin = 100.0; // Example: $100 base margin for 1 lot
 
 var requiredMargin = lots * baseMargin * marginRates.InitialMarginRate;
@@ -158,17 +145,9 @@ Console.WriteLine($"Required margin for {lots} lots: ${requiredMargin:F2}");
 ```csharp
 var symbol = "USDJPY";
 
-var buyMargin = await acc.SymbolInfoMarginRateAsync(new SymbolInfoMarginRateRequest
-{
-    Symbol = symbol,
-    OrderType = ENUM_ORDER_TYPE.OrderTypeBuy
-});
+var buyMargin = await acc.SymbolInfoMarginRateAsync(symbol, ENUM_ORDER_TYPE.OrderTypeBuy);
 
-var sellMargin = await acc.SymbolInfoMarginRateAsync(new SymbolInfoMarginRateRequest
-{
-    Symbol = symbol,
-    OrderType = ENUM_ORDER_TYPE.OrderTypeSell
-});
+var sellMargin = await acc.SymbolInfoMarginRateAsync(symbol, ENUM_ORDER_TYPE.OrderTypeSell);
 
 Console.WriteLine($"Buy - Initial: {buyMargin.InitialMarginRate}, Maintenance: {buyMargin.MaintenanceMarginRate}");
 Console.WriteLine($"Sell - Initial: {sellMargin.InitialMarginRate}, Maintenance: {sellMargin.MaintenanceMarginRate}");
@@ -192,11 +171,7 @@ var account = await acc.AccountSummaryAsync();
 var availableMargin = account.AccountEquity;
 
 // Get margin rates
-var marginRates = await acc.SymbolInfoMarginRateAsync(new SymbolInfoMarginRateRequest
-{
-    Symbol = symbol,
-    OrderType = ENUM_ORDER_TYPE.OrderTypeBuy
-});
+var marginRates = await acc.SymbolInfoMarginRateAsync(symbol, ENUM_ORDER_TYPE.OrderTypeBuy);
 
 // Calculate required margin (simplified example)
 var baseMargin = 1000.0; // Example base margin
@@ -235,11 +210,7 @@ foreach (var orderType in orderTypes)
 {
     try
     {
-        var result = await acc.SymbolInfoMarginRateAsync(new SymbolInfoMarginRateRequest
-        {
-            Symbol = symbol,
-            OrderType = orderType
-        });
+        var result = await acc.SymbolInfoMarginRateAsync(symbol, orderType);
 
         Console.WriteLine($"{orderType,-25} Initial: {result.InitialMarginRate:F4}  Maintenance: {result.MaintenanceMarginRate:F4}");
     }
@@ -260,16 +231,12 @@ var lots = 0.10;
 
 // Get current position info
 var positions = await acc.OpenedOrdersAsync();
-var position = positions.Positions.FirstOrDefault(p => p.Symbol == symbol);
+var position = positions.PositionInfos.FirstOrDefault(p => p.Symbol == symbol);
 
 if (position != null)
 {
     // Get maintenance margin rate
-    var marginRates = await acc.SymbolInfoMarginRateAsync(new SymbolInfoMarginRateRequest
-    {
-        Symbol = symbol,
-        OrderType = position.Type == 0 ? ENUM_ORDER_TYPE.OrderTypeBuy : ENUM_ORDER_TYPE.OrderTypeSell
-    });
+    var marginRates = await acc.SymbolInfoMarginRateAsync(symbol, position.Type == 0 ? ENUM_ORDER_TYPE.OrderTypeBuy : ENUM_ORDER_TYPE.OrderTypeSell);
 
     // Calculate maintenance margin requirement
     var baseMargin = 1000.0; // Example

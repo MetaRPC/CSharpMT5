@@ -16,24 +16,23 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<SymbolInfoSessionTradeData> SymbolInfoSessionTradeAsync(
-            SymbolInfoSessionTradeRequest request,
+            string symbol,
+            DayOfWeek dayOfWeek,
+            uint sessionIndex,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
 }
 ```
 
-**Request message:**
+> The wrapper takes `symbol`, `dayOfWeek` and `sessionIndex` directly and builds the underlying `SymbolInfoSessionTradeRequest { symbol, day_of_week, session_index }` for you.
 
-`SymbolInfoSessionTradeRequest { symbol, day_of_week, session_index }`
-
-
-**Reply message:**
+**Reply message (underlying proto):**
 
 `SymbolInfoSessionTradeReply { data: SymbolInfoSessionTradeData }`
 
@@ -43,17 +42,11 @@ namespace mt5_term_api
 
 | Parameter           | Type                              | Description                                               |
 | ------------------- | --------------------------------- | --------------------------------------------------------- |
-| `request`           | `SymbolInfoSessionTradeRequest`   | Protobuf request with session parameters                  |
-| `deadline`          | `DateTime?`                       | Absolute per‑call **UTC** deadline → converted to timeout |
-| `cancellationToken` | `CancellationToken`               | Cooperative cancel for the call/retry loop                |
-
-### `SymbolInfoSessionTradeRequest`
-
-| Field          | Type        | Description                                                          |
-| -------------- | ----------- | -------------------------------------------------------------------- |
-| `Symbol`       | `string`    | Symbol name (e.g., `"EURUSD"`, `"XAUUSD"`) **REQUIRED**              |
-| `DayOfWeek`    | `DayOfWeek` | Day of the week (Sunday, Monday, etc.) **REQUIRED**                  |
-| `SessionIndex` | `uint32`    | Session index (starts from 0). Most symbols have 1-2 sessions/day    |
+| `symbol`            | `string`           | Symbol name (e.g., `"EURUSD"`, `"XAUUSD"`)                |
+| `dayOfWeek`         | `DayOfWeek`        | Day of the week (Sunday, Monday, etc.)                    |
+| `sessionIndex`      | `uint`             | Session index (starts from 0). Most symbols have 1-2/day  |
+| `deadline`          | `DateTime?`        | Absolute per‑call **UTC** deadline → converted to timeout |
+| `cancellationToken` | `CancellationToken`| Cooperative cancel for the call/retry loop                |
 
 ---
 
@@ -118,12 +111,7 @@ Use it to understand trading hours:
 ```csharp
 // acc — connected MT5Account
 
-var result = await acc.SymbolInfoSessionTradeAsync(new SymbolInfoSessionTradeRequest
-{
-    Symbol = "EURUSD",
-    DayOfWeek = DayOfWeek.Monday,
-    SessionIndex = 0
-});
+var result = await acc.SymbolInfoSessionTradeAsync("EURUSD", DayOfWeek.Monday, 0);
 
 var fromTime = result.From.ToDateTime().TimeOfDay;
 var toTime = result.To.ToDateTime().TimeOfDay;
@@ -145,12 +133,7 @@ for (uint sessionIndex = 0; sessionIndex < 10; sessionIndex++)
 {
     try
     {
-        var result = await acc.SymbolInfoSessionTradeAsync(new SymbolInfoSessionTradeRequest
-        {
-            Symbol = symbol,
-            DayOfWeek = day,
-            SessionIndex = sessionIndex
-        });
+        var result = await acc.SymbolInfoSessionTradeAsync(symbol, day, sessionIndex);
 
         var fromTime = result.From.ToDateTime().TimeOfDay;
         var toTime = result.To.ToDateTime().TimeOfDay;
@@ -182,12 +165,7 @@ for (uint sessionIndex = 0; sessionIndex < 5; sessionIndex++)
 {
     try
     {
-        var result = await acc.SymbolInfoSessionTradeAsync(new SymbolInfoSessionTradeRequest
-        {
-            Symbol = symbol,
-            DayOfWeek = currentDay,
-            SessionIndex = sessionIndex
-        });
+        var result = await acc.SymbolInfoSessionTradeAsync(symbol, currentDay, sessionIndex);
 
         var fromTime = result.From.ToDateTime().TimeOfDay;
         var toTime = result.To.ToDateTime().TimeOfDay;
@@ -240,12 +218,7 @@ foreach (var day in days)
     {
         try
         {
-            var result = await acc.SymbolInfoSessionTradeAsync(new SymbolInfoSessionTradeRequest
-            {
-                Symbol = symbol,
-                DayOfWeek = day,
-                SessionIndex = sessionIndex
-            });
+            var result = await acc.SymbolInfoSessionTradeAsync(symbol, day, sessionIndex);
 
             var fromTime = result.From.ToDateTime().TimeOfDay;
             var toTime = result.To.ToDateTime().TimeOfDay;
@@ -290,12 +263,7 @@ for (int dayOffset = 0; dayOffset < 7; dayOffset++)
     {
         try
         {
-            var result = await acc.SymbolInfoSessionTradeAsync(new SymbolInfoSessionTradeRequest
-            {
-                Symbol = symbol,
-                DayOfWeek = checkDay,
-                SessionIndex = sessionIndex
-            });
+            var result = await acc.SymbolInfoSessionTradeAsync(symbol, checkDay, sessionIndex);
 
             var fromTime = result.From.ToDateTime().TimeOfDay;
 
@@ -349,12 +317,7 @@ var quoteSession = await acc.SymbolInfoSessionQuoteAsync(new SymbolInfoSessionQu
     SessionIndex = 0
 });
 
-var tradeSession = await acc.SymbolInfoSessionTradeAsync(new SymbolInfoSessionTradeRequest
-{
-    Symbol = symbol,
-    DayOfWeek = day,
-    SessionIndex = 0
-});
+var tradeSession = await acc.SymbolInfoSessionTradeAsync(symbol, day, 0);
 
 var quoteFrom = quoteSession.From.ToDateTime().TimeOfDay;
 var quoteTo = quoteSession.To.ToDateTime().TimeOfDay;

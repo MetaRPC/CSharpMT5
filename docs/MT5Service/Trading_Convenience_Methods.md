@@ -76,7 +76,7 @@ var result = await service.BuyMarketAsync("EURUSD", 0.01,
     stopLoss: 1.0800, takeProfit: 1.0900, comment: "My trade");
 
 // Check result
-if (result.RetCode == 10009) // DONE
+if (result.ReturnedCode == 10009) // DONE
 {
     Console.WriteLine($"✅ Order opened: #{result.Order}");
 }
@@ -104,7 +104,7 @@ var result = await account.OrderSendAsync(request);
 var result = await service.SellMarketAsync("GBPUSD", 0.05,
     stopLoss: 1.2600, takeProfit: 1.2500);
 
-if (result.RetCode == 10009)
+if (result.ReturnedCode == 10009)
 {
     Console.WriteLine($"✅ Sell order: #{result.Order}");
 }
@@ -133,7 +133,7 @@ var result = await account.OrderSendAsync(request);
 var result = await service.BuyLimitAsync("EURUSD", 0.1, price: 1.0850,
     stopLoss: 1.0800, takeProfit: 1.0900);
 
-if (result.RetCode == 10009)
+if (result.ReturnedCode == 10009)
 {
     Console.WriteLine($"✅ BUY LIMIT order placed: #{result.Order}");
     Console.WriteLine($"   Will activate when price drops to 1.0850");
@@ -165,7 +165,7 @@ var result = await account.OrderSendAsync(request);
 var result = await service.SellLimitAsync("GBPUSD", 0.05, price: 1.2550,
     stopLoss: 1.2600, takeProfit: 1.2500);
 
-if (result.RetCode == 10009)
+if (result.ReturnedCode == 10009)
 {
     Console.WriteLine($"✅ SELL LIMIT order placed: #{result.Order}");
     Console.WriteLine($"   Will activate when price rises to 1.2550");
@@ -197,7 +197,7 @@ var result = await account.OrderSendAsync(request);
 var result = await service.BuyStopAsync("XAUUSD", 0.01, price: 2010.0,
     stopLoss: 2000.0, takeProfit: 2030.0);
 
-if (result.RetCode == 10009)
+if (result.ReturnedCode == 10009)
 {
     Console.WriteLine($"✅ BUY STOP order placed: #{result.Order}");
     Console.WriteLine($"   Will activate on breakout above 2010");
@@ -229,7 +229,7 @@ var result = await account.OrderSendAsync(request);
 var result = await service.SellStopAsync("USDJPY", 0.1, price: 149.50,
     stopLoss: 150.00, takeProfit: 149.00);
 
-if (result.RetCode == 10009)
+if (result.ReturnedCode == 10009)
 {
     Console.WriteLine($"✅ SELL STOP order placed: #{result.Order}");
     Console.WriteLine($"   Will activate on breakdown below 149.50");
@@ -311,7 +311,7 @@ var result = await service.BuyMarketAsync(symbol, volume,
     magic: 12345);
 
 // 6. Check result
-if (result.RetCode == 10009) // DONE
+if (result.ReturnedCode == 10009) // DONE
 {
     Console.WriteLine($"✅ Order opened successfully!");
     Console.WriteLine($"   Ticket: #{result.Order}");
@@ -322,7 +322,7 @@ if (result.RetCode == 10009) // DONE
 else
 {
     Console.WriteLine($"❌ Order failed!");
-    Console.WriteLine($"   Return Code: {result.RetCode}");
+    Console.WriteLine($"   Return Code: {result.ReturnedCode}");
     Console.WriteLine($"   Comment: {result.Comment}");
 }
 ```
@@ -404,6 +404,42 @@ Task<OrderSendData> BuyMarketAsync(
 - Need advanced order types (not covered by convenience methods)
 - Require full control over OrderSendRequest
 - Building complex order management systems
+
+---
+
+## ➕ Pre-Trade & Fast Send Methods (new)
+
+Pass-throughs for profit estimation and the no-pre-checks fast send. Signatures mirror the low-level calls — see the MT5Account pages for full field/enum tables.
+
+| Method | Returns | Low-Level Equivalent |
+|--------|---------|---------------------|
+| `OrderCalcProfitAsync(request)` | `OrderCalcProfitData` (expected profit) | [`MT5Account.OrderCalcProfitAsync`](../MT5Account/4.%20Trading_Operattons/OrderCalcProfit.md) |
+| `OrderSendWithoutChecksAsync(request)` | `OrderSendData` | [`MT5Account.OrderSendWithoutChecksAsync`](../MT5Account/4.%20Trading_Operattons/OrderSendWithoutChecks.md) |
+
+```csharp
+// Expected profit of a +100-point exit on a BUY
+var profit = await service.OrderCalcProfitAsync(new OrderCalcProfitRequest
+{
+    Symbol = "EURUSD",
+    OrderType = ENUM_ORDER_TYPE_TF.OrderTypeTfBuy,
+    Volume = 0.10,
+    OpenPrice = ask,
+    ClosePrice = ask + (100 * point)
+});
+Console.WriteLine($"Expected profit: {profit.Profit:F2}");
+
+// Fast send without server-side pre-checks (caller ensures request validity)
+var sent = await service.OrderSendWithoutChecksAsync(new OrderSendRequest
+{
+    Symbol = "EURUSD",
+    Operation = TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeBuy,
+    Volume = 0.01,
+    Price = ask
+});
+Console.WriteLine($"{sent.ReturnedCode} ({sent.ReturnedCodeDescription})");
+```
+
+> 💡 `MT5Sugar` adds `CalcProfit(symbol, isBuy, volume, open, close)` → `double` and `PlaceMarketFast(symbol, volume, isBuy, …)` for one-liner use.
 
 ---
 

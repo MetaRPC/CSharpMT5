@@ -95,6 +95,11 @@ namespace MetaRPC.CSharpMT5
 		public AccountInformation.AccountInformationClient AccountInformationClient { get; }
 
 		/// <summary>
+		/// Gets the gRPC client for trade statistics (performance, equity curve, unrealized P/L).
+		/// </summary>
+		public TradeStats.TradeStatsClient TradeStatsClient { get; }
+
+		/// <summary>
 		/// Gets the unique identifier for the account instance.
 		/// </summary>
 		public Guid Id { get; private set; }
@@ -150,6 +155,7 @@ namespace MetaRPC.CSharpMT5
 			MarketInfoClient = new MarketInfo.MarketInfoClient((ChannelBase)(object)GrpcChannel);
 			TradeFunctionsClient = new TradeFunctions.TradeFunctionsClient((ChannelBase)(object)GrpcChannel);
 			AccountInformationClient = new AccountInformation.AccountInformationClient((ChannelBase)(object)GrpcChannel);
+			TradeStatsClient = new TradeStats.TradeStatsClient((ChannelBase)(object)GrpcChannel);
 			Id = id != Guid.Empty ? id : ComputeDeterministicTerminalId(user, password);
 			ApiKey = !string.IsNullOrWhiteSpace(apiKey) ? apiKey : (Environment.GetEnvironmentVariable("MRPC_API_KEY") ?? "TRIAL");
 		}
@@ -1777,6 +1783,354 @@ namespace MetaRPC.CSharpMT5
 		public string AccountInfoString(AccountInfoStringPropertyType property, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return AccountInfoStringAsync(property, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Calculates the expected profit of a planned trade operation asynchronously.
+		/// </summary>
+		/// <param name="request">The request containing symbol, order type, volume, open and close price.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The calculated profit in account currency.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the client is not connected.</exception>
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns a business error.</exception>
+		/// <exception cref="T:Grpc.Core.RpcException">Thrown if gRPC fails to connect or respond.</exception>
+		public async Task<OrderCalcProfitData> OrderCalcProfitAsync(OrderCalcProfitRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			return (await ExecuteWithReconnect((Metadata headers) => TradeFunctionsClient.OrderCalcProfit(request, headers, deadline, cancellationToken), (OrderCalcProfitReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Calculates the expected profit of a planned trade operation synchronously.
+		/// </summary>
+		/// <param name="request">The request containing symbol, order type, volume, open and close price.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The calculated profit in account currency.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the client is not connected.</exception>
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns a business error.</exception>
+		/// <exception cref="T:Grpc.Core.RpcException">Thrown if gRPC fails to connect or respond.</exception>
+		public OrderCalcProfitData OrderCalcProfit(OrderCalcProfitRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return OrderCalcProfitAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Sends a market or pending order to the trading server without server-side pre-checks asynchronously.
+		/// Faster than <see cref="M:mt5_term_api.MT5Account.OrderSendAsync(mt5_term_api.OrderSendRequest,System.Nullable{System.DateTime},System.Threading.CancellationToken)" />, but the caller is responsible for request validity.
+		/// </summary>
+		/// <param name="request">The order request to send.</param>
+		/// <param name="deadline">Optional deadline for the operation.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>Task containing response with deal/order confirmation data.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the account is not connected.</exception>
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
+		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+		public async Task<OrderSendData> OrderSendWithoutChecksAsync(OrderSendRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			return (await ExecuteWithReconnect((Metadata headers) => TradeClient.OrderSendWithoutChecks(request, headers, deadline, cancellationToken), (OrderSendReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Sends a market or pending order to the trading server without server-side pre-checks synchronously.
+		/// </summary>
+		/// <param name="request">The order request to send.</param>
+		/// <param name="deadline">Optional deadline for the operation.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>Response containing deal/order confirmation data.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the account is not connected.</exception>
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
+		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+		public OrderSendData OrderSendWithoutChecks(OrderSendRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return OrderSendWithoutChecksAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Returns the full list of symbol names available on the platform asynchronously.
+		/// </summary>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The list of symbol names.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public async Task<SymbolListData> SymbolListAsync(DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			SymbolListRequest request = new SymbolListRequest();
+			return (await ExecuteWithReconnect((Metadata headers) => MarketInfoClient.SymbolList(request, headers, deadline, cancellationToken), (SymbolListReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Returns the full list of symbol names available on the platform synchronously.
+		/// </summary>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The list of symbol names.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public SymbolListData SymbolList(DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return SymbolListAsync(deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Retrieves historical price bars (OHLC) for a symbol asynchronously.
+		/// </summary>
+		/// <param name="request">The request containing symbol, timeframe and time range.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The historical price bars.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public async Task<PriceHistoryData> PriceHistoryAsync(PriceHistoryRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			return (await ExecuteWithReconnect((Metadata headers) => MarketInfoClient.PriceHistory(request, headers, deadline, cancellationToken), (PriceHistoryReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Retrieves historical price bars (OHLC) for a symbol synchronously.
+		/// </summary>
+		/// <param name="request">The request containing symbol, timeframe and time range.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The historical price bars.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public PriceHistoryData PriceHistory(PriceHistoryRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return PriceHistoryAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Retrieves the complete order history over a time range in a single call asynchronously.
+		/// </summary>
+		/// <param name="from">The start time for the history query (server time).</param>
+		/// <param name="to">The end time for the history query (server time).</param>
+		/// <param name="sortMode">The sort mode: 0 - by open time, 1 - by close time, 2 - by ticket ID.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>Task containing the full historical order data.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public async Task<AllHistoryOrdersData> AllHistoryOrdersAsync(DateTime from, DateTime to, BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			AllHistoryOrdersRequest request = new AllHistoryOrdersRequest
+			{
+				InputFrom = Timestamp.FromDateTime(from.ToUniversalTime()),
+				InputTo = Timestamp.FromDateTime(to.ToUniversalTime()),
+				InputSortMode = sortMode
+			};
+			return (await ExecuteWithReconnect((Metadata headers) => AccountClient.AllHistoryOrders(request, headers, deadline, cancellationToken), (AllHistoryOrdersReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Retrieves the complete order history over a time range in a single call synchronously.
+		/// </summary>
+		/// <param name="from">The start time for the history query (server time).</param>
+		/// <param name="to">The end time for the history query (server time).</param>
+		/// <param name="sortMode">The sort mode: 0 - by open time, 1 - by close time, 2 - by ticket ID.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The full historical order data.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public AllHistoryOrdersData AllHistoryOrders(DateTime from, DateTime to, BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return AllHistoryOrdersAsync(from, to, sortMode, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Retrieves aggregated trade statistics (profit factor, win/loss, drawdowns, per-market breakdown) asynchronously.
+		/// </summary>
+		/// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The aggregated statistics.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public async Task<StatsData> TradeStatsAsync(DateTime? since = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			TradeStatsRequest request = new TradeStatsRequest();
+			if (since.HasValue)
+			{
+				request.From = since.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss");
+			}
+			return (await ExecuteWithReconnect((Metadata headers) => TradeStatsClient.TradeStats(request, headers, deadline, cancellationToken), (TradeStatsReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Retrieves aggregated trade statistics synchronously.
+		/// </summary>
+		/// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The aggregated statistics.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public StatsData TradeStats(DateTime? since = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return TradeStatsAsync(since, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Retrieves trade statistics together with the equity curve and trades in one call asynchronously.
+		/// </summary>
+		/// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+		/// <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>Statistics with equity-curve charts and trades.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public async Task<StatsWithChartsData> TradeStatsEquityHistoryAsync(DateTime? since = null, bool? excludeSameBars = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			TradeStatsEquityHistoryRequest request = new TradeStatsEquityHistoryRequest();
+			if (since.HasValue)
+			{
+				request.From = since.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss");
+			}
+			if (excludeSameBars.HasValue)
+			{
+				request.ExcludeSameBars = excludeSameBars.Value;
+			}
+			return (await ExecuteWithReconnect((Metadata headers) => TradeStatsClient.TradeStatsEquityHistory(request, headers, deadline, cancellationToken), (TradeStatsEquityHistoryReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Retrieves trade statistics together with the equity curve and trades in one call synchronously.
+		/// </summary>
+		/// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+		/// <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>Statistics with equity-curve charts and trades.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public StatsWithChartsData TradeStatsEquityHistory(DateTime? since = null, bool? excludeSameBars = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return TradeStatsEquityHistoryAsync(since, excludeSameBars, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Retrieves per-open-position unrealized-P/L excursions (MFE/MAE extrema) asynchronously.
+		/// </summary>
+		/// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The unrealized-P/L extrema per position.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public async Task<TradeUnrealizedPLData> TradeUnrealizedPLAsync(DateTime? since = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			TradeUnrealizedPLRequest request = new TradeUnrealizedPLRequest();
+			if (since.HasValue)
+			{
+				request.From = since.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss");
+			}
+			return (await ExecuteWithReconnect((Metadata headers) => TradeStatsClient.TradeUnrealizedPL(request, headers, deadline, cancellationToken), (TradeUnrealizedPLReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Retrieves per-open-position unrealized-P/L excursions (MFE/MAE extrema) synchronously.
+		/// </summary>
+		/// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The unrealized-P/L extrema per position.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public TradeUnrealizedPLData TradeUnrealizedPL(DateTime? since = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return TradeUnrealizedPLAsync(since, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Retrieves the account equity curve over a time range asynchronously.
+		/// </summary>
+		/// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+		/// <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The equity-curve points.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public async Task<EquityHistoryData> EquityHistoryAsync(DateTime? since = null, bool? excludeSameBars = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			if (Id == default(Guid))
+			{
+				throw new ConnectExceptionMT5("Please call Connect method firstly");
+			}
+			EquityHistoryRequest request = new EquityHistoryRequest();
+			if (since.HasValue)
+			{
+				request.From = since.Value.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss");
+			}
+			if (excludeSameBars.HasValue)
+			{
+				request.ExcludeSameBars = excludeSameBars.Value;
+			}
+			return (await ExecuteWithReconnect((Metadata headers) => TradeStatsClient.EquityHistory(request, headers, deadline, cancellationToken), (EquityHistoryReply r) => r.Error, deadline, cancellationToken)).Data;
+		}
+
+		/// <summary>
+		/// Retrieves the account equity curve over a time range synchronously.
+		/// </summary>
+		/// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+		/// <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>The equity-curve points.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public EquityHistoryData EquityHistory(DateTime? since = null, bool? excludeSameBars = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return EquityHistoryAsync(since, excludeSameBars, deadline, cancellationToken).GetAwaiter().GetResult();
 		}
 
 		/// <summary>

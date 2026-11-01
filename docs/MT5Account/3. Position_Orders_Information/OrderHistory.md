@@ -16,14 +16,14 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<OrdersHistoryData> OrderHistoryAsync(
             DateTime from,
             DateTime to,
-            BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.BMT5_SORT_BY_OPEN_TIME_ASC,
+            BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
             int pageNumber = 0,
             int itemsPerPage = 0,
             DateTime? deadline = null,
@@ -74,12 +74,12 @@ namespace mt5_term_api
 
 | Enum Value                           | Value | Description                           |
 | ------------------------------------ | ----- | ------------------------------------- |
-| `BMT5_SORT_BY_OPEN_TIME_ASC`         | 0     | Sort by open time (oldest first)      |
-| `BMT5_SORT_BY_OPEN_TIME_DESC`        | 1     | Sort by open time (newest first)      |
-| `BMT5_SORT_BY_CLOSE_TIME_ASC`        | 2     | Sort by close time (oldest first)     |
-| `BMT5_SORT_BY_CLOSE_TIME_DESC`       | 3     | Sort by close time (newest first)     |
-| `BMT5_SORT_BY_ORDER_TICKET_ID_ASC`   | 4     | Sort by ticket ID (ascending)         |
-| `BMT5_SORT_BY_ORDER_TICKET_ID_DESC`  | 5     | Sort by ticket ID (descending)        |
+| `Bmt5SortByOpenTimeAsc`         | 0     | Sort by open time (oldest first)      |
+| `Bmt5SortByOpenTimeDesc`        | 1     | Sort by open time (newest first)      |
+| `Bmt5SortByCloseTimeAsc`        | 2     | Sort by close time (oldest first)     |
+| `Bmt5SortByCloseTimeDesc`       | 3     | Sort by close time (newest first)     |
+| `Bmt5SortByOrderTicketIdAsc`   | 4     | Sort by ticket ID (ascending)         |
+| `Bmt5SortByOrderTicketIdDesc`  | 5     | Sort by ticket ID (descending)        |
 
 ### `HistoryData` (Container for Order + Deal)
 
@@ -140,33 +140,33 @@ namespace mt5_term_api
 
 | Enum Value                              | Value | Description                     |
 | --------------------------------------- | ----- | ------------------------------- |
-| `BMT5_DEAL_TYPE_BUY`                    | 0     | Buy deal                        |
-| `BMT5_DEAL_TYPE_SELL`                   | 1     | Sell deal                       |
-| `BMT5_DEAL_TYPE_BALANCE`                | 2     | Balance operation               |
-| `BMT5_DEAL_TYPE_CREDIT`                 | 3     | Credit operation                |
-| `BMT5_DEAL_TYPE_CHARGE`                 | 4     | Additional charge               |
-| `BMT5_DEAL_TYPE_CORRECTION`             | 5     | Correction                      |
-| `BMT5_DEAL_TYPE_BONUS`                  | 6     | Bonus                           |
-| `BMT5_DEAL_TYPE_COMMISSION`             | 7     | Additional commission           |
-| `BMT5_DEAL_TYPE_COMMISSION_DAILY`       | 8     | Daily commission                |
-| `BMT5_DEAL_TYPE_COMMISSION_MONTHLY`     | 9     | Monthly commission              |
-| `BMT5_DEAL_TYPE_COMMISSION_AGENT_DAILY` | 10    | Daily agent commission          |
-| `BMT5_DEAL_TYPE_COMMISSION_AGENT_MONTHLY`| 11   | Monthly agent commission        |
-| `BMT5_DEAL_TYPE_INTEREST`               | 12    | Interest rate                   |
-| `BMT5_DEAL_TYPE_BUY_CANCELED`           | 13    | Canceled buy deal               |
-| `BMT5_DEAL_TYPE_SELL_CANCELED`          | 14    | Canceled sell deal              |
-| `BMT5_DEAL_DIVIDEND`                    | 15    | Dividend operation              |
-| `BMT5_DEAL_DIVIDEND_FRANKED`            | 16    | Franked (tax-adjusted) dividend |
-| `BMT5_DEAL_TAX`                         | 17    | Tax charge                      |
+| `Bmt5DealTypeBuy`                    | 0     | Buy deal                        |
+| `Bmt5DealTypeSell`                   | 1     | Sell deal                       |
+| `Bmt5DealTypeBalance`                | 2     | Balance operation               |
+| `Bmt5DealTypeCredit`                 | 3     | Credit operation                |
+| `Bmt5DealTypeCharge`                 | 4     | Additional charge               |
+| `Bmt5DealTypeCorrection`             | 5     | Correction                      |
+| `Bmt5DealTypeBonus`                  | 6     | Bonus                           |
+| `Bmt5DealTypeCommission`             | 7     | Additional commission           |
+| `Bmt5DealTypeCommissionDaily`       | 8     | Daily commission                |
+| `Bmt5DealTypeCommissionMonthly`     | 9     | Monthly commission              |
+| `Bmt5DealTypeCommissionAgentDaily` | 10    | Daily agent commission          |
+| `Bmt5DealTypeCommissionAgentMonthly`| 11   | Monthly agent commission        |
+| `Bmt5DealTypeInterest`               | 12    | Interest rate                   |
+| `Bmt5DealTypeBuyCanceled`           | 13    | Canceled buy deal               |
+| `Bmt5DealTypeSellCanceled`          | 14    | Canceled sell deal              |
+| `Bmt5DealDividend`                    | 15    | Dividend operation              |
+| `Bmt5DealDividendFranked`            | 16    | Franked (tax-adjusted) dividend |
+| `Bmt5DealTax`                         | 17    | Tax charge                      |
 
 ### `BMT5_ENUM_DEAL_ENTRY_TYPE`
 
 | Enum Value                | Value | Description                                    |
 | ------------------------- | ----- | ---------------------------------------------- |
-| `BMT5_DEAL_ENTRY_IN`      | 0     | Entry into position                            |
-| `BMT5_DEAL_ENTRY_OUT`     | 1     | Exit from position                             |
-| `BMT5_DEAL_ENTRY_INOUT`   | 2     | Reversal (close and open opposite)             |
-| `BMT5_DEAL_ENTRY_OUT_BY`  | 3     | Close position by opposite position            |
+| `Bmt5DealEntryIn`      | 0     | Entry into position                            |
+| `Bmt5DealEntryOut`     | 1     | Exit from position                             |
+| `Bmt5DealEntryInout`   | 2     | Reversal (close and open opposite)             |
+| `Bmt5DealEntryOutBy`  | 3     | Close position by opposite position            |
 
 ### Related enums from `OpenedOrders.md`:
 
@@ -213,7 +213,7 @@ Use this method when you need to:
 * **Deal** = actual execution (buy/sell transaction that happened).
 * One order can generate multiple deals (partial fills).
 * `ArrayTotal` shows **total** items matching criteria, not just current page.
-* Use `BMT5_SORT_BY_CLOSE_TIME_DESC` to get most recent closed trades first.
+* Use `Bmt5SortByCloseTimeDesc` to get most recent closed trades first.
 * Filter by `MagicNumber` in your code to get EA-specific history.
 * `Profit` in `DealHistoryData` is **realized P&L** (trade already closed).
 * `Commission`, `Fee`, and `Swap` are **separate** from Profit.
@@ -234,7 +234,7 @@ var to = serverTime;
 var history = await acc.OrderHistoryAsync(
     from: from,
     to: to,
-    sortMode: BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.BMT5_SORT_BY_CLOSE_TIME_DESC,
+    sortMode: BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeDesc,
     deadline: DateTime.UtcNow.AddSeconds(15));
 
 Console.WriteLine($"Total history items: {history.ArrayTotal}");
@@ -261,8 +261,8 @@ foreach (var item in history.HistoryData)
         var deal = item.HistoryDeal;
 
         // Only count trading deals (Buy/Sell)
-        if (deal.Type == BMT5_ENUM_DEAL_TYPE.BMT5_DEAL_TYPE_BUY ||
-            deal.Type == BMT5_ENUM_DEAL_TYPE.BMT5_DEAL_TYPE_SELL)
+        if (deal.Type == BMT5_ENUM_DEAL_TYPE.Bmt5DealTypeBuy ||
+            deal.Type == BMT5_ENUM_DEAL_TYPE.Bmt5DealTypeSell)
         {
             totalProfit += deal.Profit;
             totalCommission += deal.Commission;
@@ -286,7 +286,7 @@ Console.WriteLine($"Net P&L:          {netPL:F2}");
 var history = await acc.OrderHistoryAsync(
     from: DateTime.UtcNow.AddDays(-30),
     to: DateTime.UtcNow,
-    sortMode: BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.BMT5_SORT_BY_CLOSE_TIME_DESC);
+    sortMode: BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeDesc);
 
 Console.WriteLine("=== CLOSED POSITIONS (Last 30 Days) ===");
 Console.WriteLine("Date                Symbol      Type    Volume   Price      Profit");
@@ -298,11 +298,11 @@ foreach (var item in history.HistoryData)
     {
         var deal = item.HistoryDeal;
 
-        if (deal.Type == BMT5_ENUM_DEAL_TYPE.BMT5_DEAL_TYPE_BUY ||
-            deal.Type == BMT5_ENUM_DEAL_TYPE.BMT5_DEAL_TYPE_SELL)
+        if (deal.Type == BMT5_ENUM_DEAL_TYPE.Bmt5DealTypeBuy ||
+            deal.Type == BMT5_ENUM_DEAL_TYPE.Bmt5DealTypeSell)
         {
             var time = DateTimeOffset.FromUnixTimeSeconds(deal.Time.Seconds).DateTime;
-            var type = deal.Type == BMT5_ENUM_DEAL_TYPE.BMT5_DEAL_TYPE_BUY ? "BUY " : "SELL";
+            var type = deal.Type == BMT5_ENUM_DEAL_TYPE.Bmt5DealTypeBuy ? "BUY " : "SELL";
 
             Console.WriteLine($"{time:yyyy-MM-dd HH:mm}  {deal.Symbol,-10}  {type}  {deal.Volume,6:F2}  {deal.Price,8:F5}  {deal.Profit,8:F2}");
         }

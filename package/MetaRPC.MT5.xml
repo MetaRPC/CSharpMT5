@@ -12316,6 +12316,11 @@
             Gets the gRPC client for trading functions.
             </summary>
         </member>
+        <member name="P:MetaRPC.CSharpMT5.MT5Account.TradeStatsClient">
+            <summary>
+            Gets the gRPC client for trade statistics (performance, equity curve, unrealized P/L).
+            </summary>
+        </member>
         <member name="P:MetaRPC.CSharpMT5.MT5Account.Id">
             <summary>
             Gets the unique identifier for the account instance.
@@ -13286,6 +13291,229 @@
             <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the client is not connected.</exception>
             <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns a business error.</exception>
             <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.OrderCalcProfitAsync(mt5_term_api.OrderCalcProfitRequest,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Calculates the expected profit of a planned trade operation asynchronously.
+            </summary>
+            <param name="request">The request containing symbol, order type, volume, open and close price.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The calculated profit in account currency.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the client is not connected.</exception>
+            <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns a business error.</exception>
+            <exception cref="T:Grpc.Core.RpcException">Thrown if gRPC fails to connect or respond.</exception>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.OrderCalcProfit(mt5_term_api.OrderCalcProfitRequest,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Calculates the expected profit of a planned trade operation synchronously.
+            </summary>
+            <param name="request">The request containing symbol, order type, volume, open and close price.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The calculated profit in account currency.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the client is not connected.</exception>
+            <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns a business error.</exception>
+            <exception cref="T:Grpc.Core.RpcException">Thrown if gRPC fails to connect or respond.</exception>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.OrderSendWithoutChecksAsync(mt5_term_api.OrderSendRequest,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Sends a market or pending order to the trading server without server-side pre-checks asynchronously.
+            Faster than <see cref="M:mt5_term_api.MT5Account.OrderSendAsync(mt5_term_api.OrderSendRequest,System.Nullable{System.DateTime},System.Threading.CancellationToken)" />, but the caller is responsible for request validity.
+            </summary>
+            <param name="request">The order request to send.</param>
+            <param name="deadline">Optional deadline for the operation.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>Task containing response with deal/order confirmation data.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the account is not connected.</exception>
+            <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
+            <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.OrderSendWithoutChecks(mt5_term_api.OrderSendRequest,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Sends a market or pending order to the trading server without server-side pre-checks synchronously.
+            </summary>
+            <param name="request">The order request to send.</param>
+            <param name="deadline">Optional deadline for the operation.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>Response containing deal/order confirmation data.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the account is not connected.</exception>
+            <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
+            <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.SymbolListAsync(System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns the full list of symbol names available on the platform asynchronously.
+            </summary>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The list of symbol names.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.SymbolList(System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Returns the full list of symbol names available on the platform synchronously.
+            </summary>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The list of symbol names.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.PriceHistoryAsync(mt5_term_api.PriceHistoryRequest,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves historical price bars (OHLC) for a symbol asynchronously.
+            </summary>
+            <param name="request">The request containing symbol, timeframe and time range.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The historical price bars.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.PriceHistory(mt5_term_api.PriceHistoryRequest,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves historical price bars (OHLC) for a symbol synchronously.
+            </summary>
+            <param name="request">The request containing symbol, timeframe and time range.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The historical price bars.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.AllHistoryOrdersAsync(System.DateTime,System.DateTime,mt5_term_api.BMT5_ENUM_ORDER_HISTORY_SORT_TYPE,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves the complete order history over a time range in a single call asynchronously.
+            </summary>
+            <param name="from">The start time for the history query (server time).</param>
+            <param name="to">The end time for the history query (server time).</param>
+            <param name="sortMode">The sort mode: 0 - by open time, 1 - by close time, 2 - by ticket ID.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>Task containing the full historical order data.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.AllHistoryOrders(System.DateTime,System.DateTime,mt5_term_api.BMT5_ENUM_ORDER_HISTORY_SORT_TYPE,System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves the complete order history over a time range in a single call synchronously.
+            </summary>
+            <param name="from">The start time for the history query (server time).</param>
+            <param name="to">The end time for the history query (server time).</param>
+            <param name="sortMode">The sort mode: 0 - by open time, 1 - by close time, 2 - by ticket ID.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The full historical order data.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.TradeStatsAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves aggregated trade statistics (profit factor, win/loss, drawdowns, per-market breakdown) asynchronously.
+            </summary>
+            <param name="since">Optional start of the window (server time). Omit for full history.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The aggregated statistics.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.TradeStats(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves aggregated trade statistics synchronously.
+            </summary>
+            <param name="since">Optional start of the window (server time). Omit for full history.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The aggregated statistics.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.TradeStatsEquityHistoryAsync(System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves trade statistics together with the equity curve and trades in one call asynchronously.
+            </summary>
+            <param name="since">Optional start of the window (server time). Omit for full history.</param>
+            <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>Statistics with equity-curve charts and trades.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.TradeStatsEquityHistory(System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves trade statistics together with the equity curve and trades in one call synchronously.
+            </summary>
+            <param name="since">Optional start of the window (server time). Omit for full history.</param>
+            <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>Statistics with equity-curve charts and trades.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.TradeUnrealizedPLAsync(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves per-open-position unrealized-P/L excursions (MFE/MAE extrema) asynchronously.
+            </summary>
+            <param name="since">Optional start of the window (server time). Omit for full history.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The unrealized-P/L extrema per position.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.TradeUnrealizedPL(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves per-open-position unrealized-P/L excursions (MFE/MAE extrema) synchronously.
+            </summary>
+            <param name="since">Optional start of the window (server time). Omit for full history.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The unrealized-P/L extrema per position.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.EquityHistoryAsync(System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves the account equity curve over a time range asynchronously.
+            </summary>
+            <param name="since">Optional start of the window (server time). Omit for full history.</param>
+            <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The equity-curve points.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
+        </member>
+        <member name="M:MetaRPC.CSharpMT5.MT5Account.EquityHistory(System.Nullable{System.DateTime},System.Nullable{System.Boolean},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>
+            Retrieves the account equity curve over a time range synchronously.
+            </summary>
+            <param name="since">Optional start of the window (server time). Omit for full history.</param>
+            <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+            <param name="deadline">Optional gRPC deadline.</param>
+            <param name="cancellationToken">Optional cancellation token.</param>
+            <returns>The equity-curve points.</returns>
+            <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+            <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+            <exception cref="T:Grpc.Core.RpcException" />
         </member>
         <member name="M:MetaRPC.CSharpMT5.MT5Account.DisconnectAsync(System.Threading.CancellationToken)">
             <summary>

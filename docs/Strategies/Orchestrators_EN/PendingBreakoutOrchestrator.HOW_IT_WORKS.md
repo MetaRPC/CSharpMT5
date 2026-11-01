@@ -132,70 +132,28 @@ Console.WriteLine($"  ✓ BUY STOP placed: #{buyStopResult.Order}\n");
 #### How BuyStopPoints() works internally
 
 ```csharp
-// MT5Sugar.cs (extension method)
+// MT5Sugar.cs (extension method) — condensed, matching the real implementation
 public static async Task<OrderSendData> BuyStopPoints(
-    this MT5Service service,
-    string symbol,
-    double volume,
-    int priceOffsetPoints,  // ← RECEIVES +25
-    int slPoints = 0,
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double volume, double priceOffsetPoints,
+    double? slPoints = null, double? tpPoints = null, string? comment = null,
+    int deviationPoints = 0, int timeoutSec = 15, CancellationToken ct = default)
 {
-    
-    // │  STEP 1: Get current Ask price                      
-    // │  For BUY STOP use ASK (buy price)                  
-    // └─────────────────────────────────────────────────────
-    var tick = await service.SymbolInfoTickAsync(symbol);
-    double askPrice = tick.Ask;  // For example: 1.10002
+    await svc.EnsureSelected(symbol, timeoutSec, ct);
 
-    
-    // │  STEP 2: Get point size                             
-    // └─────────────────────────────────────────────────────
-    var symbolInfo = await service.SymbolInfoAsync(symbol);
-    double point = symbolInfo.Point;  // For EURUSD: 0.00001
+    var tick  = await svc.SymbolInfoTickAsync(symbol);
+    var point = await svc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolPoint);
 
-    // │  STEP 3: Calculate BUY STOP price                   
-    // │  IMPORTANT: priceOffsetPoints POSITIVE (+25)        
-    // │  BUY STOP is placed ABOVE current price             
-    // │                                                     
-    // │  price = askPrice + (priceOffsetPoints × point)     
-    // │       = 1.10002 + (25 × 0.00001)                    
-    // │       = 1.10002 + 0.00025                           
-    // │       = 1.10027                                     
-    // └─────────────────────────────────────────────────────
-    double price = askPrice + (priceOffsetPoints * point);
+    // Buy Stop is ALWAYS above Ask → the offset's absolute value is used
+    //   Ask = 1.10002, |offset| = 25 → raw = 1.10002 + 25×0.00001 = 1.10027
+    var rawPrice = tick.Ask + Math.Abs(priceOffsetPoints) * point;
+    var price    = await svc.NormalizePriceAsync(symbol, rawPrice, timeoutSec, ct);
 
-    
-    // │  STEP 4: Calculate SL and TP for BUY                
-    // │  SL below entry price (protection from fall)        
-    // │  TP above entry price (profit taking)               
-    // │                                                     
-    // │  sl = price - (slPoints × point)                    
-    // │     = 1.10027 - (15 × 0.00001)                      
-    // │     = 1.10027 - 0.00015                             
-    // │     = 1.10012                                       
-    // │                                                     
-    // │  tp = price + (tpPoints × point)                    
-    // │     = 1.10027 + (30 × 0.00001)                      
-    // │     = 1.10027 + 0.00030                             
-    // │     = 1.10057                                       
-    // └─────────────────────────────────────────────────────
-    double sl = slPoints > 0 ? price - (slPoints * point) : 0;
-    double tp = tpPoints > 0 ? price + (tpPoints * point) : 0;
+    double sl = slPoints.HasValue ? price - slPoints.Value * point : 0;  // 1.10012
+    double tp = tpPoints.HasValue ? price + tpPoints.Value * point : 0;  // 1.10057
 
-    
-    // │  STEP 5: Call low-level method                      
-    // └─────────────────────────────────────────────────────
-    return await service.BuyStopAsync(
-        symbol: symbol,      // "EURUSD"
-        volume: volume,      // 0.01
-        price: price,        // 1.10027
-        sl: sl,              // 1.10012
-        tp: tp,              // 1.10057
-        comment: comment     // "Breakout-Buy"
-    );
+    // operationCode for Buy Stop (4)
+    var req = BuildPendingRequest(symbol, volume, price, sl, tp, comment, deviationPoints, operationCode: 4);
+    return await svc.OrderSendAsync(req, Dl(timeoutSec), ct);
 }
 ```
 
@@ -224,34 +182,32 @@ public static async Task<OrderSendData> BuyStopPoints(
 │  │ 4. Calculate SL: 1.10027 - (15 × 0.00001) = 1.10012      
 │  │ 5. Calculate TP: 1.10027 + (30 × 0.00001) = 1.10057      
 │  └────────────────────────────────────────────────────────── 
-│  await service.BuyStopAsync(                                   
-│      price: 1.10027,    ← ABSOLUTE PRICE                       
-│      sl: 1.10012,                                              
-│      tp: 1.10057                                               
-│  )                                                             
+│  var req = BuildPendingRequest(price: 1.10027,                 
+│      sl: 1.10012, tp: 1.10057, operationCode: 4 /*BuyStop*/)   
+│  await svc.OrderSendAsync(req)                                 
 └──────────────────────────┬─────────────────────────────────────
                            │
                            ▼
 
-│  MT5Service.BuyStopAsync()                                     
-│  return await _account.BuyStopAsync(...)                       
+│  MT5Service.OrderSendAsync()                                   
+│  return await _account.OrderSendAsync(request)                 
 └──────────────────────────┬─────────────────────────────────────
                            │
                            ▼
 
-│  MT5Account.BuyStopAsync()                                     
+│  MT5Account.OrderSendAsync(OrderSendRequest)                   
 │   
 │  │ var request = new OrderSendRequest {                       
 │  │     Symbol = "EURUSD",                                    
 │  │     Volume = 0.01,                                         
-│  │     Type = ORDER_TYPE_BUY_STOP,  // = 4                 
+│  │     Operation = Tmt5OrderTypeBuyStop,  // = 4             
 │  │     Price = 1.10027,                                     
-│  │     Sl = 1.10012,                                          
-│  │     Tp = 1.10057,                                         
+│  │     StopLoss = 1.10012,                                   
+│  │     TakeProfit = 1.10057,                                 
 │  │     Comment = "Breakout-Buy"                              
 │  │ }                                                         
 │  └────────────────────────────────────────────────────────── 
-│  var response = await _client.OrderSendAsync(request);         
+│  var response = await TradeClient.OrderSend(request, ...);     
 └──────────────────────────┬─────────────────────────────────────
                            │
                            ▼
@@ -327,65 +283,29 @@ Console.WriteLine($"  ✓ SELL STOP placed: #{sellStopResult.Order}\n");
 #### How SellStopPoints() works internally
 
 ```csharp
-// MT5Sugar.cs (extension method)
+// MT5Sugar.cs (extension method) — condensed, matching the real implementation
 public static async Task<OrderSendData> SellStopPoints(
-    this MT5Service service,
-    string symbol,
-    double volume,
-    int priceOffsetPoints,  // ← RECEIVES -25
-    int slPoints = 0,
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double volume, double priceOffsetPoints,
+    double? slPoints = null, double? tpPoints = null, string? comment = null,
+    int deviationPoints = 0, int timeoutSec = 15, CancellationToken ct = default)
 {
-   
-    // │  STEP 1: Get current Bid price                      
-    // │  For SELL STOP use BID (sell price)                 
-    // └─────────────────────────────────────────────────────
-    var tick = await service.SymbolInfoTickAsync(symbol);
-    double bidPrice = tick.Bid;  // For example: 1.10000
+    await svc.EnsureSelected(symbol, timeoutSec, ct);
 
-    var symbolInfo = await service.SymbolInfoAsync(symbol);
-    double point = symbolInfo.Point;  // 0.00001
+    var tick  = await svc.SymbolInfoTickAsync(symbol);
+    var point = await svc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolPoint);
 
-    
-    // │  STEP 2: Calculate SELL STOP price                  
-    // │  IMPORTANT: priceOffsetPoints NEGATIVE (-25)        
-    // │  SELL STOP is placed BELOW current price            
-    // │                                                     
-    // │  price = bidPrice + (priceOffsetPoints × point)     
-    // │       = 1.10000 + (-25 × 0.00001)                   
-    // │       = 1.10000 - 0.00025                           
-    // │       = 1.09975                                     
-    // └─────────────────────────────────────────────────────
-    double price = bidPrice + (priceOffsetPoints * point);
+    // Sell Stop is ALWAYS below Bid → the offset's absolute value is used
+    //   Bid = 1.10000, |offset| = 25 → raw = 1.10000 - 25×0.00001 = 1.09975
+    var rawPrice = tick.Bid - Math.Abs(priceOffsetPoints) * point;
+    var price    = await svc.NormalizePriceAsync(symbol, rawPrice, timeoutSec, ct);
 
-    
-    // │  STEP 3: Calculate SL and TP for SELL               
-    // │  SL ABOVE entry price (protection from rise)        
-    // │  TP BELOW entry price (profit taking)               
-    // │                                                     
-    // │  sl = price + (slPoints × point)  ← PLUS for SELL!  
-    // │     = 1.09975 + (15 × 0.00001)                      
-    // │     = 1.09975 + 0.00015                             
-    // │     = 1.09990                                       
-    // │                                                    
-    // │  tp = price - (tpPoints × point)  ← MINUS for SELL! 
-    // │     = 1.09975 - (30 × 0.00001)                      
-    // │     = 1.09975 - 0.00030                             
-    // │     = 1.09945                                       
-    // └─────────────────────────────────────────────────────
-    double sl = slPoints > 0 ? price + (slPoints * point) : 0;  // + for SELL
-    double tp = tpPoints > 0 ? price - (tpPoints * point) : 0;  // - for SELL
+    // For SELL: SL above entry, TP below entry
+    double sl = slPoints.HasValue ? price + slPoints.Value * point : 0;  // 1.09990
+    double tp = tpPoints.HasValue ? price - tpPoints.Value * point : 0;  // 1.09945
 
-    return await service.SellStopAsync(
-        symbol: symbol,
-        volume: volume,
-        price: price,    // 1.09975
-        sl: sl,          // 1.09990
-        tp: tp,          // 1.09945
-        comment: comment
-    );
+    // operationCode for Sell Stop (5)
+    var req = BuildPendingRequest(symbol, volume, price, sl, tp, comment, deviationPoints, operationCode: 5);
+    return await svc.OrderSendAsync(req, Dl(timeoutSec), ct);
 }
 ```
 
@@ -633,43 +553,14 @@ else
 #### How CloseByTicket() works
 
 ```csharp
-// MT5Sugar.cs (extension method)
-public static async Task CloseByTicket(
-    this MT5Service service,
-    ulong ticket
-)
+// MT5Sugar.cs (extension method) — condensed, matching the real implementation
+public static Task<OrderCloseData> CloseByTicket(
+    this MT5Service svc, ulong ticket, double? volume = null,
+    int timeoutSec = 15, CancellationToken ct = default)
 {
-    
-    // │  STEP 1: Check ticket type (order or position?)    
-    // └─────────────────────────────────────────────────────
-
-    // Attempt 1: Get as pending order
-    var orders = await service.OrdersAsync();
-    var order = orders.FirstOrDefault(o => o.Ticket == ticket);
-
-    if (order != null)
-    {
-        
-        // │  This is PENDING ORDER → CANCEL             
-        // └─────────────────────────────────────────────
-        await service.OrderDeleteAsync(ticket);
-        return;
-    }
-
-    // Attempt 2: Get as open position
-    var positions = await service.PositionsAsync();
-    var position = positions.FirstOrDefault(p => p.Ticket == ticket);
-
-    if (position != null)
-    {
-        
-        // │  This is OPEN POSITION → CLOSE              
-        // └─────────────────────────────────────────────
-        await service.PositionCloseAsync(ticket);
-        return;
-    }
-
-    // Ticket not found (already closed/canceled or doesn't exist)
+    // One request handles both cases: closing a position and cancelling a pending order.
+    var req = new OrderCloseRequest { Ticket = ticket, Volume = volume ?? 0 };
+    return svc.OrderCloseAsync(req, Dl(timeoutSec), ct);
 }
 ```
 
@@ -684,21 +575,17 @@ USER CODE:
         ▼
 MT5Sugar.CloseByTicket():
     
-    │ 1. OrdersAsync() → check pending orders     
-    │ 2. Found order #790 → this is PENDING ORDER 
-    │ 3. Call OrderDeleteAsync(790)               
+    │ 1. Build OrderCloseRequest { Ticket = 790 }  
+    │ 2. return svc.OrderCloseAsync(req)           
     └─────────────────────────────────────────────
         │
         ▼
-MT5Service.OrderDeleteAsync(790):
-    return await _account.OrderDeleteAsync(790);
+MT5Service.OrderCloseAsync(request):
+    return await _account.OrderCloseAsync(request);
         │
         ▼
-MT5Account.OrderDeleteAsync(790):
-    var request = new OrderDeleteRequest {
-        Ticket = 790
-    };
-    var response = await _client.OrderDeleteAsync(request);
+MT5Account.OrderCloseAsync(OrderCloseRequest):
+    var response = await TradeClient.OrderClose(request, ...);
         │
         ▼
     gRPC → MT5 Terminal
@@ -812,7 +699,7 @@ T=12s    ├─► Task.Delay(3000)
          │
 T=13s    ├─► CANCEL opposite order
          │   ├─► CloseByTicket(790)
-         │   │   └─► OrderDeleteAsync(790)
+         │   │   └─► OrderCloseAsync(close request for #790)
          │   │       └─► SellStop #790 CANCELED
          │   │
          │   │  MT5 Terminal state:
@@ -932,7 +819,7 @@ R:R ratio = 1.50 / 3.00 = 1:2 ✓
 
 **Tasks**:
 
-- Provides methods BuyStopAsync, SellStopAsync
+- Provides methods like `SymbolInfoTickAsync`, `OrderSendAsync`, `OrderCloseAsync`, `OpenedOrdersTicketsAsync`
 - Delegates calls to MT5Account
 
 ### 3. MT5Sugar (extension methods)

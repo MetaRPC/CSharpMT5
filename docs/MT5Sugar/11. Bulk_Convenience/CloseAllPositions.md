@@ -206,10 +206,10 @@ else
 // Custom logic: Close only positions with unrealized loss
 public async Task<int> CloseLosers(MT5Service svc)
 {
-    var positions = await svc.OpenedOrdersAllAsync();
+    var positions = await svc.OpenedOrdersAsync();
     int closed = 0;
 
-    foreach (var pos in positions.Orders)
+    foreach (var pos in positions.PositionInfos)
     {
         // Skip pending orders
         if (pos.Type != ENUM_ORDER_TYPE.OrderTypeBuy &&
@@ -287,11 +287,11 @@ await HandleNewsEvent(svc, "NFP - Non-Farm Payrolls");
 public async Task CloseAllWithReport(MT5Service svc)
 {
     // Get positions before closing
-    var positions = await svc.OpenedOrdersAllAsync();
+    var positions = await svc.OpenedOrdersAsync();
     double totalProfit = 0;
     int count = 0;
 
-    foreach (var pos in positions.Orders)
+    foreach (var pos in positions.PositionInfos)
     {
         if (pos.Type == ENUM_ORDER_TYPE.OrderTypeBuy ||
             pos.Type == ENUM_ORDER_TYPE.OrderTypeSell)
@@ -403,8 +403,8 @@ await CloseAllWithReport(svc);
    // Might realize huge losses if positions are underwater!
 
    // ✅ BETTER: Check P&L first
-   var positions = await svc.OpenedOrdersAllAsync();
-   double totalPL = positions.Orders.Sum(o => o.Profit);
+   var positions = await svc.OpenedOrdersAsync();
+   double totalPL = positions.PositionInfos.Sum(o => o.Profit);
    Console.WriteLine($"Current P&L: ${totalPL:F2}");
    Console.Write("Close all? (y/n): ");
    ```

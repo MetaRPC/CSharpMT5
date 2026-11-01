@@ -143,6 +143,30 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             }
 
             // ─────────────────────────────────────────────────────────────
+            // [2b] OrderCalcProfit - Calculate expected profit of a trade
+            // ─────────────────────────────────────────────────────────────
+            // Estimates the profit of a Buy from Ask to Ask+100 points, before trading.
+            Console.WriteLine("  [2b] OrderCalcProfitAsync() - Calculate expected profit:");
+            try
+            {
+                var profitRequest = new OrderCalcProfitRequest
+                {
+                    Symbol = symbol,
+                    OrderType = ENUM_ORDER_TYPE_TF.OrderTypeTfBuy,
+                    Volume = minLot,
+                    OpenPrice = ask.Value,
+                    ClosePrice = ask.Value + (100 * point.Value) // +100 points exit
+                };
+                var calcProfit = await acc.OrderCalcProfitAsync(profitRequest);
+                Console.WriteLine($"        Expected profit (+100 pts): {calcProfit.Profit:F2}");
+                Console.WriteLine($"        ✓ Profit calculation successful!\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ❌ Error: {ex.Message}\n");
+            }
+
+            // ─────────────────────────────────────────────────────────────
             // [3] OrderSend - Open BUY position with minimal lot
             // ─────────────────────────────────────────────────────────────
             Console.WriteLine("  [3] OrderSendAsync() - Send BUY order with minimal lot:");
@@ -214,6 +238,51 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
             else
             {
                 Console.WriteLine($"        ✗ Failed to open position\n");
+            }
+
+            // ─────────────────────────────────────────────────────────────
+            // [6] OrderSendWithoutChecks - Fast path: send without pre-checks
+            // ─────────────────────────────────────────────────────────────
+            // Same request as OrderSend, but the server skips its validation step.
+            // Faster, but the caller is responsible for the request being valid.
+            // Here we open a minimal position this way and close it immediately.
+            Console.WriteLine("\n  [6] OrderSendWithoutChecksAsync() - Fast send (no pre-checks):");
+            try
+            {
+                var fastAsk = await acc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolAsk);
+                var fastRequest = new OrderSendRequest
+                {
+                    Symbol = symbol,
+                    Operation = TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeBuy,
+                    Volume = minLot,
+                    Price = fastAsk.Value,
+                    Comment = "Fast send demo"
+                };
+                var fastResult = await acc.OrderSendWithoutChecksAsync(fastRequest);
+                Console.WriteLine($"        Return code: {fastResult.ReturnedCode}");
+                Console.WriteLine($"        Description: {fastResult.ReturnedCodeDescription}");
+                Console.WriteLine($"        Order:       {fastResult.Order}");
+
+                if (fastResult.ReturnedCode == 10009 && fastResult.Order > 0) // TRADE_RETCODE_DONE
+                {
+                    Console.WriteLine($"        ✓ Fast order opened — closing it now:");
+                    await Task.Delay(500);
+                    var fastClose = await acc.OrderCloseAsync(new OrderCloseRequest
+                    {
+                        Ticket = fastResult.Order,
+                        Volume = minLot,
+                        Slippage = 10
+                    });
+                    Console.WriteLine($"        Close return code: {fastClose.ReturnedCode} ({fastClose.ReturnedCodeDescription})\n");
+                }
+                else
+                {
+                    Console.WriteLine($"        ✗ Fast order not opened (nothing to close)\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ❌ Error: {ex.Message.Split('\n')[0]}\n");
             }
         }
 

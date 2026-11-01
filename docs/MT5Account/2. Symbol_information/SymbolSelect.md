@@ -16,12 +16,12 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<SymbolSelectData> SymbolSelectAsync(
-            string symbolName,
+            string symbol,
             bool select,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
@@ -44,7 +44,7 @@ namespace mt5_term_api
 
 | Parameter           | Type                | Required | Description                                                                                                                                         |
 | ------------------- | ------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `symbolName`        | `string`            | ✅       | Symbol name (e.g., `"EURUSD"`)                                                                                                                      |
+| `symbol`        | `string`            | ✅       | Symbol name (e.g., `"EURUSD"`)                                                                                                                      |
 | `select`            | `bool`              | ✅       | `true` - add symbol to Market Watch, `false` - remove symbol from Market Watch                                                                      |
 | `deadline`          | `DateTime?`         | ❌       | Absolute per‑call **UTC** deadline → converted to timeout                                                                                           |
 | `cancellationToken` | `CancellationToken` | ❌       | Cooperative cancel for the call/retry loop                                                                                                          |
@@ -102,7 +102,7 @@ Use this method when you need to:
 ```csharp
 // Add EURUSD to Market Watch
 var result = await acc.SymbolSelectAsync(
-    symbolName: "EURUSD",
+    symbol: "EURUSD",
     select: true,
     deadline: DateTime.UtcNow.AddSeconds(3));
 
@@ -121,7 +121,7 @@ else
 ```csharp
 // Remove GBPJPY from Market Watch
 var result = await acc.SymbolSelectAsync(
-    symbolName: "GBPJPY",
+    symbol: "GBPJPY",
     select: false);
 
 if (result.Success)

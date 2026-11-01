@@ -2,460 +2,379 @@
 
 ## What is this?
 
-This is **your sandbox** for writing custom MT5 trading code in Python. Connection setup is already done - you only need to add your trading logic!
+This is **your sandbox** for writing custom MT5 trading code in **C#**. Connection setup is already done — you only add your trading logic inside `RunAsync()`.
+
+**File:** `Examples/UserCode/ProgramUserCode.cs`
 
 ## 🏁 Quick Start
 
-1. **Case already active in main.py**
-   - Open `examples/main.py`
-   - Case "18" for user code sandbox is ready to use
-
-2. **Open `examples/6_usercode/18_usercode.py`**
-   - Write your code or uncomment examples
-
+1. **Enable the command** — uncomment the `usercode` case block in `Program.cs` (around line ~172).
+2. **Open `Examples/UserCode/ProgramUserCode.cs`** — write your code, or uncomment the ready examples.
 3. **Run:**
    ```bash
-   cd examples
-   python main.py usercode
+   dotnet run usercode
    ```
 
-That's it! Your code will execute with full MT5 connection.
+That's it — your code runs with a live MT5 connection (and disconnects cleanly in `finally`).
 
 ## How to use
 
-### Option 1: Uncomment examples
+### Option 1 — Uncomment examples
 
-The file contains 5 ready-to-use examples:
+`ProgramUserCode.cs` ships with ready-to-use examples. Just remove the `//`:
 
-```python
-# Example 1: Get account balance (Sugar - easiest)
-# balance = await sugar.get_balance()
-# print(f"Balance: {balance:.2f}")
+```csharp
+// Example 1: Get account information
+// var summary = await service.AccountSummaryAsync();
+// Console.WriteLine($"Balance: {summary.AccountBalance} {summary.AccountCurrency}");
 ```
 
-Just remove `#` to activate!
-
-### Option 2: Write your own code
+### Option 2 — Write your own
 
 Add your logic between the markers:
 
-```python
-# =================================================================
-# YOUR CODE HERE
-# =================================================================
+```csharp
+// ═════════════════════════════════════════════════════════════════
+// YOUR CODE STARTS HERE ↓
+// ═════════════════════════════════════════════════════════════════
 
-# Your trading strategy here...
+// Your trading strategy here...
 
-# TODO: Write your trading logic here
+// ═════════════════════════════════════════════════════════════════
+// YOUR CODE ENDS HERE ↑
+// ═════════════════════════════════════════════════════════════════
 ```
 
 ## Available commands
 
-Run your code with:
-
 ```bash
-# From examples directory
-python main.py usercode
-python main.py 18
-python main.py user
-python main.py sandbox
+dotnet run usercode
+dotnet run user
+dotnet run sandbox
 ```
 
 ## What's already configured
 
-+ **Connection** - MT5 terminal connected via gRPC
+- **Connection** — MT5 terminal connected via gRPC (`ConnectionHelper.CreateAndConnectAccountAsync`)
+- **Configuration** — loaded from `Config/appsettings.json`
+- **`account`** — low-level gRPC client (`MT5Account`)
+- **`service`** — mid-level wrapper (`MT5Service`); the high-level **Sugar** helpers are extension methods on it, so you call them as `service.PlaceMarket(...)`, `service.BuyMarketByRisk(...)`, etc.
+- **async/await** — all methods are asynchronous (each also has a blocking sync twin)
 
-+ **Configuration** - Loaded from `examples/0_common/settings.json`
-
-+ **account** - Low-level gRPC client (MT5Account)
-
-+ **service** - Mid-level wrapper (MT5Service)
-
-+ **sugar** - High-level Sugar API (MT5Sugar)
-
-+ **async/await** - All methods are asynchronous
+> There is no separate `sugar` variable: MT5Sugar is a set of extension methods on `MT5Service`, so everything hangs off `service`.
 
 ## 🧩 Can I mix API levels?
 
-**Yes!** You can use all three levels in the same file:
+**Yes** — all three layers are reachable from the two variables:
 
-```python
-# Low-level (direct gRPC protobuf)
-summary = await account.account_summary()
-balance_pb = summary.account_balance
+```csharp
+// Low-level (direct gRPC): rich protobuf object
+MT5Account acc = account;
+AccountSummaryData summary = await acc.AccountSummaryAsync();
+double balanceLow = summary.AccountBalance;
 
-# Mid-level (MT5Service)
-account_info = await service.get_account_summary()
-balance_svc = account_info.balance
+// Mid-level (MT5Service): unwrapped primitive
+double balanceSvc = await service.GetBalanceAsync();
 
-# High-level (MT5Sugar)
-balance_sugar = await sugar.get_balance()
+// High-level (Sugar extension on service)
+var result = await service.BuyMarketByRisk("EURUSD", stopPoints: 20, riskMoney: 10.0);
 ```
 
-All three variables are available simultaneously:
-
-- `account` - for full control (gRPC protobuf)
-- `service` - for convenient methods (Service layer)
-- `sugar` - for simplest usage (Sugar API)
+- `account` — full control (gRPC protobuf)
+- `service` — convenient wrappers **and** Sugar helpers
 
 ## Quick reference
 
 ### Get account information
 
-```python
-# Sugar API (easiest)
-balance = await sugar.get_balance()
-print(f"Balance: {balance:.2f}")
+```csharp
+// Mid-level shortcuts (easiest)
+double balance = await service.GetBalanceAsync();
+double equity  = await service.GetEquityAsync();
+Console.WriteLine($"Balance: {balance:F2} | Equity: {equity:F2}");
 
-# Service API (more details)
-account_info = await service.get_account_summary()
-print(f"Balance: {account_info.balance:.2f} {account_info.currency}")
-print(f"Equity:  {account_info.equity:.2f}")
-
-# Account API (full control)
-summary = await account.account_summary()
-print(f"Balance: {summary.account_balance:.2f}")
+// Full snapshot (one call)
+var summary = await service.AccountSummaryAsync();
+Console.WriteLine($"Balance: {summary.AccountBalance:F2} {summary.AccountCurrency}");
 ```
 
 ### Get current price
 
-```python
-# Sugar API
-bid = await sugar.get_bid("EURUSD")
-ask = await sugar.get_ask("EURUSD")
-print(f"EURUSD: Bid={bid:.5f}, Ask={ask:.5f}")
+```csharp
+double bid = await service.GetBidAsync("EURUSD");
+double ask = await service.GetAskAsync("EURUSD");
+Console.WriteLine($"EURUSD: Bid={bid:F5}, Ask={ask:F5}");
 
-# Service API
-tick = await service.get_symbol_tick("EURUSD")
-print(f"EURUSD Bid: {tick.bid:.5f}, Ask: {tick.ask:.5f}")
+// Or the full tick
+var tick = await service.SymbolInfoTickAsync("EURUSD");
+Console.WriteLine($"Bid={tick.Bid:F5}, Ask={tick.Ask:F5}");
 ```
 
-### Open market order
+### Open a market order
 
-```python
-# Sugar API (easiest)
-try:
-    ticket = await sugar.buy_market("EURUSD", 0.01)
-    print(f"Order opened: #{ticket}")
-except Exception as e:
-    print(f"Order failed: {e}")
+```csharp
+// Simple market BUY
+var r1 = await service.BuyMarketAsync("EURUSD", 0.01);
 
-# With SL/TP in pips
-ticket = await sugar.buy_market_with_pips("EURUSD", 0.01, sl_pips=20, tp_pips=30)
+// Generic market order (BUY/SELL) with optional SL/TP
+var r2 = await service.PlaceMarket("EURUSD", 0.01, isBuy: true, sl: 1.0800, tp: 1.0900);
 
-# Calculate position size based on risk (2% with 50 pip SL)
-lot_size = await sugar.calculate_position_size("EURUSD", risk_percent=2.0, sl_pips=50)
-ticket = await sugar.buy_market_with_pips("EURUSD", lot_size, sl_pips=50, tp_pips=100)
+// Risk-based sizing: 20-point stop, risk $10
+var r3 = await service.BuyMarketByRisk("EURUSD", stopPoints: 20, riskMoney: 10.0, tpPoints: 40);
+
+if (r3.ReturnedCode == 10009)
+    Console.WriteLine($"✅ Order #{r3.Order}, volume {r3.Volume}, price {r3.Price:F5}");
+else
+    Console.WriteLine($"❌ {r3.ReturnedCodeDescription}");
 ```
 
-### Place pending order
+### Place a pending order (points-based)
 
-```python
-# Buy Limit with absolute price and SL/TP in pips
-ticket = await sugar.buy_limit_with_sltp("EURUSD", 0.01, price=1.0850,
-                                          sl_pips=20, tp_pips=30)
+```csharp
+// Buy Limit 50 points below Ask, SL 100 / TP 200 points
+await service.BuyLimitPoints("EURUSD", 0.01, priceOffsetPoints: 50, slPoints: 100, tpPoints: 200);
 
-# Buy Stop with absolute price
-ticket = await sugar.buy_stop("EURUSD", 0.01, price=1.0950)
-
-# Sell Limit with absolute price and SL/TP
-ticket = await sugar.sell_limit_with_sltp("EURUSD", 0.01, price=1.1050,
-                                           sl=1.1070, tp=1.1030)
+// Sell Stop 50 points below Bid
+await service.SellStopPoints("EURUSD", 0.01, priceOffsetPoints: 50, slPoints: 100, tpPoints: 200);
 ```
 
 ### Get open positions
 
-```python
-# Sugar API
-positions = await sugar.get_open_positions()
-print(f"Open positions: {len(positions)}")
-for pos in positions:
-    print(f"  #{pos.ticket} {pos.symbol} {pos.volume:.2f} lot, "
-          f"Profit: {pos.profit:.2f}")
-
-# Service API with filters
-opened_data = await service.get_opened_orders()
-positions = opened_data.position_infos
+```csharp
+var opened = await service.OpenedOrdersAsync();
+Console.WriteLine($"Open positions: {opened.PositionInfos.Count}");
+foreach (var pos in opened.PositionInfos)
+    Console.WriteLine($"  #{pos.Ticket} {pos.Symbol} {pos.Volume:F2} lot, Profit: {pos.Profit:F2}");
 ```
 
 ### Close positions
 
-```python
-# Close specific position
-await sugar.close_position(ticket)
-
-# Close all positions for symbol
-await sugar.close_all_positions("EURUSD")
-
-# Close all positions (all symbols)
-await sugar.close_all_positions()
+```csharp
+await service.CloseByTicket(ticket);          // specific position
+await service.CloseAllPositions("EURUSD");     // all market positions for a symbol
+await service.CloseAllPositions();             // all positions (all symbols)
+await service.CancelAll("EURUSD");             // cancel pending orders for a symbol
 ```
 
-### Modify position
+### Modify a position
 
-```python
-# Modify SL/TP
-await sugar.modify_position_sltp(ticket, sl=1.0850, tp=1.0950)
-
-# Modify only Stop Loss
-await sugar.modify_position_sl(ticket, sl=1.0850)
-
-# Modify only Take Profit
-await sugar.modify_position_tp(ticket, tp=1.0950)
+```csharp
+await service.ModifySlTpAsync(ticket, sl: 1.0850, tp: 1.0950);
 ```
 
-### Calculate position size
+### Calculate position size by risk
 
-```python
-# Calculate position size based on risk
-volume = await sugar.calculate_position_size("EURUSD", risk_percent=2.0, sl_pips=20)
-print(f"Volume for 2% risk with 20 pip SL: {volume:.2f} lot")
-
-# Then use calculated volume
-ticket = await sugar.buy_market("EURUSD", volume)
+```csharp
+double volume = await service.CalcVolumeForRiskAsync("EURUSD", stopPoints: 200, riskMoney: 10.0);
+Console.WriteLine($"Volume for $10 risk with 200-point SL: {volume:F2} lot");
+var result = await service.PlaceMarket("EURUSD", volume, isBuy: true);
 ```
 
 ## Return Codes (RetCodes)
 
-**Always check returned_code after trading operations!**
+**Always check `ReturnedCode` after trading operations!**
 
-```python
-from MetaRpcMT5.mt5_term_api_trading_helper_pb2 import OrderSendRequest
-import MetaRpcMT5.mt5_term_api_trading_helper_pb2 as pb_trading
+```csharp
+using mt5_term_api;
 
-# Build request
-request = OrderSendRequest(
-    symbol="EURUSD",
-    volume=0.01,
-    operation=pb_trading.TMT5_ORDER_TYPE_BUY,
-    price=0.0,  # Market order (price will be filled by broker)
-    # ... other fields
-)
+var request = new OrderSendRequest
+{
+    Symbol    = "EURUSD",
+    Operation = TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeBuy,
+    Volume    = 0.01,
+    Price     = (await service.GetAskAsync("EURUSD"))  // market BUY uses current Ask
+};
 
-result = await service.place_order(request)
+var result = await service.OrderSendAsync(request);
 
-# Check RetCode
-if result.returned_code == 10009:  # Success for market orders
-    print(f"[OK] Order opened: #{result.order}")
-elif result.returned_code == 10008:  # Success for pending orders
-    print(f"[OK] Pending order placed: #{result.order}")
-else:
-    print(f"[X] Order failed: {result.comment} (code {result.returned_code})")
+if (result.ReturnedCode == 10009)       // market order executed
+    Console.WriteLine($"[OK] Order #{result.Order}");
+else if (result.ReturnedCode == 10008)  // pending order placed
+    Console.WriteLine($"[OK] Pending order #{result.Order}");
+else
+    Console.WriteLine($"[X] Failed: {result.ReturnedCodeDescription} (code {result.ReturnedCode})");
 ```
 
 **Common RetCodes:**
 
-- `10009` - Market order executed successfully
-- `10008` - Pending order placed successfully
-- `10019` - Insufficient money (insufficient margin)
-- `10016` - Invalid stops (SL/TP too close to price)
-- `10018` - Market closed
+- `10009` — market order executed successfully
+- `10008` — pending order placed successfully
+- `10019` — not enough money (insufficient margin)
+- `10016` — invalid stops (SL/TP too close to price)
+- `10018` — market closed
 
-Full list: [RETURN_CODES_REFERENCE.md](RETURN_CODES_REFERENCE.md)
+Full list: [RETURN_CODES_REFERENCE.md](./RETURN_CODES_REFERENCE.md)
 
 ## ℹ️ Error handling
 
-PyMT5 uses Python exceptions for error handling:
+Two independent things can go wrong — handle **both**:
 
-### 1. Connection/Network errors
+### 1. Connection / network errors → exceptions
 
-```python
-try:
-    result = await service.place_order(request)
-except Exception as e:
-    print(f"Connection or network error: {e}")
-    return
+```csharp
+using Grpc.Core;
+
+try
+{
+    var result = await service.OrderSendAsync(request);
+}
+catch (ApiExceptionMT5 ex)   // business error from the server
+{
+    Console.WriteLine($"API error: {ex.ErrorCode}");
+}
+catch (RpcException ex)       // transport/network error
+{
+    Console.WriteLine($"gRPC error: {ex.Status}");
+}
 ```
 
-### 2. Trading operation errors (RetCode)
+### 2. Trade rejections → `ReturnedCode`
 
-```python
-result = await service.place_order(request)
-if result.returned_code != 10009:
-    print(f"Trade rejected: {result.comment}")
+```csharp
+var result = await service.OrderSendAsync(request);
+if (result.ReturnedCode != 10009)
+    Console.WriteLine($"Trade rejected: {result.ReturnedCodeDescription}");
 ```
 
-**Always check BOTH!**
+### Recommended pattern
 
-### Recommended pattern:
-
-```python
-try:
-    result = await service.place_order(request)
-
-    if result.returned_code == 10009:
-        print(f"[OK] Success: Order #{result.order}")
-    else:
-        print(f"[X] Failed: {result.comment} (code: {result.returned_code})")
-
-except Exception as e:
-    print(f"[X] Error: {e}")
+```csharp
+try
+{
+    var result = await service.OrderSendAsync(request);
+    if (result.ReturnedCode == 10009)
+        Console.WriteLine($"[OK] Order #{result.Order}");
+    else
+        Console.WriteLine($"[X] {result.ReturnedCodeDescription} (code {result.ReturnedCode})");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"[X] Error: {ex.Message}");
+}
 ```
 
 ## 📝 Documentation
 
-- [MT5Account Master Overview](../MT5Account/MT5Account.Master.Overview.md) - Complete API reference (40 methods)
-- [MT5Service Overview](../MT5Service/MT5Service.Overview.md) - Mid-level wrapper (36 methods)
-- [MT5Sugar Master Overview](../MT5Sugar/MT5Sugar.API_Overview.md) - High-level Sugar API (62+ methods)
-- [ENUMS Usage Reference](ENUMS_USAGE_REFERENCE.md) - All ENUMs in one place
+- [MT5Account Master Overview](../MT5Account/MT5Account.Master.Overview.md) — complete low-level API reference
+- [MT5Service Overview](../MT5Service/MT5Service.Overview.md) — mid-level wrappers
+- [MT5Sugar API Overview](../MT5Sugar/MT5Sugar.API_Overview.md) — high-level Sugar helpers
+- [ENUMs Usage Reference](./ENUMS_USAGE_REFERENCE.md) — all enums in one place
 
 ## 🔑 Configuration
 
-### Method 1: settings.json (Recommended)
+### Method 1 — appsettings.json (recommended)
 
-Create `examples/0_common/settings.json`:
+`Config/appsettings.json`:
 
 ```json
 {
-  "user": 591129415,
-  "password": "YourPassword",
-  "grpc_server": "mt5.mrpc.pro:443",
-  "mt_cluster": "MetaQuotes-Demo",
-  "test_symbol": "EURUSD",
-  "test_volume": 0.01
+  "MT5": {
+    "User": 5056776453,
+    "Password": "YourPassword",
+    "ServerName": "MetaQuotes-Demo",
+    "GrpcServer": "https://mt5.mrpc.pro:443",
+    "ApiKey": "your-api-key",
+    "ConnectTimeoutSeconds": 60
+  }
 }
 ```
 
-### Method 2: Environment variables
+### Method 2 — environment variable override
+
+`MRPC_API_KEY` overrides the config API key at runtime (keeps real keys out of source control):
+
+```powershell
+# Windows PowerShell
+$env:MRPC_API_KEY = "your-api-key"   # or "TRIAL" for trial access
+dotnet run usercode
+```
 
 ```bash
 # Linux/Mac
-export MT5_USER=591129415
-export MT5_PASSWORD="YourPassword"
-export MT5_GRPC_SERVER="mt5.mrpc.pro:443"
-export MT5_CLUSTER="MetaQuotes-Demo"
-
-# Windows PowerShell
-$env:MT5_USER="591129415"
-$env:MT5_PASSWORD="YourPassword"
-$env:MT5_GRPC_SERVER="mt5.mrpc.pro:443"
+export MRPC_API_KEY="your-api-key"
+dotnet run usercode
 ```
-
-See [demo_helpers.py](#) for details.
 
 ## Tips
 
-1. **Start simple** - Uncomment one example at a time
-
-2. **Use Sugar API** - Methods like `buy_market_with_pips()` and 
-`calculate_position_size()` are easier than low-level
-
-3. **Check returned_code** - Always validate trading operations (10009 = success)
-
-4. **Test on demo** - Make sure you're using demo account first!
-
-5. **Read documentation** - [RETURN_CODES_REFERENCE.md](RETURN_CODES_REFERENCE.md) explains all error codes
-
-6. **Use async/await** - All methods are asynchronous
-
-7. **Type hints** - Use IDE autocomplete for better development experience
-
-8. **Check examples** - See `examples/` folder for 15+ working examples
+1. **Start simple** — uncomment one example at a time.
+2. **Use Sugar helpers** — `BuyMarketByRisk(...)` and `CalcVolumeForRiskAsync(...)` are easier than hand-building requests.
+3. **Check `ReturnedCode`** — always validate trading operations (`10009` = success).
+4. **Test on demo** — make sure you're on a demo account first.
+5. **Read the return codes** — [RETURN_CODES_REFERENCE.md](./RETURN_CODES_REFERENCE.md) explains every code.
+6. **Use async/await** — every method is async; don't forget `await`.
+7. **IDE autocomplete** — the strongly-typed API surfaces everything as you type.
+8. **Browse examples** — see the `Examples/` folder (LowLevel, Service, Sugar, Orchestrators).
 
 ## Common mistakes
 
-[X] **Forgot to use await**
-```python
-balance = sugar.get_balance()  # DON'T forget await!
+❌ **Forgot `await`**
+```csharp
+var balance = service.GetBalanceAsync(); // returns a Task, not the value!
 ```
 
-[+] **Always use await**
-```python
-balance = await sugar.get_balance()
+✅ **Always `await`**
+```csharp
+var balance = await service.GetBalanceAsync();
 ```
 
-[X] **Not checking exceptions**
-```python
-ticket = await sugar.buy_market("EURUSD", 0.01)  # No try/except!
+❌ **Not handling exceptions**
+```csharp
+var r = await service.OrderSendAsync(request); // may throw on network/API error
 ```
 
-[+] **Always handle exceptions**
-```python
-try:
-    ticket = await sugar.buy_market("EURUSD", 0.01)
-    print(f"Order opened: #{ticket}")
-except Exception as e:
-    print(f"Error: {e}")
+✅ **Wrap in try/catch**
+```csharp
+try { var r = await service.OrderSendAsync(request); }
+catch (Exception ex) { Console.WriteLine($"Error: {ex.Message}"); }
 ```
 
-[X] **Not checking returned_code**
-```python
-result = await service.place_order(request)
-# Assuming it's success!
+❌ **Not checking `ReturnedCode`**
+```csharp
+var r = await service.OrderSendAsync(request); // assuming success!
 ```
 
-[+] **Check returned_code for trading operations**
-```python
-result = await service.place_order(request)
-if result.returned_code != 10009:
-    print(f"Trade failed: {result.comment}")
-    return
+✅ **Check it**
+```csharp
+var r = await service.OrderSendAsync(request);
+if (r.ReturnedCode != 10009) { Console.WriteLine($"Failed: {r.ReturnedCodeDescription}"); return; }
 ```
 
 ## Getting help
 
-- **Protobuf types**: Check `package/MetaRpcMT5/` folder for all protobuf definitions
-- **Error codes**: See [RETURN_CODES_REFERENCE.md](RETURN_CODES_REFERENCE.md)
-- **Examples**: Check `examples/` folder for working code
-- **API documentation**: See docs folder for complete reference
+- **Protobuf types:** see the generated files in `package/` (the `mt5_term_api` namespace).
+- **Return codes:** [RETURN_CODES_REFERENCE.md](./RETURN_CODES_REFERENCE.md)
+- **Examples:** the `Examples/` folder has working LowLevel / Service / Sugar / Orchestrator programs.
+- **API docs:** the `docs/` folder has the full per-layer reference.
 
-## Example: Complete trading strategy
+## Example: complete sandbox body
 
-Here's a complete example demonstrating proper error handling:
+A minimal strategy with proper error handling (the connection scaffolding is already provided by `ProgramUserCode.RunAsync`):
 
-```python
-async def run_user_code():
-    """Your sandbox function - write your code here!"""
+```csharp
+// account (MT5Account) and service (MT5Service) are already connected.
 
-    try:
-        # Load configuration
-        config = load_settings()
-    except Exception as e:
-        print(f"Config error: {e}")
-        return
+// 1) Account state
+double balance = await service.GetBalanceAsync();
+Console.WriteLine($"Balance: {balance:F2}");
 
-    try:
-        # Connect to MT5
-        account = await create_and_connect_mt5(config)
-    except Exception as e:
-        print(f"Connection error: {e}")
-        return
+// 2) Size by risk: $ (1% of balance), 50-point stop
+double risk   = balance * 0.01;
+double volume = await service.CalcVolumeForRiskAsync("EURUSD", stopPoints: 50, riskMoney: risk);
 
-    # Create service and sugar wrappers
-    service = MT5Service(account)
-    sugar = MT5Sugar(service, default_symbol=config.get('test_symbol', 'EURUSD'))
-
-    # Get account information
-    try:
-        balance = await sugar.get_balance()
-        print(f"Balance: {balance:.2f}")
-    except Exception as e:
-        print(f"Balance error: {e}")
-        return
-
-    # Calculate position size based on risk (1% with 50 pip SL)
-    try:
-        volume = await sugar.calculate_position_size("EURUSD",
-                                                      risk_percent=1.0,
-                                                      sl_pips=50)
-    except Exception as e:
-        print(f"Position size error: {e}")
-        return
-
-    # Open position with calculated volume
-    try:
-        ticket = await sugar.buy_market_with_pips("EURUSD", volume,
-                                                   sl_pips=50, tp_pips=100)
-        print(f"[OK] Position opened: #{ticket} with {volume:.2f} lot")
-    except Exception as e:
-        print(f"Order error: {e}")
-        return
-
-    print("Strategy execution completed!")
-
-
-if __name__ == "__main__":
-    asyncio.run(run_user_code())
+// 3) Open and validate
+try
+{
+    var result = await service.PlaceMarket("EURUSD", volume, isBuy: true);
+    if (result.ReturnedCode == 10009)
+        Console.WriteLine($"[OK] Position #{result.Order} with {volume:F2} lot");
+    else
+        Console.WriteLine($"[X] {result.ReturnedCodeDescription} (code {result.ReturnedCode})");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"[X] Error: {ex.Message}");
+}
 ```
 
 **Happy trading!**

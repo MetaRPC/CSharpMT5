@@ -44,10 +44,14 @@ public static class MT5ServiceExtensions
 
 Returns closed orders from the last N days.
 
-| Field          | Type                  | Description                           |
-| -------------- | --------------------- | ------------------------------------- |
-| `Orders`       | `List<OrderHistoryInfo>` | List of closed orders              |
-| `TotalCount`   | `int`                 | Total number of matching orders       |
+| Field          | Type                  | Description                                                    |
+| -------------- | --------------------- | -------------------------------------------------------------- |
+| `HistoryData`  | `List<HistoryData>`   | Entries for the window; each has `HistoryOrder` and/or `HistoryDeal` |
+| `ArrayTotal`   | `int`                 | Total number of matching entries                               |
+| `PageNumber`   | `int`                 | Current page number                                            |
+| `ItemsPerPage` | `int`                 | Page size used                                                 |
+
+> Each `HistoryData` entry carries a `HistoryOrder` (`OrderHistoryData`) and/or a `HistoryDeal` (`DealHistoryData`). Realized P/L, executed volume and the fill price live on the **deal** — see the examples below.
 
 ---
 
@@ -55,7 +59,7 @@ Returns closed orders from the last N days.
 
 * **What it is.** Simple way to get recent closed orders without manually calculating date ranges.
 * **Why you need it.** Quickly fetch last week/month of trading history for analysis, reporting, or statistics.
-* **Sanity check.** Returns paged results. Check `TotalCount` to see if you need to fetch more pages.
+* **Sanity check.** Returns paged results. Check `ArrayTotal` to see if you need to fetch more pages.
 
 ---
 
@@ -147,12 +151,15 @@ var history = await svc.OrdersHistoryLast(days: 7);
 
 var history = await svc.OrdersHistoryLast(days: 7);
 
-Console.WriteLine($"Closed orders (last 7 days): {history.TotalCount}");
+Console.WriteLine($"History entries (last 7 days): {history.ArrayTotal}");
 
-foreach (var order in history.Orders)
+foreach (var item in history.HistoryData)
 {
-    Console.WriteLine($"  Ticket: {order.Ticket}, Symbol: {order.Symbol}, " +
-                     $"Profit: {order.Profit:F2}");
+    var deal = item.HistoryDeal;
+    if (deal == null) continue; // skip entries without an executed deal
+
+    Console.WriteLine($"  Ticket: {deal.Ticket}, Symbol: {deal.Symbol}, " +
+                     $"Profit: {deal.Profit:F2}");
 }
 ```
 
@@ -163,8 +170,8 @@ foreach (var order in history.Orders)
 ```csharp
 var history = await svc.OrdersHistoryLast(days: 30);
 
-Console.WriteLine($"Orders in last 30 days: {history.TotalCount}");
-Console.WriteLine($"Retrieved: {history.Orders.Count}");
+Console.WriteLine($"History entries in last 30 days: {history.ArrayTotal}");
+Console.WriteLine($"Retrieved: {history.HistoryData.Count}");
 ```
 
 ---
@@ -176,23 +183,23 @@ int days = 7;
 int pageSize = 100;
 int page = 0;
 
-var allOrders = new List<OrderHistoryInfo>();
+var allEntries = new List<HistoryData>();
 
 while (true)
 {
     var history = await svc.OrdersHistoryLast(days, page, pageSize);
 
-    allOrders.AddRange(history.Orders);
+    allEntries.AddRange(history.HistoryData);
 
-    Console.WriteLine($"Page {page}: {history.Orders.Count} orders");
+    Console.WriteLine($"Page {page}: {history.HistoryData.Count} entries");
 
-    if (history.Orders.Count < pageSize)
+    if (history.HistoryData.Count < pageSize)
         break; // Last page
 
     page++;
 }
 
-Console.WriteLine($"Total orders retrieved: {allOrders.Count}");
+Console.WriteLine($"Total entries retrieved: {allEntries.Count}");
 ```
 
 ---
@@ -204,12 +211,15 @@ var history = await svc.OrdersHistoryLast(
     days: 7,
     sort: BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeDesc);
 
-Console.WriteLine("Recent orders (newest first):");
+Console.WriteLine("Recent deals (newest first):");
 
-foreach (var order in history.Orders.Take(10))
+foreach (var item in history.HistoryData.Take(10))
 {
-    Console.WriteLine($"  {order.CloseTime}: {order.Symbol} " +
-                     $"Profit: {order.Profit:F2}");
+    var deal = item.HistoryDeal;
+    if (deal == null) continue;
+
+    Console.WriteLine($"  {deal.Time.ToDateTime():yyyy-MM-dd HH:mm}: {deal.Symbol} " +
+                     $"Profit: {deal.Profit:F2}");
 }
 ```
 
@@ -220,12 +230,17 @@ foreach (var order in history.Orders.Take(10))
 ```csharp
 var history = await svc.OrdersHistoryLast(days: 7);
 
-double totalProfit = history.Orders.Sum(o => o.Profit);
-int winningTrades = history.Orders.Count(o => o.Profit > 0);
-int losingTrades = history.Orders.Count(o => o.Profit < 0);
+var deals = history.HistoryData
+    .Where(x => x.HistoryDeal != null)
+    .Select(x => x.HistoryDeal)
+    .ToList();
+
+double totalProfit = deals.Sum(o => o.Profit);
+int winningTrades = deals.Count(o => o.Profit > 0);
+int losingTrades = deals.Count(o => o.Profit < 0);
 
 Console.WriteLine($"Last 7 days statistics:");
-Console.WriteLine($"  Total orders:   {history.Orders.Count}");
+Console.WriteLine($"  Total deals:    {deals.Count}");
 Console.WriteLine($"  Winning trades: {winningTrades}");
 Console.WriteLine($"  Losing trades:  {losingTrades}");
 Console.WriteLine($"  Total profit:   {totalProfit:F2}");
@@ -238,11 +253,15 @@ Console.WriteLine($"  Total profit:   {totalProfit:F2}");
 ```csharp
 var history = await svc.OrdersHistoryLast(days: 30);
 
-var eurusdOrders = history.Orders.Where(o => o.Symbol == "EURUSD").ToList();
+var eurusdDeals = history.HistoryData
+    .Where(x => x.HistoryDeal != null)
+    .Select(x => x.HistoryDeal)
+    .Where(o => o.Symbol == "EURUSD")
+    .ToList();
 
-Console.WriteLine($"EURUSD orders: {eurusdOrders.Count}");
+Console.WriteLine($"EURUSD deals: {eurusdDeals.Count}");
 
-double eurusdProfit = eurusdOrders.Sum(o => o.Profit);
+double eurusdProfit = eurusdDeals.Sum(o => o.Profit);
 Console.WriteLine($"EURUSD profit: {eurusdProfit:F2}");
 ```
 
@@ -254,13 +273,16 @@ Console.WriteLine($"EURUSD profit: {eurusdProfit:F2}");
 var history = await svc.OrdersHistoryLast(days: 30);
 
 var csv = new StringBuilder();
-csv.AppendLine("Ticket,Symbol,Type,OpenTime,CloseTime,Volume,OpenPrice,ClosePrice,Profit");
+csv.AppendLine("DealTicket,Symbol,Type,Time,Volume,Price,Profit");
 
-foreach (var order in history.Orders)
+foreach (var item in history.HistoryData)
 {
-    csv.AppendLine($"{order.Ticket},{order.Symbol},{order.Type}," +
-                  $"{order.OpenTime},{order.CloseTime},{order.Volume}," +
-                  $"{order.OpenPrice},{order.ClosePrice},{order.Profit}");
+    var deal = item.HistoryDeal;
+    if (deal == null) continue;
+
+    csv.AppendLine($"{deal.Ticket},{deal.Symbol},{deal.Type}," +
+                  $"{deal.Time.ToDateTime():yyyy-MM-dd HH:mm:ss},{deal.Volume}," +
+                  $"{deal.Price},{deal.Profit}");
 }
 
 File.WriteAllText("orders_history.csv", csv.ToString());
@@ -274,10 +296,15 @@ Console.WriteLine("Exported to orders_history.csv");
 ```csharp
 var history = await svc.OrdersHistoryLast(days: 30);
 
-if (history.Orders.Any())
+var deals = history.HistoryData
+    .Where(x => x.HistoryDeal != null)
+    .Select(x => x.HistoryDeal)
+    .ToList();
+
+if (deals.Any())
 {
-    var bestTrade = history.Orders.OrderByDescending(o => o.Profit).First();
-    var worstTrade = history.Orders.OrderBy(o => o.Profit).First();
+    var bestTrade = deals.OrderByDescending(o => o.Profit).First();
+    var worstTrade = deals.OrderBy(o => o.Profit).First();
 
     Console.WriteLine("Best trade:");
     Console.WriteLine($"  {bestTrade.Symbol} ticket {bestTrade.Ticket}: " +
@@ -296,7 +323,9 @@ if (history.Orders.Any())
 ```csharp
 var history = await svc.OrdersHistoryLast(days: 30);
 
-var bySymbol = history.Orders
+var bySymbol = history.HistoryData
+    .Where(x => x.HistoryDeal != null)
+    .Select(x => x.HistoryDeal)
     .GroupBy(o => o.Symbol)
     .Select(g => new
     {
@@ -323,12 +352,17 @@ foreach (var item in bySymbol)
 ```csharp
 var history = await svc.OrdersHistoryLast(days: 30);
 
-if (history.Orders.Any())
+var deals = history.HistoryData
+    .Where(x => x.HistoryDeal != null)
+    .Select(x => x.HistoryDeal)
+    .ToList();
+
+if (deals.Any())
 {
-    int total = history.Orders.Count;
-    int winning = history.Orders.Count(o => o.Profit > 0);
-    int losing = history.Orders.Count(o => o.Profit < 0);
-    int breakeven = history.Orders.Count(o => o.Profit == 0);
+    int total = deals.Count;
+    int winning = deals.Count(o => o.Profit > 0);
+    int losing = deals.Count(o => o.Profit < 0);
+    int breakeven = deals.Count(o => o.Profit == 0);
 
     double winRate = (double)winning / total * 100;
 
@@ -364,13 +398,13 @@ if (history.Orders.Any())
    // If you have 500 orders, you only got 100!
 
    // ✅ CORRECT - paginate through all
-   var allOrders = new List<OrderHistoryInfo>();
+   var allEntries = new List<HistoryData>();
    int page = 0;
    while (true)
    {
        var history = await svc.OrdersHistoryLast(365, page, 100);
-       allOrders.AddRange(history.Orders);
-       if (history.Orders.Count < 100) break;
+       allEntries.AddRange(history.HistoryData);
+       if (history.HistoryData.Count < 100) break;
        page++;
    }
    ```
@@ -385,27 +419,33 @@ if (history.Orders.Any())
    var positions = await svc.PositionsHistoryPaged();
    ```
 
-3. **Ignoring TotalCount**
+3. **Ignoring ArrayTotal**
    ```csharp
    // ❌ WRONG - not checking if there's more data
    var history = await svc.OrdersHistoryLast(days: 30);
-   Console.WriteLine($"Total: {history.Orders.Count}"); // Wrong!
+   Console.WriteLine($"Total: {history.HistoryData.Count}"); // Wrong!
 
-   // ✅ CORRECT - check TotalCount
+   // ✅ CORRECT - check ArrayTotal
    var history = await svc.OrdersHistoryLast(days: 30);
-   Console.WriteLine($"Retrieved: {history.Orders.Count}");
-   Console.WriteLine($"Total: {history.TotalCount}");
+   Console.WriteLine($"Retrieved: {history.HistoryData.Count}");
+   Console.WriteLine($"Total: {history.ArrayTotal}");
    ```
 
 4. **Using local time instead of UTC**
    ```csharp
    // ❌ WRONG - comparing with local time
    var history = await svc.OrdersHistoryLast(days: 1);
-   var today = history.Orders.Where(o => o.CloseTime.Date == DateTime.Now.Date);
+   var today = history.HistoryData
+       .Where(x => x.HistoryDeal != null)
+       .Select(x => x.HistoryDeal)
+       .Where(o => o.Time.ToDateTime().Date == DateTime.Now.Date);
 
    // ✅ CORRECT - use UTC
    var history = await svc.OrdersHistoryLast(days: 1);
-   var today = history.Orders.Where(o => o.CloseTime.Date == DateTime.UtcNow.Date);
+   var today = history.HistoryData
+       .Where(x => x.HistoryDeal != null)
+       .Select(x => x.HistoryDeal)
+       .Where(o => o.Time.ToDateTime().Date == DateTime.UtcNow.Date);
    ```
 
 5. **Not specifying enough timeout for large queries**

@@ -78,9 +78,9 @@ class Program
 
         // 3. Get real-time account summary
         var summary = await account.AccountSummaryAsync();
-        Console.WriteLine($"Balance: ${summary.AccountBalance:N2}");
-        Console.WriteLine($"Equity:  ${summary.AccountEquity:N2}");
-        Console.WriteLine($"Free Margin: ${summary.AccountMarginFree:N2}");
+        Console.WriteLine($"Balance:  {summary.AccountBalance:N2} {summary.AccountCurrency}");
+        Console.WriteLine($"Equity:   {summary.AccountEquity:N2} {summary.AccountCurrency}");
+        Console.WriteLine($"Leverage: 1:{summary.AccountLeverage}");
     }
 }
 ```

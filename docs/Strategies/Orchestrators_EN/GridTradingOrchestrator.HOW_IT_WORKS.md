@@ -142,59 +142,34 @@ for (int i = 1; i <= GridLevels; i++)  // i = 1, 2, 3
 #### How BuyLimitPoints() works - inside MT5Sugar
 
 ```csharp
-// MT5Sugar.cs (extension method)
+// MT5Sugar.cs (extension method) — condensed, matching the real implementation
 public static async Task<OrderSendData> BuyLimitPoints(
-    this MT5Service service,
-    string symbol,
-    double volume,
-    int priceOffsetPoints,  // ← RECEIVES -20
-    int slPoints = 0,
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double volume, double priceOffsetPoints,
+    double? slPoints = null, double? tpPoints = null, string? comment = null,
+    int deviationPoints = 0, int timeoutSec = 15, CancellationToken ct = default)
 {
-    // │  STEP 1: Get current Ask price                      
-    // └──────────────────────────────────────────
+    await svc.EnsureSelected(symbol, timeoutSec, ct);
 
-    var tick = await service.SymbolInfoTickAsync(symbol);
-    double askPrice = tick.Ask;  // For example: 1.10002
+    // STEP 1: current tick + point size
+    var tick  = await svc.SymbolInfoTickAsync(symbol);
+    var point = await svc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolPoint);
 
-    // │  STEP 2: Get point size for symbol                  
-    // └──────────────────────────────────────────
-    var symbolInfo = await service.SymbolInfoAsync(symbol);
-    double point = symbolInfo.Point;  // For EURUSD: 0.00001
+    // STEP 2: Buy Limit is ALWAYS below Ask → the offset's ABSOLUTE value is used
+    //   Ask = 1.10002, |offset| = 20 → raw = 1.10002 - 20×0.00001 = 1.09982
+    var rawPrice = tick.Ask - Math.Abs(priceOffsetPoints) * point;
+    var price    = await svc.NormalizePriceAsync(symbol, rawPrice, timeoutSec, ct);
 
-    // │  STEP 3: Calculate order placement price            
-    // │  priceOffsetPoints = -20                            
-    // │  askPrice = 1.10002                                 
-    // │  point = 0.00001                                    
-    // │  price = 1.10002 + (-20 × 0.00001)                  
-    // │       = 1.10002 - 0.00020                           
-    // │       = 1.09982                                     
-    // └─────────────────────────────────────────────────────
-    double price = askPrice + (priceOffsetPoints * point);
+    // STEP 3: SL below / TP above the entry
+    double sl = slPoints.HasValue ? price - slPoints.Value * point : 0;  // 1.09932
+    double tp = tpPoints.HasValue ? price + tpPoints.Value * point : 0;  // 1.10012
 
-    // │  STEP 4: Calculate SL and TP                        
-    // │  slPoints = 50                                      
-    // │  sl = 1.09982 - (50 × 0.00001) = 1.09932            
-    // │  tpPoints = 30                                      
-    // │  tp = 1.09982 + (30 × 0.00001) = 1.10012            
-    // └─────────────────────────────────────────────────────
-    double sl = slPoints > 0 ? price - (slPoints * point) : 0;
-    double tp = tpPoints > 0 ? price + (tpPoints * point) : 0;
-
-    // │  STEP 5: Call low-level method MT5Service          
-    // └─────────────────────────────────────────────────────
-    return await service.BuyLimitAsync(
-        symbol: symbol,      // "EURUSD"
-        volume: volume,      // 0.01
-        price: price,        // 1.09982
-        sl: sl,              // 1.09932
-        tp: tp,              // 1.10012
-        comment: comment     // "Grid-Buy-1"
-    );
+    // STEP 4: build the pending request (operationCode 2 = Buy Limit) and send it
+    var req = BuildPendingRequest(symbol, volume, price, sl, tp, comment, deviationPoints, operationCode: 2);
+    return await svc.OrderSendAsync(req, Dl(timeoutSec), ct);
 }
 ```
+
+> Note: the sign of `priceOffsetPoints` does **not** flip the direction — `Math.Abs(...)` is applied, and Buy Limit is inherently below the Ask. The grid passes `-20` only as a readable convention.
 
 ---
 
@@ -238,46 +213,29 @@ for (int i = 1; i <= GridLevels; i++)
 #### How SellLimitPoints() works
 
 ```csharp
-// MT5Sugar.cs (extension method)
+// MT5Sugar.cs (extension method) — condensed, matching the real implementation
 public static async Task<OrderSendData> SellLimitPoints(
-    this MT5Service service,
-    string symbol,
-    double volume,
-    int priceOffsetPoints,  // ← RECEIVES +20
-    int slPoints = 0,
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double volume, double priceOffsetPoints,
+    double? slPoints = null, double? tpPoints = null, string? comment = null,
+    int deviationPoints = 0, int timeoutSec = 15, CancellationToken ct = default)
 {
-    var tick = await service.SymbolInfoTickAsync(symbol);
-    double bidPrice = tick.Bid;  // ← FOR SELL use BID, not Ask!
+    await svc.EnsureSelected(symbol, timeoutSec, ct);
 
-    var symbolInfo = await service.SymbolInfoAsync(symbol);
-    double point = symbolInfo.Point;
+    var tick  = await svc.SymbolInfoTickAsync(symbol);
+    var point = await svc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolPoint);
 
-    // │  For SELL: placement price = Bid + offset           
-    // │  priceOffsetPoints = +20                            
-    // │  bidPrice = 1.10000                                 
-    // │  price = 1.10000 + (20 × 0.00001) = 1.10020         
-    // └─────────────────────────────────────────────────────
-    double price = bidPrice + (priceOffsetPoints * point);
+    // Sell Limit is ALWAYS above Bid → the offset's ABSOLUTE value is used
+    //   Bid = 1.10000, |offset| = 20 → raw = 1.10000 + 20×0.00001 = 1.10020
+    var rawPrice = tick.Bid + Math.Abs(priceOffsetPoints) * point;
+    var price    = await svc.NormalizePriceAsync(symbol, rawPrice, timeoutSec, ct);
 
-    // │  For SELL: SL ABOVE entry price (protection)        
-    // │  sl = 1.10020 + (50 × 0.00001) = 1.10070            
-    // │  For SELL: TP BELOW entry price (profit taking)     
-    // │  tp = 1.10020 - (30 × 0.00001) = 1.09990            
-    // └─────────────────────────────────────────────────────
-    double sl = slPoints > 0 ? price + (slPoints * point) : 0;  // + for SELL
-    double tp = tpPoints > 0 ? price - (tpPoints * point) : 0;  // - for SELL
+    // For SELL: SL above entry, TP below entry
+    double sl = slPoints.HasValue ? price + slPoints.Value * point : 0;  // 1.10070
+    double tp = tpPoints.HasValue ? price - tpPoints.Value * point : 0;  // 1.09990
 
-    return await service.SellLimitAsync(
-        symbol: symbol,
-        volume: volume,
-        price: price,    // 1.10020
-        sl: sl,          // 1.10070
-        tp: tp,          // 1.09990
-        comment: comment
-    );
+    // operationCode 3 = Sell Limit
+    var req = BuildPendingRequest(symbol, volume, price, sl, tp, comment, deviationPoints, operationCode: 3);
+    return await svc.OrderSendAsync(req, Dl(timeoutSec), ct);
 }
 ```
 
@@ -399,33 +357,28 @@ return profit;
 #### How CloseAll() works
 
 ```csharp
-// MT5Sugar.cs (extension method)
-public static async Task CloseAll(
-    this MT5Service service,
-    string symbol
-)
+// MT5Sugar.cs (extension method) — condensed, matching the real implementation
+public static async Task<int> CloseAll(
+    this MT5Service svc,
+    string? symbol = null,   // null = all symbols
+    bool? isBuy = null,      // null = both directions
+    int timeoutSec = 30, CancellationToken ct = default)
 {
-    
-    // │  STEP 1: Get all open positions                     
-    // └─────────────────────────────────────────────────────
-    var positions = await service.PositionsAsync(symbol);
+    // STEP 1: fetch everything currently open (positions + pending orders)
+    var opened = await svc.OpenedOrdersAsync(
+        BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc, Dl(timeoutSec), ct);
 
-    foreach (var position in positions)
+    int closed = 0;
+
+    // STEP 2: close/cancel each item matching the symbol/direction filter
+    //   (positions are closed, pending orders are cancelled) via OrderCloseAsync
+    foreach (var item in EnumerateOrders(opened))   // positions + pending
     {
-        // Close each position individually
-        await service.PositionCloseAsync(position.Ticket);
+        // ... build the close request and send it ...
+        closed++;
     }
 
-    
-    // │  STEP 2: Get all pending orders                     
-    // └─────────────────────────────────────────────────────
-    var orders = await service.OrdersAsync(symbol);
-
-    foreach (var order in orders)
-    {
-        // Cancel each pending order
-        await service.OrderDeleteAsync(order.Ticket);
-    }
+    return closed;  // number of items closed/cancelled
 }
 ```
 
@@ -597,12 +550,12 @@ return 5.50;
 
 │  MT5Service                                                 
 │   
-│  │  Methods:                                               
+│  │  Methods (used here):                                   
 │  │  - GetBalanceAsync()                                    
 │  │  - SymbolInfoTickAsync()                                
-│  │  - BuyLimitAsync()                                      
-│  │  - SellLimitAsync()                                     
-│  │  - PositionCloseAsync()                                 
+│  │  - OrderSendAsync()      (via Sugar *Points)            
+│  │  - OpenedOrdersAsync()   (via Sugar CloseAll)           
+│  │  - OrderCloseAsync()     (via Sugar CloseAll)           
 │  └───────────────────────────────────────────────────────  
 └──────────────────────────┬──────────────────────────────────
                            │ _account
@@ -612,7 +565,7 @@ return 5.50;
 │    
 │  │  gRPC Client:                                           
 │  │  - OrderSendAsync(OrderSendRequest)                     
-│  │  - GetAccountInfoAsync(GetAccountInfoRequest)           
+│  │  - AccountInfoDoubleAsync(AccountInfoDoubleRequest)     
 │  │  - SymbolInfoTickAsync(SymbolInfoTickRequest)           
 │  └───────────────────────────────────────────────────────  
 └──────────────────────────┬──────────────────────────────────
@@ -650,7 +603,7 @@ return 5.50;
 1. **1 dependency**: `MT5Service _service` (via DI)
 2. **7 parameters**: Symbol, GridLevels, GridSpacingPoints, Volume, SL, TP, MaxRunMinutes
 3. **3 MT5Sugar methods**: `BuyLimitPoints`, `SellLimitPoints`, `CloseAll`
-4. **5 MT5Service methods**: `GetBalanceAsync`, `SymbolInfoTickAsync`, `BuyLimitAsync`, `SellLimitAsync`, `PositionsAsync`
+4. **2 MT5Service methods used directly**: `GetBalanceAsync`, `SymbolInfoTickAsync` (the Sugar methods call `OrderSendAsync` / `OpenedOrdersAsync` underneath)
 5. **gRPC protocol**: Communication with MT5 Terminal
 
 **Works through**:

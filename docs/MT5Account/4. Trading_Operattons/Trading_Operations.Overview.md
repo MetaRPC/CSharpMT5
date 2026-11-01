@@ -9,6 +9,8 @@
 * **[OrderClose](./OrderClose.md)** - **close** positions (full or partial).
 * **[OrderCheck](./OrderCheck.md)** - **validate** order before sending (check margin, free margin, etc.).
 * **[OrderCalcMargin](./OrderCalcMargin.md)** - **calculate** required margin for an order.
+* **[OrderCalcProfit](./OrderCalcProfit.md)** - **calculate** expected profit of a trade between two prices.
+* **[OrderSendWithoutChecks](./OrderSendWithoutChecks.md)** - **fast send** without server-side pre-checks (latency path).
 
 ---
 
@@ -38,7 +40,7 @@
 
 ## ❌ Cross‑refs & gotchas
 
-* **OrderSend** return code `10009` (TRADE_RETCODE_DONE) = success.
+* **OrderSend** return code `10009` (TradeRetcodeDone) = success.
 * **Slippage** in points - set reasonable value (5-10 points typical).
 * **Stop Loss/Take Profit** must respect symbol's STOPLEVEL (minimum distance from price).
 * **Volume** must be within symbol's min/max lot size and step.

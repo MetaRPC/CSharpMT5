@@ -13,7 +13,7 @@ Welcome! This guide is designed for complete beginners who have never worked wit
 - Execute automated trading strategies
 - Monitor your positions in real-time
 
-Think of MT5 as your "cockpit" for accessing financial markets. PyMT5 allows you to programmatically control this cockpit using Python.
+Think of MT5 as your "cockpit" for accessing financial markets. CSharpMT5 lets you programmatically control this cockpit from C# / .NET.
 
 ---
 
@@ -26,7 +26,7 @@ A **demo account** is a risk-free practice account with virtual money. We **stro
 - ✅ **Zero risk** - practice with virtual funds (typically $10,000 - $100,000)
 - ✅ **Real market conditions** - live prices and market behavior
 - ✅ **Learn the platform** - understand how MT5 works before risking real money
-- ✅ **Test your code** - perfect for developing and testing your PyMT5 applications
+- ✅ **Test your code** - perfect for developing and testing your CSharpMT5 applications
 
 ### Live Account
 
@@ -150,7 +150,7 @@ MT5 will now create your demo account and display your credentials:
 
 **⚠️ CRITICALLY IMPORTANT**: **Save these credentials immediately!** You'll need them for:
 - Logging back into MT5
-- Configuring PyMT5 in `examples/0_common/settings.json`
+- Configuring CSharpMT5 in `Config/appsettings.json`
 
 Click **Finish** to complete account creation.
 
@@ -158,34 +158,35 @@ Click **Finish** to complete account creation.
 
 ---
 
-### Step 8️⃣: Configure PyMT5 with Your Credentials
+### Step 8️⃣: Configure CSharpMT5 with Your Credentials
 
-Now that you have an MT5 demo account, you need to configure PyMT5 to connect to it.
+Now that you have an MT5 demo account, you need to configure CSharpMT5 to connect to it.
 
-1. Open your PyMT5 project
-2. Navigate to **`examples/0_common/settings.json`**
+1. Open the CSharpMT5 project
+2. Navigate to **`Config/appsettings.json`**
 3. Fill in the credentials you just saved:
 
 
 ```json
 {
-  "user": 591129415,
-  "password": "YourPasswordHere",
-  "host": "mt5.mrpc.pro",
-  "port": 443,
-  "grpc_server": "mt5.mrpc.pro:443",
-  "mt_cluster": "MetaQuotes-Demo",
-  "test_symbol": "EURUSD",
-  "test_volume": 0.01
+  "MT5": {
+    "User": 591129415,
+    "Password": "YourPasswordHere",
+    "ServerName": "MetaQuotes-Demo",
+    "GrpcServer": "https://mt5.mrpc.pro:443",
+    "ApiKey": "your-api-key",
+    "ConnectTimeoutSeconds": 60
+  }
 }
 ```
 
 **Important notes:**
 
-- **user**: Replace with your login number
-- **password**: Replace with your password
-- **mt_cluster**: Use the exact server name from MT5 (e.g., "MetaQuotes-Demo")
-- **host, port, grpc_server**: Provided by MetaRPC team (leave as is)
+- **User**: replace with your login number
+- **Password**: replace with your password
+- **ServerName**: the exact server name from MT5 (e.g., "MetaQuotes-Demo")
+- **GrpcServer**: the MetaRPC gateway address (leave as is)
+- **ApiKey**: your MetaRPC key — or set the `MRPC_API_KEY` environment variable instead of committing it (use `TRIAL` for trial access)
 
 ---
 
@@ -202,24 +203,21 @@ Back in the MT5 terminal:
 
 ---
 
-### Step 🔟: Start Testing PyMT5
+### Step 🔟: Start Testing CSharpMT5
 
-With your MT5 demo account created and `settings.json` configured, you can start running examples:
+With your MT5 demo account created and `Config/appsettings.json` configured, you can start running examples:
 
 ```bash
-# Navigate to the examples folder
-cd examples
-
-# Run your first example
-python main.py 1
-
-# Or run interactively
-python main.py
+# From the project root
+dotnet run lowlevel      # run the low-level info demo
+dotnet run trading       # run the trading demo
+dotnet run service       # run the MT5Service demo
+dotnet run sugar         # run the MT5Sugar demo
 ```
 
 When trading operations occur, your demo account balance will increase or decrease accordingly. **Experiment freely** - it's virtual money, so there's no risk!
 
-All trades executed by PyMT5 will appear in your MT5 terminal in real-time.
+All trades executed by CSharpMT5 will appear in your MT5 terminal in real-time.
 
 ---
 
@@ -233,7 +231,7 @@ MT5 uses **two types of passwords** for security and flexibility:
 - Can open/close trades, deposit/withdraw funds, change settings
 - **This is the password you created** during account registration
 - Use this password for:
-  - Trading (including PyMT5 applications)
+  - Trading (including CSharpMT5 applications)
   - Changing account settings
   - Withdrawing funds (live accounts)
 
@@ -272,7 +270,7 @@ While you can use the MetaQuotes demo server for practice, you may want to choos
 - **OANDA** - Strong reputation, accepts US clients
 - **XM** - Easy account opening, many account types
 - **RoboForex** - Good for automated trading
-- **FxPro** - Excellent demo trading conditions (used in PyMT5 examples)
+- **FxPro** - Excellent demo trading conditions
 
 ### What to look for:
 
@@ -288,22 +286,19 @@ While you can use the MetaQuotes demo server for practice, you may want to choos
 
 ---
 
-
----
-
 ## What's Next?
 
 Now that you have a demo account and understand the basics, you're ready for:
 
-### 1. Setting Up PyMT5
+### 1. Setting Up CSharpMT5
 
-Follow our main getting started guide to connect PyMT5 to your MT5 account:
+Follow our main getting started guide to connect CSharpMT5 to your MT5 account:
 
-👉 **[Getting Started with PyMT5](GETTING_STARTED.md)**
+👉 **[Getting Started with CSharpMT5](./GETTING_STARTED.md)**
 
 ### 2. Understanding API Architecture
 
-PyMT5 is built in **three levels**, from low-level to high-level. You can choose where to start depending on your needs:
+CSharpMT5 is built in **three levels**, from low-level to high-level. You can choose where to start depending on your needs:
 
 #### Level 1: MT5Account (Low-Level gRPC Foundation)
 👉 **[MT5Account Overview](../MT5Account/MT5Account.Master.Overview.md)**
@@ -348,7 +343,7 @@ PyMT5 is built in **three levels**, from low-level to high-level. You can choose
 
 ### 🧪 Testing
 
-- Test all your PyMT5 code **on demo first**
+- Test all your CSharpMT5 code **on demo first**
 - Verify strategies over weeks/months, not days
 - Paper trading (demo) doesn't guarantee live results
 
@@ -360,41 +355,34 @@ PyMT5 is built in **three levels**, from low-level to high-level. You can choose
 
 ---
 
-## Useful Python Commands
+## Useful .NET Commands
 
 ### Installation
 
 ```bash
-# Install PyMT5 package with all dependencies
-pip install MetaRpcMT5
+# Add the CSharpMT5 package to your project
+dotnet add package MetaRPC.MT5
 ```
 
 ### Running Examples
 
 ```bash
-# Navigate to examples folder first
-cd examples
-
-# Option 1: Run specific example by number
-python main.py 1
-
-# Option 2: Interactive menu
-python main.py
-
-# Option 3: Run example file directly
-python 1_lowlevel/01_general_operations.py
-python 3_sugar/06_sugar_basics.py
+# From the project root
+dotnet run lowlevel   # low-level MT5Account demo
+dotnet run service    # MT5Service demo
+dotnet run sugar      # MT5Sugar demo
+dotnet run trading    # trading lifecycle demo
 ```
 
 ### Checking Environment
 
 ```bash
-# Verify Python version (requires 3.8+)
-python --version
+# Verify the .NET SDK (this project targets .NET 8)
+dotnet --version
 ```
 
 ---
 
-**Ready to start coding?** Head over to [Getting Started](GETTING_STARTED.md) to connect PyMT5 to your MT5 account!
+**Ready to start coding?** Head over to [Getting Started](./GETTING_STARTED.md) to connect CSharpMT5 to your MT5 account!
 
 **Good luck with your trading journey! 🚀**

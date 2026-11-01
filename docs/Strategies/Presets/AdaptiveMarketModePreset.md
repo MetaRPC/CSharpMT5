@@ -162,10 +162,12 @@ MaxWaitMinutes = 3            // Wait 3 minutes for breakout
 |----------|-----|--------------|----------|
 | `Symbol` | string | `"EURUSD"` | Trading instrument |
 | `BaseRiskAmount` | double | `20.0` | Base risk per trade in dollars |
+| `VolatilityLookbackBars` | int | `20` | Bars analyzed for the volatility estimate |
 | `LowVolatilityThreshold` | double | `15.0` | Max volatility for grid mode (points) |
 | `HighVolatilityThreshold` | double | `40.0` | Min volatility for hedge mode (points) |
 | `EnableNewsMode` | bool | `true` | Enable news event detection |
 | `MinutesBeforeNews` | int | `5` | Switch to news mode N minutes early |
+| `CycleDurationSeconds` | int | `300` | Duration of each analysis cycle (seconds) |
 
 ### Configuration Example
 

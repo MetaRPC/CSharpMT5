@@ -16,13 +16,13 @@
 * **SDK wrapper:**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Service
     {
         public async IAsyncEnumerable<OnPositionProfitData> OnPositionProfitAsync(
-            int intervalMs = 1000,
-            bool ignoreEmpty = false,
+            int intervalMs,
+            bool ignoreEmpty = true,
             [EnumeratorCancellation] CancellationToken cancellationToken = default);
     }
 }
@@ -42,8 +42,8 @@ namespace mt5_term_api
 
 | Parameter            | Type                  | Description                                                  |
 | -------------------- | --------------------- | ------------------------------------------------------------ |
-| `intervalMs`         | `int`                 | Update interval in milliseconds (default: 1000ms = 1 second) |
-| `ignoreEmpty`        | `bool`                | Skip events when no positions exist (default: false)         |
+| `intervalMs`         | `int`                 | Update interval in milliseconds (required; e.g. 1000 = 1 second) |
+| `ignoreEmpty`        | `bool`                | Skip events when no positions exist (default: true)          |
 | `cancellationToken`  | `CancellationToken`   | Token to stop the stream                                     |
 
 ---
