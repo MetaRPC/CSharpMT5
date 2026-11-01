@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
@@ -204,7 +204,7 @@ namespace mt5_term_api
 | `TradeFreezeLevel`   | `int32`                               | Freeze level (points)                 |
 | `TradeExeMode`       | `BMT5_ENUM_SYMBOL_TRADE_EXECUTION`    | Execution mode                        |
 | `SwapMode`           | `BMT5_ENUM_SYMBOL_SWAP_MODE`          | Swap calculation mode                 |
-| `SwapRollover3days`  | `BMT5_ENUM_DAY_OF_WEEK`               | Day of triple swap rollover           |
+| `SwapRollover3Days`  | `BMT5_ENUM_DAY_OF_WEEK`               | Day of triple swap rollover           |
 
 **Order/Fill modes:**
 
@@ -257,20 +257,20 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_SECTOR_UNDEFINED` | Undefined sector |
-| `BMT5_SECTOR_BASIC_MATERIALS` | Basic materials |
-| `BMT5_SECTOR_COMMUNICATION_SERVICES` | Communication services |
-| `BMT5_SECTOR_CONSUMER_CYCLICAL` | Consumer cyclical |
-| `BMT5_SECTOR_CONSUMER_DEFENSIVE` | Consumer defensive |
-| `BMT5_SECTOR_CURRENCY` | Currencies (Forex) |
-| `BMT5_SECTOR_CURRENCY_CRYPTO` | Cryptocurrencies |
-| `BMT5_SECTOR_ENERGY` | Energy |
-| `BMT5_SECTOR_FINANCIAL` | Finance |
-| `BMT5_SECTOR_HEALTHCARE` | Healthcare |
-| `BMT5_SECTOR_INDUSTRIALS` | Industrials |
-| `BMT5_SECTOR_REAL_ESTATE` | Real estate |
-| `BMT5_SECTOR_TECHNOLOGY` | Technology |
-| `BMT5_SECTOR_UTILITIES` | Utilities |
+| `Bmt5SectorUndefined` | Undefined sector |
+| `Bmt5SectorBasicMaterials` | Basic materials |
+| `Bmt5SectorCommunicationServices` | Communication services |
+| `Bmt5SectorConsumerCyclical` | Consumer cyclical |
+| `Bmt5SectorConsumerDefensive` | Consumer defensive |
+| `Bmt5SectorCurrency` | Currencies (Forex) |
+| `Bmt5SectorCurrencyCrypto` | Cryptocurrencies |
+| `Bmt5SectorEnergy` | Energy |
+| `Bmt5SectorFinancial` | Finance |
+| `Bmt5SectorHealthcare` | Healthcare |
+| `Bmt5SectorIndustrials` | Industrials |
+| `Bmt5SectorRealEstate` | Real estate |
+| `Bmt5SectorTechnology` | Technology |
+| `Bmt5SectorUtilities` | Utilities |
 
 ---
 
@@ -280,206 +280,206 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_UNDEFINED` | Undefined |
-| `BMT5_INDUSTRY_AGRICULTURAL_INPUTS` | Agricultural inputs |
-| `BMT5_INDUSTRY_ALUMINIUM` | Aluminium |
-| `BMT5_INDUSTRY_BUILDING_MATERIALS` | Building materials |
-| `BMT5_INDUSTRY_CHEMICALS` | Chemicals |
-| `BMT5_INDUSTRY_COKING_COAL` | Coking coal |
-| `BMT5_INDUSTRY_COPPER` | Copper |
-| `BMT5_INDUSTRY_GOLD` | Gold |
-| `BMT5_INDUSTRY_LUMBER_WOOD` | Lumber and wood production |
-| `BMT5_INDUSTRY_INDUSTRIAL_METALS` | Other industrial metals and mining |
-| `BMT5_INDUSTRY_PRECIOUS_METALS` | Other precious metals and mining |
-| `BMT5_INDUSTRY_PAPER` | Paper and paper products |
-| `BMT5_INDUSTRY_SILVER` | Silver |
-| `BMT5_INDUSTRY_SPECIALTY_CHEMICALS` | Specialty chemicals |
-| `BMT5_INDUSTRY_STEEL` | Steel |
+| `Bmt5IndustryUndefined` | Undefined |
+| `Bmt5IndustryAgriculturalInputs` | Agricultural inputs |
+| `Bmt5IndustryAluminium` | Aluminium |
+| `Bmt5IndustryBuildingMaterials` | Building materials |
+| `Bmt5IndustryChemicals` | Chemicals |
+| `Bmt5IndustryCokingCoal` | Coking coal |
+| `Bmt5IndustryCopper` | Copper |
+| `Bmt5IndustryGold` | Gold |
+| `Bmt5IndustryLumberWood` | Lumber and wood production |
+| `Bmt5IndustryIndustrialMetals` | Other industrial metals and mining |
+| `Bmt5IndustryPreciousMetals` | Other precious metals and mining |
+| `Bmt5IndustryPaper` | Paper and paper products |
+| `Bmt5IndustrySilver` | Silver |
+| `Bmt5IndustrySpecialtyChemicals` | Specialty chemicals |
+| `Bmt5IndustrySteel` | Steel |
 
 #### Communication Services (7 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_ADVERTISING` | Advertising agencies |
-| `BMT5_INDUSTRY_BROADCASTING` | Broadcasting |
-| `BMT5_INDUSTRY_GAMING_MULTIMEDIA` | Electronic gaming and multimedia |
-| `BMT5_INDUSTRY_ENTERTAINMENT` | Entertainment |
-| `BMT5_INDUSTRY_INTERNET_CONTENT` | Internet content and information |
-| `BMT5_INDUSTRY_PUBLISHING` | Publishing |
-| `BMT5_INDUSTRY_TELECOM` | Telecom services |
+| `Bmt5IndustryAdvertising` | Advertising agencies |
+| `Bmt5IndustryBroadcasting` | Broadcasting |
+| `Bmt5IndustryGamingMultimedia` | Electronic gaming and multimedia |
+| `Bmt5IndustryEntertainment` | Entertainment |
+| `Bmt5IndustryInternetContent` | Internet content and information |
+| `Bmt5IndustryPublishing` | Publishing |
+| `Bmt5IndustryTelecom` | Telecom services |
 
 #### Consumer Cyclical (23 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_APPAREL_MANUFACTURING` | Apparel manufacturing |
-| `BMT5_INDUSTRY_APPAREL_RETAIL` | Apparel retail |
-| `BMT5_INDUSTRY_AUTO_MANUFACTURERS` | Auto manufacturers |
-| `BMT5_INDUSTRY_AUTO_PARTS` | Auto parts |
-| `BMT5_INDUSTRY_AUTO_DEALERSHIP` | Auto and truck dealerships |
-| `BMT5_INDUSTRY_DEPARTMENT_STORES` | Department stores |
-| `BMT5_INDUSTRY_FOOTWEAR_ACCESSORIES` | Footwear and accessories |
-| `BMT5_INDUSTRY_FURNISHINGS` | Furnishing, fixtures and appliances |
-| `BMT5_INDUSTRY_GAMBLING` | Gambling |
-| `BMT5_INDUSTRY_HOME_IMPROV_RETAIL` | Home improvement retail |
-| `BMT5_INDUSTRY_INTERNET_RETAIL` | Internet retail |
-| `BMT5_INDUSTRY_LEISURE` | Leisure |
-| `BMT5_INDUSTRY_LODGING` | Lodging |
-| `BMT5_INDUSTRY_LUXURY_GOODS` | Luxury goods |
-| `BMT5_INDUSTRY_PACKAGING_CONTAINERS` | Packaging and containers |
-| `BMT5_INDUSTRY_PERSONAL_SERVICES` | Personal services |
-| `BMT5_INDUSTRY_RECREATIONAL_VEHICLES` | Recreational vehicles |
-| `BMT5_INDUSTRY_RESIDENT_CONSTRUCTION` | Residential construction |
-| `BMT5_INDUSTRY_RESORTS_CASINOS` | Resorts and casinos |
-| `BMT5_INDUSTRY_RESTAURANTS` | Restaurants |
-| `BMT5_INDUSTRY_SPECIALTY_RETAIL` | Specialty retail |
-| `BMT5_INDUSTRY_TEXTILE_MANUFACTURING` | Textile manufacturing |
-| `BMT5_INDUSTRY_TRAVEL_SERVICES` | Travel services |
+| `Bmt5IndustryApparelManufacturing` | Apparel manufacturing |
+| `Bmt5IndustryApparelRetail` | Apparel retail |
+| `Bmt5IndustryAutoManufacturers` | Auto manufacturers |
+| `Bmt5IndustryAutoParts` | Auto parts |
+| `Bmt5IndustryAutoDealership` | Auto and truck dealerships |
+| `Bmt5IndustryDepartmentStores` | Department stores |
+| `Bmt5IndustryFootwearAccessories` | Footwear and accessories |
+| `Bmt5IndustryFurnishings` | Furnishing, fixtures and appliances |
+| `Bmt5IndustryGambling` | Gambling |
+| `Bmt5IndustryHomeImprovRetail` | Home improvement retail |
+| `Bmt5IndustryInternetRetail` | Internet retail |
+| `Bmt5IndustryLeisure` | Leisure |
+| `Bmt5IndustryLodging` | Lodging |
+| `Bmt5IndustryLuxuryGoods` | Luxury goods |
+| `Bmt5IndustryPackagingContainers` | Packaging and containers |
+| `Bmt5IndustryPersonalServices` | Personal services |
+| `Bmt5IndustryRecreationalVehicles` | Recreational vehicles |
+| `Bmt5IndustryResidentConstruction` | Residential construction |
+| `Bmt5IndustryResortsCasinos` | Resorts and casinos |
+| `Bmt5IndustryRestaurants` | Restaurants |
+| `Bmt5IndustrySpecialtyRetail` | Specialty retail |
+| `Bmt5IndustryTextileManufacturing` | Textile manufacturing |
+| `Bmt5IndustryTravelServices` | Travel services |
 
 #### Consumer Defensive (12 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_BEVERAGES_BREWERS` | Beverages - Brewers |
-| `BMT5_INDUSTRY_BEVERAGES_NON_ALCO` | Beverages - Non-alcoholic |
-| `BMT5_INDUSTRY_BEVERAGES_WINERIES` | Beverages - Wineries and distilleries |
-| `BMT5_INDUSTRY_CONFECTIONERS` | Confectioners |
-| `BMT5_INDUSTRY_DISCOUNT_STORES` | Discount stores |
-| `BMT5_INDUSTRY_EDUCATION_TRAINIG` | Education and training services |
-| `BMT5_INDUSTRY_FARM_PRODUCTS` | Farm products |
-| `BMT5_INDUSTRY_FOOD_DISTRIBUTION` | Food distribution |
-| `BMT5_INDUSTRY_GROCERY_STORES` | Grocery stores |
-| `BMT5_INDUSTRY_HOUSEHOLD_PRODUCTS` | Household and personal products |
-| `BMT5_INDUSTRY_PACKAGED_FOODS` | Packaged foods |
-| `BMT5_INDUSTRY_TOBACCO` | Tobacco |
+| `Bmt5IndustryBeveragesBrewers` | Beverages - Brewers |
+| `Bmt5IndustryBeveragesNonAlco` | Beverages - Non-alcoholic |
+| `Bmt5IndustryBeveragesWineries` | Beverages - Wineries and distilleries |
+| `Bmt5IndustryConfectioners` | Confectioners |
+| `Bmt5IndustryDiscountStores` | Discount stores |
+| `Bmt5IndustryEducationTrainig` | Education and training services |
+| `Bmt5IndustryFarmProducts` | Farm products |
+| `Bmt5IndustryFoodDistribution` | Food distribution |
+| `Bmt5IndustryGroceryStores` | Grocery stores |
+| `Bmt5IndustryHouseholdProducts` | Household and personal products |
+| `Bmt5IndustryPackagedFoods` | Packaged foods |
+| `Bmt5IndustryTobacco` | Tobacco |
 
 #### Energy (8 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_OIL_GAS_DRILLING` | Oil and gas drilling |
-| `BMT5_INDUSTRY_OIL_GAS_EP` | Oil and gas extraction and processing |
-| `BMT5_INDUSTRY_OIL_GAS_EQUIPMENT` | Oil and gas equipment and services |
-| `BMT5_INDUSTRY_OIL_GAS_INTEGRATED` | Oil and gas integrated |
-| `BMT5_INDUSTRY_OIL_GAS_MIDSTREAM` | Oil and gas midstream |
-| `BMT5_INDUSTRY_OIL_GAS_REFINING` | Oil and gas refining and marketing |
-| `BMT5_INDUSTRY_THERMAL_COAL` | Thermal coal |
-| `BMT5_INDUSTRY_URANIUM` | Uranium |
+| `Bmt5IndustryOilGasDrilling` | Oil and gas drilling |
+| `Bmt5IndustryOilGasEp` | Oil and gas extraction and processing |
+| `Bmt5IndustryOilGasEquipment` | Oil and gas equipment and services |
+| `Bmt5IndustryOilGasIntegrated` | Oil and gas integrated |
+| `Bmt5IndustryOilGasMidstream` | Oil and gas midstream |
+| `Bmt5IndustryOilGasRefining` | Oil and gas refining and marketing |
+| `Bmt5IndustryThermalCoal` | Thermal coal |
+| `Bmt5IndustryUranium` | Uranium |
 
 #### Financial (19 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_EXCHANGE_TRADED_FUND` | Exchange traded fund |
-| `BMT5_INDUSTRY_ASSETS_MANAGEMENT` | Assets management |
-| `BMT5_INDUSTRY_BANKS_DIVERSIFIED` | Banks - Diversified |
-| `BMT5_INDUSTRY_BANKS_REGIONAL` | Banks - Regional |
-| `BMT5_INDUSTRY_CAPITAL_MARKETS` | Capital markets |
-| `BMT5_INDUSTRY_CLOSE_END_FUND_DEBT` | Closed-End fund - Debt |
-| `BMT5_INDUSTRY_CLOSE_END_FUND_EQUITY` | Closed-end fund - Equity |
-| `BMT5_INDUSTRY_CLOSE_END_FUND_FOREIGN` | Closed-end fund - Foreign |
-| `BMT5_INDUSTRY_CREDIT_SERVICES` | Credit services |
-| `BMT5_INDUSTRY_FINANCIAL_CONGLOMERATE` | Financial conglomerates |
-| `BMT5_INDUSTRY_FINANCIAL_DATA_EXCHANGE` | Financial data and stock exchange |
-| `BMT5_INDUSTRY_INSURANCE_BROKERS` | Insurance brokers |
-| `BMT5_INDUSTRY_INSURANCE_DIVERSIFIED` | Insurance - Diversified |
-| `BMT5_INDUSTRY_INSURANCE_LIFE` | Insurance - Life |
-| `BMT5_INDUSTRY_INSURANCE_PROPERTY` | Insurance - Property and casualty |
-| `BMT5_INDUSTRY_INSURANCE_REINSURANCE` | Insurance - Reinsurance |
-| `BMT5_INDUSTRY_INSURANCE_SPECIALTY` | Insurance - Specialty |
-| `BMT5_INDUSTRY_MORTGAGE_FINANCE` | Mortgage finance |
-| `BMT5_INDUSTRY_SHELL_COMPANIES` | Shell companies |
+| `Bmt5IndustryExchangeTradedFund` | Exchange traded fund |
+| `Bmt5IndustryAssetsManagement` | Assets management |
+| `Bmt5IndustryBanksDiversified` | Banks - Diversified |
+| `Bmt5IndustryBanksRegional` | Banks - Regional |
+| `Bmt5IndustryCapitalMarkets` | Capital markets |
+| `Bmt5IndustryCloseEndFundDebt` | Closed-End fund - Debt |
+| `Bmt5IndustryCloseEndFundEquity` | Closed-end fund - Equity |
+| `Bmt5IndustryCloseEndFundForeign` | Closed-end fund - Foreign |
+| `Bmt5IndustryCreditServices` | Credit services |
+| `Bmt5IndustryFinancialConglomerate` | Financial conglomerates |
+| `Bmt5IndustryFinancialDataExchange` | Financial data and stock exchange |
+| `Bmt5IndustryInsuranceBrokers` | Insurance brokers |
+| `Bmt5IndustryInsuranceDiversified` | Insurance - Diversified |
+| `Bmt5IndustryInsuranceLife` | Insurance - Life |
+| `Bmt5IndustryInsuranceProperty` | Insurance - Property and casualty |
+| `Bmt5IndustryInsuranceReinsurance` | Insurance - Reinsurance |
+| `Bmt5IndustryInsuranceSpecialty` | Insurance - Specialty |
+| `Bmt5IndustryMortgageFinance` | Mortgage finance |
+| `Bmt5IndustryShellCompanies` | Shell companies |
 
 #### Healthcare (11 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_BIOTECHNOLOGY` | Biotechnology |
-| `BMT5_INDUSTRY_DIAGNOSTICS_RESEARCH` | Diagnostics and research |
-| `BMT5_INDUSTRY_DRUGS_MANUFACTURERS` | Drugs manufacturers - general |
-| `BMT5_INDUSTRY_DRUGS_MANUFACTURERS_SPEC` | Drugs manufacturers - Specialty and generic |
-| `BMT5_INDUSTRY_HEALTHCARE_PLANS` | Healthcare plans |
-| `BMT5_INDUSTRY_HEALTH_INFORMATION` | Health information services |
-| `BMT5_INDUSTRY_MEDICAL_FACILITIES` | Medical care facilities |
-| `BMT5_INDUSTRY_MEDICAL_DEVICES` | Medical devices |
-| `BMT5_INDUSTRY_MEDICAL_DISTRIBUTION` | Medical distribution |
-| `BMT5_INDUSTRY_MEDICAL_INSTRUMENTS` | Medical instruments and supplies |
-| `BMT5_INDUSTRY_PHARM_RETAILERS` | Pharmaceutical retailers |
+| `Bmt5IndustryBiotechnology` | Biotechnology |
+| `Bmt5IndustryDiagnosticsResearch` | Diagnostics and research |
+| `Bmt5IndustryDrugsManufacturers` | Drugs manufacturers - general |
+| `Bmt5IndustryDrugsManufacturersSpec` | Drugs manufacturers - Specialty and generic |
+| `Bmt5IndustryHealthcarePlans` | Healthcare plans |
+| `Bmt5IndustryHealthInformation` | Health information services |
+| `Bmt5IndustryMedicalFacilities` | Medical care facilities |
+| `Bmt5IndustryMedicalDevices` | Medical devices |
+| `Bmt5IndustryMedicalDistribution` | Medical distribution |
+| `Bmt5IndustryMedicalInstruments` | Medical instruments and supplies |
+| `Bmt5IndustryPharmRetailers` | Pharmaceutical retailers |
 
 #### Industrials (25 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_AEROSPACE_DEFENSE` | Aerospace and defense |
-| `BMT5_INDUSTRY_AIRLINES` | Airlines |
-| `BMT5_INDUSTRY_AIRPORTS_SERVICES` | Airports and air services |
-| `BMT5_INDUSTRY_BUILDING_PRODUCTS` | Building products and equipment |
-| `BMT5_INDUSTRY_BUSINESS_EQUIPMENT` | Business equipment and supplies |
-| `BMT5_INDUSTRY_CONGLOMERATES` | Conglomerates |
-| `BMT5_INDUSTRY_CONSULTING_SERVICES` | Consulting services |
-| `BMT5_INDUSTRY_ELECTRICAL_EQUIPMENT` | Electrical equipment and parts |
-| `BMT5_INDUSTRY_ENGINEERING_CONSTRUCTION` | Engineering and construction |
-| `BMT5_INDUSTRY_FARM_HEAVY_MACHINERY` | Farm and heavy construction machinery |
-| `BMT5_INDUSTRY_INDUSTRIAL_DISTRIBUTION` | Industrial distribution |
-| `BMT5_INDUSTRY_INFRASTRUCTURE_OPERATIONS` | Infrastructure operations |
-| `BMT5_INDUSTRY_FREIGHT_LOGISTICS` | Integrated freight and logistics |
-| `BMT5_INDUSTRY_MARINE_SHIPPING` | Marine shipping |
-| `BMT5_INDUSTRY_METAL_FABRICATION` | Metal fabrication |
-| `BMT5_INDUSTRY_POLLUTION_CONTROL` | Pollution and treatment controls |
-| `BMT5_INDUSTRY_RAILROADS` | Railroads |
-| `BMT5_INDUSTRY_RENTAL_LEASING` | Rental and leasing services |
-| `BMT5_INDUSTRY_SECURITY_PROTECTION` | Security and protection services |
-| `BMT5_INDUSTRY_SPEALITY_BUSINESS_SERVICES` | Specialty business services |
-| `BMT5_INDUSTRY_SPEALITY_MACHINERY` | Specialty industrial machinery |
-| `BMT5_INDUSTRY_STUFFING_EMPLOYMENT` | Staffing and employment services |
-| `BMT5_INDUSTRY_TOOLS_ACCESSORIES` | Tools and accessories |
-| `BMT5_INDUSTRY_TRUCKING` | Trucking |
-| `BMT5_INDUSTRY_WASTE_MANAGEMENT` | Waste management |
+| `Bmt5IndustryAerospaceDefense` | Aerospace and defense |
+| `Bmt5IndustryAirlines` | Airlines |
+| `Bmt5IndustryAirportsServices` | Airports and air services |
+| `Bmt5IndustryBuildingProducts` | Building products and equipment |
+| `Bmt5IndustryBusinessEquipment` | Business equipment and supplies |
+| `Bmt5IndustryConglomerates` | Conglomerates |
+| `Bmt5IndustryConsultingServices` | Consulting services |
+| `Bmt5IndustryElectricalEquipment` | Electrical equipment and parts |
+| `Bmt5IndustryEngineeringConstruction` | Engineering and construction |
+| `Bmt5IndustryFarmHeavyMachinery` | Farm and heavy construction machinery |
+| `Bmt5IndustryIndustrialDistribution` | Industrial distribution |
+| `Bmt5IndustryInfrastructureOperations` | Infrastructure operations |
+| `Bmt5IndustryFreightLogistics` | Integrated freight and logistics |
+| `Bmt5IndustryMarineShipping` | Marine shipping |
+| `Bmt5IndustryMetalFabrication` | Metal fabrication |
+| `Bmt5IndustryPollutionControl` | Pollution and treatment controls |
+| `Bmt5IndustryRailroads` | Railroads |
+| `Bmt5IndustryRentalLeasing` | Rental and leasing services |
+| `Bmt5IndustrySecurityProtection` | Security and protection services |
+| `Bmt5IndustrySpealityBusinessServices` | Specialty business services |
+| `Bmt5IndustrySpealityMachinery` | Specialty industrial machinery |
+| `Bmt5IndustryStuffingEmployment` | Staffing and employment services |
+| `Bmt5IndustryToolsAccessories` | Tools and accessories |
+| `Bmt5IndustryTrucking` | Trucking |
+| `Bmt5IndustryWasteManagement` | Waste management |
 
 #### Real Estate (12 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_REAL_ESTATE_DEVELOPMENT` | Real estate - Development |
-| `BMT5_INDUSTRY_REAL_ESTATE_DIVERSIFIED` | Real estate - Diversified |
-| `BMT5_INDUSTRY_REAL_ESTATE_SERVICES` | Real estate services |
-| `BMT5_INDUSTRY_REIT_DIVERSIFIED` | REIT - Diversified |
-| `BMT5_INDUSTRY_REIT_HEALTCARE` | REIT - Healthcare facilities |
-| `BMT5_INDUSTRY_REIT_HOTEL_MOTEL` | REIT - Hotel and motel |
-| `BMT5_INDUSTRY_REIT_INDUSTRIAL` | REIT - Industrial |
-| `BMT5_INDUSTRY_REIT_MORTAGE` | REIT - Mortgage |
-| `BMT5_INDUSTRY_REIT_OFFICE` | REIT - Office |
-| `BMT5_INDUSTRY_REIT_RESIDENTAL` | REIT - Residential |
-| `BMT5_INDUSTRY_REIT_RETAIL` | REIT - Retail |
-| `BMT5_INDUSTRY_REIT_SPECIALITY` | REIT - Specialty |
+| `Bmt5IndustryRealEstateDevelopment` | Real estate - Development |
+| `Bmt5IndustryRealEstateDiversified` | Real estate - Diversified |
+| `Bmt5IndustryRealEstateServices` | Real estate services |
+| `Bmt5IndustryReitDiversified` | REIT - Diversified |
+| `Bmt5IndustryReitHealtcare` | REIT - Healthcare facilities |
+| `Bmt5IndustryReitHotelMotel` | REIT - Hotel and motel |
+| `Bmt5IndustryReitIndustrial` | REIT - Industrial |
+| `Bmt5IndustryReitMortage` | REIT - Mortgage |
+| `Bmt5IndustryReitOffice` | REIT - Office |
+| `Bmt5IndustryReitResidental` | REIT - Residential |
+| `Bmt5IndustryReitRetail` | REIT - Retail |
+| `Bmt5IndustryReitSpeciality` | REIT - Specialty |
 
 #### Technology (12 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_COMMUNICATION_EQUIPMENT` | Communication equipment |
-| `BMT5_INDUSTRY_COMPUTER_HARDWARE` | Computer hardware |
-| `BMT5_INDUSTRY_CONSUMER_ELECTRONICS` | Consumer electronics |
-| `BMT5_INDUSTRY_ELECTRONIC_COMPONENTS` | Electronic components |
-| `BMT5_INDUSTRY_ELECTRONIC_DISTRIBUTION` | Electronics and computer distribution |
-| `BMT5_INDUSTRY_IT_SERVICES` | Information technology services |
-| `BMT5_INDUSTRY_SCIENTIFIC_INSTRUMENTS` | Scientific and technical instruments |
-| `BMT5_INDUSTRY_SEMICONDUCTOR_EQUIPMENT` | Semiconductor equipment and materials |
-| `BMT5_INDUSTRY_SEMICONDUCTORS` | Semiconductors |
-| `BMT5_INDUSTRY_SOFTWARE_APPLICATION` | Software - Application |
-| `BMT5_INDUSTRY_SOFTWARE_INFRASTRUCTURE` | Software - Infrastructure |
-| `BMT5_INDUSTRY_SOLAR` | Solar |
+| `Bmt5IndustryCommunicationEquipment` | Communication equipment |
+| `Bmt5IndustryComputerHardware` | Computer hardware |
+| `Bmt5IndustryConsumerElectronics` | Consumer electronics |
+| `Bmt5IndustryElectronicComponents` | Electronic components |
+| `Bmt5IndustryElectronicDistribution` | Electronics and computer distribution |
+| `Bmt5IndustryItServices` | Information technology services |
+| `Bmt5IndustryScientificInstruments` | Scientific and technical instruments |
+| `Bmt5IndustrySemiconductorEquipment` | Semiconductor equipment and materials |
+| `Bmt5IndustrySemiconductors` | Semiconductors |
+| `Bmt5IndustrySoftwareApplication` | Software - Application |
+| `Bmt5IndustrySoftwareInfrastructure` | Software - Infrastructure |
+| `Bmt5IndustrySolar` | Solar |
 
 #### Utilities (6 values)
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_INDUSTRY_UTILITIES_DIVERSIFIED` | Utilities - Diversified |
-| `BMT5_INDUSTRY_UTILITIES_POWERPRODUCERS` | Utilities - Independent power producers |
-| `BMT5_INDUSTRY_UTILITIES_RENEWABLE` | Utilities - Renewable |
-| `BMT5_INDUSTRY_UTILITIES_REGULATED_ELECTRIC` | Utilities - Regulated electric |
-| `BMT5_INDUSTRY_UTILITIES_REGULATED_GAS` | Utilities - Regulated gas |
-| `BMT5_INDUSTRY_UTILITIES_REGULATED_WATER` | Utilities - Regulated water |
+| `Bmt5IndustryUtilitiesDiversified` | Utilities - Diversified |
+| `Bmt5IndustryUtilitiesPowerproducers` | Utilities - Independent power producers |
+| `Bmt5IndustryUtilitiesRenewable` | Utilities - Renewable |
+| `Bmt5IndustryUtilitiesRegulatedElectric` | Utilities - Regulated electric |
+| `Bmt5IndustryUtilitiesRegulatedGas` | Utilities - Regulated gas |
+| `Bmt5IndustryUtilitiesRegulatedWater` | Utilities - Regulated water |
 
 ---
 
@@ -487,8 +487,8 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_SYMBOL_CHART_MODE_BID` | Chart based on Bid prices |
-| `BMT5_SYMBOL_CHART_MODE_LAST` | Chart based on Last deal prices |
+| `Bmt5SymbolChartModeBid` | Chart based on Bid prices |
+| `Bmt5SymbolChartModeLast` | Chart based on Last deal prices |
 
 ---
 
@@ -496,19 +496,19 @@ namespace mt5_term_api
 
 | Enum Value | Description | Formula |
 |------------|-------------|---------|
-| `BMT5_SYMBOL_CALC_MODE_FOREX` | Forex mode | Margin: `Lots * Contract_Size / Leverage * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
-| `BMT5_SYMBOL_CALC_MODE_FOREX_NO_LEVERAGE` | Forex without leverage | Margin: `Lots * Contract_Size * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
-| `BMT5_SYMBOL_CALC_MODE_FUTURES` | Futures | Margin: `Lots * InitialMargin * Margin_Rate`<br>Profit: `(close_price - open_price) * TickPrice / TickSize * Lots` |
-| `BMT5_SYMBOL_CALC_MODE_CFD` | CFD | Margin: `Lots * ContractSize * MarketPrice * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
-| `BMT5_SYMBOL_CALC_MODE_CFDINDEX` | CFD index | Margin: `(Lots * ContractSize * MarketPrice) * TickPrice / TickSize * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
-| `BMT5_SYMBOL_CALC_MODE_CFDLEVERAGE` | CFD with leverage | Margin: `(Lots * ContractSize * MarketPrice) / Leverage * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
-| `BMT5_SYMBOL_CALC_MODE_EXCH_STOCKS` | Exchange stocks | Margin: `Lots * ContractSize * LastPrice * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
-| `BMT5_SYMBOL_CALC_MODE_EXCH_FUTURES` | Exchange futures | Margin: `Lots * InitialMargin * Margin_Rate` or `Lots * MaintenanceMargin * Margin_Rate`<br>Profit: `(close_price - open_price) * Lots * TickPrice / TickSize` |
-| `BMT5_SYMBOL_CALC_MODE_EXCH_FUTURES_FORTS` | FORTS futures | Complex formula with MarginDiscount |
-| `BMT5_SYMBOL_CALC_MODE_EXCH_BONDS` | Exchange bonds | Margin: `Lots * ContractSize * FaceValue * open_price / 100`<br>Profit: `Lots * close_price * FaceValue * Contract_Size + AccruedInterest * Lots * ContractSize` |
-| `BMT5_SYMBOL_CALC_MODE_EXCH_STOCKS_MOEX` | MOEX stocks | Margin: `Lots * ContractSize * LastPrice * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
-| `BMT5_SYMBOL_CALC_MODE_EXCH_BONDS_MOEX` | MOEX bonds | Margin: `Lots * ContractSize * FaceValue * open_price / 100`<br>Profit: `Lots * close_price * FaceValue * Contract_Size + AccruedInterest * Lots * ContractSize` |
-| `BMT5_SYMBOL_CALC_MODE_SERV_COLLATERAL` | Collateral | Instrument used as collateral; no margin charged and no profit/loss calculated for the position |
+| `Bmt5SymbolCalcModeForex` | Forex mode | Margin: `Lots * Contract_Size / Leverage * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
+| `Bmt5SymbolCalcModeForexNoLeverage` | Forex without leverage | Margin: `Lots * Contract_Size * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
+| `Bmt5SymbolCalcModeFutures` | Futures | Margin: `Lots * InitialMargin * Margin_Rate`<br>Profit: `(close_price - open_price) * TickPrice / TickSize * Lots` |
+| `Bmt5SymbolCalcModeCfd` | CFD | Margin: `Lots * ContractSize * MarketPrice * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
+| `Bmt5SymbolCalcModeCfdindex` | CFD index | Margin: `(Lots * ContractSize * MarketPrice) * TickPrice / TickSize * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
+| `Bmt5SymbolCalcModeCfdleverage` | CFD with leverage | Margin: `(Lots * ContractSize * MarketPrice) / Leverage * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
+| `Bmt5SymbolCalcModeExchStocks` | Exchange stocks | Margin: `Lots * ContractSize * LastPrice * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
+| `Bmt5SymbolCalcModeExchFutures` | Exchange futures | Margin: `Lots * InitialMargin * Margin_Rate` or `Lots * MaintenanceMargin * Margin_Rate`<br>Profit: `(close_price - open_price) * Lots * TickPrice / TickSize` |
+| `Bmt5SymbolCalcModeExchFuturesForts` | FORTS futures | Complex formula with MarginDiscount |
+| `Bmt5SymbolCalcModeExchBonds` | Exchange bonds | Margin: `Lots * ContractSize * FaceValue * open_price / 100`<br>Profit: `Lots * close_price * FaceValue * Contract_Size + AccruedInterest * Lots * ContractSize` |
+| `Bmt5SymbolCalcModeExchStocksMoex` | MOEX stocks | Margin: `Lots * ContractSize * LastPrice * Margin_Rate`<br>Profit: `(close_price - open_price) * Contract_Size * Lots` |
+| `Bmt5SymbolCalcModeExchBondsMoex` | MOEX bonds | Margin: `Lots * ContractSize * FaceValue * open_price / 100`<br>Profit: `Lots * close_price * FaceValue * Contract_Size + AccruedInterest * Lots * ContractSize` |
+| `Bmt5SymbolCalcModeServCollateral` | Collateral | Instrument used as collateral; no margin charged and no profit/loss calculated for the position |
 
 ---
 
@@ -516,11 +516,11 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_SYMBOL_TRADE_MODE_DISABLED` | Trade is disabled for the symbol |
-| `BMT5_SYMBOL_TRADE_MODE_LONGONLY` | Allowed only long positions (BUY) |
-| `BMT5_SYMBOL_TRADE_MODE_SHORTONLY` | Allowed only short positions (SELL) |
-| `BMT5_SYMBOL_TRADE_MODE_CLOSEONLY` | Allowed only position close operations |
-| `BMT5_SYMBOL_TRADE_MODE_FULL` | No trade restrictions |
+| `Bmt5SymbolTradeModeDisabled` | Trade is disabled for the symbol |
+| `Bmt5SymbolTradeModeLongonly` | Allowed only long positions (BUY) |
+| `Bmt5SymbolTradeModeShortonly` | Allowed only short positions (SELL) |
+| `Bmt5SymbolTradeModeCloseonly` | Allowed only position close operations |
+| `Bmt5SymbolTradeModeFull` | No trade restrictions |
 
 ---
 
@@ -528,10 +528,10 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_SYMBOL_TRADE_EXECUTION_REQUEST` | Execution by request |
-| `BMT5_SYMBOL_TRADE_EXECUTION_INSTANT` | Instant execution |
-| `BMT5_SYMBOL_TRADE_EXECUTION_MARKET` | Market execution |
-| `BMT5_SYMBOL_TRADE_EXECUTION_EXCHANGE` | Exchange execution |
+| `Bmt5SymbolTradeExecutionRequest` | Execution by request |
+| `Bmt5SymbolTradeExecutionInstant` | Instant execution |
+| `Bmt5SymbolTradeExecutionMarket` | Market execution |
+| `Bmt5SymbolTradeExecutionExchange` | Exchange execution |
 
 ---
 
@@ -539,16 +539,16 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_SYMBOL_SWAP_MODE_DISABLED` | Swaps disabled (no swaps) |
-| `BMT5_SYMBOL_SWAP_MODE_POINTS` | Swaps charged in points |
-| `BMT5_SYMBOL_SWAP_MODE_CURRENCY_SYMBOL` | Swaps charged in money in base currency of the symbol |
-| `BMT5_SYMBOL_SWAP_MODE_CURRENCY_MARGIN` | Swaps charged in money in margin currency of the symbol |
-| `BMT5_SYMBOL_SWAP_MODE_CURRENCY_DEPOSIT` | Swaps charged in money, in client deposit currency |
-| `BMT5_SYMBOL_SWAP_MODE_CURRENCY_PROFIT` | Swaps charged in money in profit calculation currency |
-| `BMT5_SYMBOL_SWAP_MODE_INTEREST_CURRENT` | Swaps charged as annual interest from current price (360 days) |
-| `BMT5_SYMBOL_SWAP_MODE_INTEREST_OPEN` | Swaps charged as annual interest from open price (360 days) |
-| `BMT5_SYMBOL_SWAP_MODE_REOPEN_CURRENT` | Swaps by reopening positions at close price +/- points |
-| `BMT5_SYMBOL_SWAP_MODE_REOPEN_BID` | Swaps by reopening positions at Bid price +/- points |
+| `Bmt5SymbolSwapModeDisabled` | Swaps disabled (no swaps) |
+| `Bmt5SymbolSwapModePoints` | Swaps charged in points |
+| `Bmt5SymbolSwapModeCurrencySymbol` | Swaps charged in money in base currency of the symbol |
+| `Bmt5SymbolSwapModeCurrencyMargin` | Swaps charged in money in margin currency of the symbol |
+| `Bmt5SymbolSwapModeCurrencyDeposit` | Swaps charged in money, in client deposit currency |
+| `Bmt5SymbolSwapModeCurrencyProfit` | Swaps charged in money in profit calculation currency |
+| `Bmt5SymbolSwapModeInterestCurrent` | Swaps charged as annual interest from current price (360 days) |
+| `Bmt5SymbolSwapModeInterestOpen` | Swaps charged as annual interest from open price (360 days) |
+| `Bmt5SymbolSwapModeReopenCurrent` | Swaps by reopening positions at close price +/- points |
+| `Bmt5SymbolSwapModeReopenBid` | Swaps by reopening positions at Bid price +/- points |
 
 ---
 
@@ -556,13 +556,13 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_SUNDAY` | Sunday |
-| `BMT5_MONDAY` | Monday |
-| `BMT5_TUESDAY` | Tuesday |
-| `BMT5_WEDNESDAY` | Wednesday (often triple swap day) |
-| `BMT5_THURSDAY` | Thursday |
-| `BMT5_FRIDAY` | Friday |
-| `BMT5_SATURDAY` | Saturday |
+| `Bmt5Sunday` | Sunday |
+| `Bmt5Monday` | Monday |
+| `Bmt5Tuesday` | Tuesday |
+| `Bmt5Wednesday` | Wednesday (often triple swap day) |
+| `Bmt5Thursday` | Thursday |
+| `Bmt5Friday` | Friday |
+| `Bmt5Saturday` | Saturday |
 
 ---
 
@@ -570,9 +570,9 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_SYMBOL_ORDERS_GTC` | Pending orders and SL/TP valid until explicit cancellation (Good-Till-Cancelled) |
-| `BMT5_SYMBOL_ORDERS_DAILY` | Orders valid during one trading day. All SL/TP and pending orders deleted at day end |
-| `BMT5_SYMBOL_ORDERS_DAILY_EXCLUDING_STOPS` | Only pending orders deleted at day end. SL/TP levels preserved |
+| `Bmt5SymbolOrdersGtc` | Pending orders and SL/TP valid until explicit cancellation (Good-Till-Cancelled) |
+| `Bmt5SymbolOrdersDaily` | Orders valid during one trading day. All SL/TP and pending orders deleted at day end |
+| `Bmt5SymbolOrdersDailyExcludingStops` | Only pending orders deleted at day end. SL/TP levels preserved |
 
 ---
 
@@ -580,8 +580,8 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_SYMBOL_OPTION_MODE_EUROPEAN` | European option - can only be exercised on expiration date |
-| `BMT5_SYMBOL_OPTION_MODE_AMERICAN` | American option - can be exercised any trading day before expiry |
+| `Bmt5SymbolOptionModeEuropean` | European option - can only be exercised on expiration date |
+| `Bmt5SymbolOptionModeAmerican` | American option - can be exercised any trading day before expiry |
 
 ---
 
@@ -589,8 +589,8 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_SYMBOL_OPTION_RIGHT_CALL` | Call option - right to BUY at strike price |
-| `BMT5_SYMBOL_OPTION_RIGHT_PUT` | Put option - right to SELL at strike price |
+| `Bmt5SymbolOptionRightCall` | Call option - right to BUY at strike price |
+| `Bmt5SymbolOptionRightPut` | Put option - right to SELL at strike price |
 
 ---
 
@@ -598,10 +598,10 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_ORDER_FILLING_FOK` | **Fill or Kill** - order must be executed in full or not at all |
-| `BMT5_ORDER_FILLING_IOC` | **Immediate or Cancel** - execute max available volume, cancel remainder |
-| `BMT5_ORDER_FILLING_BOC` | **Book or Cancel** - place order in order book (not implemented in most brokers) |
-| `BMT5_ORDER_FILLING_RETURN` | **Return** - partial fills allowed, remainder stays as pending order |
+| `Bmt5OrderFillingFok` | **Fill or Kill** - order must be executed in full or not at all |
+| `Bmt5OrderFillingIoc` | **Immediate or Cancel** - execute max available volume, cancel remainder |
+| `Bmt5OrderFillingBoc` | **Book or Cancel** - place order in order book (not implemented in most brokers) |
+| `Bmt5OrderFillingReturn` | **Return** - partial fills allowed, remainder stays as pending order |
 
 ---
 
@@ -609,15 +609,15 @@ namespace mt5_term_api
 
 | Enum Value | Description |
 |------------|-------------|
-| `BMT5_ORDER_TYPE_BUY` | Market Buy order |
-| `BMT5_ORDER_TYPE_SELL` | Market Sell order |
-| `BMT5_ORDER_TYPE_BUY_LIMIT` | Buy Limit pending order (buy below current price) |
-| `BMT5_ORDER_TYPE_SELL_LIMIT` | Sell Limit pending order (sell above current price) |
-| `BMT5_ORDER_TYPE_BUY_STOP` | Buy Stop pending order (buy above current price, breakout) |
-| `BMT5_ORDER_TYPE_SELL_STOP` | Sell Stop pending order (sell below current price, breakdown) |
-| `BMT5_ORDER_TYPE_BUY_STOP_LIMIT` | Buy Stop Limit - at stop price, place Buy Limit at StopLimit price |
-| `BMT5_ORDER_TYPE_SELL_STOP_LIMIT` | Sell Stop Limit - at stop price, place Sell Limit at StopLimit price |
-| `BMT5_ORDER_TYPE_CLOSE_BY` | Close By - close position by opposite position |
+| `Bmt5OrderTypeBuy` | Market Buy order |
+| `Bmt5OrderTypeSell` | Market Sell order |
+| `Bmt5OrderTypeBuyLimit` | Buy Limit pending order (buy below current price) |
+| `Bmt5OrderTypeSellLimit` | Sell Limit pending order (sell above current price) |
+| `Bmt5OrderTypeBuyStop` | Buy Stop pending order (buy above current price, breakout) |
+| `Bmt5OrderTypeSellStop` | Sell Stop pending order (sell below current price, breakdown) |
+| `Bmt5OrderTypeBuyStopLimit` | Buy Stop Limit - at stop price, place Buy Limit at StopLimit price |
+| `Bmt5OrderTypeSellStopLimit` | Sell Stop Limit - at stop price, place Sell Limit at StopLimit price |
+| `Bmt5OrderTypeCloseBy` | Close By - close position by opposite position |
 
 ---
 
@@ -756,7 +756,7 @@ foreach (var symbolName in symbols)
         Console.WriteLine($"{s.Name}:");
         Console.WriteLine($"  Long swap:  {s.SwapLong:F2}");
         Console.WriteLine($"  Short swap: {s.SwapShort:F2}");
-        Console.WriteLine($"  Triple swap day: {s.SwapRollover3days}");
+        Console.WriteLine($"  Triple swap day: {s.SwapRollover3Days}");
         Console.WriteLine($"  Swap mode: {s.SwapMode}");
         Console.WriteLine();
     }

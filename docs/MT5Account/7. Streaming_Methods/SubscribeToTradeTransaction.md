@@ -16,7 +16,7 @@
 * **SDK wrapper:**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Service
     {

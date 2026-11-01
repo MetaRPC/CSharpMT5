@@ -26,9 +26,9 @@ ByRisk    Async      (close)
 
 ### Dependencies
 
-- **MT5Service**: Service layer for MT5
-- **MT5Sugar Extension Methods**: `BuyMarketByRisk`, `SellMarketByRisk`, `BuyMarketAsync`, `SellMarketAsync`, `CloseAll`
-- **mt5_term_api**: gRPC types (`OrderSendData`, `SymbolInfoTickData`)
+- **MT5Service methods**: `BuyMarketAsync`, `SellMarketAsync`, `GetPointAsync`, `SymbolInfoTickAsync`, `GetBalanceAsync`
+- **MT5Sugar extension methods**: `BuyMarketByRisk`, `SellMarketByRisk`, `CloseAll`
+- **mt5_term_api**: gRPC types (`OrderSendData`; `SymbolInfoTickAsync` returns `MrpcMqlTick`)
 
 ---
 

@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
@@ -65,10 +65,10 @@ The method returns `string` directly (unwrapped from the proto message).
 
 | Enum Value        | Value | Description                                     | MQL5 Docs                                                       |
 | ----------------- | ----- | ----------------------------------------------- | --------------------------------------------------------------- |
-| `ACCOUNT_NAME`    | 0     | Client name                                     | [AccountInfoString](https://www.mql5.com/en/docs/account/accountinfostring) |
-| `ACCOUNT_SERVER`  | 1     | Trade server name                               |                                                                 |
-| `ACCOUNT_CURRENCY`| 2     | Account currency (e.g., `USD`, `EUR`)           |                                                                 |
-| `ACCOUNT_COMPANY` | 3     | Name of a company that serves the account       |                                                                 |
+| `AccountName`    | 0     | Client name                                     | [AccountInfoString](https://www.mql5.com/en/docs/account/accountinfostring) |
+| `AccountServer`  | 1     | Trade server name                               |                                                                 |
+| `AccountCurrency`| 2     | Account currency (e.g., `USD`, `EUR`)           |                                                                 |
+| `AccountCompany` | 3     | Name of a company that serves the account       |                                                                 |
 
 ---
 
@@ -95,7 +95,7 @@ Use this method when you need to:
 ## 🧩 Notes & Tips
 
 * Prefer `AccountSummaryAsync()` if you need multiple properties — it's more efficient to fetch all data in one call.
-* The currency property (`ACCOUNT_CURRENCY`) is commonly used for displaying balances with proper formatting.
+* The currency property (`AccountCurrency`) is commonly used for displaying balances with proper formatting.
 * Use short per‑call timeout (3–5s) with retries when fetching properties for UI display.
 * All MT5Account methods have built-in protection against transient gRPC errors with automatic reconnection.
 * The method returns `string` directly (not wrapped in a proto message) for convenience.
@@ -109,7 +109,7 @@ Use this method when you need to:
 ```csharp
 // Retrieve deposit currency
 var currency = await acct.AccountInfoStringAsync(
-    AccountInfoStringPropertyType.ACCOUNT_CURRENCY,
+    AccountInfoStringPropertyType.AccountCurrency,
     deadline: DateTime.UtcNow.AddSeconds(3));
 Console.WriteLine($"Account currency: {currency}");
 ```
@@ -119,7 +119,7 @@ Console.WriteLine($"Account currency: {currency}");
 ```csharp
 // Fetch broker/company name
 var company = await acct.AccountInfoStringAsync(
-    AccountInfoStringPropertyType.ACCOUNT_COMPANY);
+    AccountInfoStringPropertyType.AccountCompany);
 Console.WriteLine($"Broker: {company}");
 ```
 
@@ -128,7 +128,7 @@ Console.WriteLine($"Broker: {company}");
 ```csharp
 // Retrieve account holder name
 var name = await acct.AccountInfoStringAsync(
-    AccountInfoStringPropertyType.ACCOUNT_NAME);
+    AccountInfoStringPropertyType.AccountName);
 Console.WriteLine($"Account holder: {name}");
 ```
 
@@ -137,7 +137,7 @@ Console.WriteLine($"Account holder: {name}");
 ```csharp
 // Retrieve trade server name for diagnostics
 var server = await acct.AccountInfoStringAsync(
-    AccountInfoStringPropertyType.ACCOUNT_SERVER);
+    AccountInfoStringPropertyType.AccountServer);
 Console.WriteLine($"Connected to server: {server}");
 ```
 
@@ -146,9 +146,9 @@ Console.WriteLine($"Connected to server: {server}");
 ```csharp
 // Combine with AccountInfoDouble for formatted output
 var balance = await acct.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_BALANCE);
+    AccountInfoDoublePropertyType.AccountBalance);
 var currency = await acct.AccountInfoStringAsync(
-    AccountInfoStringPropertyType.ACCOUNT_CURRENCY);
+    AccountInfoStringPropertyType.AccountCurrency);
 
 Console.WriteLine($"Balance: {balance:F2} {currency}");
 ```

@@ -65,6 +65,7 @@
 |--------|-------------|---------------|
 | `OrdersHistoryLast()` | Closed orders history for N days | [→ Docs](4.%20History_Helpers/OrdersHistoryLast.md) |
 | `PositionsHistoryPaged()` | Position history with pagination | [→ Docs](4.%20History_Helpers/PositionsHistoryPaged.md) |
+| `AllHistoryOrdersLast()` | Full order history for N days (one call) | [→ Docs](4.%20History_Helpers/AllHistoryOrdersLast.md) |
 
 ---
 
@@ -90,6 +91,7 @@
 | `ModifySlTpAsync()` | Modify SL/TP of existing order | [→ Docs](6.%20Trading_Market_Pending/ModifySlTpAsync.md) |
 | `CloseByTicket()` | Close position by ticket | [→ Docs](6.%20Trading_Market_Pending/CloseByTicket.md) |
 | `CloseAll()` | Close all positions (with filters) | [→ Docs](6.%20Trading_Market_Pending/CloseAll.md) |
+| `PlaceMarketFast()` | Market order via fast no-pre-checks path | [→ Docs](6.%20Trading_Market_Pending/PlaceMarketFast.md) |
 
 ---
 
@@ -176,6 +178,7 @@ await svc.BuyMarketByRisk("EURUSD", stopPoints: 50, riskMoney: 100);
 | `CalculateBuyMarginAsync()` | Calculate margin for BUY order | [→ Docs](13.%20Order_Validation/CalculateBuyMarginAsync.md) |
 | `CalculateSellMarginAsync()` | Calculate margin for SELL order | [→ Docs](13.%20Order_Validation/CalculateSellMarginAsync.md) |
 | `CheckMarginAvailabilityAsync()`  | Check free margin sufficiency | [→ Docs](13.%20Order_Validation/CheckMarginAvailabilityAsync.md) |
+| `CalcProfit()` | Expected profit between two prices (→ `double`) | [→ Docs](13.%20Order_Validation/CalcProfit.md) |
 
 ---
 
@@ -201,6 +204,30 @@ await svc.BuyMarketByRisk("EURUSD", stopPoints: 50, riskMoney: 100);
 | `GetTotalProfitLossAsync()`  | Total P&L across all positions | [→ Docs](15.%20Position_Monitoring/GetTotalProfitLossAsync.md) |
 | `GetPositionCountAsync()` | Number of open positions | [→ Docs](15.%20Position_Monitoring/GetPositionCountAsync.md) |
 | `GetPositionStatsBySymbolAsync()` | Position statistics by symbol | [→ Docs](15.%20Position_Monitoring/GetPositionStatsBySymbolAsync.md) |
+
+---
+
+### [15] 📈 MARKET DATA
+
+**Symbol inventory and historical bars as plain collections**
+
+| Method | Description | Documentation |
+|--------|-------------|---------------|
+| `SymbolNamesAsync()` | Full symbol list as `List<string>` | [→ Docs](16.%20Market_Data/SymbolNamesAsync.md) |
+| `PriceBarsLast()` | Recent OHLC bars (friendly timeframe + days) | [→ Docs](16.%20Market_Data/PriceBarsLast.md) |
+
+---
+
+### [16] 📊 TRADE STATISTICS
+
+**Performance analytics (trade-stats service; may be unavailable on some brokers)**
+
+| Method | Description | Documentation |
+|--------|-------------|---------------|
+| `TradeStatsLast()` | Aggregated statistics for N days | [→ Docs](17.%20Trade_Statistics/TradeStatsLast.md) |
+| `StatsWithChartsLast()` | Stats + equity curve + trades | [→ Docs](17.%20Trade_Statistics/StatsWithChartsLast.md) |
+| `EquityCurveLast()` | Equity curve as a list of points | [→ Docs](17.%20Trade_Statistics/EquityCurveLast.md) |
+| `UnrealizedExtremaLast()` | Unrealized-P/L extrema (MFE/MAE) as a list | [→ Docs](17.%20Trade_Statistics/UnrealizedExtremaLast.md) |
 
 ---
 

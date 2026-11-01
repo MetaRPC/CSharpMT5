@@ -16,13 +16,13 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<SymbolInfoIntegerData> SymbolInfoIntegerAsync(
-            string symbolName,
-            SymbolInfoIntegerProperty propertyType,
+            string symbol,
+            SymbolInfoIntegerProperty property,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
@@ -44,8 +44,8 @@ namespace mt5_term_api
 
 | Parameter           | Type                          | Required | Description                                               |
 | ------------------- | ----------------------------- | -------- | --------------------------------------------------------- |
-| `symbolName`        | `string`                      | ✅       | Symbol name (e.g., `"EURUSD"`)                            |
-| `propertyType`      | `SymbolInfoIntegerProperty`   | ✅       | Property to retrieve (see enum below)                     |
+| `symbol`        | `string`                      | ✅       | Symbol name (e.g., `"EURUSD"`)                            |
+| `property`      | `SymbolInfoIntegerProperty`   | ✅       | Property to retrieve (see enum below)                     |
 | `deadline`          | `DateTime?`                   | ❌       | Absolute per‑call **UTC** deadline → converted to timeout |
 | `cancellationToken` | `CancellationToken`           | ❌       | Cooperative cancel for the call/retry loop                |
 
@@ -65,43 +65,43 @@ namespace mt5_term_api
 
 | Enum Value                   | Value | Description                                                                                                                              |
 | ---------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `SYMBOL_SUBSCRIPTION_DELAY`  | 0     | Symbol data arrives with a delay. Only for symbols in Market Watch (error 4302 for others)                                              |
-| `SYMBOL_SECTOR`              | 1     | The sector of the economy to which the asset belongs (enum value)                                                                        |
-| `SYMBOL_INDUSTRY`            | 2     | The industry/branch to which the symbol belongs (enum value)                                                                             |
-| `SYMBOL_CUSTOM`              | 3     | Custom symbol flag: `1` if synthetic, `0` if standard                                                                                    |
-| `SYMBOL_BACKGROUND_COLOR`    | 4     | Background color for symbol in Market Watch (color code)                                                                                 |
-| `SYMBOL_CHART_MODE`          | 5     | Price type for generating bars: Bid or Last (enum)                                                                                       |
-| `SYMBOL_EXIST`               | 6     | Symbol with this name exists: `1` = yes, `0` = no                                                                                        |
-| `SYMBOL_SELECT`              | 7     | Symbol is selected in Market Watch: `1` = yes, `0` = no                                                                                  |
-| `SYMBOL_VISIBLE`             | 8     | Symbol is visible in Market Watch: `1` = yes, `0` = no (some cross-rates are selected but not visible)                                  |
-| `SYMBOL_SESSION_DEALS`       | 9     | Number of deals in the current session                                                                                                   |
-| `SYMBOL_SESSION_BUY_ORDERS`  | 10    | Number of Buy orders at the moment                                                                                                       |
-| `SYMBOL_SESSION_SELL_ORDERS` | 11    | Number of Sell orders at the moment                                                                                                      |
-| `SYMBOL_VOLUME`              | 12    | Volume of the last deal (integer)                                                                                                        |
-| `SYMBOL_VOLUMEHIGH`          | 13    | Maximal day volume                                                                                                                       |
-| `SYMBOL_VOLUMELOW`           | 14    | Minimal day volume                                                                                                                       |
-| `SYMBOL_TIME`                | 15    | Time of the last quote (Unix timestamp seconds)                                                                                          |
-| `SYMBOL_TIME_MSC`            | 16    | Time of the last quote in milliseconds since 1970.01.01                                                                                  |
-| `SYMBOL_DIGITS`              | 17    | Digits after a decimal point (e.g., 5 for EURUSD = 1.12345)                                                                             |
-| `SYMBOL_SPREAD_FLOAT`        | 18    | Indication of a floating spread: `1` = floating, `0` = fixed                                                                             |
-| `SYMBOL_SPREAD`              | 19    | Spread value in points                                                                                                                   |
-| `SYMBOL_TICKS_BOOKDEPTH`     | 20    | Maximal number of requests in Depth of Market. `0` if no DOM available.                                                                 |
-| `SYMBOL_TRADE_CALC_MODE`     | 21    | Contract price calculation mode (enum: Forex, CFD, Futures, etc.)                                                                        |
-| `SYMBOL_TRADE_MODE`          | 22    | Order execution type (enum: Disabled, LongOnly, ShortOnly, CloseOnly, Full)                                                             |
-| `SYMBOL_START_TIME`          | 23    | Date of symbol trade beginning (Unix timestamp) - usually for futures                                                                    |
-| `SYMBOL_EXPIRATION_TIME`     | 24    | Date of symbol trade end (Unix timestamp) - usually for futures                                                                          |
-| `SYMBOL_TRADE_STOPS_LEVEL`   | 25    | Minimal distance in points from current price to place Stop orders                                                                       |
-| `SYMBOL_TRADE_FREEZE_LEVEL`  | 26    | Distance to freeze trade operations in points (can't modify/close orders within this distance)                                           |
-| `SYMBOL_TRADE_EXEMODE`       | 27    | Deal execution mode (enum: Request, Instant, Market, Exchange)                                                                           |
-| `SYMBOL_SWAP_MODE`           | 28    | Swap calculation model (enum: Disabled, Points, Currency modes, Interest, Reopen)                                                        |
-| `SYMBOL_SWAP_ROLLOVER3DAYS`  | 29    | Day of week to charge 3-day swap rollover (enum: SUNDAY=0 ... SATURDAY=6)                                                               |
-| `SYMBOL_MARGIN_HEDGED_USE_LEG`| 30   | Calculating hedging margin using the larger leg (Buy or Sell): `1` = yes, `0` = no                                                      |
-| `SYMBOL_EXPIRATION_MODE`     | 31    | Flags of allowed order expiration modes (bitmask: GTC, Today, Specified, SpecifiedDay)                                                  |
-| `SYMBOL_FILLING_MODE`        | 32    | Flags of allowed order filling modes (bitmask: FOK, IOC, BOC, Return)                                                                   |
-| `SYMBOL_ORDER_MODE`          | 33    | Flags of allowed order types (bitmask: Market, Limit, Stop, StopLimit, etc.)                                                            |
-| `SYMBOL_ORDER_GTC_MODE`      | 34    | Expiration of SL/TP orders if SYMBOL_EXPIRATION_MODE=GTC (enum: GTC, Daily, DailyExcludingStops)                                        |
-| `SYMBOL_OPTION_MODE`         | 35    | Option type (enum: European, American)                                                                                                   |
-| `SYMBOL_OPTION_RIGHT`        | 36    | Option right (enum: Call, Put)                                                                                                           |
+| `SymbolSubscriptionDelay`  | 0     | Symbol data arrives with a delay. Only for symbols in Market Watch (error 4302 for others)                                              |
+| `SymbolSector`              | 1     | The sector of the economy to which the asset belongs (enum value)                                                                        |
+| `SymbolIndustry`            | 2     | The industry/branch to which the symbol belongs (enum value)                                                                             |
+| `SymbolCustom`              | 3     | Custom symbol flag: `1` if synthetic, `0` if standard                                                                                    |
+| `SymbolBackgroundColor`    | 4     | Background color for symbol in Market Watch (color code)                                                                                 |
+| `SymbolChartMode`          | 5     | Price type for generating bars: Bid or Last (enum)                                                                                       |
+| `SymbolExist`               | 6     | Symbol with this name exists: `1` = yes, `0` = no                                                                                        |
+| `SymbolSelect`              | 7     | Symbol is selected in Market Watch: `1` = yes, `0` = no                                                                                  |
+| `SymbolVisible`             | 8     | Symbol is visible in Market Watch: `1` = yes, `0` = no (some cross-rates are selected but not visible)                                  |
+| `SymbolSessionDeals`       | 9     | Number of deals in the current session                                                                                                   |
+| `SymbolSessionBuyOrders`  | 10    | Number of Buy orders at the moment                                                                                                       |
+| `SymbolSessionSellOrders` | 11    | Number of Sell orders at the moment                                                                                                      |
+| `SymbolVolume`              | 12    | Volume of the last deal (integer)                                                                                                        |
+| `SymbolVolumehigh`          | 13    | Maximal day volume                                                                                                                       |
+| `SymbolVolumelow`           | 14    | Minimal day volume                                                                                                                       |
+| `SymbolTime`                | 15    | Time of the last quote (Unix timestamp seconds)                                                                                          |
+| `SymbolTimeMsc`            | 16    | Time of the last quote in milliseconds since 1970.01.01                                                                                  |
+| `SymbolDigits`              | 17    | Digits after a decimal point (e.g., 5 for EURUSD = 1.12345)                                                                             |
+| `SymbolSpreadFloat`        | 18    | Indication of a floating spread: `1` = floating, `0` = fixed                                                                             |
+| `SymbolSpread`              | 19    | Spread value in points                                                                                                                   |
+| `SymbolTicksBookdepth`     | 20    | Maximal number of requests in Depth of Market. `0` if no DOM available.                                                                 |
+| `SymbolTradeCalcMode`     | 21    | Contract price calculation mode (enum: Forex, CFD, Futures, etc.)                                                                        |
+| `SymbolTradeMode`          | 22    | Order execution type (enum: Disabled, LongOnly, ShortOnly, CloseOnly, Full)                                                             |
+| `SymbolStartTime`          | 23    | Date of symbol trade beginning (Unix timestamp) - usually for futures                                                                    |
+| `SymbolExpirationTime`     | 24    | Date of symbol trade end (Unix timestamp) - usually for futures                                                                          |
+| `SymbolTradeStopsLevel`   | 25    | Minimal distance in points from current price to place Stop orders                                                                       |
+| `SymbolTradeFreezeLevel`  | 26    | Distance to freeze trade operations in points (can't modify/close orders within this distance)                                           |
+| `SymbolTradeExemode`       | 27    | Deal execution mode (enum: Request, Instant, Market, Exchange)                                                                           |
+| `SymbolSwapMode`           | 28    | Swap calculation model (enum: Disabled, Points, Currency modes, Interest, Reopen)                                                        |
+| `SymbolSwapRollover3Days`  | 29    | Day of week to charge 3-day swap rollover (enum: SUNDAY=0 ... SATURDAY=6)                                                               |
+| `SymbolMarginHedgedUseLeg`| 30   | Calculating hedging margin using the larger leg (Buy or Sell): `1` = yes, `0` = no                                                      |
+| `SymbolExpirationMode`     | 31    | Flags of allowed order expiration modes (bitmask: GTC, Today, Specified, SpecifiedDay)                                                  |
+| `SymbolFillingMode`        | 32    | Flags of allowed order filling modes (bitmask: FOK, IOC, BOC, Return)                                                                   |
+| `SymbolOrderMode`          | 33    | Flags of allowed order types (bitmask: Market, Limit, Stop, StopLimit, etc.)                                                            |
+| `SymbolOrderGtcMode`      | 34    | Expiration of SL/TP orders if SymbolExpirationMode=GTC (enum: GTC, Daily, DailyExcludingStops)                                        |
+| `SymbolOptionMode`         | 35    | Option type (enum: European, American)                                                                                                   |
+| `SymbolOptionRight`        | 36    | Option right (enum: Call, Put)                                                                                                           |
 
 > **MQL5 Reference:** [SymbolInfoInteger](https://www.mql5.com/en/docs/marketinformation/symbolinfointeger)
 
@@ -111,7 +111,7 @@ namespace mt5_term_api
 
 * **What it is.** Single RPC returning one integer property of a symbol.
 * **Why you need it.** Check digits, spread, trading restrictions, execution modes, stops level, symbol status.
-* **Most common.** `SYMBOL_DIGITS` (precision), `SYMBOL_SPREAD` (current spread), `SYMBOL_TRADE_STOPS_LEVEL` (min SL/TP distance).
+* **Most common.** `SymbolDigits` (precision), `SymbolSpread` (current spread), `SymbolTradeStopsLevel` (min SL/TP distance).
 * **37 properties** covering precision, trading modes, status flags, execution parameters.
 
 ---
@@ -132,10 +132,10 @@ Use this method when you need to:
 
 ## 🧩 Notes & Tips
 
-* **SYMBOL_DIGITS** - decimal places (5 for EURUSD = 1.12345, 2 for XAUUSD = 1925.42).
-* **SYMBOL_SPREAD** - current spread in points (not pips!). For EURUSD with 5 digits, 10 points = 1 pip.
-* **SYMBOL_TRADE_STOPS_LEVEL** - minimum distance from current price for SL/TP. `0` = no restriction.
-* **SYMBOL_TRADE_FREEZE_LEVEL** - distance within which you cannot modify/close orders.
+* **SymbolDigits** - decimal places (5 for EURUSD = 1.12345, 2 for XAUUSD = 1925.42).
+* **SymbolSpread** - current spread in points (not pips!). For EURUSD with 5 digits, 10 points = 1 pip.
+* **SymbolTradeStopsLevel** - minimum distance from current price for SL/TP. `0` = no restriction.
+* **SymbolTradeFreezeLevel** - distance within which you cannot modify/close orders.
 * **Boolean flags** return `1` (true) or `0` (false) as `long`.
 * **Enum properties** return integer enum values - need to map to enum types.
 * **Bitmask properties** (EXPIRATION_MODE, FILLING_MODE, ORDER_MODE) use bitwise flags.
@@ -151,7 +151,7 @@ Use this method when you need to:
 // Get number of decimal places
 var digits = await acc.SymbolInfoIntegerAsync(
     "EURUSD",
-    SymbolInfoIntegerProperty.SYMBOL_DIGITS,
+    SymbolInfoIntegerProperty.SymbolDigits,
     deadline: DateTime.UtcNow.AddSeconds(3));
 
 Console.WriteLine($"EURUSD Digits: {digits.Value}");
@@ -164,11 +164,11 @@ Console.WriteLine($"EURUSD Digits: {digits.Value}");
 // Get spread in points
 var spread = await acc.SymbolInfoIntegerAsync(
     "GBPUSD",
-    SymbolInfoIntegerProperty.SYMBOL_SPREAD);
+    SymbolInfoIntegerProperty.SymbolSpread);
 
 var digits = await acc.SymbolInfoIntegerAsync(
     "GBPUSD",
-    SymbolInfoIntegerProperty.SYMBOL_DIGITS);
+    SymbolInfoIntegerProperty.SymbolDigits);
 
 // Convert points to pips
 double pips = spread.Value / Math.Pow(10, digits.Value - 1);
@@ -182,7 +182,7 @@ Console.WriteLine($"GBPUSD Spread: {spread.Value} points ({pips:F1} pips)");
 // Get minimum SL/TP distance
 var stopsLevel = await acc.SymbolInfoIntegerAsync(
     "EURUSD",
-    SymbolInfoIntegerProperty.SYMBOL_TRADE_STOPS_LEVEL);
+    SymbolInfoIntegerProperty.SymbolTradeStopsLevel);
 
 if (stopsLevel.Value == 0)
 {
@@ -200,7 +200,7 @@ else
 // Verify symbol is selected
 var isSelected = await acc.SymbolInfoIntegerAsync(
     "XAUUSD",
-    SymbolInfoIntegerProperty.SYMBOL_SELECT);
+    SymbolInfoIntegerProperty.SymbolSelect);
 
 if (isSelected.Value == 1)
 {
@@ -218,10 +218,10 @@ else
 // Retrieve key trading info
 var symbol = "EURUSD";
 
-var digits = await acc.SymbolInfoIntegerAsync(symbol, SymbolInfoIntegerProperty.SYMBOL_DIGITS);
-var spread = await acc.SymbolInfoIntegerAsync(symbol, SymbolInfoIntegerProperty.SYMBOL_SPREAD);
-var stopsLevel = await acc.SymbolInfoIntegerAsync(symbol, SymbolInfoIntegerProperty.SYMBOL_TRADE_STOPS_LEVEL);
-var freezeLevel = await acc.SymbolInfoIntegerAsync(symbol, SymbolInfoIntegerProperty.SYMBOL_TRADE_FREEZE_LEVEL);
+var digits = await acc.SymbolInfoIntegerAsync(symbol, SymbolInfoIntegerProperty.SymbolDigits);
+var spread = await acc.SymbolInfoIntegerAsync(symbol, SymbolInfoIntegerProperty.SymbolSpread);
+var stopsLevel = await acc.SymbolInfoIntegerAsync(symbol, SymbolInfoIntegerProperty.SymbolTradeStopsLevel);
+var freezeLevel = await acc.SymbolInfoIntegerAsync(symbol, SymbolInfoIntegerProperty.SymbolTradeFreezeLevel);
 
 Console.WriteLine($"{symbol} Trading Parameters:");
 Console.WriteLine($"  Digits:       {digits.Value}");

@@ -334,6 +334,35 @@ public async Task<bool> IsSymbolAvailableAsync(string symbol)
 
 ---
 
+## ➕ Market Data Methods (new)
+
+Thin pass-throughs exposed at the service layer for symbol inventory and price history. Signatures mirror the low-level calls — see the MT5Account pages for full field/enum tables.
+
+| Method | Returns | Low-Level Equivalent |
+|--------|---------|---------------------|
+| `SymbolListAsync()` | `SymbolListData` (all symbol names) | [`MT5Account.SymbolListAsync`](../MT5Account/2.%20Symbol_information/SymbolList.md) |
+| `PriceHistoryAsync(request)` | `PriceHistoryData` (OHLC bars) | [`MT5Account.PriceHistoryAsync`](../MT5Account/2.%20Symbol_information/PriceHistory.md) |
+
+```csharp
+// Full symbol list
+var list = await service.SymbolListAsync();
+Console.WriteLine($"{list.Symbols.Count} symbols");
+
+// Last 7 days of H1 bars (Timeframe is the raw MQL5 ENUM_TIMEFRAMES value; H1 = 16385)
+var bars = await service.PriceHistoryAsync(new PriceHistoryRequest
+{
+    Symbol = "EURUSD",
+    Timeframe = 16385,
+    FromTime = DateTimeOffset.UtcNow.AddDays(-7).ToUnixTimeSeconds(),
+    ToTime   = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
+});
+Console.WriteLine($"{bars.Bars.Count} bars");
+```
+
+> 💡 For an even friendlier form, `MT5Sugar` adds `SymbolNamesAsync()` (plain `List<string>`) and `PriceBarsLast(symbol, "H1", days)` (string timeframe + days window).
+
+---
+
 ## 🔗 See Also
 
 * **[MT5Service Overview](./MT5Service.Overview.md)** - Complete MT5Service improvements

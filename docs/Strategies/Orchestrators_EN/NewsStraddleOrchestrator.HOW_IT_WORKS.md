@@ -166,68 +166,32 @@ Console.WriteLine($"  ✓ BUY STOP: #{buyStopResult.Order}\n");
 #### How BuyStopPoints() works for straddle
 
 ```csharp
-// MT5Sugar.cs (extension method)
+// MT5Sugar.cs (extension method) — condensed, matching the real implementation
 public static async Task<OrderSendData> BuyStopPoints(
-    this MT5Service service,
-    string symbol,
-    double volume,
-    int priceOffsetPoints,  // ← RECEIVES +15
-    int slPoints = 0,
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double volume, double priceOffsetPoints,
+    double? slPoints = null, double? tpPoints = null, string? comment = null,
+    int deviationPoints = 0, int timeoutSec = 15, CancellationToken ct = default)
 {
-    
-    // │  STEP 1: Get current Ask price                      
-    // └─────────────────────────────────────────────────────
-    var tick = await service.SymbolInfoTickAsync(symbol);
-    double askPrice = tick.Ask;  // For example: 1.10002
+    await svc.EnsureSelected(symbol, timeoutSec, ct);
 
-    
-    // │  STEP 2: Get point size                             
-    // └─────────────────────────────────────────────────────
-    var symbolInfo = await service.SymbolInfoAsync(symbol);
-    double point = symbolInfo.Point;  // 0.00001
+    var tick  = await svc.SymbolInfoTickAsync(symbol);
+    var point = await svc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolPoint);
 
-    
-    // │  STEP 3: Calculate BUY STOP price                   
-    // │  BUY STOP is placed ABOVE current price             
-    // │                                                     
-    // │  priceOffsetPoints = +15 (POSITIVE!)                
-    // │  price = askPrice + (priceOffsetPoints × point)     
-    // │       = 1.10002 + (15 × 0.00001)                    
-    // │       = 1.10002 + 0.00015                           
-    // │       = 1.10017                                     
-    // └─────────────────────────────────────────────────────
-    double price = askPrice + (priceOffsetPoints * point);
+    // Buy Stop is ALWAYS above Ask → absolute value of the offset is used
+    //   Ask = 1.10002, |offset| = 15 → raw = 1.10002 + 15×0.00001 = 1.10017
+    var rawPrice = tick.Ask + Math.Abs(priceOffsetPoints) * point;
+    var price    = await svc.NormalizePriceAsync(symbol, rawPrice, timeoutSec, ct);
 
-    
-    // │  STEP 4: Calculate SL and TP for BUY STOP           
-    // │                                                     
-    // │  sl = price - (slPoints × point)                    
-    // │     = 1.10017 - (20 × 0.00001)                      
-    // │     = 1.09997                                       
-    // │                                                     
-    // │  tp = price + (tpPoints × point)                    
-    // │     = 1.10017 + (40 × 0.00001)                      
-    // │     = 1.10057                                       
-    // └─────────────────────────────────────────────────────
-    double sl = slPoints > 0 ? price - (slPoints * point) : 0;
-    double tp = tpPoints > 0 ? price + (tpPoints * point) : 0;
+    double sl = slPoints.HasValue ? price - slPoints.Value * point : 0;  // 1.09997
+    double tp = tpPoints.HasValue ? price + tpPoints.Value * point : 0;  // 1.10057
 
-    
-    // │  STEP 5: Call low-level BuyStopAsync                
-    // └─────────────────────────────────────────────────────
-    return await service.BuyStopAsync(
-        symbol: symbol,
-        volume: volume,
-        price: price,    // 1.10017
-        sl: sl,          // 1.09997
-        tp: tp,          // 1.10057
-        comment: comment
-    );
+    // operationCode for Buy Stop (4)
+    var req = BuildPendingRequest(symbol, volume, price, sl, tp, comment, deviationPoints, operationCode: 4);
+    return await svc.OrderSendAsync(req, Dl(timeoutSec), ct);
 }
 ```
+
+> As with the other `*Points` helpers, the offset's sign is irrelevant — `Math.Abs(...)` is applied and a Buy Stop is inherently above the Ask (`SellStopPoints` is inherently below the Bid). The orchestrator passes `+Distance` / `-Distance` only as a readable convention.
 
 #### 3.2. Placing SellStop (lower order)
 
@@ -648,7 +612,7 @@ T=6s     ├─► Task.Delay(1000)
          ├─► "🚀 UPWARD BREAKOUT DETECTED!"
          │
          ├─► CloseByTicket(790)  ← Cancel SellStop
-         │   └─► OrderDeleteAsync(790)
+         │   └─► OrderCloseAsync(close request for #790)
          │
          │   MT5 Terminal state:
          │   ┌────────────────┬──────────────────────┐

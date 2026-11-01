@@ -369,6 +369,47 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
                 Console.WriteLine($"        Error: {ex.Message.Split('\n')[0]}");
             }
             Console.WriteLine();
+
+            // Get the full list of symbol names available on the platform
+            Console.WriteLine("  [2.13] SymbolListAsync() - Get full symbol list:");
+            try
+            {
+                var symbolList = await acc.SymbolListAsync();
+                Console.WriteLine($"        Symbols available: {symbolList.Symbols.Count}");
+                Console.WriteLine($"        First 10: {string.Join(", ", symbolList.Symbols.Take(10))}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠️  Symbol list not available: {ex.Message.Split('\n')[0]}");
+            }
+            Console.WriteLine();
+
+            // Get historical price bars (OHLC). Timeframe is the raw MQL5 ENUM_TIMEFRAMES value
+            // (PERIOD_M1 = 1, PERIOD_H1 = 16385, PERIOD_D1 = 16408); times are Unix seconds.
+            Console.WriteLine("  [2.14] PriceHistoryAsync() - Get OHLC bars (last 7 days, H1):");
+            try
+            {
+                var priceRequest = new PriceHistoryRequest
+                {
+                    Symbol = symbol,
+                    Timeframe = 16385, // PERIOD_H1
+                    FromTime = DateTimeOffset.UtcNow.AddDays(-7).ToUnixTimeSeconds(),
+                    ToTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
+                };
+                var priceHistory = await acc.PriceHistoryAsync(priceRequest);
+                Console.WriteLine($"        Bars returned: {priceHistory.Bars.Count}");
+                if (priceHistory.Bars.Count > 0)
+                {
+                    var lastBar = priceHistory.Bars[priceHistory.Bars.Count - 1];
+                    Console.WriteLine($"        Last bar @ {DateTimeOffset.FromUnixTimeSeconds(lastBar.Time).UtcDateTime}:");
+                    Console.WriteLine($"          O:{lastBar.Open:F5} H:{lastBar.High:F5} L:{lastBar.Low:F5} C:{lastBar.Close:F5} Vol:{lastBar.TickVolume}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠️  Price history not available: {ex.Message.Split('\n')[0]}");
+            }
+            Console.WriteLine();
             #endregion
 
             #region ORDERS INFORMATION
@@ -439,6 +480,98 @@ namespace MetaRPC.CSharpMT5.Examples.LowLevel
                 size: 10
             );
             Console.WriteLine($"        Positions returned: {posHistory.HistoryPositions.Count}\n");
+
+            // Get the complete order history over a time range in a single call
+            Console.WriteLine("  [3.6] AllHistoryOrdersAsync() - Get full order history (last 7 days):");
+            try
+            {
+                var allHistory = await acc.AllHistoryOrdersAsync(fromTime, toTime);
+                Console.WriteLine($"        Total orders: {allHistory.ArrayTotal}");
+                Console.WriteLine($"        Returned:     {allHistory.HistoryOrders.Count}");
+                if (allHistory.HistoryOrders.Count > 0)
+                {
+                    var first = allHistory.HistoryOrders[0];
+                    Console.WriteLine($"        First order:  #{first.Ticket} {first.Type} {first.State}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠️  Order history not available: {ex.Message.Split('\n')[0]}");
+            }
+            Console.WriteLine();
+
+            // ─────────────────────────────────────────────────────────────
+            // TRADE STATISTICS & PERFORMANCE (trade-stats service)
+            // ─────────────────────────────────────────────────────────────
+            // ⚠️ Note: These require the trade-stats service; some brokers/servers may not support it.
+
+            // Aggregated statistics (profit factor, drawdowns, per-market breakdown)
+            Console.WriteLine("  [3.7] TradeStatsAsync() - Aggregated performance statistics:");
+            try
+            {
+                var stats = await acc.TradeStatsAsync();
+                Console.WriteLine($"        Pips:               {stats.Pips:F1}");
+                Console.WriteLine($"        Lots:               {stats.Lots:F2}");
+                Console.WriteLine($"        Commissions:        {stats.Comissions:F2}");
+                Console.WriteLine($"        Max equity DD (%):  {stats.MaxEquityDrawdownRelative:F2}");
+                Console.WriteLine($"        Markets tracked:    {stats.Markets.Count}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠️  Trade stats not available: {ex.Message.Split('\n')[0]}");
+            }
+            Console.WriteLine();
+
+            // Stats + equity curve + trades in one call
+            Console.WriteLine("  [3.8] TradeStatsEquityHistoryAsync() - Stats with equity curve:");
+            try
+            {
+                var statsCharts = await acc.TradeStatsEquityHistoryAsync(excludeSameBars: true);
+                Console.WriteLine($"        Equity points: {statsCharts.Charts.Count}");
+                Console.WriteLine($"        Trades:        {statsCharts.Trades.Count}");
+                Console.WriteLine($"        Open trades:   {statsCharts.OpenTrades.Count}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠️  Stats-with-charts not available: {ex.Message.Split('\n')[0]}");
+            }
+            Console.WriteLine();
+
+            // Per-open-position unrealized-P/L excursions (MFE/MAE)
+            Console.WriteLine("  [3.9] TradeUnrealizedPLAsync() - Unrealized P/L extrema:");
+            try
+            {
+                var upl = await acc.TradeUnrealizedPLAsync();
+                Console.WriteLine($"        Extrema entries: {upl.Extrema.Count}");
+                if (upl.Extrema.Count > 0)
+                {
+                    var e = upl.Extrema[0];
+                    Console.WriteLine($"        #{e.Ticket} {e.Symbol} | MFE: {e.MaxUnrealizedPl:F2} | MAE: {e.MinUnrealizedPl:F2}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠️  Unrealized P/L not available: {ex.Message.Split('\n')[0]}");
+            }
+            Console.WriteLine();
+
+            // Account equity curve over time
+            Console.WriteLine("  [3.10] EquityHistoryAsync() - Equity curve:");
+            try
+            {
+                var equityHist = await acc.EquityHistoryAsync(excludeSameBars: true);
+                Console.WriteLine($"        Equity points: {equityHist.Points.Count}");
+                if (equityHist.Points.Count > 0)
+                {
+                    var p = equityHist.Points[equityHist.Points.Count - 1];
+                    Console.WriteLine($"        Last point @ {p.Time.ToDateTime():u}: Balance {p.Balance:F2}, Equity {p.Equity:F2}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠️  Equity history not available: {ex.Message.Split('\n')[0]}");
+            }
+            Console.WriteLine();
             #endregion
 
             #region MARKET DEPTH

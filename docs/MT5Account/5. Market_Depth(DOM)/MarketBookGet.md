@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
@@ -120,7 +120,7 @@ Console.WriteLine($"DOM entries: {domData.MqlBookInfos.Count}");
 
 foreach (var entry in domData.MqlBookInfos.Take(10))
 {
-    var side = entry.Type == BookType.BookTypeBuy ? "BID" : "ASK";
+    var side = entry.Type == BookType.Buy ? "BID" : "ASK";
     Console.WriteLine($"{side} | Price: {entry.Price:F2} | Volume: {entry.VolumeReal:F4}");
 }
 ```
@@ -135,11 +135,11 @@ var domData = await acc.MarketBookGetAsync("ETHUSD");
 if (domData.MqlBookInfos.Count > 0)
 {
     var bids = domData.MqlBookInfos
-        .Where(e => e.Type == BookType.BookTypeBuy)
+        .Where(e => e.Type == BookType.Buy)
         .OrderByDescending(e => e.Price);
 
     var asks = domData.MqlBookInfos
-        .Where(e => e.Type == BookType.BookTypeSell)
+        .Where(e => e.Type == BookType.Sell)
         .OrderBy(e => e.Price);
 
     var bestBid = bids.FirstOrDefault();
@@ -168,7 +168,7 @@ var largeOrders = domData.MqlBookInfos
 Console.WriteLine("Large orders (potential support/resistance):");
 foreach (var order in largeOrders.Take(5))
 {
-    var side = order.Type == BookType.BookTypeBuy ? "BID" : "ASK";
+    var side = order.Type == BookType.Buy ? "BID" : "ASK";
     Console.WriteLine($"{side} | Price: {order.Price} | Volume: {order.Volume}");
 }
 ```
@@ -181,11 +181,11 @@ foreach (var order in largeOrders.Take(5))
 var domData = await acc.MarketBookGetAsync("XAUUSD");
 
 var totalBidVolume = domData.MqlBookInfos
-    .Where(e => e.Type == BookType.BookTypeBuy)
+    .Where(e => e.Type == BookType.Buy)
     .Sum(e => e.VolumeReal);
 
 var totalAskVolume = domData.MqlBookInfos
-    .Where(e => e.Type == BookType.BookTypeSell)
+    .Where(e => e.Type == BookType.Sell)
     .Sum(e => e.VolumeReal);
 
 var bidAskRatio = totalBidVolume / (totalAskVolume > 0 ? totalAskVolume : 1);
@@ -218,11 +218,11 @@ for (int i = 0; i < 10; i++)
     if (domData.MqlBookInfos.Count > 0)
     {
         var bestBid = domData.MqlBookInfos
-            .Where(e => e.Type == BookType.BookTypeBuy)
+            .Where(e => e.Type == BookType.Buy)
             .MaxBy(e => e.Price);
 
         var bestAsk = domData.MqlBookInfos
-            .Where(e => e.Type == BookType.BookTypeSell)
+            .Where(e => e.Type == BookType.Sell)
             .MinBy(e => e.Price);
 
         Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Bid: {bestBid?.Price} | Ask: {bestAsk?.Price}");
@@ -255,7 +255,7 @@ if (nearbyLargeOrders.Any())
 
     foreach (var order in nearbyLargeOrders)
     {
-        var side = order.Type == BookType.BookTypeBuy ? "Support" : "Resistance";
+        var side = order.Type == BookType.Buy ? "Support" : "Resistance";
         Console.WriteLine($"{side} at {order.Price} with volume {order.Volume}");
     }
 

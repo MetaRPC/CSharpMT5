@@ -185,12 +185,11 @@ try
     if (result.ReturnedCode == 10009)
     {
         Console.WriteLine($"✅ Position closed successfully");
-        Console.WriteLine($"   Deal: #{result.Deal}");
-        Console.WriteLine($"   Volume: {result.Volume}");
+        Console.WriteLine($"   Result: {result.ReturnedStringCode}");
     }
     else
     {
-        Console.WriteLine($"❌ Close failed: {result.Comment}");
+        Console.WriteLine($"❌ Close failed: {result.ReturnedCodeDescription}");
     }
 }
 catch (Exception ex)
@@ -265,8 +264,8 @@ var result = await svc.CloseByTicket(ticket, volume: 0.03);
 
 if (result.ReturnedCode == 10009)
 {
-    Console.WriteLine($"✅ Closed {result.Volume} lots");
-    Console.WriteLine($"   Deal price: {result.Price:F5}");
+    Console.WriteLine($"✅ Close request accepted ({result.ReturnedStringCode})");
+    Console.WriteLine($"   Close mode: {result.CloseMode}");
 }
 ```
 

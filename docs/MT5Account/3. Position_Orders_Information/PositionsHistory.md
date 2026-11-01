@@ -16,16 +16,16 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<PositionsHistoryData> PositionsHistoryAsync(
-            AH_ENUM_POSITIONS_HISTORY_SORT_TYPE sortType = AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AH_POSITION_OPEN_TIME_ASC,
-            DateTime? positionOpenTimeFrom = null,
-            DateTime? positionOpenTimeTo = null,
-            int? pageNumber = null,
-            int? itemsPerPage = null,
+            AH_ENUM_POSITIONS_HISTORY_SORT_TYPE sortType,
+            DateTime? openFrom = null,
+            DateTime? openTo = null,
+            int page = 0,
+            int size = 0,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
@@ -48,10 +48,10 @@ namespace mt5_term_api
 | Parameter                | Type                                       | Required | Description                                                     |
 | ------------------------ | ------------------------------------------ | -------- | --------------------------------------------------------------- |
 | `sortType`               | `AH_ENUM_POSITIONS_HISTORY_SORT_TYPE`      | ❌       | Sort order for results (default: by open time ascending)       |
-| `positionOpenTimeFrom`   | `DateTime?`                                | ❌       | Filter: minimum position open time (**server time**)           |
-| `positionOpenTimeTo`     | `DateTime?`                                | ❌       | Filter: maximum position open time (**server time**)           |
-| `pageNumber`             | `int?`                                     | ❌       | Page number for pagination (0-based, null = no pagination)     |
-| `itemsPerPage`           | `int?`                                     | ❌       | Items per page (null = no pagination, return all)              |
+| `openFrom`   | `DateTime?`                                | ❌       | Filter: minimum position open time (**server time**)           |
+| `openTo`     | `DateTime?`                                | ❌       | Filter: maximum position open time (**server time**)           |
+| `page`             | `int?`                                     | ❌       | Page number for pagination (0-based, null = no pagination)     |
+| `size`           | `int?`                                     | ❌       | Items per page (null = no pagination, return all)              |
 | `deadline`               | `DateTime?`                                | ❌       | Absolute per‑call **UTC** deadline → converted to timeout      |
 | `cancellationToken`      | `CancellationToken`                        | ❌       | Cooperative cancel for the call/retry loop                     |
 
@@ -71,10 +71,10 @@ namespace mt5_term_api
 
 | Enum Value                      | Value | Description                           |
 | ------------------------------- | ----- | ------------------------------------- |
-| `AH_POSITION_OPEN_TIME_ASC`     | 0     | Sort by open time (oldest first)      |
-| `AH_POSITION_OPEN_TIME_DESC`    | 1     | Sort by open time (newest first)      |
-| `AH_POSITION_TICKET_ASC`        | 2     | Sort by ticket ID (ascending)         |
-| `AH_POSITION_TICKET_DESC`       | 3     | Sort by ticket ID (descending)        |
+| `AhPositionOpenTimeAsc`     | 0     | Sort by open time (oldest first)      |
+| `AhPositionOpenTimeDesc`    | 1     | Sort by open time (newest first)      |
+| `AhPositionTicketAsc`        | 2     | Sort by ticket ID (ascending)         |
+| `AhPositionTicketDesc`       | 3     | Sort by ticket ID (descending)        |
 
 ### `PositionHistoryInfo` (Closed Position Summary)
 
@@ -103,15 +103,15 @@ namespace mt5_term_api
 
 | Enum Value                  | Value | Description                                                        |
 | --------------------------- | ----- | ------------------------------------------------------------------ |
-| `AH_ORDER_TYPE_BUY`         | 0     | Market Buy order                                                   |
-| `AH_ORDER_TYPE_SELL`        | 1     | Market Sell order                                                  |
-| `AH_ORDER_TYPE_BUY_LIMIT`   | 2     | Buy Limit pending order                                            |
-| `AH_ORDER_TYPE_SELL_LIMIT`  | 3     | Sell Limit pending order                                           |
-| `AH_ORDER_TYPE_BUY_STOP`    | 4     | Buy Stop pending order                                             |
-| `AH_ORDER_TYPE_SELL_STOP`   | 5     | Sell Stop pending order                                            |
-| `AH_ORDER_TYPE_BUY_STOP_LIMIT` | 6  | Upon reaching order price, Buy Limit placed at StopLimit price     |
-| `AH_ORDER_TYPE_SELL_STOP_LIMIT` | 7 | Upon reaching order price, Sell Limit placed at StopLimit price    |
-| `AH_ORDER_TYPE_CLOSE_BY`    | 8     | Order to close position by opposite one                            |
+| `AhOrderTypeBuy`         | 0     | Market Buy order                                                   |
+| `AhOrderTypeSell`        | 1     | Market Sell order                                                  |
+| `AhOrderTypeBuyLimit`   | 2     | Buy Limit pending order                                            |
+| `AhOrderTypeSellLimit`  | 3     | Sell Limit pending order                                           |
+| `AhOrderTypeBuyStop`    | 4     | Buy Stop pending order                                             |
+| `AhOrderTypeSellStop`   | 5     | Sell Stop pending order                                            |
+| `AhOrderTypeBuyStopLimit` | 6  | Upon reaching order price, Buy Limit placed at StopLimit price     |
+| `AhOrderTypeSellStopLimit` | 7 | Upon reaching order price, Sell Limit placed at StopLimit price    |
+| `AhOrderTypeCloseBy`    | 8     | Order to close position by opposite one                            |
 
 ---
 
@@ -150,7 +150,7 @@ Use this method when you need to:
 * Net P&L = `Profit - Commission - Fee + Swap` (Swap can be positive or negative).
 * For **netting accounts**: positions are netted per symbol.
 * For **hedging accounts**: multiple positions per symbol possible.
-* Use `sortType` to get most recent positions first: `AH_POSITION_OPEN_TIME_DESC`.
+* Use `sortType` to get most recent positions first: `AhPositionOpenTimeDesc`.
 * Filter by `Magic` in your code to get EA-specific positions.
 * Use pagination for large datasets (months/years of trading).
 * Much **faster** than `OrderHistoryAsync()` for position-level analysis.
@@ -164,7 +164,7 @@ Use this method when you need to:
 ```csharp
 // Retrieve all closed positions (no time filter)
 var positions = await acc.PositionsHistoryAsync(
-    sortType: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AH_POSITION_OPEN_TIME_DESC,
+    sortType: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AhPositionOpenTimeDesc,
     deadline: DateTime.UtcNow.AddSeconds(10));
 
 Console.WriteLine($"Total closed positions: {positions.HistoryPositions.Count}");
@@ -178,9 +178,9 @@ var from = DateTime.UtcNow.AddDays(-30); // Server time
 var to = DateTime.UtcNow;
 
 var positions = await acc.PositionsHistoryAsync(
-    positionOpenTimeFrom: from,
-    positionOpenTimeTo: to,
-    sortType: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AH_POSITION_OPEN_TIME_DESC);
+    openFrom: from,
+    openTo: to,
+    sortType: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AhPositionOpenTimeDesc);
 
 Console.WriteLine($"Positions from last 30 days: {positions.HistoryPositions.Count}");
 ```
@@ -219,8 +219,8 @@ Console.WriteLine($"Net P&L:          {netPL:F2}");
 ```csharp
 // Show recent closed positions
 var positions = await acc.PositionsHistoryAsync(
-    sortType: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AH_POSITION_OPEN_TIME_DESC,
-    positionOpenTimeFrom: DateTime.UtcNow.AddDays(-7));
+    sortType: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AhPositionOpenTimeDesc,
+    openFrom: DateTime.UtcNow.AddDays(-7));
 
 Console.WriteLine("=== CLOSED POSITIONS (Last 7 Days) ===");
 Console.WriteLine("Ticket      Symbol      Type  Volume   Open       Close      Profit");
@@ -228,7 +228,7 @@ Console.WriteLine("────────────────────�
 
 foreach (var pos in positions.HistoryPositions)
 {
-    var type = pos.OrderType == AH_ENUM_POSITIONS_HISTORY_ORDER_TYPE.AH_ORDER_TYPE_BUY ? "BUY " : "SELL";
+    var type = pos.OrderType == AH_ENUM_POSITIONS_HISTORY_ORDER_TYPE.AhOrderTypeBuy ? "BUY " : "SELL";
     var openTime = DateTimeOffset.FromUnixTimeSeconds(pos.OpenTime.Seconds).DateTime;
 
     Console.WriteLine($"{pos.PositionTicket,-10}  {pos.Symbol,-10}  {type}  {pos.Volume,6:F2}  {pos.OpenPrice,8:F5}  {pos.ClosePrice,8:F5}  {pos.Profit,8:F2}");
@@ -240,7 +240,7 @@ foreach (var pos in positions.HistoryPositions)
 ```csharp
 // Calculate win rate
 var positions = await acc.PositionsHistoryAsync(
-    positionOpenTimeFrom: DateTime.UtcNow.AddMonths(-1));
+    openFrom: DateTime.UtcNow.AddMonths(-1));
 
 int winners = 0;
 int losers = 0;
@@ -300,7 +300,7 @@ Console.WriteLine($"  Net P&L:          {eaPL:F2}");
 ```csharp
 // Analyze performance by symbol
 var positions = await acc.PositionsHistoryAsync(
-    positionOpenTimeFrom: DateTime.UtcNow.AddMonths(-3));
+    openFrom: DateTime.UtcNow.AddMonths(-3));
 
 var bySymbol = positions.HistoryPositions
     .GroupBy(p => p.Symbol)
@@ -327,16 +327,16 @@ foreach (var item in bySymbol)
 
 ```csharp
 // Retrieve large history in pages
-var itemsPerPage = 50;
+var size = 50;
 var currentPage = 0;
 var allPositions = new List<PositionHistoryInfo>();
 
 while (true)
 {
     var positions = await acc.PositionsHistoryAsync(
-        pageNumber: currentPage,
-        itemsPerPage: itemsPerPage,
-        sortType: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AH_POSITION_OPEN_TIME_DESC);
+        page: currentPage,
+        size: size,
+        sortType: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AhPositionOpenTimeDesc);
 
     Console.WriteLine($"Page {currentPage + 1}: {positions.HistoryPositions.Count} positions");
 
@@ -345,7 +345,7 @@ while (true)
 
     allPositions.AddRange(positions.HistoryPositions);
 
-    if (positions.HistoryPositions.Count < itemsPerPage)
+    if (positions.HistoryPositions.Count < size)
         break; // Last page
 
     currentPage++;

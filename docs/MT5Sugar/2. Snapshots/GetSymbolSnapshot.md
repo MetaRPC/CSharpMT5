@@ -67,8 +67,8 @@ public static class MT5ServiceExtensions
 
 | Field         | Type     | Description                           |
 | ------------- | -------- | ------------------------------------- |
-| `Initial`     | `double` | Initial margin rate                   |
-| `Maintenance` | `double` | Maintenance margin rate               |
+| `InitialMarginRate`     | `double` | Initial margin rate                   |
+| `MaintenanceMarginRate` | `double` | Maintenance margin rate               |
 
 ---
 
@@ -186,7 +186,7 @@ var snapshot = await svc.GetSymbolSnapshot("EURUSD");
 Console.WriteLine($"Bid: {snapshot.Tick.Bid}");
 Console.WriteLine($"Point: {snapshot.Point}");
 Console.WriteLine($"Digits: {snapshot.Digits}");
-Console.WriteLine($"Margin: {snapshot.MarginRate.Initial}");
+Console.WriteLine($"Margin: {snapshot.MarginRate.InitialMarginRate}");
 ```
 
 **Benefits:**
@@ -214,8 +214,8 @@ Console.WriteLine($"  Ask:    {snapshot.Tick.Ask}");
 Console.WriteLine($"  Spread: {(snapshot.Tick.Ask - snapshot.Tick.Bid) / snapshot.Point:F1} points");
 Console.WriteLine($"  Point:  {snapshot.Point}");
 Console.WriteLine($"  Digits: {snapshot.Digits}");
-Console.WriteLine($"  Margin (Initial):     {snapshot.MarginRate.Initial}");
-Console.WriteLine($"  Margin (Maintenance): {snapshot.MarginRate.Maintenance}");
+Console.WriteLine($"  Margin (Initial):     {snapshot.MarginRate.InitialMarginRate}");
+Console.WriteLine($"  Margin (Maintenance): {snapshot.MarginRate.MaintenanceMarginRate}");
 ```
 
 ---
@@ -303,8 +303,8 @@ foreach (var symbol in symbols)
 {
     var snapshot = await svc.GetSymbolSnapshot(symbol);
 
-    Console.WriteLine($"{symbol,-10} Initial: {snapshot.MarginRate.Initial,6:F2} | " +
-                     $"Maintenance: {snapshot.MarginRate.Maintenance,6:F2}");
+    Console.WriteLine($"{symbol,-10} Initial: {snapshot.MarginRate.InitialMarginRate,6:F2} | " +
+                     $"Maintenance: {snapshot.MarginRate.MaintenanceMarginRate,6:F2}");
 }
 ```
 
@@ -414,8 +414,8 @@ Console.WriteLine();
 Console.WriteLine($"Point Size:    {snapshot.Point}");
 Console.WriteLine($"Digits:        {snapshot.Digits}");
 Console.WriteLine();
-Console.WriteLine($"Margin (Initial):     {snapshot.MarginRate.Initial}");
-Console.WriteLine($"Margin (Maintenance): {snapshot.MarginRate.Maintenance}");
+Console.WriteLine($"Margin (Initial):     {snapshot.MarginRate.InitialMarginRate}");
+Console.WriteLine($"Margin (Maintenance): {snapshot.MarginRate.MaintenanceMarginRate}");
 Console.WriteLine();
 
 // Calculate 1 pip value
@@ -474,12 +474,12 @@ double contractSize = 100000; // Standard lot for EURUSD
 
 // Margin = (Volume * ContractSize * Price) / Leverage * MarginRate
 // Simplified: assuming leverage is applied elsewhere
-double requiredMargin = volume * contractSize * snapshot.Tick.Ask * snapshot.MarginRate.Initial;
+double requiredMargin = volume * contractSize * snapshot.Tick.Ask * snapshot.MarginRate.InitialMarginRate;
 
 Console.WriteLine($"Symbol:           EURUSD");
 Console.WriteLine($"Volume:           {volume} lot");
 Console.WriteLine($"Entry Price:      {snapshot.Tick.Ask}");
-Console.WriteLine($"Margin Rate:      {snapshot.MarginRate.Initial}");
+Console.WriteLine($"Margin Rate:      {snapshot.MarginRate.InitialMarginRate}");
 Console.WriteLine($"Required Margin:  ${requiredMargin:F2}");
 ```
 
@@ -543,7 +543,7 @@ Console.WriteLine($"Required Margin:  ${requiredMargin:F2}");
    double margin = volume * price;
 
    // ✅ CORRECT - apply margin rate
-   double margin = volume * price * snapshot.MarginRate.Initial;
+   double margin = volume * price * snapshot.MarginRate.InitialMarginRate;
    ```
 
 5. **Not normalizing calculated prices**

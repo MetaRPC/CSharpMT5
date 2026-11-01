@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
@@ -114,7 +114,7 @@ Use it to update trade parameters:
 
 * **Return codes:** 10009 = success. Other codes indicate errors (invalid stops, market closed, etc.).
 * **Position vs Pending:** Use same `Ticket` for both positions and pending orders. Server determines type automatically.
-* **Stop levels:** Broker enforces minimum distance from current price (`SYMBOL_TRADE_STOPS_LEVEL`). Check before modifying.
+* **Stop levels:** Broker enforces minimum distance from current price (`SymbolTradeStopsLevel`). Check before modifying.
 * **Partial parameters:** Set only fields you want to change. Leave others as `0` or `null`.
 * **Price field:** Only for pending orders. Ignored for open positions.
 

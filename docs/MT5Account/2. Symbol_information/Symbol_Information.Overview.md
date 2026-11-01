@@ -13,6 +13,8 @@
 * **[SymbolName](./SymbolName.md)** - **get symbol name** by index from list.
 * **[SymbolSelect](./SymbolSelect.md)** - **add/remove** symbol to/from Market Watch.
 * **[SymbolIsSynchronized](./SymbolIsSynchronized.md)** - **check** if symbol data is synchronized with server.
+* **[SymbolList](./SymbolList.md)** - **full list** of all available symbol names in one call.
+* **[PriceHistory](./PriceHistory.md)** - **historical OHLC bars** for a symbol and timeframe over a time window.
 
 ---
 

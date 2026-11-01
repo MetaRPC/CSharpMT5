@@ -9,6 +9,7 @@
 * **[OpenedOrdersTickets](./OpenedOrdersTickets.md)** - **lightweight list** of tickets only (no full details).
 * **[OrderHistory](./OrderHistory.md)** - **historical orders and deals** within time range (with pagination).
 * **[PositionsHistory](./PositionsHistory.md)** - **closed positions** within time range (with pagination).
+* **[AllHistoryOrders](./AllHistoryOrders.md)** - **complete order history** over a time range in a single call (no paging).
 
 ---
 

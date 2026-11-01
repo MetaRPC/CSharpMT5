@@ -232,10 +232,11 @@ dotnet run hedge
 var orchestrator = new QuickHedgeOrchestrator(service)
 {
     Symbol = "EURUSD",
-    Volume = 0.01,               // 0.01 lots per position
-    StopLossPoints = 30,         // 30 points SL
-    TakeProfitPoints = 50,       // 50 points TP
-    MaxHoldSeconds = 120         // Hold max 2 minutes
+    RiskAmount = 30.0,           // risk-based position sizing
+    StopLossPoints = 25,         // 25 points SL
+    TakeProfitPoints = 40,       // 40 points TP
+    OpenBuyFirst = true,         // open the Buy leg first
+    HedgeTriggerPoints = 15      // hedge when price moves 15 points against us
 };
 ```
 
@@ -264,11 +265,12 @@ dotnet run news
 var orchestrator = new NewsStraddleOrchestrator(service)
 {
     Symbol = "EURUSD",
-    Volume = 0.01,               // 0.01 lots per position
-    DistancePoints = 30,         // 30 points above/below price
-    StopLossPoints = 20,         // 20 points SL
-    TakeProfitPoints = 40,       // 40 points TP
-    MaxWaitSeconds = 300         // Wait max 5 minutes
+    Volume = 0.02,                   // 0.02 lots per leg
+    StraddleDistancePoints = 15,     // 15 points above/below price
+    StopLossPoints = 20,             // 20 points SL
+    TakeProfitPoints = 40,           // 40 points TP
+    SecondsBeforeNews = 60,          // place orders 60s before news
+    MaxWaitAfterNewsSeconds = 180    // wait up to 3 minutes after
 };
 ```
 
@@ -282,9 +284,9 @@ var orchestrator = new NewsStraddleOrchestrator(service)
 
 **Key Features**:
 
-- Places pending orders at technical levels
-- Multiple levels with configurable spacing
-- Automatic order management
+- Places a Buy Stop above and a Sell Stop below the current price
+- Single configurable breakout distance
+- Cancels the opposite order after one triggers
 - Best for: Technical breakout setups (spread > 3 points)
 
 **Quick Start**:
@@ -297,12 +299,11 @@ dotnet run breakout
 var orchestrator = new PendingBreakoutOrchestrator(service)
 {
     Symbol = "EURUSD",
-    Volume = 0.01,               // 0.01 lots per order
-    Levels = 3,                  // 3 pending orders
-    LevelSpacingPoints = 25,     // 25 points between levels
-    StopLossPoints = 40,         // 40 points SL
-    TakeProfitPoints = 60,       // 60 points TP
-    MaxRunMinutes = 20           // Run for 20 minutes
+    Volume = 0.01,                 // 0.01 lots per order
+    BreakoutDistancePoints = 25,   // 25 points above/below price
+    StopLossPoints = 15,           // 15 points SL
+    TakeProfitPoints = 30,         // 30 points TP
+    MaxWaitMinutes = 30            // wait up to 30 minutes for a breakout
 };
 ```
 
@@ -352,12 +353,12 @@ var preset = new AdaptiveMarketModePreset(service)
 {
     Symbol = "EURUSD",
     BaseRiskAmount = 20.0,           // Base risk for scalping
+    VolatilityLookbackBars = 20,     // Bars analyzed for volatility
     LowVolatilityThreshold = 15.0,   // < 15 pts = grid
     HighVolatilityThreshold = 40.0,  // > 40 pts = hedge
-    EnableNewsMode = true,            // Enable news detection
-    MinutesBeforeNews = 10,          // Start 10 min before news
-    CycleDurationMinutes = 5,        // 5 minutes per cycle
-    TotalRunMinutes = 60             // Run for 1 hour
+    EnableNewsMode = true,           // Enable news detection
+    MinutesBeforeNews = 5,           // Switch to news mode 5 min before
+    CycleDurationSeconds = 300       // 5 minutes per analysis cycle
 };
 ```
 
@@ -440,8 +441,8 @@ var orchestrator = new GridTradingOrchestrator(service)
     MaxRunMinutes = 15
 };
 
-// 3. Run orchestrator
-await orchestrator.RunAsync();
+// 3. Run orchestrator — ExecuteAsync returns the realized P&L for the run
+double pnl = await orchestrator.ExecuteAsync();
 ```
 
 ---
@@ -462,12 +463,13 @@ var preset = new AdaptiveMarketModePreset(service)
     LowVolatilityThreshold = 15.0,
     HighVolatilityThreshold = 40.0,
     EnableNewsMode = true,
-    CycleDurationMinutes = 5,
-    TotalRunMinutes = 60
+    MinutesBeforeNews = 5,
+    CycleDurationSeconds = 300
 };
 
-// 3. Run preset (will automatically select strategies)
-await preset.RunAsync();
+// 3. Run preset (it analyzes the market and selects a strategy each cycle).
+// ExecuteAsync returns the realized P&L for the run.
+double pnl = await preset.ExecuteAsync();
 ```
 
 ---
@@ -479,13 +481,13 @@ Every orchestrator and preset has multiple command-line aliases:
 ```bash
 # Orchestrators
 dotnet run grid          # or: gridtrading, 9
-dotnet run scalping      # or: scalp, 10
-dotnet run hedge         # or: quickhedge, 11
-dotnet run news          # or: newsstraddle, 12
-dotnet run breakout      # or: pendingbreakout, 13
+dotnet run news          # or: newsstraddle, 10
+dotnet run breakout      # or: 11
+dotnet run hedge         # or: quickhedge, 12
+dotnet run scalping      # or: 13
 
 # Presets
-dotnet run preset        # or: adaptive, adaptivemarket, 14
+dotnet run preset        # or: adaptive, 14
 ```
 
 ---
@@ -734,7 +736,7 @@ var orchestrator = new GridTradingOrchestrator(service)
 ```csharp
 try
 {
-    await orchestrator.RunAsync();
+    double pnl = await orchestrator.ExecuteAsync();
 }
 catch (OperationCanceledException)
 {

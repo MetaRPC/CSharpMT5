@@ -118,7 +118,7 @@ if (result.MqlTradeCheckResult.ReturnedCode == 0)
 {
     Console.WriteLine("✅ Order is valid - safe to send");
     Console.WriteLine($"   Required margin: ${result.MqlTradeCheckResult.Margin:F2}");
-    Console.WriteLine($"   Free margin after: ${result.MqlTradeCheckResult.MarginFree:F2}");
+    Console.WriteLine($"   Free margin after: ${result.MqlTradeCheckResult.FreeMargin:F2}");
 
     // Now send the order
     await svc.OrderSendAsync(new OrderSendRequest { MqlTradeRequest = tradeReq });
@@ -162,7 +162,7 @@ public async Task<bool> ValidateAndPlaceLargeOrder(
         if (validation.MqlTradeCheckResult.Comment.Contains("margin"))
         {
             Console.WriteLine($"   Required: ${validation.MqlTradeCheckResult.Margin:F2}");
-            Console.WriteLine($"   Available: ${validation.MqlTradeCheckResult.MarginFree:F2}");
+            Console.WriteLine($"   Available: ${validation.MqlTradeCheckResult.FreeMargin:F2}");
             Console.WriteLine("   Consider reducing volume or adding funds");
         }
 

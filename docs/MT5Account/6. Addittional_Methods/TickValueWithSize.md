@@ -16,24 +16,21 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<TickValueWithSizeData> TickValueWithSizeAsync(
-            TickValueWithSizeRequest request,
+            IEnumerable<string> symbols,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
 }
 ```
 
-**Request message:**
+> The wrapper takes the `symbols` collection directly and builds the underlying `TickValueWithSizeRequest { symbol_names }` for you.
 
-`TickValueWithSizeRequest { symbol_names }`
-
-
-**Reply message:**
+**Reply message (underlying proto):**
 
 `TickValueWithSizeReply { data: TickValueWithSizeData }`
 
@@ -41,17 +38,11 @@ namespace mt5_term_api
 
 ## 🔽 Input
 
-| Parameter           | Type                       | Description                                               |
-| ------------------- | -------------------------- | --------------------------------------------------------- |
-| `request`           | `TickValueWithSizeRequest` | Protobuf request with array of symbol names               |
-| `deadline`          | `DateTime?`                | Absolute per‑call **UTC** deadline → converted to timeout |
-| `cancellationToken` | `CancellationToken`        | Cooperative cancel for the call/retry loop                |
-
-### `TickValueWithSizeRequest`
-
-| Field         | Type              | Description                                               |
-| ------------- | ----------------- | --------------------------------------------------------- |
-| `SymbolNames` | `List<string>`    | Array of symbol names (e.g., `["EURUSD", "XAUUSD"]`)      |
+| Parameter           | Type                  | Description                                               |
+| ------------------- | --------------------- | --------------------------------------------------------- |
+| `symbols`           | `IEnumerable<string>` | Symbol names (e.g., `new[] { "EURUSD", "XAUUSD" }`)       |
+| `deadline`          | `DateTime?`           | Absolute per‑call **UTC** deadline → converted to timeout |
+| `cancellationToken` | `CancellationToken`   | Cooperative cancel for the call/retry loop                |
 
 ---
 
@@ -112,10 +103,7 @@ Use it to get tick value data:
 ```csharp
 // acc — connected MT5Account
 
-var result = await acc.TickValueWithSizeAsync(new TickValueWithSizeRequest
-{
-    SymbolNames = { "EURUSD" }
-});
+var result = await acc.TickValueWithSizeAsync(new[] { "EURUSD" });
 
 if (result.SymbolTickSizeInfos.Count > 0)
 {
@@ -137,10 +125,7 @@ if (result.SymbolTickSizeInfos.Count > 0)
 ```csharp
 var symbols = new[] { "EURUSD", "GBPUSD", "USDJPY", "XAUUSD", "BTCUSD" };
 
-var result = await acc.TickValueWithSizeAsync(new TickValueWithSizeRequest
-{
-    SymbolNames = { symbols }
-});
+var result = await acc.TickValueWithSizeAsync(symbols);
 
 Console.WriteLine($"Tick values for {result.SymbolTickSizeInfos.Count} symbols:\n");
 
@@ -157,10 +142,7 @@ foreach (var tick in result.SymbolTickSizeInfos)
 ```csharp
 var forexPairs = new[] { "EURUSD", "GBPUSD", "USDJPY", "USDCHF" };
 
-var result = await acc.TickValueWithSizeAsync(new TickValueWithSizeRequest
-{
-    SymbolNames = { forexPairs }
-});
+var result = await acc.TickValueWithSizeAsync(forexPairs);
 
 Console.WriteLine("Pip values (for 1 standard lot):\n");
 
@@ -184,10 +166,7 @@ var entryPrice = 2000.00;
 var currentPrice = 2010.00;
 
 // Get tick value
-var result = await acc.TickValueWithSizeAsync(new TickValueWithSizeRequest
-{
-    SymbolNames = { symbol }
-});
+var result = await acc.TickValueWithSizeAsync(new[] { symbol });
 
 if (result.SymbolTickSizeInfos.Count > 0)
 {
@@ -218,10 +197,7 @@ var riskPercent = 1.0; // Risk 1% per trade
 var stopLossPips = 50; // 50 pip stop loss
 
 // Get tick value
-var result = await acc.TickValueWithSizeAsync(new TickValueWithSizeRequest
-{
-    SymbolNames = { symbol }
-});
+var result = await acc.TickValueWithSizeAsync(new[] { symbol });
 
 if (result.SymbolTickSizeInfos.Count > 0)
 {
@@ -254,10 +230,7 @@ if (result.SymbolTickSizeInfos.Count > 0)
 ```csharp
 var symbols = new[] { "EURUSD", "XAUUSD", "BTCUSD", "ES", "NQ" };
 
-var result = await acc.TickValueWithSizeAsync(new TickValueWithSizeRequest
-{
-    SymbolNames = { symbols }
-});
+var result = await acc.TickValueWithSizeAsync(symbols);
 
 Console.WriteLine("Tick value comparison:\n");
 Console.WriteLine($"{"Symbol",-10} {"Tick Value",-12} {"Tick Size",-12} {"Contract Size",-15}");
@@ -284,10 +257,7 @@ var symbol = "XAUUSD";
 var lots = 1.0;
 
 // Get tick values
-var result = await acc.TickValueWithSizeAsync(new TickValueWithSizeRequest
-{
-    SymbolNames = { symbol }
-});
+var result = await acc.TickValueWithSizeAsync(new[] { symbol });
 
 if (result.SymbolTickSizeInfos.Count > 0)
 {
@@ -315,10 +285,7 @@ if (result.SymbolTickSizeInfos.Count > 0)
 ```csharp
 var symbols = new[] { "EURUSD", "USDJPY", "XAUUSD" };
 
-var result = await acc.TickValueWithSizeAsync(new TickValueWithSizeRequest
-{
-    SymbolNames = { symbols }
-});
+var result = await acc.TickValueWithSizeAsync(symbols);
 
 Console.WriteLine("Checking for asymmetric tick values:\n");
 

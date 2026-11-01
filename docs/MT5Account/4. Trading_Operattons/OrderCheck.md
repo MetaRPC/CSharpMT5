@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
@@ -64,7 +64,7 @@ namespace mt5_term_api
 | `OrderType`                | `ENUM_ORDER_TYPE_TF`              | Order type: Buy, Sell, BuyLimit, SellStop, etc.      |
 | `TypeFilling`              | `MRPC_ENUM_ORDER_TYPE_FILLING`    | Filling mode: FOK, IOC, Return, BOC                  |
 | `TypeTime`                 | `MRPC_ENUM_ORDER_TYPE_TIME`       | Time‑in‑force: GTC, Day, Specified                   |
-| `Expiration`               | `Timestamp`                       | Expiration time (for ORDER_TIME_SPECIFIED)           |
+| `Expiration`               | `Timestamp`                       | Expiration time (for OrderTimeSpecified)           |
 | `Comment`                  | `string`                          | Order comment (optional)                             |
 | `Position`                 | `ulong`                           | Position ticket (for position operations)            |
 | `PositionBy`               | `ulong`                           | Opposite position ticket (for close-by)              |

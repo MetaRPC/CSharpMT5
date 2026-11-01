@@ -48,8 +48,7 @@ Returns closed positions with pagination.
 
 | Field          | Type                        | Description                           |
 | -------------- | --------------------------- | ------------------------------------- |
-| `Positions`    | `List<PositionHistoryInfo>` | List of closed positions              |
-| `TotalCount`   | `int`                       | Total number of matching positions    |
+| `HistoryPositions` | `List<PositionHistoryInfo>` | List of closed positions (this page)  |
 
 ---
 
@@ -57,7 +56,7 @@ Returns closed positions with pagination.
 
 * **What it is.** Simple wrapper for getting closed positions history with sensible defaults and optional date filtering.
 * **Why you need it.** Query position history with pagination - easier than OrdersHistoryAsync (position vs order).
-* **Sanity check.** Returns paged results. Check `TotalCount` to see if you need more pages. Positions are different from orders.
+* **Sanity check.** Returns paged results. If `HistoryPositions.Count` equals your page `size`, fetch the next page. Positions are different from orders.
 
 ---
 
@@ -150,10 +149,10 @@ var history = await svc.PositionsHistoryPaged();
 
 var history = await svc.PositionsHistoryPaged();
 
-Console.WriteLine($"Closed positions: {history.TotalCount}");
-Console.WriteLine($"Retrieved: {history.Positions.Count}");
+Console.WriteLine($"Closed positions: {history.HistoryPositions.Count}");
+Console.WriteLine($"Retrieved: {history.HistoryPositions.Count}");
 
-foreach (var pos in history.Positions)
+foreach (var pos in history.HistoryPositions)
 {
     Console.WriteLine($"  Ticket: {pos.Ticket}, Symbol: {pos.Symbol}, " +
                      $"Profit: {pos.Profit:F2}");
@@ -172,7 +171,7 @@ var history = await svc.PositionsHistoryPaged(
     openFrom: from,
     openTo: to);
 
-Console.WriteLine($"Positions opened in January 2024: {history.TotalCount}");
+Console.WriteLine($"Positions opened in January 2024: {history.HistoryPositions.Count}");
 ```
 
 ---
@@ -189,11 +188,11 @@ while (true)
 {
     var history = await svc.PositionsHistoryPaged(page: page, size: pageSize);
 
-    allPositions.AddRange(history.Positions);
+    allPositions.AddRange(history.HistoryPositions);
 
-    Console.WriteLine($"Page {page}: {history.Positions.Count} positions");
+    Console.WriteLine($"Page {page}: {history.HistoryPositions.Count} positions");
 
-    if (history.Positions.Count < pageSize)
+    if (history.HistoryPositions.Count < pageSize)
         break; // Last page
 
     page++;
@@ -208,11 +207,11 @@ Console.WriteLine($"Total positions retrieved: {allPositions.Count}");
 
 ```csharp
 var history = await svc.PositionsHistoryPaged(
-    sort: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AhPositionCloseTimeDesc);
+    sort: AH_ENUM_POSITIONS_HISTORY_SORT_TYPE.AhPositionOpenTimeDesc);
 
 Console.WriteLine("Recent closed positions (newest first):");
 
-foreach (var pos in history.Positions.Take(10))
+foreach (var pos in history.HistoryPositions.Take(10))
 {
     Console.WriteLine($"  Closed: {pos.CloseTime}, {pos.Symbol}, " +
                      $"Profit: {pos.Profit:F2}");
@@ -226,15 +225,15 @@ foreach (var pos in history.Positions.Take(10))
 ```csharp
 var history = await svc.PositionsHistoryPaged();
 
-if (history.Positions.Any())
+if (history.HistoryPositions.Any())
 {
-    double totalProfit = history.Positions.Sum(p => p.Profit);
-    int winners = history.Positions.Count(p => p.Profit > 0);
-    int losers = history.Positions.Count(p => p.Profit < 0);
-    double winRate = (double)winners / history.Positions.Count * 100;
+    double totalProfit = history.HistoryPositions.Sum(p => p.Profit);
+    int winners = history.HistoryPositions.Count(p => p.Profit > 0);
+    int losers = history.HistoryPositions.Count(p => p.Profit < 0);
+    double winRate = (double)winners / history.HistoryPositions.Count * 100;
 
     Console.WriteLine("Position Statistics:");
-    Console.WriteLine($"  Total positions: {history.Positions.Count}");
+    Console.WriteLine($"  Total positions: {history.HistoryPositions.Count}");
     Console.WriteLine($"  Winners:         {winners} ({winRate:F1}%)");
     Console.WriteLine($"  Losers:          {losers}");
     Console.WriteLine($"  Total profit:    {totalProfit:F2}");
@@ -248,7 +247,7 @@ if (history.Positions.Any())
 ```csharp
 var history = await svc.PositionsHistoryPaged();
 
-var bySymbol = history.Positions
+var bySymbol = history.HistoryPositions
     .GroupBy(p => p.Symbol)
     .Select(g => new
     {
@@ -276,9 +275,9 @@ foreach (var item in bySymbol)
 ```csharp
 var history = await svc.PositionsHistoryPaged();
 
-if (history.Positions.Any())
+if (history.HistoryPositions.Any())
 {
-    var longest = history.Positions
+    var longest = history.HistoryPositions
         .OrderByDescending(p => (p.CloseTime - p.OpenTime).TotalHours)
         .First();
 
@@ -302,7 +301,7 @@ var history = await svc.PositionsHistoryPaged();
 var csv = new StringBuilder();
 csv.AppendLine("Ticket,Symbol,Type,OpenTime,CloseTime,Volume,OpenPrice,ClosePrice,Profit,Duration");
 
-foreach (var pos in history.Positions)
+foreach (var pos in history.HistoryPositions)
 {
     var duration = (pos.CloseTime - pos.OpenTime).TotalHours;
 
@@ -324,16 +323,16 @@ Console.WriteLine("Exported to positions_history.csv");
 ```csharp
 var history = await svc.PositionsHistoryPaged();
 
-if (history.Positions.Any())
+if (history.HistoryPositions.Any())
 {
-    var avgHoldingTime = history.Positions
+    var avgHoldingTime = history.HistoryPositions
         .Average(p => (p.CloseTime - p.OpenTime).TotalHours);
 
     Console.WriteLine($"Average holding time: {avgHoldingTime:F1} hours " +
                      $"({avgHoldingTime / 24:F1} days)");
 
     // By symbol
-    var bySymbol = history.Positions
+    var bySymbol = history.HistoryPositions
         .GroupBy(p => p.Symbol)
         .Select(g => new
         {
@@ -364,11 +363,11 @@ var history = await svc.PositionsHistoryPaged(
     openFrom: lastMonthStart,
     openTo: lastMonthEnd);
 
-Console.WriteLine($"Positions opened last month: {history.TotalCount}");
+Console.WriteLine($"Positions opened last month: {history.HistoryPositions.Count}");
 
-if (history.Positions.Any())
+if (history.HistoryPositions.Any())
 {
-    double monthProfit = history.Positions.Sum(p => p.Profit);
+    double monthProfit = history.HistoryPositions.Sum(p => p.Profit);
     Console.WriteLine($"Total profit: {monthProfit:F2}");
 }
 ```
@@ -408,7 +407,7 @@ if (history.Positions.Any())
    ```csharp
    // ❌ WRONG - only gets first 100 positions
    var history = await svc.PositionsHistoryPaged();
-   if (history.TotalCount > 100) {
+   if (history.HistoryPositions.Count > 100) {
        // You're missing data!
    }
 
@@ -418,8 +417,8 @@ if (history.Positions.Any())
    while (true)
    {
        var history = await svc.PositionsHistoryPaged(page: page);
-       allPositions.AddRange(history.Positions);
-       if (history.Positions.Count < 100) break;
+       allPositions.AddRange(history.HistoryPositions);
+       if (history.HistoryPositions.Count < 100) break;
        page++;
    }
    ```
@@ -438,12 +437,12 @@ if (history.Positions.Any())
    ```csharp
    // ❌ WRONG - assuming you got all data
    var history = await svc.PositionsHistoryPaged();
-   Console.WriteLine($"Total: {history.Positions.Count}"); // Wrong!
+   Console.WriteLine($"Total: {history.HistoryPositions.Count}"); // Wrong!
 
    // ✅ CORRECT - check TotalCount
    var history = await svc.PositionsHistoryPaged();
-   Console.WriteLine($"Retrieved: {history.Positions.Count}");
-   Console.WriteLine($"Total in DB: {history.TotalCount}");
+   Console.WriteLine($"Retrieved: {history.HistoryPositions.Count}");
+   Console.WriteLine($"Total in DB: {history.HistoryPositions.Count}");
    ```
 
 5. **Wrong date range specification**
@@ -460,7 +459,7 @@ if (history.Positions.Any())
    ```csharp
    // ❌ WRONG - fetching all positions when you only need recent
    var history = await svc.PositionsHistoryPaged();
-   var recent = history.Positions
+   var recent = history.HistoryPositions
        .Where(p => p.OpenTime >= DateTime.UtcNow.AddDays(-7))
        .ToList();
 
