@@ -128,7 +128,7 @@ Console.WriteLine($"Trade {volume} lots to risk $100");
 // Output: Trade 0.20 lots to risk $100
 
 // Now place order with calculated volume
-await svc.BuyMarket("EURUSD", volume, sl: currentBid - 50 * point);
+await svc.BuyMarketAsync("EURUSD", volume, sl: currentBid - 50 * point);
 ```
 
 ---
@@ -152,7 +152,7 @@ Console.WriteLine($"Risk (2%): ${riskMoney:F2}");
 Console.WriteLine($"Volume: {volume} lots");
 
 // Place trade
-await svc.SellMarket("GBPUSD", volume, sl: currentAsk + 30 * point);
+await svc.SellMarketAsync("GBPUSD", volume, sl: currentAsk + 30 * point);
 ```
 
 ---

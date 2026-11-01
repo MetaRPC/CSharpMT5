@@ -64,13 +64,16 @@ var history = await account.OrderHistoryAsync(
 // ✅ AFTER (MT5Service) - 1 parameter:
 var history = await service.GetRecentOrdersAsync(days: 7);
 
-// Display results
-foreach (var order in history.ClosedOrders)
+// Display results — each entry carries an order and/or an executed deal
+foreach (var item in history.HistoryData)
 {
-    Console.WriteLine($"[{order.TimeClose.ToDateTime():yyyy-MM-dd HH:mm:ss}] " +
-                      $"{order.OrderSymbol} {order.OrderType} " +
-                      $"Vol: {order.OrderVolumeCurrent} " +
-                      $"P/L: ${order.Profit:F2}");
+    var deal = item.HistoryDeal;
+    if (deal == null) continue; // skip entries without an executed deal
+
+    Console.WriteLine($"[{deal.Time.ToDateTime():yyyy-MM-dd HH:mm:ss}] " +
+                      $"{deal.Symbol} {deal.Type} " +
+                      $"Vol: {deal.Volume} " +
+                      $"P/L: ${deal.Profit:F2}");
 }
 ```
 
@@ -94,7 +97,7 @@ var history = await account.OrderHistoryAsync(
 // ✅ AFTER (MT5Service):
 var history = await service.GetTodayOrdersAsync();
 
-Console.WriteLine($"Today's orders: {history.ClosedOrders.Count}");
+Console.WriteLine($"Today's orders: {history.HistoryData.Count}");
 ```
 
 **Readability:** Intent is crystal clear!
@@ -109,9 +112,9 @@ var lastMonth = await service.GetRecentOrdersAsync(days: 30, limit: 500);
 var lastWeek = await service.GetRecentOrdersAsync(days: 7, limit: 100);
 var yesterday = await service.GetRecentOrdersAsync(days: 1, limit: 50);
 
-Console.WriteLine($"Last month: {lastMonth.ClosedOrders.Count} orders");
-Console.WriteLine($"Last week:  {lastWeek.ClosedOrders.Count} orders");
-Console.WriteLine($"Yesterday:  {yesterday.ClosedOrders.Count} orders");
+Console.WriteLine($"Last month: {lastMonth.HistoryData.Count} orders");
+Console.WriteLine($"Last week:  {lastWeek.HistoryData.Count} orders");
+Console.WriteLine($"Yesterday:  {yesterday.HistoryData.Count} orders");
 ```
 
 **Flexibility:** Defaults work for 90% of cases, but customizable when needed!
@@ -158,23 +161,27 @@ double totalProfit = 0;
 int winningTrades = 0;
 int losingTrades = 0;
 
-foreach (var order in today.ClosedOrders)
+foreach (var item in today.HistoryData)
 {
-    totalProfit += order.Profit;
+    var deal = item.HistoryDeal;
+    if (deal == null) continue;
 
-    if (order.Profit > 0)
+    totalProfit += deal.Profit;
+
+    if (deal.Profit > 0)
         winningTrades++;
-    else if (order.Profit < 0)
+    else if (deal.Profit < 0)
         losingTrades++;
 }
 
 Console.WriteLine("═══════════════════════════════════");
 Console.WriteLine("       Today's Trading Report      ");
 Console.WriteLine("═══════════════════════════════════");
-Console.WriteLine($"Total Trades:    {today.ClosedOrders.Count}");
+int totalTrades = winningTrades + losingTrades;
+Console.WriteLine($"Total Trades:    {totalTrades}");
 Console.WriteLine($"Winning Trades:  {winningTrades}");
 Console.WriteLine($"Losing Trades:   {losingTrades}");
-Console.WriteLine($"Win Rate:        {(double)winningTrades / today.ClosedOrders.Count * 100:F1}%");
+Console.WriteLine($"Win Rate:        {(totalTrades > 0 ? (double)winningTrades / totalTrades * 100 : 0):F1}%");
 Console.WriteLine($"Total P/L:       ${totalProfit:F2}");
 Console.WriteLine("═══════════════════════════════════");
 ```
@@ -187,15 +194,17 @@ Console.WriteLine("════════════════════�
 // Analyze last 7 days performance by symbol
 var recent = await service.GetRecentOrdersAsync(days: 7);
 
-var symbolStats = recent.ClosedOrders
-    .GroupBy(o => o.OrderSymbol)
+var symbolStats = recent.HistoryData
+    .Where(x => x.HistoryDeal != null)
+    .Select(x => x.HistoryDeal)
+    .GroupBy(d => d.Symbol)
     .Select(g => new
     {
         Symbol = g.Key,
         Trades = g.Count(),
-        TotalProfit = g.Sum(o => o.Profit),
-        AvgProfit = g.Average(o => o.Profit),
-        WinRate = g.Count(o => o.Profit > 0) / (double)g.Count() * 100
+        TotalProfit = g.Sum(d => d.Profit),
+        AvgProfit = g.Average(d => d.Profit),
+        WinRate = g.Count(d => d.Profit > 0) / (double)g.Count() * 100
     })
     .OrderByDescending(s => s.TotalProfit);
 
@@ -237,7 +246,9 @@ public async Task<bool> CanTradeAsync()
 
     // 3. Check daily loss limit
     var today = await service.GetTodayOrdersAsync();
-    double todayProfit = today.ClosedOrders.Sum(o => o.Profit);
+    double todayProfit = today.HistoryData
+        .Where(x => x.HistoryDeal != null)
+        .Sum(x => x.HistoryDeal.Profit);
     if (todayProfit < -500.0)
     {
         Console.WriteLine($"❌ Daily loss limit reached: ${todayProfit:F2}");
@@ -245,9 +256,9 @@ public async Task<bool> CanTradeAsync()
     }
 
     // 4. Check daily trade limit
-    if (today.ClosedOrders.Count >= 50)
+    if (today.HistoryData.Count >= 50)
     {
-        Console.WriteLine($"❌ Daily trade limit reached: {today.ClosedOrders.Count}");
+        Console.WriteLine($"❌ Daily trade limit reached: {today.HistoryData.Count}");
         return false;
     }
 
@@ -267,23 +278,25 @@ var history = await service.GetRecentOrdersAsync(days: 30, limit: 1000);
 using (var writer = new StreamWriter("trading_history.csv"))
 {
     // Header
-    writer.WriteLine("CloseTime,Symbol,Type,Volume,OpenPrice,ClosePrice,Profit,Comment");
+    writer.WriteLine("DealTime,Symbol,Type,Volume,Price,Profit,Comment");
 
     // Data rows
-    foreach (var order in history.ClosedOrders)
+    foreach (var item in history.HistoryData)
     {
-        writer.WriteLine($"{order.TimeClose.ToDateTime():yyyy-MM-dd HH:mm:ss}," +
-                         $"{order.OrderSymbol}," +
-                         $"{order.OrderType}," +
-                         $"{order.OrderVolumeCurrent}," +
-                         $"{order.PriceOpen}," +
-                         $"{order.PriceCurrent}," +
-                         $"{order.Profit}," +
-                         $"\"{order.OrderComment}\"");
+        var deal = item.HistoryDeal;
+        if (deal == null) continue;
+
+        writer.WriteLine($"{deal.Time.ToDateTime():yyyy-MM-dd HH:mm:ss}," +
+                         $"{deal.Symbol}," +
+                         $"{deal.Type}," +
+                         $"{deal.Volume}," +
+                         $"{deal.Price}," +
+                         $"{deal.Profit}," +
+                         $"\"{deal.Comment}\"");
     }
 }
 
-Console.WriteLine($"✅ Exported {history.ClosedOrders.Count} orders to trading_history.csv");
+Console.WriteLine($"✅ Exported {history.HistoryData.Count} entries to trading_history.csv");
 ```
 
 ---
@@ -399,6 +412,35 @@ public async Task<bool> IsTradingAllowedAsync(
     return allowed == 1;
 }
 ```
+
+---
+
+## ➕ History & Statistics Methods (new)
+
+Pass-throughs that expose the full order history and the trade-statistics service at the mid-level. Signatures mirror the low-level calls — see the MT5Account pages for full field/enum tables.
+
+| Method | Returns | Low-Level Equivalent |
+|--------|---------|---------------------|
+| `AllHistoryOrdersAsync(from, to, sort)` | `AllHistoryOrdersData` | [`MT5Account.AllHistoryOrdersAsync`](../MT5Account/3.%20Position_Orders_Information/AllHistoryOrders.md) |
+| `TradeStatsAsync(since?)` | `StatsData` | [`MT5Account.TradeStatsAsync`](../MT5Account/8.%20Trade_Statistics/TradeStats.md) |
+| `TradeStatsEquityHistoryAsync(since?, excludeSameBars?)` | `StatsWithChartsData` | [`MT5Account.TradeStatsEquityHistoryAsync`](../MT5Account/8.%20Trade_Statistics/TradeStatsEquityHistory.md) |
+| `TradeUnrealizedPLAsync(since?)` | `TradeUnrealizedPLData` | [`MT5Account.TradeUnrealizedPLAsync`](../MT5Account/8.%20Trade_Statistics/TradeUnrealizedPL.md) |
+| `EquityHistoryAsync(since?, excludeSameBars?)` | `EquityHistoryData` | [`MT5Account.EquityHistoryAsync`](../MT5Account/8.%20Trade_Statistics/EquityHistory.md) |
+
+```csharp
+// Full order history for a window (single call, no paging)
+var all = await service.AllHistoryOrdersAsync(DateTime.UtcNow.AddDays(-7), DateTime.UtcNow);
+Console.WriteLine($"Total orders: {all.ArrayTotal}");
+
+// Performance analytics (trade-stats service; may be unavailable on some brokers)
+var stats = await service.TradeStatsAsync();
+Console.WriteLine($"Pips {stats.Pips:F1} | Lots {stats.Lots:F2} | Max equity DD {stats.MaxEquityDrawdownRelative:F2}%");
+
+var equity = await service.EquityHistoryAsync(excludeSameBars: true);
+Console.WriteLine($"Equity points: {equity.Points.Count}");
+```
+
+> 💡 `MT5Sugar` adds day-window wrappers: `AllHistoryOrdersLast(days)`, `TradeStatsLast(days?)`, `StatsWithChartsLast(days?)`, `UnrealizedExtremaLast(days?)` and `EquityCurveLast(days?)` (the last two return plain lists).
 
 ---
 

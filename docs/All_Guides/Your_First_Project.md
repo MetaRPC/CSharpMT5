@@ -37,15 +37,20 @@ dotnet add package MetaRPC.MT5
 
 Create your main application file and paste the following snippet:
 
-```
+```csharp
 using mt5_term_api;
-using MetaRPC.MT5;
+using MetaRPC.CSharpMT5;
 
-// Session ID generation on Connect and authentication are handled automatically
+// user / password / serverName from your MT5 demo account;
+// grpcServer e.g. "https://mt5.mrpc.pro:443"; apiKey your MetaRPC key (or null for env/TRIAL).
+// Session ID generation on Connect and authentication are handled automatically.
 var account = new MT5Account(user, password, grpcServer, apiKey);
-await account.ConnectByServerNameAsync(serverName, "EURUSD", 30);
+await account.ConnectByServerNameAsync(serverName, baseChartSymbol: "EURUSD", timeoutSeconds: 30);
+
 var summary = await account.AccountSummaryAsync();
 Console.WriteLine($"Balance: {summary.AccountBalance}, Equity: {summary.AccountEquity}");
+
+await account.DisconnectAsync();
 ```
 
 ---
@@ -55,8 +60,13 @@ Console.WriteLine($"Balance: {summary.AccountBalance}, Equity: {summary.AccountE
 Run your application:
 
 ```bash
-# Verify connection output
-# Balance: 10000.00, Equity: 10000.00
+dotnet run
+```
+
+Expected output:
+
+```
+Balance: 10000.00, Equity: 10000.00
 ```
 
 ---
@@ -65,6 +75,6 @@ Run your application:
 
 Congratulations! You have successfully established a direct gRPC connection to MetaTrader 5. Next:
 
-- Explore **[gRPC Streaming](GRPC_STREAM_MANAGEMENT.md)** to listen to live ticks.
-- Check the **[API Reference](../MT5Account/MT5Account.Master.Overview.md)** for all 40+ available terminal methods.
-- Learn about high-level risk management and auto-normalization in **[MT5Sugar](../MT5Sugar/MT5Sugar.API_Overview.md)**.
+- Explore **[gRPC Streaming](./GRPC_STREAM_MANAGEMENT.md)** to listen to live ticks.
+- Check the **[API Reference](../MT5Account/MT5Account.Master.Overview.md)** for the full set of low-level terminal methods (~45, each with async + sync variants).
+- Learn about high-level risk management and convenience helpers in **[MT5Sugar](../MT5Sugar/MT5Sugar.API_Overview.md)**.

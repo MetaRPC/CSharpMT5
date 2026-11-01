@@ -26,8 +26,9 @@ Three main operations:
 ### Dependencies
 
 - **MT5Service**: Service layer for MT5
-- **MT5Sugar Extension Methods**: `BuyStopPoints`, `SellStopPoints`, `CloseByTicket`
-- **mt5_term_api**: gRPC types (`OrderSendData`, `SymbolInfoTickData`, `OpenedOrdersTicketsData`)
+- **MT5Sugar extension methods**: `BuyStopPoints`, `SellStopPoints`, `CloseByTicket`
+- **MT5Service methods**: `SymbolInfoTickAsync`, `OpenedOrdersTicketsAsync`, `GetBalanceAsync`
+- **mt5_term_api**: gRPC types (`OrderSendData`, `OpenedOrdersTicketsData`; `SymbolInfoTickAsync` returns `MrpcMqlTick`)
 
 ---
 
@@ -410,14 +411,11 @@ You can execute this orchestrator using several command variations:
 # Option 1: By number
 dotnet run 11
 
-# Option 2: By short name
+# Option 2: By name
 dotnet run breakout
-
-# Option 3: By full name
-dotnet run pendingbreakout
 ```
 
-All three commands will launch the **PendingBreakoutOrchestrator** with the default configuration or the settings you specify in the code.
+Both commands launch the **PendingBreakoutOrchestrator** with the default configuration or the settings you specify in the code.
 
 ---
 
@@ -427,74 +425,64 @@ All three commands will launch the **PendingBreakoutOrchestrator** with the defa
 
 ```csharp
 public static async Task<OrderSendData> BuyStopPoints(
-    this MT5Service service,
-    string symbol,
-    double volume,
-    int priceOffsetPoints,  // POSITIVE for above price
-    int slPoints = 0,
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double volume, double priceOffsetPoints,
+    double? slPoints = null, double? tpPoints = null, string? comment = null,
+    int deviationPoints = 0, int timeoutSec = 15, CancellationToken ct = default)
 ```
 
-**Purpose**: Places pending Buy Stop order (buy order on upward breakout).
+**Purpose**: Places a pending Buy Stop order (buy on an upward breakout).
 
 **Parameters in PendingBreakoutOrchestrator**:
 
-- `priceOffsetPoints`: **POSITIVE** value (`+25`)
-- Placed **ABOVE** current Ask price
+- Placed **ABOVE** the current Ask price (a Buy Stop is inherently above)
 - Triggers on upward price movement
+- The orchestrator passes `+Distance` by convention; the method uses the **absolute** value
 
-**Price calculation**:
+**Price calculation (real):**
 ```csharp
-var tick = await service.SymbolInfoTickAsync(symbol);
-double askPrice = tick.Ask;  // For BUY use Ask
-
-double price = askPrice + (priceOffsetPoints × point);
-// 1.10000 + (25 × 0.00001) = 1.10025
+var tick  = await svc.SymbolInfoTickAsync(symbol);
+var point = await svc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolPoint);
+double price = tick.Ask + Math.Abs(priceOffsetPoints) * point;
+// 1.10000 + 25 × 0.00001 = 1.10025
 ```
 
 ### 2. SellStopPoints
 
 ```csharp
 public static async Task<OrderSendData> SellStopPoints(
-    this MT5Service service,
-    string symbol,
-    double volume,
-    int priceOffsetPoints,  // NEGATIVE for below price
-    int slPoints = 0,
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double volume, double priceOffsetPoints,
+    double? slPoints = null, double? tpPoints = null, string? comment = null,
+    int deviationPoints = 0, int timeoutSec = 15, CancellationToken ct = default)
 ```
 
-**Purpose**: Places pending Sell Stop order (sell order on downward breakout).
+**Purpose**: Places a pending Sell Stop order (sell on a downward breakout).
 
 **Parameters in PendingBreakoutOrchestrator**:
 
-- `priceOffsetPoints`: **NEGATIVE** value (`-25`)
-- Placed **BELOW** current Bid price
+- Placed **BELOW** the current Bid price (a Sell Stop is inherently below)
 - Triggers on downward price movement
+- The orchestrator passes `-Distance` by convention; the method uses the **absolute** value
 
-**Price calculation**:
+**Price calculation (real):**
 ```csharp
-var tick = await service.SymbolInfoTickAsync(symbol);
-double bidPrice = tick.Bid;  // For SELL use Bid
-
-double price = bidPrice + (priceOffsetPoints × point);
-// 1.10000 + (-25 × 0.00001) = 1.09975
+var tick  = await svc.SymbolInfoTickAsync(symbol);
+var point = await svc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolPoint);
+double price = tick.Bid - Math.Abs(priceOffsetPoints) * point;
+// 1.10000 - 25 × 0.00001 = 1.09975
 ```
 
 ### 3. CloseByTicket
 
 ```csharp
-public static async Task CloseByTicket(
-    this MT5Service service,
-    ulong ticket
-)
+public static Task<OrderCloseData> CloseByTicket(
+    this MT5Service svc,
+    ulong ticket,
+    double? volume = null,
+    int timeoutSec = 15,
+    CancellationToken ct = default)
 ```
 
-**Purpose**: Closes position or cancels pending order by ticket number.
+**Purpose**: Closes a position or cancels a pending order by ticket number.
 
 **Usage in orchestrator**:
 

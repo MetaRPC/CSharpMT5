@@ -16,12 +16,12 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<OpenedOrdersData> OpenedOrdersAsync(
-            BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.BMT5_OPENED_ORDER_SORT_BY_OPEN_TIME_ASC,
+            BMT5_ENUM_OPENED_ORDER_SORT_TYPE sortMode = BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
@@ -64,10 +64,10 @@ namespace mt5_term_api
 
 | Enum Value                                   | Value | Description                           |
 | -------------------------------------------- | ----- | ------------------------------------- |
-| `BMT5_OPENED_ORDER_SORT_BY_OPEN_TIME_ASC`    | 0     | Sort by open time (oldest first)      |
-| `BMT5_OPENED_ORDER_SORT_BY_OPEN_TIME_DESC`   | 1     | Sort by open time (newest first)      |
-| `BMT5_OPENED_ORDER_SORT_BY_ORDER_TICKET_ID_ASC` | 2  | Sort by ticket ID (ascending)         |
-| `BMT5_OPENED_ORDER_SORT_BY_ORDER_TICKET_ID_DESC` | 3 | Sort by ticket ID (descending)        |
+| `Bmt5OpenedOrderSortByOpenTimeAsc`    | 0     | Sort by open time (oldest first)      |
+| `Bmt5OpenedOrderSortByOpenTimeDesc`   | 1     | Sort by open time (newest first)      |
+| `Bmt5OpenedOrderSortByOrderTicketIdAsc` | 2  | Sort by ticket ID (ascending)         |
+| `Bmt5OpenedOrderSortByOrderTicketIdDesc` | 3 | Sort by ticket ID (descending)        |
 
 ### `OpenedOrderInfo` (Pending Orders)
 
@@ -127,67 +127,67 @@ namespace mt5_term_api
 
 | Enum Value                   | Value | Description                                                        |
 | ---------------------------- | ----- | ------------------------------------------------------------------ |
-| `BMT5_ORDER_TYPE_BUY`        | 0     | Market Buy order                                                   |
-| `BMT5_ORDER_TYPE_SELL`       | 1     | Market Sell order                                                  |
-| `BMT5_ORDER_TYPE_BUY_LIMIT`  | 2     | Buy Limit pending order                                            |
-| `BMT5_ORDER_TYPE_SELL_LIMIT` | 3     | Sell Limit pending order                                           |
-| `BMT5_ORDER_TYPE_BUY_STOP`   | 4     | Buy Stop pending order                                             |
-| `BMT5_ORDER_TYPE_SELL_STOP`  | 5     | Sell Stop pending order                                            |
-| `BMT5_ORDER_TYPE_BUY_STOP_LIMIT` | 6 | Upon reaching order price, Buy Limit placed at StopLimit price     |
-| `BMT5_ORDER_TYPE_SELL_STOP_LIMIT` | 7 | Upon reaching order price, Sell Limit placed at StopLimit price   |
-| `BMT5_ORDER_TYPE_CLOSE_BY`   | 8     | Order to close position by opposite one                            |
+| `Bmt5OrderTypeBuy`        | 0     | Market Buy order                                                   |
+| `Bmt5OrderTypeSell`       | 1     | Market Sell order                                                  |
+| `Bmt5OrderTypeBuyLimit`  | 2     | Buy Limit pending order                                            |
+| `Bmt5OrderTypeSellLimit` | 3     | Sell Limit pending order                                           |
+| `Bmt5OrderTypeBuyStop`   | 4     | Buy Stop pending order                                             |
+| `Bmt5OrderTypeSellStop`  | 5     | Sell Stop pending order                                            |
+| `Bmt5OrderTypeBuyStopLimit` | 6 | Upon reaching order price, Buy Limit placed at StopLimit price     |
+| `Bmt5OrderTypeSellStopLimit` | 7 | Upon reaching order price, Sell Limit placed at StopLimit price   |
+| `Bmt5OrderTypeCloseBy`   | 8     | Order to close position by opposite one                            |
 
 ### `BMT5_ENUM_ORDER_STATE`
 
 | Enum Value                       | Value | Description                                  |
 | -------------------------------- | ----- | -------------------------------------------- |
-| `BMT5_ORDER_STATE_STARTED`       | 0     | Order checked, not yet accepted by broker    |
-| `BMT5_ORDER_STATE_PLACED`        | 1     | Order accepted                               |
-| `BMT5_ORDER_STATE_CANCELED`      | 2     | Order canceled by client                     |
-| `BMT5_ORDER_STATE_PARTIAL`       | 3     | Order partially executed                     |
-| `BMT5_ORDER_STATE_FILLED`        | 4     | Order fully executed                         |
-| `BMT5_ORDER_STATE_REJECTED`      | 5     | Order rejected                               |
-| `BMT5_ORDER_STATE_EXPIRED`       | 6     | Order expired                                |
-| `BMT5_ORDER_STATE_REQUEST_ADD`   | 7     | Order being registered (placing)             |
-| `BMT5_ORDER_STATE_REQUEST_MODIFY`| 8     | Order being modified                         |
-| `BMT5_ORDER_STATE_REQUEST_CANCEL`| 9     | Order being deleted                          |
+| `Bmt5OrderStateStarted`       | 0     | Order checked, not yet accepted by broker    |
+| `Bmt5OrderStatePlaced`        | 1     | Order accepted                               |
+| `Bmt5OrderStateCanceled`      | 2     | Order canceled by client                     |
+| `Bmt5OrderStatePartial`       | 3     | Order partially executed                     |
+| `Bmt5OrderStateFilled`        | 4     | Order fully executed                         |
+| `Bmt5OrderStateRejected`      | 5     | Order rejected                               |
+| `Bmt5OrderStateExpired`       | 6     | Order expired                                |
+| `Bmt5OrderStateRequestAdd`   | 7     | Order being registered (placing)             |
+| `Bmt5OrderStateRequestModify`| 8     | Order being modified                         |
+| `Bmt5OrderStateRequestCancel`| 9     | Order being deleted                          |
 
 ### `BMT5_ENUM_POSITION_TYPE`
 
 | Enum Value                | Value | Description    |
 | ------------------------- | ----- | -------------- |
-| `BMT5_POSITION_TYPE_BUY`  | 0     | Buy position   |
-| `BMT5_POSITION_TYPE_SELL` | 1     | Sell position  |
+| `Bmt5PositionTypeBuy`  | 0     | Buy position   |
+| `Bmt5PositionTypeSell` | 1     | Sell position  |
 
 ### `BMT5_ENUM_POSITION_REASON`
 
 | Enum Value                     | Value | Description                        |
 | ------------------------------ | ----- | ---------------------------------- |
-| `BMT5_POSITION_REASON_CLIENT`  | 0     | Opened from desktop terminal       |
-| `BMT5_POSITION_REASON_MOBILE`  | 1     | Opened from mobile app             |
-| `BMT5_POSITION_REASON_WEB`     | 2     | Opened from web platform           |
-| `BMT5_POSITION_REASON_EXPERT`  | 3     | Opened by EA/script                |
-| `ORDER_REASON_SL`              | 4     | Position closed/opened by Stop Loss |
-| `ORDER_REASON_TP`              | 5     | Position closed/opened by Take Profit |
-| `ORDER_REASON_SO`              | 6     | Position closed/opened by Stop Out (margin call) |
+| `Bmt5PositionReasonClient`  | 0     | Opened from desktop terminal       |
+| `Bmt5PositionReasonMobile`  | 1     | Opened from mobile app             |
+| `Bmt5PositionReasonWeb`     | 2     | Opened from web platform           |
+| `Bmt5PositionReasonExpert`  | 3     | Opened by EA/script                |
+| `OrderReasonSl`              | 4     | Position closed/opened by Stop Loss |
+| `OrderReasonTp`              | 5     | Position closed/opened by Take Profit |
+| `OrderReasonSo`              | 6     | Position closed/opened by Stop Out (margin call) |
 
 ### `BMT5_ENUM_ORDER_TYPE_FILLING`
 
 | Enum Value                    | Value | Description                                                                              |
 | ----------------------------- | ----- | ---------------------------------------------------------------------------------------- |
-| `BMT5_ORDER_FILLING_FOK`      | 0     | Fill or Kill - execute full volume or cancel                                             |
-| `BMT5_ORDER_FILLING_IOC`      | 1     | Immediate or Cancel - execute max available volume, cancel remainder                     |
-| `BMT5_ORDER_FILLING_RETURN`   | 2     | Return - partial fills allowed, remaining volume stays as order                          |
-| `BMT5_ORDER_FILLING_BOC`      | 3     | Book or Cancel - execute only if full volume available as single offer                   |
+| `Bmt5OrderFillingFok`      | 0     | Fill or Kill - execute full volume or cancel                                             |
+| `Bmt5OrderFillingIoc`      | 1     | Immediate or Cancel - execute max available volume, cancel remainder                     |
+| `Bmt5OrderFillingReturn`   | 2     | Return - partial fills allowed, remaining volume stays as order                          |
+| `Bmt5OrderFillingBoc`      | 3     | Book or Cancel - execute only if full volume available as single offer                   |
 
 ### `BMT5_ENUM_ORDER_TYPE_TIME`
 
 | Enum Value                         | Value | Description                                                        |
 | ---------------------------------- | ----- | ------------------------------------------------------------------ |
-| `BMT5_ORDER_TIME_GTC`              | 0     | Good Till Cancel - valid until explicitly cancelled                |
-| `BMT5_ORDER_TIME_DAY`              | 1     | Good Till Day - valid until end of trading day                     |
-| `BMT5_ORDER_TIME_SPECIFIED`        | 2     | Good Till Specified - valid until expiration time                  |
-| `BMT5_ORDER_TIME_SPECIFIED_DAY`    | 3     | Valid till 23:59:59 of specified day                               |
+| `Bmt5OrderTimeGtc`              | 0     | Good Till Cancel - valid until explicitly cancelled                |
+| `Bmt5OrderTimeDay`              | 1     | Good Till Day - valid until end of trading day                     |
+| `Bmt5OrderTimeSpecified`        | 2     | Good Till Specified - valid until expiration time                  |
+| `Bmt5OrderTimeSpecifiedDay`    | 3     | Valid till 23:59:59 of specified day                               |
 
 ---
 
@@ -239,7 +239,7 @@ Use this method when you need to:
 ```csharp
 // Retrieve complete trading state
 var data = await acc.OpenedOrdersAsync(
-    sortMode: BMT5_ENUM_OPENED_ORDER_SORT_TYPE.BMT5_OPENED_ORDER_SORT_BY_OPEN_TIME_ASC,
+    sortMode: BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeAsc,
     deadline: DateTime.UtcNow.AddSeconds(10));
 
 Console.WriteLine($"Open Positions:  {data.PositionInfos.Count}");
@@ -258,7 +258,7 @@ Console.WriteLine("────────────────────�
 
 foreach (var pos in data.PositionInfos)
 {
-    var type = pos.Type == BMT5_ENUM_POSITION_TYPE.BMT5_POSITION_TYPE_BUY ? "BUY " : "SELL";
+    var type = pos.Type == BMT5_ENUM_POSITION_TYPE.Bmt5PositionTypeBuy ? "BUY " : "SELL";
     var openTime = DateTimeOffset.FromUnixTimeSeconds(pos.OpenTime.Seconds).DateTime;
 
     Console.WriteLine($"{pos.Ticket,-10}  {pos.Symbol,-10}  {type}  {pos.Volume,6:F2}  {pos.PriceOpen,8:F5}  {pos.PriceCurrent,8:F5}  {pos.Profit,8:F2}");
@@ -288,7 +288,7 @@ Console.WriteLine($"Net P&L:          {netPL:F2}");
 ```csharp
 // Show all pending orders
 var data = await acc.OpenedOrdersAsync(
-    sortMode: BMT5_ENUM_OPENED_ORDER_SORT_TYPE.BMT5_OPENED_ORDER_SORT_BY_ORDER_TICKET_ID_DESC);
+    sortMode: BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOrderTicketIdDesc);
 
 Console.WriteLine("=== PENDING ORDERS ===");
 Console.WriteLine("Ticket      Symbol      Type           Price      Volume   State");
@@ -375,14 +375,14 @@ foreach (var order in data.OpenedOrders)
 ```csharp
 // Get most recent positions
 var data = await acc.OpenedOrdersAsync(
-    sortMode: BMT5_ENUM_OPENED_ORDER_SORT_TYPE.BMT5_OPENED_ORDER_SORT_BY_OPEN_TIME_DESC);
+    sortMode: BMT5_ENUM_OPENED_ORDER_SORT_TYPE.Bmt5OpenedOrderSortByOpenTimeDesc);
 
 Console.WriteLine("=== LATEST POSITIONS (newest first) ===");
 
 foreach (var pos in data.PositionInfos.Take(5))
 {
     var openTime = DateTimeOffset.FromUnixTimeSeconds(pos.OpenTime.Seconds).DateTime;
-    var type = pos.Type == BMT5_ENUM_POSITION_TYPE.BMT5_POSITION_TYPE_BUY ? "BUY" : "SELL";
+    var type = pos.Type == BMT5_ENUM_POSITION_TYPE.Bmt5PositionTypeBuy ? "BUY" : "SELL";
 
     Console.WriteLine($"{openTime:yyyy-MM-dd HH:mm:ss} - {pos.Symbol} {type} {pos.Volume:F2} @ {pos.PriceOpen:F5}");
 }

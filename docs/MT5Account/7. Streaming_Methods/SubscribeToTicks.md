@@ -16,12 +16,12 @@
 * **SDK wrapper:**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
-    public class MT5Service
+    public class MT5Account
     {
         public async IAsyncEnumerable<OnSymbolTickData> OnSymbolTickAsync(
-            string[] symbols,
+            IEnumerable<string> symbols,
             [EnumeratorCancellation] CancellationToken cancellationToken = default);
     }
 }
@@ -38,7 +38,7 @@ namespace mt5_term_api
 
 | Parameter            | Type                  | Description                                         |
 | -------------------- | --------------------- | --------------------------------------------------- |
-| `symbols`            | `string[]`            | Array of symbol names (e.g., `["EURUSD", "GBPUSD"]`) |
+| `symbols`            | `IEnumerable<string>` | Symbol names (e.g., `new[] { "EURUSD", "GBPUSD" }`) |
 | `cancellationToken`  | `CancellationToken`   | Token to stop the stream                            |
 
 ---

@@ -529,6 +529,56 @@ namespace MetaRPC.CSharpMT5.Examples.Sugar
             }
 
             // ══════════════════════════════════════════════════════════════
+            // 11.5 PRE-TRADE: CALC PROFIT
+            //    CalcProfit estimates P/L between two prices and returns a plain
+            //    double. Safe — no order is placed.
+            // ══════════════════════════════════════════════════════════════
+            ConsoleHelper.PrintSection("11.5 PRE-TRADE: CALC PROFIT");
+
+            Console.WriteLine("  → CalcProfit() (+100 points on a BUY)...");
+            try
+            {
+                var snap = await svc.GetSymbolSnapshot(symbol);
+                var expected = await svc.CalcProfit(
+                    symbol, isBuy: true, volume: minVol,
+                    openPrice: snap.Tick.Ask,
+                    closePrice: snap.Tick.Ask + (100 * snap.Point));
+                Console.WriteLine($"    ✓ Expected profit (+100 pts): {expected:F2}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"    ✗ Failed: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            // ══════════════════════════════════════════════════════════════
+            // 11.6 TRADING: PLACE MARKET FAST (no pre-checks)
+            //    PlaceMarketFast uses the fast OrderSendWithoutChecks path.
+            //    Opens a minimal position and closes it immediately.
+            // ══════════════════════════════════════════════════════════════
+            ConsoleHelper.PrintSection("11.6 TRADING: PLACE MARKET FAST");
+
+            Console.WriteLine("  → PlaceMarketFast()...");
+            try
+            {
+                var fast = await svc.PlaceMarketFast(symbol, minVol, isBuy: true, comment: "SUGAR-FAST");
+                Console.WriteLine($"    ✓ Return code: {fast.ReturnedCode} ({fast.ReturnedCodeDescription})");
+                if (fast.ReturnedCode == 10009 && fast.Order > 0)
+                {
+                    await Task.Delay(500);
+                    var closed = await svc.CloseByTicket(fast.Order);
+                    Console.WriteLine($"    ✓ Opened #{fast.Order}, closed: {closed.ReturnedCode}\n");
+                }
+                else
+                {
+                    Console.WriteLine($"    ✗ Not opened (nothing to close)\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"    ✗ Failed: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            // ══════════════════════════════════════════════════════════════
             // 12. MODIFY POSITION (if opened)
             //    Change Stop Loss and Take Profit of existing position.
             //    ModifySlTpAsync updates SL/TP levels by ticket number.
@@ -687,6 +737,101 @@ namespace MetaRPC.CSharpMT5.Examples.Sugar
             catch (Exception ex)
             {
                 Console.WriteLine($"    ✗ Failed: {ex.Message}\n");
+            }
+
+            // ══════════════════════════════════════════════════════════════
+            // 15.3 HISTORY HELPERS: ALL ORDERS (single call)
+            //    AllHistoryOrdersLast pulls the whole order history for a window.
+            // ══════════════════════════════════════════════════════════════
+            ConsoleHelper.PrintSection("15.3 HISTORY HELPERS: ALL ORDERS");
+
+            Console.WriteLine("  → AllHistoryOrdersLast()...");
+            try
+            {
+                var allHistory = await svc.AllHistoryOrdersLast(days: 7);
+                Console.WriteLine($"    ✓ Total: {allHistory.ArrayTotal}, returned {allHistory.HistoryOrders.Count}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"    ✗ Failed: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            // ══════════════════════════════════════════════════════════════
+            // 15.4 MARKET DATA: SYMBOL LIST & PRICE BARS
+            //    SymbolNamesAsync returns a plain list; PriceBarsLast takes a
+            //    friendly timeframe string ("H1") and a days window.
+            // ══════════════════════════════════════════════════════════════
+            ConsoleHelper.PrintSection("15.4 MARKET DATA: SYMBOL LIST & PRICE BARS");
+
+            Console.WriteLine("  → SymbolNamesAsync()...");
+            try
+            {
+                var names = await svc.SymbolNamesAsync();
+                Console.WriteLine($"    ✓ {names.Count} symbols. First 10: {string.Join(", ", names.Take(10))}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"    ✗ Failed: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            Console.WriteLine("  → PriceBarsLast(timeframe: \"H1\", days: 7)...");
+            try
+            {
+                var bars = await svc.PriceBarsLast(symbol, timeframe: "H1", days: 7);
+                Console.WriteLine($"    ✓ {bars.Count} H1 bars");
+                if (bars.Count > 0)
+                {
+                    var last = bars[bars.Count - 1];
+                    Console.WriteLine($"    → Last: O:{last.Open:F5} H:{last.High:F5} L:{last.Low:F5} C:{last.Close:F5}\n");
+                }
+                else
+                {
+                    Console.WriteLine("    → No bars\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"    ✗ Failed: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            // ══════════════════════════════════════════════════════════════
+            // 15.5 STATISTICS: STATS / EQUITY CURVE / UNREALIZED P/L
+            //    Friendly wrappers over the trade-stats service. Days window is
+            //    optional (null = full history). May be unsupported on some brokers.
+            // ══════════════════════════════════════════════════════════════
+            ConsoleHelper.PrintSection("15.5 STATISTICS: STATS / EQUITY / UNREALIZED P/L");
+
+            Console.WriteLine("  → TradeStatsLast()...");
+            try
+            {
+                var stats = await svc.TradeStatsLast();
+                Console.WriteLine($"    ✓ Pips {stats.Pips:F1} | Lots {stats.Lots:F2} | Max equity DD {stats.MaxEquityDrawdownRelative:F2}%\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"    ✗ Failed: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            Console.WriteLine("  → EquityCurveLast()...");
+            try
+            {
+                var curve = await svc.EquityCurveLast();
+                Console.WriteLine($"    ✓ {curve.Count} equity points\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"    ✗ Failed: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            Console.WriteLine("  → UnrealizedExtremaLast()...");
+            try
+            {
+                var extrema = await svc.UnrealizedExtremaLast();
+                Console.WriteLine($"    ✓ {extrema.Count} extrema entries\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"    ✗ Failed: {ex.Message.Split('\n')[0]}\n");
             }
 
             // ══════════════════════════════════════════════════════════════

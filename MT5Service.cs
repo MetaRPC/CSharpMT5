@@ -821,6 +821,26 @@ namespace MetaRPC.CSharpMT5
             CancellationToken cancellationToken = default)
             => _acc.SymbolParamsManyAsync(request, deadline, cancellationToken);
 
+        /// <summary>Retrieves the full list of symbol names available on the platform.</summary>
+        /// <param name="deadline">Optional deadline for the gRPC call.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Symbol list data (all available symbol names).</returns>
+        public Task<SymbolListData> SymbolListAsync(
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => _acc.SymbolListAsync(deadline, cancellationToken);
+
+        /// <summary>Retrieves historical price bars (OHLC) for a symbol.</summary>
+        /// <param name="request">Request specifying symbol, timeframe (raw MQL5 ENUM_TIMEFRAMES) and time range.</param>
+        /// <param name="deadline">Optional deadline for the gRPC call.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Historical price bars for the requested window.</returns>
+        public Task<PriceHistoryData> PriceHistoryAsync(
+            PriceHistoryRequest request,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => _acc.PriceHistoryAsync(request, deadline, cancellationToken);
+
         #endregion
 
         // ─────────────────────────────────────────────────────────────
@@ -929,6 +949,69 @@ namespace MetaRPC.CSharpMT5
             CancellationToken cancellationToken = default)
             => _acc.PositionsTotalAsync(deadline, cancellationToken);
 
+        /// <summary>Retrieves the complete order history over a time range in a single call.</summary>
+        /// <param name="from">Start date of the history interval.</param>
+        /// <param name="to">End date of the history interval.</param>
+        /// <param name="sortMode">Sorting mode for historical orders (default: by close time ascending).</param>
+        /// <param name="deadline">Optional deadline for the gRPC call.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Full historical order data for the requested period.</returns>
+        public Task<AllHistoryOrdersData> AllHistoryOrdersAsync(
+            DateTime from,
+            DateTime to,
+            BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sortMode = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => _acc.AllHistoryOrdersAsync(from, to, sortMode, deadline, cancellationToken);
+
+        /// <summary>Retrieves aggregated trade statistics (profit factor, drawdowns, per-market breakdown).</summary>
+        /// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+        /// <param name="deadline">Optional deadline for the gRPC call.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Aggregated trade statistics.</returns>
+        public Task<StatsData> TradeStatsAsync(
+            DateTime? since = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => _acc.TradeStatsAsync(since, deadline, cancellationToken);
+
+        /// <summary>Retrieves trade statistics together with the equity curve and trades in one call.</summary>
+        /// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+        /// <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+        /// <param name="deadline">Optional deadline for the gRPC call.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Statistics with equity-curve charts and trades.</returns>
+        public Task<StatsWithChartsData> TradeStatsEquityHistoryAsync(
+            DateTime? since = null,
+            bool? excludeSameBars = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => _acc.TradeStatsEquityHistoryAsync(since, excludeSameBars, deadline, cancellationToken);
+
+        /// <summary>Retrieves per-open-position unrealized-P/L excursions (MFE/MAE extrema).</summary>
+        /// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+        /// <param name="deadline">Optional deadline for the gRPC call.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Unrealized-P/L extrema per open position.</returns>
+        public Task<TradeUnrealizedPLData> TradeUnrealizedPLAsync(
+            DateTime? since = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => _acc.TradeUnrealizedPLAsync(since, deadline, cancellationToken);
+
+        /// <summary>Retrieves the account equity curve over a time range.</summary>
+        /// <param name="since">Optional start of the window (server time). Omit for full history.</param>
+        /// <param name="excludeSameBars">Optional flag to shrink the payload by dropping repeated equity bars.</param>
+        /// <param name="deadline">Optional deadline for the gRPC call.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Equity-curve points.</returns>
+        public Task<EquityHistoryData> EquityHistoryAsync(
+            DateTime? since = null,
+            bool? excludeSameBars = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => _acc.EquityHistoryAsync(since, excludeSameBars, deadline, cancellationToken);
+
         #endregion
 
         // ─────────────────────────────────────────────────────────────
@@ -946,6 +1029,17 @@ namespace MetaRPC.CSharpMT5
             DateTime? deadline = null,
             CancellationToken cancellationToken = default)
             => _acc.OrderCalcMarginAsync(request, deadline, cancellationToken);
+
+        /// <summary>Estimates the expected profit of a prospective order.</summary>
+        /// <param name="request">Order parameters (symbol, type, volume, open and close price).</param>
+        /// <param name="deadline">Optional deadline for the gRPC call.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Calculated profit data for the given order parameters.</returns>
+        public Task<OrderCalcProfitData> OrderCalcProfitAsync(
+            OrderCalcProfitRequest request,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => _acc.OrderCalcProfitAsync(request, deadline, cancellationToken);
 
         /// <summary>Performs a pre-trade check to validate order parameters.</summary>
         /// <param name="request">Order parameters to verify before sending.</param>
@@ -968,6 +1062,17 @@ namespace MetaRPC.CSharpMT5
             DateTime? deadline = null,
             CancellationToken cancellationToken = default)
             => _acc.OrderSendAsync(request, deadline, cancellationToken);
+
+        /// <summary>Sends a trade order for execution without server-side pre-checks (faster; caller ensures validity).</summary>
+        /// <param name="request">Order details including symbol, type, volume, and price.</param>
+        /// <param name="deadline">Optional deadline for the gRPC call.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Result containing execution outcome and order ticket.</returns>
+        public Task<OrderSendData> OrderSendWithoutChecksAsync(
+            OrderSendRequest request,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => _acc.OrderSendWithoutChecksAsync(request, deadline, cancellationToken);
 
         /// <summary>Modifies parameters of an existing pending order.</summary>
         /// <param name="request">New order parameters such as price, SL, or TP levels.</param>

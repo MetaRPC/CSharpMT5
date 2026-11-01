@@ -199,8 +199,8 @@ else
 
 ```csharp
 // Check how many orders will be cancelled before doing it
-var opened = await svc.OpenedOrdersAllAsync();
-int pendingCount = opened.Orders
+var opened = await svc.OpenedOrdersAsync();
+int pendingCount = opened.OpenedOrders
     .Count(o => o.Type != ENUM_ORDER_TYPE.OrderTypeBuy &&
                 o.Type != ENUM_ORDER_TYPE.OrderTypeSell);
 
@@ -248,10 +248,10 @@ public async Task<int> CancelByStrategy(
     MT5Service svc,
     string strategyName)
 {
-    var opened = await svc.OpenedOrdersAllAsync();
+    var opened = await svc.OpenedOrdersAsync();
     int cancelled = 0;
 
-    foreach (var order in opened.Orders)
+    foreach (var order in opened.OpenedOrders)
     {
         // Skip market positions
         if (order.Type == ENUM_ORDER_TYPE.OrderTypeBuy ||

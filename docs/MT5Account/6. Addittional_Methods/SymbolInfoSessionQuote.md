@@ -16,24 +16,23 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<SymbolInfoSessionQuoteData> SymbolInfoSessionQuoteAsync(
-            SymbolInfoSessionQuoteRequest request,
+            string symbol,
+            DayOfWeek dayOfWeek,
+            uint sessionIndex,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
 }
 ```
 
-**Request message:**
+> The wrapper takes `symbol`, `dayOfWeek` and `sessionIndex` directly and builds the underlying `SymbolInfoSessionQuoteRequest { symbol, day_of_week, session_index }` for you.
 
-`SymbolInfoSessionQuoteRequest { symbol, day_of_week, session_index }`
-
-
-**Reply message:**
+**Reply message (underlying proto):**
 
 `SymbolInfoSessionQuoteReply { data: SymbolInfoSessionQuoteData }`
 
@@ -41,19 +40,13 @@ namespace mt5_term_api
 
 ## 🔽 Input
 
-| Parameter           | Type                              | Description                                               |
-| ------------------- | --------------------------------- | --------------------------------------------------------- |
-| `request`           | `SymbolInfoSessionQuoteRequest`   | Protobuf request with session parameters                  |
-| `deadline`          | `DateTime?`                       | Absolute per‑call **UTC** deadline → converted to timeout |
-| `cancellationToken` | `CancellationToken`               | Cooperative cancel for the call/retry loop                |
-
-### `SymbolInfoSessionQuoteRequest`
-
-| Field          | Type        | Description                                                          |
-| -------------- | ----------- | -------------------------------------------------------------------- |
-| `Symbol`       | `string`    | Symbol name (e.g., `"EURUSD"`, `"XAUUSD"`) **REQUIRED**              |
-| `DayOfWeek`    | `DayOfWeek` | Day of the week (Sunday, Monday, etc.) **REQUIRED**                  |
-| `SessionIndex` | `uint32`    | Session index (starts from 0). Most symbols have 1-2 sessions/day    |
+| Parameter           | Type               | Description                                               |
+| ------------------- | ------------------ | --------------------------------------------------------- |
+| `symbol`            | `string`           | Symbol name (e.g., `"EURUSD"`, `"XAUUSD"`)                |
+| `dayOfWeek`         | `DayOfWeek`        | Day of the week (Sunday, Monday, etc.)                    |
+| `sessionIndex`      | `uint`             | Session index (starts from 0). Most symbols have 1-2/day  |
+| `deadline`          | `DateTime?`        | Absolute per‑call **UTC** deadline → converted to timeout |
+| `cancellationToken` | `CancellationToken`| Cooperative cancel for the call/retry loop                |
 
 ---
 
@@ -117,12 +110,7 @@ Use it to understand quoting hours:
 ```csharp
 // acc — connected MT5Account
 
-var result = await acc.SymbolInfoSessionQuoteAsync(new SymbolInfoSessionQuoteRequest
-{
-    Symbol = "EURUSD",
-    DayOfWeek = DayOfWeek.Monday,
-    SessionIndex = 0
-});
+var result = await acc.SymbolInfoSessionQuoteAsync("EURUSD", DayOfWeek.Monday, 0);
 
 var fromTime = result.From.ToDateTime().TimeOfDay;
 var toTime = result.To.ToDateTime().TimeOfDay;
@@ -144,12 +132,7 @@ for (uint sessionIndex = 0; sessionIndex < 10; sessionIndex++)
 {
     try
     {
-        var result = await acc.SymbolInfoSessionQuoteAsync(new SymbolInfoSessionQuoteRequest
-        {
-            Symbol = symbol,
-            DayOfWeek = day,
-            SessionIndex = sessionIndex
-        });
+        var result = await acc.SymbolInfoSessionQuoteAsync(symbol, day, sessionIndex);
 
         var fromTime = result.From.ToDateTime().TimeOfDay;
         var toTime = result.To.ToDateTime().TimeOfDay;
@@ -181,12 +164,7 @@ for (uint sessionIndex = 0; sessionIndex < 5; sessionIndex++)
 {
     try
     {
-        var result = await acc.SymbolInfoSessionQuoteAsync(new SymbolInfoSessionQuoteRequest
-        {
-            Symbol = symbol,
-            DayOfWeek = currentDay,
-            SessionIndex = sessionIndex
-        });
+        var result = await acc.SymbolInfoSessionQuoteAsync(symbol, currentDay, sessionIndex);
 
         var fromTime = result.From.ToDateTime().TimeOfDay;
         var toTime = result.To.ToDateTime().TimeOfDay;
@@ -239,12 +217,7 @@ foreach (var day in days)
     {
         try
         {
-            var result = await acc.SymbolInfoSessionQuoteAsync(new SymbolInfoSessionQuoteRequest
-            {
-                Symbol = symbol,
-                DayOfWeek = day,
-                SessionIndex = sessionIndex
-            });
+            var result = await acc.SymbolInfoSessionQuoteAsync(symbol, day, sessionIndex);
 
             var fromTime = result.From.ToDateTime().TimeOfDay;
             var toTime = result.To.ToDateTime().TimeOfDay;
@@ -288,12 +261,7 @@ for (int dayOffset = 0; dayOffset < 7; dayOffset++)
     {
         try
         {
-            var result = await acc.SymbolInfoSessionQuoteAsync(new SymbolInfoSessionQuoteRequest
-            {
-                Symbol = symbol,
-                DayOfWeek = checkDay,
-                SessionIndex = sessionIndex
-            });
+            var result = await acc.SymbolInfoSessionQuoteAsync(symbol, checkDay, sessionIndex);
 
             var fromTime = result.From.ToDateTime().TimeOfDay;
 
@@ -340,12 +308,7 @@ foreach (var symbol in symbols)
 {
     try
     {
-        var result = await acc.SymbolInfoSessionQuoteAsync(new SymbolInfoSessionQuoteRequest
-        {
-            Symbol = symbol,
-            DayOfWeek = day,
-            SessionIndex = 0
-        });
+        var result = await acc.SymbolInfoSessionQuoteAsync(symbol, day, 0);
 
         var fromTime = result.From.ToDateTime().TimeOfDay;
         var toTime = result.To.ToDateTime().TimeOfDay;

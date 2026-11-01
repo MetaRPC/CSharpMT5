@@ -138,7 +138,15 @@ namespace MetaRPC.CSharpMT5.Examples.Helpers
             while (true)
             {
                 Console.Write("\n> ");
-                var input = Console.ReadLine()?.Trim();
+                var line = Console.ReadLine();
+
+                if (line is null) // EOF (stdin closed / piped input exhausted)
+                {
+                    Console.WriteLine("\n👋 Goodbye!");
+                    return;
+                }
+
+                var input = line.Trim();
 
                 if (string.IsNullOrEmpty(input))
                     continue;

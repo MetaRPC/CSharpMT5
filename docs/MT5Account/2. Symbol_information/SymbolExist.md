@@ -16,12 +16,12 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<SymbolExistData> SymbolExistAsync(
-            string symbolName,
+            string symbol,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
@@ -43,7 +43,7 @@ namespace mt5_term_api
 
 | Parameter           | Type                | Required | Description                                               |
 | ------------------- | ------------------- | -------- | --------------------------------------------------------- |
-| `symbolName`        | `string`            | ✅       | Symbol name to check (e.g., `"EURUSD"`, `"BTCUSD"`)      |
+| `symbol`        | `string`            | ✅       | Symbol name to check (e.g., `"EURUSD"`, `"BTCUSD"`)      |
 | `deadline`          | `DateTime?`         | ❌       | Absolute per‑call **UTC** deadline → converted to timeout |
 | `cancellationToken` | `CancellationToken` | ❌       | Cooperative cancel for the call/retry loop                |
 
@@ -163,16 +163,16 @@ foreach (var sym in symbols)
 
 ```csharp
 // Check existence before adding to Market Watch
-var symbolName = "EURUSD";
-var exists = await acc.SymbolExistAsync(symbolName);
+var symbol = "EURUSD";
+var exists = await acc.SymbolExistAsync(symbol);
 
 if (!exists.Exists)
 {
-    Console.WriteLine($"❌ Cannot add '{symbolName}': symbol doesn't exist");
+    Console.WriteLine($"❌ Cannot add '{symbol}': symbol doesn't exist");
     return;
 }
 
 // Symbol exists - safe to add to Market Watch
-var selected = await acc.SymbolSelectAsync(symbolName, select: true);
-Console.WriteLine($"✅ '{symbolName}' added to Market Watch");
+var selected = await acc.SymbolSelectAsync(symbol, select: true);
+Console.WriteLine($"✅ '{symbol}' added to Market Watch");
 ```

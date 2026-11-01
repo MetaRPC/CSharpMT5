@@ -465,6 +465,43 @@ namespace MetaRPC.CSharpMT5.Examples.Services
                 Console.WriteLine($"        Contract size:   {info.TradeContractSize}");
                 Console.WriteLine($"        Digits:          {info.Digits}\n");
             }
+
+            // Full symbol list
+            Console.WriteLine("  [3.6] SymbolListAsync() - Get full symbol list:");
+            try
+            {
+                var symbolList = await service.SymbolListAsync();
+                Console.WriteLine($"        Symbols available: {symbolList.Symbols.Count}");
+                Console.WriteLine($"        First 10: {string.Join(", ", symbolList.Symbols.Take(10))}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠ Symbol list not available: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            // Historical price bars (OHLC). Timeframe is the raw MQL5 ENUM_TIMEFRAMES value (H1 = 16385).
+            Console.WriteLine("  [3.7] PriceHistoryAsync() - Get OHLC bars (last 7 days, H1):");
+            try
+            {
+                var priceRequest = new PriceHistoryRequest
+                {
+                    Symbol = symbol,
+                    Timeframe = 16385, // PERIOD_H1
+                    FromTime = DateTimeOffset.UtcNow.AddDays(-7).ToUnixTimeSeconds(),
+                    ToTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
+                };
+                var priceHistory = await service.PriceHistoryAsync(priceRequest);
+                Console.WriteLine($"        Bars returned: {priceHistory.Bars.Count}");
+                if (priceHistory.Bars.Count > 0)
+                {
+                    var lastBar = priceHistory.Bars[priceHistory.Bars.Count - 1];
+                    Console.WriteLine($"        Last bar O:{lastBar.Open:F5} H:{lastBar.High:F5} L:{lastBar.Low:F5} C:{lastBar.Close:F5}\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠ Price history not available: {ex.Message.Split('\n')[0]}\n");
+            }
             #endregion
 
             #region POSITIONS
@@ -527,6 +564,73 @@ namespace MetaRPC.CSharpMT5.Examples.Services
                 size: 10
             );
             Console.WriteLine($"        Positions returned: {posHistory.HistoryPositions.Count}\n");
+
+            // Full order history in a single call
+            Console.WriteLine("  [4.6] AllHistoryOrdersAsync() - Get full order history (last 7 days):");
+            try
+            {
+                var allHistory = await service.AllHistoryOrdersAsync(fromTime, toTime);
+                Console.WriteLine($"        Total orders: {allHistory.ArrayTotal}");
+                Console.WriteLine($"        Returned:     {allHistory.HistoryOrders.Count}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠ Order history not available: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            // Aggregated performance statistics (trade-stats service)
+            Console.WriteLine("  [4.7] TradeStatsAsync() - Aggregated performance statistics:");
+            try
+            {
+                var stats = await service.TradeStatsAsync();
+                Console.WriteLine($"        Pips: {stats.Pips:F1} | Lots: {stats.Lots:F2} | Commissions: {stats.Comissions:F2}");
+                Console.WriteLine($"        Max equity DD (%): {stats.MaxEquityDrawdownRelative:F2}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠ Trade stats not available: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            // Stats + equity curve + trades in one call
+            Console.WriteLine("  [4.8] TradeStatsEquityHistoryAsync() - Stats with equity curve:");
+            try
+            {
+                var statsCharts = await service.TradeStatsEquityHistoryAsync(excludeSameBars: true);
+                Console.WriteLine($"        Equity points: {statsCharts.Charts.Count} | Trades: {statsCharts.Trades.Count} | Open: {statsCharts.OpenTrades.Count}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠ Stats-with-charts not available: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            // Per-open-position unrealized-P/L excursions (MFE/MAE)
+            Console.WriteLine("  [4.9] TradeUnrealizedPLAsync() - Unrealized P/L extrema:");
+            try
+            {
+                var upl = await service.TradeUnrealizedPLAsync();
+                Console.WriteLine($"        Extrema entries: {upl.Extrema.Count}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠ Unrealized P/L not available: {ex.Message.Split('\n')[0]}\n");
+            }
+
+            // Account equity curve
+            Console.WriteLine("  [4.10] EquityHistoryAsync() - Equity curve:");
+            try
+            {
+                var equityHist = await service.EquityHistoryAsync(excludeSameBars: true);
+                Console.WriteLine($"        Equity points: {equityHist.Points.Count}");
+                if (equityHist.Points.Count > 0)
+                {
+                    var p = equityHist.Points[equityHist.Points.Count - 1];
+                    Console.WriteLine($"        Last: Balance {p.Balance:F2}, Equity {p.Equity:F2}\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ⚠ Equity history not available: {ex.Message.Split('\n')[0]}\n");
+            }
             #endregion
 
             #region TRADING OPERATIONS
@@ -610,6 +714,26 @@ namespace MetaRPC.CSharpMT5.Examples.Services
                 Console.WriteLine($"        Error: {ex.Message}\n");
             }
 
+            // OrderCalcProfit - Calculate expected profit
+            Console.WriteLine("  [5.2b] OrderCalcProfitAsync() - Calculate expected profit:");
+            try
+            {
+                var profitRequest = new OrderCalcProfitRequest
+                {
+                    Symbol = symbol,
+                    OrderType = ENUM_ORDER_TYPE_TF.OrderTypeTfBuy,
+                    Volume = minLot,
+                    OpenPrice = ask,
+                    ClosePrice = ask + (100 * point) // +100 points exit
+                };
+                var calcProfit = await service.OrderCalcProfitAsync(profitRequest);
+                Console.WriteLine($"        Expected profit (+100 pts): {calcProfit.Profit:F2}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        Error: {ex.Message}\n");
+            }
+
             // ⚠️ REAL TRADING with MINIMAL LOT
             // SERVICE: No .Value needed - ask/point are already double!
             Console.WriteLine("  [5.3] OrderSendAsync() - Send BUY order with minimal lot:");
@@ -659,6 +783,43 @@ namespace MetaRPC.CSharpMT5.Examples.Services
                 Console.WriteLine($"        Return code: {closeResult.ReturnedCode}");
                 Console.WriteLine($"        Description: {closeResult.ReturnedCodeDescription}");
                 Console.WriteLine($"        Mode:        {closeResult.CloseMode}\n");
+            }
+
+            // OrderSendWithoutChecks - fast path (no pre-checks); open then close immediately
+            Console.WriteLine("  [5.6] OrderSendWithoutChecksAsync() - Fast send (no pre-checks):");
+            try
+            {
+                var fastAsk = await service.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolAsk);
+                var fastRequest = new OrderSendRequest
+                {
+                    Symbol = symbol,
+                    Operation = TMT5_ENUM_ORDER_TYPE.Tmt5OrderTypeBuy,
+                    Volume = minLot,
+                    Price = fastAsk,
+                    Comment = "Service fast send"
+                };
+                var fastResult = await service.OrderSendWithoutChecksAsync(fastRequest);
+                Console.WriteLine($"        Return code: {fastResult.ReturnedCode} ({fastResult.ReturnedCodeDescription})");
+                Console.WriteLine($"        Order:       {fastResult.Order}");
+                if (fastResult.ReturnedCode == 10009 && fastResult.Order > 0)
+                {
+                    await Task.Delay(500);
+                    var fastClose = await service.OrderCloseAsync(new OrderCloseRequest
+                    {
+                        Ticket = fastResult.Order,
+                        Volume = minLot,
+                        Slippage = 10
+                    });
+                    Console.WriteLine($"        Closed: {fastClose.ReturnedCode} ({fastClose.ReturnedCodeDescription})\n");
+                }
+                else
+                {
+                    Console.WriteLine($"        ✗ Fast order not opened (nothing to close)\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"        ❌ Error: {ex.Message.Split('\n')[0]}\n");
             }
             #endregion
 

@@ -665,6 +665,137 @@ namespace MetaRPC.CSharpMT5
             int timeoutSec = 20, CancellationToken ct = default)
             => svc.PositionsHistoryAsync(sort, openFrom, openTo, page, size, Dl(timeoutSec), ct);
 
+        /// <summary>
+        /// Retrieves the complete order history for the last N days in a single call.
+        /// Convenience wrapper that computes the date window from the current time.
+        /// </summary>
+        /// <param name="svc">MT5Service instance.</param>
+        /// <param name="days">Number of days to look back from now (default: 7).</param>
+        /// <param name="sort">Sort order for results (default: by close time ascending).</param>
+        /// <param name="timeoutSec">RPC timeout in seconds (default: 20).</param>
+        /// <param name="ct">Cancellation token.</param>
+        /// <returns><see cref="AllHistoryOrdersData"/> covering the last N days.</returns>
+        public static Task<AllHistoryOrdersData> AllHistoryOrdersLast(this MT5Service svc,
+            int days = 7,
+            BMT5_ENUM_ORDER_HISTORY_SORT_TYPE sort = BMT5_ENUM_ORDER_HISTORY_SORT_TYPE.Bmt5SortByCloseTimeAsc,
+            int timeoutSec = 20, CancellationToken ct = default)
+        {
+            var to = DateTime.UtcNow;
+            return svc.AllHistoryOrdersAsync(to.AddDays(-days), to, sort, Dl(timeoutSec), ct);
+        }
+
+        /// <summary>
+        /// Retrieves the full list of symbol names as a plain list.
+        /// </summary>
+        /// <param name="svc">MT5Service instance.</param>
+        /// <param name="timeoutSec">RPC timeout in seconds (default: 20).</param>
+        /// <param name="ct">Cancellation token.</param>
+        /// <returns>All available symbol names.</returns>
+        public static async Task<IReadOnlyList<string>> SymbolNamesAsync(this MT5Service svc,
+            int timeoutSec = 20, CancellationToken ct = default)
+        {
+            var data = await svc.SymbolListAsync(Dl(timeoutSec), ct);
+            return data.Symbols.ToList();
+        }
+
+        /// <summary>
+        /// Retrieves historical price bars (OHLC) for the last N days using a friendly timeframe string.
+        /// </summary>
+        /// <param name="svc">MT5Service instance.</param>
+        /// <param name="symbol">Symbol to query (ensured selected first).</param>
+        /// <param name="timeframe">Friendly timeframe: M1, M5, M15, M30, H1, H4, D1, W1, MN1 (default: H1).</param>
+        /// <param name="days">Number of days to look back from now (default: 7).</param>
+        /// <param name="timeoutSec">RPC timeout in seconds (default: 20).</param>
+        /// <param name="ct">Cancellation token.</param>
+        /// <returns>Price bars for the requested window, as a plain list.</returns>
+        public static async Task<IReadOnlyList<PriceBar>> PriceBarsLast(this MT5Service svc,
+            string symbol, string timeframe = "H1", int days = 7,
+            int timeoutSec = 20, CancellationToken ct = default)
+        {
+            await svc.EnsureSelected(symbol, timeoutSec, ct);
+            var to = DateTimeOffset.UtcNow;
+            var req = new PriceHistoryRequest
+            {
+                Symbol = symbol,
+                Timeframe = TimeframeToMql(timeframe),
+                FromTime = to.AddDays(-days).ToUnixTimeSeconds(),
+                ToTime = to.ToUnixTimeSeconds()
+            };
+            var data = await svc.PriceHistoryAsync(req, Dl(timeoutSec), ct);
+            return data.Bars.ToList();
+        }
+
+        /// <summary>Maps a friendly timeframe string to the raw MQL5 ENUM_TIMEFRAMES value.</summary>
+        private static int TimeframeToMql(string tf) => (tf ?? "H1").Trim().ToUpperInvariant() switch
+        {
+            "M1" => 1,
+            "M5" => 5,
+            "M15" => 15,
+            "M30" => 30,
+            "H1" => 16385,
+            "H4" => 16388,
+            "D1" => 16408,
+            "W1" => 32769,
+            "MN1" => 49153,
+            _ => throw new ArgumentException($"Unknown timeframe '{tf}'. Use M1, M5, M15, M30, H1, H4, D1, W1 or MN1.", nameof(tf))
+        };
+
+        /// <summary>
+        /// Retrieves aggregated trade statistics, optionally scoped to the last N days.
+        /// </summary>
+        /// <param name="svc">MT5Service instance.</param>
+        /// <param name="days">Optional look-back window in days. Null = full history.</param>
+        /// <param name="timeoutSec">RPC timeout in seconds (default: 20).</param>
+        /// <param name="ct">Cancellation token.</param>
+        /// <returns>Aggregated <see cref="StatsData"/>.</returns>
+        public static Task<StatsData> TradeStatsLast(this MT5Service svc,
+            int? days = null, int timeoutSec = 20, CancellationToken ct = default)
+            => svc.TradeStatsAsync(days.HasValue ? DateTime.UtcNow.AddDays(-days.Value) : (DateTime?)null, Dl(timeoutSec), ct);
+
+        /// <summary>
+        /// Retrieves trade statistics together with the equity curve and trades, optionally scoped to the last N days.
+        /// </summary>
+        /// <param name="svc">MT5Service instance.</param>
+        /// <param name="days">Optional look-back window in days. Null = full history.</param>
+        /// <param name="excludeSameBars">Drop repeated equity bars to shrink the payload (default: true).</param>
+        /// <param name="timeoutSec">RPC timeout in seconds (default: 20).</param>
+        /// <param name="ct">Cancellation token.</param>
+        /// <returns><see cref="StatsWithChartsData"/>.</returns>
+        public static Task<StatsWithChartsData> StatsWithChartsLast(this MT5Service svc,
+            int? days = null, bool excludeSameBars = true, int timeoutSec = 20, CancellationToken ct = default)
+            => svc.TradeStatsEquityHistoryAsync(days.HasValue ? DateTime.UtcNow.AddDays(-days.Value) : (DateTime?)null, excludeSameBars, Dl(timeoutSec), ct);
+
+        /// <summary>
+        /// Retrieves per-open-position unrealized-P/L extrema (MFE/MAE) as a plain list.
+        /// </summary>
+        /// <param name="svc">MT5Service instance.</param>
+        /// <param name="days">Optional look-back window in days. Null = full history.</param>
+        /// <param name="timeoutSec">RPC timeout in seconds (default: 20).</param>
+        /// <param name="ct">Cancellation token.</param>
+        /// <returns>Unrealized-P/L extrema per open position.</returns>
+        public static async Task<IReadOnlyList<TradeUnrealizedExtremaData>> UnrealizedExtremaLast(this MT5Service svc,
+            int? days = null, int timeoutSec = 20, CancellationToken ct = default)
+        {
+            var data = await svc.TradeUnrealizedPLAsync(days.HasValue ? DateTime.UtcNow.AddDays(-days.Value) : (DateTime?)null, Dl(timeoutSec), ct);
+            return data.Extrema.ToList();
+        }
+
+        /// <summary>
+        /// Retrieves the account equity curve as a plain list of points, optionally scoped to the last N days.
+        /// </summary>
+        /// <param name="svc">MT5Service instance.</param>
+        /// <param name="days">Optional look-back window in days. Null = full history.</param>
+        /// <param name="excludeSameBars">Drop repeated equity bars to shrink the payload (default: true).</param>
+        /// <param name="timeoutSec">RPC timeout in seconds (default: 20).</param>
+        /// <param name="ct">Cancellation token.</param>
+        /// <returns>Equity-curve points.</returns>
+        public static async Task<IReadOnlyList<EquityPointData>> EquityCurveLast(this MT5Service svc,
+            int? days = null, bool excludeSameBars = true, int timeoutSec = 20, CancellationToken ct = default)
+        {
+            var data = await svc.EquityHistoryAsync(days.HasValue ? DateTime.UtcNow.AddDays(-days.Value) : (DateTime?)null, excludeSameBars, Dl(timeoutSec), ct);
+            return data.Points.ToList();
+        }
+
         #endregion
         // ─────────────────────────────────────────────────────────────────────
            #region [05] STREAMS HELPERS
@@ -870,6 +1001,90 @@ namespace MetaRPC.CSharpMT5
             opProp.SetValue(req, opValue);
 
             return await svc.OrderSendAsync(req, Dl(timeoutSec), ct);
+        }
+
+        /// <summary>
+        /// Estimates the expected profit of a trade between two prices, returning the plain value.
+        /// </summary>
+        /// <param name="svc">MT5Service instance.</param>
+        /// <param name="symbol">Symbol to evaluate.</param>
+        /// <param name="isBuy">True for BUY, false for SELL.</param>
+        /// <param name="volume">Volume in lots.</param>
+        /// <param name="openPrice">Hypothetical entry price.</param>
+        /// <param name="closePrice">Hypothetical exit price.</param>
+        /// <param name="timeoutSec">RPC timeout in seconds (default: 15).</param>
+        /// <param name="ct">Cancellation token.</param>
+        /// <returns>Expected profit in account currency.</returns>
+        /// <example>
+        /// <code>
+        /// // Expected profit of buying 0.10 EURUSD from 1.0850 to 1.0900
+        /// double pnl = await service.CalcProfit("EURUSD", isBuy: true, 0.10, 1.0850, 1.0900);
+        /// </code>
+        /// </example>
+        public static async Task<double> CalcProfit(
+            this MT5Service svc,
+            string symbol, bool isBuy, double volume,
+            double openPrice, double closePrice,
+            int timeoutSec = 15, CancellationToken ct = default)
+        {
+            await svc.EnsureSelected(symbol, timeoutSec, ct);
+            var req = new OrderCalcProfitRequest
+            {
+                Symbol = symbol,
+                OrderType = isBuy ? ENUM_ORDER_TYPE_TF.OrderTypeTfBuy : ENUM_ORDER_TYPE_TF.OrderTypeTfSell,
+                Volume = volume,
+                OpenPrice = openPrice,
+                ClosePrice = closePrice
+            };
+            var data = await svc.OrderCalcProfitAsync(req, Dl(timeoutSec), ct);
+            return data.Profit;
+        }
+
+        /// <summary>
+        /// Places a market order via the fast, no-pre-checks path (<c>OrderSendWithoutChecks</c>).
+        /// Same shape as <see cref="PlaceMarket"/>, but the server skips validation — the caller
+        /// is responsible for the request being valid. Use when latency matters and inputs are trusted.
+        /// </summary>
+        /// <param name="svc">MT5Service instance.</param>
+        /// <param name="symbol">Symbol to trade.</param>
+        /// <param name="volume">Volume in lots.</param>
+        /// <param name="isBuy">True for BUY, false for SELL.</param>
+        /// <param name="sl">Optional stop-loss price.</param>
+        /// <param name="tp">Optional take-profit price.</param>
+        /// <param name="comment">Optional order comment.</param>
+        /// <param name="deviationPoints">Maximum price deviation in points.</param>
+        /// <param name="timeoutSec">RPC timeout in seconds (default: 15).</param>
+        /// <param name="ct">Cancellation token.</param>
+        /// <returns>Order send result with ticket number and execution details.</returns>
+        public static async Task<mt5_term_api.OrderSendData> PlaceMarketFast(
+            this MT5Service svc,
+            string symbol, double volume, bool isBuy,
+            double? sl = null, double? tp = null,
+            string? comment = null, int deviationPoints = 0,
+            int timeoutSec = 15, CancellationToken ct = default)
+        {
+            await svc.EnsureSelected(symbol, timeoutSec, ct);
+
+            var req = new mt5_term_api.OrderSendRequest
+            {
+                Symbol = symbol,
+                Volume = volume,
+                StopLoss = sl ?? 0,
+                TakeProfit = tp ?? 0,
+                Comment = comment ?? string.Empty,
+                Slippage = (ulong)Math.Max(0, deviationPoints),
+            };
+
+            // Set Operation via reflection to avoid hard dependency on enum symbol names (BUY=0, SELL=1)
+            var opProp = typeof(mt5_term_api.OrderSendRequest).GetProperty("Operation");
+            if (opProp is null)
+                throw new InvalidOperationException("OrderSendRequest.Operation property not found.");
+
+            var opEnumType = opProp.PropertyType;
+            var opValue = Enum.ToObject(opEnumType, isBuy ? 0 : 1);
+            opProp.SetValue(req, opValue);
+
+            return await svc.OrderSendWithoutChecksAsync(req, Dl(timeoutSec), ct);
         }
 
         /// <summary>

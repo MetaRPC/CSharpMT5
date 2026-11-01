@@ -112,7 +112,7 @@ var cts = new CancellationTokenSource();
 try
 {
     await foreach (var profitUpdate in account.OnPositionProfitAsync(
-        intervalMs: 500, ignoreEmptyData: true, cts.Token))
+        intervalMs: 500, ignoreEmpty: true, cts.Token))
     {
         Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Profit Update:");
 
@@ -173,12 +173,12 @@ try
 
         foreach (var pos in events.NewPositions)
         {
-            Console.WriteLine($"NEW Position: {pos.PositionSymbol} #{pos.PositionTicket} @ {pos.PriceOpen:F5}");
+            Console.WriteLine($"NEW Position: {pos.Symbol} #{pos.Ticket} @ {pos.PriceOpen:F5}");
         }
 
         foreach (var order in events.NewOrders)
         {
-            Console.WriteLine($"NEW Order: {order.OrderSymbol} #{order.OrderTicket} - {order.OrderType}");
+            Console.WriteLine($"NEW Order: {order.Symbol} #{order.Ticket} - {order.OrderType}");
         }
 
         foreach (var deal in events.NewHistoryDeals)
@@ -201,7 +201,7 @@ var maxProfit = 100.0;
 try
 {
     await foreach (var profitUpdate in account.OnPositionProfitAsync(
-        intervalMs: 500, ignoreEmptyData: true, cts.Token))
+        intervalMs: 500, ignoreEmpty: true, cts.Token))
     {
         var totalProfit = profitUpdate.UpdatedPositions.Sum(p => p.Profit);
         Console.WriteLine($"Total Profit: ${totalProfit:F2}");

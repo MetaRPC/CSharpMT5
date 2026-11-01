@@ -28,6 +28,9 @@
   Real-time streams: ticks, trades, profit updates, transaction log.
   📖 **[Complete Streaming Guide](../All_Guides/GRPC_STREAM_MANAGEMENT.md)** - How to properly work with subscriptions (patterns, best practices, memory management)
 
+* **[Trade\_Statistics - Overview](./8.%20Trade_Statistics/Trade_Statistics.Overview.md)**
+  Performance analytics: aggregated stats, equity curve, unrealized‑P/L extrema.
+
 ---
 
 ## 🧭 How to pick an API
@@ -42,6 +45,7 @@
 | Trading operations             | Trading\_Operations         | `OrderSendAsync`, `OrderModifyAsync`, `OrderCloseAsync`                      |
 | Pre-trade calculations         | Trading\_Operations         | `OrderCalcMarginAsync`, `OrderCheckAsync`                                    |
 | Real-time updates              | Streaming\_Methods          | `OnSymbolTickAsync`, `OnTradeAsync`, `OnPositionProfitAsync`                 |
+| Performance analytics          | Trade\_Statistics           | `TradeStatsAsync`, `EquityHistoryAsync`, `TradeUnrealizedPLAsync`            |
 
 ---
 
@@ -103,10 +107,12 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 ### Current Quotes
 
 * [SymbolInfoTick.md](./2.%20Symbol_information/SymbolInfoTick.md) - Current quote for symbol (bid, ask, last, volume, time)
+* [PriceHistory.md](./2.%20Symbol_information/PriceHistory.md) - Historical OHLC bars for a symbol/timeframe over a window
 
 ### Symbol Inventory & Management
 
 * [SymbolsTotal.md](./2.%20Symbol_information/SymbolsTotal.md) - Count of available symbols
+* [SymbolList.md](./2.%20Symbol_information/SymbolList.md) - Full list of all available symbol names
 * [SymbolName.md](./2.%20Symbol_information/SymbolName.md) - Get symbol name by index
 * [SymbolSelect.md](./2.%20Symbol_information/SymbolSelect.md) - Enable/disable symbol in Market Watch
 * [SymbolExist.md](./2.%20Symbol_information/SymbolExist.md) - Check if symbol exists
@@ -133,6 +139,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 ### Historical Data
 
 * [OrderHistory.md](./3.%20Position_Orders_Information/OrderHistory.md) - Historical orders within time range (with pagination)
+* [AllHistoryOrders.md](./3.%20Position_Orders_Information/AllHistoryOrders.md) - Complete order history over a range in one call
 * [PositionsHistory.md](./3.%20Position_Orders_Information/PositionsHistory.md) - Closed positions within time range (with pagination)
 
 ---
@@ -144,12 +151,14 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 ### Order Execution & Management
 
 * [OrderSend.md](./4.%20Trading_Operattons/OrderSend.md) - Place market or pending orders
+* [OrderSendWithoutChecks.md](./4.%20Trading_Operattons/OrderSendWithoutChecks.md) - Fast send without server-side pre-checks
 * [OrderModify.md](./4.%20Trading_Operattons/OrderModify.md) - Modify SL/TP or order parameters
 * [OrderClose.md](./4.%20Trading_Operattons/OrderClose.md) - Close positions (full or partial)
 
 ### Pre-Trade Calculations
 
 * [OrderCalcMargin.md](./4.%20Trading_Operattons/OrderCalcMargin.md) - Calculate margin required for trade
+* [OrderCalcProfit.md](./4.%20Trading_Operattons/OrderCalcProfit.md) - Calculate expected profit between two prices
 * [OrderCheck.md](./4.%20Trading_Operattons/OrderCheck.md) - Validate trade request before execution
 
 ---
@@ -203,6 +212,19 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 ---
 
+## 📈 Trade Statistics
+
+* **Overview:** [Trade\_Statistics.Overview.md](./8.%20Trade_Statistics/Trade_Statistics.Overview.md)
+
+### Performance Analytics
+
+* [TradeStats.md](./8.%20Trade_Statistics/TradeStats.md) - Aggregated statistics (profit factor, win/loss, drawdowns, per-market)
+* [TradeStatsEquityHistory.md](./8.%20Trade_Statistics/TradeStatsEquityHistory.md) - Statistics + equity curve + trades in one call
+* [EquityHistory.md](./8.%20Trade_Statistics/EquityHistory.md) - Account equity curve (balance/equity over time)
+* [TradeUnrealizedPL.md](./8.%20Trade_Statistics/TradeUnrealizedPL.md) - Per-position unrealized-P/L extrema (MFE/MAE)
+
+---
+
 ## 🎯 Quick Navigation by Use Case
 
 | I want to... | Use this method |
@@ -216,6 +238,8 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 | **SYMBOL INFORMATION** |
 | Get current price for symbol | [SymbolInfoTickAsync](./2.%20Symbol_information/SymbolInfoTick.md) |
 | List all available symbols | [SymbolsTotalAsync](./2.%20Symbol_information/SymbolsTotal.md) + [SymbolNameAsync](./2.%20Symbol_information/SymbolName.md) |
+| Get all symbol names in one call | [SymbolListAsync](./2.%20Symbol_information/SymbolList.md) |
+| Get historical OHLC bars | [PriceHistoryAsync](./2.%20Symbol_information/PriceHistory.md) |
 | Add symbol to Market Watch | [SymbolSelectAsync](./2.%20Symbol_information/SymbolSelect.md) (true) |
 | Get symbol digits (decimal places) | [SymbolInfoIntegerAsync](./2.%20Symbol_information/SymbolInfoInteger.md) (DIGITS) |
 | Get point size for symbol | [SymbolInfoDoubleAsync](./2.%20Symbol_information/SymbolInfoDouble.md) (POINT) |
@@ -227,6 +251,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 | Get position ticket numbers only | [OpenedOrdersTicketsAsync](./3.%20Position_Orders_Information/OpenedOrdersTickets.md) |
 | Get historical orders | [OrderHistoryAsync](./3.%20Position_Orders_Information/OrderHistory.md) |
 | Get historical deals/trades | [PositionsHistoryAsync](./3.%20Position_Orders_Information/PositionsHistory.md) |
+| Get full order history (one call) | [AllHistoryOrdersAsync](./3.%20Position_Orders_Information/AllHistoryOrders.md) |
 | **MARKET DEPTH** |
 | Subscribe to Level II quotes | [MarketBookAddAsync](./5.%20Market_Depth(DOM)/MarketBookAdd.md) |
 | Get order book data | [MarketBookGetAsync](./5.%20Market_Depth(DOM)/MarketBookGet.md) |
@@ -241,13 +266,20 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 | Modify SL/TP of position | [OrderModifyAsync](./4.%20Trading_Operattons/OrderModify.md) |
 | Close a position | [OrderCloseAsync](./4.%20Trading_Operattons/OrderClose.md) |
 | Calculate margin before trade | [OrderCalcMarginAsync](./4.%20Trading_Operattons/OrderCalcMargin.md) |
+| Calculate expected profit | [OrderCalcProfitAsync](./4.%20Trading_Operattons/OrderCalcProfit.md) |
 | Validate trade before execution | [OrderCheckAsync](./4.%20Trading_Operattons/OrderCheck.md) |
+| Fast send without pre-checks | [OrderSendWithoutChecksAsync](./4.%20Trading_Operattons/OrderSendWithoutChecks.md) |
 | **REAL-TIME SUBSCRIPTIONS** |
 | Stream live prices | [OnSymbolTickAsync](./7.%20Streaming_Methods/SubscribeToTicks.md) |
 | Monitor trade events | [OnTradeAsync](./7.%20Streaming_Methods/OnTrade.md) |
 | Track profit changes | [OnPositionProfitAsync](./7.%20Streaming_Methods/SubscribeToPositionProfit.md) |
 | Monitor ticket changes | [OnPositionsAndPendingOrdersTicketsAsync](./7.%20Streaming_Methods/OnPositionsAndPendingOrdersTickets.md) |
 | Detailed transaction log | [OnTradeTransactionAsync](./7.%20Streaming_Methods/SubscribeToTradeTransaction.md) |
+| **PERFORMANCE ANALYTICS** |
+| Aggregated performance statistics | [TradeStatsAsync](./8.%20Trade_Statistics/TradeStats.md) |
+| Statistics + equity curve + trades | [TradeStatsEquityHistoryAsync](./8.%20Trade_Statistics/TradeStatsEquityHistory.md) |
+| Account equity curve | [EquityHistoryAsync](./8.%20Trade_Statistics/EquityHistory.md) |
+| Unrealized-P/L extrema (MFE/MAE) | [TradeUnrealizedPLAsync](./8.%20Trade_Statistics/TradeUnrealizedPL.md) |
 
 ---
 
@@ -394,7 +426,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 
 Always check `ReturnedCode` field in trading operations.
 
-**Complete Reference:** [ReturnCodes_Reference_EN.md](../ReturnCodes_Reference_EN.md)
+**Complete Reference:** [Return Codes Reference](../All_Guides/RETURN_CODES_REFERENCE.md)
 
 ---
 

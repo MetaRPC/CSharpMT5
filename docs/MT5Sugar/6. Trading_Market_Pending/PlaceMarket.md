@@ -197,7 +197,7 @@ catch (Exception ex)
 | `10019` | No money (insufficient margin) |
 | `10027` | Trade disabled for symbol |
 
-Full list: [Return Codes Reference](../../ReturnCodes_Reference_EN.md)
+Full list: [Return Codes Reference](../../All_Guides/RETURN_CODES_REFERENCE.md)
 
 ---
 

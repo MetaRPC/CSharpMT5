@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
@@ -65,25 +65,25 @@ The method returns `long` directly (unwrapped from the proto message).
 
 | Enum Value               | Value | Description                                                                                                                                                                                                                                                                                                                                                                                                                                            | MQL5 Docs                                                        |
 | ------------------------ | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
-| `ACCOUNT_LOGIN`          | 0     | Account number                                                                                                                                                                                                                                                                                                                                                                                                                                         | [AccountInfoInteger](https://www.mql5.com/en/docs/account/accountinfointeger) |
-| `ACCOUNT_TRADE_MODE`     | 1     | Account trade mode (Demo/Contest/Real) — see `MrpcEnumAccountTradeMode`                                                                                                                                                                                                                                                                                                                                                                               |                                                                  |
-| `ACCOUNT_LEVERAGE`       | 2     | Account leverage (e.g., `100` for 1:100)                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                  |
-| `ACCOUNT_LIMIT_ORDERS`   | 3     | Maximum allowed number of open positions and active pending orders (in total). `0` = unlimited                                                                                                                                                                                                                                                                                                                                                        |                                                                  |
-| `ACCOUNT_MARGIN_SO_MODE` | 4     | Mode for setting the minimal allowed margin — see `EnumAccountStopOutMode` (not yet documented)                                                                                                                                                                                                                                                                                                                                                       |                                                                  |
-| `ACCOUNT_TRADE_ALLOWED`  | 5     | Allowed trade for the current account (returns 1 or 0)                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                  |
-| `ACCOUNT_TRADE_EXPERT`   | 6     | Allowed trade for an Expert Advisor (returns 1 or 0)                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                  |
-| `ACCOUNT_MARGIN_MODE`    | 7     | Margin calculation mode — see `EnumAccountMarginMode` (not yet documented)                                                                                                                                                                                                                                                                                                                                                                             |                                                                  |
-| `ACCOUNT_CURRENCY_DIGITS`| 8     | The number of decimal places in the account currency, which are required for an accurate display of trading results                                                                                                                                                                                                                                                                                                                                    |                                                                  |
-| `ACCOUNT_FIFO_CLOSE`     | 9     | An indication showing that positions can only be closed by FIFO rule. If the property value is set to true, then each symbol positions will be closed in the same order, in which they are opened, starting with the oldest one. In case of an attempt to close positions in a different order, the trader will receive an appropriate error (returns 1 or 0)                                                                                          |                                                                  |
-| `ACCOUNT_HEDGE_ALLOWED`  | 10    | Allowed opposite positions on a single symbol (hedging) - returns 1 or 0                                                                                                                                                                                                                                                                                                                                                                               |                                                                  |
+| `AccountLogin`          | 0     | Account number                                                                                                                                                                                                                                                                                                                                                                                                                                         | [AccountInfoInteger](https://www.mql5.com/en/docs/account/accountinfointeger) |
+| `AccountTradeMode`     | 1     | Account trade mode (Demo/Contest/Real) — see `MrpcEnumAccountTradeMode`                                                                                                                                                                                                                                                                                                                                                                               |                                                                  |
+| `AccountLeverage`       | 2     | Account leverage (e.g., `100` for 1:100)                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                  |
+| `AccountLimitOrders`   | 3     | Maximum allowed number of open positions and active pending orders (in total). `0` = unlimited                                                                                                                                                                                                                                                                                                                                                        |                                                                  |
+| `AccountMarginSoMode` | 4     | Mode for setting the minimal allowed margin — see `EnumAccountStopOutMode` (not yet documented)                                                                                                                                                                                                                                                                                                                                                       |                                                                  |
+| `AccountTradeAllowed`  | 5     | Allowed trade for the current account (returns 1 or 0)                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                  |
+| `AccountTradeExpert`   | 6     | Allowed trade for an Expert Advisor (returns 1 or 0)                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                  |
+| `AccountMarginMode`    | 7     | Margin calculation mode — see `EnumAccountMarginMode` (not yet documented)                                                                                                                                                                                                                                                                                                                                                                             |                                                                  |
+| `AccountCurrencyDigits`| 8     | The number of decimal places in the account currency, which are required for an accurate display of trading results                                                                                                                                                                                                                                                                                                                                    |                                                                  |
+| `AccountFifoClose`     | 9     | An indication showing that positions can only be closed by FIFO rule. If the property value is set to true, then each symbol positions will be closed in the same order, in which they are opened, starting with the oldest one. In case of an attempt to close positions in a different order, the trader will receive an appropriate error (returns 1 or 0)                                                                                          |                                                                  |
+| `AccountHedgeAllowed`  | 10    | Allowed opposite positions on a single symbol (hedging) - returns 1 or 0                                                                                                                                                                                                                                                                                                                                                                               |                                                                  |
 
 ### Related Enums (referenced above)
 
 #### `MrpcEnumAccountTradeMode`
 
-* `MRPC_ACCOUNT_TRADE_MODE_DEMO = 0` — demo/practice
-* `MRPC_ACCOUNT_TRADE_MODE_CONTEST = 1` — contest
-* `MRPC_ACCOUNT_TRADE_MODE_REAL = 2` — real trading
+* `MrpcAccountTradeModeDemo = 0` — demo/practice
+* `MrpcAccountTradeModeContest = 1` — contest
+* `MrpcAccountTradeModeReal = 2` — real trading
 
 > See [AccountSummary.md](AccountSummary.md) for full details.
 
@@ -105,9 +105,9 @@ Use this method when you need to:
 
 * Check a single integer account property without fetching all account data.
 * Verify account leverage before calculating position sizes.
-* Check if trading is allowed (`ACCOUNT_TRADE_ALLOWED`, `ACCOUNT_TRADE_EXPERT`).
+* Check if trading is allowed (`AccountTradeAllowed`, `AccountTradeExpert`).
 * Determine account trade mode (demo/contest/real).
-* Check position limits (`ACCOUNT_LIMIT_ORDERS`).
+* Check position limits (`AccountLimitOrders`).
 * Verify FIFO close rules or hedging permissions.
 
 ---
@@ -129,7 +129,7 @@ Use this method when you need to:
 ```csharp
 // Retrieve account login number
 var login = await acct.AccountInfoIntegerAsync(
-    AccountInfoIntegerPropertyType.ACCOUNT_LOGIN,
+    AccountInfoIntegerPropertyType.AccountLogin,
     deadline: DateTime.UtcNow.AddSeconds(3));
 Console.WriteLine($"Account login: {login}");
 ```
@@ -139,7 +139,7 @@ Console.WriteLine($"Account login: {login}");
 ```csharp
 // Get current leverage setting
 var leverage = await acct.AccountInfoIntegerAsync(
-    AccountInfoIntegerPropertyType.ACCOUNT_LEVERAGE);
+    AccountInfoIntegerPropertyType.AccountLeverage);
 Console.WriteLine($"Account leverage: 1:{leverage}");
 ```
 
@@ -148,7 +148,7 @@ Console.WriteLine($"Account leverage: 1:{leverage}");
 ```csharp
 // Check if trading is enabled for this account
 var tradeAllowed = await acct.AccountInfoIntegerAsync(
-    AccountInfoIntegerPropertyType.ACCOUNT_TRADE_ALLOWED);
+    AccountInfoIntegerPropertyType.AccountTradeAllowed);
 
 if (tradeAllowed == 0)
 {
@@ -158,7 +158,7 @@ if (tradeAllowed == 0)
 
 // Check if EA trading is allowed
 var expertAllowed = await acct.AccountInfoIntegerAsync(
-    AccountInfoIntegerPropertyType.ACCOUNT_TRADE_EXPERT);
+    AccountInfoIntegerPropertyType.AccountTradeExpert);
 
 if (expertAllowed == 0)
 {
@@ -171,7 +171,7 @@ if (expertAllowed == 0)
 ```csharp
 // Determine if account is demo, contest, or real
 var tradeMode = await acct.AccountInfoIntegerAsync(
-    AccountInfoIntegerPropertyType.ACCOUNT_TRADE_MODE);
+    AccountInfoIntegerPropertyType.AccountTradeMode);
 
 var modeLabel = tradeMode switch
 {
@@ -189,7 +189,7 @@ Console.WriteLine($"Account mode: {modeLabel}");
 ```csharp
 // Get maximum allowed positions + pending orders
 var limitOrders = await acct.AccountInfoIntegerAsync(
-    AccountInfoIntegerPropertyType.ACCOUNT_LIMIT_ORDERS);
+    AccountInfoIntegerPropertyType.AccountLimitOrders);
 
 if (limitOrders == 0)
 {

@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
@@ -71,9 +71,9 @@ No required parameters.
 
 ### `MrpcEnumAccountTradeMode`
 
-* `MRPC_ACCOUNT_TRADE_MODE_DEMO = 0` — demo/practice
-* `MRPC_ACCOUNT_TRADE_MODE_CONTEST = 1` — contest
-* `MRPC_ACCOUNT_TRADE_MODE_REAL = 2` — real trading
+* `MrpcAccountTradeModeDemo = 0` — demo/practice
+* `MrpcAccountTradeModeContest = 1` — contest
+* `MrpcAccountTradeModeReal = 2` — real trading
 
 > Map enum → label in UI via your helper, e.g. a `switch` or generated `Name(value)`.
 
@@ -82,7 +82,7 @@ No required parameters.
 ## 💬 Just the essentials
 
 * **What it is.** Single RPC returning account state: balance, equity, currency, leverage, trade mode, server time.
-* **Why you need it.** Fast dashboard/CLI status; double‑check login/currency/leverage; heartbeat via `ServerTimeUtc`.
+* **Why you need it.** Fast dashboard/CLI status; double‑check login/currency/leverage; heartbeat via `ServerTime`.
 * **Sanity check.** If you see `AccountLogin`, `AccountCurrency`, `AccountLeverage`, `AccountEquity` → connection is alive.
 
 ---
@@ -93,7 +93,7 @@ Use it to display real‑time account state and sanity‑check connectivity:
 
 * Dashboard/CLI status in one call.
 * Verify free‑margin & equity before trading.
-* Terminal heartbeat via `ServerTimeUtc` and `UtcServerTimeShiftMinutes`.
+* Terminal heartbeat via `ServerTime` and `UtcTimezoneServerTimeShiftMinutes`.
 
 ---
 
@@ -167,7 +167,7 @@ public record AccountSummaryView(
             Balance: p.AccountBalance,
             Equity: p.AccountEquity,
             Leverage: p.AccountLeverage,
-            Mode: p.AccountTradeMode
+            Mode: (int)p.AccountTradeMode
         );
 }
 

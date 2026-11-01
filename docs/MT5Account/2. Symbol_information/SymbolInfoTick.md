@@ -16,12 +16,12 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
         public async Task<MrpcMqlTick> SymbolInfoTickAsync(
-            string symbolName,
+            string symbol,
             DateTime? deadline = null,
             CancellationToken cancellationToken = default);
     }
@@ -43,7 +43,7 @@ namespace mt5_term_api
 
 | Parameter           | Type                | Required | Description                                               |
 | ------------------- | ------------------- | -------- | --------------------------------------------------------- |
-| `symbolName`        | `string`            | ✅       | Symbol name (e.g., `"EURUSD"`)                            |
+| `symbol`        | `string`            | ✅       | Symbol name (e.g., `"EURUSD"`)                            |
 | `deadline`          | `DateTime?`         | ❌       | Absolute per‑call **UTC** deadline → converted to timeout |
 | `cancellationToken` | `CancellationToken` | ❌       | Cooperative cancel for the call/retry loop                |
 

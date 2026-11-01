@@ -16,12 +16,12 @@
 * **SDK wrapper:**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Service
     {
         public async IAsyncEnumerable<OnPositionsAndPendingOrdersTicketsData> OnPositionsAndPendingOrdersTicketsAsync(
-            int intervalMs = 1000,
+            int intervalMs,
             [EnumeratorCancellation] CancellationToken cancellationToken = default);
     }
 }
@@ -41,7 +41,7 @@ namespace mt5_term_api
 
 | Parameter            | Type                  | Description                                                  |
 | -------------------- | --------------------- | ------------------------------------------------------------ |
-| `intervalMs`         | `int`                 | Update interval in milliseconds (default: 1000ms = 1 second) |
+| `intervalMs`         | `int`                 | Update interval in milliseconds (required; e.g. 1000 = 1 second) |
 | `cancellationToken`  | `CancellationToken`   | Token to stop the stream                                     |
 
 ---
@@ -334,7 +334,7 @@ await foreach (var snapshot in svc.OnPositionsAndPendingOrdersTicketsAsync(inter
         var fullData = await acc.OpenedOrdersAsync();
 
         Console.WriteLine("\nPosition Details:");
-        foreach (var position in fullData.Positions)
+        foreach (var position in fullData.PositionInfos)
         {
             Console.WriteLine($"  #{position.Ticket}: {position.Symbol} " +
                              $"{position.Volume} lots @ {position.PriceOpen} " +

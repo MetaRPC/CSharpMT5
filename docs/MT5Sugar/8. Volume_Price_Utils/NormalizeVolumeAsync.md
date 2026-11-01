@@ -202,7 +202,7 @@ Console.WriteLine($"Risk calculation: {riskBasedVolume}");
 Console.WriteLine($"Broker-ready:     {normalized}");
 
 // Place order with normalized volume
-await svc.BuyMarket("XAUUSD", normalized, sl: 2000.0, tp: 2050.0);
+await svc.BuyMarketAsync("XAUUSD", normalized, sl: 2000.0, tp: 2050.0);
 ```
 
 ---
@@ -358,12 +358,12 @@ await ScaleOutPosition(svc, ticket: 12345, new[] { 25.0, 50.0, 25.0 });
    ```csharp
    // ❌ WRONG: Using raw calculation result
    double volume = balance * 0.02 / stopLoss;  // Might be 0.0374
-   await svc.BuyMarket("EURUSD", volume);  // ❌ May fail!
+   await svc.BuyMarketAsync("EURUSD", volume);  // ❌ May fail!
 
    // ✅ CORRECT: Normalize first
    double rawVolume = balance * 0.02 / stopLoss;
    double volume = await svc.NormalizeVolumeAsync("EURUSD", rawVolume);
-   await svc.BuyMarket("EURUSD", volume);  // ✅ Safe!
+   await svc.BuyMarketAsync("EURUSD", volume);  // ✅ Safe!
    ```
 
 2. **Forgetting normalization on user input:**
@@ -421,7 +421,7 @@ double rawVolume = 0.037;  // From calculation or user input
 double volume = await svc.NormalizeVolumeAsync("EURUSD", rawVolume);
 // volume is now 0.04 - guaranteed valid!
 
-await svc.BuyMarket("EURUSD", volume);  // ✅ No rejection!
+await svc.BuyMarketAsync("EURUSD", volume);  // ✅ No rejection!
 ```
 
 **Normalize volumes, avoid errors!** 🚀

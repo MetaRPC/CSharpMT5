@@ -161,115 +161,33 @@ try
 #### How BuyMarketByRisk() works internally
 
 ```csharp
-// MT5Sugar.cs (extension method)
+// MT5Sugar.cs (extension method) — condensed, matching the real implementation
 public static async Task<OrderSendData> BuyMarketByRisk(
-    this MT5Service service,
-    string symbol,
-    int stopPoints,      // ← RECEIVES 10
-    double riskMoney,    // ← RECEIVES $20
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double stopPoints, double riskMoney,
+    double? tpPoints = null, string? comment = null, int deviationPoints = 0,
+    int timeoutSec = 20, CancellationToken ct = default)
 {
-    
-    // │  STEP 1: Get symbol information                     
-    // └─────────────────────────────────────────────────────
-    var symbolInfo = await service.SymbolInfoAsync(symbol);
+    await svc.EnsureSelected(symbol, timeoutSec, ct);
 
-    // EURUSD SymbolInfo:
-    // - Point = 0.00001 (point size)
-    // - Trade_Contract_Size = 100000 (contract size)
-    // - Digits = 5 (decimal places)
+    // STEP 1: size the volume from risk — delegated to CalcVolumeForRiskAsync.
+    //   Conceptually: volume ≈ riskMoney / (stopPoints × money-per-point)
+    //   e.g. $20 / (10 × $10) = 0.2 lots  (it also snaps to the broker's volume step/limits)
+    var vol = await svc.CalcVolumeForRiskAsync(symbol, stopPoints, riskMoney, timeoutSec, ct);
 
-   
-    // │  STEP 2: Calculate value of ONE point              
-    // │  for standard lot (1.0)                             
-    // └─────────────────────────────────────────────────────
-    double pointValue = symbolInfo.Trade_Contract_Size * symbolInfo.Point;
+    // STEP 2: SL/TP around the current quote
+    var tick  = await svc.SymbolInfoTickAsync(symbol);
+    var point = await svc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolPoint);
+    double sl = tick.Bid - stopPoints * point;                       // 1.09990
+    double tp = tpPoints.HasValue ? tick.Ask + tpPoints.Value * point : 0;  // 1.10020
+    sl = await svc.NormalizePriceAsync(symbol, sl, timeoutSec, ct);
+    tp = tp > 0 ? await svc.NormalizePriceAsync(symbol, tp, timeoutSec, ct) : 0;
 
-    // For EURUSD:
-    // pointValue = 100000 × 0.00001 = 1.0
-
-    // BUT! This is for base currency (EUR).
-    // Need to convert to USD (account currency).
-
-    
-    // │  STEP 3: Get current price for conversion          
-    // └─────────────────────────────────────────────────────
-    var tick = await service.SymbolInfoTickAsync(symbol);
-    double currentPrice = tick.Ask;  // For BUY use Ask
-
-    // EURUSD @ 1.10000:
-    // 1 point for 1.0 lot = 1 EUR = 1.10000 USD ≈ $1.10
-    // (in reality MT5 uses special conversion tables)
-
-    // For simplicity, for major pairs:
-    // EURUSD, GBPUSD, AUDUSD, NZDUSD: ~$10 per point for 1.0 lot
-    double pointValueUSD = 10.0;  // Simplified for example
-
-    
-    // │  STEP 4: KEY CALCULATION - Position size           
-    // │                                                     
-    // │  Risk-sizing formula:                               
-    // │  Volume = RiskMoney / (StopPoints × PointValueUSD)  
-    // └─────────────────────────────────────────────────────
-    double volume = riskMoney / (stopPoints * pointValueUSD);
-
-    // For our parameters:
-    // riskMoney = $20
-    // stopPoints = 10
-    // pointValueUSD = $10
-    //
-    // volume = $20 / (10 × $10)
-    //        = $20 / $100
-    //        = 0.2 lots
-
-    
-    // │  STEP 5: Round to allowed volume step              
-    // └─────────────────────────────────────────────────────
-    double volumeStep = symbolInfo.Volume_Step;  // Usually 0.01
-    volume = Math.Round(volume / volumeStep) * volumeStep;
-
-    // 0.2 → round to 0.01 step → 0.20
-
-    
-    // │  STEP 6: Check minimum/maximum volume              
-    // └─────────────────────────────────────────────────────
-    double minVolume = symbolInfo.Volume_Min;  // Usually 0.01
-    double maxVolume = symbolInfo.Volume_Max;  // Usually 100.0
-
-    if (volume < minVolume) volume = minVolume;
-    if (volume > maxVolume) volume = maxVolume;
-
-    
-    // │  STEP 7: Calculate SL and TP in absolute prices    
-    // └─────────────────────────────────────────────────────
-    double point = symbolInfo.Point;
-
-    double sl = stopPoints > 0
-        ? currentPrice - (stopPoints * point)  // For BUY: SL below
-        : 0;
-
-    double tp = tpPoints > 0
-        ? currentPrice + (tpPoints * point)    // For BUY: TP above
-        : 0;
-
-    // For BUY @ 1.10000:
-    // sl = 1.10000 - (10 × 0.00001) = 1.09990
-    // tp = 1.10000 + (20 × 0.00001) = 1.10020
-
-    
-    // │  STEP 8: Call low-level BuyMarketAsync              
-    // └─────────────────────────────────────────────────────
-    return await service.BuyMarketAsync(
-        symbol: symbol,      // "EURUSD"
-        volume: volume,      // 0.20 (CALCULATED!)
-        sl: sl,              // 1.09990
-        tp: tp,              // 1.10020
-        comment: comment     // "Scalper"
-    );
+    // STEP 3: send the market order (PlaceMarket wraps OrderSendAsync)
+    return await svc.PlaceMarket(symbol, vol, isBuy: true, sl, tp, comment, deviationPoints, timeoutSec, ct);
 }
 ```
+
+> The "money-per-point" conversion lives inside `CalcVolumeForRiskAsync` (it uses the symbol's tick value / contract size), so the orchestrator never computes it by hand.
 
 #### Complete call chain for BuyMarketByRisk
 
@@ -289,60 +207,49 @@ public static async Task<OrderSendData> BuyMarketByRisk(
 
    MT5Sugar.BuyMarketByRisk() (extension method)                 
 │    
-│  │ 1. SymbolInfoAsync() → get symbol info                    
-│  │    - Point = 0.00001                                       
-│  │    - Trade_Contract_Size = 100000                          
-│  │    - Volume_Step = 0.01                                    
+│  │ 1. CalcVolumeForRiskAsync(symbol, stopPoints, riskMoney)  
+│  │    → sizes volume from risk (money-per-point inside)      
+│  │    = $20 / (10 × $10) ≈ 0.20 lots (snapped to step/limits)
 │  │                                                            
-│  │ 2. SymbolInfoTickAsync() → get Ask price                  
-│  │    - Ask = 1.10000                                         
+│  │ 2. SymbolInfoTickAsync() → Bid/Ask                        
+│  │    Ask = 1.10000, Bid = 1.10000                            
 │  │                                                            
-│  │ 3. CALCULATE PointValue:                                   
-│  │    pointValue = 100000 × 0.00001 = 1.0 (base currency)     
-│  │    pointValueUSD ≈ $10 (for major pairs)                   
+│  │ 3. SymbolInfoDoubleAsync(SymbolPoint) → point = 0.00001   
 │  │                                                            
-│  │ 4. KEY CALCULATION Volume:                                 
-│  │    volume = riskMoney / (stopPoints × pointValueUSD)       
-│  │           = $20 / (10 × $10)                               
-│  │           = $20 / $100                                     
-│  │           = 0.2 lots                                       
-│  │                                                            
-│  │ 5. Rounding: 0.2 → 0.20 (step 0.01)                       
-│  │                                                            
-│  │ 6. Calculate SL/TP:                                        
-│  │    sl = 1.10000 - (10 × 0.00001) = 1.09990                 
-│  │    tp = 1.10000 + (20 × 0.00001) = 1.10020                 
+│  │ 4. Compute + normalize SL/TP:                             
+│  │    sl = Bid - 10×0.00001 = 1.09990                         
+│  │    tp = Ask + 20×0.00001 = 1.10020                         
 │  └──────────────────────────────────────────────────────────  
-│  await service.BuyMarketAsync(                                 
+│  await svc.PlaceMarket(                                        
 │      symbol: "EURUSD",                                         
-│      volume: 0.20,        ← AUTOMATICALLY CALCULATED!          
-│      sl: 1.09990,                                              
-│      tp: 1.10020,                                              
-│      comment: "Scalper"                                        
-│  )                                                             
+│      volume: 0.20,        ← from CalcVolumeForRiskAsync        
+│      isBuy: true,                                              
+│      sl: 1.09990, tp: 1.10020,                                 
+│      comment: "Scalper")                                       
 └──────────────────────────┬─────────────────────────────────────
                            │
                            ▼
 
-│  MT5Service.BuyMarketAsync()                                   
-│  return await _account.BuyMarketAsync(...)                     
+│  MT5Service.PlaceMarket() (Sugar)                              
+│  builds an OrderSendRequest, then                              
+│  return await svc.OrderSendAsync(request)                      
 └──────────────────────────┬─────────────────────────────────────
                            │
                            ▼
 
-│  MT5Account.BuyMarketAsync()                                   
+│  MT5Account.OrderSendAsync(OrderSendRequest)                   
 │    
 │  │ var request = new OrderSendRequest {                       
 │  │     Symbol = "EURUSD",                                     
 │  │     Volume = 0.20,        ← CALCULATED volume              
-│  │     Type = ORDER_TYPE_BUY,  // = 0                        
-│  │     Price = 0,  // Market order (no price specified)      
-│  │     Sl = 1.09990,                                          
-│  │     Tp = 1.10020,                                          
+│  │     Operation = Tmt5OrderTypeBuy,                          
+│  │     Price = Ask,                                           
+│  │     StopLoss = 1.09990,                                    
+│  │     TakeProfit = 1.10020,                                  
 │  │     Comment = "Scalper"                                    
 │  │ }                                                          
 │  └──────────────────────────────────────────────────────────  
-│  var response = await _client.OrderSendAsync(request);         
+│  var response = await TradeClient.OrderSend(request, ...);     
 └──────────────────────────┬─────────────────────────────────────
                            │
                            ▼
@@ -584,20 +491,17 @@ T=0      START ExecuteAsync()
          │
 T=1s     ├─► BuyMarketByRisk(risk=$20, SL=10pts, TP=20pts)
          │   │
-         │   ├─► SymbolInfoAsync("EURUSD")
-         │   │   └─► Point=0.00001, ContractSize=100000
+         │   ├─► CalcVolumeForRiskAsync("EURUSD", 10, $20)
+         │   │   └─► volume ≈ 0.2 lots
          │   │
-         │   ├─► SymbolInfoTickAsync("EURUSD")
-         │   │   └─► Ask=1.10000
-         │   │
-         │   ├─► CALCULATE Volume:
-         │   │   volume = $20 / (10 × $10) = 0.2 lots
+         │   ├─► SymbolInfoTickAsync("EURUSD") → Ask=1.10000
+         │   ├─► SymbolInfoDoubleAsync(SymbolPoint) → 0.00001
          │   │
          │   ├─► CALCULATE SL/TP:
          │   │   sl = 1.10000 - (10 × 0.00001) = 1.09990
          │   │   tp = 1.10000 + (20 × 0.00001) = 1.10020
          │   │
-         │   └─► BuyMarketAsync(volume=0.2, sl=1.09990, tp=1.10020)
+         │   └─► PlaceMarket(vol=0.2, isBuy:true, sl, tp) → OrderSendAsync
          │       └─► gRPC → MT5 Terminal
          │
 T=2s     ├─► MT5 Terminal: Position opened!

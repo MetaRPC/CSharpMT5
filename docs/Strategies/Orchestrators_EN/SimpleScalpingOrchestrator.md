@@ -382,43 +382,31 @@ Result: Profit +$10 (less than TP, but still in profit)
 
 ```csharp
 public static async Task<OrderSendData> BuyMarketByRisk(
-    this MT5Service service,
-    string symbol,
-    int stopPoints,      // SL in points
-    double riskMoney,    // Risk in dollars
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double stopPoints, double riskMoney,
+    double? tpPoints = null, string? comment = null, int deviationPoints = 0,
+    int timeoutSec = 20, CancellationToken ct = default)
 ```
 
-**Purpose**: Opens market BUY position with **automatic size calculation** based on risk.
+**Purpose**: Opens a market BUY position with **automatic size calculation** based on risk.
 
-**Calculation algorithm**:
+**Calculation (condensed, matching the real implementation)**:
 ```csharp
-// 1. Get point value for symbol
-var symbolInfo = await service.SymbolInfoAsync(symbol);
-double pointValue = symbolInfo.Trade_Contract_Size * symbolInfo.Point;
-// For EURUSD: 100000 × 0.00001 = $1 per point for 1.0 lot
+await svc.EnsureSelected(symbol, timeoutSec, ct);
 
-// 2. Calculate risk per point
-double riskPerPoint = riskMoney / stopPoints;
-// $20 / 10 = $2 per point
+// 1. Size the volume from risk — delegates to CalcVolumeForRiskAsync:
+//    volume ≈ riskMoney / (stopPoints × money-per-point)  → e.g. $20 / (10 × $10) = 0.2 lots
+var vol = await svc.CalcVolumeForRiskAsync(symbol, stopPoints, riskMoney, timeoutSec, ct);
 
-// 3. Calculate Volume
-double volume = riskPerPoint / pointValue;
-// $2 / $1 = 2.0 lots (for 1.0 base lot)
-// But for EURUSD with base $10 per point: $2 / $10 = 0.2 lots
+// 2. Compute SL/TP around the current quote
+var tick  = await svc.SymbolInfoTickAsync(symbol);
+var point = await svc.SymbolInfoDoubleAsync(symbol, SymbolInfoDoubleProperty.SymbolPoint);
+double sl = tick.Bid - stopPoints * point;
+double tp = tpPoints.HasValue ? tick.Ask + tpPoints.Value * point : 0;
+sl = await svc.NormalizePriceAsync(symbol, sl, timeoutSec, ct);
+tp = tp > 0 ? await svc.NormalizePriceAsync(symbol, tp, timeoutSec, ct) : 0;
 
-// 4. Get current Ask price
-var tick = await service.SymbolInfoTickAsync(symbol);
-double askPrice = tick.Ask;
-
-// 5. Calculate SL and TP
-double sl = askPrice - (stopPoints × symbolInfo.Point);
-double tp = tpPoints > 0 ? askPrice + (tpPoints × symbolInfo.Point) : 0;
-
-// 6. Open position
-return await service.BuyMarketAsync(symbol, volume, sl, tp, comment);
+// 3. Send the market order (PlaceMarket wraps OrderSendAsync)
+return await svc.PlaceMarket(symbol, vol, isBuy: true, sl, tp, comment, deviationPoints, timeoutSec, ct);
 ```
 
 **Parameters in SimpleScalpingOrchestrator**:
@@ -443,40 +431,31 @@ OrderSendData {
 
 ```csharp
 public static async Task<OrderSendData> SellMarketByRisk(
-    this MT5Service service,
-    string symbol,
-    int stopPoints,
-    double riskMoney,
-    int tpPoints = 0,
-    string comment = ""
-)
+    this MT5Service svc, string symbol, double stopPoints, double riskMoney,
+    double? tpPoints = null, string? comment = null, int deviationPoints = 0,
+    int timeoutSec = 20, CancellationToken ct = default)
 ```
 
-**Purpose**: Opens market SELL position with automatic size calculation.
+**Purpose**: Opens a market SELL position with automatic size calculation (same `CalcVolumeForRiskAsync` + `PlaceMarket` flow as the BUY variant).
 
 **Differences from BuyMarketByRisk**:
 
-- Uses **Bid** price instead of Ask
-- SL **above** entry price (for SELL)
-- TP **below** entry price (for SELL)
-
-**SL/TP calculation for SELL**:
-```csharp
-double bidPrice = tick.Bid;
-double sl = bidPrice + (stopPoints × point);  // ABOVE for SELL
-double tp = tpPoints > 0 ? bidPrice - (tpPoints × point) : 0;  // BELOW for SELL
-```
+- SL is placed **above** the entry (protection for a SELL)
+- TP is placed **below** the entry
+- `PlaceMarket` is called with `isBuy: false`
 
 ### 3. CloseByTicket
 
 ```csharp
-public static async Task CloseByTicket(
-    this MT5Service service,
-    ulong ticket
-)
+public static Task<OrderCloseData> CloseByTicket(
+    this MT5Service svc,
+    ulong ticket,
+    double? volume = null,   // null = close full volume
+    int timeoutSec = 15,
+    CancellationToken ct = default)
 ```
 
-**Purpose**: Closes position by ticket number.
+**Purpose**: Closes a position by ticket number (optionally a partial volume).
 
 **Usage in orchestrator**:
 

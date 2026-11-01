@@ -222,7 +222,7 @@ var symbol = "EURUSD";
 await svc.EnsureSelected(symbol);
 
 // Now safe to place order
-var result = await svc.BuyMarket(
+var result = await svc.BuyMarketAsync(
     symbol: symbol,
     volume: 0.01,
     sl: 1.0800,

@@ -16,7 +16,7 @@
 * **SDK wrapper (your class):**
 
 ```csharp
-namespace mt5_term_api
+namespace MetaRPC.CSharpMT5
 {
     public class MT5Account
     {
@@ -65,20 +65,20 @@ The method returns `double` directly (unwrapped from the proto message).
 
 | Enum Value                   | Value | Description                                                                                                                       | MQL5 Docs                                                     |
 | ---------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `ACCOUNT_BALANCE`            | 0     | Account balance in the deposit currency                                                                                           | [AccountInfoDouble](https://www.mql5.com/en/docs/account/accountinfodouble) |
-| `ACCOUNT_CREDIT`             | 1     | Account credit in the deposit currency                                                                                            |                                                               |
-| `ACCOUNT_PROFIT`             | 2     | Current profit of an account in the deposit currency                                                                              |                                                               |
-| `ACCOUNT_EQUITY`             | 3     | Account equity in the deposit currency (Balance + Profit)                                                                         |                                                               |
-| `ACCOUNT_MARGIN`             | 4     | Account margin used in the deposit currency                                                                                       |                                                               |
-| `ACCOUNT_MARGIN_FREE`        | 5     | Free margin of an account in the deposit currency                                                                                 |                                                               |
-| `ACCOUNT_MARGIN_LEVEL`       | 6     | Account margin level in percents                                                                                                  |                                                               |
-| `ACCOUNT_MARGIN_SO_CALL`     | 7     | Margin call level. Depending on the set ACCOUNT_MARGIN_SO_MODE is expressed in percents or in the deposit currency               |                                                               |
-| `ACCOUNT_MARGIN_SO_SO`       | 8     | Margin stop out level. Depending on the set ACCOUNT_MARGIN_SO_MODE is expressed in percents or in the deposit currency           |                                                               |
-| `ACCOUNT_MARGIN_INITIAL`     | 9     | Initial margin. The amount reserved on an account to cover the margin of all pending orders                                       |                                                               |
-| `ACCOUNT_MARGIN_MAINTENANCE` | 10    | Maintenance margin. The minimum equity reserved on an account to cover the minimum amount of all open positions                   |                                                               |
-| `ACCOUNT_ASSETS`             | 11    | The current assets of an account                                                                                                  |                                                               |
-| `ACCOUNT_LIABILITIES`        | 12    | The current liabilities on an account                                                                                             |                                                               |
-| `ACCOUNT_COMMISSION_BLOCKED` | 13    | The current blocked commission amount on an account                                                                               |                                                               |
+| `AccountBalance`            | 0     | Account balance in the deposit currency                                                                                           | [AccountInfoDouble](https://www.mql5.com/en/docs/account/accountinfodouble) |
+| `AccountCredit`             | 1     | Account credit in the deposit currency                                                                                            |                                                               |
+| `AccountProfit`             | 2     | Current profit of an account in the deposit currency                                                                              |                                                               |
+| `AccountEquity`             | 3     | Account equity in the deposit currency (Balance + Profit)                                                                         |                                                               |
+| `AccountMargin`             | 4     | Account margin used in the deposit currency                                                                                       |                                                               |
+| `AccountMarginFree`        | 5     | Free margin of an account in the deposit currency                                                                                 |                                                               |
+| `AccountMarginLevel`       | 6     | Account margin level in percents                                                                                                  |                                                               |
+| `AccountMarginSoCall`     | 7     | Margin call level. Depending on the set AccountMarginSoMode is expressed in percents or in the deposit currency               |                                                               |
+| `AccountMarginSoSo`       | 8     | Margin stop out level. Depending on the set AccountMarginSoMode is expressed in percents or in the deposit currency           |                                                               |
+| `AccountMarginInitial`     | 9     | Initial margin. The amount reserved on an account to cover the margin of all pending orders                                       |                                                               |
+| `AccountMarginMaintenance` | 10    | Maintenance margin. The minimum equity reserved on an account to cover the minimum amount of all open positions                   |                                                               |
+| `AccountAssets`             | 11    | The current assets of an account                                                                                                  |                                                               |
+| `AccountLiabilities`        | 12    | The current liabilities on an account                                                                                             |                                                               |
+| `AccountCommissionBlocked` | 13    | The current blocked commission amount on an account                                                                               |                                                               |
 
 ---
 
@@ -119,7 +119,7 @@ Use this method when you need to:
 ```csharp
 // Ensure sufficient margin before trading
 var marginLevel = await acct.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_MARGIN_LEVEL,
+    AccountInfoDoublePropertyType.AccountMarginLevel,
     deadline: DateTime.UtcNow.AddSeconds(3));
 
 if (marginLevel < 200.0)
@@ -138,7 +138,7 @@ else
 ```csharp
 // Monitor floating profit/loss
 var profit = await acct.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_PROFIT);
+    AccountInfoDoublePropertyType.AccountProfit);
 Console.WriteLine($"Current P/L: {profit:F2}");
 ```
 
@@ -147,7 +147,7 @@ Console.WriteLine($"Current P/L: {profit:F2}");
 ```csharp
 // Verify free margin before opening position
 var freeMargin = await acct.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_MARGIN_FREE);
+    AccountInfoDoublePropertyType.AccountMarginFree);
 
 Console.WriteLine($"Free margin: {freeMargin:F2}");
 
@@ -162,11 +162,11 @@ if (freeMargin < 100.0)
 ```csharp
 // Fetch margin-related properties
 var margin = await acct.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_MARGIN);
+    AccountInfoDoublePropertyType.AccountMargin);
 var marginFree = await acct.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_MARGIN_FREE);
+    AccountInfoDoublePropertyType.AccountMarginFree);
 var marginLevel = await acct.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_MARGIN_LEVEL);
+    AccountInfoDoublePropertyType.AccountMarginLevel);
 
 Console.WriteLine($"Margin:       {margin:F2}");
 Console.WriteLine($"Free:         {marginFree:F2}");
@@ -178,9 +178,9 @@ Console.WriteLine($"Level:        {marginLevel:F2}%");
 ```csharp
 // Calculate floating P/L by comparing equity and balance
 var balance = await acct.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_BALANCE);
+    AccountInfoDoublePropertyType.AccountBalance);
 var equity = await acct.AccountInfoDoubleAsync(
-    AccountInfoDoublePropertyType.ACCOUNT_EQUITY);
+    AccountInfoDoublePropertyType.AccountEquity);
 
 var floatingPL = equity - balance;
 Console.WriteLine($"Balance:      {balance:F2}");
