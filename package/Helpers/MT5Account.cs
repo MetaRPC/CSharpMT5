@@ -176,6 +176,11 @@ namespace MetaRPC.CSharpMT5
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:mt5_term_api.MT5Account" /> class with API key.
 		/// </summary>
+		public MT5Account(ulong user, string password, string? grpcServer, string? apiKey)
+			: this(user, password, grpcServer, default(Guid), apiKey)
+		{
+		}
+
 		/// <summary>
 		/// Initializes a new instance with an explicit API key, a stable terminal id and a terminal name.
 		/// </summary>
@@ -187,11 +192,6 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="name">Optional terminal name / strategy identifier sent with Connect / ConnectEx.</param>
 		public MT5Account(ulong user, string password, string? grpcServer, string? apiKey, Guid id, string? name)
 			: this(user, password, grpcServer, id, apiKey, name)
-		{
-		}
-
-		public MT5Account(ulong user, string password, string? grpcServer, string? apiKey)
-			: this(user, password, grpcServer, default(Guid), apiKey)
 		{
 		}
 
@@ -1940,13 +1940,14 @@ namespace MetaRPC.CSharpMT5
 		/// <summary>
 		/// Returns historical OHLC bars (MarketInfo.PriceHistory) for a symbol.
 		/// <paramref name="from"/> and <paramref name="to"/> are converted to UTC and sent as from_time_utc / to_time_utc.
-		/// With <paramref name="maxBars"/> &gt; 0 the server returns the most recent <paramref name="maxBars"/> bars inside the window.
+		/// The server returns at most <paramref name="maxBars"/> bars, the most recent ones inside the window.
+		/// Pass default(DateTime) for both <paramref name="from"/> and <paramref name="to"/> to get the newest <paramref name="maxBars"/> bars.
 		/// </summary>
 		/// <param name="symbol">Symbol name.</param>
 		/// <param name="timeframe">MQL5 ENUM_TIMEFRAMES value: M1=1, M5=5, M15=15, M30=30, H1=16385, H4=16388, D1=16408, W1=32769, MN1=49153.</param>
 		/// <param name="from">Window start.</param>
 		/// <param name="to">Window end.</param>
-		/// <param name="maxBars">Maximum number of bars (0 = all bars in the window).</param>
+		/// <param name="maxBars">Maximum number of bars (0 = server default, 500; the terminal applies its own ceiling too).</param>
 		/// <param name="deadline">Optional gRPC deadline.</param>
 		/// <param name="cancellationToken">Optional cancellation token.</param>
 		/// <returns>Bars, oldest first.</returns>
@@ -1959,8 +1960,8 @@ namespace MetaRPC.CSharpMT5
 			{
 				Symbol = symbol,
 				Timeframe = timeframe,
-				FromTimeUtc = new DateTimeOffset(from.ToUniversalTime()).ToUnixTimeSeconds(),
-				ToTimeUtc = new DateTimeOffset(to.ToUniversalTime()).ToUnixTimeSeconds(),
+				FromTimeUtc = from == default(DateTime) ? 0 : new DateTimeOffset(from.ToUniversalTime()).ToUnixTimeSeconds(),
+				ToTimeUtc = to == default(DateTime) ? 0 : new DateTimeOffset(to.ToUniversalTime()).ToUnixTimeSeconds(),
 				MaxBars = maxBars
 			};
 			return PriceHistoryAsync(request, deadline, cancellationToken);
