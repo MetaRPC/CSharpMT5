@@ -176,6 +176,20 @@ namespace MetaRPC.CSharpMT5
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:mt5_term_api.MT5Account" /> class with API key.
 		/// </summary>
+		/// <summary>
+		/// Initializes a new instance with an explicit API key, a stable terminal id and a terminal name.
+		/// </summary>
+		/// <param name="user">The MT5 user account number.</param>
+		/// <param name="password">The password for the user account.</param>
+		/// <param name="grpcServer">The address of the gRPC server (optional, default https://mt5.mrpc.pro:443).</param>
+		/// <param name="apiKey">The MetaRPC API key (optional, falls back to MRPC_API_KEY environment variable).</param>
+		/// <param name="id">A stable terminal id; the gateway keeps one terminal per id, so pass the same id on every run.</param>
+		/// <param name="name">Optional terminal name / strategy identifier sent with Connect / ConnectEx.</param>
+		public MT5Account(ulong user, string password, string? grpcServer, string? apiKey, Guid id, string? name)
+			: this(user, password, grpcServer, id, apiKey, name)
+		{
+		}
+
 		public MT5Account(ulong user, string password, string? grpcServer, string? apiKey)
 			: this(user, password, grpcServer, default(Guid), apiKey)
 		{
@@ -259,9 +273,10 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="baseChartSymbol">Chart symbol to initialize the session.</param>
 		/// <param name="waitForTerminalIsAlive">Wait for terminal readiness flag.</param>
 		/// <param name="timeoutSeconds">Timeout duration in seconds.</param>
-		public void Connect(string host, int port = 443, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30)
+		/// <param name="name">Optional terminal name / strategy identifier (overrides <see cref="Name"/>).</param>
+		public void Connect(string host, int port = 443, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, string? name = null)
 		{
-			ConnectByHostPortAsync(host, port, baseChartSymbol, waitForTerminalIsAlive, timeoutSeconds).GetAwaiter().GetResult();
+			ConnectByHostPortAsync(host, port, baseChartSymbol, waitForTerminalIsAlive, timeoutSeconds, null, default(CancellationToken), name).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -315,9 +330,10 @@ namespace MetaRPC.CSharpMT5
 		/// <param name="baseChartSymbol">Chart symbol to initialize the session.</param>
 		/// <param name="waitForTerminalIsAlive">Wait for terminal readiness flag.</param>
 		/// <param name="timeoutSeconds">Timeout duration in seconds.</param>
-		public void ConnectByServerName(string serverName, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30)
+		/// <param name="name">Optional terminal name / strategy identifier (overrides <see cref="Name"/>).</param>
+		public void ConnectByServerName(string serverName, string baseChartSymbol = "EURUSD", bool waitForTerminalIsAlive = true, int timeoutSeconds = 30, string? name = null)
 		{
-			ConnectByServerNameAsync(serverName, baseChartSymbol, waitForTerminalIsAlive, timeoutSeconds).GetAwaiter().GetResult();
+			ConnectByServerNameAsync(serverName, baseChartSymbol, waitForTerminalIsAlive, timeoutSeconds, null, default(CancellationToken), name).GetAwaiter().GetResult();
 		}
 
 		private Metadata GetHeaders()
@@ -1919,6 +1935,43 @@ namespace MetaRPC.CSharpMT5
 		public PriceHistoryData PriceHistory(PriceHistoryRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			return PriceHistoryAsync(request, deadline, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Returns historical OHLC bars (MarketInfo.PriceHistory) for a symbol.
+		/// <paramref name="from"/> and <paramref name="to"/> are converted to UTC and sent as from_time_utc / to_time_utc.
+		/// With <paramref name="maxBars"/> &gt; 0 the server returns the most recent <paramref name="maxBars"/> bars inside the window.
+		/// </summary>
+		/// <param name="symbol">Symbol name.</param>
+		/// <param name="timeframe">MQL5 ENUM_TIMEFRAMES value: M1=1, M5=5, M15=15, M30=30, H1=16385, H4=16388, D1=16408, W1=32769, MN1=49153.</param>
+		/// <param name="from">Window start.</param>
+		/// <param name="to">Window end.</param>
+		/// <param name="maxBars">Maximum number of bars (0 = all bars in the window).</param>
+		/// <param name="deadline">Optional gRPC deadline.</param>
+		/// <param name="cancellationToken">Optional cancellation token.</param>
+		/// <returns>Bars, oldest first.</returns>
+		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5" />
+		/// <exception cref="T:mt5_term_api.ApiExceptionMT5" />
+		/// <exception cref="T:Grpc.Core.RpcException" />
+		public Task<PriceHistoryData> PriceHistoryAsync(string symbol, int timeframe, DateTime from, DateTime to, int maxBars = 0, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			PriceHistoryRequest request = new PriceHistoryRequest
+			{
+				Symbol = symbol,
+				Timeframe = timeframe,
+				FromTimeUtc = new DateTimeOffset(from.ToUniversalTime()).ToUnixTimeSeconds(),
+				ToTimeUtc = new DateTimeOffset(to.ToUniversalTime()).ToUnixTimeSeconds(),
+				MaxBars = maxBars
+			};
+			return PriceHistoryAsync(request, deadline, cancellationToken);
+		}
+
+		/// <summary>
+		/// Returns historical OHLC bars synchronously. See <see cref="PriceHistoryAsync(string, int, DateTime, DateTime, int, DateTime?, CancellationToken)"/>.
+		/// </summary>
+		public PriceHistoryData PriceHistory(string symbol, int timeframe, DateTime from, DateTime to, int maxBars = 0, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+		{
+			return PriceHistoryAsync(symbol, timeframe, from, to, maxBars, deadline, cancellationToken).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
