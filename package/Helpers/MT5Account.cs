@@ -376,7 +376,16 @@ namespace MetaRPC.CSharpMT5
 		/// Thrown if the operation is canceled by the caller.
 		/// </exception>
 		/// <exception cref="T:Grpc.Core.RpcException">If gRPC fails with a non-recoverable error.</exception>
-		private async Task<T> ExecuteWithReconnect<T>(Func<Metadata, T> grpcCall, Func<T, Error?> errorSelector, DateTime? deadline, CancellationToken cancellationToken)
+		/// <exception cref="T:mt5_term_api.TradeOutcomeUnknownExceptionMT5">
+		/// <paramref name="tradeOperation" /> is set and the transport failed after the request may have reached the terminal.
+		/// </exception>
+		/// <param name="tradeOperation">
+		/// Name of a trade call (OrderSend, OrderSendWithoutChecks, OrderModify, OrderClose), null for a call that may be replayed.
+		/// A trade call is never re-sent after a transport failure (a re-send could duplicate the trade); it is re-sent only after
+		/// an in-band TERMINAL_INSTANCE_NOT_FOUND / TERMINAL_REGISTRY_TERMINAL_NOT_FOUND, which the server returns before forwarding
+		/// anything to a terminal.
+		/// </param>
+		private async Task<T> ExecuteWithReconnect<T>(Func<Metadata, T> grpcCall, Func<T, Error?> errorSelector, DateTime? deadline, CancellationToken cancellationToken, string? tradeOperation = null)
 		{
 			Unsafe.SkipInit(out object obj2);
 			while (!cancellationToken.IsCancellationRequested)
@@ -386,6 +395,10 @@ namespace MetaRPC.CSharpMT5
 				try
 				{
 					val = grpcCall(headers);
+				}
+				catch (RpcException ex) when (tradeOperation != null && TradeOutcomeUnknownExceptionMT5.IsUnknownOutcome(ex.StatusCode))
+				{
+					throw new TradeOutcomeUnknownExceptionMT5(tradeOperation, ex);
 				}
 				catch (RpcException ex) when ((int)ex.StatusCode == 14)
 				{
@@ -698,13 +711,14 @@ namespace MetaRPC.CSharpMT5
 		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the account is not connected.</exception>
 		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+		/// <exception cref="T:mt5_term_api.TradeOutcomeUnknownExceptionMT5">The transport failed after the request may have reached the terminal (TRADE_OUTCOME_UNKNOWN). The call is not re-sent: check open positions/orders before retrying.</exception>
 		public async Task<OrderSendData> OrderSendAsync(OrderSendRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			if (Id == default(Guid))
 			{
 				throw new ConnectExceptionMT5("Please call Connect method firstly");
 			}
-			return (await ExecuteWithReconnect((Metadata headers) => TradeClient.OrderSend(request, headers, deadline, cancellationToken), (OrderSendReply r) => r.Error, deadline, cancellationToken)).Data;
+			return (await ExecuteWithReconnect((Metadata headers) => TradeClient.OrderSend(request, headers, deadline, cancellationToken), (OrderSendReply r) => r.Error, deadline, cancellationToken, "OrderSend")).Data;
 		}
 
 		/// <summary>
@@ -732,13 +746,14 @@ namespace MetaRPC.CSharpMT5
 		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the account is not connected.</exception>
 		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+		/// <exception cref="T:mt5_term_api.TradeOutcomeUnknownExceptionMT5">The transport failed after the request may have reached the terminal (TRADE_OUTCOME_UNKNOWN). The call is not re-sent: check open positions/orders before retrying.</exception>
 		public async Task<OrderModifyData> OrderModifyAsync(OrderModifyRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			if (Id == default(Guid))
 			{
 				throw new ConnectExceptionMT5("Please call Connect method firstly");
 			}
-			return (await ExecuteWithReconnect((Metadata headers) => TradeClient.OrderModify(request, headers, deadline, cancellationToken), (OrderModifyReply r) => r.Error, deadline, cancellationToken)).Data;
+			return (await ExecuteWithReconnect((Metadata headers) => TradeClient.OrderModify(request, headers, deadline, cancellationToken), (OrderModifyReply r) => r.Error, deadline, cancellationToken, "OrderModify")).Data;
 		}
 
 		/// <summary>
@@ -766,13 +781,14 @@ namespace MetaRPC.CSharpMT5
 		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the account is not connected.</exception>
 		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+		/// <exception cref="T:mt5_term_api.TradeOutcomeUnknownExceptionMT5">The transport failed after the request may have reached the terminal (TRADE_OUTCOME_UNKNOWN). The call is not re-sent: check open positions/orders before retrying.</exception>
 		public async Task<OrderCloseData> OrderCloseAsync(OrderCloseRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			if (Id == default(Guid))
 			{
 				throw new ConnectExceptionMT5("Please call Connect method firstly");
 			}
-			return (await ExecuteWithReconnect((Metadata headers) => TradeClient.OrderClose(request, headers, deadline, cancellationToken), (OrderCloseReply r) => r.Error, deadline, cancellationToken)).Data;
+			return (await ExecuteWithReconnect((Metadata headers) => TradeClient.OrderClose(request, headers, deadline, cancellationToken), (OrderCloseReply r) => r.Error, deadline, cancellationToken, "OrderClose")).Data;
 		}
 
 		/// <summary>
@@ -1707,7 +1723,7 @@ namespace MetaRPC.CSharpMT5
 			{
 				PropertyId = property
 			};
-			return (await ExecuteWithReconnect((Metadata headers) => AccountInformationClient.AccountInfoDouble(request, headers, deadline, cancellationToken), (AccountInfoDoubleReply _) => (Error?)null, deadline, cancellationToken)).Data.RequestedValue;
+			return (await ExecuteWithReconnect((Metadata headers) => AccountInformationClient.AccountInfoDouble(request, headers, deadline, cancellationToken), (AccountInfoDoubleReply r) => r.Error, deadline, cancellationToken)).Data.RequestedValue;
 		}
 
 		/// <summary>
@@ -1745,7 +1761,7 @@ namespace MetaRPC.CSharpMT5
 			{
 				PropertyId = property
 			};
-			return (await ExecuteWithReconnect((Metadata headers) => AccountInformationClient.AccountInfoInteger(request, headers, deadline, cancellationToken), (AccountInfoIntegerReply _) => (Error?)null, deadline, cancellationToken)).Data.RequestedValue;
+			return (await ExecuteWithReconnect((Metadata headers) => AccountInformationClient.AccountInfoInteger(request, headers, deadline, cancellationToken), (AccountInfoIntegerReply r) => r.Error, deadline, cancellationToken)).Data.RequestedValue;
 		}
 
 		/// <summary>
@@ -1783,7 +1799,7 @@ namespace MetaRPC.CSharpMT5
 			{
 				PropertyId = property
 			};
-			return (await ExecuteWithReconnect((Metadata headers) => AccountInformationClient.AccountInfoString(request, headers, deadline, cancellationToken), (AccountInfoStringReply _) => (Error?)null, deadline, cancellationToken)).Data.RequestedValue;
+			return (await ExecuteWithReconnect((Metadata headers) => AccountInformationClient.AccountInfoString(request, headers, deadline, cancellationToken), (AccountInfoStringReply r) => r.Error, deadline, cancellationToken)).Data.RequestedValue;
 		}
 
 		/// <summary>
@@ -1846,13 +1862,14 @@ namespace MetaRPC.CSharpMT5
 		/// <exception cref="T:mt5_term_api.ConnectExceptionMT5">Thrown if the account is not connected.</exception>
 		/// <exception cref="T:mt5_term_api.ApiExceptionMT5">Thrown if the server returns an error in the response.</exception>
 		/// <exception cref="T:Grpc.Core.RpcException">Thrown if the gRPC call fails.</exception>
+		/// <exception cref="T:mt5_term_api.TradeOutcomeUnknownExceptionMT5">The transport failed after the request may have reached the terminal (TRADE_OUTCOME_UNKNOWN). The call is not re-sent: check open positions/orders before retrying.</exception>
 		public async Task<OrderSendData> OrderSendWithoutChecksAsync(OrderSendRequest request, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			if (Id == default(Guid))
 			{
 				throw new ConnectExceptionMT5("Please call Connect method firstly");
 			}
-			return (await ExecuteWithReconnect((Metadata headers) => TradeClient.OrderSendWithoutChecks(request, headers, deadline, cancellationToken), (OrderSendReply r) => r.Error, deadline, cancellationToken)).Data;
+			return (await ExecuteWithReconnect((Metadata headers) => TradeClient.OrderSendWithoutChecks(request, headers, deadline, cancellationToken), (OrderSendReply r) => r.Error, deadline, cancellationToken, "OrderSendWithoutChecks")).Data;
 		}
 
 		/// <summary>
