@@ -7,7 +7,7 @@
 * **[SymbolInfoMarginRate](./SymbolInfoMarginRate.md)** - **margin requirements** (initial & maintenance) for order types.
 * **[SymbolInfoSessionQuote](./SymbolInfoSessionQuote.md)** - **quote session times** for specific day and symbol.
 * **[SymbolInfoSessionTrade](./SymbolInfoSessionTrade.md)** - **trade session times** for specific day and symbol.
-* **[SymbolParamsMany](./SymbolParamsMany.md)** - **detailed parameters** for multiple symbols (112 fields per symbol!).
+* **[SymbolParamsMany](./SymbolParamsMany.md)** - **detailed parameters** for multiple symbols (116 fields per symbol!).
 * **[TickValueWithSize](./TickValueWithSize.md)** - **tick values and contract sizes** for multiple symbols in one call.
 
 ---
@@ -34,7 +34,7 @@
 | Margin rates for order type                      | `SymbolInfoMarginRateAsync`    | Initial + Maintenance rates | Symbol + Order type                 |
 | Quote session times                              | `SymbolInfoSessionQuoteAsync`  | Session start/end times    | Symbol + Day + Session index        |
 | Trade session times                              | `SymbolInfoSessionTradeAsync`  | Session start/end times    | Symbol + Day + Session index        |
-| Detailed symbol info (112 fields!)               | `SymbolParamsManyAsync`        | SymbolParameters objects   | Optional: symbol filter, pagination |
+| Detailed symbol info (116 fields!)               | `SymbolParamsManyAsync`        | SymbolParameters objects   | Optional: symbol filter, pagination |
 | Tick values for multiple symbols                 | `TickValueWithSizeAsync`       | Tick values + contract sizes | List of symbol names                |
 
 ---
@@ -44,7 +44,7 @@
 * **Margin rates** differ by order type (Buy vs Sell may have different rates).
 * **Session times** are in seconds from 00:00 - extract hours/minutes.
 * **Multiple sessions** possible per day (e.g., pre-market, regular, after-hours).
-* **SymbolParamsMany** returns 112 fields - filter what you need.
+* **SymbolParamsMany** returns 116 fields - filter what you need.
 * **Tick value** helps convert points to account currency for P/L calculations.
 * **Contract size** determines lot size (1 lot = contract size units of base currency).
 

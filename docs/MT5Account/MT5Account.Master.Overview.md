@@ -184,7 +184,7 @@ Timestamps = **UTC** (`google.protobuf.Timestamp`). For streaming subscriptions,
 * [SymbolInfoMarginRate.md](./6.%20Addittional_Methods/SymbolInfoMarginRate.md) - Margin rates for symbol and order type
 * [SymbolInfoSessionQuote.md](./6.%20Addittional_Methods/SymbolInfoSessionQuote.md) - Quote session times
 * [SymbolInfoSessionTrade.md](./6.%20Addittional_Methods/SymbolInfoSessionTrade.md) - Trade session times
-* [SymbolParamsMany.md](./6.%20Addittional_Methods/SymbolParamsMany.md) - Detailed parameters for multiple symbols (112 fields!)
+* [SymbolParamsMany.md](./6.%20Addittional_Methods/SymbolParamsMany.md) - Detailed parameters for multiple symbols (116 fields!)
 
 ### Trading Calculations
 

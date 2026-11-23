@@ -53,12 +53,14 @@ namespace MetaRPC.CSharpMT5
 
 | Field        | Type     | Description                                                              |
 | ------------ | -------- | ------------------------------------------------------------------------ |
-| `Time`       | `long`   | Time of the last prices update (Unix timestamp in seconds)               |
+| `Time`       | `long`   | Time of the last prices update, Unix seconds — **broker server time zone** |
+| `TimeUtc`    | `long`   | `Time` in UTC (same instant)                                             |
 | `Bid`        | `double` | Current Bid price (sell price)                                           |
 | `Ask`        | `double` | Current Ask price (buy price)                                            |
 | `Last`       | `double` | Price of the last deal (Last)                                            |
 | `Volume`     | `ulong`  | Volume for the current Last price                                        |
-| `TimeMsc`    | `long`   | Time of a price last update in milliseconds (Unix timestamp)             |
+| `TimeMsc`    | `long`   | Time of a price last update in milliseconds — **broker server time zone** |
+| `TimeMscUtc` | `long`   | `TimeMsc` in UTC (same instant)                                          |
 | `Flags`      | `uint`   | Tick flags (see MQL5 docs for flag meanings)                             |
 | `VolumeReal` | `double` | Volume for the current Last price with greater accuracy (fractional)     |
 
@@ -91,7 +93,7 @@ Use this method when you need to:
 * **Bid** = price at which you can **sell** (broker buys from you).
 * **Ask** = price at which you can **buy** (broker sells to you).
 * **Spread** = `Ask - Bid` (broker's markup, in price units).
-* `Time` is Unix timestamp in **seconds** - use `DateTimeOffset.FromUnixTimeSeconds(tick.Time)` to convert.
+* `Time`/`TimeMsc` are in the **broker server time zone**; use `TimeUtc`/`TimeMscUtc` for UTC (e.g. `DateTimeOffset.FromUnixTimeSeconds(tick.TimeUtc)`).
 * `TimeMsc` provides millisecond precision for high-frequency trading.
 * `Last` and `Volume` are primarily used for exchange-traded instruments (stocks, futures).
 * For Forex, `Bid` and `Ask` are the main prices - `Last` may be 0.
@@ -132,7 +134,7 @@ Console.WriteLine($"EURUSD Spread: {spread:F5} ({spread * 10000:F1} pips)");
 // Verify quote is recent
 var tick = await acc.SymbolInfoTickAsync("GBPUSD");
 
-var quoteTime = DateTimeOffset.FromUnixTimeSeconds(tick.Time).DateTime;
+var quoteTime = DateTimeOffset.FromUnixTimeSeconds(tick.TimeUtc).DateTime;
 var age = DateTime.UtcNow - quoteTime;
 
 Console.WriteLine($"Quote time: {quoteTime:yyyy-MM-dd HH:mm:ss} UTC");
@@ -172,7 +174,7 @@ foreach (var sym in symbols)
 // High-precision price monitoring
 var tick = await acc.SymbolInfoTickAsync("EURUSD");
 
-var timeMsc = DateTimeOffset.FromUnixTimeMilliseconds(tick.TimeMsc).DateTime;
+var timeMsc = DateTimeOffset.FromUnixTimeMilliseconds(tick.TimeMscUtc).DateTime;
 
 Console.WriteLine($"EURUSD Tick:");
 Console.WriteLine($"  Time (ms):   {timeMsc:yyyy-MM-dd HH:mm:ss.fff} UTC");

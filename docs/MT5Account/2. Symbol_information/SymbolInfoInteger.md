@@ -87,7 +87,7 @@ namespace MetaRPC.CSharpMT5
 | `SymbolSpread`              | 19    | Spread value in points                                                                                                                   |
 | `SymbolTicksBookdepth`     | 20    | Maximal number of requests in Depth of Market. `0` if no DOM available.                                                                 |
 | `SymbolTradeCalcMode`     | 21    | Contract price calculation mode (enum: Forex, CFD, Futures, etc.)                                                                        |
-| `SymbolTradeMode`          | 22    | Order execution type (enum: Disabled, LongOnly, ShortOnly, CloseOnly, Full)                                                             |
+| `SymbolTradeMode`          | 22    | Allowed trading mode (enum: Disabled, LongOnly, ShortOnly, CloseOnly, Full)                                                             |
 | `SymbolStartTime`          | 23    | Date of symbol trade beginning (Unix timestamp) - usually for futures                                                                    |
 | `SymbolExpirationTime`     | 24    | Date of symbol trade end (Unix timestamp) - usually for futures                                                                          |
 | `SymbolTradeStopsLevel`   | 25    | Minimal distance in points from current price to place Stop orders                                                                       |

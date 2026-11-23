@@ -67,7 +67,7 @@ namespace MetaRPC.CSharpMT5
 | `PageNumber`    | `int32` (optional)           | Current page number                        |
 | `ItemsPerPage`  | `int32` (optional)           | Items per page                             |
 
-### `SymbolParameters` — Detailed symbol information (112 fields)
+### `SymbolParameters` — Detailed symbol information (116 fields)
 
 **Price fields:**
 
@@ -623,7 +623,7 @@ namespace MetaRPC.CSharpMT5
 
 ## 💬 Just the essentials
 
-* **What it is.** Returns comprehensive symbol information (112 fields) for one or multiple symbols. Single endpoint for all symbol properties.
+* **What it is.** Returns comprehensive symbol information (116 fields) for one or multiple symbols. Single endpoint for all symbol properties.
 * **Why you need it.** Get complete symbol specifications, analyze trading conditions, compare multiple symbols, access all symbol metadata in one call.
 * **Sanity check.** If `SymbolsTotal > 0` → data available. Check `SymbolInfos.Count` for actual returned symbols. Use pagination for large result sets.
 
@@ -643,7 +643,7 @@ Use it to get comprehensive symbol data:
 
 ## 🧩 Notes & Tips
 
-* **Comprehensive data:** Returns 112 fields per symbol. Use only what you need to reduce processing overhead.
+* **Comprehensive data:** Returns 116 fields per symbol. Use only what you need to reduce processing overhead.
 * **Pagination:** Use `PageNumber` and `ItemsPerPage` for large symbol lists to reduce memory usage.
 * **Filtering:** Set `SymbolName` to get specific symbol. Omit to get all symbols.
 * **Sorting:** Use `SortType` to order results by name or MQL index.
