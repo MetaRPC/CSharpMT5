@@ -14,7 +14,7 @@
 ## ⚡ Why MetaRPC CSharpMT5?
 
 - **Zero Windows VPS**: Stop paying $20–$80/month for buggy Windows servers. Run .NET trading bots in lightweight Linux Docker containers or Kubernetes.
-- **Ultra-Low Latency**: High-speed gRPC streaming and execution co-located with London (LD4) and New York (NY4) broker data centers (<20ms execution).
+- **Low-Latency gRPC**: Streaming and order execution over gRPC from our servers in Falkenstein, Germany. Request and execution times depend on your broker, network and operation, so measure them with your own broker.
 - **Universal MT5 Broker & Prop Firm Support**: Connects to 500+ brokers and prop firms including **FTMO, IC Markets, Pepperstone, Exness, FundedNext, Tickmill, XM, FXCM**.
 - **Automatic Session Management**: Session GUID (`id`) is generated automatically by the server upon connection and attached to all subsequent requests.
 - **Modern Async/Await**: Strongly-typed async methods with automatic reconnects and stream multiplexing.
